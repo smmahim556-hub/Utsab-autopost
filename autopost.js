@@ -8,6 +8,7 @@
 //   FB_USER_TOKEN                  long-lived user token; each Page's own token is looked up from it
 //   FB_PAGE_TOKEN, FB_PAGE_TOKEN_2 alternatively, the Page tokens themselves (used when no FB_USER_TOKEN)
 //   HEADLINE_SCALE (1.2), DATE_SCALE (1.25), LOGO_SCALE (1.27)  headline / date / logo size relative to the card site's default
+//   STORY=1                        also post the card as a Page story (shared-post look)
 //   CHECK=1                        only test the Page tokens (no posting), write the result to state/check.json
 //   DRY_RUN=1                  make cards into ./out but do not post (default unless DRY_RUN=0)
 //   MAX_PER_RUN                at most this many posts per run (default 3)
@@ -165,9 +166,62 @@ async function postToPage(page, cardFile, caption, link) {
   return target;
 }
 
+// Story image (1080x1920) in the look of a post shared to a story: a red background with a
+// white card holding the Page's logo and name above the 4:5 photocard.
+async function composeStory(browser, cardFile, page, outFile) {
+  const card = `data:image/png;base64,${fs.readFileSync(cardFile).toString('base64')}`;
+  const avatar = `https://graph.facebook.com/${page.id}/picture?width=200&height=200`;
+  const html = `<!doctype html><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1080px;height:1920px;overflow:hidden;background:linear-gradient(180deg,#a2333c 0%,#922f39 100%);
+       font-family:'Helvetica Neue',Helvetica,Arial,'Liberation Sans','Hind Siliguri',sans-serif}
+  .card{position:absolute;left:129px;top:356px;width:822px;height:1209px;background:#fff;border-radius:26px;
+        overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.28)}
+  .head{height:183px;display:flex;align-items:center;padding-left:41px;padding-right:30px;gap:26px}
+  .av{width:106px;height:106px;border-radius:50%;border:2px solid #e4e6eb;background:#fff center/cover no-repeat;flex:none}
+  .name{font-weight:700;font-size:39px;color:#050505;white-space:nowrap;overflow:hidden}
+  .photo{display:block;width:822px;height:1026px}
+</style>
+<div class="card">
+  <div class="head"><div class="av" style="background-image:url('${avatar}')"></div><div class="name" id="n"></div></div>
+  <img class="photo" src="${card}">
+</div>`;
+  const tab = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
+  try {
+    await tab.setContent(html, { waitUntil: 'networkidle' });
+    await tab.evaluate(n => { document.getElementById('n').textContent = n; }, page.name || 'Utsab TV');
+    await tab.evaluate(() => {
+      const n = document.getElementById('n'), room = n.parentElement.clientWidth - 41 - 106 - 26 - 30;
+      let size = 39;
+      while (n.scrollWidth > room && size > 20) n.style.fontSize = `${--size}px`;
+    });
+    await tab.evaluate(() => document.fonts.ready);
+    await tab.waitForTimeout(500);
+    await tab.screenshot({ path: outFile });
+    return outFile;
+  } finally {
+    await tab.close();
+  }
+}
+
+// Publishes the story image as a Page story: upload unpublished, then create the story.
+async function postStory(page, storyFile) {
+  const photo = new FormData();
+  photo.append('source', new Blob([fs.readFileSync(storyFile)]), path.basename(storyFile));
+  photo.append('published', 'false');
+  photo.append('access_token', page.token);
+  const { id } = await graph(`${page.id}/photos`, photo);
+  const story = new FormData();
+  story.append('photo_id', id);
+  story.append('access_token', page.token);
+  return graph(`${page.id}/photo_stories`, story);
+}
+
 // Posts to every Page not yet done for this link; `done` lists Page ids already posted,
 // so a retry after one Page failed does not post twice on the other.
-async function postToFacebook(cardFile, caption, link, done) {
+async function postToFacebook(cardFile, caption, link, done, browser) {
   const targets = await pages();
   if (!targets.length) throw new Error('no FB_PAGE_ID / FB_PAGE_TOKEN set');
   let failed = null;
@@ -179,6 +233,16 @@ async function postToFacebook(cardFile, caption, link, done) {
     } catch (e) {
       failed = e;
       log(`Page ${page.id} FAILED:`, e.message);
+      continue;
+    }
+    // Story is a one-shot extra: a failure here is logged but never retried or blocks the post.
+    if (process.env.STORY === '1') {
+      try {
+        const file = await composeStory(browser, cardFile, page, cardFile.replace(/\.png$/, `-story-${page.id}.png`));
+        log(`story on Page ${page.id}:`, JSON.stringify(await postStory(page, file)));
+      } catch (e) {
+        log(`story on Page ${page.id} FAILED:`, e.message);
+      }
     }
   }
   if (failed) throw failed;
@@ -224,11 +288,20 @@ async function demoCard() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
   try {
-    const card = await makeCard(browser, link, path.join(OUT_DIR, `demo-${ratio.replace(':', 'x')}-${link.split('/').pop()}`), ratio);
     const preview = path.join(__dirname, 'preview');
     fs.mkdirSync(preview, { recursive: true });
-    fs.copyFileSync(card, path.join(preview, path.basename(card)));
-    log('demo card:', card);
+    const slug = link.split('/').pop();
+    const out = [];
+    if (ratio === 'story') {
+      // Story look: 4:5 card inside the shared-post frame, once per Page.
+      const card = await makeCard(browser, link, path.join(OUT_DIR, `demo-card-${slug}`), '4:5');
+      for (const page of [{ id: '872606492607357', name: 'Utsab TV' }, { id: '1276101408920358', name: 'Utsab TV Digital - উৎসব TV' }]) {
+        out.push(await composeStory(browser, card, page, path.join(OUT_DIR, `demo-story-${page.id}-${slug}.png`)));
+      }
+    } else {
+      out.push(await makeCard(browser, link, path.join(OUT_DIR, `demo-${ratio.replace(':', 'x')}-${slug}`), ratio));
+    }
+    for (const f of out) { fs.copyFileSync(f, path.join(preview, path.basename(f))); log('demo card:', f); }
   } finally {
     await browser.close();
   }
@@ -276,7 +349,7 @@ async function demoCard() {
           state.posted = state.posted || {};
           const done = state.posted[link] = state.posted[link] || [];
           try {
-            await postToFacebook(card, info.title, link, done);
+            await postToFacebook(card, info.title, link, done, browser);
           } finally {
             saveState(state);
           }

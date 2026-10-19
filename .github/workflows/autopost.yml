@@ -13,7 +13,7 @@ on:
         type: string
         default: ''
       demo_ratio:
-        description: 'Demo card size: 4:5, 1:1, 16:9 or 9:16'
+        description: 'Demo card size: 4:5, 1:1, 16:9, 9:16 or story'
         type: string
         default: '9:16'
 concurrency: autopost
@@ -37,6 +37,7 @@ jobs:
           FB_PAGE_TOKEN_2: ${{ secrets.FB_PAGE_TOKEN_2 }}
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
           DRY_RUN: ${{ vars.DRY_RUN || '0' }}
+          STORY: ${{ vars.STORY || '0' }}
           CHECK: ${{ inputs.check && '1' || '0' }}
           DEMO_LINK: ${{ inputs.demo_link }}
           DEMO_RATIO: ${{ inputs.demo_ratio }}
