@@ -1,10 +1,22 @@
 {
-  "checkedAt": "2026-10-19T17:40:33.920Z",
+  "checkedAt": "2026-10-19T19:26:32.512Z",
+  "usingUserToken": true,
   "pages": [
     {
       "slot": 1,
       "id": "872606492607357",
-      "error": "Error validating access token: Session has expired on Monday, 19-Oct-26 10:00:00 PDT. The current time is Monday, 19-Oct-26 10:40:34 PDT."
+      "name": "Utsab TV",
+      "type": "PAGE",
+      "valid": true,
+      "expires": "never",
+      "scopes": [
+        "pages_show_list",
+        "pages_read_engagement",
+        "pages_read_user_content",
+        "pages_manage_posts",
+        "pages_manage_engagement",
+        "public_profile"
+      ]
     },
     {
       "slot": 2,
@@ -12,7 +24,7 @@
       "name": "Utsab TV Digital - উৎসব TV",
       "type": "PAGE",
       "valid": true,
-      "expires": "2026-10-19T19:00:00.000Z",
+      "expires": "never",
       "scopes": [
         "pages_show_list",
         "pages_read_engagement",
@@ -23,5 +35,11 @@
       ]
     }
   ],
+  "userToken": {
+    "valid": true,
+    "type": "USER",
+    "expires": "never",
+    "dataAccessExpires": "2027-01-17T14:54:29.000Z"
+  },
   "configured": 2
 }
