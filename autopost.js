@@ -147,6 +147,10 @@ async function postToFacebook(cardFile, caption, link) {
         log('card saved:', card);
         if (DRY_RUN) {
           log('DRY_RUN: not posting');
+          // Keep the card in the repo so it can be checked on GitHub before going live.
+          const preview = path.join(__dirname, 'preview');
+          fs.mkdirSync(preview, { recursive: true });
+          fs.copyFileSync(card, path.join(preview, path.basename(card)));
         } else {
           const id = await postToFacebook(card, info.title, link);
           log('posted to Facebook:', id);

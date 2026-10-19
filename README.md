@@ -6,7 +6,7 @@ Every 5 minutes (GitHub Actions cron):
 3. Posts the card to the Facebook Page with the headline as caption, then comments the news link.
 
 - First run only records the current links, so old news is not posted.
-- `DRY_RUN` repository variable defaults to `1`: cards are made and uploaded as the `cards` run artifact but nothing is posted. Set it to `0` to go live.
+- `DRY_RUN` repository variable defaults to `1`: cards are made and uploaded as the `cards` run artifact but nothing is posted; each card is also committed to `preview/` for checking. Set it to `0` to go live.
 - Secrets: `FB_PAGE_ID`, `FB_PAGE_TOKEN` (see FACEBOOK-TOKEN-GUIDE.md).
 - A failed item stays unseen and is retried next run; at most `MAX_PER_RUN` (3) posts per run.
 
