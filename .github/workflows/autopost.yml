@@ -37,7 +37,7 @@ jobs:
           FB_PAGE_TOKEN_2: ${{ secrets.FB_PAGE_TOKEN_2 }}
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
           DRY_RUN: ${{ vars.DRY_RUN || '0' }}
-          STORY: ${{ vars.STORY || '0' }}
+          STORY: ${{ vars.STORY || '1' }}
           CHECK: ${{ inputs.check && '1' || '0' }}
           DEMO_LINK: ${{ inputs.demo_link }}
           DEMO_RATIO: ${{ inputs.demo_ratio }}
