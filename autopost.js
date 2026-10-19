@@ -6,6 +6,7 @@
 // Env:
 //   FB_PAGE_ID, FB_PAGE_TOKEN      first Facebook Page id and its Page access token
 //   FB_PAGE_ID_2, FB_PAGE_TOKEN_2  second Page (optional)
+//   CHECK=1                        only test the Page tokens (no posting), write the result to state/check.json
 //   DRY_RUN=1                  make cards into ./out but do not post (default unless DRY_RUN=0)
 //   MAX_PER_RUN                at most this many posts per run (default 3)
 //   GRAPH_VERSION              Graph API version (default v26.0)
@@ -142,7 +143,33 @@ async function postToFacebook(cardFile, caption, link, done) {
   if (failed) throw failed;
 }
 
+// Read-only check that each Page token works and whether it expires. Never posts.
+async function checkPages() {
+  const result = { checkedAt: new Date().toISOString(), pages: [] };
+  for (const [n, page] of pages().entries()) {
+    const entry = { slot: n + 1, id: page.id };
+    try {
+      const me = await (await fetch(`${GRAPH}/${page.id}?fields=name&access_token=${encodeURIComponent(page.token)}`)).json();
+      const dbg = await (await fetch(`${GRAPH}/debug_token?input_token=${encodeURIComponent(page.token)}&access_token=${encodeURIComponent(page.token)}`)).json();
+      const d = dbg.data || {};
+      Object.assign(entry, {
+        name: me.name, error: me.error?.message || dbg.error?.message, type: d.type, valid: d.is_valid,
+        expires: d.expires_at === 0 ? 'never' : d.expires_at ? new Date(d.expires_at * 1000).toISOString() : undefined,
+        scopes: d.scopes
+      });
+    } catch (e) {
+      entry.error = e.message;
+    }
+    result.pages.push(entry);
+  }
+  result.configured = result.pages.length;
+  fs.mkdirSync(path.dirname(STATE_FILE), { recursive: true });
+  fs.writeFileSync(path.join(path.dirname(STATE_FILE), 'check.json'), JSON.stringify(result, null, 2));
+  log(JSON.stringify(result));
+}
+
 (async () => {
+  if (process.env.CHECK === '1') return checkPages();
   const links = await homepageLinks();
   log(`homepage: ${links.length} candidate links`);
   let state = loadState();
