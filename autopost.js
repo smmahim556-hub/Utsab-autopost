@@ -7,7 +7,7 @@
 //   FB_PAGE_ID, FB_PAGE_ID_2       Facebook Page ids to post to (the second is optional)
 //   FB_USER_TOKEN                  long-lived user token; each Page's own token is looked up from it
 //   FB_PAGE_TOKEN, FB_PAGE_TOKEN_2 alternatively, the Page tokens themselves (used when no FB_USER_TOKEN)
-//   HEADLINE_SCALE (1.2), DATE_SCALE (1.27), LOGO_SCALE (1.27)  headline / date / logo size relative to the card site's default
+//   HEADLINE_SCALE (1.2), DATE_SCALE (1.25), LOGO_SCALE (1.27)  headline / date / logo size relative to the card site's default
 //   CHECK=1                        only test the Page tokens (no posting), write the result to state/check.json
 //   DRY_RUN=1                  make cards into ./out but do not post (default unless DRY_RUN=0)
 //   MAX_PER_RUN                at most this many posts per run (default 3)
@@ -91,13 +91,16 @@ async function makeCard(browser, url, file) {
     await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
     await page.waitForTimeout(1500);
     // The date has no size control on the site, so scale it directly (1 = default).
-    const date = await page.evaluate((k) => {
+    const date = await page.evaluate(([k, dy]) => {
       const el = document.querySelector('#renderTarget .utsab-date-text');
       if (!el) return null;
       const before = parseFloat(getComputedStyle(el).fontSize);
       el.style.fontSize = `${before * k}px`;
+      // Bigger text sits lower in the ribbon; nudge it back up to stay centred.
+      el.style.position = 'relative';
+      el.style.top = `${dy}px`;
       return { before, after: before * k };
-    }, Number(process.env.DATE_SCALE || 1.27));
+    }, [Number(process.env.DATE_SCALE || 1.25), Number(process.env.DATE_DY || -3)]);
     log('date font size:', JSON.stringify(date));
     // Logo: grow it from its top-right corner, then move it to the reference position
     // (LOGO_DX / LOGO_DY in card pixels; negative DX = left, positive DY = down).
