@@ -69,17 +69,20 @@ async function makeCard(browser, url, file) {
   const page = await ctx.newPage();
   try {
     await page.goto(CARD_SITE, { waitUntil: 'networkidle', timeout: 60000 });
+    // Card size: 4:5 portrait (1080x1350) unless CARD_RATIO says otherwise.
+    await page.click(`#ratioSelector [data-ratio="${process.env.CARD_RATIO || '4:5'}"]`);
     await page.fill('#articleUrlInput', url);
     await page.click('#fetchArticleBtn');
-    // Fetching fills the headline, photo and date; wait for the status hint and the photo to settle.
-    await page.waitForFunction(() => (document.querySelector('#articleStatusHint')?.textContent || '').trim().length > 0,
-      null, { timeout: 45000 });
-    await page.waitForLoadState('networkidle', { timeout: 45000 }).catch(() => {});
-    await page.waitForFunction(() => [...document.querySelectorAll('#renderTarget img')].every(i => i.complete && i.naturalWidth > 0),
-      null, { timeout: 30000 }).catch(() => {});
-    await page.waitForTimeout(1500);
+    // The status hint shows "loading" while it fetches the headline, date and photo,
+    // then switches to "success" or "error" once the photo has loaded too.
+    await page.waitForFunction(() => /\b(success|error)\b/.test(document.querySelector('#articleStatusHint')?.className || ''),
+      null, { timeout: 90000 });
     const hint = (await page.textContent('#articleStatusHint') || '').trim();
     log('card site says:', hint);
+    if (/\berror\b/.test(await page.getAttribute('#articleStatusHint', 'class'))) throw new Error(`card site: ${hint}`);
+    if (!hint.includes('ছবি')) log('warning: no photo found for this news');
+    await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
+    await page.waitForTimeout(1500);
     const [download] = await Promise.all([page.waitForEvent('download', { timeout: 60000 }), page.click('#downloadBtn')]);
     const ext = path.extname(download.suggestedFilename()) || '.png';
     const out = file + ext;
