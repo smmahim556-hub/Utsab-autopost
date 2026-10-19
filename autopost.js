@@ -7,6 +7,7 @@
 //   FB_PAGE_ID, FB_PAGE_ID_2       Facebook Page ids to post to (the second is optional)
 //   FB_USER_TOKEN                  long-lived user token; each Page's own token is looked up from it
 //   FB_PAGE_TOKEN, FB_PAGE_TOKEN_2 alternatively, the Page tokens themselves (used when no FB_USER_TOKEN)
+//   HEADLINE_SCALE (1.2), DATE_SCALE (1.2)  headline / date size relative to the card site's default
 //   CHECK=1                        only test the Page tokens (no posting), write the result to state/check.json
 //   DRY_RUN=1                  make cards into ./out but do not post (default unless DRY_RUN=0)
 //   MAX_PER_RUN                at most this many posts per run (default 3)
@@ -74,6 +75,9 @@ async function makeCard(browser, url, file) {
     await page.goto(CARD_SITE, { waitUntil: 'networkidle', timeout: 60000 });
     // Card size: 4:5 portrait (1080x1350) unless CARD_RATIO says otherwise.
     await page.click(`#ratioSelector [data-ratio="${process.env.CARD_RATIO || '4:5'}"]`);
+    // Headline size: the site's "Text Size" slider (1 = default, steps of 0.05).
+    await page.$eval('#textSizeInput', (el, v) => { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); },
+      String(process.env.HEADLINE_SCALE || 1.2));
     await page.fill('#articleUrlInput', url);
     await page.click('#fetchArticleBtn');
     // The status hint shows "loading" while it fetches the headline, date and photo,
@@ -86,6 +90,16 @@ async function makeCard(browser, url, file) {
     if (!hint.includes('ছবি')) log('warning: no photo found for this news');
     await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
     await page.waitForTimeout(1500);
+    // The date has no size control on the site, so scale it directly (1 = default).
+    const date = await page.evaluate((k) => {
+      const el = document.querySelector('#renderTarget .utsab-date-text');
+      if (!el) return null;
+      const before = parseFloat(getComputedStyle(el).fontSize);
+      el.style.fontSize = `${before * k}px`;
+      return { before, after: before * k };
+    }, Number(process.env.DATE_SCALE || 1.2));
+    log('date font size:', JSON.stringify(date));
+    await page.waitForTimeout(500);
     const [download] = await Promise.all([page.waitForEvent('download', { timeout: 60000 }), page.click('#downloadBtn')]);
     const ext = path.extname(download.suggestedFilename()) || '.png';
     const out = file + ext;
