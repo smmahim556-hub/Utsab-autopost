@@ -152,7 +152,8 @@ const pages = async () => (pagesCache = pagesCache || await loadPages());
 async function postToPage(page, cardFile, caption, link) {
   const photo = new FormData();
   photo.append('source', new Blob([fs.readFileSync(cardFile)]), path.basename(cardFile));
-  photo.append('caption', caption);
+  // No caption: the card already carries the headline, and the link goes in the first comment.
+  if (process.env.FB_CAPTION === '1') photo.append('caption', caption);
   photo.append('access_token', page.token);
   const { post_id: postId, id: photoId } = await graph(`${page.id}/photos`, photo);
   const target = postId || `${page.id}_${photoId}`;
