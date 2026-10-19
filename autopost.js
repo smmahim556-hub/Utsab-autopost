@@ -1,10 +1,11 @@
 // Utsab TV auto-poster.
 // 1. Reads the utsabtv.com homepage and finds news links not seen before.
 // 2. Makes the photocard on card.utsabtv.com (paste link -> Fetch -> Download).
-// 3. Posts the card to the Facebook Page, then puts the news link in the first comment.
+// 3. Posts the card to each Facebook Page, then puts the news link in the first comment.
 //
 // Env:
-//   FB_PAGE_ID, FB_PAGE_TOKEN  Facebook Page id and Page access token
+//   FB_PAGE_ID, FB_PAGE_TOKEN      first Facebook Page id and its Page access token
+//   FB_PAGE_ID_2, FB_PAGE_TOKEN_2  second Page (optional)
 //   DRY_RUN=1                  make cards into ./out but do not post (default unless DRY_RUN=0)
 //   MAX_PER_RUN                at most this many posts per run (default 3)
 //   GRAPH_VERSION              Graph API version (default v26.0)
@@ -100,22 +101,45 @@ async function graph(pathPart, form) {
   return body;
 }
 
-async function postToFacebook(cardFile, caption, link) {
-  const pageId = process.env.FB_PAGE_ID, token = process.env.FB_PAGE_TOKEN;
-  if (!pageId || !token) throw new Error('FB_PAGE_ID / FB_PAGE_TOKEN missing');
+// Every Page that has both an id and a token set.
+function pages() {
+  return [['FB_PAGE_ID', 'FB_PAGE_TOKEN'], ['FB_PAGE_ID_2', 'FB_PAGE_TOKEN_2']]
+    .map(([id, token]) => ({ id: process.env[id], token: process.env[token] }))
+    .filter(p => p.id && p.token);
+}
 
+async function postToPage(page, cardFile, caption, link) {
   const photo = new FormData();
   photo.append('source', new Blob([fs.readFileSync(cardFile)]), path.basename(cardFile));
   photo.append('caption', caption);
-  photo.append('access_token', token);
-  const { post_id: postId, id: photoId } = await graph(`${pageId}/photos`, photo);
-  const target = postId || `${pageId}_${photoId}`;
+  photo.append('access_token', page.token);
+  const { post_id: postId, id: photoId } = await graph(`${page.id}/photos`, photo);
+  const target = postId || `${page.id}_${photoId}`;
 
   const comment = new FormData();
   comment.append('message', link);
-  comment.append('access_token', token);
+  comment.append('access_token', page.token);
   await graph(`${target}/comments`, comment);
   return target;
+}
+
+// Posts to every Page not yet done for this link; `done` lists Page ids already posted,
+// so a retry after one Page failed does not post twice on the other.
+async function postToFacebook(cardFile, caption, link, done) {
+  const targets = pages();
+  if (!targets.length) throw new Error('no FB_PAGE_ID / FB_PAGE_TOKEN set');
+  let failed = null;
+  for (const page of targets) {
+    if (done.includes(page.id)) continue;
+    try {
+      log(`posted to Page ${page.id}:`, await postToPage(page, cardFile, caption, link));
+      done.push(page.id);
+    } catch (e) {
+      failed = e;
+      log(`Page ${page.id} FAILED:`, e.message);
+    }
+  }
+  if (failed) throw failed;
 }
 
 (async () => {
@@ -155,8 +179,14 @@ async function postToFacebook(cardFile, caption, link) {
           fs.mkdirSync(preview, { recursive: true });
           fs.copyFileSync(card, path.join(preview, path.basename(card)));
         } else {
-          const id = await postToFacebook(card, info.title, link);
-          log('posted to Facebook:', id);
+          state.posted = state.posted || {};
+          const done = state.posted[link] = state.posted[link] || [];
+          try {
+            await postToFacebook(card, info.title, link, done);
+          } finally {
+            saveState(state);
+          }
+          delete state.posted[link];
         }
         state.seen.push(link); saveState(state);
         posted++;

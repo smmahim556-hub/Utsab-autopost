@@ -20,6 +20,8 @@ jobs:
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
+          FB_PAGE_TOKEN_2: ${{ secrets.FB_PAGE_TOKEN_2 }}
           DRY_RUN: ${{ vars.DRY_RUN || '1' }}
       - uses: actions/upload-artifact@v4
         if: always()
