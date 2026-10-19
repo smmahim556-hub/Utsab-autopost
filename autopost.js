@@ -26,7 +26,17 @@ const MAX_PER_RUN = Number(process.env.MAX_PER_RUN || 3);
 const GRAPH = `https://graph.facebook.com/${process.env.GRAPH_VERSION || 'v26.0'}`;
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36';
 
+const EVENTS_FILE = path.join(__dirname, 'state', 'events.json');
 const log = (...a) => console.log(new Date().toISOString(), ...a);
+// Outcome of each post/story, kept in the repo (last 40) so a failure can be read without the Actions logs.
+function event(text) {
+  let list = [];
+  try { list = JSON.parse(fs.readFileSync(EVENTS_FILE, 'utf8')); } catch {}
+  list.push({ at: new Date().toISOString(), text: String(text).slice(0, 600) });
+  fs.mkdirSync(path.dirname(EVENTS_FILE), { recursive: true });
+  fs.writeFileSync(EVENTS_FILE, JSON.stringify(list.slice(-40), null, 2));
+  log(text);
+}
 
 function loadState() {
   try { return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8')); } catch { return null; }
@@ -228,20 +238,20 @@ async function postToFacebook(cardFile, caption, link, done, browser) {
   for (const page of targets) {
     if (done.includes(page.id)) continue;
     try {
-      log(`posted to Page ${page.id}:`, await postToPage(page, cardFile, caption, link));
+      event(`posted to Page ${page.id}: ${await postToPage(page, cardFile, caption, link)} (${link})`);
       done.push(page.id);
     } catch (e) {
       failed = e;
-      log(`Page ${page.id} FAILED:`, e.message);
+      event(`Page ${page.id} FAILED: ${e.message}`);
       continue;
     }
     // Story is a one-shot extra: a failure here is logged but never retried or blocks the post.
     if (process.env.STORY === '1') {
       try {
         const file = await composeStory(browser, cardFile, page, cardFile.replace(/\.png$/, `-story-${page.id}.png`));
-        log(`story on Page ${page.id}:`, JSON.stringify(await postStory(page, file)));
+        event(`story on Page ${page.id}: ${JSON.stringify(await postStory(page, file))}`);
       } catch (e) {
-        log(`story on Page ${page.id} FAILED:`, e.message);
+        event(`story on Page ${page.id} FAILED: ${e.message}`);
       }
     }
   }
