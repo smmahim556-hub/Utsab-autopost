@@ -7,7 +7,7 @@
 //   FB_PAGE_ID, FB_PAGE_ID_2       Facebook Page ids to post to (the second is optional)
 //   FB_USER_TOKEN                  long-lived user token; each Page's own token is looked up from it
 //   FB_PAGE_TOKEN, FB_PAGE_TOKEN_2 alternatively, the Page tokens themselves (used when no FB_USER_TOKEN)
-//   HEADLINE_SCALE (1.2), DATE_SCALE (1.2)  headline / date size relative to the card site's default
+//   HEADLINE_SCALE (1.2), DATE_SCALE (1.4), LOGO_SCALE (1.2)  headline / date / logo size relative to the card site's default
 //   CHECK=1                        only test the Page tokens (no posting), write the result to state/check.json
 //   DRY_RUN=1                  make cards into ./out but do not post (default unless DRY_RUN=0)
 //   MAX_PER_RUN                at most this many posts per run (default 3)
@@ -97,8 +97,15 @@ async function makeCard(browser, url, file) {
       const before = parseFloat(getComputedStyle(el).fontSize);
       el.style.fontSize = `${before * k}px`;
       return { before, after: before * k };
-    }, Number(process.env.DATE_SCALE || 1.2));
+    }, Number(process.env.DATE_SCALE || 1.4));
     log('date font size:', JSON.stringify(date));
+    // Logo: grow it from its top-right corner so it keeps the same margins from the edges.
+    await page.evaluate((k) => {
+      const el = document.querySelector('#renderTarget .utsab-channel-logo');
+      if (!el) return;
+      el.style.transformOrigin = 'top right';
+      el.style.transform = `scale(${k})`;
+    }, Number(process.env.LOGO_SCALE || 1.2));
     await page.waitForTimeout(500);
     const [download] = await Promise.all([page.waitForEvent('download', { timeout: 60000 }), page.click('#downloadBtn')]);
     const ext = path.extname(download.suggestedFilename()) || '.png';
