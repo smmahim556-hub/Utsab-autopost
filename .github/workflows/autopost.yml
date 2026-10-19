@@ -8,6 +8,14 @@ on:
         description: 'Only test the Facebook tokens (posts nothing)'
         type: boolean
         default: false
+      demo_link:
+        description: 'Make a demo card for this news link only (posts nothing)'
+        type: string
+        default: ''
+      demo_ratio:
+        description: 'Demo card size: 4:5, 1:1, 16:9 or 9:16'
+        type: string
+        default: '9:16'
 concurrency: autopost
 permissions:
   contents: write
@@ -30,6 +38,8 @@ jobs:
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
           DRY_RUN: ${{ vars.DRY_RUN || '0' }}
           CHECK: ${{ inputs.check && '1' || '0' }}
+          DEMO_LINK: ${{ inputs.demo_link }}
+          DEMO_RATIO: ${{ inputs.demo_ratio }}
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: cards, path: out/, if-no-files-found: ignore, retention-days: 3 }

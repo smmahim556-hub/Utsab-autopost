@@ -68,13 +68,13 @@ async function articleInfo(url) {
   return { title: meta(html, 'og:title'), image: meta(html, 'og:image') };
 }
 
-async function makeCard(browser, url, file) {
+async function makeCard(browser, url, file, ratio = process.env.CARD_RATIO || '4:5') {
   const ctx = await browser.newContext({ acceptDownloads: true, viewport: { width: 1440, height: 1000 }, userAgent: UA });
   const page = await ctx.newPage();
   try {
     await page.goto(CARD_SITE, { waitUntil: 'networkidle', timeout: 60000 });
     // Card size: 4:5 portrait (1080x1350) unless CARD_RATIO says otherwise.
-    await page.click(`#ratioSelector [data-ratio="${process.env.CARD_RATIO || '4:5'}"]`);
+    await page.click(`#ratioSelector [data-ratio="${ratio}"]`);
     // Headline size: the site's "Text Size" slider (1 = default, steps of 0.05).
     await page.$eval('#textSizeInput', (el, v) => { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); },
       String(process.env.HEADLINE_SCALE || 1.2));
@@ -218,7 +218,24 @@ async function checkPages() {
   log(JSON.stringify(result));
 }
 
+// Makes a card for one link at the given ratio into ./preview. Posts nothing, touches no state.
+async function demoCard() {
+  const link = process.env.DEMO_LINK, ratio = process.env.DEMO_RATIO || '9:16';
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const card = await makeCard(browser, link, path.join(OUT_DIR, `demo-${ratio.replace(':', 'x')}-${link.split('/').pop()}`), ratio);
+    const preview = path.join(__dirname, 'preview');
+    fs.mkdirSync(preview, { recursive: true });
+    fs.copyFileSync(card, path.join(preview, path.basename(card)));
+    log('demo card:', card);
+  } finally {
+    await browser.close();
+  }
+}
+
 (async () => {
+  if (process.env.DEMO_LINK) return demoCard();
   if (process.env.CHECK === '1') return checkPages();
   const links = await homepageLinks();
   log(`homepage: ${links.length} candidate links`);
