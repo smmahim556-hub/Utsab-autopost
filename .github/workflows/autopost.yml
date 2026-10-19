@@ -1,32 +1,16 @@
-name: Utsab TV autopost
-on:
-  schedule:
-    - cron: '*/5 * * * *'   # every 5 minutes (GitHub may run it a few minutes late)
-  workflow_dispatch:
-concurrency: autopost
+name: debug assets
+on: push
 permissions:
   contents: write
 jobs:
-  run:
+  dl:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 22 }
-      - run: npm install
-      - run: npx playwright install --with-deps chromium
-      - run: node autopost.js
-        env:
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-          DRY_RUN: ${{ vars.DRY_RUN || '1' }}
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with: { name: cards, path: out/, if-no-files-found: ignore, retention-days: 3 }
-      - name: Save seen links
-        run: |
-          git config user.name "autopost-bot"
-          git config user.email "autopost-bot@users.noreply.github.com"
-          git add state/seen.json preview 2>/dev/null || git add state/seen.json
-          git diff --cached --quiet || (git commit -m "update seen links" && git push)
+      - run: |
+          mkdir -p dbg && cd dbg
+          for f in core/util.js core/bengali.js data/ratios.js data/templates.js core/dom.js core/state.js features/autofit.js features/render.js ui/preview.js features/imaging.js features/scrape.js features/exporter.js features/publish.js features/batch.js ui/controls.js ui/mobile.js main.js; do
+            curl -sS -A "Mozilla/5.0" "https://card.utsabtv.com/assets/js/$f" -o "$(echo $f | tr / _)"; done
+          ls -la
+          git config user.name autopost-bot; git config user.email autopost-bot@users.noreply.github.com
+          git add . && git commit -qm "debug: card site assets" && git push origin HEAD

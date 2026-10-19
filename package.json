@@ -1,7 +1,0 @@
-{
-  "name": "utsab-autopost",
-  "private": true,
-  "description": "New utsabtv.com news -> photocard from card.utsabtv.com -> Facebook Page post with link in first comment",
-  "scripts": { "start": "node autopost.js" },
-  "dependencies": { "playwright": "1.56.1" }
-}
