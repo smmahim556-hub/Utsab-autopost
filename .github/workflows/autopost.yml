@@ -27,6 +27,7 @@ jobs:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
           FB_PAGE_TOKEN_2: ${{ secrets.FB_PAGE_TOKEN_2 }}
+          FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
           DRY_RUN: ${{ vars.DRY_RUN || '1' }}
           CHECK: ${{ inputs.check && '1' || '0' }}
       - uses: actions/upload-artifact@v4

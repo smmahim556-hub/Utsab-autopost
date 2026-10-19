@@ -4,8 +4,9 @@
 // 3. Posts the card to each Facebook Page, then puts the news link in the first comment.
 //
 // Env:
-//   FB_PAGE_ID, FB_PAGE_TOKEN      first Facebook Page id and its Page access token
-//   FB_PAGE_ID_2, FB_PAGE_TOKEN_2  second Page (optional)
+//   FB_PAGE_ID, FB_PAGE_ID_2       Facebook Page ids to post to (the second is optional)
+//   FB_USER_TOKEN                  long-lived user token; each Page's own token is looked up from it
+//   FB_PAGE_TOKEN, FB_PAGE_TOKEN_2 alternatively, the Page tokens themselves (used when no FB_USER_TOKEN)
 //   CHECK=1                        only test the Page tokens (no posting), write the result to state/check.json
 //   DRY_RUN=1                  make cards into ./out but do not post (default unless DRY_RUN=0)
 //   MAX_PER_RUN                at most this many posts per run (default 3)
@@ -102,12 +103,26 @@ async function graph(pathPart, form) {
   return body;
 }
 
-// Every Page that has both an id and a token set.
-function pages() {
-  return [['FB_PAGE_ID', 'FB_PAGE_TOKEN'], ['FB_PAGE_ID_2', 'FB_PAGE_TOKEN_2']]
+// Every configured Page with its token. With FB_USER_TOKEN the Page tokens come from
+// me/accounts, which never expire when the user token is long-lived.
+async function loadPages() {
+  const ids = [['FB_PAGE_ID', 'FB_PAGE_TOKEN'], ['FB_PAGE_ID_2', 'FB_PAGE_TOKEN_2']]
     .map(([id, token]) => ({ id: process.env[id], token: process.env[token] }))
-    .filter(p => p.id && p.token);
+    .filter(p => p.id);
+  if (process.env.FB_USER_TOKEN) {
+    const res = await (await fetch(`${GRAPH}/me/accounts?fields=id,name,access_token&limit=100&access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).json();
+    if (res.error) throw new Error(`me/accounts: ${res.error.message}`);
+    for (const p of ids) {
+      const acct = (res.data || []).find(a => a.id === p.id);
+      if (!acct) throw new Error(`Page ${p.id} not found in me/accounts`);
+      Object.assign(p, { token: acct.access_token, name: acct.name });
+    }
+  }
+  return ids.filter(p => p.token);
 }
+
+let pagesCache;
+const pages = async () => (pagesCache = pagesCache || await loadPages());
 
 async function postToPage(page, cardFile, caption, link) {
   const photo = new FormData();
@@ -127,7 +142,7 @@ async function postToPage(page, cardFile, caption, link) {
 // Posts to every Page not yet done for this link; `done` lists Page ids already posted,
 // so a retry after one Page failed does not post twice on the other.
 async function postToFacebook(cardFile, caption, link, done) {
-  const targets = pages();
+  const targets = await pages();
   if (!targets.length) throw new Error('no FB_PAGE_ID / FB_PAGE_TOKEN set');
   let failed = null;
   for (const page of targets) {
@@ -145,8 +160,17 @@ async function postToFacebook(cardFile, caption, link, done) {
 
 // Read-only check that each Page token works and whether it expires. Never posts.
 async function checkPages() {
-  const result = { checkedAt: new Date().toISOString(), pages: [] };
-  for (const [n, page] of pages().entries()) {
+  const result = { checkedAt: new Date().toISOString(), usingUserToken: !!process.env.FB_USER_TOKEN, pages: [] };
+  if (process.env.FB_USER_TOKEN) {
+    const dbg = await (await fetch(`${GRAPH}/debug_token?input_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}&access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).json();
+    const d = dbg.data || {};
+    result.userToken = { valid: d.is_valid, type: d.type, error: dbg.error?.message || d.error?.message,
+      expires: d.expires_at === 0 ? 'never' : d.expires_at ? new Date(d.expires_at * 1000).toISOString() : undefined,
+      dataAccessExpires: d.data_access_expires_at ? new Date(d.data_access_expires_at * 1000).toISOString() : undefined };
+  }
+  let list = [];
+  try { list = await pages(); } catch (e) { result.error = e.message; }
+  for (const [n, page] of list.entries()) {
     const entry = { slot: n + 1, id: page.id };
     try {
       const me = await (await fetch(`${GRAPH}/${page.id}?fields=name&access_token=${encodeURIComponent(page.token)}`)).json();
