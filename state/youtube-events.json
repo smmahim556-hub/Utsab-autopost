@@ -18,5 +18,9 @@
   {
     "at": "2026-10-20T14:38:21.475Z",
     "text": "run failed: missing secret YT_CLIENT_ID"
+  },
+  {
+    "at": "2026-10-20T15:20:10.375Z",
+    "text": "run failed: missing secret YT_CLIENT_ID"
   }
 ]
