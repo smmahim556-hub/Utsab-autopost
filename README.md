@@ -12,3 +12,11 @@ Every 5 minutes (GitHub Actions cron):
 - A failed item stays unseen and is retried next run; at most `MAX_PER_RUN` (3) posts per run.
 
 Local run: `npm install && npx playwright install chromium && DRY_RUN=1 node autopost.js`
+
+# YouTube copy
+
+`youtube.js` (workflow **YouTube copy**, every 15 minutes) copies each new public video of the main channel to the other channel(s): downloads it with yt-dlp, writes fresh title/description/tags with AI (Gemini or Claude), uploads it and sets the same thumbnail.
+
+- Setup and secrets: see YOUTUBE-SETUP-GUIDE.md.
+- First run only records the existing videos. Run by hand with **check** to test the tokens (`state/youtube-check.json`), or with **video_id** (and **dry_run**) to test one video.
+- Outcomes are written to `state/youtube-events.json`. A failed video is retried up to 3 times; at most `MAX_PER_RUN` (1) video per run because of the daily API quota.
