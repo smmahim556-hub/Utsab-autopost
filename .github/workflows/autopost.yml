@@ -25,6 +25,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with: { ref: main }   # latest state/seen.json, not the commit the run was queued on
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: npm install
@@ -49,4 +50,4 @@ jobs:
           git config user.name "autopost-bot"
           git config user.email "autopost-bot@users.noreply.github.com"
           git add state preview 2>/dev/null || git add state
-          git diff --cached --quiet || (git commit -m "update seen links" && git push)
+          git diff --cached --quiet || (git commit -m "update seen links" && (git push || (git pull --rebase -X theirs origin main && git push)))
