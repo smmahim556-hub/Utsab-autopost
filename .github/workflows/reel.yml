@@ -23,14 +23,12 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: npm install
-      # The apt part of this sometimes hangs for 15+ minutes and blocks every later run; give up fast and retry once.
-      - id: pw
-        timeout-minutes: 4
+      # The browser download is quick; the apt part (--with-deps) sometimes hangs for 15+ minutes and
+      # blocks every later run. The runner image already has Chrome's libraries, so apt is best-effort.
+      - run: npx playwright install chromium
+      - timeout-minutes: 3
         continue-on-error: true
-        run: npx playwright install --with-deps chromium
-      - if: steps.pw.outcome != 'success'
-        timeout-minutes: 5
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install-deps chromium
       - run: sudo apt-get install -y ffmpeg
       - run: node autopost.js
         if: github.event_name == 'workflow_dispatch' || (vars.REEL || '0') == '1'   # scheduled posting stays off until switched on
