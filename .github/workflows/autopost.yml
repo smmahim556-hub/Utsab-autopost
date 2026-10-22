@@ -23,6 +23,7 @@ on:
 concurrency: ${{ (inputs.demo_weather || inputs.demo_link) && 'autopost-demo' || 'autopost' }}   # demos post nothing, so they do not queue behind the news runs
 permissions:
   contents: write
+  actions: write   # to start the nightly reel workflow
 jobs:
   run:
     runs-on: ubuntu-24.04   # ubuntu-latest moved to 26, which Playwright 1.56 does not support
@@ -56,6 +57,15 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: cards, path: out/, if-no-files-found: ignore, retention-days: 3 }
+      - name: Start the nightly reel
+        if: inputs.demo_weather == '' && inputs.demo_link == '' && !inputs.check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          d=$(TZ=Asia/Dhaka date +%F); h=$(TZ=Asia/Dhaka date +%-H)
+          if [ "${{ vars.REEL || '1' }}" = 1 ] && [ "$h" -ge 22 ] && [ "$(cat state/reel-dispatch.txt 2>/dev/null)" != "$d" ]; then
+            gh workflow run reel.yml -f demo=false && echo "$d" > state/reel-dispatch.txt
+          fi
       - name: Save seen links
         run: |
           git config user.name "autopost-bot"

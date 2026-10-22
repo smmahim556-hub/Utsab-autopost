@@ -1,7 +1,8 @@
 name: Utsab TV top-10 reel
 on:
   schedule:
-    - cron: '0 16 * * *'   # 22:00 Dhaka (GitHub may run it late); the script checks the hour itself
+    # Normally started at 22:00 Dhaka by the autopost workflow; these late GitHub crons are only a backup.
+    - cron: '0 16 * * *'   # the script checks the hour and posts once per day per Page
     - cron: '30 16 * * *'
     - cron: '0 17 * * *'
   workflow_dispatch:
@@ -31,7 +32,7 @@ jobs:
         run: npx playwright install-deps chromium
       - run: sudo apt-get install -y ffmpeg
       - run: node autopost.js
-        if: github.event_name == 'workflow_dispatch' || (vars.REEL || '0') == '1'   # scheduled posting stays off until switched on
+        if: github.event_name == 'workflow_dispatch' || (vars.REEL || '1') == '1'
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
@@ -39,7 +40,7 @@ jobs:
           FB_PAGE_TOKEN_2: ${{ secrets.FB_PAGE_TOKEN_2 }}
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
           DRY_RUN: ${{ vars.DRY_RUN || '0' }}
-          REEL_RUN: ${{ github.event_name == 'schedule' && '1' || '0' }}
+          REEL_RUN: ${{ (github.event_name == 'schedule' || !inputs.demo) && '1' || '0' }}
           DEMO_REEL: ${{ (github.event_name == 'workflow_dispatch' && inputs.demo) && '1' || '0' }}
       - name: Save state
         if: always()
