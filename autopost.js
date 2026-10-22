@@ -533,6 +533,7 @@ ${cardFile ? `<div class="top">${head}</div><div class="mid"><img src="${card}">
 // Slides -> one 9:16 video: slow zoom on each slide, a different xfade transition between slides,
 // a whoosh at every transition and the Page's music underneath (assets/reel-music.mp3).
 const MUSIC_FILE = path.join(__dirname, 'assets', 'reel-music.mp3');
+const TRANSITION_FILE = path.join(__dirname, 'assets', 'transition.mp3');
 const TRANSITIONS = ['slideleft', 'circleopen', 'zoomin', 'wipeleft', 'pixelize', 'radial', 'smoothup', 'diagtl', 'squeezeh', 'slideup', 'fadewhite'];
 const XFADE = 0.5;
 function buildVideo(slides, outFile) {
@@ -548,7 +549,9 @@ function buildVideo(slides, outFile) {
     return clip;
   });
   const whoosh = `${outFile}-whoosh.wav`;
-  ff(['-f', 'lavfi', '-i', 'aevalsrc=0.5*sin(2*PI*(250*t+2600*t*t))*exp(-3*t)+0.25*random(0)*exp(-4*t):d=0.6:s=48000',
+  // The Page's own transition sound (assets/transition.mp3); its first 0.45 s are silence, trimmed so it hits with the cut.
+  if (fs.existsSync(TRANSITION_FILE)) ff(['-i', TRANSITION_FILE, '-af', 'atrim=start=0.45,asetpts=PTS-STARTPTS', '-ar', '48000', '-ac', '2', whoosh]);
+  else ff(['-f', 'lavfi', '-i', 'aevalsrc=0.5*sin(2*PI*(250*t+2600*t*t))*exp(-3*t)+0.25*random(0)*exp(-4*t):d=0.6:s=48000',
     '-af', 'afade=t=in:d=0.05,lowpass=f=7000', whoosh]);
   const offsets = [];
   let acc = 0;
