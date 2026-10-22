@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-10-22T03:23:42.988Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122146799877140193 (https://utsabtv.com/sajek-road-blockade-over-demands-tourists-struggle)"
-  },
-  {
     "at": "2026-10-22T03:23:49.390Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"991032164041864\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-10-22T09:26:35.260Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1693788685703230\"}"
+  },
+  {
+    "at": "2026-10-22T12:59:01.240Z",
+    "text": "reel FAILED: Error: spawnSync ffmpeg ENOENT\n    at Object.spawnSync (node:internal/child_process:1120:20)\n    at spawnSync (node:child_process:902:24)\n    at execFileSync (node:child_process:945:15)\n    at /home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:537:5\n    at Array.map (<anonymous>)\n    at buildVideo (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:535:24)\n    at reelRun (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:584:19)"
   }
 ]
