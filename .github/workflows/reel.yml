@@ -1,0 +1,44 @@
+name: Utsab TV top-10 reel
+on:
+  schedule:
+    - cron: '0 16 * * *'   # 22:00 Dhaka (GitHub may run it late); the script checks the hour itself
+    - cron: '30 16 * * *'
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+    inputs:
+      demo:
+        description: 'Only build the video into preview/ (posts nothing)'
+        type: boolean
+        default: true
+concurrency: reel
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - run: node autopost.js
+        if: github.event_name == 'workflow_dispatch' || (vars.REEL || '0') == '1'   # scheduled posting stays off until switched on
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
+          FB_PAGE_TOKEN_2: ${{ secrets.FB_PAGE_TOKEN_2 }}
+          FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
+          DRY_RUN: ${{ vars.DRY_RUN || '0' }}
+          REEL_RUN: ${{ github.event_name == 'schedule' && '1' || '0' }}
+          DEMO_REEL: ${{ (github.event_name == 'workflow_dispatch' && inputs.demo) && '1' || '0' }}
+      - name: Save state
+        if: always()
+        run: |
+          git config user.name "autopost-bot"
+          git config user.email "autopost-bot@users.noreply.github.com"
+          git add state preview 2>/dev/null || git add state
+          git diff --cached --quiet || (git commit -m "update reel state" && (git push || (git pull --rebase -X theirs origin main && git push)))

@@ -12,6 +12,7 @@
 //   CHECK=1                        only test the Page tokens (no posting), write the result to state/check.json
 //   DRY_RUN=1                  make cards into ./out but do not post (default unless DRY_RUN=0)
 //   WEATHER=1                      daily weather cards for the 8 divisions (see weatherTick)
+//   REEL_RUN=1 / DEMO_REEL=1       daily top-10 Reel (post / only build the video), see reelRun
 //   MAX_PER_RUN                at most this many posts per run (default 3)
 //   GRAPH_VERSION              Graph API version (default v26.0)
 const fs = require('fs');
@@ -460,7 +461,149 @@ async function weatherDemo() {
   }
 }
 
+// ------------------------------------------------------------------ daily top-10 reel
+// REEL_RUN=1: at night, take today's 10 most-read news ("N বার পড়া হয়েছে" on each article page),
+// make their cards, turn them into a 9:16 video and post it as a Reel to every Page.
+// DEMO_REEL=1 only builds the video into ./preview. State: state/reel.json (one reel per day).
+const REEL_FILE = path.join(__dirname, 'state', 'reel.json');
+const REEL_SLIDE_SEC = Number(process.env.REEL_SLIDE_SEC || 5);
+const toAscii = s => String(s).replace(/[০-৯]/g, d => '০১২৩৪৫৬৭৮৯'.indexOf(d)).replace(/,/g, '');
+const MONTHS = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
+
+// Title, publish day (Dhaka, YYYY-MM-DD) and read count of one article page.
+async function readInfo(url) {
+  const html = await getText(url);
+  const text = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+  const reads = text.match(/([\d০-৯,]+)\s*বার পড়া হয়েছে/);
+  let day = '';
+  const iso = meta(html, 'article:published_time');
+  if (iso) day = new Date(new Date(iso).getTime() + 6 * 3600e3).toISOString().slice(0, 10);
+  else {
+    const d = text.match(/(\d{1,2})\s+([A-Z][a-z]{2}),?\s+(\d{4})/);
+    if (d && d[2] in MONTHS) day = new Date(Date.UTC(+d[3], MONTHS[d[2]], +d[1])).toISOString().slice(0, 10);
+  }
+  return { url, title: meta(html, 'og:title'), image: meta(html, 'og:image'), day, reads: reads ? Number(toAscii(reads[1])) : 0 };
+}
+
+async function topToday(n = 10) {
+  const today = dhakaNow().toISOString().slice(0, 10);
+  const seen = (loadState() || { seen: [] }).seen.slice(-120);
+  const urls = [...new Set([...(await homepageLinks()), ...seen])];
+  const items = [];
+  for (let i = 0; i < urls.length; i += 8) {
+    const batch = await Promise.all(urls.slice(i, i + 8).map(u => readInfo(u).catch(() => null)));
+    items.push(...batch.filter(Boolean));
+  }
+  const todays = items.filter(x => x.day === today && /\/storage\/posts\//.test(x.image));
+  log(`reel: ${items.length} pages read, ${todays.length} from today`);
+  return todays.sort((a, b) => b.reads - a.reads).slice(0, n);
+}
+
+// One 1080x1920 slide: rank + headline bar on top, the 4:5 card in the middle, site name at the bottom.
+async function reelSlide(browser, cardFile, rank, total, outFile) {
+  const card = cardFile ? `data:image/png;base64,${fs.readFileSync(cardFile).toString('base64')}` : '';
+  const head = rank ? `<div class="rank">${bn(rank)}</div><div class="ttl">আজকের শীর্ষ ${bn(total)} সংবাদ</div>`
+    : `<div class="ttl big">আজকের শীর্ষ ${bn(total)} সংবাদ</div><div class="sub">${bn(dhakaNow().getUTCDate())}.${bn(dhakaNow().getUTCMonth() + 1)}.${bn(dhakaNow().getUTCFullYear())} · উৎসব টিভি</div>`;
+  const html = `<!doctype html><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@600;700&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;color:#fff;
+  background:linear-gradient(180deg,#a2333c 0%,#7d232c 100%);position:relative}
+.top{position:absolute;left:0;right:0;top:70px;display:flex;align-items:center;justify-content:center;gap:28px}
+.rank{width:150px;height:150px;border-radius:50%;background:#fff;color:#a2333c;font-size:96px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.ttl{font-size:64px;font-weight:700}.ttl.big{font-size:104px;text-align:center;line-height:1.3}
+.sub{font-size:52px;margin-top:30px}
+.mid{position:absolute;left:60px;top:330px;width:960px;height:1200px;border-radius:26px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35);background:#fff}
+.mid img{width:960px;height:1200px;object-fit:cover}
+.bot{position:absolute;left:0;right:0;bottom:120px;text-align:center;font-size:58px;font-weight:700}
+.bot span{background:#fff;color:#a2333c;padding:10px 40px;border-radius:60px}
+.intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+</style>
+${cardFile ? `<div class="top">${head}</div><div class="mid"><img src="${card}"></div>
+<div class="bot"><span>বিস্তারিত: www.utsabtv.com</span></div>`
+  : `<div class="intro">${head}<div class="bot"><span>www.utsabtv.com</span></div></div>`}`;
+  const pg = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
+  await pg.setContent(html, { waitUntil: 'networkidle' });
+  await pg.waitForTimeout(800);
+  await pg.screenshot({ path: outFile });
+  await pg.close();
+  return outFile;
+}
+
+function buildVideo(slides, outFile) {
+  const { execFileSync } = require('child_process');
+  const clips = slides.map((s, i) => {
+    const clip = `${s.file}.mp4`, secs = s.sec, frames = Math.round(secs * 30);
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-loop', '1', '-i', s.file, '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo',
+      '-vf', `zoompan=z='min(1+0.0004*on,1.05)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1080x1920:fps=30,format=yuv420p`,
+      '-t', String(secs), '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-c:a', 'aac', '-shortest', clip]);
+    return clip;
+  });
+  const list = outFile + '.txt';
+  fs.writeFileSync(list, clips.map(c => `file '${c}'`).join('\n'));
+  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', list, '-c', 'copy', '-movflags', '+faststart', outFile]);
+  return outFile;
+}
+
+async function postReel(page, videoFile) {
+  const size = fs.statSync(videoFile).size;
+  const start = new FormData();
+  start.append('upload_phase', 'start'); start.append('access_token', page.token);
+  const { video_id: id, upload_url: uploadUrl } = await graph(`${page.id}/video_reels`, start);
+  const up = await fetch(uploadUrl || `https://rupload.facebook.com/video-upload/${process.env.GRAPH_VERSION || 'v26.0'}/${id}`, {
+    method: 'POST', headers: { Authorization: `OAuth ${page.token}`, offset: '0', file_size: String(size) }, body: fs.readFileSync(videoFile),
+  });
+  const upBody = await up.json().catch(() => ({}));
+  if (!up.ok || upBody.success === false) throw new Error(`reel upload: ${JSON.stringify(upBody)}`);
+  const fin = new FormData();
+  fin.append('upload_phase', 'finish'); fin.append('video_id', id); fin.append('video_state', 'PUBLISHED');
+  fin.append('description', process.env.REEL_DESCRIPTION || 'আজকের শীর্ষ ১০ সংবাদ'); fin.append('access_token', page.token);
+  return graph(`${page.id}/video_reels`, fin);
+}
+
+async function reelRun() {
+  const demo = process.env.DEMO_REEL === '1';
+  const today = dhakaNow().toISOString().slice(0, 10);
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(REEL_FILE, 'utf8')); } catch {}
+  if (st.date !== today) st = { date: today, done: [] };
+  if (!demo && (process.env.DRY_RUN !== '0' || dhakaNow().getUTCHours() < Number(process.env.REEL_HOUR || 22))) return log('reel: not yet time / dry run');
+  const targets = demo ? [] : (await pages()).filter(p => !st.done.includes(p.id));
+  if (!demo && !targets.length) return log('reel: already posted today');
+  const top = await topToday(10);
+  if (top.length < 3) return event(`reel: only ${top.length} news today, skipped`);
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const slides = [{ file: await reelSlide(browser, null, 0, top.length, path.join(OUT_DIR, 'reel-0.png')), sec: 2.5 }];
+    for (const [i, it] of top.entries()) {
+      const card = await makeCard(browser, it.url, path.join(OUT_DIR, `reel-card-${i + 1}`));
+      slides.push({ file: await reelSlide(browser, card, i + 1, top.length, path.join(OUT_DIR, `reel-${i + 1}.png`)), sec: REEL_SLIDE_SEC });
+    }
+    slides.push({ file: await reelSlide(browser, null, 0, top.length, path.join(OUT_DIR, 'reel-end.png')), sec: 2.5 });
+    const video = buildVideo(slides, path.join(OUT_DIR, `top10-${today}.mp4`));
+    log('reel video:', video, fs.statSync(video).size, 'bytes;', top.map(t => `${t.reads}:${t.url}`).join(' | '));
+    if (demo) {
+      const preview = path.join(__dirname, 'preview');
+      fs.mkdirSync(preview, { recursive: true });
+      fs.copyFileSync(video, path.join(preview, 'reel-demo.mp4'));
+      return;
+    }
+    for (const page of targets) {
+      try {
+        event(`reel on Page ${page.id}: ${JSON.stringify(await postReel(page, video))}`);
+        st.done.push(page.id);
+      } catch (e) { event(`reel on Page ${page.id} FAILED: ${e.message}`); }
+      fs.mkdirSync(path.dirname(REEL_FILE), { recursive: true });
+      fs.writeFileSync(REEL_FILE, JSON.stringify(st, null, 2));
+    }
+  } finally {
+    await browser.close();
+  }
+}
+
 (async () => {
+  if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun();
   if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();
   if (process.env.CHECK === '1') return checkPages();
