@@ -385,6 +385,14 @@ async function makeWeatherCard(browser, w, file) {
     await page.setInputFiles('#imageInput', photo);
     for (const f of ['temp', 'condition', 'city', 'note']) await page.fill(`#dynamicContent [data-field="${f}"]`, w[f]);
     await page.waitForTimeout(2000);
+    // Logo like the news cards: bigger, right edge at x=1027 and top at y=56 of the 1080x1350 card.
+    await page.evaluate(([k, dx, dy]) => {
+      const el = document.querySelector('#renderTarget .utsab-channel-logo');
+      if (!el) return;
+      el.style.transformOrigin = 'top right';
+      el.style.transform = `translate(${dx}px, ${dy}px) scale(${k})`;
+    }, [Number(process.env.WLOGO_SCALE || 1.27), Number(process.env.WLOGO_DX || -13), Number(process.env.WLOGO_DY || 20)]);
+    await page.waitForTimeout(500);
     const [download] = await Promise.all([page.waitForEvent('download', { timeout: 60000 }), page.click('#downloadBtn')]);
     const out = file + (path.extname(download.suggestedFilename()) || '.png');
     await download.saveAs(out);
