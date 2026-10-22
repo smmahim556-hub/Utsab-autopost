@@ -387,7 +387,7 @@ async function makeWeatherCard(browser, w, file) {
     await page.waitForTimeout(2000);
     // Logo like the news cards: bigger, right edge at x=1027 and top at y=56 of the 1080x1350 card.
     await page.evaluate(([k, dx, dy]) => {
-      const el = document.querySelector('#renderTarget .utsab-channel-logo');
+      const el = document.querySelector('#renderTarget .card-logo');
       if (!el) return;
       el.style.transformOrigin = 'top right';
       el.style.transform = `translate(${dx}px, ${dy}px) scale(${k})`;
