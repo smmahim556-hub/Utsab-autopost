@@ -24,6 +24,7 @@ jobs:
         with: { node-version: 22 }
       - run: npm install
       - run: npx playwright install --with-deps chromium
+      - run: sudo apt-get install -y ffmpeg
       - run: node autopost.js
         if: github.event_name == 'workflow_dispatch' || (vars.REEL || '0') == '1'   # scheduled posting stays off until switched on
         env:
