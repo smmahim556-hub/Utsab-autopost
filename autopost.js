@@ -530,18 +530,51 @@ ${cardFile ? `<div class="top">${head}</div><div class="mid"><img src="${card}">
   return outFile;
 }
 
+// Slides -> one 9:16 video: slow zoom on each slide, a different xfade transition between slides,
+// a whoosh at every transition and the Page's music underneath (assets/reel-music.mp3).
+const MUSIC_FILE = path.join(__dirname, 'assets', 'reel-music.mp3');
+const TRANSITIONS = ['slideleft', 'circleopen', 'zoomin', 'wipeleft', 'pixelize', 'radial', 'smoothup', 'diagtl', 'squeezeh', 'slideup', 'fadewhite'];
+const XFADE = 0.5;
 function buildVideo(slides, outFile) {
   const { execFileSync } = require('child_process');
-  const clips = slides.map((s, i) => {
-    const clip = `${s.file}.mp4`, secs = s.sec, frames = Math.round(secs * 30);
-    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-loop', '1', '-i', s.file, '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo',
-      '-vf', `zoompan=z='min(1+0.0004*on,1.05)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1080x1920:fps=30,format=yuv420p`,
-      '-t', String(secs), '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-c:a', 'aac', '-shortest', clip]);
+  const ff = args => execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...args]);
+  // Clips are XFADE longer than their slot so the transition overlaps the start of the next slide.
+  const clips = slides.map((sl, i) => {
+    const clip = `${sl.file}.mp4`, secs = sl.sec + XFADE, frames = Math.round(secs * 30);
+    const zoom = i % 2 ? `max(1.06-0.0004*on,1)` : `min(1+0.0004*on,1.06)`;
+    ff(['-loop', '1', '-i', sl.file, '-vf',
+      `zoompan=z='${zoom}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1080x1920:fps=30,format=yuv420p`,
+      '-t', String(secs), '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-an', clip]);
     return clip;
   });
-  const list = outFile + '.txt';
-  fs.writeFileSync(list, clips.map(c => `file '${c}'`).join('\n'));
-  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', list, '-c', 'copy', '-movflags', '+faststart', outFile]);
+  const whoosh = `${outFile}-whoosh.wav`;
+  ff(['-f', 'lavfi', '-i', 'aevalsrc=0.5*sin(2*PI*(250*t+2600*t*t))*exp(-3*t)+0.25*random(0)*exp(-4*t):d=0.6:s=48000',
+    '-af', 'afade=t=in:d=0.05,lowpass=f=7000', whoosh]);
+  const offsets = [];
+  let acc = 0;
+  for (let k = 0; k < slides.length - 1; k++) { acc += slides[k].sec; offsets.push(acc); }
+  const total = acc + slides[slides.length - 1].sec + XFADE;
+  const v = [];
+  let last = '[0:v]';
+  offsets.forEach((o, k) => {
+    v.push(`${last}[${k + 1}:v]xfade=transition=${TRANSITIONS[k % TRANSITIONS.length]}:duration=${XFADE}:offset=${o}[v${k + 1}]`);
+    last = `[v${k + 1}]`;
+  });
+  const n = clips.length, hasMusic = fs.existsSync(MUSIC_FILE), K = offsets.length;
+  const a = [`[${n + 1}:a]asplit=${K}${offsets.map((_, k) => `[w${k}]`).join('')}`];
+  offsets.forEach((o, k) => a.push(`[w${k}]adelay=${Math.round(o * 1000)}|${Math.round(o * 1000)},volume=0.9[d${k}]`));
+  const mix = offsets.map((_, k) => `[d${k}]`).join('');
+  if (hasMusic) {
+    a.push(`[${n}:a]atrim=0:${total},afade=t=in:d=1,afade=t=out:st=${total - 2}:d=2,volume=0.55[m]`);
+    a.push(`[m]${mix}amix=inputs=${K + 1}:normalize=0:duration=first[aout]`);
+  } else {
+    a.push(`${mix}amix=inputs=${K}:normalize=0[aout]`);
+  }
+  const inputs = [...clips.flatMap(c => ['-i', c]), ...(hasMusic ? ['-i', MUSIC_FILE] : []), '-i', whoosh];
+  // With no music the whoosh input sits at index n, so shift the label used above.
+  const fc = [...v, ...a.map(x => hasMusic ? x : x.replace(`[${n + 1}:a]`, `[${n}:a]`))].join(';');
+  ff([...inputs, '-filter_complex', fc, '-map', last, '-map', '[aout]', '-t', String(total),
+    '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', outFile]);
   return outFile;
 }
 
