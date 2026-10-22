@@ -11,6 +11,7 @@
 //   STORY=1                        also post the card as a Page story (shared-post look)
 //   CHECK=1                        only test the Page tokens (no posting), write the result to state/check.json
 //   DRY_RUN=1                  make cards into ./out but do not post (default unless DRY_RUN=0)
+//   WEATHER=1                      daily weather cards for the 8 divisions (see weatherTick)
 //   MAX_PER_RUN                at most this many posts per run (default 3)
 //   GRAPH_VERSION              Graph API version (default v26.0)
 const fs = require('fs');
@@ -169,10 +170,12 @@ async function postToPage(page, cardFile, caption, link) {
   const { post_id: postId, id: photoId } = await graph(`${page.id}/photos`, photo);
   const target = postId || `${page.id}_${photoId}`;
 
-  const comment = new FormData();
-  comment.append('message', link);
-  comment.append('access_token', page.token);
-  await graph(`${target}/comments`, comment);
+  if (link) {
+    const comment = new FormData();
+    comment.append('message', link);
+    comment.append('access_token', page.token);
+    await graph(`${target}/comments`, comment);
+  }
   return target;
 }
 
@@ -317,9 +320,143 @@ async function demoCard() {
   }
 }
 
+// ---------------------------------------------------------------- daily weather
+// WEATHER=1: every morning, one card per division (Weather template of the card site),
+// posted to every Page (plus story) WEATHER_GAP_MIN minutes apart, starting at WEATHER_HOUR Dhaka time.
+// One division per run; progress lives in state/weather.json.
+const WEATHER_FILE = path.join(__dirname, 'state', 'weather.json');
+const WEATHER_HOUR = Number(process.env.WEATHER_HOUR || 7);
+const WEATHER_GAP_MIN = Number(process.env.WEATHER_GAP_MIN || 4);
+const DIVISIONS = [
+  { name: 'ঢাকা', lat: 23.81, lon: 90.41 }, { name: 'চট্টগ্রাম', lat: 22.34, lon: 91.83 },
+  { name: 'রাজশাহী', lat: 24.37, lon: 88.60 }, { name: 'খুলনা', lat: 22.82, lon: 89.55 },
+  { name: 'বরিশাল', lat: 22.70, lon: 90.37 }, { name: 'সিলেট', lat: 24.90, lon: 91.87 },
+  { name: 'রংপুর', lat: 25.74, lon: 89.25 }, { name: 'ময়মনসিংহ', lat: 24.75, lon: 90.40 },
+];
+const bn = n => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+// WMO weather code -> Bengali text and the sky look used for the card background.
+function skyOf(code) {
+  if (code === 0) return { text: 'পরিষ্কার আকাশ', sky: 'sun' };
+  if (code <= 2) return { text: 'আংশিক মেঘলা আকাশ', sky: 'part' };
+  if (code === 3) return { text: 'মেঘলা আকাশ', sky: 'cloud' };
+  if (code <= 48) return { text: 'কুয়াশাচ্ছন্ন আকাশ', sky: 'fog' };
+  if (code <= 57) return { text: 'গুঁড়ি গুঁড়ি বৃষ্টি', sky: 'rain' };
+  if (code <= 67) return { text: 'বৃষ্টির সম্ভাবনা', sky: 'rain' };
+  if (code <= 82) return { text: 'থেমে থেমে বৃষ্টি', sky: 'rain' };
+  return { text: 'বজ্রসহ বৃষ্টির সম্ভাবনা', sky: 'storm' };
+}
+const SKIES = {
+  sun: ['#1f78d1', '#7cc3f4', '#f7d56b'], part: ['#3a7fc0', '#9cc6e6', '#e9eef2'], cloud: ['#59718a', '#9aaab9', '#cfd6dc'],
+  fog: ['#7d8b97', '#b8c1c8', '#e3e7ea'], rain: ['#24384f', '#4a647d', '#8497a8'], storm: ['#1b1f33', '#3b3f63', '#6a6f94'],
+};
+async function weatherFor(d) {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${d.lat}&longitude=${d.lon}&current=temperature_2m`
+    + '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FDhaka&forecast_days=1';
+  const j = JSON.parse(await getText(url));
+  const code = j.daily.weather_code[0], rain = j.daily.precipitation_probability_max[0];
+  const sky = skyOf(code);
+  return {
+    temp: `${bn(Math.round(j.current.temperature_2m))}°`, condition: sky.text, city: d.name, sky: sky.sky,
+    note: `সর্বোচ্চ ${bn(Math.round(j.daily.temperature_2m_max[0]))}° · সর্বনিম্ন ${bn(Math.round(j.daily.temperature_2m_min[0]))}°`
+      + (rain != null ? ` · বৃষ্টির সম্ভাবনা ${bn(rain)}%` : ''),
+  };
+}
+// Sky photo for the card background (the Weather template wants a photo).
+async function skyPhoto(browser, sky, file) {
+  const [a, b, c] = SKIES[sky];
+  const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+  await pg.setContent(`<body style="margin:0;width:1080px;height:1350px;background:
+    radial-gradient(circle at 78% 18%, ${c} 0, transparent 38%),
+    radial-gradient(ellipse at 20% 30%, rgba(255,255,255,.35) 0, transparent 40%),
+    radial-gradient(ellipse at 60% 45%, rgba(255,255,255,.22) 0, transparent 45%),
+    linear-gradient(180deg, ${a} 0%, ${b} 70%, ${c} 100%)"></body>`);
+  await pg.screenshot({ path: file });
+  await pg.close();
+  return file;
+}
+async function makeWeatherCard(browser, w, file) {
+  const photo = await skyPhoto(browser, w.sky, `${file}-sky.png`);
+  const ctx = await browser.newContext({ acceptDownloads: true, viewport: { width: 1440, height: 1000 }, userAgent: UA });
+  const page = await ctx.newPage();
+  try {
+    await page.goto(CARD_SITE, { waitUntil: 'networkidle', timeout: 60000 });
+    await page.click('#templateGrid [data-template="weather"]');
+    await page.click('#ratioSelector [data-ratio="4:5"]');
+    await page.setInputFiles('#imageInput', photo);
+    for (const f of ['temp', 'condition', 'city', 'note']) await page.fill(`#dynamicContent [data-field="${f}"]`, w[f]);
+    await page.waitForTimeout(2000);
+    const [download] = await Promise.all([page.waitForEvent('download', { timeout: 60000 }), page.click('#downloadBtn')]);
+    const out = file + (path.extname(download.suggestedFilename()) || '.png');
+    await download.saveAs(out);
+    return out;
+  } finally {
+    await ctx.close();
+  }
+}
+const dhakaNow = () => new Date(Date.now() + 6 * 3600e3);
+
+async function weatherTick() {
+  if (process.env.WEATHER !== '1') return;
+  const now = dhakaNow(), today = now.toISOString().slice(0, 10);
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(WEATHER_FILE, 'utf8')); } catch {}
+  if (st.date !== today) st = { date: today, done: [], pages: {}, tries: {}, lastAt: 0 };
+  const start = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), WEATHER_HOUR) - 6 * 3600e3;
+  if (now.getUTCHours() >= 12 || Date.now() < Math.max(start, st.lastAt + WEATHER_GAP_MIN * 60e3)) return;
+  const d = DIVISIONS.find(x => !st.done.includes(x.name));
+  if (!d) return;
+  const save = () => { fs.mkdirSync(path.dirname(WEATHER_FILE), { recursive: true }); fs.writeFileSync(WEATHER_FILE, JSON.stringify(st, null, 2)); };
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const w = await weatherFor(d);
+    const card = await makeWeatherCard(browser, w, path.join(OUT_DIR, `weather-${today}-${d.lat}`));
+    log('weather card:', d.name, JSON.stringify(w));
+    if (DRY_RUN) {
+      const preview = path.join(__dirname, 'preview');
+      fs.mkdirSync(preview, { recursive: true });
+      fs.copyFileSync(card, path.join(preview, path.basename(card)));
+    } else {
+      const done = st.pages[d.name] = st.pages[d.name] || [];
+      try { await postToFacebook(card, '', '', done, browser); } finally { save(); }
+    }
+    st.done.push(d.name);
+  } catch (e) {
+    // A division that keeps failing is skipped after 3 tries so the others still go out.
+    st.tries[d.name] = (st.tries[d.name] || 0) + 1;
+    event(`weather ${d.name} FAILED (try ${st.tries[d.name]}): ${e.message}`);
+    if (st.tries[d.name] >= 3) st.done.push(d.name);
+  } finally {
+    st.lastAt = Date.now();
+    save();
+    await browser.close();
+  }
+}
+
+// One weather card for DEMO_WEATHER (a division name) into ./preview. Posts nothing, touches no state.
+async function weatherDemo() {
+  const d = DIVISIONS.find(x => x.name === process.env.DEMO_WEATHER) || DIVISIONS[0];
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const preview = path.join(__dirname, 'preview');
+    fs.mkdirSync(preview, { recursive: true });
+    const w = await weatherFor(d);
+    log('weather demo:', JSON.stringify(w));
+    const card = await makeWeatherCard(browser, w, path.join(OUT_DIR, `weather-demo-${d.lat}`));
+    fs.copyFileSync(card, path.join(preview, `weather-demo-${d.lat}.png`));
+    const page = { id: '872606492607357', name: 'Utsab TV' };
+    await composeStory(browser, card, page, path.join(preview, `weather-demo-story-${d.lat}.png`));
+  } finally {
+    await browser.close();
+  }
+}
+
 (async () => {
+  if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();
   if (process.env.CHECK === '1') return checkPages();
+  await weatherTick().catch(e => event(`weather FAILED: ${e.message}`));
   const links = await homepageLinks();
   log(`homepage: ${links.length} candidate links`);
   let state = loadState();
