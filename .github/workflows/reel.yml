@@ -23,7 +23,14 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: npm install
-      - run: npx playwright install --with-deps chromium
+      # The apt part of this sometimes hangs for 15+ minutes and blocks every later run; give up fast and retry once.
+      - id: pw
+        timeout-minutes: 4
+        continue-on-error: true
+        run: npx playwright install --with-deps chromium
+      - if: steps.pw.outcome != 'success'
+        timeout-minutes: 5
+        run: npx playwright install --with-deps chromium
       - run: sudo apt-get install -y ffmpeg
       - run: node autopost.js
         if: github.event_name == 'workflow_dispatch' || (vars.REEL || '0') == '1'   # scheduled posting stays off until switched on

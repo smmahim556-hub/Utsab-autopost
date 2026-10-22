@@ -26,14 +26,21 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-24.04   # ubuntu-latest moved to 26, which Playwright 1.56 does not support
-    timeout-minutes: 15
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }   # latest state/seen.json, not the commit the run was queued on
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: npm install
-      - run: npx playwright install --with-deps chromium
+      # The apt part of this sometimes hangs for 15+ minutes and blocks every later run; give up fast and retry once.
+      - id: pw
+        timeout-minutes: 4
+        continue-on-error: true
+        run: npx playwright install --with-deps chromium
+      - if: steps.pw.outcome != 'success'
+        timeout-minutes: 5
+        run: npx playwright install --with-deps chromium
       - run: node autopost.js
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
