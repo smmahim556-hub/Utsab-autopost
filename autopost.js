@@ -499,32 +499,74 @@ async function topToday(n = 10) {
   return todays.sort((a, b) => b.reads - a.reads).slice(0, n);
 }
 
-// One 1080x1920 slide: rank + headline bar on top, the 4:5 card in the middle, site name at the bottom.
-async function reelSlide(browser, cardFile, rank, total, outFile) {
+// The channel logo as a data URL, taken from the card site (the same file the cards use).
+async function channelLogo(browser) {
+  const pg = await browser.newPage();
+  try {
+    await pg.goto(CARD_SITE, { waitUntil: 'networkidle', timeout: 60000 });
+    return await pg.evaluate(async () => {
+      const img = document.querySelector('#renderTarget .card-logo-img, #renderTarget .utsab-channel-logo img, #renderTarget img[alt*="ogo"]');
+      if (!img) return '';
+      const blob = await (await fetch(img.src)).blob();
+      return await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(blob); });
+    });
+  } catch (e) { log('logo not found:', e.message); return ''; } finally { await pg.close(); }
+}
+
+const BN_MONTHS = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+const bnDate = d => `${bn(d.getUTCDate())} ${BN_MONTHS[d.getUTCMonth()]} ${bn(d.getUTCFullYear())}`;
+
+// One 1080x1920 slide in the logo's colours (green #12873d, red #c8202f, white).
+// With a card: green header with logo and rank, the 4:5 card, red footer with the site.
+// Without a card: the intro (kind 'intro') or closing (kind 'end') title slide.
+async function reelSlide(browser, cardFile, rank, total, outFile, logo = '', kind = 'intro') {
   const card = cardFile ? `data:image/png;base64,${fs.readFileSync(cardFile).toString('base64')}` : '';
-  const head = rank ? `<div class="rank">${bn(rank)}</div><div class="ttl">আজকের শীর্ষ ${bn(total)} সংবাদ</div>`
-    : `<div class="ttl big">আজকের শীর্ষ ${bn(total)} সংবাদ</div><div class="sub">${bn(dhakaNow().getUTCDate())}.${bn(dhakaNow().getUTCMonth() + 1)}.${bn(dhakaNow().getUTCFullYear())} · উৎসব টিভি</div>`;
+  const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
+  const body = cardFile ? `
+<div class="hdr">${logoImg}<div class="htxt"><div class="h1">আজকের শীর্ষ সংবাদ</div><div class="h2">${bnDate(dhakaNow())}</div></div>
+  <div class="rank"><b>${bn(rank)}</b><span>/${bn(total)}</span></div></div>
+<div class="cardwrap"><img src="${card}"></div>
+<div class="ftr"><span class="lbl">বিস্তারিত পড়ুন</span><span class="pill">www.utsabtv.com</span></div>`
+    : `
+<div class="split"></div>
+<div class="panel">${logoImg.replace('class="logo', 'class="logo big')}
+  ${kind === 'end'
+    ? `<div class="t1 s">সব খবর সবার আগে</div><div class="t2">পড়ুন <b>www.utsabtv.com</b></div><div class="date">ফলো করুন উৎসব টিভি</div>`
+    : `<div class="t1">আজকের শীর্ষ ${bn(total)}</div><div class="t2">সংবাদ</div><div class="date">${bnDate(dhakaNow())}</div>`}
+</div>`;
   const html = `<!doctype html><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
-body{width:1080px;height:1920px;overflow:hidden;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;color:#fff;
-  background:linear-gradient(180deg,#a2333c 0%,#7d232c 100%);position:relative}
-.top{position:absolute;left:0;right:0;top:70px;display:flex;align-items:center;justify-content:center;gap:28px}
-.rank{width:150px;height:150px;border-radius:50%;background:#fff;color:#a2333c;font-size:96px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.ttl{font-size:64px;font-weight:700}.ttl.big{font-size:104px;text-align:center;line-height:1.3}
-.sub{font-size:52px;margin-top:30px}
-.mid{position:absolute;left:60px;top:330px;width:960px;height:1200px;border-radius:26px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35);background:#fff}
-.mid img{width:960px;height:1200px;object-fit:cover}
-.bot{position:absolute;left:0;right:0;bottom:120px;text-align:center;font-size:58px;font-weight:700}
-.bot span{background:#fff;color:#a2333c;padding:10px 40px;border-radius:60px}
-.intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-</style>
-${cardFile ? `<div class="top">${head}</div><div class="mid"><img src="${card}"></div>
-<div class="bot"><span>বিস্তারিত: www.utsabtv.com</span></div>`
-  : `<div class="intro">${head}<div class="bot"><span>www.utsabtv.com</span></div></div>`}`;
+:root{--g:#12873d;--g2:#0b5e2a;--r:#c8202f;--r2:#931624}
+body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Sans Bengali',sans-serif;position:relative;
+  background:#f3f5f2;background-image:repeating-linear-gradient(135deg,rgba(18,135,61,.05) 0 26px,transparent 26px 52px)}
+.logo{height:118px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.25);background:#fff}
+.logo.txt{display:flex;align-items:center;padding:0 24px;font-size:56px;font-weight:800;color:var(--r)}
+.hdr{position:absolute;left:0;right:0;top:0;height:300px;background:linear-gradient(135deg,var(--g) 0%,var(--g2) 100%);
+  display:flex;align-items:center;padding:60px 56px 0;gap:30px;border-bottom:12px solid var(--r)}
+.htxt{flex:1;color:#fff}.h1{font-size:56px;font-weight:800;line-height:1.15;white-space:nowrap}.h2{font-size:38px;font-weight:600;opacity:.92;margin-top:6px}
+.rank{background:var(--r);color:#fff;border:6px solid #fff;border-radius:28px;padding:6px 26px;display:flex;align-items:baseline;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.rank b{font-size:104px;font-weight:800;line-height:1.1}.rank span{font-size:44px;font-weight:700;opacity:.9}
+.cardwrap{position:absolute;left:60px;top:370px;width:960px;height:1200px;border-radius:24px;overflow:hidden;border:8px solid #fff;
+  box-shadow:0 22px 50px rgba(0,0,0,.28)}
+.cardwrap img{width:100%;height:100%;object-fit:cover;display:block}
+.ftr{position:absolute;left:0;right:0;bottom:0;height:270px;background:linear-gradient(135deg,var(--r) 0%,var(--r2) 100%);
+  border-top:12px solid var(--g);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding-bottom:40px}
+.lbl{color:#fff;font-size:44px;font-weight:700}
+.pill{background:#fff;color:var(--g2);font-size:58px;font-weight:800;padding:8px 48px;border-radius:70px}
+.split{position:absolute;inset:0;background:linear-gradient(160deg,var(--g) 0%,var(--g2) 48%,var(--r) 48.2%,var(--r2) 100%)}
+.panel{position:absolute;left:90px;right:90px;top:520px;height:880px;background:#fff;border-radius:40px;box-shadow:0 30px 70px rgba(0,0,0,.35);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border-bottom:16px solid var(--r);border-top:16px solid var(--g)}
+.logo.big{height:190px;margin-bottom:40px}
+.t1{font-size:110px;font-weight:800;color:var(--g2);line-height:1.2}
+.t1.s{font-size:84px}
+.t2{font-size:84px;font-weight:800;color:var(--r);line-height:1.2}.t2 b{color:var(--g2);font-size:66px}
+.date{margin-top:40px;background:var(--r);color:#fff;font-size:52px;font-weight:700;padding:10px 46px;border-radius:60px}
+</style>${body}`;
   const pg = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
   await pg.setContent(html, { waitUntil: 'networkidle' });
-  await pg.waitForTimeout(800);
+  await pg.evaluate(() => document.fonts.ready);
+  await pg.waitForTimeout(500);
   await pg.screenshot({ path: outFile });
   await pg.close();
   return outFile;
@@ -540,11 +582,10 @@ function buildVideo(slides, outFile) {
   const { execFileSync } = require('child_process');
   const ff = args => execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...args]);
   // Clips are XFADE longer than their slot so the transition overlaps the start of the next slide.
-  const clips = slides.map((sl, i) => {
-    const clip = `${sl.file}.mp4`, secs = sl.sec + XFADE, frames = Math.round(secs * 30);
-    const zoom = i % 2 ? `max(1.06-0.0004*on,1)` : `min(1+0.0004*on,1.06)`;
-    ff(['-loop', '1', '-i', sl.file, '-vf',
-      `zoompan=z='${zoom}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1080x1920:fps=30,format=yuv420p`,
+  const clips = slides.map(sl => {
+    const clip = `${sl.file}.mp4`, secs = sl.sec + XFADE;
+    // Still frames: zoompan shook the picture, so motion comes only from the transitions.
+    ff(['-loop', '1', '-framerate', '30', '-i', sl.file, '-vf', 'scale=1080:1920,format=yuv420p',
       '-t', String(secs), '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-an', clip]);
     return clip;
   });
@@ -611,12 +652,13 @@ async function reelRun() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
   try {
-    const slides = [{ file: await reelSlide(browser, null, 0, top.length, path.join(OUT_DIR, 'reel-0.png')), sec: 2.5 }];
+    const logo = await channelLogo(browser);
+    const slides = [{ file: await reelSlide(browser, null, 0, top.length, path.join(OUT_DIR, 'reel-0.png'), logo, 'intro'), sec: 2.5 }];
     for (const [i, it] of top.entries()) {
       const card = await makeCard(browser, it.url, path.join(OUT_DIR, `reel-card-${i + 1}`));
-      slides.push({ file: await reelSlide(browser, card, i + 1, top.length, path.join(OUT_DIR, `reel-${i + 1}.png`)), sec: REEL_SLIDE_SEC });
+      slides.push({ file: await reelSlide(browser, card, i + 1, top.length, path.join(OUT_DIR, `reel-${i + 1}.png`), logo), sec: REEL_SLIDE_SEC });
     }
-    slides.push({ file: await reelSlide(browser, null, 0, top.length, path.join(OUT_DIR, 'reel-end.png')), sec: 2.5 });
+    slides.push({ file: await reelSlide(browser, null, 0, top.length, path.join(OUT_DIR, 'reel-end.png'), logo, 'end'), sec: 3 });
     const video = buildVideo(slides, path.join(OUT_DIR, `top10-${today}.mp4`));
     log('reel video:', video, fs.statSync(video).size, 'bytes;', top.map(t => `${t.reads}:${t.url}`).join(' | '));
     if (demo) {
