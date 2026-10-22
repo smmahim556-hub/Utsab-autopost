@@ -574,7 +574,7 @@ function buildVideo(slides, outFile) {
   // With no music the whoosh input sits at index n, so shift the label used above.
   const fc = [...v, ...a.map(x => hasMusic ? x : x.replace(`[${n + 1}:a]`, `[${n}:a]`))].join(';');
   ff([...inputs, '-filter_complex', fc, '-map', last, '-map', '[aout]', '-t', String(total),
-    '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', outFile]);
+    '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', outFile]);
   return outFile;
 }
 
