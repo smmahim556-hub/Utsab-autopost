@@ -603,7 +603,7 @@ async function reelRun() {
 }
 
 (async () => {
-  if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun();
+  if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun().catch(e => { event(`reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();
   if (process.env.CHECK === '1') return checkPages();
