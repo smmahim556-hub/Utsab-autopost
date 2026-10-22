@@ -20,7 +20,7 @@ on:
         description: 'Demo card size: 4:5, 1:1, 16:9, 9:16 or story'
         type: string
         default: '9:16'
-concurrency: autopost
+concurrency: ${{ (inputs.demo_weather || inputs.demo_link) && 'autopost-demo' || 'autopost' }}   # demos post nothing, so they do not queue behind the news runs
 permissions:
   contents: write
 jobs:
