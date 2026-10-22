@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-22T09:26:35.260Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1693788685703230\"}"
-  },
-  {
-    "at": "2026-10-22T12:59:01.240Z",
-    "text": "reel FAILED: Error: spawnSync ffmpeg ENOENT\n    at Object.spawnSync (node:internal/child_process:1120:20)\n    at spawnSync (node:child_process:902:24)\n    at execFileSync (node:child_process:945:15)\n    at /home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:537:5\n    at Array.map (<anonymous>)\n    at buildVideo (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:535:24)\n    at reelRun (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:584:19)"
-  },
-  {
-    "at": "2026-10-22T13:49:44.900Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122146843269140193 (https://utsabtv.com/ai-agent-shared-home-address-keyboard-sale-meta-muse-permission)"
-  },
-  {
-    "at": "2026-10-22T13:49:52.016Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1380772531794514\"}"
-  },
-  {
     "at": "2026-10-22T13:49:59.342Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122122010559459930 (https://utsabtv.com/ai-agent-shared-home-address-keyboard-sale-meta-muse-permission)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-22T16:28:45.247Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2038868276750033\"}"
+  },
+  {
+    "at": "2026-10-22T16:33:05.688Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122146857189140193 (https://utsabtv.com/student-league-leader-arrested-for-following-prime-minister-mirpur)"
+  },
+  {
+    "at": "2026-10-22T16:33:11.845Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1905125067533242\"}"
+  },
+  {
+    "at": "2026-10-22T16:33:17.103Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122122035171459930 (https://utsabtv.com/student-league-leader-arrested-for-following-prime-minister-mirpur)"
+  },
+  {
+    "at": "2026-10-22T16:33:22.877Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1804684584015398\"}"
   }
 ]
