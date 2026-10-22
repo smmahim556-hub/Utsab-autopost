@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-10-22T04:05:10.155Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2051321042467150\"}"
-  },
-  {
-    "at": "2026-10-22T04:05:16.695Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122121924411459930 (https://utsabtv.com/gazipur-fire-burns-mosque-jhut-warehouse-shops-sreepur)"
-  },
-  {
     "at": "2026-10-22T04:05:23.140Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1460012992248360\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-10-22T15:29:15.381Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1782091979762196\"}"
+  },
+  {
+    "at": "2026-10-22T16:04:42.240Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122146855029140193\"}"
+  },
+  {
+    "at": "2026-10-22T16:04:49.622Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122122030833459930\"}"
   }
 ]
