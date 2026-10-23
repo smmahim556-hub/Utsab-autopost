@@ -78,7 +78,7 @@ async function homepageLinks() {
 
 async function articleInfo(url) {
   const html = await getText(url);
-  return { title: meta(html, 'og:title'), image: meta(html, 'og:image') };
+  return { title: meta(html, 'og:title'), image: meta(html, 'og:image'), isArticle: html.includes('বার পড়া হয়েছে') };
 }
 
 async function makeCard(browser, url, file, ratio = process.env.CARD_RATIO || '4:5') {
@@ -706,6 +706,13 @@ async function reelRun() {
     for (const link of fresh) {
       if (posted >= MAX_PER_RUN) break;
       const info = await articleInfo(link).catch(e => (log('skip', link, e.message), null));
+      if (info && info.isArticle && !/\/storage\/posts\//.test(info.image)) {
+        // A news page whose photo has not been added yet: wait for it (up to 3 hours) instead of skipping it.
+        state.noPhoto = state.noPhoto || {};
+        const since = state.noPhoto[link] = state.noPhoto[link] || Date.now();
+        if (Date.now() - since < 3 * 3600e3) { log('news has no photo yet, will retry:', link); saveState(state); continue; }
+        delete state.noPhoto[link];
+      }
       if (!info || !/\/storage\/posts\//.test(info.image)) {
         log('not a news page, ignoring:', link);
         state.seen.push(link); saveState(state);
@@ -731,6 +738,7 @@ async function reelRun() {
           }
           delete state.posted[link];
         }
+        if (state.noPhoto) delete state.noPhoto[link];
         state.seen.push(link); saveState(state);
         posted++;
       } catch (e) {
