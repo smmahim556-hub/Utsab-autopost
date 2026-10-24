@@ -63,7 +63,7 @@ jobs:
           DEMO_WEATHER: ${{ inputs.demo_weather }}
           PRAYER: ${{ vars.PRAYER || '1' }}
           DEMO_PRAYER: ${{ inputs.demo_prayer && '1' || '0' }}
-          SPORTS: ${{ vars.SPORTS || '0' }}
+          SPORTS: ${{ vars.SPORTS || '1' }}
           DEMO_SPORTS: ${{ inputs.demo_sports && '1' || '0' }}
           DEMO_RATIO: ${{ inputs.demo_ratio }}
       - uses: actions/upload-artifact@v4
