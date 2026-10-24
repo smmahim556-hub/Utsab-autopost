@@ -429,6 +429,8 @@ async function weatherTick() {
       const done = st.pages[d.name] = st.pages[d.name] || [];
       try { await postToFacebook(card, '', '', done, browser); } finally { save(); }
     }
+    st.data = st.data || {};
+    st.data[d.name] = w;
     st.done.push(d.name);
   } catch (e) {
     // A division that keeps failing is skipped after 3 tries so the others still go out.
@@ -519,20 +521,21 @@ const bnDate = d => `${bn(d.getUTCDate())} ${BN_MONTHS[d.getUTCMonth()]} ${bn(d.
 // One 1080x1920 slide in the logo's colours (green #12873d, red #c8202f, white).
 // With a card: green header with logo and rank, the 4:5 card, red footer with the site.
 // Without a card: the intro (kind 'intro') or closing (kind 'end') title slide.
-async function reelSlide(browser, cardFile, rank, total, outFile, logo = '', kind = 'intro') {
+async function reelSlide(browser, cardFile, rank, total, outFile, logo = '', kind = 'intro', text = {}) {
+  const t = { head: 'আজকের শীর্ষ সংবাদ', t1: `আজকের শীর্ষ ${bn(total)}`, t2: 'সংবাদ', lbl: 'বিস্তারিত পড়ুন', ...text };
   const card = cardFile ? `data:image/png;base64,${fs.readFileSync(cardFile).toString('base64')}` : '';
   const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
   const body = cardFile ? `
-<div class="hdr">${logoImg}<div class="htxt"><div class="h1">আজকের শীর্ষ সংবাদ</div><div class="h2">${bnDate(dhakaNow())}</div></div>
+<div class="hdr">${logoImg}<div class="htxt"><div class="h1">${t.head}</div><div class="h2">${bnDate(dhakaNow())}</div></div>
   <div class="rank"><b>${bn(rank)}</b><span>/${bn(total)}</span></div></div>
 <div class="cardwrap"><img src="${card}"></div>
-<div class="ftr"><span class="lbl">বিস্তারিত পড়ুন</span><span class="pill">www.utsabtv.com</span></div>`
+<div class="ftr"><span class="lbl">${t.lbl}</span><span class="pill">www.utsabtv.com</span></div>`
     : `
 <div class="split"></div>
 <div class="panel">${logoImg.replace('class="logo', 'class="logo big')}
   ${kind === 'end'
     ? `<div class="t1 s">সব খবর সবার আগে</div><div class="t2">পড়ুন <b>www.utsabtv.com</b></div><div class="date">ফলো করুন উৎসব টিভি</div>`
-    : `<div class="t1">আজকের শীর্ষ ${bn(total)}</div><div class="t2">সংবাদ</div><div class="date">${bnDate(dhakaNow())}</div>`}
+    : `<div class="t1">${t.t1}</div><div class="t2">${t.t2}</div><div class="date">${bnDate(dhakaNow())}</div>`}
 </div>`;
   const html = `<!doctype html><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
@@ -622,7 +625,7 @@ function buildVideo(slides, outFile) {
   return outFile;
 }
 
-async function postReel(page, videoFile) {
+async function postReel(page, videoFile, description) {
   const size = fs.statSync(videoFile).size;
   const start = new FormData();
   start.append('upload_phase', 'start'); start.append('access_token', page.token);
@@ -634,7 +637,7 @@ async function postReel(page, videoFile) {
   if (!up.ok || upBody.success === false) throw new Error(`reel upload: ${JSON.stringify(upBody)}`);
   const fin = new FormData();
   fin.append('upload_phase', 'finish'); fin.append('video_id', id); fin.append('video_state', 'PUBLISHED');
-  fin.append('description', process.env.REEL_DESCRIPTION || 'আজকের শীর্ষ ১০ সংবাদ'); fin.append('access_token', page.token);
+  fin.append('description', description || process.env.REEL_DESCRIPTION || 'আজকের শীর্ষ ১০ সংবাদ'); fin.append('access_token', page.token);
   return graph(`${page.id}/video_reels`, fin);
 }
 
@@ -680,7 +683,62 @@ async function reelRun() {
   }
 }
 
+// REEL_KIND=weather: WEATHER_REEL_DELAY_MIN minutes after the last morning weather card, one Reel of all
+// the divisions' cards (same numbers as the posts, kept in state/weather.json). State: state/reel-weather.json.
+const WEATHER_REEL_FILE = path.join(__dirname, 'state', 'reel-weather.json');
+async function weatherReelRun() {
+  const demo = process.env.DEMO_REEL === '1';
+  const today = dhakaNow().toISOString().slice(0, 10);
+  let ws = {};
+  try { ws = JSON.parse(fs.readFileSync(WEATHER_FILE, 'utf8')); } catch {}
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(WEATHER_REEL_FILE, 'utf8')); } catch {}
+  if (st.date !== today) st = { date: today, done: [] };
+  if (!demo) {
+    if (process.env.DRY_RUN !== '0') return log('weather reel: dry run');
+    if (ws.date !== today || (ws.done || []).length < DIVISIONS.length) return log('weather reel: morning cards not finished');
+    if (Date.now() < ws.lastAt + Number(process.env.WEATHER_REEL_DELAY_MIN || 15) * 60e3) return log('weather reel: not yet time');
+  }
+  const targets = demo ? [] : (await pages()).filter(p => !st.done.includes(p.id));
+  if (!demo && !targets.length) return log('weather reel: already posted today');
+  const data = [];
+  for (const d of DIVISIONS) data.push((!demo && ws.data && ws.data[d.name]) || await weatherFor(d));
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const logo = await channelLogo(browser);
+    const text = { head: 'আজকের আবহাওয়া', t1: 'আজকের আবহাওয়া', t2: `${bn(data.length)} বিভাগ`, lbl: 'সব খবর সবার আগে' };
+    const slides = [{ file: await reelSlide(browser, null, 0, data.length, path.join(OUT_DIR, 'wreel-0.png'), logo, 'intro', text), sec: 2.5 }];
+    for (const [i, w] of data.entries()) {
+      const card = await makeWeatherCard(browser, w, path.join(OUT_DIR, `wreel-card-${i + 1}`));
+      slides.push({ file: await reelSlide(browser, card, i + 1, data.length, path.join(OUT_DIR, `wreel-${i + 1}.png`), logo, 'card', text),
+        sec: Number(process.env.WEATHER_REEL_SLIDE_SEC || 4) });
+    }
+    slides.push({ file: await reelSlide(browser, null, 0, data.length, path.join(OUT_DIR, 'wreel-end.png'), logo, 'end', text), sec: 3 });
+    const video = buildVideo(slides, path.join(OUT_DIR, `weather-${today}.mp4`));
+    log('weather reel video:', video, fs.statSync(video).size, 'bytes');
+    if (demo) {
+      const preview = path.join(__dirname, 'preview');
+      fs.mkdirSync(preview, { recursive: true });
+      fs.copyFileSync(video, path.join(preview, 'weather-reel-demo.mp4'));
+      return;
+    }
+    for (const page of targets) {
+      try {
+        event(`weather reel on Page ${page.id}: ${JSON.stringify(await postReel(page, video, 'আজকের আবহাওয়া'))}`);
+        st.done.push(page.id);
+      } catch (e) { event(`weather reel on Page ${page.id} FAILED: ${e.message}`); }
+      fs.mkdirSync(path.dirname(WEATHER_REEL_FILE), { recursive: true });
+      fs.writeFileSync(WEATHER_REEL_FILE, JSON.stringify(st, null, 2));
+    }
+  } finally {
+    await browser.close();
+  }
+}
+
 (async () => {
+  if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'weather')
+    return weatherReelRun().catch(e => { event(`weather reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun().catch(e => { event(`reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();

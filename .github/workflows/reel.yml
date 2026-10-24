@@ -1,4 +1,4 @@
-name: Utsab TV top-10 reel
+name: Utsab TV reels
 on:
   schedule:
     # Normally started at 22:00 Dhaka by the autopost workflow; these late GitHub crons are only a backup.
@@ -11,7 +11,12 @@ on:
         description: 'Only build the video into preview/ (posts nothing)'
         type: boolean
         default: true
-concurrency: reel
+      kind:
+        description: 'Which reel: top10 (night) or weather (morning)'
+        type: choice
+        options: [top10, weather]
+        default: top10
+concurrency: reel-${{ inputs.kind || 'top10' }}
 permissions:
   contents: write
 jobs:
@@ -41,6 +46,7 @@ jobs:
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
           DRY_RUN: ${{ vars.DRY_RUN || '0' }}
           REEL_RUN: ${{ (github.event_name == 'schedule' || !inputs.demo) && '1' || '0' }}
+          REEL_KIND: ${{ inputs.kind || 'top10' }}
           DEMO_REEL: ${{ (github.event_name == 'workflow_dispatch' && inputs.demo) && '1' || '0' }}
       - name: Save state
         if: always()

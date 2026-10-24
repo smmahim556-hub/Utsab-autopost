@@ -66,6 +66,12 @@ jobs:
           if [ "${{ vars.REEL || '1' }}" = 1 ] && [ "$h" -ge 22 ] && [ "$(cat state/reel-dispatch.txt 2>/dev/null)" != "$d" ]; then
             gh workflow run reel.yml -f demo=false && echo "$d" > state/reel-dispatch.txt
           fi
+          # Morning weather reel: once all division cards are out and the last one is 15+ minutes old.
+          if [ "${{ vars.WEATHER_REEL || '1' }}" = 1 ] && [ -f state/weather.json ] && [ "$(jq -r .date state/weather.json)" = "$d" ] \
+             && [ "$(jq '.done|length' state/weather.json)" -ge 8 ] && [ $(( $(date +%s) * 1000 - $(jq .lastAt state/weather.json) )) -ge 900000 ] \
+             && [ "$(cat state/weather-reel-dispatch.txt 2>/dev/null)" != "$d" ]; then
+            gh workflow run reel.yml -f demo=false -f kind=weather && echo "$d" > state/weather-reel-dispatch.txt
+          fi
       - name: Save seen links
         run: |
           git config user.name "autopost-bot"
