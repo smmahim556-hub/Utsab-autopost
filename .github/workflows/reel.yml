@@ -12,9 +12,9 @@ on:
         type: boolean
         default: true
       kind:
-        description: 'Which reel: top10 (night) or weather (morning)'
+        description: 'Which reel: top10 (night), weather (morning) or prayer (before Fajr)'
         type: choice
-        options: [top10, weather]
+        options: [top10, weather, prayer]
         default: top10
 concurrency: reel-${{ inputs.kind || 'top10' }}
 permissions:

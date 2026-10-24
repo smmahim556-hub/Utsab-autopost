@@ -737,7 +737,8 @@ const MUSIC_FILE = path.join(__dirname, 'assets', 'reel-music.mp3');
 const TRANSITION_FILE = path.join(__dirname, 'assets', 'transition.mp3');
 const TRANSITIONS = ['slideleft', 'circleopen', 'zoomin', 'wipeleft', 'pixelize', 'radial', 'smoothup', 'diagtl', 'squeezeh', 'slideup', 'fadewhite'];
 const XFADE = 0.5;
-function buildVideo(slides, outFile, music = MUSIC_FILE) {
+// sfx=false: no transition sound; with music=null as well the audio track is silent.
+function buildVideo(slides, outFile, music = MUSIC_FILE, sfx = true) {
   const { execFileSync } = require('child_process');
   const ff = args => execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...args]);
   // Clips are XFADE longer than their slot so the transition overlaps the start of the next slide.
@@ -763,7 +764,14 @@ function buildVideo(slides, outFile, music = MUSIC_FILE) {
     v.push(`${last}[${k + 1}:v]xfade=transition=${TRANSITIONS[k % TRANSITIONS.length]}:duration=${XFADE}:offset=${o}[v${k + 1}]`);
     last = `[v${k + 1}]`;
   });
-  const n = clips.length, hasMusic = fs.existsSync(music), K = offsets.length;
+  const n = clips.length, hasMusic = !!music && fs.existsSync(music), K = offsets.length;
+  if (!sfx) {
+    const aIn = hasMusic ? ['-stream_loop', '-1', '-i', music] : ['-f', 'lavfi', '-i', 'anullsrc=r=48000:cl=stereo'];
+    const af = hasMusic ? `[${n}:a]atrim=0:${total},afade=t=in:d=1,afade=t=out:st=${total - 2}:d=2,volume=0.55[aout]` : `[${n}:a]atrim=0:${total}[aout]`;
+    ff([...clips.flatMap(c => ['-i', c]), ...aIn, '-filter_complex', [...v, af].join(';'), '-map', last, '-map', '[aout]', '-t', String(total),
+      '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', outFile]);
+    return outFile;
+  }
   const a = [`[${n + 1}:a]asplit=${K}${offsets.map((_, k) => `[w${k}]`).join('')}`];
   offsets.forEach((o, k) => a.push(`[w${k}]adelay=${Math.round(o * 1000)}|${Math.round(o * 1000)},volume=0.9[d${k}]`));
   const mix = offsets.map((_, k) => `[d${k}]`).join('');
@@ -959,9 +967,123 @@ async function weatherReelRun() {
   }
 }
 
+// Prayer Reel slide: deep green with a gold frame, crescent and lantern motifs, the schedule card in the middle.
+async function prayerSlide(browser, cardFile, rank, total, outFile, logo = '', kind = 'intro', name = '') {
+  const card = cardFile ? `data:image/png;base64,${fs.readFileSync(cardFile).toString('base64')}` : '';
+  const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
+  const now = dhakaNow(), moon = MOON_SVG.replace('class="moon"', 'class="bigmoon"');
+  const body = cardFile ? `
+<div class="top">${logoImg}<div class="tt"><div class="h1">নামাজের সময়সূচি</div><div class="h2">${name}</div></div>
+  <div class="num">${bn(rank)}<span>/${bn(total)}</span></div></div>
+<div class="cardwrap"><img src="${card}"></div>
+<div class="bot"><span>নামাজ কায়েম করুন</span><span class="pill">www.utsabtv.com</span></div>`
+    : kind === 'end' ? `
+<div class="center">${logoImg.replace('class="logo', 'class="logo big')}${moon}
+  <div class="big1">নামাজ কায়েম করুন</div><div class="big2">প্রতিদিনের নামাজের সময়সূচি পেতে<br>ফলো করুন উৎসব টিভি</div>
+  <div class="pill">www.utsabtv.com</div></div>`
+    : `
+<div class="center">${logoImg.replace('class="logo', 'class="logo big')}${moon}
+  <div class="big1">আজকের নামাজের<br>সময়সূচি</div><div class="big2">সারাদেশের ${bn(total)} বিভাগ</div>
+  <div class="pill">${BN_DAYS[now.getUTCDay()]}, ${bnDate(now)}</div></div>`;
+  const html = `<!doctype html><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Sans Bengali',sans-serif;color:#fff;position:relative;
+  background:radial-gradient(circle at 50% 30%,#1d9a52 0,#0b5e2a 50%,#042a12 100%)}
+body:before{content:'';position:absolute;inset:0;opacity:.07;background-image:
+  radial-gradient(circle at 30px 30px,#fff 2px,transparent 3px),linear-gradient(45deg,transparent 46%,#fff 47%,#fff 53%,transparent 54%),
+  linear-gradient(-45deg,transparent 46%,#fff 47%,#fff 53%,transparent 54%);background-size:60px 60px,120px 120px,120px 120px}
+.frame{position:absolute;inset:26px;border:6px solid #ffd54f;border-radius:40px;box-shadow:inset 0 0 0 10px rgba(255,213,79,.18)}
+.lamp{position:absolute;top:26px;width:6px;background:#ffd54f}.lamp i{position:absolute;left:-22px;bottom:-60px;width:50px;height:64px;border-radius:12px 12px 24px 24px;
+  background:linear-gradient(#ffe082,#ffb300);box-shadow:0 0 40px 12px rgba(255,213,79,.45)}
+.logo{height:110px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.logo.txt{display:flex;align-items:center;padding:0 24px;font-size:52px;font-weight:800;color:#c8202f}
+.top{position:absolute;left:60px;right:60px;top:90px;height:200px;border-radius:36px;display:flex;align-items:center;gap:28px;padding:0 36px;
+  background:rgba(0,0,0,.18);border:3px solid rgba(255,213,79,.6)}
+.tt{flex:1}.h1{font-size:60px;font-weight:800}.h2{font-size:44px;font-weight:700;color:#ffd54f}
+.num{font-size:96px;font-weight:800;color:#ffd54f}.num span{font-size:44px;color:#fff}
+.cardwrap{position:absolute;left:80px;top:340px;width:920px;height:1150px;border-radius:30px;overflow:hidden;border:8px solid #ffd54f;
+  box-shadow:0 26px 60px rgba(0,0,0,.5)}
+.cardwrap img{width:100%;height:100%;object-fit:cover;display:block}
+.bot{position:absolute;left:60px;right:60px;bottom:110px;height:250px;border-radius:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  background:linear-gradient(135deg,#c8202f,#931624);border:4px solid #ffd54f;font-size:48px;font-weight:800}
+.pill{background:#fff;color:#0b5e2a;font-size:56px;font-weight:800;padding:8px 52px;border-radius:70px;box-shadow:0 10px 26px rgba(0,0,0,.25)}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center}
+.logo.big{height:170px;margin-bottom:10px}
+.bigmoon{width:300px;height:300px;filter:drop-shadow(0 0 40px rgba(255,213,79,.55))}
+.big1{font-size:100px;font-weight:800;line-height:1.2;text-shadow:0 6px 20px rgba(0,0,0,.35)}
+.big2{font-size:54px;font-weight:700;color:#c8f7d4;line-height:1.35}
+.center .pill{margin-top:30px;background:#c8202f;color:#fff;border:5px solid #ffd54f}
+</style>
+<div class="frame"></div>
+<div class="lamp" style="left:180px;height:${cardFile ? 0 : 160}px">${cardFile ? '' : '<i></i>'}</div>
+<div class="lamp" style="right:180px;height:${cardFile ? 0 : 240}px">${cardFile ? '' : '<i></i>'}</div>
+${body}`;
+  const pg = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
+  await pg.setContent(html, { waitUntil: 'networkidle' });
+  await pg.evaluate(() => document.fonts.ready);
+  await pg.waitForTimeout(500);
+  await pg.screenshot({ path: outFile });
+  await pg.close();
+  return outFile;
+}
+
+// REEL_KIND=prayer: PRAYER_REEL_DELAY_MIN minutes after the 8th division schedule card, one Reel of those cards.
+// No music or transition sound (religious content) unless assets/prayer-music.mp3 exists. State: state/reel-prayer.json.
+const PRAYER_REEL_FILE = path.join(__dirname, 'state', 'reel-prayer.json');
+async function prayerReelRun() {
+  const demo = process.env.DEMO_REEL === '1';
+  const today = dhakaNow().toISOString().slice(0, 10);
+  let ps = {};
+  try { ps = JSON.parse(fs.readFileSync(PRAYER_FILE, 'utf8')); } catch {}
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(PRAYER_REEL_FILE, 'utf8')); } catch {}
+  if (st.date !== today) st = { date: today, done: [] };
+  if (!demo) {
+    if (process.env.DRY_RUN !== '0') return log('prayer reel: dry run');
+    if (ps.date !== today || (ps.sched || []).length < DIVISIONS.length) return log('prayer reel: schedule cards not finished');
+    if (Date.now() < ps.lastAt + Number(process.env.PRAYER_REEL_DELAY_MIN || 5) * 60e3) return log('prayer reel: not yet time');
+  }
+  const targets = demo ? [] : (await pages()).filter(p => !st.done.includes(p.id));
+  if (!demo && !targets.length) return log('prayer reel: already posted today');
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const logo = await channelLogo(browser), N = DIVISIONS.length;
+    const slides = [{ file: await prayerSlide(browser, null, 0, N, path.join(OUT_DIR, 'preel-0.png'), logo, 'intro'), sec: 3 }];
+    for (const [i, d] of DIVISIONS.entries()) {
+      const card = await prayerScheduleCard(browser, d, path.join(OUT_DIR, `preel-card-${i + 1}.png`), logo);
+      slides.push({ file: await prayerSlide(browser, card, i + 1, N, path.join(OUT_DIR, `preel-${i + 1}.png`), logo, 'card', `${d.name} বিভাগ`),
+        sec: Number(process.env.PRAYER_REEL_SLIDE_SEC || 4) });
+    }
+    slides.push({ file: await prayerSlide(browser, null, 0, N, path.join(OUT_DIR, 'preel-end.png'), logo, 'end'), sec: 3 });
+    const music = path.join(__dirname, 'assets', 'prayer-music.mp3');
+    const video = buildVideo(slides, path.join(OUT_DIR, `prayer-${today}.mp4`), fs.existsSync(music) ? music : null, false);
+    log('prayer reel video:', video, fs.statSync(video).size, 'bytes');
+    if (demo) {
+      const preview = path.join(__dirname, 'preview');
+      fs.mkdirSync(preview, { recursive: true });
+      fs.copyFileSync(video, path.join(preview, 'prayer-reel-demo.mp4'));
+      return;
+    }
+    for (const page of targets) {
+      try {
+        event(`prayer reel on Page ${page.id}: ${JSON.stringify(await postReel(page, video, 'আজকের নামাজের সময়সূচি'))}`);
+        st.done.push(page.id);
+      } catch (e) { event(`prayer reel on Page ${page.id} FAILED: ${e.message}`); }
+      fs.mkdirSync(path.dirname(PRAYER_REEL_FILE), { recursive: true });
+      fs.writeFileSync(PRAYER_REEL_FILE, JSON.stringify(st, null, 2));
+    }
+  } finally {
+    await browser.close();
+  }
+}
+
 (async () => {
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'weather')
     return weatherReelRun().catch(e => { event(`weather reel FAILED: ${e.stack || e.message}`); process.exit(1); });
+  if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'prayer')
+    return prayerReelRun().catch(e => { event(`prayer reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun().catch(e => { event(`reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_PRAYER === '1') return prayerDemo();
   if (process.env.DEMO_WEATHER) return weatherDemo();
