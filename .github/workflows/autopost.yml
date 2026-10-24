@@ -57,7 +57,7 @@ jobs:
           DEMO_LINK: ${{ inputs.demo_link }}
           WEATHER: ${{ vars.WEATHER || '1' }}
           DEMO_WEATHER: ${{ inputs.demo_weather }}
-          PRAYER: ${{ vars.PRAYER || '0' }}
+          PRAYER: ${{ vars.PRAYER || '1' }}
           DEMO_PRAYER: ${{ inputs.demo_prayer && '1' || '0' }}
           DEMO_RATIO: ${{ inputs.demo_ratio }}
       - uses: actions/upload-artifact@v4
