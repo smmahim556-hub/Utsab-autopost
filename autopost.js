@@ -286,6 +286,9 @@ async function checkPages() {
         expires: d.expires_at === 0 ? 'never' : d.expires_at ? new Date(d.expires_at * 1000).toISOString() : undefined,
         scopes: d.scopes
       });
+      // Latest stories as Facebook lists them, to see whether posted stories are live.
+      const sto = await (await fetch(`${GRAPH}/${page.id}/stories?fields=post_id,status,creation_time,media_type,url&limit=25&access_token=${encodeURIComponent(page.token)}`)).json();
+      entry.stories = sto.error ? sto.error.message : sto.data;
     } catch (e) {
       entry.error = e.message;
     }
