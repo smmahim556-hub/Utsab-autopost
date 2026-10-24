@@ -1159,6 +1159,13 @@ function findTeam(s, names) {
 // "Bangladesh tour of Sri Lanka 2026/27" -> "বাংলাদেশ দলের শ্রীলঙ্কা সফর"
 const bnSeries = s => { const m = s.match(/^(.+?)( Women)? tour of (.+?)(?: \d{4}.*)?$/);
   return m ? `${bnTeam(m[1])}${m[2] ? ' নারী' : ''} দলের ${bnTeam(m[3])} সফর` : s.replace(/ \d{4}\/\d{2}$/, ''); };
+// Possessive: "বাংলাদেশ" -> "বাংলাদেশের", "শ্রীলঙ্কা" -> "শ্রীলঙ্কার"
+const bnOf = n => /[\u0995-\u09B9\u09CE]$/.test(n) ? `${n}ের` : `${n}র`;
+// "Western Province Women , elected to field first" -> "... টসে জিতে ফিল্ডিং নিয়েছে"
+function bnToss(t, names) {
+  const m = (t || '').match(/^(.+?)\s*,\s*elected to (bat|field)/i);
+  return m ? `${bnTeam(findTeam(m[1].trim(), names))} টসে জিতে ${/bat/i.test(m[2]) ? 'ব্যাটিং' : 'বোলিং'} নিয়েছে` : '';
+}
 // "138/5 (35.1/50 ov, target 136)" -> "১৩৮/৫ (৩৫.১ ওভার)"
 const bnCricketScore = s => bn(String(s || '').replace(/\(([\d.]+)(?:\/\d+)? ov[^)]*\)/, '($1 ওভার)').replace(/&/g, ' ও '));
 
@@ -1185,6 +1192,7 @@ async function footballMatches(dates = '') {
         text: `${d.athletesInvolved?.[0]?.shortName || ''} ${bn(d.clock?.displayValue || '')}${d.penaltyKick ? ' (পে.)' : ''}${d.ownGoal ? ' (আত্মঘাতী)' : ''}` }));
       const hs = Number(H.score), as = Number(A.score);
       out.push({ id: `fb-${e.id}`, sport: 'football', league, state: e.status?.type?.state, done: !!e.status?.type?.completed, start: e.date,
+        bd: names.includes('Bangladesh'), half: e.status?.type?.name === 'STATUS_HALFTIME',
         home: { name: bnTeam(H.team.displayName), en: H.team.displayName, logo: H.team.logo, score: H.score },
         away: { name: bnTeam(A.team.displayName), en: A.team.displayName, logo: A.team.logo, score: A.score },
         result: hs === as && !pen ? 'ম্যাচ ড্র' : `${hs > as || (pen && H.winner) ? bnTeam(H.team.displayName) : bnTeam(A.team.displayName)} জয়ী${pen}`,
@@ -1212,7 +1220,9 @@ async function cricketMatches() {
       out.push({ id: `cr-${e.id}`, sport: 'cricket', league: bnSeries(l.name), title: e.title || '', state: e.status, done: e.status === 'post', start: e.date,
         home: { name: bnTeam(H.displayName), en: H.displayName, logo: H.logo, score: bnCricketScore(H.score) },
         away: { name: bnTeam(A.displayName), en: A.displayName, logo: A.logo, score: bnCricketScore(A.score) },
-        result: bnCricketResult(e.fullStatus?.longSummary || e.fullStatus?.summary, names), toss, venue: e.location || '', cls: e.class?.generalClassCard || '' });
+        result: bnCricketResult(e.fullStatus?.longSummary || e.fullStatus?.summary, names), toss: bnToss(toss, names), venue: e.location || '', cls: e.class?.generalClassCard || '',
+        bd: e.competitors.some(c => /Bangladesh/.test(c.displayName)), raw: [H.score || '', A.score || ''], summary: e.fullStatus?.summary || e.summary || '',
+        day: e.fullStatus?.dayNumber || 0, names });
     }
   }
   return out;
@@ -1246,16 +1256,17 @@ async function renderSportsCard(browser, inner, css, outFile, logo) {
   await pg.close();
   return outFile;
 }
-function sportsResultCard(browser, m, outFile, logo) {
+function sportsResultCard(browser, m, outFile, logo, tag = 'ম্যাচ শেষ', line = m.result) {
   const fb = m.sport === 'football';
   const sc = side => fb ? m.scorers.filter(s => s.team === side).map(s => `<div>⚽ ${s.text}</div>`).join('') : '';
   const score = fb ? `<div class="score">${bn(m.home.score)}<i>-</i>${bn(m.away.score)}</div>` : `<div class="vs">বনাম</div>`;
   const team = (t, side) => `<div class="team">${teamBadge(t)}<div class="tn">${t.name}</div>${fb ? `<div class="gs">${sc(side)}</div>` : `<div class="cs">${t.score || '-'}</div>`}</div>`;
   return renderSportsCard(browser, `
-<div class="hdr">{LOGO}<div class="ht"><div class="h1">${fb ? 'ফুটবল' : 'ক্রিকেট'}</div><div class="h2">${bnDate(dhakaNow())}</div></div><div class="tag">ম্যাচ শেষ</div></div>
+<div class="hdr">{LOGO}<div class="ht"><div class="h1">${fb ? 'ফুটবল' : 'ক্রিকেট'}</div><div class="h2">${bnDate(dhakaNow())}</div></div><div class="tag">${tag}</div></div>
 <div class="lg">${m.league}${m.title ? ` · ${m.title.replace(/(\d+)(st|nd|rd|th) Match/i, (_, n) => `${bn(n)}তম ম্যাচ`).replace(/Final/i, 'ফাইনাল').replace(/Semi-?final/i, 'সেমিফাইনাল')}` : ''}</div>
-<div class="row">${team(m.home, 'home')}${score}${team(m.away, 'away')}</div>
-<div class="res">${m.result}</div>
+${m.bd ? '<div class="bdr"><i></i>বাংলাদেশের খেলা</div>' : ''}
+<div class="row${m.bd ? ' bdrow' : ''}">${team(m.home, 'home')}${score}${team(m.away, 'away')}</div>
+<div class="res">${line}</div>
 ${m.venue ? `<div class="ven">${m.venue}</div>` : ''}
 <div class="ftr">www.utsabtv.com</div>`, `
 .row{position:relative;margin:90px 30px 0;display:flex;align-items:flex-start;justify-content:space-between}
@@ -1269,10 +1280,13 @@ ${m.venue ? `<div class="ven">${m.venue}</div>` : ''}
 .vs{margin-top:120px;font-size:56px;font-weight:800;color:#ffd54f}
 .res{position:absolute;left:60px;right:60px;bottom:${m.venue ? 220 : 170}px;text-align:center;background:#fff;color:#0b5e2a;border-radius:30px;border:6px solid #c8202f;
   padding:14px 20px;font-size:58px;font-weight:800;box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.bdr{position:relative;margin:22px auto 0;width:max-content;display:flex;align-items:center;gap:16px;background:#006a4e;border:4px solid #fff;border-radius:50px;padding:6px 34px;font-size:40px;font-weight:800;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.bdr i{width:34px;height:34px;border-radius:50%;background:#f42a41}
+.row.bdrow{margin-top:40px}
 .ven{position:absolute;left:0;right:0;bottom:130px;text-align:center;font-size:30px;color:#c8f7d4}`, outFile, logo);
 }
 function sportsFixturesCard(browser, list, outFile, logo) {
-  const rows = list.map(m => `<div class="fx"><span class="ic">${m.sport === 'football' ? '⚽' : '🏏'}</span>
+  const rows = list.map(m => `<div class="fx${m.bd ? ' bd' : ''}"><span class="ic">${m.sport === 'football' ? '⚽' : '🏏'}</span>
     <div class="mt"><b>${m.home.name} <i>বনাম</i> ${m.away.name}</b><small>${m.league}</small></div><span class="tm">${bnClock(m.start)}</span></div>`).join('');
   return renderSportsCard(browser, `
 <div class="hdr">{LOGO}<div class="ht"><div class="h1">আজকের খেলা</div><div class="h2">${BN_DAYS[dhakaNow().getUTCDay()]}, ${bnDate(dhakaNow())}</div></div><div class="tag">সময়সূচি</div></div>
@@ -1281,7 +1295,7 @@ function sportsFixturesCard(browser, list, outFile, logo) {
 <div class="ftr">www.utsabtv.com</div>`, `
 .list{position:relative;margin:36px 50px 0;display:flex;flex-direction:column;gap:${list.length > 6 ? 12 : 18}px}
 .fx{display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.95);color:#0b5e2a;border-radius:22px;padding:${list.length > 6 ? 8 : 14}px 26px;box-shadow:0 8px 18px rgba(0,0,0,.25)}
-.ic{font-size:44px}.mt{flex:1;display:flex;flex-direction:column;min-width:0}
+.fx.bd{background:#fff3c4;border:5px solid #c8202f}.ic{font-size:44px}.mt{flex:1;display:flex;flex-direction:column;min-width:0}
 .mt b{font-size:${list.length > 6 ? 36 : 42}px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mt b i{font-style:normal;color:#c8202f;font-size:.75em}
 .mt small{font-size:26px;font-weight:600;color:#557a62}
 .tm{background:#c8202f;color:#fff;border-radius:16px;padding:6px 18px;font-size:34px;font-weight:800;white-space:nowrap}
@@ -1296,24 +1310,40 @@ async function sportsTick() {
   st.done = st.done || []; st.lastAt = st.lastAt || 0; st.pages = st.pages || {};
   const gap = Number(process.env.SPORTS_GAP_MIN || 3) * 60e3;
   const save = () => { st.done = st.done.slice(-400); fs.mkdirSync(path.dirname(SPORTS_FILE), { recursive: true }); fs.writeFileSync(SPORTS_FILE, JSON.stringify(st, null, 2)); };
-  if (Date.now() < st.lastAt + gap) return;
   const now = dhakaNow(), today = now.toISOString().slice(0, 10);
   const all = [...await footballMatches().catch(e => (log('football feed:', e.message), [])), ...await cricketMatches().catch(e => (log('cricket feed:', e.message), []))];
-  if (first) { st.done = all.filter(m => m.done).map(m => m.id); st.fixtures = today; save(); return log(`sports: first run, ${st.done.length} finished matches marked seen`); }
+  if (first) { st.done = all.filter(m => m.done).map(m => m.id).concat(all.filter(m => m.bd && m.state === 'in').flatMap(m => [`${m.id}-toss`, `${m.id}-half`])); st.fixtures = today; save(); return log(`sports: first run, ${st.done.length} finished matches marked seen`); }
+  // Bangladesh first: live steps (toss, second innings, day's close, half-time) and results, without waiting for the gap.
   let job = null;
-  if (st.fixtures !== today && now.getUTCHours() >= Number(process.env.SPORTS_FIXTURE_HOUR || 9)) {
+  for (const m of all.filter(x => x.bd)) {
+    const steps = m.sport === 'cricket' ? [
+      [`${m.id}-toss`, m.state === 'in' && m.toss, 'টস', m.toss],
+      [`${m.id}-inn`, m.state === 'in' && /target/i.test(m.raw.join(' ')), 'ইনিংস বিরতি', (() => {
+        const i = /target/i.test(m.raw[0]) ? 0 : 1, t = m.raw[i].match(/target (\d+)/i);
+        return t ? `জয়ের জন্য ${bnOf(i ? m.away.name : m.home.name)} লক্ষ্য ${bn(t[1])} রান` : 'দ্বিতীয় ইনিংস শুরু'; })()],
+      [`${m.id}-day${m.day}`, m.state === 'in' && /stumps/i.test(m.summary), m.day ? `${['', '১ম', '২য়', '৩য়', '৪র্থ', '৫ম'][m.day] || bn(m.day)} দিন শেষ` : 'দিন শেষ', 'দিনের খেলা শেষ'],
+      [m.id, m.done, 'ম্যাচ শেষ', m.result],
+    ] : [
+      [`${m.id}-half`, m.half, 'বিরতি', 'প্রথমার্ধ শেষ'],
+      [m.id, m.done, 'ম্যাচ শেষ', m.result],
+    ];
+    const s1 = steps.find(([k, ok]) => ok && !st.done.includes(k));
+    if (s1) { const [k, , tag, line] = s1; job = { key: k, done: () => st.done.push(k), make: (b, f, l) => sportsResultCard(b, m, f, l, tag, line) }; break; }
+  }
+  if (!job && Date.now() < st.lastAt + gap) return;
+  if (!job && st.fixtures !== today && now.getUTCHours() >= Number(process.env.SPORTS_FIXTURE_HOUR || 9)) {
     // Next 24 hours of matches (European football mostly falls in Bangladesh's night).
     const tom = new Date(Date.now() + 864e5).toISOString().slice(0, 10).replace(/-/g, '');
     const fb2 = await footballMatches(tom).catch(() => []);
     const seen = new Set();
     const list = [...all, ...fb2].filter(m => m.state === 'pre' && !seen.has(m.id) && seen.add(m.id))
       .filter(m => { const t = new Date(m.start).getTime(); return t > Date.now() && t < Date.now() + 864e5; })
-      .sort((a, b) => new Date(a.start) - new Date(b.start)).slice(0, 8);
+      .sort((a, b) => (b.bd - a.bd) || new Date(a.start) - new Date(b.start)).slice(0, 8);
     if (!list.length) { st.fixtures = today; save(); return log('sports: no fixtures today'); }
     job = { key: `fixtures-${today}`, done: () => { st.fixtures = today; }, make: (b, f, l) => sportsFixturesCard(b, list, f, l) };
   }
   if (!job) {
-    const m = all.find(x => x.done && !st.done.includes(x.id));
+    const m = all.find(x => x.done && !x.bd && !st.done.includes(x.id));
     if (!m) return;
     job = { key: m.id, done: () => st.done.push(m.id), make: (b, f, l) => sportsResultCard(b, m, f, l) };
   }
