@@ -1082,6 +1082,279 @@ async function prayerReelRun() {
   }
 }
 
+// ------------------------------------------------------------------ sports
+// SPORTS=1: football and cricket from ESPN's public scoreboards. A result card for every finished match
+// that passes the filters below (SPORTS_GAP_MIN apart, one per run), and at SPORTS_FIXTURE_HOUR a card of
+// the day's matches. State: state/sports.json ({done: [ids], fixtures: date, lastAt}).
+const SPORTS_FILE = path.join(__dirname, 'state', 'sports.json');
+const ESPN = 'https://site.api.espn.com/apis/site/v2/sports/soccer';
+// League slug -> [Bengali name, rule]: 'all' posts every match, 'big' only matches with a BIG_CLUBS/BIG_NATIONS team.
+const FOOTBALL_LEAGUES = {
+  'eng.1': ['ইংলিশ প্রিমিয়ার লিগ', 'all'], 'esp.1': ['লা লিগা', 'all'], 'uefa.champions': ['উয়েফা চ্যাম্পিয়নস লিগ', 'all'],
+  'ita.1': ['সিরি আ', 'big'], 'ger.1': ['বুন্দেসলিগা', 'big'], 'fra.1': ['লিগ ওয়ান', 'big'], 'uefa.europa': ['উয়েফা ইউরোপা লিগ', 'big'],
+  'eng.fa': ['এফএ কাপ', 'big'], 'esp.copa_del_rey': ['কোপা দেল রে', 'big'], 'usa.1': ['মেজর লিগ সকার', 'big'],
+  'fifa.world': ['ফিফা বিশ্বকাপ', 'all'], 'fifa.friendly': ['আন্তর্জাতিক প্রীতি ম্যাচ', 'big'],
+  'fifa.worldq.conmebol': ['বিশ্বকাপ বাছাই', 'big'], 'fifa.worldq.uefa': ['বিশ্বকাপ বাছাই', 'big'], 'fifa.worldq.afc': ['বিশ্বকাপ বাছাই', 'big'],
+  'conmebol.america': ['কোপা আমেরিকা', 'all'], 'uefa.euro': ['ইউরো', 'all'], 'uefa.nations': ['উয়েফা নেশনস লিগ', 'big'],
+  'afc.asian.cup': ['এএফসি এশিয়ান কাপ', 'big'], 'afc.cupq': ['এশিয়ান কাপ বাছাই', 'big'], 'saff.championship': ['সাফ চ্যাম্পিয়নশিপ', 'all'],
+};
+const BN_TEAMS = {
+  // national teams
+  Bangladesh: 'বাংলাদেশ', India: 'ভারত', Pakistan: 'পাকিস্তান', 'Sri Lanka': 'শ্রীলঙ্কা', Afghanistan: 'আফগানিস্তান', Nepal: 'নেপাল',
+  Australia: 'অস্ট্রেলিয়া', England: 'ইংল্যান্ড', 'New Zealand': 'নিউজিল্যান্ড', 'South Africa': 'দক্ষিণ আফ্রিকা', 'West Indies': 'ওয়েস্ট ইন্ডিজ',
+  Zimbabwe: 'জিম্বাবুয়ে', Ireland: 'আয়ারল্যান্ড', Scotland: 'স্কটল্যান্ড', Netherlands: 'নেদারল্যান্ডস', 'United Arab Emirates': 'সংযুক্ত আরব আমিরাত',
+  Argentina: 'আর্জেন্টিনা', Brazil: 'ব্রাজিল', Portugal: 'পর্তুগাল', France: 'ফ্রান্স', Germany: 'জার্মানি', Spain: 'স্পেন', Italy: 'ইতালি',
+  Belgium: 'বেলজিয়াম', Croatia: 'ক্রোয়েশিয়া', Uruguay: 'উরুগুয়ে', Colombia: 'কলম্বিয়া', Mexico: 'মেক্সিকো', 'United States': 'যুক্তরাষ্ট্র', USA: 'যুক্তরাষ্ট্র',
+  Japan: 'জাপান', 'South Korea': 'দক্ষিণ কোরিয়া', 'Saudi Arabia': 'সৌদি আরব', Qatar: 'কাতার', Morocco: 'মরক্কো', Bhutan: 'ভুটান', Maldives: 'মালদ্বীপ',
+  // clubs
+  Arsenal: 'আর্সেনাল', Chelsea: 'চেলসি', Liverpool: 'লিভারপুল', 'Manchester City': 'ম্যানচেস্টার সিটি', 'Manchester United': 'ম্যানচেস্টার ইউনাইটেড',
+  'Tottenham Hotspur': 'টটেনহ্যাম', 'Newcastle United': 'নিউক্যাসল', 'Aston Villa': 'অ্যাস্টন ভিলা', Everton: 'এভারটন', 'West Ham United': 'ওয়েস্ট হ্যাম',
+  Brighton: 'ব্রাইটন', 'Brighton & Hove Albion': 'ব্রাইটন', Fulham: 'ফুলহ্যাম', Brentford: 'ব্রেন্টফোর্ড', 'Crystal Palace': 'ক্রিস্টাল প্যালেস',
+  Bournemouth: 'বোর্নমাউথ', 'AFC Bournemouth': 'বোর্নমাউথ', 'Nottingham Forest': 'নটিংহাম ফরেস্ট', 'Wolverhampton Wanderers': 'উলভস',
+  'Leeds United': 'লিডস', Sunderland: 'সান্ডারল্যান্ড', Burnley: 'বার্নলি', 'Coventry City': 'কভেন্ট্রি', 'Ipswich Town': 'ইপসউইচ', 'Leicester City': 'লেস্টার',
+  'Real Madrid': 'রিয়াল মাদ্রিদ', Barcelona: 'বার্সেলোনা', 'Atlético Madrid': 'অ্যাতলেতিকো মাদ্রিদ', 'Atletico Madrid': 'অ্যাতলেতিকো মাদ্রিদ',
+  Sevilla: 'সেভিয়া', 'Real Betis': 'রিয়াল বেতিস', Villarreal: 'ভিয়ারিয়াল', 'Athletic Club': 'অ্যাথলেটিক বিলবাও', 'Real Sociedad': 'রিয়াল সোসিয়েদাদ',
+  Valencia: 'ভ্যালেন্সিয়া', Girona: 'জিরোনা', 'Celta Vigo': 'সেল্তা ভিগো', Osasuna: 'ওসাসুনা', Getafe: 'গেতাফে', Mallorca: 'মায়োর্কা',
+  'Rayo Vallecano': 'রায়ো ভায়েকানো', Alavés: 'আলাভেস', Espanyol: 'এস্পানিওল', Elche: 'এলচে', Levante: 'লেভান্তে', 'Real Oviedo': 'রিয়াল ওভিয়েদো',
+  'Bayern Munich': 'বায়ার্ন মিউনিখ', 'Borussia Dortmund': 'বরুসিয়া ডর্টমুন্ড', 'Bayer Leverkusen': 'বায়ার লেভারকুসেন', 'RB Leipzig': 'আরবি লাইপজিগ',
+  'Paris Saint-Germain': 'পিএসজি', Marseille: 'মার্সেই', Monaco: 'মোনাকো', Lyon: 'লিওঁ',
+  Internazionale: 'ইন্টার মিলান', 'Inter Milan': 'ইন্টার মিলান', 'AC Milan': 'এসি মিলান', Juventus: 'জুভেন্টাস', Napoli: 'নাপোলি', 'AS Roma': 'রোমা', Lazio: 'লাৎসিও', Atalanta: 'আতালান্তা',
+  'Inter Miami CF': 'ইন্টার মায়ামি', 'Al Nassr': 'আল নাসর', 'Al Hilal': 'আল হিলাল', Benfica: 'বেনফিকা', Porto: 'পোর্তো', 'Sporting CP': 'স্পোর্টিং', Ajax: 'আয়াক্স', 'PSV Eindhoven': 'পিএসভি', Celtic: 'সেল্টিক',
+  // cricket franchises
+  'Mumbai Indians': 'মুম্বাই ইন্ডিয়ানস', 'Chennai Super Kings': 'চেন্নাই সুপার কিংস', 'Royal Challengers Bengaluru': 'রয়্যাল চ্যালেঞ্জার্স বেঙ্গালুরু',
+  'Kolkata Knight Riders': 'কলকাতা নাইট রাইডার্স', 'Sunrisers Hyderabad': 'সানরাইজার্স হায়দরাবাদ', 'Delhi Capitals': 'দিল্লি ক্যাপিটালস',
+  'Rajasthan Royals': 'রাজস্থান রয়্যালস', 'Punjab Kings': 'পাঞ্জাব কিংস', 'Lucknow Super Giants': 'লক্ষ্ণৌ সুপার জায়ান্টস', 'Gujarat Titans': 'গুজরাট টাইটান্স',
+  'Comilla Victorians': 'কুমিল্লা ভিক্টোরিয়ান্স', 'Rangpur Riders': 'রংপুর রাইডার্স', 'Fortune Barishal': 'ফরচুন বরিশাল', 'Sylhet Strikers': 'সিলেট স্ট্রাইকার্স',
+  'Khulna Tigers': 'খুলনা টাইগার্স', 'Chittagong Kings': 'চিটাগং কিংস', 'Dhaka Capitals': 'ঢাকা ক্যাপিটালস', 'Durbar Rajshahi': 'দুর্বার রাজশাহী',
+};
+const BIG_CLUBS = ['Real Madrid', 'Barcelona', 'Atlético Madrid', 'Bayern Munich', 'Borussia Dortmund', 'Bayer Leverkusen', 'Paris Saint-Germain',
+  'Internazionale', 'Inter Milan', 'AC Milan', 'Juventus', 'Napoli', 'AS Roma', 'Arsenal', 'Chelsea', 'Liverpool', 'Manchester City', 'Manchester United',
+  'Tottenham Hotspur', 'Newcastle United', 'Aston Villa', 'Inter Miami CF', 'Benfica', 'Porto', 'Sporting CP', 'Marseille', 'Atalanta', 'Lazio'];
+const BIG_NATIONS = ['Bangladesh', 'Argentina', 'Brazil', 'Portugal', 'France', 'Germany', 'Spain', 'England', 'Italy', 'Netherlands', 'Belgium', 'Croatia',
+  'Uruguay', 'India', 'Pakistan', 'Saudi Arabia', 'Japan', 'Morocco', 'Nepal', 'Bhutan', 'Sri Lanka', 'Maldives'];
+const CRICKET_FULL = ['Bangladesh', 'India', 'Pakistan', 'Sri Lanka', 'Afghanistan', 'Australia', 'England', 'New Zealand', 'South Africa', 'West Indies', 'Zimbabwe', 'Ireland'];
+const bnTeam = n => BN_TEAMS[n] || BN_TEAMS[n.replace(/ Women$/, '')] && `${BN_TEAMS[n.replace(/ Women$/, '')]} নারী` || n;
+const bnClock = iso => { const d = new Date(new Date(iso).getTime() + 6 * 3600e3), h = d.getUTCHours(), m = d.getUTCMinutes();
+  const part = h < 4 ? 'রাত' : h < 6 ? 'ভোর' : h < 12 ? 'সকাল' : h < 15 ? 'দুপুর' : h < 18 ? 'বিকাল' : h < 20 ? 'সন্ধ্যা' : 'রাত';
+  return `${part} ${bn(h % 12 || 12)}:${bn(String(m).padStart(2, '0'))}`; };
+// "Bangladesh won by 5 wickets (with 89 balls remaining)" -> "বাংলাদেশ ৫ উইকেটে জয়ী"
+function bnCricketResult(s, names) {
+  if (!s) return '';
+  let m = s.match(/^(.+?) won by (\d+) (wickets?|wkts?|runs?)/i);
+  if (m) return `${bnTeam(findTeam(m[1], names))} ${bn(m[2])} ${/run/i.test(m[3]) ? 'রানে' : 'উইকেটে'} জয়ী`;
+  if (/^match drawn/i.test(s)) return 'ম্যাচ ড্র';
+  if (/tied/i.test(s)) return 'ম্যাচ টাই';
+  if (/no result|abandoned/i.test(s)) return 'ম্যাচ পরিত্যক্ত';
+  m = s.match(/^(.+?) won/i);
+  if (m) return `${bnTeam(findTeam(m[1], names))} জয়ী`;
+  return s;
+}
+// "WPR Women" (short form in summaries) -> the competitor's full name.
+function findTeam(s, names) {
+  if (names[s]) return names[s];
+  const w = s.split(' ')[0].toLowerCase(), women = /women/i.test(s);
+  return Object.values(names).find(n => n.toLowerCase().startsWith(w) && /women/i.test(n) === women)
+    || Object.entries(names).find(([k]) => k.toLowerCase().startsWith(w))?.[1] || s;
+}
+// "Bangladesh tour of Sri Lanka 2026/27" -> "বাংলাদেশ দলের শ্রীলঙ্কা সফর"
+const bnSeries = s => { const m = s.match(/^(.+?)( Women)? tour of (.+?)(?: \d{4}.*)?$/);
+  return m ? `${bnTeam(m[1])}${m[2] ? ' নারী' : ''} দলের ${bnTeam(m[3])} সফর` : s.replace(/ \d{4}\/\d{2}$/, ''); };
+// "138/5 (35.1/50 ov, target 136)" -> "১৩৮/৫ (৩৫.১ ওভার)"
+const bnCricketScore = s => bn(String(s || '').replace(/\(([\d.]+)(?:\/\d+)? ov[^)]*\)/, '($1 ওভার)').replace(/&/g, ' ও '));
+
+async function sportsFetch(u) {
+  const r = await fetch(u, { headers: { 'user-agent': 'Mozilla/5.0' } });
+  if (!r.ok) throw new Error(`${r.status} ${u}`);
+  return r.json();
+}
+// Normalised matches: {id, sport, league, state, start, home:{name,logo,score}, away, result, scorers:[], venue}
+async function footballMatches(dates = '') {
+  const out = [];
+  for (const [slug, [league, rule]] of Object.entries(FOOTBALL_LEAGUES)) {
+    let j;
+    try { j = await sportsFetch(`${ESPN}/${slug}/scoreboard${dates ? `?dates=${dates}` : ''}`); } catch { continue; }
+    for (const e of j.events || []) {
+      const c = e.competitions?.[0]; if (!c) continue;
+      const side = h => c.competitors.find(x => x.homeAway === h);
+      const H = side('home'), A = side('away');
+      const names = [H.team.displayName, A.team.displayName];
+      if (rule === 'big' && !names.some(n => BIG_CLUBS.includes(n) || BIG_NATIONS.includes(n))) continue;
+      const pen = (H.shootoutScore != null) ? ` (টাইব্রেকারে ${bn(H.shootoutScore)}-${bn(A.shootoutScore)})` : '';
+      const scorers = (c.details || []).filter(d => d.scoringPlay).map(d => ({
+        team: d.team?.id === H.team.id ? 'home' : 'away',
+        text: `${d.athletesInvolved?.[0]?.shortName || ''} ${bn(d.clock?.displayValue || '')}${d.penaltyKick ? ' (পে.)' : ''}${d.ownGoal ? ' (আত্মঘাতী)' : ''}` }));
+      const hs = Number(H.score), as = Number(A.score);
+      out.push({ id: `fb-${e.id}`, sport: 'football', league, state: e.status?.type?.state, done: !!e.status?.type?.completed, start: e.date,
+        home: { name: bnTeam(H.team.displayName), en: H.team.displayName, logo: H.team.logo, score: H.score },
+        away: { name: bnTeam(A.team.displayName), en: A.team.displayName, logo: A.team.logo, score: A.score },
+        result: hs === as && !pen ? 'ম্যাচ ড্র' : `${hs > as || (pen && H.winner) ? bnTeam(H.team.displayName) : bnTeam(A.team.displayName)} জয়ী${pen}`,
+        scorers, venue: c.venue?.fullName || '' });
+    }
+  }
+  return out;
+}
+function cricketWanted(e, league) {
+  const names = e.competitors.map(c => c.displayName);
+  if (names.some(n => /Bangladesh/.test(n))) return true;
+  if (/Bangladesh Premier League|Indian Premier League|ICC (Men's )?(T20 )?World Cup(?! .*Qualifier)|Champions Trophy|Asia Cup/i.test(league) && !/Qualifier|League 2|Challenge/i.test(league)) return true;
+  const cls = e.class?.generalClassCard || '';
+  return /^(Test|ODI|T20I)$/.test(cls) && names.every(n => CRICKET_FULL.includes(n));
+}
+async function cricketMatches() {
+  const j = await sportsFetch('https://site.web.api.espn.com/apis/v2/scoreboard/header?sport=cricket');
+  const out = [];
+  for (const l of j.sports?.[0]?.leagues || []) {
+    for (const e of l.events || []) {
+      if (!cricketWanted(e, l.name) || e.competitors?.length !== 2) continue;
+      const [H, A] = e.competitors;
+      const names = Object.fromEntries(e.competitors.flatMap(c => [[c.displayName, c.displayName], [c.name, c.displayName], [c.abbreviation, c.displayName]]));
+      const toss = (e.notes || []).find(n => n.type === 'toss')?.text;
+      out.push({ id: `cr-${e.id}`, sport: 'cricket', league: bnSeries(l.name), title: e.title || '', state: e.status, done: e.status === 'post', start: e.date,
+        home: { name: bnTeam(H.displayName), en: H.displayName, logo: H.logo, score: bnCricketScore(H.score) },
+        away: { name: bnTeam(A.displayName), en: A.displayName, logo: A.logo, score: bnCricketScore(A.score) },
+        result: bnCricketResult(e.fullStatus?.longSummary || e.fullStatus?.summary, names), toss, venue: e.location || '', cls: e.class?.generalClassCard || '' });
+    }
+  }
+  return out;
+}
+
+const SPORTS_CSS = `*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Sans Bengali',sans-serif;color:#fff;position:relative;background:#0a1f14}
+.bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,#1a8a4a 0,#0b5e2a 45%,#05301a 100%)}
+.bg:after{content:'';position:absolute;inset:0;opacity:.09;background:repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 108px),
+  radial-gradient(circle at 50% 50%,transparent 0 180px,#fff 181px 184px,transparent 185px)}
+.hdr{position:relative;display:flex;align-items:center;gap:24px;padding:44px 50px 0}
+.logo{height:100px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.logo.txt{display:flex;align-items:center;padding:0 22px;font-size:46px;font-weight:800;color:#c8202f}
+.ht{flex:1}.h1{font-size:60px;font-weight:800;line-height:1.1}.h2{font-size:32px;font-weight:600;color:#c8f7d4;margin-top:4px}
+.tag{background:#c8202f;border:4px solid #ffd54f;border-radius:50px;padding:4px 26px;font-size:36px;font-weight:800}
+.lg{position:relative;margin:30px auto 0;width:max-content;max-width:960px;background:rgba(0,0,0,.28);border:3px solid rgba(255,213,79,.7);border-radius:50px;
+  padding:6px 36px;font-size:38px;font-weight:700;color:#ffd54f;text-align:center}
+.ftr{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
+  display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800}`;
+const teamBadge = t => t.logo ? `<img class="tl" src="${t.logo}" onerror="this.outerHTML='<div class=&quot;tl ph&quot;>${(t.en || '?').slice(0, 2).toUpperCase()}</div>'">`
+  : `<div class="tl ph">${(t.en || '?').slice(0, 2).toUpperCase()}</div>`;
+async function renderSportsCard(browser, inner, css, outFile, logo) {
+  const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
+  const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+  await pg.setContent(`<!doctype html><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
+<style>${SPORTS_CSS}${css}</style><div class="bg"></div>${inner.replace('{LOGO}', logoImg)}`, { waitUntil: 'networkidle', timeout: 60000 });
+  await pg.evaluate(() => document.fonts.ready);
+  await pg.waitForTimeout(400);
+  await pg.screenshot({ path: outFile });
+  await pg.close();
+  return outFile;
+}
+function sportsResultCard(browser, m, outFile, logo) {
+  const fb = m.sport === 'football';
+  const sc = side => fb ? m.scorers.filter(s => s.team === side).map(s => `<div>⚽ ${s.text}</div>`).join('') : '';
+  const score = fb ? `<div class="score">${bn(m.home.score)}<i>-</i>${bn(m.away.score)}</div>` : `<div class="vs">বনাম</div>`;
+  const team = (t, side) => `<div class="team">${teamBadge(t)}<div class="tn">${t.name}</div>${fb ? `<div class="gs">${sc(side)}</div>` : `<div class="cs">${t.score || '-'}</div>`}</div>`;
+  return renderSportsCard(browser, `
+<div class="hdr">{LOGO}<div class="ht"><div class="h1">${fb ? 'ফুটবল' : 'ক্রিকেট'}</div><div class="h2">${bnDate(dhakaNow())}</div></div><div class="tag">ম্যাচ শেষ</div></div>
+<div class="lg">${m.league}${m.title ? ` · ${m.title.replace(/(\d+)(st|nd|rd|th) Match/i, (_, n) => `${bn(n)}তম ম্যাচ`).replace(/Final/i, 'ফাইনাল').replace(/Semi-?final/i, 'সেমিফাইনাল')}` : ''}</div>
+<div class="row">${team(m.home, 'home')}${score}${team(m.away, 'away')}</div>
+<div class="res">${m.result}</div>
+${m.venue ? `<div class="ven">${m.venue}</div>` : ''}
+<div class="ftr">www.utsabtv.com</div>`, `
+.row{position:relative;margin:90px 30px 0;display:flex;align-items:flex-start;justify-content:space-between}
+.team{width:400px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.tl{width:300px;height:300px;object-fit:contain;background:#fff;border-radius:50%;padding:26px;border:8px solid #ffd54f;box-shadow:0 14px 34px rgba(0,0,0,.4)}
+.tl.ph{display:flex;align-items:center;justify-content:center;font-size:90px;font-weight:800;color:#0b5e2a}
+.tn{margin-top:26px;font-size:${fb ? 52 : 56}px;font-weight:800;line-height:1.15}
+.gs{margin-top:14px;font-size:32px;font-weight:600;color:#e3ffe9;line-height:1.45}
+.cs{margin-top:18px;background:#fff;color:#c8202f;border-radius:20px;padding:6px 22px;font-size:40px;font-weight:800;white-space:nowrap}
+.score{margin-top:90px;font-size:150px;font-weight:800;color:#ffd54f;text-shadow:0 8px 26px rgba(0,0,0,.45);white-space:nowrap}.score i{font-style:normal;margin:0 14px;color:#fff}
+.vs{margin-top:120px;font-size:56px;font-weight:800;color:#ffd54f}
+.res{position:absolute;left:60px;right:60px;bottom:${m.venue ? 220 : 170}px;text-align:center;background:#fff;color:#0b5e2a;border-radius:30px;border:6px solid #c8202f;
+  padding:14px 20px;font-size:58px;font-weight:800;box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.ven{position:absolute;left:0;right:0;bottom:130px;text-align:center;font-size:30px;color:#c8f7d4}`, outFile, logo);
+}
+function sportsFixturesCard(browser, list, outFile, logo) {
+  const rows = list.map(m => `<div class="fx"><span class="ic">${m.sport === 'football' ? '⚽' : '🏏'}</span>
+    <div class="mt"><b>${m.home.name} <i>বনাম</i> ${m.away.name}</b><small>${m.league}</small></div><span class="tm">${bnClock(m.start)}</span></div>`).join('');
+  return renderSportsCard(browser, `
+<div class="hdr">{LOGO}<div class="ht"><div class="h1">আজকের খেলা</div><div class="h2">${BN_DAYS[dhakaNow().getUTCDay()]}, ${bnDate(dhakaNow())}</div></div><div class="tag">সময়সূচি</div></div>
+<div class="list">${rows}</div>
+<div class="note">সময় বাংলাদেশ সময় অনুযায়ী</div>
+<div class="ftr">www.utsabtv.com</div>`, `
+.list{position:relative;margin:36px 50px 0;display:flex;flex-direction:column;gap:${list.length > 6 ? 12 : 18}px}
+.fx{display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.95);color:#0b5e2a;border-radius:22px;padding:${list.length > 6 ? 8 : 14}px 26px;box-shadow:0 8px 18px rgba(0,0,0,.25)}
+.ic{font-size:44px}.mt{flex:1;display:flex;flex-direction:column;min-width:0}
+.mt b{font-size:${list.length > 6 ? 36 : 42}px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mt b i{font-style:normal;color:#c8202f;font-size:.75em}
+.mt small{font-size:26px;font-weight:600;color:#557a62}
+.tm{background:#c8202f;color:#fff;border-radius:16px;padding:6px 18px;font-size:34px;font-weight:800;white-space:nowrap}
+.note{position:absolute;left:0;right:0;bottom:122px;text-align:center;font-size:28px;color:#c8f7d4}`, outFile, logo);
+}
+
+async function sportsTick() {
+  if (process.env.SPORTS !== '1') return;
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(SPORTS_FILE, 'utf8')); } catch {}
+  const first = !st.done;
+  st.done = st.done || []; st.lastAt = st.lastAt || 0; st.pages = st.pages || {};
+  const gap = Number(process.env.SPORTS_GAP_MIN || 3) * 60e3;
+  const save = () => { st.done = st.done.slice(-400); fs.mkdirSync(path.dirname(SPORTS_FILE), { recursive: true }); fs.writeFileSync(SPORTS_FILE, JSON.stringify(st, null, 2)); };
+  if (Date.now() < st.lastAt + gap) return;
+  const now = dhakaNow(), today = now.toISOString().slice(0, 10);
+  const all = [...await footballMatches().catch(e => (log('football feed:', e.message), [])), ...await cricketMatches().catch(e => (log('cricket feed:', e.message), []))];
+  if (first) { st.done = all.filter(m => m.done).map(m => m.id); st.fixtures = today; save(); return log(`sports: first run, ${st.done.length} finished matches marked seen`); }
+  let job = null;
+  if (st.fixtures !== today && now.getUTCHours() >= Number(process.env.SPORTS_FIXTURE_HOUR || 9)) {
+    // Next 24 hours of matches (European football mostly falls in Bangladesh's night).
+    const tom = new Date(Date.now() + 864e5).toISOString().slice(0, 10).replace(/-/g, '');
+    const fb2 = await footballMatches(tom).catch(() => []);
+    const seen = new Set();
+    const list = [...all, ...fb2].filter(m => m.state === 'pre' && !seen.has(m.id) && seen.add(m.id))
+      .filter(m => { const t = new Date(m.start).getTime(); return t > Date.now() && t < Date.now() + 864e5; })
+      .sort((a, b) => new Date(a.start) - new Date(b.start)).slice(0, 8);
+    if (!list.length) { st.fixtures = today; save(); return log('sports: no fixtures today'); }
+    job = { key: `fixtures-${today}`, done: () => { st.fixtures = today; }, make: (b, f, l) => sportsFixturesCard(b, list, f, l) };
+  }
+  if (!job) {
+    const m = all.find(x => x.done && !st.done.includes(x.id));
+    if (!m) return;
+    job = { key: m.id, done: () => st.done.push(m.id), make: (b, f, l) => sportsResultCard(b, m, f, l) };
+  }
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const card = await job.make(browser, path.join(OUT_DIR, `sports-${job.key}.png`), await channelLogo(browser));
+    const done = st.pages[job.key] = st.pages[job.key] || [];
+    try { await postToFacebook(card, '', '', done, browser); job.done(); delete st.pages[job.key]; } finally { st.lastAt = Date.now(); save(); }
+  } catch (e) {
+    event(`sports ${job.key} FAILED: ${e.message}`);
+    job.done();
+  } finally {
+    save();
+    await browser.close();
+  }
+}
+
+// DEMO_SPORTS=1: recent result cards (2 football, 2 cricket) and today's fixtures card into ./preview. Posts nothing.
+async function sportsDemo() {
+  const fb = await footballMatches().catch(e => (log(e.message), []));
+  const yest = new Date(Date.now() - 864e5).toISOString().slice(0, 10).replace(/-/g, '');
+  const fbY = fb.some(m => m.done) ? [] : await footballMatches(yest).catch(() => []);
+  const cr = await cricketMatches().catch(e => (log(e.message), []));
+  const preview = path.join(__dirname, 'preview');
+  fs.mkdirSync(preview, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const logo = await channelLogo(browser);
+    const fdone = [...fb, ...fbY].filter(m => m.done), cdone = cr.filter(m => m.done);
+    const pick = [...fdone.filter(m => m.scorers.length).slice(0, 2), ...cdone.slice(0, 2)];
+    for (const [i, m] of pick.entries()) await sportsResultCard(browser, m, path.join(preview, `sports-demo-${i + 1}.png`), logo);
+    const pre = [...fb, ...cr].filter(m => m.state === 'pre').sort((a, b) => new Date(a.start) - new Date(b.start)).slice(0, 8);
+    if (pre.length) await sportsFixturesCard(browser, pre, path.join(preview, 'sports-demo-fixtures.png'), logo);
+    fs.writeFileSync(path.join(preview, 'sports-demo.json'), JSON.stringify({ football: fb.length + fbY.length, cricket: cr.length,
+      cricketList: cr.map(m => `${m.state} ${m.home.en} v ${m.away.en} | ${m.league} | ${m.result}`), picked: pick.map(m => m.id), fixtures: pre.length }, null, 2));
+  } finally {
+    await browser.close();
+  }
+}
+
 (async () => {
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'weather')
     return weatherReelRun().catch(e => { event(`weather reel FAILED: ${e.stack || e.message}`); process.exit(1); });
@@ -1089,11 +1362,13 @@ async function prayerReelRun() {
     return prayerReelRun().catch(e => { event(`prayer reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun().catch(e => { event(`reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_PRAYER === '1') return prayerDemo();
+  if (process.env.DEMO_SPORTS === '1') return sportsDemo();
   if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();
   if (process.env.CHECK === '1') return checkPages();
   await weatherTick().catch(e => event(`weather FAILED: ${e.message}`));
   await prayerTick().catch(e => event(`prayer FAILED: ${e.message}`));
+  await sportsTick().catch(e => event(`sports FAILED: ${e.message}`));
   const links = await homepageLinks();
   log(`homepage: ${links.length} candidate links`);
   let state = loadState();
