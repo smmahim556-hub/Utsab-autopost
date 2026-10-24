@@ -13,6 +13,7 @@
 //   DRY_RUN=1                  make cards into ./out but do not post (default unless DRY_RUN=0)
 //   WEATHER=1                      daily weather cards for the 8 divisions (see weatherTick)
 //   REEL_RUN=1 / DEMO_REEL=1       daily top-10 Reel (post / only build the video), see reelRun
+//   PRAYER=1                       prayer schedule + reminder cards for the 8 divisions (see prayerTick)
 //   MAX_PER_RUN                at most this many posts per run (default 3)
 //   GRAPH_VERSION              Graph API version (default v26.0)
 const fs = require('fs');
@@ -463,6 +464,161 @@ async function weatherDemo() {
   }
 }
 
+
+// ------------------------------------------------------------------ prayer times
+// PRAYER=1: before Fajr, one schedule card per division (PRAYER_GAP_MIN apart, starting PRAYER_LEAD_MIN before
+// Dhaka's Fajr); then 30 minutes before each prayer, one reminder card with that prayer's time in every division.
+// Times are calculated here (no web service). State: state/prayer.json.
+// Prayer times (Karachi method: Fajr/Isha 18°, Hanafi Asr), PrayTimes.org formulas.
+const rad = d => d * Math.PI / 180, deg = r => r * 180 / Math.PI;
+function sunPos(jd) {
+  const D = jd - 2451545.0, g = (357.529 + 0.98560028 * D) % 360, q = (280.459 + 0.98564736 * D) % 360;
+  const L = (q + 1.915 * Math.sin(rad(g)) + 0.020 * Math.sin(rad(2 * g))) % 360, e = 23.439 - 0.00000036 * D;
+  const RA = deg(Math.atan2(Math.cos(rad(e)) * Math.sin(rad(L)), Math.cos(rad(L)))) / 15;
+  const eqt = q / 15 - ((RA % 24) + 24) % 24;
+  return { decl: deg(Math.asin(Math.sin(rad(e)) * Math.sin(rad(L)))), eqt: ((eqt + 12) % 24 + 24) % 24 - 12 };
+}
+function prayerTimes(y, m, d, lat, lng, tz = 6) {
+  const jd0 = Date.UTC(y, m - 1, d) / 864e5 + 2440587.5 - lng / 360;
+  const at = h => sunPos(jd0 + h / 24);
+  const noon = h => 12 - at(h).eqt;
+  const angleTime = (angle, h, ccw) => {
+    const { decl } = at(h);
+    const T = deg(Math.acos((-Math.sin(rad(angle)) - Math.sin(rad(decl)) * Math.sin(rad(lat))) / (Math.cos(rad(decl)) * Math.cos(rad(lat))))) / 15;
+    return noon(h) + (ccw ? -T : T);
+  };
+  const asrAngle = h => { const { decl } = at(h); return -deg(Math.atan(1 / (2 + Math.tan(rad(Math.abs(lat - decl)))))); };
+  let t = { fajr: 5, sunrise: 6, dhuhr: 12, asr: 13, maghrib: 18, isha: 18 };
+  for (let i = 0; i < 2; i++) {
+    t = { fajr: angleTime(18, t.fajr, true), sunrise: angleTime(0.833, t.sunrise, true), dhuhr: noon(t.dhuhr),
+      asr: angleTime(asrAngle(t.asr), t.asr, false), maghrib: angleTime(0.833, t.maghrib, false), isha: angleTime(18, t.isha, false) };
+  }
+  const out = {};
+  for (const [k, v] of Object.entries(t)) out[k] = v + tz - lng / 15;
+  return out; // hours, local
+}
+
+const PRAYER_FILE = path.join(__dirname, 'state', 'prayer.json');
+const PRAYERS = [['fajr', 'ফজর'], ['sunrise', 'সূর্যোদয়'], ['dhuhr', 'যোহর'], ['asr', 'আসর'], ['maghrib', 'মাগরিব'], ['isha', 'এশা']];
+const BN_DAYS = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
+const prayerGen = (k, d) => k === 'dhuhr' && d.getUTCDay() === 5 ? 'জুমার' : { fajr: 'ফজরের', dhuhr: 'যোহরের', asr: 'আসরের', maghrib: 'মাগরিবের', isha: 'এশার' }[k];
+const prayerName = (k, d) => k === 'dhuhr' && d.getUTCDay() === 5 ? 'জুমা' : PRAYERS.find(p => p[0] === k)[1];
+// 4.73 -> "৪:৪৪" (12-hour clock, as Bangladeshi schedules print it)
+const bnTime = h => { const m = Math.round(h * 60), hh = Math.floor(m / 60) % 12 || 12; return `${bn(hh)}:${bn(String(m % 60).padStart(2, '0'))}`; };
+const timesFor = (d, now = dhakaNow()) => prayerTimes(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), d.lat, d.lon);
+
+const PRAYER_CSS = `*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Sans Bengali',sans-serif;color:#fff;position:relative;
+  background:radial-gradient(circle at 50% 0%,#1d9a52 0,#0b5e2a 55%,#063d1b 100%)}
+body:before{content:'';position:absolute;inset:0;opacity:.08;background-image:
+  radial-gradient(circle at 25px 25px,#fff 2px,transparent 3px),linear-gradient(45deg,transparent 46%,#fff 47%,#fff 53%,transparent 54%);
+  background-size:50px 50px,100px 100px}
+.hdr{position:relative;display:flex;align-items:center;gap:26px;padding:50px 56px 0}
+.logo{height:104px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.logo.txt{display:flex;align-items:center;padding:0 22px;font-size:48px;font-weight:800;color:#c8202f}
+.ht{flex:1}.h1{font-size:64px;font-weight:800;line-height:1.1}.h2{font-size:34px;font-weight:600;color:#c8f7d4;margin-top:6px}
+.moon{width:110px;height:110px}
+.ftr{position:absolute;left:0;right:0;bottom:0;height:110px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
+  display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:800}`;
+const MOON_SVG = `<svg class="moon" viewBox="0 0 100 100"><path d="M62 10a40 40 0 1 0 28 62a32 32 0 1 1-28-62z" fill="#ffd54f"/>
+  <path d="M74 22l3 9h9l-7 6 3 9-8-6-8 6 3-9-7-6h9z" fill="#ffd54f"/></svg>`;
+async function renderPrayerCard(browser, inner, extraCss, outFile, logo) {
+  const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
+  const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+  await pg.setContent(`<!doctype html><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
+<style>${PRAYER_CSS}${extraCss}</style>${inner.replace('{LOGO}', logoImg)}`, { waitUntil: 'networkidle' });
+  await pg.evaluate(() => document.fonts.ready);
+  await pg.waitForTimeout(400);
+  await pg.screenshot({ path: outFile });
+  await pg.close();
+  return outFile;
+}
+// Full day for one division.
+function prayerScheduleCard(browser, d, outFile, logo) {
+  const now = dhakaNow(), t = timesFor(d, now);
+  const rows = PRAYERS.map(([k]) => `<div class="row${k === 'sunrise' ? ' dim' : ''}"><span>${prayerName(k, now)}</span><b>${bnTime(t[k])}</b></div>`).join('');
+  return renderPrayerCard(browser, `
+<div class="hdr">{LOGO}<div class="ht"><div class="h1">নামাজের সময়সূচি</div><div class="h2">${BN_DAYS[now.getUTCDay()]}, ${bnDate(now)}</div></div>${MOON_SVG}</div>
+<div class="city">${d.name} ও আশপাশের এলাকা</div>
+<div class="tbl">${rows}</div>
+<div class="note">সময় আনুমানিক, স্থানীয় মসজিদের সময় ১-২ মিনিট আলাদা হতে পারে</div>
+<div class="ftr">www.utsabtv.com</div>`, `
+.city{position:relative;margin:34px auto 0;width:max-content;background:#c8202f;border:5px solid #ffd54f;border-radius:60px;padding:6px 48px;font-size:54px;font-weight:800}
+.tbl{position:relative;margin:34px 70px 0;display:flex;flex-direction:column;gap:18px}
+.row{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.95);color:#0b5e2a;border-radius:24px;padding:12px 44px;
+  font-size:58px;font-weight:800;box-shadow:0 8px 18px rgba(0,0,0,.2)}
+.row b{color:#c8202f;font-size:64px}.row.dim{background:rgba(255,255,255,.7);font-size:48px}.row.dim b{font-size:52px;color:#7a5c00}
+.note{position:relative;text-align:center;margin-top:24px;font-size:28px;color:#c8f7d4}`, outFile, logo);
+}
+// One prayer, every division.
+function prayerReminderCard(browser, key, outFile, logo) {
+  const now = dhakaNow(), gen = prayerGen(key, now);
+  const cells = DIVISIONS.map(d => `<div class="cell"><span>${d.name}</span><b>${bnTime(timesFor(d, now)[key])}</b></div>`).join('');
+  return renderPrayerCard(browser, `
+<div class="hdr">{LOGO}<div class="ht"><div class="h1">${gen} ওয়াক্ত</div><div class="h2">${BN_DAYS[now.getUTCDay()]}, ${bnDate(now)}</div></div>${MOON_SVG}</div>
+<div class="big">আর ৩০ মিনিট পর ${gen} ওয়াক্ত শুরু</div>
+<div class="grid">${cells}</div>
+<div class="call">নামাজের প্রস্তুতি নিন</div>
+<div class="ftr">www.utsabtv.com</div>`, `
+.call{position:relative;margin:60px auto 0;width:max-content;color:#ffd54f;font-size:60px;font-weight:800;border-top:3px solid rgba(255,213,79,.6);border-bottom:3px solid rgba(255,213,79,.6);padding:10px 40px}
+.big{position:relative;margin:40px 60px 0;text-align:center;background:#c8202f;border:5px solid #ffd54f;border-radius:30px;padding:14px 20px;font-size:52px;font-weight:800}
+.grid{position:relative;margin:40px 60px 0;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.cell{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.95);color:#0b5e2a;border-radius:22px;padding:16px 32px;
+  font-size:48px;font-weight:800;box-shadow:0 8px 18px rgba(0,0,0,.2)}
+.cell b{color:#c8202f;font-size:52px}`, outFile, logo);
+}
+
+async function prayerTick() {
+  if (process.env.PRAYER !== '1') return;
+  const now = dhakaNow(), today = now.toISOString().slice(0, 10);
+  const nowH = now.getUTCHours() + now.getUTCMinutes() / 60;
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(PRAYER_FILE, 'utf8')); } catch {}
+  if (st.date !== today) st = { date: today, sched: [], rem: [], pages: {}, lastAt: 0 };
+  const dhaka = timesFor(DIVISIONS[0], now);
+  let job = null;
+  // Reminders first: they are tied to a time. Due from 30 min before the prayer, given up 20 min later.
+  for (const [k] of PRAYERS) {
+    if (k === 'sunrise' || st.rem.includes(k)) continue;
+    if (nowH >= dhaka[k] - 0.5 && nowH < dhaka[k] - 0.5 + 20 / 60) { job = { key: `rem-${k}`, done: () => st.rem.push(k), make: (b, f, l) => prayerReminderCard(b, k, f, l) }; break; }
+  }
+  const lead = Number(process.env.PRAYER_LEAD_MIN || 75) / 60, gap = Number(process.env.PRAYER_GAP_MIN || 4) * 60e3;
+  if (!job && nowH >= dhaka.fajr - lead && nowH < dhaka.sunrise && Date.now() >= st.lastAt + gap) {
+    const d = DIVISIONS.find(x => !st.sched.includes(x.name));
+    if (d) job = { key: `sched-${d.name}`, done: () => st.sched.push(d.name), make: (b, f, l) => prayerScheduleCard(b, d, f, l) };
+  }
+  if (!job) return;
+  const save = () => { fs.mkdirSync(path.dirname(PRAYER_FILE), { recursive: true }); fs.writeFileSync(PRAYER_FILE, JSON.stringify(st, null, 2)); };
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const card = await job.make(browser, path.join(OUT_DIR, `prayer-${job.key}.png`), await channelLogo(browser));
+    const done = st.pages[job.key] = st.pages[job.key] || [];
+    try { await postToFacebook(card, '', '', done, browser); job.done(); } finally { st.lastAt = Date.now(); save(); }
+  } catch (e) {
+    event(`prayer ${job.key} FAILED: ${e.message}`);
+    job.done(); // a missed prayer card is not retried: the next one comes soon enough
+  } finally {
+    save();
+    await browser.close();
+  }
+}
+
+// DEMO_PRAYER=1: one schedule card (Dhaka) and one reminder card (Dhuhr) into ./preview. Posts nothing.
+async function prayerDemo() {
+  const browser = await chromium.launch();
+  try {
+    const preview = path.join(__dirname, 'preview');
+    fs.mkdirSync(preview, { recursive: true });
+    const logo = await channelLogo(browser);
+    await prayerScheduleCard(browser, DIVISIONS[0], path.join(preview, 'prayer-demo-schedule.png'), logo);
+    await prayerReminderCard(browser, 'dhuhr', path.join(preview, 'prayer-demo-reminder.png'), logo);
+  } finally {
+    await browser.close();
+  }
+}
+
 // ------------------------------------------------------------------ daily top-10 reel
 // REEL_RUN=1: at night, take today's 10 most-read news ("N বার পড়া হয়েছে" on each article page),
 // make their cards, turn them into a 9:16 video and post it as a Reel to every Page.
@@ -807,10 +963,12 @@ async function weatherReelRun() {
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'weather')
     return weatherReelRun().catch(e => { event(`weather reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun().catch(e => { event(`reel FAILED: ${e.stack || e.message}`); process.exit(1); });
+  if (process.env.DEMO_PRAYER === '1') return prayerDemo();
   if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();
   if (process.env.CHECK === '1') return checkPages();
   await weatherTick().catch(e => event(`weather FAILED: ${e.message}`));
+  await prayerTick().catch(e => event(`prayer FAILED: ${e.message}`));
   const links = await homepageLinks();
   log(`homepage: ${links.length} candidate links`);
   let state = loadState();
