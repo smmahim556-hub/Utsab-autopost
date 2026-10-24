@@ -581,7 +581,7 @@ const MUSIC_FILE = path.join(__dirname, 'assets', 'reel-music.mp3');
 const TRANSITION_FILE = path.join(__dirname, 'assets', 'transition.mp3');
 const TRANSITIONS = ['slideleft', 'circleopen', 'zoomin', 'wipeleft', 'pixelize', 'radial', 'smoothup', 'diagtl', 'squeezeh', 'slideup', 'fadewhite'];
 const XFADE = 0.5;
-function buildVideo(slides, outFile) {
+function buildVideo(slides, outFile, music = MUSIC_FILE) {
   const { execFileSync } = require('child_process');
   const ff = args => execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...args]);
   // Clips are XFADE longer than their slot so the transition overlaps the start of the next slide.
@@ -607,7 +607,7 @@ function buildVideo(slides, outFile) {
     v.push(`${last}[${k + 1}:v]xfade=transition=${TRANSITIONS[k % TRANSITIONS.length]}:duration=${XFADE}:offset=${o}[v${k + 1}]`);
     last = `[v${k + 1}]`;
   });
-  const n = clips.length, hasMusic = fs.existsSync(MUSIC_FILE), K = offsets.length;
+  const n = clips.length, hasMusic = fs.existsSync(music), K = offsets.length;
   const a = [`[${n + 1}:a]asplit=${K}${offsets.map((_, k) => `[w${k}]`).join('')}`];
   offsets.forEach((o, k) => a.push(`[w${k}]adelay=${Math.round(o * 1000)}|${Math.round(o * 1000)},volume=0.9[d${k}]`));
   const mix = offsets.map((_, k) => `[d${k}]`).join('');
@@ -617,7 +617,7 @@ function buildVideo(slides, outFile) {
   } else {
     a.push(`${mix}amix=inputs=${K}:normalize=0[aout]`);
   }
-  const inputs = [...clips.flatMap(c => ['-i', c]), ...(hasMusic ? ['-i', MUSIC_FILE] : []), '-i', whoosh];
+  const inputs = [...clips.flatMap(c => ['-i', c]), ...(hasMusic ? ['-stream_loop', '-1', '-i', music] : []), '-i', whoosh];
   // With no music the whoosh input sits at index n, so shift the label used above.
   const fc = [...v, ...a.map(x => hasMusic ? x : x.replace(`[${n + 1}:a]`, `[${n}:a]`))].join(';');
   ff([...inputs, '-filter_complex', fc, '-map', last, '-map', '[aout]', '-t', String(total),
@@ -782,7 +782,7 @@ async function weatherReelRun() {
         sec: Number(process.env.WEATHER_REEL_SLIDE_SEC || 4) });
     }
     slides.push({ file: await weatherSlide(browser, null, 0, data.length, path.join(OUT_DIR, 'wreel-end.png'), logo, 'end'), sec: 3 });
-    const video = buildVideo(slides, path.join(OUT_DIR, `weather-${today}.mp4`));
+    const video = buildVideo(slides, path.join(OUT_DIR, `weather-${today}.mp4`), path.join(__dirname, 'assets', 'weather-music.mp3'));
     log('weather reel video:', video, fs.statSync(video).size, 'bytes');
     if (demo) {
       const preview = path.join(__dirname, 'preview');
