@@ -535,7 +535,7 @@ async function reelSlide(browser, cardFile, rank, total, outFile, logo = '', kin
 <div class="panel">${logoImg.replace('class="logo', 'class="logo big')}
   ${kind === 'end'
     ? `<div class="t1 s">সব খবর সবার আগে</div><div class="t2">পড়ুন <b>www.utsabtv.com</b></div><div class="date">ফলো করুন উৎসব টিভি</div>`
-    : `<div class="t1">${t.t1}</div><div class="t2">${t.t2}</div><div class="date">${bnDate(dhakaNow())}</div>`}
+    : `<div class="t1${t.small ? ' s' : ''}">${t.t1}</div><div class="t2">${t.t2}</div><div class="date">${bnDate(dhakaNow())}</div>`}
 </div>`;
   const html = `<!doctype html><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
@@ -707,7 +707,7 @@ async function weatherReelRun() {
   const browser = await chromium.launch();
   try {
     const logo = await channelLogo(browser);
-    const text = { head: 'আজকের আবহাওয়া', t1: 'আজকের আবহাওয়া', t2: `${bn(data.length)} বিভাগ`, lbl: 'সব খবর সবার আগে' };
+    const text = { head: 'আজকের আবহাওয়া', t1: 'আজকের আবহাওয়া', small: true, t2: `${bn(data.length)} বিভাগ`, lbl: 'সব খবর সবার আগে' };
     const slides = [{ file: await reelSlide(browser, null, 0, data.length, path.join(OUT_DIR, 'wreel-0.png'), logo, 'intro', text), sec: 2.5 }];
     for (const [i, w] of data.entries()) {
       const card = await makeWeatherCard(browser, w, path.join(OUT_DIR, `wreel-card-${i + 1}`));
