@@ -1,0 +1,235 @@
+{
+  "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard": {
+    "status": 200,
+    "summary": {
+      "keys": [
+        "leagues",
+        "season",
+        "day",
+        "events",
+        "provider"
+      ],
+      "events": [
+        {
+          "name": "Manchester City at Aston Villa",
+          "date": "2026-10-24T11:30Z",
+          "status": "Full Time"
+        },
+        {
+          "name": "Everton at Arsenal",
+          "date": "2026-10-24T14:00Z",
+          "status": "Full Time"
+        },
+        {
+          "name": "Fulham at Coventry City",
+          "date": "2026-10-24T14:00Z",
+          "status": "Full Time"
+        },
+        {
+          "name": "Tottenham Hotspur at Chelsea",
+          "date": "2026-10-24T16:30Z",
+          "status": "Full Time"
+        }
+      ],
+      "sports": [],
+      "matches": []
+    }
+  },
+  "https://site.api.espn.com/apis/site/v2/sports/soccer/all/scoreboard": {
+    "status": 200,
+    "summary": {
+      "keys": [
+        "leagues",
+        "season",
+        "day",
+        "events",
+        "provider"
+      ],
+      "events": [
+        {
+          "name": "Manchester City at Aston Villa",
+          "date": "2026-10-24T11:30Z",
+          "status": "Full Time"
+        },
+        {
+          "name": "Everton at Arsenal",
+          "date": "2026-10-24T14:00Z",
+          "status": "Full Time"
+        },
+        {
+          "name": "Fulham at Coventry City",
+          "date": "2026-10-24T14:00Z",
+          "status": "Full Time"
+        },
+        {
+          "name": "Tottenham Hotspur at Chelsea",
+          "date": "2026-10-24T16:30Z",
+          "status": "Full Time"
+        },
+        {
+          "name": "Elche at Rayo Vallecano",
+          "date": "2026-10-24T12:00Z",
+          "status": "Full Time"
+        }
+      ],
+      "sports": [],
+      "matches": []
+    }
+  },
+  "https://site.api.espn.com/apis/site/v2/sports/cricket/scoreboard": {
+    "status": 404,
+    "summary": {
+      "keys": [
+        "code"
+      ],
+      "events": [],
+      "sports": [],
+      "matches": []
+    }
+  },
+  "https://site.web.api.espn.com/apis/v2/scoreboard/header?sport=cricket": {
+    "status": 200,
+    "summary": {
+      "keys": [
+        "sports"
+      ],
+      "events": [],
+      "sports": [
+        {
+          "name": "Cricket",
+          "leagues": [
+            {
+              "name": "National Cricket League",
+              "id": "8814",
+              "events": [
+                "Sylhet Division v Khulna Division | in | Stumps",
+                "Mymensingh Division v Chattogram Division | in | Stumps",
+                "Dhaka Division v Rajshahi Division | in | Stumps",
+                "Rangpur Division v Barishal Division | in | Stumps"
+              ]
+            },
+            {
+              "name": "India A tour of New Zealand 2026/27",
+              "id": "24805",
+              "events": [
+                "New Zealand A v India A | in | Live"
+              ]
+            },
+            {
+              "name": "Argentina Women tour of Mexico 2026/27",
+              "id": "24838",
+              "events": [
+                "Mexico Women v Argentina Women | post | Result",
+                "Mexico Women v Argentina Women | in | Live"
+              ]
+            },
+            {
+              "name": "ICC Men's T20 World Cup Sub Regional Africa Qualifier Group C",
+              "id": "23028",
+              "events": [
+                "Mozambique v Uganda | post | Result",
+                "Gambia v Zambia | post | Result",
+                "Nigeria v Lesotho | post | Result"
+              ]
+            },
+            {
+              "name": "ICC Men's Cricket World Cup League 2",
+              "id": "19439",
+              "events": [
+                "United Arab Emirates v Netherlands | pre | Scheduled"
+              ]
+            },
+            {
+              "name": "CSA Women's Division Two T20",
+              "id": "22562",
+              "events": [
+                "Limpopo Women v North West Women | pre | Scheduled",
+                "Northern Cape Women v Free State Women | pre | Scheduled"
+              ]
+            },
+            {
+              "name": "CWC Challenge League Group A",
+              "id": "19553",
+              "events": [
+                "Denmark v Papua New Guinea | pre | Scheduled",
+                "Kenya v Jersey | pre | Scheduled"
+              ]
+            },
+            {
+              "name": "CSA Women Pro20 Series 2026/27",
+              "id": "1554057",
+              "events": [
+                "South Western Districts Women v Eastern Province Women | pre | Scheduled",
+                "Titans Women v Western Province Women | pre | Scheduled"
+              ]
+            },
+            {
+              "name": "Zimbabwe Women tour of India 2026/27",
+              "id": "24371",
+              "events": [
+                "India Women v Zimbabwe Women | pre | Scheduled"
+              ]
+            },
+            {
+              "name": "Pakistan ODI Tri-Series",
+              "id": "1550706",
+              "events": [
+                "Pakistan v England | pre | Scheduled"
+              ]
+            }
+          ]
+        }
+      ],
+      "matches": []
+    }
+  },
+  "https://hs-consumer-api.espncricinfo.com/v1/pages/matches/current?lang=en&latest=true": {
+    "status": 403,
+    "summary": "<HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n \nYou don't have permission to access \"http&#58;&#47;&#47;hs&#45;consumer&#45;api&#46;espncricinfo&#46;com&#47;v1&#47;pages&#47;matches&#47;current&#63;\" on this server.<P>\nReference&#32;&#35;18&#46;9e721102&#46;179288129"
+  },
+  "https://www.cricbuzz.com/api/cricket-match/live-matches": {
+    "status": 404,
+    "summary": "<!DOCTYPE html><html lang=\"en\" class=\"inter-app\"><head><meta charSet=\"utf-8\"/><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"/><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin=\"anonymous\"/><link rel=\"dns-prefetch\" href=\"https://static.cricbuzz.com/\"/><link rel=\"preconne"
+  },
+  "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard": {
+    "status": 200,
+    "summary": {
+      "keys": [
+        "leagues",
+        "season",
+        "day",
+        "events",
+        "provider"
+      ],
+      "events": [
+        {
+          "name": "Manchester United at Como",
+          "date": "2026-10-21T16:45Z",
+          "status": "Full Time"
+        },
+        {
+          "name": "Galatasaray at Lille",
+          "date": "2026-10-21T16:45Z",
+          "status": "Full Time"
+        },
+        {
+          "name": "Viking FK at Aston Villa",
+          "date": "2026-10-21T19:00Z",
+          "status": "Full Time"
+        },
+        {
+          "name": "Arsenal at Bayern Munich",
+          "date": "2026-10-21T19:00Z",
+          "status": "Full Time"
+        },
+        {
+          "name": "Lens at Club Brugge",
+          "date": "2026-10-21T19:00Z",
+          "status": "Full Time"
+        }
+      ],
+      "sports": [],
+      "matches": []
+    }
+  }
+}
