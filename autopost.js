@@ -683,6 +683,74 @@ async function reelRun() {
   }
 }
 
+// Weather Reel slide: sky theme (blue sky, clouds, sun), glass panels, the weather card in the middle.
+const SUN_CLOUD_SVG = `<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+  <defs><radialGradient id="sg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff59d"/><stop offset="1" stop-color="#ffb300"/></radialGradient></defs>
+  <g stroke="#ffca28" stroke-width="7" stroke-linecap="round">
+    ${Array.from({ length: 8 }, (_, i) => { const a = i * Math.PI / 4, c = Math.cos(a), sn = Math.sin(a);
+      return `<line x1="${120 + 44 * c}" y1="${58 + 44 * sn}" x2="${120 + 60 * c}" y2="${58 + 60 * sn}"/>`; }).join('')}
+  </g>
+  <circle cx="120" cy="58" r="34" fill="url(#sg)"/>
+  <path d="M48 140h92a30 30 0 0 0 0-60a40 40 0 0 0-76 10a26 26 0 0 0-16 50z" fill="#fff" stroke="#e3f2fd" stroke-width="3"/>
+</svg>`;
+async function weatherSlide(browser, cardFile, rank, total, outFile, logo = '', kind = 'intro') {
+  const card = cardFile ? `data:image/png;base64,${fs.readFileSync(cardFile).toString('base64')}` : '';
+  const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
+  const body = cardFile ? `
+<div class="top glass">${logoImg}<div class="tt"><div class="h1">আবহাওয়া বার্তা</div><div class="h2">${bnDate(dhakaNow())}</div></div>
+  <div class="num">${bn(rank)}<span>/${bn(total)}</span></div></div>
+<div class="cardwrap"><img src="${card}"></div>
+<div class="bot glass">${SUN_CLOUD_SVG}<span>প্রতিদিনের আবহাওয়া · www.utsabtv.com</span></div>`
+    : kind === 'end' ? `
+<div class="center">${logoImg.replace('class="logo', 'class="logo big')}
+  <div class="icon">${SUN_CLOUD_SVG}</div>
+  <div class="big1">নিরাপদে থাকুন</div><div class="big2">আবহাওয়ার খবর প্রতিদিন সকালে</div>
+  <div class="pill">www.utsabtv.com</div></div>`
+    : `
+<div class="center">${logoImg.replace('class="logo', 'class="logo big')}
+  <div class="icon">${SUN_CLOUD_SVG}</div>
+  <div class="big1">আজকের আবহাওয়া</div><div class="big2">সারাদেশের ${bn(total)} বিভাগ</div>
+  <div class="pill">${bnDate(dhakaNow())}</div></div>`;
+  const html = `<!doctype html><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Sans Bengali',sans-serif;color:#fff;position:relative;
+  background:radial-gradient(circle at 85% 8%,rgba(255,236,150,.85) 0,rgba(255,236,150,0) 22%),
+    linear-gradient(180deg,#0b3d91 0%,#1565c0 35%,#42a5f5 70%,#b3e5fc 100%)}
+.cl{position:absolute;background:#fff;border-radius:50%;filter:blur(18px);opacity:.55}
+.glass{background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.45);backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.logo{height:110px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.logo.txt{display:flex;align-items:center;padding:0 24px;font-size:52px;font-weight:800;color:#c8202f}
+.top{position:absolute;left:50px;right:50px;top:80px;height:200px;border-radius:36px;display:flex;align-items:center;gap:28px;padding:0 36px}
+.tt{flex:1}.h1{font-size:62px;font-weight:800;text-shadow:0 3px 10px rgba(0,0,0,.3)}.h2{font-size:38px;font-weight:600;opacity:.95}
+.num{font-size:96px;font-weight:800;color:#ffd54f;text-shadow:0 3px 10px rgba(0,0,0,.35)}.num span{font-size:44px;color:#fff}
+.cardwrap{position:absolute;left:70px;top:340px;width:940px;height:1175px;border-radius:34px;overflow:hidden;border:8px solid rgba(255,255,255,.85);
+  box-shadow:0 26px 60px rgba(4,30,80,.45)}
+.cardwrap img{width:100%;height:100%;object-fit:cover;display:block}
+.bot{position:absolute;left:50px;right:50px;bottom:120px;height:170px;border-radius:36px;display:flex;align-items:center;justify-content:center;gap:20px;
+  color:#0b3d91;background:rgba(255,255,255,.82);font-size:40px;font-weight:800}
+.bot svg{width:120px;height:96px}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center}
+.logo.big{height:170px;margin-bottom:10px}
+.icon svg{width:420px;height:336px;filter:drop-shadow(0 12px 24px rgba(0,0,0,.25))}
+.big1{font-size:104px;font-weight:800;line-height:1.15;text-shadow:0 6px 20px rgba(0,0,0,.35)}
+.big2{font-size:60px;font-weight:700;text-shadow:0 4px 14px rgba(0,0,0,.3)}
+.pill{margin-top:30px;background:#fff;color:#0b3d91;font-size:56px;font-weight:800;padding:12px 56px;border-radius:70px;box-shadow:0 10px 26px rgba(0,0,0,.2)}
+</style>
+<div class="cl" style="left:-80px;top:260px;width:520px;height:200px"></div>
+<div class="cl" style="left:600px;top:520px;width:600px;height:220px"></div>
+<div class="cl" style="left:-120px;top:1250px;width:700px;height:260px"></div>
+<div class="cl" style="left:520px;top:1500px;width:640px;height:240px"></div>
+${body}`;
+  const pg = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
+  await pg.setContent(html, { waitUntil: 'networkidle' });
+  await pg.evaluate(() => document.fonts.ready);
+  await pg.waitForTimeout(500);
+  await pg.screenshot({ path: outFile });
+  await pg.close();
+  return outFile;
+}
+
 // REEL_KIND=weather: WEATHER_REEL_DELAY_MIN minutes after the last morning weather card, one Reel of all
 // the divisions' cards (same numbers as the posts, kept in state/weather.json). State: state/reel-weather.json.
 const WEATHER_REEL_FILE = path.join(__dirname, 'state', 'reel-weather.json');
@@ -707,14 +775,13 @@ async function weatherReelRun() {
   const browser = await chromium.launch();
   try {
     const logo = await channelLogo(browser);
-    const text = { head: 'আজকের আবহাওয়া', t1: 'আজকের আবহাওয়া', small: true, t2: `${bn(data.length)} বিভাগ`, lbl: 'সব খবর সবার আগে' };
-    const slides = [{ file: await reelSlide(browser, null, 0, data.length, path.join(OUT_DIR, 'wreel-0.png'), logo, 'intro', text), sec: 2.5 }];
+    const slides = [{ file: await weatherSlide(browser, null, 0, data.length, path.join(OUT_DIR, 'wreel-0.png'), logo, 'intro'), sec: 2.5 }];
     for (const [i, w] of data.entries()) {
       const card = await makeWeatherCard(browser, w, path.join(OUT_DIR, `wreel-card-${i + 1}`));
-      slides.push({ file: await reelSlide(browser, card, i + 1, data.length, path.join(OUT_DIR, `wreel-${i + 1}.png`), logo, 'card', text),
+      slides.push({ file: await weatherSlide(browser, card, i + 1, data.length, path.join(OUT_DIR, `wreel-${i + 1}.png`), logo, 'card'),
         sec: Number(process.env.WEATHER_REEL_SLIDE_SEC || 4) });
     }
-    slides.push({ file: await reelSlide(browser, null, 0, data.length, path.join(OUT_DIR, 'wreel-end.png'), logo, 'end', text), sec: 3 });
+    slides.push({ file: await weatherSlide(browser, null, 0, data.length, path.join(OUT_DIR, 'wreel-end.png'), logo, 'end'), sec: 3 });
     const video = buildVideo(slides, path.join(OUT_DIR, `weather-${today}.mp4`));
     log('weather reel video:', video, fs.statSync(video).size, 'bytes');
     if (demo) {
