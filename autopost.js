@@ -511,7 +511,7 @@ const bnTime = h => { const m = Math.round(h * 60), hh = Math.floor(m / 60) % 12
 const timesFor = (d, now = dhakaNow()) => prayerTimes(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), d.lat, d.lon);
 
 const PRAYER_CSS = `*{margin:0;padding:0;box-sizing:border-box}
-body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Sans Bengali',sans-serif;color:#fff;position:relative;
+body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;color:#fff;position:relative;
   background:radial-gradient(circle at 50% 0%,#1d9a52 0,#0b5e2a 55%,#063d1b 100%)}
 body:before{content:'';position:absolute;inset:0;opacity:.08;background-image:
   radial-gradient(circle at 25px 25px,#fff 2px,transparent 3px),linear-gradient(45deg,transparent 46%,#fff 47%,#fff 53%,transparent 54%);
@@ -519,7 +519,7 @@ body:before{content:'';position:absolute;inset:0;opacity:.08;background-image:
 .hdr{position:relative;display:flex;align-items:center;gap:26px;padding:50px 56px 0}
 .logo{height:104px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
 .logo.txt{display:flex;align-items:center;padding:0 22px;font-size:48px;font-weight:800;color:#c8202f}
-.ht{flex:1}.h1{font-size:64px;font-weight:800;line-height:1.1}.h2{font-size:34px;font-weight:600;color:#c8f7d4;margin-top:6px}
+.ht{flex:1}.h1{font-size:64px;font-weight:800;line-height:1.1}.h2{font-size:34px;font-weight:700;color:#c8f7d4;margin-top:6px}
 .moon{width:110px;height:110px}
 .ftr{position:absolute;left:0;right:0;bottom:0;height:110px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
   display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:800}`;
@@ -529,7 +529,7 @@ async function renderPrayerCard(browser, inner, extraCss, outFile, logo) {
   const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
   const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
   await pg.setContent(`<!doctype html><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
 <style>${PRAYER_CSS}${extraCss}</style>${inner.replace('{LOGO}', logoImg)}`, { waitUntil: 'networkidle' });
   await pg.evaluate(() => document.fonts.ready);
   await pg.waitForTimeout(400);
@@ -697,16 +697,16 @@ async function reelSlide(browser, cardFile, rank, total, outFile, logo = '', kin
     : `<div class="t1${t.small ? ' s' : ''}">${t.t1}</div><div class="t2">${t.t2}</div><div class="date">${bnDate(dhakaNow())}</div>`}
 </div>`;
   const html = `<!doctype html><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
 :root{--g:#12873d;--g2:#0b5e2a;--r:#c8202f;--r2:#931624}
-body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Sans Bengali',sans-serif;position:relative;
+body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;position:relative;
   background:#f3f5f2;background-image:repeating-linear-gradient(135deg,rgba(18,135,61,.05) 0 26px,transparent 26px 52px)}
 .logo{height:118px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.25);background:#fff}
 .logo.txt{display:flex;align-items:center;padding:0 24px;font-size:56px;font-weight:800;color:var(--r)}
 .hdr{position:absolute;left:0;right:0;top:0;height:300px;background:linear-gradient(135deg,var(--g) 0%,var(--g2) 100%);
   display:flex;align-items:center;padding:60px 56px 0;gap:30px;border-bottom:12px solid var(--r)}
-.htxt{flex:1;color:#fff}.h1{font-size:56px;font-weight:800;line-height:1.15;white-space:nowrap}.h2{font-size:38px;font-weight:600;opacity:.92;margin-top:6px}
+.htxt{flex:1;color:#fff}.h1{font-size:56px;font-weight:800;line-height:1.15;white-space:nowrap}.h2{font-size:38px;font-weight:700;opacity:.92;margin-top:6px}
 .rank{background:var(--r);color:#fff;border:6px solid #fff;border-radius:28px;padding:6px 26px;display:flex;align-items:baseline;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 .rank b{font-size:104px;font-weight:800;line-height:1.1}.rank span{font-size:44px;font-weight:700;opacity:.9}
 .cardwrap{position:absolute;left:60px;top:370px;width:960px;height:1200px;border-radius:24px;overflow:hidden;border:8px solid #fff;
@@ -879,9 +879,9 @@ async function weatherSlide(browser, cardFile, rank, total, outFile, logo = '', 
   <div class="big1">আজকের আবহাওয়া</div><div class="big2">সারাদেশের ${bn(total)} বিভাগ</div>
   <div class="pill">${bnDate(dhakaNow())}</div></div>`;
   const html = `<!doctype html><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
-body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Sans Bengali',sans-serif;color:#fff;position:relative;
+body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;color:#fff;position:relative;
   background:radial-gradient(circle at 85% 8%,rgba(255,236,150,.85) 0,rgba(255,236,150,0) 22%),
     linear-gradient(180deg,#0b3d91 0%,#1565c0 35%,#42a5f5 70%,#b3e5fc 100%)}
 .cl{position:absolute;background:#fff;border-radius:50%;filter:blur(18px);opacity:.55}
@@ -889,7 +889,7 @@ body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Sans Bengali',
 .logo{height:110px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25)}
 .logo.txt{display:flex;align-items:center;padding:0 24px;font-size:52px;font-weight:800;color:#c8202f}
 .top{position:absolute;left:50px;right:50px;top:80px;height:200px;border-radius:36px;display:flex;align-items:center;gap:28px;padding:0 36px}
-.tt{flex:1}.h1{font-size:62px;font-weight:800;text-shadow:0 3px 10px rgba(0,0,0,.3)}.h2{font-size:38px;font-weight:600;opacity:.95}
+.tt{flex:1}.h1{font-size:62px;font-weight:800;text-shadow:0 3px 10px rgba(0,0,0,.3)}.h2{font-size:38px;font-weight:700;opacity:.95}
 .num{font-size:96px;font-weight:800;color:#ffd54f;text-shadow:0 3px 10px rgba(0,0,0,.35)}.num span{font-size:44px;color:#fff}
 .cardwrap{position:absolute;left:70px;top:340px;width:940px;height:1175px;border-radius:34px;overflow:hidden;border:8px solid rgba(255,255,255,.85);
   box-shadow:0 26px 60px rgba(4,30,80,.45)}
@@ -989,9 +989,9 @@ async function prayerSlide(browser, cardFile, rank, total, outFile, logo = '', k
   <div class="big1">আজকের নামাজের<br>সময়সূচি</div><div class="big2">সারাদেশের ${bn(total)} বিভাগ</div>
   <div class="pill">${BN_DAYS[now.getUTCDay()]}, ${bnDate(now)}</div></div>`;
   const html = `<!doctype html><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
-body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Sans Bengali',sans-serif;color:#fff;position:relative;
+body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;color:#fff;position:relative;
   background:radial-gradient(circle at 50% 30%,#1d9a52 0,#0b5e2a 50%,#042a12 100%)}
 body:before{content:'';position:absolute;inset:0;opacity:.07;background-image:
   radial-gradient(circle at 30px 30px,#fff 2px,transparent 3px),linear-gradient(45deg,transparent 46%,#fff 47%,#fff 53%,transparent 54%),
@@ -1229,14 +1229,14 @@ async function cricketMatches() {
 }
 
 const SPORTS_CSS = `*{margin:0;padding:0;box-sizing:border-box}
-body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Sans Bengali',sans-serif;color:#fff;position:relative;background:#0a1f14}
+body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;color:#fff;position:relative;background:#0a1f14}
 .bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,#1a8a4a 0,#0b5e2a 45%,#05301a 100%)}
 .bg:after{content:'';position:absolute;inset:0;opacity:.09;background:repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 108px),
   radial-gradient(circle at 50% 50%,transparent 0 180px,#fff 181px 184px,transparent 185px)}
 .hdr{position:relative;display:flex;align-items:center;gap:24px;padding:44px 50px 0}
 .logo{height:100px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
 .logo.txt{display:flex;align-items:center;padding:0 22px;font-size:46px;font-weight:800;color:#c8202f}
-.ht{flex:1}.h1{font-size:60px;font-weight:800;line-height:1.1}.h2{font-size:32px;font-weight:600;color:#c8f7d4;margin-top:4px}
+.ht{flex:1}.h1{font-size:60px;font-weight:800;line-height:1.1}.h2{font-size:32px;font-weight:700;color:#c8f7d4;margin-top:4px}
 .tag{background:#c8202f;border:4px solid #ffd54f;border-radius:50px;padding:4px 26px;font-size:36px;font-weight:800}
 .lg{position:relative;margin:30px auto 0;width:max-content;max-width:960px;background:rgba(0,0,0,.28);border:3px solid rgba(255,213,79,.7);border-radius:50px;
   padding:6px 36px;font-size:38px;font-weight:700;color:#ffd54f;text-align:center}
@@ -1248,7 +1248,7 @@ async function renderSportsCard(browser, inner, css, outFile, logo) {
   const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
   const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
   await pg.setContent(`<!doctype html><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
 <style>${SPORTS_CSS}${css}</style><div class="bg"></div>${inner.replace('{LOGO}', logoImg)}`, { waitUntil: 'networkidle', timeout: 60000 });
   await pg.evaluate(() => document.fonts.ready);
   await pg.waitForTimeout(400);
@@ -1274,7 +1274,7 @@ ${m.venue ? `<div class="ven">${m.venue}</div>` : ''}
 .tl{width:300px;height:300px;object-fit:contain;background:#fff;border-radius:50%;padding:26px;border:8px solid #ffd54f;box-shadow:0 14px 34px rgba(0,0,0,.4)}
 .tl.ph{display:flex;align-items:center;justify-content:center;font-size:90px;font-weight:800;color:#0b5e2a}
 .tn{margin-top:26px;font-size:${fb ? 52 : 56}px;font-weight:800;line-height:1.15}
-.gs{margin-top:14px;font-size:32px;font-weight:600;color:#e3ffe9;line-height:1.45}
+.gs{margin-top:14px;font-size:32px;font-weight:700;color:#e3ffe9;line-height:1.45}
 .cs{margin-top:18px;background:#fff;color:#c8202f;border-radius:20px;padding:6px 22px;font-size:40px;font-weight:800;white-space:nowrap}
 .score{margin-top:90px;font-size:150px;font-weight:800;color:#ffd54f;text-shadow:0 8px 26px rgba(0,0,0,.45);white-space:nowrap}.score i{font-style:normal;margin:0 14px;color:#fff}
 .vs{margin-top:120px;font-size:56px;font-weight:800;color:#ffd54f}
@@ -1297,7 +1297,7 @@ function sportsFixturesCard(browser, list, outFile, logo) {
 .fx{display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.95);color:#0b5e2a;border-radius:22px;padding:${list.length > 6 ? 8 : 14}px 26px;box-shadow:0 8px 18px rgba(0,0,0,.25)}
 .fx.bd{background:#fff3c4;border:5px solid #c8202f}.ic{font-size:44px}.mt{flex:1;display:flex;flex-direction:column;min-width:0}
 .mt b{font-size:${list.length > 6 ? 36 : 42}px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mt b i{font-style:normal;color:#c8202f;font-size:.75em}
-.mt small{font-size:26px;font-weight:600;color:#557a62}
+.mt small{font-size:26px;font-weight:700;color:#557a62}
 .tm{background:#c8202f;color:#fff;border-radius:16px;padding:6px 18px;font-size:34px;font-weight:800;white-space:nowrap}
 .note{position:absolute;left:0;right:0;bottom:122px;text-align:center;font-size:28px;color:#c8f7d4}`, outFile, logo);
 }
