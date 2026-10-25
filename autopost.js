@@ -1385,6 +1385,149 @@ async function sportsDemo() {
   }
 }
 
+// ------------------------------------------------------------------ entertainment
+// ENT=1: entertainment news (Bangladesh, India, world) from Google News' Bengali entertainment feeds.
+// Each story becomes a branded card (the source's photo, the headline, a category tag, the source's name),
+// one per ENT_GAP_MIN minutes between ENT_FROM_HOUR and ENT_TO_HOUR Dhaka time. Near-duplicate headlines
+// (the same story from several papers) are posted once. State: state/ent.json.
+const ENT_FILE = path.join(__dirname, 'state', 'ent.json');
+const ENT_FEEDS = [
+  'https://news.google.com/rss/headlines/section/topic/ENTERTAINMENT?hl=bn&gl=BD&ceid=BD:bn',
+  'https://news.google.com/rss/headlines/section/topic/ENTERTAINMENT?hl=bn&gl=IN&ceid=IN:bn',
+  'https://news.google.com/rss/search?q=%E0%A6%AC%E0%A6%BF%E0%A6%A8%E0%A7%8B%E0%A6%A6%E0%A6%A8&hl=bn&gl=BD&ceid=BD:bn', // "বিনোদন"
+];
+// Category tag from words in the headline, first match wins.
+const ENT_TAGS = [
+  ['কনসার্ট', /কনসার্ট|মঞ্চ মাতা|লাইভ শো|কনসার্টে/], ['গান', /গান|সংগীত|শিল্পী|অ্যালবাম|মিউজিক|ব্যান্ড|কণ্ঠ|গায়ক|গায়িকা/],
+  ['নাটক', /নাটক|টেলিফিল্ম|ধারাবাহিক|সিরিয়াল/], ['ওটিটি', /ওটিটি|ওয়েব সিরিজ|ওয়েবসিরিজ|নেটফ্লিক্স|চরকি|হইচই|প্রাইম ভিডিও/],
+  ['বলিউড', /বলিউড|Bollywood|শাহরুখ|সালমান|আমির খান|রণবীর|দীপিকা|আলিয়া|ক্যাটরিনা|প্রিয়াঙ্কা|ঐশ্বরিয়া|অক্ষয়|হৃতিক|কারিনা|কার্তিক|বচ্চন/],
+  ['টলিউড', /টলিউড|টালিগঞ্জ|দেব |জিৎ|কোয়েল|শুভশ্রী|ঋতুপর্ণা|প্রসেনজিৎ|পরমব্রত|স্বস্তিকা|মিমি|নুসরাত জাহান|কলকাতার/],
+  ['হলিউড', /হলিউড|Hollywood|অস্কার|মার্ভেল|টেলর সুইফট|কে-পপ|বিটিএস|ব্ল্যাকপিংক/],
+  ['ঢালিউড', /ঢালিউড|শাকিব|অপু বিশ্বাস|বুবলী|পরীমণি|জয়া আহসান|মিম|চঞ্চল|আফরান নিশো|সিয়াম|মেহজাবীন|তাসনিয়া ফারিণ|সিনেমা হলে|সিনেমা/],
+];
+const entTag = t => (ENT_TAGS.find(([, re]) => re.test(t)) || ['বিনোদন'])[0];
+// Word sets for spotting the same story from different papers.
+const entWords = t => new Set(t.replace(/[^ঀ-৿A-Za-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 2));
+const entSame = (a, b) => { const A = entWords(a), B = entWords(b); let n = 0; for (const w of A) if (B.has(w)) n++; return n >= 3 && n / Math.min(A.size, B.size) >= 0.5; };
+
+async function entItems() {
+  const out = [];
+  for (const u of ENT_FEEDS) {
+    let xml = '';
+    try { xml = await (await fetch(u, { headers: { 'user-agent': 'Mozilla/5.0' } })).text(); } catch { continue; }
+    for (const m of xml.matchAll(/<item>([\s\S]*?)<\/item>/g)) {
+      const g = tag => decodeEntities((m[1].match(new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${tag}>`)) || [])[1] || '');
+      const raw = g('title'), source = g('source') || raw.split(' - ').pop();
+      const title = raw.replace(/\s+-\s+[^-]+$/, '').trim();
+      out.push({ id: g('guid') || g('link'), link: g('link'), title, source, at: Date.parse(g('pubDate')) || 0 });
+    }
+  }
+  return out.sort((a, b) => b.at - a.at);
+}
+// Opens the Google News link in the browser (it forwards to the paper) and reads the paper's photo.
+async function entResolve(browser, it) {
+  const pg = await browser.newPage();
+  try {
+    await pg.goto(it.link, { waitUntil: 'domcontentloaded', timeout: 45000 });
+    for (let i = 0; i < 20 && /news\.google\.com/.test(pg.url()); i++) await pg.waitForTimeout(500);
+    await pg.waitForTimeout(1500);
+    const html = await pg.content();
+    const image = meta(html, 'og:image') || meta(html, 'twitter:image');
+    return { url: pg.url(), image: image && !/logo|default|placeholder/i.test(image) ? new URL(image, pg.url()).href : '' };
+  } catch (e) { log('ent resolve failed:', it.link, e.message); return { url: '', image: '' }; } finally { await pg.close(); }
+}
+async function entCard(browser, it, outFile, logo) {
+  const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
+  const len = [...it.title].length, fs1 = len > 90 ? 50 : len > 65 ? 56 : len > 45 ? 62 : 70;
+  const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+  await pg.setContent(`<!doctype html><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;color:#fff;background:#0b0b10;position:relative}
+.ph{position:absolute;left:0;right:0;top:0;height:820px;background:#222 center/cover no-repeat;background-image:url('${it.image}')}
+.ph:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 60%,#0b5e2a 100%)}
+.logo{position:absolute;left:40px;top:36px;height:96px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.35);z-index:2}
+.logo.txt{display:flex;align-items:center;padding:0 22px;font-size:44px;font-weight:800;color:#c8202f}
+.badge{position:absolute;right:40px;top:44px;z-index:2;display:flex;gap:0;border-radius:40px;overflow:hidden;border:4px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.badge span{padding:4px 22px;font-size:34px;font-weight:800}.badge .a{background:#c8202f}.badge .b{background:#ffd54f;color:#7a1020}
+.body{position:absolute;left:0;right:0;top:800px;bottom:100px;background:linear-gradient(180deg,#0b5e2a 0,#063d1b 100%);padding:34px 56px 0;display:flex;flex-direction:column}
+.bar{width:140px;height:10px;background:#ffd54f;border-radius:6px;margin-bottom:22px}
+.hl{font-size:${fs1}px;font-weight:800;line-height:1.38;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.meta{margin-top:auto;margin-bottom:26px;display:flex;justify-content:space-between;font-size:30px;color:#c8f7d4}
+.ftr{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
+  display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800}
+</style>
+<div class="ph"></div>${logoImg}<div class="badge"><span class="a">বিনোদন</span><span class="b">${it.tag}</span></div>
+<div class="body"><div class="bar"></div><div class="hl">${it.title.replace(/</g, '&lt;')}</div>
+<div class="meta"><span>সূত্র: ${it.source.replace(/</g, '&lt;')}</span><span>${bnDate(dhakaNow())}</span></div></div>
+<div class="ftr">www.utsabtv.com</div>`, { waitUntil: 'networkidle', timeout: 60000 });
+  await pg.evaluate(() => document.fonts.ready);
+  await pg.waitForTimeout(500);
+  await pg.screenshot({ path: outFile });
+  await pg.close();
+  return outFile;
+}
+
+async function entTick() {
+  if (process.env.ENT !== '1') return;
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(ENT_FILE, 'utf8')); } catch {}
+  const first = !st.seen;
+  st.seen = st.seen || []; st.titles = st.titles || []; st.lastAt = st.lastAt || 0; st.pages = st.pages || {};
+  const save = () => { st.seen = st.seen.slice(-600); st.titles = st.titles.slice(-150); fs.mkdirSync(path.dirname(ENT_FILE), { recursive: true }); fs.writeFileSync(ENT_FILE, JSON.stringify(st, null, 2)); };
+  const h = dhakaNow().getUTCHours();
+  if (!first && (h < Number(process.env.ENT_FROM_HOUR || 8) || h >= Number(process.env.ENT_TO_HOUR || 24))) return;
+  if (Date.now() < st.lastAt + Number(process.env.ENT_GAP_MIN || 30) * 60e3) return;
+  const items = await entItems();
+  if (first) { st.seen = items.map(i => i.id); save(); return log(`ent: first run, ${items.length} stories marked seen`); }
+  const fresh = items.filter(i => !st.seen.includes(i.id) && Date.now() - i.at < 6 * 3600e3);
+  if (!fresh.length) return;
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    for (const it of fresh.slice(0, 6)) {
+      st.seen.push(it.id);
+      if (st.titles.some(t => entSame(t, it.title))) continue; // already posted from another paper
+      const r = await entResolve(browser, it);
+      if (!r.image) { log('ent: no photo, skipped:', it.title); continue; }
+      Object.assign(it, r, { tag: entTag(it.title) });
+      const card = await entCard(browser, it, path.join(OUT_DIR, `ent-${st.seen.length}.png`), await channelLogo(browser));
+      const done = st.pages[it.id] = st.pages[it.id] || [];
+      try { await postToFacebook(card, '', '', done, browser); st.titles.push(it.title); delete st.pages[it.id]; }
+      catch (e) { event(`ent FAILED: ${e.message}`); }
+      finally { st.lastAt = Date.now(); }
+      break;
+    }
+  } finally {
+    save();
+    await browser.close();
+  }
+}
+
+// DEMO_ENT=1: cards for the 4 newest different stories into ./preview. Posts nothing.
+async function entDemo() {
+  const items = await entItems();
+  const preview = path.join(__dirname, 'preview');
+  fs.mkdirSync(preview, { recursive: true });
+  const browser = await chromium.launch();
+  const made = [];
+  try {
+    const logo = await channelLogo(browser);
+    for (const it of items) {
+      if (made.length >= 4) break;
+      if (made.some(m => entSame(m.title, it.title))) continue;
+      const r = await entResolve(browser, it);
+      if (!r.image) continue;
+      Object.assign(it, r, { tag: entTag(it.title) });
+      await entCard(browser, it, path.join(preview, `ent-demo-${made.length + 1}.png`), logo);
+      made.push(it);
+    }
+    fs.writeFileSync(path.join(preview, 'ent-demo.json'), JSON.stringify({ total: items.length, made: made.map(m => ({ title: m.title, source: m.source, tag: m.tag, url: m.url })) }, null, 2));
+  } finally {
+    await browser.close();
+  }
+}
+
 (async () => {
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'weather')
     return weatherReelRun().catch(e => { event(`weather reel FAILED: ${e.stack || e.message}`); process.exit(1); });
@@ -1393,12 +1536,14 @@ async function sportsDemo() {
   if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun().catch(e => { event(`reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_PRAYER === '1') return prayerDemo();
   if (process.env.DEMO_SPORTS === '1') return sportsDemo();
+  if (process.env.DEMO_ENT === '1') return entDemo();
   if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();
   if (process.env.CHECK === '1') return checkPages();
   await weatherTick().catch(e => event(`weather FAILED: ${e.message}`));
   await prayerTick().catch(e => event(`prayer FAILED: ${e.message}`));
   await sportsTick().catch(e => event(`sports FAILED: ${e.message}`));
+  await entTick().catch(e => event(`ent FAILED: ${e.message}`));
   const links = await homepageLinks();
   log(`homepage: ${links.length} candidate links`);
   let state = loadState();
