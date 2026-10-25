@@ -1579,6 +1579,97 @@ async function entDemo() {
   }
 }
 
+// ------------------------------------------------------------------ good morning card
+// GM=1: at GM_HOUR:GM_MIN Dhaka time, a "শুভ সকাল" card with the English, Bangla (Bangladesh's revised
+// calendar: 1 Boishakh = 14 April) and Hijri dates. Hijri is Umm al-Qura moved by HIJRI_OFFSET days
+// (Bangladesh usually runs a day behind Saudi Arabia). State: state/gm.json.
+const GM_FILE = path.join(__dirname, 'state', 'gm.json');
+const BANGLA_MONTHS = ['বৈশাখ', 'জ্যৈষ্ঠ', 'আষাঢ়', 'শ্রাবণ', 'ভাদ্র', 'আশ্বিন', 'কার্তিক', 'অগ্রহায়ণ', 'পৌষ', 'মাঘ', 'ফাল্গুন', 'চৈত্র'];
+const BANGLA_SEASONS = ['গ্রীষ্মকাল', 'বর্ষাকাল', 'শরৎকাল', 'হেমন্তকাল', 'শীতকাল', 'বসন্তকাল'];
+const HIJRI_MONTHS = ['মহররম', 'সফর', 'রবিউল আউয়াল', 'রবিউস সানি', 'জমাদিউল আউয়াল', 'জমাদিউস সানি', 'রজব', 'শাবান', 'রমজান', 'শাওয়াল', 'জিলকদ', 'জিলহজ'];
+// d: a Date whose UTC fields are the Dhaka calendar day.
+function banglaDate(d) {
+  const y = d.getUTCFullYear(), day0 = Date.UTC(y, d.getUTCMonth(), d.getUTCDate());
+  let start = Date.UTC(y, 3, 14), by = y - 593;
+  if (day0 < start) { start = Date.UTC(y - 1, 3, 14); by = y - 594; }
+  const gy = new Date(start).getUTCFullYear() + 1; // Falgun falls in this Gregorian year
+  const leap = (gy % 4 === 0 && gy % 100 !== 0) || gy % 400 === 0;
+  const len = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, leap ? 30 : 29, 30];
+  let n = Math.round((day0 - start) / 864e5), m = 0;
+  while (n >= len[m]) n -= len[m++];
+  return { day: n + 1, month: BANGLA_MONTHS[m], year: by, season: BANGLA_SEASONS[Math.floor(m / 2)] };
+}
+function hijriDate(d) {
+  const t = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 12) + Number(process.env.HIJRI_OFFSET ?? -1) * 864e5);
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { day: 'numeric', month: 'numeric', year: 'numeric', timeZone: 'UTC' })
+    .formatToParts(t).map(x => [x.type, x.value]));
+  return { day: Number(p.day), month: HIJRI_MONTHS[Number(p.month) - 1], year: Number(String(p.year).replace(/\D/g, '')) };
+}
+async function goodMorningCard(browser, outFile, logo, now = dhakaNow()) {
+  const b = banglaDate(now), h = hijriDate(now);
+  const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
+  const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+  await pg.setContent(`<!doctype html><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;color:#fff;position:relative;
+  background:linear-gradient(180deg,#ff9a3c 0%,#ffc56b 30%,#ffe6a8 52%,#9fd8a8 74%,#0b5e2a 100%)}
+.sun{position:absolute;left:50%;top:330px;width:420px;height:420px;margin-left:-210px;border-radius:50%;
+  background:radial-gradient(circle at 45% 40%,#fffde7 0,#ffeb3b 45%,#ff9800 100%);box-shadow:0 0 120px 60px rgba(255,213,79,.6)}
+.rays{position:absolute;left:50%;top:540px;width:1400px;height:1400px;margin:-700px 0 0 -700px;opacity:.28;
+  background:repeating-conic-gradient(from 0deg,#fff 0 6deg,transparent 6deg 18deg);-webkit-mask:radial-gradient(circle,#000 0,transparent 60%)}
+.hill{position:absolute;left:-10%;right:-10%;border-radius:50% 50% 0 0}
+.h1{top:640px;height:700px;background:#2e9b55}.h2{top:700px;height:700px;left:30%;right:-40%;background:#1f8447}
+.bird{position:absolute;font-size:46px;color:#7a3b00;opacity:.7}
+.logo{position:absolute;right:46px;top:44px;height:104px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:3}
+.logo.txt{display:flex;align-items:center;padding:0 22px;font-size:46px;font-weight:800;color:#c8202f}
+.title{position:absolute;left:0;right:0;top:120px;text-align:center;font-size:150px;font-weight:900;color:#b3141f;
+  text-shadow:0 6px 0 #fff,0 12px 30px rgba(120,40,0,.35);z-index:3}
+.day{position:absolute;left:0;right:0;top:330px;text-align:center;z-index:3}
+.day span{display:inline-block;background:#c8202f;border:5px solid #fff;border-radius:60px;padding:6px 50px;font-size:56px;font-weight:800;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.panel{position:absolute;left:70px;right:70px;top:640px;background:rgba(255,255,255,.95);border-radius:36px;border-top:12px solid #0b5e2a;
+  box-shadow:0 24px 60px rgba(0,0,0,.3);padding:26px 46px;z-index:3;color:#0b5e2a}
+.row{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:3px dashed #cfe3d5}
+.row:last-child{border-bottom:0}
+.row small{font-size:38px;color:#557a62;font-weight:700}.row b{font-size:54px;font-weight:900;color:#0b5e2a}.row b.r{color:#c8202f}
+.ftr{position:absolute;left:0;right:0;bottom:0;height:110px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
+  display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:800;z-index:3}
+</style>
+<div class="rays"></div><div class="sun"></div><div class="hill h1"></div><div class="hill h2"></div>
+<div class="bird" style="left:170px;top:470px">︶︶</div><div class="bird" style="left:820px;top:430px">︶</div>
+${logoImg}<div class="title">শুভ সকাল</div>
+<div class="day"><span>আজ ${BN_DAYS[now.getUTCDay()]}</span></div>
+<div class="panel">
+  <div class="row"><small>ইংরেজি</small><b>${bnDate(now)}</b></div>
+  <div class="row"><small>বাংলা</small><b class="r">${bn(b.day)} ${b.month} ${bn(b.year)}</b></div>
+  <div class="row"><small>হিজরি</small><b>${bn(h.day)} ${h.month} ${bn(h.year)}</b></div>
+  <div class="row"><small>ঋতু</small><b class="r">${b.season}</b></div>
+</div>
+<div class="ftr">www.utsabtv.com</div>`, { waitUntil: 'networkidle', timeout: 60000 });
+  await pg.evaluate(() => document.fonts.ready);
+  await pg.waitForTimeout(500);
+  await pg.screenshot({ path: outFile });
+  await pg.close();
+  return outFile;
+}
+async function gmTick() {
+  if (process.env.GM !== '1') return;
+  const now = dhakaNow(), today = now.toISOString().slice(0, 10);
+  const at = Number(process.env.GM_HOUR || 6) * 60 + Number(process.env.GM_MIN || 30), mins = now.getUTCHours() * 60 + now.getUTCMinutes();
+  if (mins < at || mins > at + 90) return;
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(GM_FILE, 'utf8')); } catch {}
+  if (st.date !== today) st = { date: today, pages: [] };
+  if (st.done) return;
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  const save = () => { fs.mkdirSync(path.dirname(GM_FILE), { recursive: true }); fs.writeFileSync(GM_FILE, JSON.stringify(st, null, 2)); };
+  try {
+    const card = await goodMorningCard(browser, path.join(OUT_DIR, `gm-${today}.png`), await channelLogo(browser));
+    try { await postToFacebook(card, '', '', st.pages, browser); st.done = true; } finally { save(); }
+  } catch (e) { event(`good morning FAILED: ${e.message}`); } finally { await browser.close(); }
+}
+
 (async () => {
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'weather')
     return weatherReelRun().catch(e => { event(`weather reel FAILED: ${e.stack || e.message}`); process.exit(1); });
@@ -1593,6 +1684,7 @@ async function entDemo() {
   if (process.env.CHECK === '1') return checkPages();
   await weatherTick().catch(e => event(`weather FAILED: ${e.message}`));
   await prayerTick().catch(e => event(`prayer FAILED: ${e.message}`));
+  await gmTick().catch(e => event(`good morning FAILED: ${e.message}`));
   await sportsTick().catch(e => event(`sports FAILED: ${e.message}`));
   await entTick().catch(e => event(`ent FAILED: ${e.message}`));
   const links = await homepageLinks();

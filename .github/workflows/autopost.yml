@@ -71,6 +71,7 @@ jobs:
           SPORTS: ${{ vars.SPORTS || '1' }}
           DEMO_SPORTS: ${{ inputs.demo_sports && '1' || '0' }}
           ENT: ${{ vars.ENT || '1' }}
+          GM: ${{ vars.GM || '0' }}
           DEMO_ENT: ${{ inputs.demo_ent && '1' || '0' }}
           DEMO_RATIO: ${{ inputs.demo_ratio }}
       - uses: actions/upload-artifact@v4
