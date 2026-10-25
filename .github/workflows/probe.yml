@@ -13,4 +13,4 @@ jobs:
       - run: node tools/probe.js
       - run: |
           git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
-          git add state/sports-probe.json && git commit -m "sports probe" && (git push || (git pull --rebase -X theirs origin main && git push))
+          git add state/*-probe.json && git commit -m "sports probe" && (git push || (git pull --rebase -X theirs origin main && git push))
