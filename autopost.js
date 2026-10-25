@@ -1312,7 +1312,7 @@ async function sportsTick() {
   const save = () => { st.done = st.done.slice(-400); fs.mkdirSync(path.dirname(SPORTS_FILE), { recursive: true }); fs.writeFileSync(SPORTS_FILE, JSON.stringify(st, null, 2)); };
   const now = dhakaNow(), today = now.toISOString().slice(0, 10);
   const all = [...await footballMatches().catch(e => (log('football feed:', e.message), [])), ...await cricketMatches().catch(e => (log('cricket feed:', e.message), []))];
-  if (first) { st.done = all.filter(m => m.done).map(m => m.id).concat(all.filter(m => m.bd && m.state === 'in').flatMap(m => [`${m.id}-toss`, `${m.id}-half`])); st.fixtures = today; save(); return log(`sports: first run, ${st.done.length} finished matches marked seen`); }
+  if (first) { st.done = all.filter(m => m.done).map(m => m.id).concat(all.filter(m => m.bd && m.state === 'in').flatMap(m => [`${m.id}-toss`, `${m.id}-half`])); save(); return log(`sports: first run, ${st.done.length} finished matches marked seen`); }
   // Bangladesh first: live steps (toss, second innings, day's close, half-time) and results, without waiting for the gap.
   let job = null;
   for (const m of all.filter(x => x.bd)) {
