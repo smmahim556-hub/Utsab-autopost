@@ -65,6 +65,7 @@ jobs:
           DEMO_LINK: ${{ inputs.demo_link }}
           WEATHER: ${{ vars.WEATHER || '1' }}
           DEMO_WEATHER: ${{ inputs.demo_weather }}
+          WEATHER_ART: ${{ inputs.demo_weather != '' && '1' || vars.WEATHER_ART || '0' }}
           PRAYER: ${{ vars.PRAYER || '1' }}
           DEMO_PRAYER: ${{ inputs.demo_prayer && '1' || '0' }}
           SPORTS: ${{ vars.SPORTS || '1' }}

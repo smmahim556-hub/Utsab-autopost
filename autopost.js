@@ -366,15 +366,44 @@ async function weatherFor(d) {
       + (rain != null ? ` · বৃষ্টির সম্ভাবনা ${bn(rain)}%` : ''),
   };
 }
-// Sky photo for the card background (the Weather template wants a photo).
+// Sky photo for the card background (the Weather template wants a photo). With WEATHER_ART=1 a large,
+// clear picture of the day's weather (sun, clouds, rain, lightning, fog) is drawn in the top part of the card.
+const WX_SUN = (cx, cy, r) => `<g><circle cx="${cx}" cy="${cy}" r="${r * 1.9}" fill="url(#glow)"/>
+  <g stroke="#ffc107" stroke-width="${r * 0.16}" stroke-linecap="round">${Array.from({ length: 12 }, (_, i) => {
+    const a = i * Math.PI / 6, c = Math.cos(a), s = Math.sin(a);
+    return `<line x1="${cx + r * 1.25 * c}" y1="${cy + r * 1.25 * s}" x2="${cx + r * 1.6 * c}" y2="${cy + r * 1.6 * s}"/>`; }).join('')}</g>
+  <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#sunG)"/></g>`;
+const WX_CLOUD = (x, y, k, dark) => `<g transform="translate(${x},${y}) scale(${k})" filter="url(#sh)">
+  <path d="M60 200h300a70 70 0 0 0 8-139.5A100 100 0 0 0 175 40a80 80 0 0 0-115 76A42 42 0 0 0 60 200z" fill="url(#${dark ? 'cdG' : 'clG'})"/></g>`;
+const WX_RAIN = (x0, x1, y0, y1, n, color = '#7fd3ff') => Array.from({ length: n }, (_, i) => {
+  const cols = 7, col = i % cols, row = Math.floor(i / cols);
+  const x = x0 + (col + (row % 2) * 0.5) * (x1 - x0) / cols, y = y0 + row * 70 + (col % 3) * 18;
+  return `<line x1="${x}" y1="${y}" x2="${x - 18}" y2="${y + 56}" stroke="${color}" stroke-width="9" stroke-linecap="round" opacity=".9"/>`; }).join('');
+const WX_ART = {
+  sun: () => WX_SUN(540, 430, 170),
+  part: () => WX_SUN(650, 360, 130) + WX_CLOUD(250, 380, 1.45),
+  cloud: () => WX_CLOUD(120, 250, 1.25) + WX_CLOUD(420, 380, 1.45),
+  fog: () => WX_CLOUD(270, 220, 1.4) + [560, 620, 680, 740].map((y, i) => `<rect x="${170 + (i % 2) * 60}" y="${y}" width="${680 - (i % 2) * 120}" height="26" rx="13" fill="#fff" opacity=".8"/>`).join(''),
+  rain: () => WX_CLOUD(240, 200, 1.5, true) + WX_RAIN(330, 800, 520, 760, 26),
+  storm: () => WX_CLOUD(240, 190, 1.5, true) + WX_RAIN(330, 800, 520, 760, 20)
+    + `<path d="M560 470l-90 170h70l-50 150 150-200h-80l60-120z" fill="#ffd600" stroke="#ff8f00" stroke-width="8" stroke-linejoin="round" filter="url(#bolt)"/>`,
+};
 async function skyPhoto(browser, sky, file) {
   const [a, b, c] = SKIES[sky];
+  const art = process.env.WEATHER_ART === '1' ? `<svg width="1080" height="1350" viewBox="0 0 1080 1350" style="position:absolute;left:0;top:0">
+  <defs><radialGradient id="sunG" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fffde7"/><stop offset=".45" stop-color="#ffeb3b"/><stop offset="1" stop-color="#ff9800"/></radialGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#fff59d" stop-opacity=".75"/><stop offset="1" stop-color="#fff59d" stop-opacity="0"/></radialGradient>
+    <linearGradient id="clG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dfe9f3"/></linearGradient>
+    <linearGradient id="cdG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b0bccb"/><stop offset="1" stop-color="#6d7d90"/></linearGradient>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".28"/></filter>
+    <filter id="bolt"><feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="#ffeb3b" flood-opacity=".9"/></filter></defs>
+  ${WX_ART[sky]()}</svg>` : '';
   const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
-  await pg.setContent(`<body style="margin:0;width:1080px;height:1350px;background:
+  await pg.setContent(`<body style="margin:0;width:1080px;height:1350px;position:relative;overflow:hidden;background:
     radial-gradient(circle at 78% 18%, ${c} 0, transparent 38%),
     radial-gradient(ellipse at 20% 30%, rgba(255,255,255,.35) 0, transparent 40%),
     radial-gradient(ellipse at 60% 45%, rgba(255,255,255,.22) 0, transparent 45%),
-    linear-gradient(180deg, ${a} 0%, ${b} 70%, ${c} 100%)"></body>`);
+    linear-gradient(180deg, ${a} 0%, ${b} 70%, ${c} 100%)">${art}</body>`);
   await pg.screenshot({ path: file });
   await pg.close();
   return file;
@@ -451,6 +480,23 @@ async function weatherTick() {
 // One weather card for DEMO_WEATHER (a division name) into ./preview. Posts nothing, touches no state.
 async function weatherDemo() {
   const d = DIVISIONS.find(x => x.name === process.env.DEMO_WEATHER) || DIVISIONS[0];
+  if (process.env.DEMO_WEATHER === 'skies') {
+    fs.mkdirSync(OUT_DIR, { recursive: true });
+    const browser = await chromium.launch();
+    try {
+      const preview = path.join(__dirname, 'preview');
+      fs.mkdirSync(preview, { recursive: true });
+      const w = await weatherFor(d);
+      for (const sky of Object.keys(SKIES)) {
+        const text = { sun: 'পরিষ্কার আকাশ', part: 'আংশিক মেঘলা আকাশ', cloud: 'মেঘলা আকাশ', fog: 'কুয়াশাচ্ছন্ন আকাশ', rain: 'বৃষ্টির সম্ভাবনা', storm: 'বজ্রসহ বৃষ্টির সম্ভাবনা' }[sky];
+        const card = await makeWeatherCard(browser, { ...w, sky, condition: text }, path.join(OUT_DIR, `weather-sky-${sky}`));
+        fs.copyFileSync(card, path.join(preview, `weather-sky-${sky}.png`));
+      }
+    } finally {
+      await browser.close();
+    }
+    return;
+  }
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
   try {
