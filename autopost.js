@@ -1133,7 +1133,8 @@ const BIG_CLUBS = ['Real Madrid', 'Barcelona', 'Atlético Madrid', 'Bayern Munic
 const BIG_NATIONS = ['Bangladesh', 'Argentina', 'Brazil', 'Portugal', 'France', 'Germany', 'Spain', 'England', 'Italy', 'Netherlands', 'Belgium', 'Croatia',
   'Uruguay', 'India', 'Pakistan', 'Saudi Arabia', 'Japan', 'Morocco', 'Nepal', 'Bhutan', 'Sri Lanka', 'Maldives'];
 const CRICKET_FULL = ['Bangladesh', 'India', 'Pakistan', 'Sri Lanka', 'Afghanistan', 'Australia', 'England', 'New Zealand', 'South Africa', 'West Indies', 'Zimbabwe', 'Ireland'];
-const bnTeam = n => BN_TEAMS[n] || BN_TEAMS[n.replace(/ Women$/, '')] && `${BN_TEAMS[n.replace(/ Women$/, '')]} নারী` || n;
+// Team names stay in English on the cards (the Page prefers the English/Bengali mix); BN_TEAMS is kept for SPORTS_BN_NAMES=1.
+const bnTeam = n => process.env.SPORTS_BN_NAMES !== '1' ? n : BN_TEAMS[n] || BN_TEAMS[n.replace(/ Women$/, '')] && `${BN_TEAMS[n.replace(/ Women$/, '')]} নারী` || n;
 const bnClock = iso => { const d = new Date(new Date(iso).getTime() + 6 * 3600e3), h = d.getUTCHours(), m = d.getUTCMinutes();
   const part = h < 4 ? 'রাত' : h < 6 ? 'ভোর' : h < 12 ? 'সকাল' : h < 15 ? 'দুপুর' : h < 18 ? 'বিকাল' : h < 20 ? 'সন্ধ্যা' : 'রাত';
   return `${part} ${bn(h % 12 || 12)}:${bn(String(m).padStart(2, '0'))}`; };
@@ -1160,7 +1161,7 @@ function findTeam(s, names) {
 const bnSeries = s => { const m = s.match(/^(.+?)( Women)? tour of (.+?)(?: \d{4}.*)?$/);
   return m ? `${bnTeam(m[1])}${m[2] ? ' নারী' : ''} দলের ${bnTeam(m[3])} সফর` : s.replace(/ \d{4}\/\d{2}$/, ''); };
 // Possessive: "বাংলাদেশ" -> "বাংলাদেশের", "শ্রীলঙ্কা" -> "শ্রীলঙ্কার"
-const bnOf = n => /[\u0995-\u09B9\u09CE]$/.test(n) ? `${n}ের` : `${n}র`;
+const bnOf = n => /[A-Za-z)]$/.test(n) ? `${n}-এর` : /[\u0995-\u09B9\u09CE]$/.test(n) ? `${n}ের` : `${n}র`;
 // "Western Province Women , elected to field first" -> "... টসে জিতে ফিল্ডিং নিয়েছে"
 function bnToss(t, names) {
   const m = (t || '').match(/^(.+?)\s*,\s*elected to (bat|field)/i);
@@ -1193,8 +1194,8 @@ async function footballMatches(dates = '') {
       const hs = Number(H.score), as = Number(A.score);
       out.push({ id: `fb-${e.id}`, sport: 'football', league, state: e.status?.type?.state, done: !!e.status?.type?.completed, start: e.date,
         bd: names.includes('Bangladesh'), half: e.status?.type?.name === 'STATUS_HALFTIME',
-        home: { name: bnTeam(H.team.displayName), en: H.team.displayName, logo: H.team.logo, score: H.score },
-        away: { name: bnTeam(A.team.displayName), en: A.team.displayName, logo: A.team.logo, score: A.score },
+        home: { name: bnTeam(H.team.displayName), short: bnTeam(H.team.shortDisplayName || H.team.displayName), en: H.team.displayName, logo: H.team.logo, score: H.score },
+        away: { name: bnTeam(A.team.displayName), short: bnTeam(A.team.shortDisplayName || A.team.displayName), en: A.team.displayName, logo: A.team.logo, score: A.score },
         result: hs === as && !pen ? 'ম্যাচ ড্র' : `${hs > as || (pen && H.winner) ? bnTeam(H.team.displayName) : bnTeam(A.team.displayName)} জয়ী${pen}`,
         scorers, venue: c.venue?.fullName || '' });
     }
@@ -1287,7 +1288,7 @@ ${m.venue ? `<div class="ven">${m.venue}</div>` : ''}
 }
 function sportsFixturesCard(browser, list, outFile, logo) {
   const rows = list.map(m => `<div class="fx${m.bd ? ' bd' : ''}"><span class="ic">${m.sport === 'football' ? '⚽' : '🏏'}</span>
-    <div class="mt"><b>${m.home.name} <i>বনাম</i> ${m.away.name}</b><small>${m.league}</small></div><span class="tm">${bnClock(m.start)}</span></div>`).join('');
+    <div class="mt"><b>${m.home.short || m.home.name} <i>বনাম</i> ${m.away.short || m.away.name}</b><small>${m.league}</small></div><span class="tm">${bnClock(m.start)}</span></div>`).join('');
   return renderSportsCard(browser, `
 <div class="hdr">{LOGO}<div class="ht"><div class="h1">আজকের খেলা</div><div class="h2">${BN_DAYS[dhakaNow().getUTCDay()]}, ${bnDate(dhakaNow())}</div></div><div class="tag">সময়সূচি</div></div>
 <div class="list">${rows}</div>
