@@ -47,6 +47,7 @@ jobs:
           DRY_RUN: ${{ vars.DRY_RUN || '0' }}
           REEL_RUN: ${{ (github.event_name == 'schedule' || !inputs.demo) && '1' || '0' }}
           REEL_KIND: ${{ inputs.kind || 'top10' }}
+          WEATHER_ART: ${{ vars.WEATHER_ART || '1' }}
           DEMO_REEL: ${{ (github.event_name == 'workflow_dispatch' && inputs.demo) && '1' || '0' }}
       - name: Save state
         if: always()
