@@ -1463,7 +1463,7 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
 </style>
 <div class="ph"></div>${logoImg}<div class="badge"><span class="a">বিনোদন</span>${it.tag !== 'বিনোদন' ? `<span class="b">${it.tag}</span>` : ''}</div>
 <div class="body"><div class="bar"></div><div class="hl">${it.title.replace(/</g, '&lt;')}</div>
-<div class="meta"><span>সূত্র: ${it.source.replace(/</g, '&lt;')}</span><span>${bnDate(dhakaNow())}</span></div></div>
+<div class="meta"><span>${bnDate(dhakaNow())}</span></div></div>
 <div class="ftr">www.utsabtv.com</div>`, { waitUntil: 'networkidle', timeout: 60000 });
   await pg.evaluate(() => document.fonts.ready);
   await pg.waitForTimeout(500);
