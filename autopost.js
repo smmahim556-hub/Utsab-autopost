@@ -1450,9 +1450,9 @@ async function entCard(browser, it, outFile, logo) {
 body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;color:#fff;background:#0b0b10;position:relative}
 .ph{position:absolute;left:0;right:0;top:0;height:820px;background:#222 center/cover no-repeat;background-image:url('${it.image}')}
 .ph:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 60%,#0b5e2a 100%)}
-.logo{position:absolute;left:40px;top:36px;height:96px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.35);z-index:2}
+.logo{position:absolute;right:40px;top:36px;height:96px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.35);z-index:2}
 .logo.txt{display:flex;align-items:center;padding:0 22px;font-size:44px;font-weight:800;color:#c8202f}
-.badge{position:absolute;right:40px;top:44px;z-index:2;display:flex;gap:0;border-radius:40px;overflow:hidden;border:4px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.badge{position:absolute;left:40px;top:44px;z-index:2;display:flex;gap:0;border-radius:40px;overflow:hidden;border:4px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.35)}
 .badge span{padding:4px 22px;font-size:34px;font-weight:800}.badge .a{background:#c8202f}.badge .b{background:#ffd54f;color:#7a1020}
 .body{position:absolute;left:0;right:0;top:800px;bottom:100px;background:linear-gradient(180deg,#0b5e2a 0,#063d1b 100%);padding:34px 56px 0;display:flex;flex-direction:column}
 .bar{width:140px;height:10px;background:#ffd54f;border-radius:6px;margin-bottom:22px}
