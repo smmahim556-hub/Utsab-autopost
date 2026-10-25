@@ -1400,11 +1400,14 @@ const ENT_FEEDS = [
 const ENT_TAGS = [
   ['কনসার্ট', /কনসার্ট|মঞ্চ মাতা|লাইভ শো|কনসার্টে/], ['গান', /গান|সংগীত|শিল্পী|অ্যালবাম|মিউজিক|ব্যান্ড|কণ্ঠ|গায়ক|গায়িকা/],
   ['নাটক', /নাটক|টেলিফিল্ম|ধারাবাহিক|সিরিয়াল/], ['ওটিটি', /ওটিটি|ওয়েব সিরিজ|ওয়েবসিরিজ|নেটফ্লিক্স|চরকি|হইচই|প্রাইম ভিডিও/],
-  ['বলিউড', /বলিউড|Bollywood|শাহরুখ|সালমান|আমির খান|রণবীর|দীপিকা|আলিয়া|ক্যাটরিনা|প্রিয়াঙ্কা|ঐশ্বরিয়া|অক্ষয়|হৃতিক|কারিনা|কার্তিক|বচ্চন/],
+  ['বলিউড', /বলিউড|Bollywood|শাহরুখ|সালমান|সলমন|বিগ বস|অমিতাভ|রণবীর|রণবীর|শ্রদ্ধা|জাহ্নবী|কঙ্গনা|আমির খান|রণবীর|দীপিকা|আলিয়া|ক্যাটরিনা|প্রিয়াঙ্কা|ঐশ্বরিয়া|অক্ষয়|হৃতিক|কারিনা|কার্তিক|বচ্চন/],
   ['টলিউড', /টলিউড|টালিগঞ্জ|দেব |জিৎ|কোয়েল|শুভশ্রী|ঋতুপর্ণা|প্রসেনজিৎ|পরমব্রত|স্বস্তিকা|মিমি|নুসরাত জাহান|কলকাতার/],
   ['হলিউড', /হলিউড|Hollywood|অস্কার|মার্ভেল|টেলর সুইফট|কে-পপ|বিটিএস|ব্ল্যাকপিংক/],
-  ['ঢালিউড', /ঢালিউড|শাকিব|অপু বিশ্বাস|বুবলী|পরীমণি|জয়া আহসান|মিম|চঞ্চল|আফরান নিশো|সিয়াম|মেহজাবীন|তাসনিয়া ফারিণ|সিনেমা হলে|সিনেমা/],
+  ['ঢালিউড', /ঢালিউড|শাকিব|অপু বিশ্বাস|বুবলী|পরীমণি|জয়া আহসান|মিম|চঞ্চল|আফরান নিশো|সিয়াম|মেহজাবীন|তাসনিয়া ফারিণ|ঢাকাই/],
+  ['সিনেমা', /সিনেমা|চলচ্চিত্র|ছবির|ট্রেলার|বক্স অফিস/],
 ];
+// Papers whose stories are used (others, mostly small sites, are skipped).
+const ENT_SOURCES = /Prothom Alo|প্রথম আলো|Jugantor|যুগান্তর|Kaler Kantho|কালের কণ্ঠ|Samakal|সমকাল|bdnews24|Jagonews24|জাগো|Dhaka Post|ঢাকা পোস্ট|Channel i|Bangla Tribune|বাংলা ট্রিবিউন|Somoy|সময়|Ittefaq|ইত্তেফাক|Desh Rupantor|দেশ রূপান্তর|Daily Star|Bangladesh Pratidin|বাংলাদেশ প্রতিদিন|banglanews24|বাংলানিউজ|Ajker Patrika|আজকের পত্রিকা|Kalbela|কালবেলা|NTV|RTV|Jamuna|যমুনা|Independent|Ekattor|একাত্তর|DBC|Dhaka Times|ঢাকা টাইমস|Risingbd|রাইজিংবিডি|Manab Zamin|মানবজমিন|Naya Diganta|নয়া দিগন্ত|Inqilab|BBC|বিবিসি|Deutsche Welle|DW|Anandabazar|আনন্দবাজার|ABP Ananda|এবিপি|Sangbad Pratidin|সংবাদ প্রতিদিন|Ei Samay|এই সময়|Hindustan Times|Indian Express|Zee 24|জি ২৪|News18|TV9|Aajkaal|আজকাল|Bartaman|বর্তমান|Kolkata TV|Sangbad|Bangla Hunt/i;
 const entTag = t => (ENT_TAGS.find(([, re]) => re.test(t)) || ['বিনোদন'])[0];
 // Word sets for spotting the same story from different papers.
 const entWords = t => new Set(t.replace(/[^ঀ-৿A-Za-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 2));
@@ -1457,7 +1460,7 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
 .ftr{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
   display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800}
 </style>
-<div class="ph"></div>${logoImg}<div class="badge"><span class="a">বিনোদন</span><span class="b">${it.tag}</span></div>
+<div class="ph"></div>${logoImg}<div class="badge"><span class="a">বিনোদন</span>${it.tag !== 'বিনোদন' ? `<span class="b">${it.tag}</span>` : ''}</div>
 <div class="body"><div class="bar"></div><div class="hl">${it.title.replace(/</g, '&lt;')}</div>
 <div class="meta"><span>সূত্র: ${it.source.replace(/</g, '&lt;')}</span><span>${bnDate(dhakaNow())}</span></div></div>
 <div class="ftr">www.utsabtv.com</div>`, { waitUntil: 'networkidle', timeout: 60000 });
@@ -1480,7 +1483,7 @@ async function entTick() {
   if (Date.now() < st.lastAt + Number(process.env.ENT_GAP_MIN || 30) * 60e3) return;
   const items = await entItems();
   if (first) { st.seen = items.map(i => i.id); save(); return log(`ent: first run, ${items.length} stories marked seen`); }
-  const fresh = items.filter(i => !st.seen.includes(i.id) && Date.now() - i.at < 6 * 3600e3);
+  const fresh = items.filter(i => !st.seen.includes(i.id) && Date.now() - i.at < 6 * 3600e3 && ENT_SOURCES.test(i.source));
   if (!fresh.length) return;
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
@@ -1515,7 +1518,7 @@ async function entDemo() {
     const logo = await channelLogo(browser);
     for (const it of items) {
       if (made.length >= 4) break;
-      if (made.some(m => entSame(m.title, it.title))) continue;
+      if (!ENT_SOURCES.test(it.source) || made.some(m => entSame(m.title, it.title))) continue;
       const r = await entResolve(browser, it);
       if (!r.image) continue;
       Object.assign(it, r, { tag: entTag(it.title) });
