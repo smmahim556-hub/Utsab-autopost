@@ -1,5 +1,29 @@
 [
   {
+    "at": "2026-10-25T14:52:08.174Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122122689123459930 ()"
+  },
+  {
+    "at": "2026-10-25T14:52:14.954Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1091089523751514\"}"
+  },
+  {
+    "at": "2026-10-25T14:55:53.856Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147150271140193 ()"
+  },
+  {
+    "at": "2026-10-25T14:56:00.520Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"949454974588656\"}"
+  },
+  {
+    "at": "2026-10-25T14:56:03.592Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122122689765459930 ()"
+  },
+  {
+    "at": "2026-10-25T14:56:09.284Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2173031176660186\"}"
+  },
+  {
     "at": "2026-10-25T15:22:53.807Z",
     "text": "posted to Page 872606492607357: 872606492607357_122147152233140193 ()"
   },
@@ -128,35 +152,11 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1357721417429942\"}"
   },
   {
-    "at": "2026-10-25T16:01:16.134Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147156607140193 ()"
+    "at": "2026-10-25T16:03:58.051Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122147157111140193\"}"
   },
   {
-    "at": "2026-10-25T16:01:23.011Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1537060114852572\"}"
-  },
-  {
-    "at": "2026-10-25T16:01:26.558Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122122700169459930 ()"
-  },
-  {
-    "at": "2026-10-25T16:01:32.660Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1145071234716283\"}"
-  },
-  {
-    "at": "2026-10-25T16:03:09.240Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147156895140193 (https://utsabtv.com/bangladesh-seeks-climate-finance-as-right-not-charity-cop31)"
-  },
-  {
-    "at": "2026-10-25T16:03:15.896Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2434865943924069\"}"
-  },
-  {
-    "at": "2026-10-25T16:03:21.937Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122122700715459930 (https://utsabtv.com/bangladesh-seeks-climate-finance-as-right-not-charity-cop31)"
-  },
-  {
-    "at": "2026-10-25T16:03:28.190Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1856129102498114\"}"
+    "at": "2026-10-25T16:04:07.661Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122122700925459930\"}"
   }
 ]
