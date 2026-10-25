@@ -1422,6 +1422,7 @@ async function entItems() {
       const g = tag => decodeEntities((m[1].match(new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${tag}>`)) || [])[1] || '');
       const raw = g('title'), source = g('source') || raw.split(' - ').pop();
       const title = raw.replace(/\s+-\s+[^-]+$/, '').trim();
+      if (/live (news )?updates?|লাইভ আপডেট|^[A-Za-z0-9 ,.'’-]+:/i.test(title)) continue; // live blogs and English-prefixed titles
       out.push({ id: g('guid') || g('link'), link: g('link'), title, source, at: Date.parse(g('pubDate')) || 0 });
     }
   }
