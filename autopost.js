@@ -1732,8 +1732,12 @@ async function munTick() {
   const first = !st.seen;
   st.seen = st.seen || []; st.lastAt = st.lastAt || 0; st.pages = st.pages || {};
   const save = () => { st.seen = st.seen.slice(-500); fs.mkdirSync(path.dirname(MUN_FILE), { recursive: true }); fs.writeFileSync(MUN_FILE, JSON.stringify(st, null, 2)); };
-  if (Date.now() < st.lastAt + Number(process.env.MUN_GAP_MIN || 10) * 60e3) return;
+  if (Date.now() < st.lastAt + Number(process.env.MUN_GAP_MIN || 5) * 60e3) return;
+  // Look for new reports every MUN_CHECK_MIN minutes.
+  if (Date.now() < (st.checkedAt || 0) + Number(process.env.MUN_CHECK_MIN || 5) * 60e3 - 30e3) return;
+  st.checkedAt = Date.now();
   const list = await munReports();
+  save();
   // First run: older reports are left out; only those from the last MUN_FIRST_HOURS hours are posted.
   if (first) { st.seen = list.filter(x => Date.now() - Date.parse(x.reportedAt) > Number(process.env.MUN_FIRST_HOURS || 12) * 3600e3).map(x => x.id); save(); }
   const rep = list.find(x => !st.seen.includes(x.id) && Date.now() - Date.parse(x.reportedAt) < 3 * 864e5);
