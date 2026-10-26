@@ -1672,52 +1672,56 @@ async function gmTick() {
 
 // ------------------------------------------------------------------ missing children (MUN Alert)
 // MUN=1: new missing-child reports from MUN Alert (munalert.org, Bangladesh's missing child alert system),
-// only those its team has approved, become a "নিখোঁজ সংবাদ" card on every Page (MUN_GAP_MIN apart).
-// State: state/mun.json ({seen: [report ids], lastAt}).
+// only those its team has approved, become a "নিখোঁজ সংবাদ" card on every Page (MUN_GAP_MIN apart). When one of
+// those is later marked resolved/found, an "উদ্ধার হয়েছে" card follows.
+// State: state/mun.json ({seen, watch, recovered: [report ids], lastAt, checkedAt}).
 const MUN_FILE = path.join(__dirname, 'state', 'mun.json');
 const MUN_SITE = 'https://munalert.org';
 async function munReports() {
   const r = await fetch(`${MUN_SITE}/api/reports`, { headers: { 'user-agent': 'Mozilla/5.0', accept: 'application/json' } });
   if (!r.ok) throw new Error(`MUN Alert ${r.status}`);
-  const list = await r.json();
-  return list.filter(x => x.type === 'missing' && x.status === 'active' && x.approved && x.imageUrl)
-    .sort((a, b) => Date.parse(b.reportedAt) - Date.parse(a.reportedAt));
+  return (await r.json()).filter(x => x.type === 'missing' && x.imageUrl).sort((a, b) => Date.parse(b.reportedAt) - Date.parse(a.reportedAt));
 }
+const munActive = x => x.status === 'active' && x.approved;
+const munRecovered = x => x.status === 'resolved' || x.status === 'found';
 const munEsc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
-async function munCard(browser, rep, outFile, logo) {
+// found=true: the "উদ্ধার হয়েছে" (recovered) version, in green, with a thank-you instead of the contact number.
+async function munCard(browser, rep, outFile, logo, found = false) {
   const img = await fetch(MUN_SITE + rep.imageUrl, { headers: { 'user-agent': 'Mozilla/5.0' } });
   if (!img.ok) throw new Error(`photo ${img.status}`);
   const photo = `data:${img.headers.get('content-type') || 'image/jpeg'};base64,${Buffer.from(await img.arrayBuffer()).toString('base64')}`;
   const gender = /^f/i.test(rep.gender) ? 'মেয়ে' : /^m/i.test(rep.gender) ? 'ছেলে' : '';
-  const rows = [['বয়স', `${bn(rep.age)} বছর${gender ? ` (${gender})` : ''}`], ['নিখোঁজের সময়', String(rep.date || '').replace(/ এ /, ', ')],
-    ['শেষ দেখা গেছে', rep.lastSeen], ['জেলা', rep.district], ['বিস্তারিত', rep.description || rep.additionalDetails]].filter(([, v]) => v);
+  const rows = [['বয়স', `${bn(rep.age)} বছর${gender ? ` (${gender})` : ''}`], [found ? 'নিখোঁজ হয়েছিল' : 'নিখোঁজের সময়', String(rep.date || '').replace(/ এ /, ', ')],
+    ['শেষ দেখা গেছে', rep.lastSeen], ['জেলা', rep.district], ['বিস্তারিত', found ? '' : rep.description || rep.additionalDetails]].filter(([, v]) => v);
+  const [c1, c2] = found ? ['#1b8a4b', '#136b39'] : ['#c8202f', '#a3141f'];
   const logoImg = logo ? `<img class="logo" src="${logo}">` : '';
   const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
   await pg.setContent(`<!doctype html><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
 body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;position:relative;background:#fff6e5}
-.top{position:absolute;left:0;right:0;top:0;height:250px;background:repeating-linear-gradient(135deg,#c8202f 0 40px,#a3141f 40px 80px);border-bottom:10px solid #111}
+.top{position:absolute;left:0;right:0;top:0;height:250px;background:repeating-linear-gradient(135deg,${c1} 0 40px,${c2} 40px 80px);border-bottom:10px solid #111}
 .logo{position:absolute;right:40px;top:36px;height:96px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
 .title{position:absolute;left:40px;top:40px;font-size:120px;font-weight:900;color:#fff;text-shadow:0 6px 0 #111;letter-spacing:2px}
 .sub{position:absolute;left:46px;top:186px;background:#111;color:#ffd54f;padding:2px 22px;border-radius:10px;font-size:36px;font-weight:800}
 .ph{position:absolute;left:50px;top:300px;width:420px;height:520px;border:10px solid #111;border-radius:18px;background:#d9d9d9 center/cover no-repeat;box-shadow:0 18px 40px rgba(0,0,0,.25)}
-.name{flex:none;margin:0 0 6px;font-size:${[...rep.name].length > 18 ? 44 : 60}px;font-weight:900;color:#a3141f;line-height:1.15}
+.name{flex:none;margin:0 0 6px;font-size:${[...rep.name].length > 18 ? 44 : 60}px;font-weight:900;color:${c2};line-height:1.15}
 .info{position:absolute;left:510px;right:40px;top:296px;bottom:470px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
-.info div{flex:none;display:flex;align-items:center;gap:14px;border-left:8px solid #c8202f;background:#fff;padding:10px 18px;border-radius:0 14px 14px 0;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.info div{flex:none;display:flex;align-items:center;gap:14px;border-left:8px solid ${c1};background:#fff;padding:10px 18px;border-radius:0 14px 14px 0;box-shadow:0 4px 12px rgba(0,0,0,.08)}
 .info small{flex:none;width:130px;font-size:22px;color:#7a5c00;line-height:1.2}
 .info b{font-size:26px;color:#111;font-weight:800;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .ask{position:absolute;left:50px;right:50px;top:880px;text-align:center;font-size:42px;color:#111;font-weight:800;line-height:1.4}
-.ask span{color:#c8202f}
+.ask span{color:${c1}}
 .call{position:absolute;left:50px;right:50px;top:1035px;height:170px;background:#111;border-radius:30px;border:8px solid #ffd54f;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .call small{font-size:34px;color:#ffd54f;line-height:1.3}.call b{font-size:80px;color:#fff;font-weight:900;letter-spacing:2px;line-height:1.25}
-.ftr{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800;color:#fff}
+.ftr{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(135deg,${c1},${c2});border-top:8px solid #ffd54f;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800;color:#fff}
 </style>
-<div class="top"></div><div class="title">নিখোঁজ সংবাদ</div><div class="sub">সন্ধান চাই</div>${logoImg}
+<div class="top"></div><div class="title">${found ? 'উদ্ধার হয়েছে' : 'নিখোঁজ সংবাদ'}</div><div class="sub">${found ? 'সুখবর' : 'সন্ধান চাই'}</div>${logoImg}
 <div class="ph" style="background-image:url('${photo}')"></div>
 <div class="info"><p class="name">${munEsc(rep.name)}</p>${rows.map(([k, v]) => `<div><small>${k}</small><b>${munEsc(v)}</b></div>`).join('')}</div>
-<div class="ask">কেউ সন্ধান পেলে <span>দয়া করে নিচের নম্বরে</span><br>যোগাযোগ করুন</div>
-<div class="call"><small>${munEsc(rep.contactName || 'যোগাযোগ')}</small><b>${bn(String(rep.contactPhone || '১৩২১৯').replace(/^\+88/, ''))}</b></div>
+${found ? `<div class="ask">নিখোঁজ শিশুটিকে <span>খুঁজে পাওয়া গেছে</span><br>MUN Alert এটি নিশ্চিত করেছে</div>
+<div class="call"><small>যারা শেয়ার করে পাশে ছিলেন</small><b style="font-size:66px">সবাইকে ধন্যবাদ</b></div>` : `<div class="ask">কেউ সন্ধান পেলে <span>দয়া করে নিচের নম্বরে</span><br>যোগাযোগ করুন</div>
+<div class="call"><small>${munEsc(rep.contactName || 'যোগাযোগ')}</small><b>${bn(String(rep.contactPhone || '১৩২১৯').replace(/^\+88/, ''))}</b></div>`}
 <div class="ftr">www.utsabtv.com</div>`, { waitUntil: 'networkidle', timeout: 60000 });
   await pg.evaluate(() => document.fonts.ready);
   await pg.waitForTimeout(500);
@@ -1730,40 +1734,51 @@ async function munTick() {
   let st = {};
   try { st = JSON.parse(fs.readFileSync(MUN_FILE, 'utf8')); } catch {}
   const first = !st.seen;
-  st.seen = st.seen || []; st.lastAt = st.lastAt || 0; st.pages = st.pages || {};
-  const save = () => { st.seen = st.seen.slice(-500); fs.mkdirSync(path.dirname(MUN_FILE), { recursive: true }); fs.writeFileSync(MUN_FILE, JSON.stringify(st, null, 2)); };
+  st.seen = st.seen || []; st.lastAt = st.lastAt || 0; st.pages = st.pages || {}; st.recovered = st.recovered || [];
+  const save = () => { st.seen = st.seen.slice(-500); st.recovered = st.recovered.slice(-500); fs.mkdirSync(path.dirname(MUN_FILE), { recursive: true }); fs.writeFileSync(MUN_FILE, JSON.stringify(st, null, 2)); };
   if (Date.now() < st.lastAt + Number(process.env.MUN_GAP_MIN || 5) * 60e3) return;
   // Look for new reports every MUN_CHECK_MIN minutes.
   if (Date.now() < (st.checkedAt || 0) + Number(process.env.MUN_CHECK_MIN || 5) * 60e3 - 30e3) return;
   st.checkedAt = Date.now();
-  const list = await munReports();
-  save();
+  const all = await munReports();
+  const list = all.filter(munActive);
   // First run: older reports are left out; only those from the last MUN_FIRST_HOURS hours are posted.
-  if (first) { st.seen = list.filter(x => Date.now() - Date.parse(x.reportedAt) > Number(process.env.MUN_FIRST_HOURS || 12) * 3600e3).map(x => x.id); save(); }
-  const rep = list.find(x => !st.seen.includes(x.id) && Date.now() - Date.parse(x.reportedAt) < 3 * 864e5);
+  if (first) st.seen = list.filter(x => Date.now() - Date.parse(x.reportedAt) > Number(process.env.MUN_FIRST_HOURS || 12) * 3600e3).map(x => x.id);
+  // "উদ্ধার হয়েছে": a report that was live (approved, active) when we last looked and is now marked resolved/found.
+  const firstWatch = !st.watch;
+  const watch = new Set(st.watch || []);
+  const back = firstWatch || process.env.MUN_FOUND !== '1' ? [] : all.filter(x => watch.has(x.id) && munRecovered(x) && !st.recovered.includes(x.id));
+  st.watch = all.filter(x => munActive(x) || (watch.has(x.id) && !munRecovered(x))).map(x => x.id);
+  save();
+  const found = back[0];
+  const rep = found || list.find(x => !st.seen.includes(x.id) && Date.now() - Date.parse(x.reportedAt) < 3 * 864e5);
   if (!rep) return;
+  const key = found ? `found-${rep.id}` : rep.id;
+  const mark = () => (found ? st.recovered : st.seen).push(rep.id);
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
   try {
-    const card = await munCard(browser, rep, path.join(OUT_DIR, `mun-${rep.id}.png`), await channelLogo(browser));
-    const done = st.pages[rep.id] = st.pages[rep.id] || [];
-    try { await postToFacebook(card, '', '', done, browser); st.seen.push(rep.id); delete st.pages[rep.id]; } finally { st.lastAt = Date.now(); save(); }
+    const card = await munCard(browser, rep, path.join(OUT_DIR, `mun-${key}.png`), await channelLogo(browser), !!found);
+    const done = st.pages[key] = st.pages[key] || [];
+    try { await postToFacebook(card, '', '', done, browser); mark(); delete st.pages[key]; } finally { st.lastAt = Date.now(); save(); }
   } catch (e) {
-    event(`missing card ${rep.id} FAILED: ${e.message}`);
-    st.seen.push(rep.id); save();
+    event(`${found ? 'recovered' : 'missing'} card ${rep.id} FAILED: ${e.message}`);
+    mark(); save();
   } finally {
     await browser.close();
   }
 }
-// DEMO_MUN=1: cards for the 3 newest approved reports into ./preview. Posts nothing.
+// DEMO_MUN=1: cards for the 3 newest approved reports, plus a "উদ্ধার হয়েছে" card for the newest recovered one, into ./preview. Posts nothing.
 async function munDemo() {
-  const list = await munReports();
+  const all = await munReports();
   const preview = path.join(__dirname, 'preview');
   fs.mkdirSync(preview, { recursive: true });
   const browser = await chromium.launch();
   try {
     const logo = await channelLogo(browser);
-    for (const [i, rep] of list.slice(0, 3).entries()) await munCard(browser, rep, path.join(preview, `mun-demo-${i + 1}.png`), logo);
+    for (const [i, rep] of all.filter(munActive).slice(0, 3).entries()) await munCard(browser, rep, path.join(preview, `mun-demo-${i + 1}.png`), logo);
+    const back = all.filter(munRecovered).sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
+    for (const [i, rep] of back.slice(0, 2).entries()) await munCard(browser, rep, path.join(preview, `mun-found-demo-${i + 1}.png`), logo, true);
   } finally {
     await browser.close();
   }
