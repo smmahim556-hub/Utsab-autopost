@@ -236,6 +236,8 @@ async function postStory(page, storyFile) {
 
 // Posts to every Page not yet done for this link; `done` lists Page ids already posted,
 // so a retry after one Page failed does not post twice on the other.
+// Caption hashtags: always #utsabtv, then the card's own topics (spaces become _).
+const hashtags = (...t) => ['utsabtv', ...t].filter(Boolean).map(x => '#' + String(x).trim().replace(/[\s\-–:]+/g, '_').replace(/[^\p{L}\p{M}\p{N}_]/gu, '')).filter((x, i, a) => x.length > 1 && a.indexOf(x) === i).slice(0, 5).join(' ');
 // withCaption: post the caption even though FB_CAPTION is off (desk cards carry a summary there).
 async function postToFacebook(cardFile, caption, link, done, browser, withCaption = false) {
   const targets = await pages();
@@ -461,7 +463,7 @@ async function weatherTick() {
       fs.copyFileSync(card, path.join(preview, path.basename(card)));
     } else {
       const done = st.pages[d.name] = st.pages[d.name] || [];
-      try { await postToFacebook(card, '', '', done, browser); } finally { save(); }
+      try { await postToFacebook(card, hashtags('আবহাওয়া', `${d.name}_আবহাওয়া`, 'বাংলাদেশ'), '', done, browser, true); } finally { save(); }
     }
     st.data = st.data || {};
     st.data[d.name] = w;
@@ -631,12 +633,12 @@ async function prayerTick() {
   // Reminders first: they are tied to a time. Due from 30 min before the prayer, given up 20 min later.
   for (const [k] of PRAYERS) {
     if (k === 'sunrise' || st.rem.includes(k)) continue;
-    if (nowH >= dhaka[k] - 0.5 && nowH < dhaka[k] - 0.5 + 20 / 60) { job = { key: `rem-${k}`, done: () => st.rem.push(k), make: (b, f, l) => prayerReminderCard(b, k, f, l) }; break; }
+    if (nowH >= dhaka[k] - 0.5 && nowH < dhaka[k] - 0.5 + 20 / 60) { job = { tags: hashtags('নামাজ', 'নামাজের_সময়', k === 'fajr' ? 'ফজর' : ''), key: `rem-${k}`, done: () => st.rem.push(k), make: (b, f, l) => prayerReminderCard(b, k, f, l) }; break; }
   }
   const lead = Number(process.env.PRAYER_LEAD_MIN || 75) / 60, gap = Number(process.env.PRAYER_GAP_MIN || 4) * 60e3;
   if (!job && nowH >= dhaka.fajr - lead && nowH < dhaka.sunrise && Date.now() >= st.lastAt + gap) {
     const d = DIVISIONS.find(x => !st.sched.includes(x.name));
-    if (d) job = { key: `sched-${d.name}`, done: () => st.sched.push(d.name), make: (b, f, l) => prayerScheduleCard(b, d, f, l) };
+    if (d) job = { tags: hashtags('নামাজের_সময়সূচি', d.name), key: `sched-${d.name}`, done: () => st.sched.push(d.name), make: (b, f, l) => prayerScheduleCard(b, d, f, l) };
   }
   if (!job) return;
   const save = () => { fs.mkdirSync(path.dirname(PRAYER_FILE), { recursive: true }); fs.writeFileSync(PRAYER_FILE, JSON.stringify(st, null, 2)); };
@@ -645,7 +647,7 @@ async function prayerTick() {
   try {
     const card = await job.make(browser, path.join(OUT_DIR, `prayer-${job.key}.png`), await channelLogo(browser));
     const done = st.pages[job.key] = st.pages[job.key] || [];
-    try { await postToFacebook(card, '', '', done, browser); job.done(); } finally { st.lastAt = Date.now(); save(); }
+    try { await postToFacebook(card, job.tags, '', done, browser, true); job.done(); } finally { st.lastAt = Date.now(); save(); }
   } catch (e) {
     event(`prayer ${job.key} FAILED: ${e.message}`);
     job.done(); // a missed prayer card is not retried: the next one comes soon enough
@@ -1376,7 +1378,7 @@ async function sportsTick() {
       [m.id, m.done, 'ম্যাচ শেষ', m.result],
     ];
     const s1 = steps.find(([k, ok]) => ok && !st.done.includes(k));
-    if (s1) { const [k, , tag, line] = s1; job = { key: k, done: () => st.done.push(k), make: (b, f, l) => sportsResultCard(b, m, f, l, tag, line) }; break; }
+    if (s1) { const [k, , tag, line] = s1; job = { tags: hashtags('খেলা', m.sport === 'cricket' ? 'ক্রিকেট' : 'ফুটবল', m.bd ? 'বাংলাদেশ' : '', m.home?.en, m.away?.en), key: k, done: () => st.done.push(k), make: (b, f, l) => sportsResultCard(b, m, f, l, tag, line) }; break; }
   }
   if (!job && Date.now() < st.lastAt + gap) return;
   if (!job && st.fixtures !== today && now.getUTCHours() >= Number(process.env.SPORTS_FIXTURE_HOUR || 9)) {
@@ -1388,19 +1390,19 @@ async function sportsTick() {
       .filter(m => { const t = new Date(m.start).getTime(); return t > Date.now() && t < Date.now() + 864e5; })
       .sort((a, b) => (b.bd - a.bd) || new Date(a.start) - new Date(b.start)).slice(0, 8);
     if (!list.length) { st.fixtures = today; save(); return log('sports: no fixtures today'); }
-    job = { key: `fixtures-${today}`, done: () => { st.fixtures = today; }, make: (b, f, l) => sportsFixturesCard(b, list, f, l) };
+    job = { tags: hashtags('খেলা', 'আজকের_খেলা', list.some(x => x.bd) ? 'বাংলাদেশ' : ''), key: `fixtures-${today}`, done: () => { st.fixtures = today; }, make: (b, f, l) => sportsFixturesCard(b, list, f, l) };
   }
   if (!job) {
     const m = all.find(x => x.done && !x.bd && !st.done.includes(x.id));
     if (!m) return;
-    job = { key: m.id, done: () => st.done.push(m.id), make: (b, f, l) => sportsResultCard(b, m, f, l) };
+    job = { tags: hashtags('খেলা', m.sport === 'cricket' ? 'ক্রিকেট' : 'ফুটবল', m.bd ? 'বাংলাদেশ' : '', m.home?.en, m.away?.en), key: m.id, done: () => st.done.push(m.id), make: (b, f, l) => sportsResultCard(b, m, f, l) };
   }
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
   try {
     const card = await job.make(browser, path.join(OUT_DIR, `sports-${job.key}.png`), await channelLogo(browser));
     const done = st.pages[job.key] = st.pages[job.key] || [];
-    try { await postToFacebook(card, '', '', done, browser); job.done(); delete st.pages[job.key]; } finally { st.lastAt = Date.now(); save(); }
+    try { await postToFacebook(card, job.tags, '', done, browser, true); job.done(); delete st.pages[job.key]; } finally { st.lastAt = Date.now(); save(); }
   } catch (e) {
     event(`sports ${job.key} FAILED: ${e.message}`);
     job.done();
@@ -1661,7 +1663,7 @@ async function entTick(desk = DESKS.ent) {
       Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
       const card = await entCard(browser, it, path.join(OUT_DIR, `${desk.key}-${st.seen.length}.png`), await channelLogo(browser));
       const done = st.pages[it.id] = st.pages[it.id] || [];
-      try { await postToFacebook(card, it.summary ? `${it.title}\n\n${it.summary}` : '', '', done, browser, !!it.summary); st.titles.push(it.title); delete st.pages[it.id]; posted = true; }
+      try { await postToFacebook(card, [it.summary && `${it.title}\n\n${it.summary}`, hashtags(desk.label, it.tag)].filter(Boolean).join('\n\n'), '', done, browser, true); st.titles.push(it.title); delete st.pages[it.id]; posted = true; }
       catch (e) { event(`${desk.key} FAILED: ${e.message}`); }
       finally { st.lastAt = Date.now(); }
       break;
@@ -1785,7 +1787,7 @@ async function gmTick() {
   const save = () => { fs.mkdirSync(path.dirname(GM_FILE), { recursive: true }); fs.writeFileSync(GM_FILE, JSON.stringify(st, null, 2)); };
   try {
     const card = await goodMorningCard(browser, path.join(OUT_DIR, `gm-${today}.png`), await channelLogo(browser));
-    try { await postToFacebook(card, '', '', st.pages, browser); st.done = true; } finally { save(); }
+    try { await postToFacebook(card, hashtags('শুভ_সকাল', 'আজকের_তারিখ'), '', st.pages, browser, true); st.done = true; } finally { save(); }
   } catch (e) { event(`good morning FAILED: ${e.message}`); } finally { await browser.close(); }
 }
 
@@ -1886,7 +1888,7 @@ async function munTick() {
   try {
     const card = await munCard(browser, rep, path.join(OUT_DIR, `mun-${key}.png`), await channelLogo(browser), kind);
     const done = st.pages[key] = st.pages[key] || [];
-    try { await postToFacebook(card, '', '', done, browser); mark(); delete st.pages[key]; } finally { st.lastAt = Date.now(); save(); }
+    try { await postToFacebook(card, hashtags(...{ missing: ['নিখোঁজ_সংবাদ', 'সন্ধান_চাই'], found: ['উদ্ধার', 'সুখবর'], dead: ['মৃতদেহ_উদ্ধার', 'শোক_সংবাদ'] }[kind], rep.district), '', done, browser, true); mark(); delete st.pages[key]; } finally { st.lastAt = Date.now(); save(); }
   } catch (e) {
     event(`${kind} card ${rep.id} FAILED: ${e.message}`);
     mark(); save();
@@ -1976,7 +1978,7 @@ async function munDemo() {
           state.posted = state.posted || {};
           const done = state.posted[link] = state.posted[link] || [];
           try {
-            await postToFacebook(card, info.title, link, done, browser);
+            await postToFacebook(card, process.env.FB_CAPTION === '1' ? `${info.title}\n\n${hashtags('সংবাদ', 'বাংলা_সংবাদ')}` : hashtags('সংবাদ', 'বাংলা_সংবাদ'), link, done, browser, true);
           } finally {
             saveState(state);
           }
