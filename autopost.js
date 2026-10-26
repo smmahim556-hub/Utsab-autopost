@@ -1685,15 +1685,18 @@ async function munReports() {
 const munActive = x => x.status === 'active' && x.approved;
 const munRecovered = x => x.status === 'resolved' || x.status === 'found';
 const munEsc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
-// found=true: the "উদ্ধার হয়েছে" (recovered) version, in green, with a thank-you instead of the contact number.
-async function munCard(browser, rep, outFile, logo, found = false) {
+// kind 'found': the "উদ্ধার হয়েছে" (recovered) version, in green, with a thank-you instead of the contact number.
+// kind 'dead': the "মৃতদেহ উদ্ধার" version, in black and grey, with a condolence line.
+const MUN_DEAD = /মৃত|লাশ|মরদেহ|deceased|dead body/i;
+async function munCard(browser, rep, outFile, logo, kind = 'missing') {
+  const found = kind !== 'missing', dead = kind === 'dead';
   const img = await fetch(MUN_SITE + rep.imageUrl, { headers: { 'user-agent': 'Mozilla/5.0' } });
   if (!img.ok) throw new Error(`photo ${img.status}`);
   const photo = `data:${img.headers.get('content-type') || 'image/jpeg'};base64,${Buffer.from(await img.arrayBuffer()).toString('base64')}`;
   const gender = /^f/i.test(rep.gender) ? 'মেয়ে' : /^m/i.test(rep.gender) ? 'ছেলে' : '';
   const rows = [['বয়স', `${bn(rep.age)} বছর${gender ? ` (${gender})` : ''}`], [found ? 'নিখোঁজ হয়েছিল' : 'নিখোঁজের সময়', String(rep.date || '').replace(/ এ /, ', ')],
     ['শেষ দেখা গেছে', rep.lastSeen], ['জেলা', String(rep.district || '').replace(/^\w/, c => c.toUpperCase())], ['বিস্তারিত', found ? '' : rep.description || rep.additionalDetails]].filter(([, v]) => v);
-  const [c1, c2] = found ? ['#1b8a4b', '#136b39'] : ['#c8202f', '#a3141f'];
+  const [c1, c2] = dead ? ['#3a3a3a', '#1c1c1c'] : found ? ['#1b8a4b', '#136b39'] : ['#c8202f', '#a3141f'];
   const logoImg = logo ? `<img class="logo" src="${logo}">` : '';
   const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
   await pg.setContent(`<!doctype html><meta charset="utf-8">
@@ -1716,10 +1719,11 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
 .call small{font-size:34px;color:#ffd54f;line-height:1.3}.call b{font-size:80px;color:#fff;font-weight:900;letter-spacing:2px;line-height:1.25}
 .ftr{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(135deg,${c1},${c2});border-top:8px solid #ffd54f;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800;color:#fff}
 </style>
-<div class="top"></div><div class="title">${found ? 'উদ্ধার হয়েছে' : 'নিখোঁজ সংবাদ'}</div><div class="sub">${found ? 'সুখবর' : 'সন্ধান চাই'}</div>${logoImg}
+<div class="top"></div><div class="title">${dead ? 'মৃতদেহ উদ্ধার' : found ? 'উদ্ধার হয়েছে' : 'নিখোঁজ সংবাদ'}</div><div class="sub">${dead ? 'শোক সংবাদ' : found ? 'সুখবর' : 'সন্ধান চাই'}</div>${logoImg}
 <div class="ph" style="background-image:url('${photo}')"></div>
 <div class="info"><p class="name">${munEsc(rep.name)}</p>${rows.map(([k, v]) => `<div><small>${k}</small><b>${munEsc(v)}</b></div>`).join('')}</div>
-${found ? `<div class="ask">নিখোঁজ শিশুটিকে <span>খুঁজে পাওয়া গেছে</span><br>MUN Alert এটি নিশ্চিত করেছে</div>
+${dead ? `<div class="ask">নিখোঁজ শিশুটির <span>মৃতদেহ উদ্ধার</span> করা হয়েছে<br>আমরা গভীরভাবে শোকাহত</div>
+<div class="call"><small>মহান আল্লাহ তাকে জান্নাত দান করুন</small><b style="font-size:46px">ইন্না লিল্লাহি ওয়া ইন্না ইলাইহি রাজিউন</b></div>` : found ? `<div class="ask">নিখোঁজ শিশুটিকে <span>খুঁজে পাওয়া গেছে</span><br>MUN Alert এটি নিশ্চিত করেছে</div>
 <div class="call"><small>যারা শেয়ার করে পাশে ছিলেন</small><b style="font-size:66px">সবাইকে ধন্যবাদ</b></div>` : `<div class="ask">কেউ সন্ধান পেলে <span>দয়া করে নিচের নম্বরে</span><br>যোগাযোগ করুন</div>
 <div class="call"><small>${munEsc(rep.contactName || 'যোগাযোগ')}</small><b>${bn(String(rep.contactPhone || '১৩২১৯').replace(/^\+88/, ''))}</b></div>`}
 <div class="ftr">www.utsabtv.com</div>`, { waitUntil: 'networkidle', timeout: 60000 });
@@ -1753,16 +1757,19 @@ async function munTick() {
   const found = back[0];
   const rep = found || list.find(x => !st.seen.includes(x.id) && Date.now() - Date.parse(x.reportedAt) < 3 * 864e5);
   if (!rep) return;
-  const key = found ? `found-${rep.id}` : rep.id;
+  const kind = !found ? 'missing' : MUN_DEAD.test([found.description, found.additionalDetails, found.status].join(' ')) ? 'dead' : 'found';
+  // Until MUN_DEAD_CARD=1, a death case gets no card at all rather than a "সুখবর" one.
+  if (kind === 'dead' && process.env.MUN_DEAD_CARD !== '1') { st.recovered.push(rep.id); save(); return; }
+  const key = found ? `${kind}-${rep.id}` : rep.id;
   const mark = () => (found ? st.recovered : st.seen).push(rep.id);
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
   try {
-    const card = await munCard(browser, rep, path.join(OUT_DIR, `mun-${key}.png`), await channelLogo(browser), !!found);
+    const card = await munCard(browser, rep, path.join(OUT_DIR, `mun-${key}.png`), await channelLogo(browser), kind);
     const done = st.pages[key] = st.pages[key] || [];
     try { await postToFacebook(card, '', '', done, browser); mark(); delete st.pages[key]; } finally { st.lastAt = Date.now(); save(); }
   } catch (e) {
-    event(`${found ? 'recovered' : 'missing'} card ${rep.id} FAILED: ${e.message}`);
+    event(`${kind} card ${rep.id} FAILED: ${e.message}`);
     mark(); save();
   } finally {
     await browser.close();
@@ -1778,7 +1785,7 @@ async function munDemo() {
     const logo = await channelLogo(browser);
     for (const [i, rep] of all.filter(munActive).slice(0, 3).entries()) await munCard(browser, rep, path.join(preview, `mun-demo-${i + 1}.png`), logo);
     const back = all.filter(munRecovered).sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
-    for (const [i, rep] of back.slice(0, 2).entries()) await munCard(browser, rep, path.join(preview, `mun-found-demo-${i + 1}.png`), logo, true);
+    for (const [i, rep] of back.slice(0, 2).entries()) await munCard(browser, rep, path.join(preview, `mun-found-demo-${i + 1}.png`), logo, MUN_DEAD.test([rep.description, rep.additionalDetails].join(' ')) ? 'dead' : 'found');
   } finally {
     await browser.close();
   }
