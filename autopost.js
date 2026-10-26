@@ -1702,11 +1702,11 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
 .title{position:absolute;left:40px;top:40px;font-size:120px;font-weight:900;color:#fff;text-shadow:0 6px 0 #111;letter-spacing:2px}
 .sub{position:absolute;left:46px;top:186px;background:#111;color:#ffd54f;padding:2px 22px;border-radius:10px;font-size:36px;font-weight:800}
 .ph{position:absolute;left:50px;top:300px;width:420px;height:520px;border:10px solid #111;border-radius:18px;background:#d9d9d9 center/cover no-repeat;box-shadow:0 18px 40px rgba(0,0,0,.25)}
-.name{position:absolute;left:510px;right:40px;top:296px;font-size:${[...rep.name].length > 18 ? 48 : 60}px;font-weight:900;color:#a3141f;line-height:1.2}
-.info{position:absolute;left:510px;right:40px;top:390px;bottom:470px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
-.info div{display:flex;align-items:center;gap:14px;border-left:8px solid #c8202f;background:#fff;padding:10px 18px;border-radius:0 14px 14px 0;box-shadow:0 4px 12px rgba(0,0,0,.08)}
-.info small{flex:none;width:150px;font-size:24px;color:#7a5c00;line-height:1.2}
-.info b{font-size:28px;color:#111;font-weight:800;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.name{flex:none;margin:0 0 6px;font-size:${[...rep.name].length > 18 ? 44 : 60}px;font-weight:900;color:#a3141f;line-height:1.15}
+.info{position:absolute;left:510px;right:40px;top:296px;bottom:470px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.info div{flex:none;display:flex;align-items:center;gap:14px;border-left:8px solid #c8202f;background:#fff;padding:10px 18px;border-radius:0 14px 14px 0;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.info small{flex:none;width:130px;font-size:22px;color:#7a5c00;line-height:1.2}
+.info b{font-size:26px;color:#111;font-weight:800;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .ask{position:absolute;left:50px;right:50px;top:880px;text-align:center;font-size:42px;color:#111;font-weight:800;line-height:1.4}
 .ask span{color:#c8202f}
 .call{position:absolute;left:50px;right:50px;top:1035px;height:170px;background:#111;border-radius:30px;border:8px solid #ffd54f;display:flex;flex-direction:column;align-items:center;justify-content:center}
@@ -1715,8 +1715,7 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
 </style>
 <div class="top"></div><div class="title">নিখোঁজ সংবাদ</div><div class="sub">সন্ধান চাই</div>${logoImg}
 <div class="ph" style="background-image:url('${photo}')"></div>
-<div class="name">${munEsc(rep.name)}</div>
-<div class="info">${rows.map(([k, v]) => `<div><small>${k}</small><b>${munEsc(v)}</b></div>`).join('')}</div>
+<div class="info"><p class="name">${munEsc(rep.name)}</p>${rows.map(([k, v]) => `<div><small>${k}</small><b>${munEsc(v)}</b></div>`).join('')}</div>
 <div class="ask">কেউ সন্ধান পেলে <span>দয়া করে নিচের নম্বরে</span><br>যোগাযোগ করুন</div>
 <div class="call"><small>${munEsc(rep.contactName || 'যোগাযোগ')}</small><b>${bn(String(rep.contactPhone || '১৩২১৯').replace(/^\+88/, ''))}</b></div>
 <div class="ftr">www.utsabtv.com</div>`, { waitUntil: 'networkidle', timeout: 60000 });
