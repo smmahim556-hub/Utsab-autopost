@@ -1,17 +1,11 @@
 {
-  "total": 203,
+  "total": 198,
   "made": [
     {
       "title": "ডালার মেহেন্দির কাছে ক্ষমা চাইলেন বিজেপি মন্ত্রী! বিতর্কে নয়া মোড়, কী বলল মিকা সিংয়ের দল?",
       "source": "Indian Express Bengali",
       "tag": "বিনোদন",
       "url": "https://bengali.indianexpress.com/entertainment/daler-mehndi-subodh-uniyal-apology-mika-singh-controversy-12751989"
-    },
-    {
-      "title": "একাধিক ব্রোকারেজ সংস্থার গুড বুকে এই ভারতীয় বেসরকারি ব্যাঙ্ক, শেয়ার নিয়ে কী পরামর্শ?",
-      "source": "Ei Samay",
-      "tag": "বিনোদন",
-      "url": "https://eisamay.com/business/stock-finance/kotak-mahindra-bank-share-price-q2-results-brokerage-targets/200558363.cms"
     },
     {
       "title": "শিগগিরই চিত্রনাট্য শুনব: ‘থ্রি ইডিয়াটস’ নিয়ে আমির খান",
@@ -24,6 +18,12 @@
       "source": "Ajker Patrika",
       "tag": "বিনোদন",
       "url": "https://www.ajkerpatrika.com/entertainment/television/ajp4ug7g80lc9"
+    },
+    {
+      "title": "এলভিস প্রিসলির গান চুরির অভিযোগে এআই কোম্পানির বিরুদ্ধে মামলা",
+      "source": "Ajker Patrika",
+      "tag": "গান",
+      "url": "https://www.ajkerpatrika.com/entertainment/music/ajpsrehfnj171"
     }
   ]
 }
