@@ -13,10 +13,11 @@ const IDS = ['872606492607357_122147274201140193', '1276101408920358_12212295628
     const t = tok[id.split('_')[0]];
     const cur = await (await fetch(`${GRAPH}/${id}?fields=message&access_token=${t}`)).json();
     if (cur.error) { out.push({ id, error: cur.error.message }); continue; }
-    if (!(cur.message || '').trim()) { out.push({ id, skipped: 'no caption' }); continue; }
+    if (!(cur.message || '').trim()) { out.push({ id, skipped: 'no caption', at: Date.now() }); continue; }
     const form = new FormData(); form.append('message', TAGS); form.append('access_token', t);
     const r = await (await fetch(`${GRAPH}/${id}`, { method: 'POST', body: form })).json();
-    out.push({ id, edited: r.success === true, error: r.error?.message });
+    const after = await (await fetch(`${GRAPH}/${id}?fields=message&access_token=${t}`)).json();
+    out.push({ id, edited: r.success === true, error: r.error?.message, now: after.message || '' });
   }
   fs.writeFileSync('state/fix-captions-probe.json', JSON.stringify(out, null, 2));
 })();
