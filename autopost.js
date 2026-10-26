@@ -1487,15 +1487,42 @@ async function entResolve(browser, it) {
     return { url: pg.url(), image: image && !/logo|default|placeholder/i.test(image) ? new URL(image, pg.url()).href : '' };
   } catch (e) { log('ent resolve failed:', it.link, e.message); return { url: '', image: '' }; } finally { await pg.close(); }
 }
+// Most Bangladeshi papers stamp a branded strip (logo, "First with the news 24/7", …) along the bottom of their
+// og:image. entCard cuts it off: at a sharp full-width horizontal edge in the bottom 32% when there is one, otherwise
+// the bottom ENT_CROP (15%) for every source not in ENT_CLEAN.
+const ENT_CLEAN = /Anandabazar|আনন্দবাজার|ABP|এবিপি|Sangbad Pratidin|সংবাদ প্রতিদিন|Ei Samay|এই সময়|Hindustan Times|Indian Express|Zee 24|জি ২৪|News18|TV9|Aajkaal|আজকাল|Bartaman|বর্তমান|BBC|বিবিসি|Deutsche Welle|DW/i;
+async function entPhoto(pg, url, branded) {
+  const r = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0' } });
+  if (!r.ok) throw new Error(`image ${r.status}`);
+  const src = `data:${r.headers.get('content-type') || 'image/jpeg'};base64,${Buffer.from(await r.arrayBuffer()).toString('base64')}`;
+  return pg.evaluate(async ([src, fallback]) => {
+    const img = new Image(); img.src = src; await img.decode();
+    const W = 400, H = Math.round(img.naturalHeight * W / img.naturalWidth);
+    const c = document.createElement('canvas'); c.width = W; c.height = H;
+    const x = c.getContext('2d'); x.drawImage(img, 0, 0, W, H);
+    const d = x.getImageData(0, 0, W, H).data, lum = (px, py) => { const i = (py * W + px) * 4; return d[i] * .3 + d[i + 1] * .59 + d[i + 2] * .11; };
+    let best = 0, cut = H;
+    for (let y = Math.round(H * .68); y < H - 3; y++) {
+      let n = 0; for (let px = 0; px < W; px++) if (Math.abs(lum(px, y) - lum(px, y - 2)) > 22) n++;
+      if (n / W > best) { best = n / W; cut = y - 2; }
+    }
+    if (best < .7) cut = fallback ? Math.round(H * (1 - fallback)) : H;
+    const sy = Math.round(cut * img.naturalHeight / H), o = document.createElement('canvas');
+    o.width = img.naturalWidth; o.height = sy; o.getContext('2d').drawImage(img, 0, 0);
+    return o.toDataURL('image/jpeg', .92);
+  }, [src, branded ? Number(process.env.ENT_CROP || .15) : 0]);
+}
 async function entCard(browser, it, outFile, logo) {
   const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
   const len = [...it.title].length, fs1 = len > 90 ? 50 : len > 65 ? 56 : len > 45 ? 62 : 70;
   const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+  let photo = it.image;
+  try { photo = await entPhoto(pg, it.image, !ENT_CLEAN.test(it.source || '')); } catch (e) { console.log(`ent photo crop skipped: ${e.message}`); }
   await pg.setContent(`<!doctype html><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
 body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;color:#fff;background:#0b0b10;position:relative}
-.ph{position:absolute;left:0;right:0;top:0;height:820px;background:#222 center/cover no-repeat;background-image:url('${it.image}')}
+.ph{position:absolute;left:0;right:0;top:0;height:820px;background:#222 center/cover no-repeat;background-image:url('${photo}')}
 .ph:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 60%,#0b5e2a 100%)}
 .logo{position:absolute;right:40px;top:36px;height:96px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.35);z-index:2}
 .logo.txt{display:flex;align-items:center;padding:0 22px;font-size:44px;font-weight:800;color:#c8202f}
