@@ -1471,7 +1471,9 @@ const DESKS = {
     tags: [['শেয়ারবাজার', /শেয়ার|শেয়ার|পুঁজিবাজার|ডিএসই|সিএসই|সূচক/], ['ব্যাংক', /ব্যাংক|ব্যাঙ্ক|ঋণ|সুদহার|আমানত/], ['ডলার', /ডলার|রেমিট্যান্স|রিজার্ভ|টাকার মান/],
       ['বাজার', /দাম|বাজারে|মূল্য|সয়াবিন|চাল|পেঁয়াজ/], ['বাজেট', /বাজেট|রাজস্ব|ভ্যাট|এনবিআর/], ['রপ্তানি', /রপ্তানি|আমদানি|পোশাক খাত|তৈরি পোশাক/]] },
   tech: { key: 'tech', label: 'প্রযুক্তি', flag: 'TECH', gapDef: 60, feeds: ['https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=bn&gl=BD&ceid=BD:bn',
-    'https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=bn&gl=IN&ceid=IN:bn'],
+    'https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=bn&gl=IN&ceid=IN:bn', GN('প্রযুক্তি'), GN('স্মার্টফোন'), GN('এআই')],
+    // The searches bring in politics too, so a tech story must name something techy.
+    need: /ফোন|মোবাইল|এআই|কৃত্রিম বুদ্ধিমত্তা|চ্যাটজিপিটি|ইন্টারনেট|ফেসবুক|হোয়াটসঅ্যাপ|ইউটিউব|গুগল|অ্যাপ|ল্যাপটপ|গ্যাজেট|প্রযুক্তি|স্টার্টআপ|সাইবার|ডিজিটাল|নাসা|মহাকাশ|স্যাটেলাইট|রোবট|iPhone|AI/i,
     tags: [['মোবাইল', /ফোন|মোবাইল|আইফোন|iPhone|স্যামসাং|শাওমি/i], ['এআই', /এআই|AI|কৃত্রিম বুদ্ধিমত্তা|চ্যাটজিপিটি|ChatGPT|জেমিনি/], ['ইন্টারনেট', /ইন্টারনেট|ফেসবুক|হোয়াটসঅ্যাপ|ইউটিউব|ইনস্টাগ্রাম|টিকটক|গুগল|অ্যাপ/],
       ['গ্যাজেট', /ল্যাপটপ|গ্যাজেট|স্মার্টওয়াচ|ঘড়ি|ক্যামেরা|টিভি/], ['মহাকাশ', /নাসা|মহাকাশ|রকেট|স্যাটেলাইট|স্পেসএক্স/]] },
 };
@@ -1488,6 +1490,7 @@ async function entItems(desk = DESKS.ent) {
       const title = raw.replace(/\s+-\s+[^-]+$/, '').replace(/\s*\|\s*[^|]+$/, '').replace(/\s+/g, ' ').trim(); // drop " - Source" and " | Hindustan Times Bangla"
       if (/live (news )?updates?|লাইভ আপডেট|^[A-Za-z0-9 ,.'’-]+:/i.test(title)) continue; // live blogs and English-prefixed titles
       if (desk.skip && desk.skip(title)) continue;
+      if (desk.need && !desk.need.test(title)) continue;
       out.push({ id: g('guid') || g('link'), link: g('link'), title, source, at: Date.parse(g('pubDate')) || 0 });
     }
   }
