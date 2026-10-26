@@ -1513,8 +1513,10 @@ function entSummary(title, desc, paras) {
 }
 // Rewrites a paper's summary in our own words (GEMINI_API_KEY, else ANTHROPIC_API_KEY), so no paper's text is copied.
 // Returns '' without a key or on any failure: the post then goes out without a summary.
+let entRewriteNote = '';
 async function entRewrite(title, text) {
   if (!text) return '';
+  entRewriteNote = '';
   const prompt = `নিচের খবরের সারাংশটি সম্পূর্ণ নিজের ভাষায় নতুন করে লেখো, যাতে মূল লেখার কোনো বাক্য বা লম্বা অংশ হুবহু না থাকে।
 নিয়ম: বাংলায়, ২-৩টি ছোট বাক্যে, সর্বোচ্চ ৪০০ অক্ষর। শুধু মূল লেখায় থাকা তথ্য রাখো, নতুন কিছু যোগ করবে না, মতামত দেবে না।
 শিরোনামে প্রশ্ন থাকলে সারাংশে তার উত্তরটা পরিষ্কার করে দাও। কোনো পত্রিকা, ওয়েবসাইট বা সাংবাদিকের নাম লিখবে না। কোনো হ্যাশট্যাগ, ইমোজি বা লিংক দেবে না।
@@ -1538,13 +1540,14 @@ async function entRewrite(title, text) {
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(`Claude: ${JSON.stringify(body.error || body).slice(0, 200)}`);
       out = (body.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
-    } else return '';
+    } else { entRewriteNote = 'no AI key'; return ''; }
     out = out.replace(/\s+/g, ' ').replace(/^["“'‘]|["”'’]$/g, '').trim();
     // Guard: anything still sharing a long run of words with the original is dropped.
     const w = text.split(/\s+/), o = ` ${out} `;
-    for (let i = 0; i + 6 <= w.length; i++) if (o.includes(` ${w.slice(i, i + 6).join(' ')} `)) return '';
+    for (let i = 0; i + 6 <= w.length; i++) if (o.includes(` ${w.slice(i, i + 6).join(' ')} `)) { entRewriteNote = `copied: ${out.slice(0, 200)}`; return ''; }
+    if (out.length <= 40) entRewriteNote = `short: ${out}`;
     return out.length > 40 ? out : '';
-  } catch (e) { log('ent rewrite failed:', e.message); return ''; }
+  } catch (e) { entRewriteNote = e.message; log('ent rewrite failed:', e.message); return ''; }
 }
 async function entResolve(browser, it) {
   const pg = await browser.newPage();
@@ -1676,12 +1679,12 @@ async function entDemo(desk = DESKS.ent, n = 4) {
       if (!ENT_SOURCES.test(it.source) || made.some(m => entSame(m.title, it.title))) continue;
       const r = await entResolve(browser, it);
       if (!r.image) continue;
-      r.orig = r.summary; r.summary = await entRewrite(it.title, r.summary);
+      r.orig = r.summary; r.summary = await entRewrite(it.title, r.summary); r.note = entRewriteNote;
       Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
       await entCard(browser, it, path.join(preview, `${desk.key}-demo-${made.length + 1}.png`), logo);
       made.push(it);
     }
-    fs.writeFileSync(path.join(preview, `${desk.key}-demo.json`), JSON.stringify({ total: items.length, made: made.map(m => ({ title: m.title, source: m.source, tag: m.tag, url: m.url, orig: m.orig, summary: m.summary })) }, null, 2));
+    fs.writeFileSync(path.join(preview, `${desk.key}-demo.json`), JSON.stringify({ total: items.length, made: made.map(m => ({ title: m.title, source: m.source, tag: m.tag, url: m.url, orig: m.orig, summary: m.summary, note: m.note })) }, null, 2));
   } finally {
     await browser.close();
   }
