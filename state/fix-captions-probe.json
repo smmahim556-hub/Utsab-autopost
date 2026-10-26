@@ -1,26 +1,50 @@
-{
-  "posts": [
-    {
-      "id": "872606492607357_122147267085140193",
-      "skipped": "has headline"
-    },
-    {
-      "id": "1276101408920358_122122943781459930",
-      "skipped": "has headline"
-    },
-    {
-      "id": "872606492607357_122147267745140193",
-      "edited": true
-    },
-    {
-      "id": "1276101408920358_122122944687459930",
-      "edited": true
-    }
-  ],
-  "gemini": {
-    "gemini-3.5-flash": "503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "gemini-3.1-flash-lite": "200 ",
-    "gemini-3-flash-preview": "200 ",
-    "gemini-3.8-flash": "The operation was aborted due to timeout"
+[
+  {
+    "id": "872606492607357_122147274201140193",
+    "edited": true
+  },
+  {
+    "id": "1276101408920358_122122956285459930",
+    "edited": true
+  },
+  {
+    "id": "872606492607357_122147275071140193",
+    "edited": true
+  },
+  {
+    "id": "1276101408920358_122122957515459930",
+    "edited": true
+  },
+  {
+    "id": "872606492607357_122147275587140193",
+    "edited": true
+  },
+  {
+    "id": "1276101408920358_122122958775459930",
+    "edited": true
+  },
+  {
+    "id": "872606492607357_122147275803140193",
+    "edited": true
+  },
+  {
+    "id": "1276101408920358_122122959159459930",
+    "edited": true
+  },
+  {
+    "id": "872606492607357_122147276469140193",
+    "edited": true
+  },
+  {
+    "id": "1276101408920358_122122960533459930",
+    "edited": true
+  },
+  {
+    "id": "872606492607357_122147277087140193",
+    "edited": true
+  },
+  {
+    "id": "1276101408920358_122122962027459930",
+    "edited": true
   }
-}
+]
