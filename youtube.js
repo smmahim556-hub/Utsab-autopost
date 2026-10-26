@@ -141,7 +141,7 @@ Return only JSON: {"title": string (max 90 characters, catchy, main keyword firs
 
 async function askAI(prompt) {
   if (process.env.GEMINI_API_KEY) {
-    const model = process.env.AI_MODEL || 'gemini-2.5-flash';
+    const model = process.env.AI_MODEL || 'gemini-3.8-flash';
     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
