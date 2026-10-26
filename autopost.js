@@ -1511,6 +1511,41 @@ function entSummary(title, desc, paras) {
   if (!/[।?!.…'’"]$/.test(text)) { const end = Math.max(text.lastIndexOf('।'), text.lastIndexOf('?'), text.lastIndexOf('!')); text = end > 80 ? text.slice(0, end + 1) : text ? text + '…' : ''; }
   return text;
 }
+// Rewrites a paper's summary in our own words (GEMINI_API_KEY, else ANTHROPIC_API_KEY), so no paper's text is copied.
+// Returns '' without a key or on any failure: the post then goes out without a summary.
+async function entRewrite(title, text) {
+  if (!text) return '';
+  const prompt = `নিচের খবরের সারাংশটি সম্পূর্ণ নিজের ভাষায় নতুন করে লেখো, যাতে মূল লেখার কোনো বাক্য বা লম্বা অংশ হুবহু না থাকে।
+নিয়ম: বাংলায়, ২-৩টি ছোট বাক্যে, সর্বোচ্চ ৪০০ অক্ষর। শুধু মূল লেখায় থাকা তথ্য রাখো, নতুন কিছু যোগ করবে না, মতামত দেবে না।
+শিরোনামে প্রশ্ন থাকলে সারাংশে তার উত্তরটা পরিষ্কার করে দাও। কোনো পত্রিকা, ওয়েবসাইট বা সাংবাদিকের নাম লিখবে না। কোনো হ্যাশট্যাগ, ইমোজি বা লিংক দেবে না।
+শুধু নতুন সারাংশটা লেখো, আর কিছু না।
+
+শিরোনাম: ${title}
+মূল সারাংশ: ${text}`;
+  try {
+    let out = '';
+    if (process.env.GEMINI_API_KEY) {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${process.env.AI_MODEL || 'gemini-2.5-flash'}:generateContent`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.7 } }) });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(`Gemini: ${JSON.stringify(body.error || body).slice(0, 200)}`);
+      out = body.candidates?.[0]?.content?.parts?.map(p => p.text).join('') || '';
+    } else if (process.env.ANTHROPIC_API_KEY) {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
+        body: JSON.stringify({ model: process.env.AI_MODEL || 'claude-haiku-5-5', max_tokens: 800, messages: [{ role: 'user', content: prompt }] }) });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(`Claude: ${JSON.stringify(body.error || body).slice(0, 200)}`);
+      out = (body.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
+    } else return '';
+    out = out.replace(/\s+/g, ' ').replace(/^["“'‘]|["”'’]$/g, '').trim();
+    // Guard: anything still sharing a long run of words with the original is dropped.
+    const w = text.split(/\s+/), o = ` ${out} `;
+    for (let i = 0; i + 6 <= w.length; i++) if (o.includes(` ${w.slice(i, i + 6).join(' ')} `)) return '';
+    return out.length > 40 ? out : '';
+  } catch (e) { log('ent rewrite failed:', e.message); return ''; }
+}
 async function entResolve(browser, it) {
   const pg = await browser.newPage();
   try {
@@ -1610,6 +1645,7 @@ async function entTick(desk = DESKS.ent) {
       const r = await entResolve(browser, it);
       if (!r.image) { log(`${desk.key}: no photo, skipped:`, it.title); continue; }
       // A question headline means nothing on its own, so it needs a summary to go with it.
+      r.summary = await entRewrite(it.title, r.summary);
       if (/[?？]/.test(it.title) && !r.summary) { log(`${desk.key}: question headline with no summary, skipped:`, it.title); continue; }
       Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
       const card = await entCard(browser, it, path.join(OUT_DIR, `${desk.key}-${st.seen.length}.png`), await channelLogo(browser));
@@ -1640,11 +1676,12 @@ async function entDemo(desk = DESKS.ent, n = 4) {
       if (!ENT_SOURCES.test(it.source) || made.some(m => entSame(m.title, it.title))) continue;
       const r = await entResolve(browser, it);
       if (!r.image) continue;
+      r.orig = r.summary; r.summary = await entRewrite(it.title, r.summary);
       Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
       await entCard(browser, it, path.join(preview, `${desk.key}-demo-${made.length + 1}.png`), logo);
       made.push(it);
     }
-    fs.writeFileSync(path.join(preview, `${desk.key}-demo.json`), JSON.stringify({ total: items.length, made: made.map(m => ({ title: m.title, source: m.source, tag: m.tag, url: m.url, summary: m.summary })) }, null, 2));
+    fs.writeFileSync(path.join(preview, `${desk.key}-demo.json`), JSON.stringify({ total: items.length, made: made.map(m => ({ title: m.title, source: m.source, tag: m.tag, url: m.url, orig: m.orig, summary: m.summary })) }, null, 2));
   } finally {
     await browser.close();
   }

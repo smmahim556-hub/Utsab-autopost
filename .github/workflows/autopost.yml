@@ -75,6 +75,8 @@ jobs:
           SPORTS: ${{ vars.SPORTS || '1' }}
           DEMO_SPORTS: ${{ inputs.demo_sports && '1' || '0' }}
           ENT: ${{ vars.ENT || '1' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BIZ: ${{ vars.BIZ || '1' }}
           TECH: ${{ vars.TECH || '1' }}
           GM: ${{ vars.GM || '1' }}
