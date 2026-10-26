@@ -163,11 +163,11 @@ async function loadPages() {
 let pagesCache;
 const pages = async () => (pagesCache = pagesCache || await loadPages());
 
-async function postToPage(page, cardFile, caption, link) {
+async function postToPage(page, cardFile, caption, link, withCaption = false) {
   const photo = new FormData();
   photo.append('source', new Blob([fs.readFileSync(cardFile)]), path.basename(cardFile));
   // No caption: the card already carries the headline, and the link goes in the first comment.
-  if (process.env.FB_CAPTION === '1') photo.append('caption', caption);
+  if (withCaption || process.env.FB_CAPTION === '1') photo.append('caption', caption);
   photo.append('access_token', page.token);
   const { post_id: postId, id: photoId } = await graph(`${page.id}/photos`, photo);
   const target = postId || `${page.id}_${photoId}`;
@@ -236,14 +236,15 @@ async function postStory(page, storyFile) {
 
 // Posts to every Page not yet done for this link; `done` lists Page ids already posted,
 // so a retry after one Page failed does not post twice on the other.
-async function postToFacebook(cardFile, caption, link, done, browser) {
+// withCaption: post the caption even though FB_CAPTION is off (desk cards carry a summary there).
+async function postToFacebook(cardFile, caption, link, done, browser, withCaption = false) {
   const targets = await pages();
   if (!targets.length) throw new Error('no FB_PAGE_ID / FB_PAGE_TOKEN set');
   let failed = null;
   for (const page of targets) {
     if (done.includes(page.id)) continue;
     try {
-      event(`posted to Page ${page.id}: ${await postToPage(page, cardFile, caption, link)} (${link})`);
+      event(`posted to Page ${page.id}: ${await postToPage(page, cardFile, caption, link, withCaption)} (${link})`);
       done.push(page.id);
     } catch (e) {
       failed = e;
@@ -1610,7 +1611,7 @@ async function entTick(desk = DESKS.ent) {
       Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
       const card = await entCard(browser, it, path.join(OUT_DIR, `${desk.key}-${st.seen.length}.png`), await channelLogo(browser));
       const done = st.pages[it.id] = st.pages[it.id] || [];
-      try { await postToFacebook(card, it.summary ? `${it.title}\n\n${it.summary}` : '', '', done, browser); st.titles.push(it.title); delete st.pages[it.id]; posted = true; }
+      try { await postToFacebook(card, it.summary ? `${it.title}\n\n${it.summary}` : '', '', done, browser, !!it.summary); st.titles.push(it.title); delete st.pages[it.id]; posted = true; }
       catch (e) { event(`${desk.key} FAILED: ${e.message}`); }
       finally { st.lastAt = Date.now(); }
       break;
