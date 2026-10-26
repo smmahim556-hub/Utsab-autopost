@@ -1,4 +1,23 @@
 {
-  "total": 12,
-  "made": []
+  "total": 277,
+  "made": [
+    {
+      "title": "এলভিস প্রিসলির গান চুরির অভিযোগে এআই কোম্পানির বিরুদ্ধে মামলা",
+      "source": "Ajker Patrika",
+      "tag": "এআই",
+      "url": "https://www.ajkerpatrika.com/entertainment/music/ajpsrehfnj171"
+    },
+    {
+      "title": "ঢাকায় ৫ নভেম্বর এআই বিজনেস সামিট, অংশ নেবে শতাধিক স্টার্টআপ",
+      "source": "প্রথম আলো",
+      "tag": "এআই",
+      "url": "https://www.prothomalo.com/bangladesh/capital/0ob27w3rg9"
+    },
+    {
+      "title": "লেজার খাতা থেকে এআই: পূবালী ব্যাংকের রূপান্তরের গল্প",
+      "source": "bdnews24.com",
+      "tag": "এআই",
+      "url": "https://bangla.bdnews24.com/business/uuihjecdbh"
+    }
+  ]
 }
