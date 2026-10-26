@@ -1978,7 +1978,7 @@ async function munDemo() {
           state.posted = state.posted || {};
           const done = state.posted[link] = state.posted[link] || [];
           try {
-            await postToFacebook(card, hashtags('সংবাদ', 'বাংলা_সংবাদ'), link, done, browser, true); // hashtags only: the full story is in the first comment
+            await postToFacebook(card, info.title, link, done, browser); // no caption or hashtags: the full story is in the first comment
           } finally {
             saveState(state);
           }
