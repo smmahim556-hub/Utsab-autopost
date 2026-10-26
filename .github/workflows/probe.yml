@@ -1,4 +1,4 @@
-name: Sports feed probe
+name: Feed probe
 on: workflow_dispatch
 permissions:
   contents: write
@@ -10,7 +10,10 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+      - run: npm ci && npx playwright install chromium
       - run: node tools/probe.js
+        env:
+          FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
       - run: |
           git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
-          git add state/*-probe.json && git commit -m "sports probe" && (git push || (git pull --rebase -X theirs origin main && git push))
+          git add state/*-probe.json && git commit -m "feed probe" && (git push || (git pull --rebase -X theirs origin main && git push))

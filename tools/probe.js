@@ -1,33 +1,35 @@
-// One-off: which entertainment feeds answer from the Actions runner. Writes state/ent-probe.json.
+// One-off: can a Facebook Page be read from the Actions runner? Writes state/fb-probe.json.
 const fs = require('fs');
-const feeds = {
-  gnews_bd_ent: 'https://news.google.com/rss/search?q=%E0%A6%AC%E0%A6%BF%E0%A6%A8%E0%A7%8B%E0%A6%A6%E0%A6%A8&hl=bn&gl=BD&ceid=BD:bn',
-  gnews_topic_ent_bn: 'https://news.google.com/rss/headlines/section/topic/ENTERTAINMENT?hl=bn&gl=BD&ceid=BD:bn',
-  gnews_topic_ent_in_bn: 'https://news.google.com/rss/headlines/section/topic/ENTERTAINMENT?hl=bn&gl=IN&ceid=IN:bn',
-  prothomalo: 'https://www.prothomalo.com/feed/entertainment',
-  prothomalo_all: 'https://www.prothomalo.com/feed/',
-  jugantor: 'https://www.jugantor.com/feed/rss.xml',
-  kalerkantho: 'https://www.kalerkantho.com/rss.xml',
-  bdnews24: 'https://bangla.bdnews24.com/?widgetName=rssfeed&widgetId=1151&getXmlFeed=true',
-  samakal: 'https://samakal.com/feed',
-  anandabazar_ent: 'https://www.anandabazar.com/entertainment/rss',
-  banglanews24: 'https://www.banglanews24.com/rss/rss.xml',
-  dhakapost: 'https://www.dhakapost.com/rss/rss.xml',
-  jagonews: 'https://www.jagonews24.com/rss/rss.xml',
-  bbc_bangla: 'https://feeds.bbci.co.uk/bengali/rss.xml',
-};
+const { chromium } = require('playwright');
 (async () => {
   const out = {};
-  for (const [k, u] of Object.entries(feeds)) {
+  const UA = { fb: 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)', ch: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36' };
+  for (const [k, ua] of Object.entries(UA)) {
     try {
-      const r = await fetch(u, { headers: { 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36' } });
+      const r = await fetch('https://www.facebook.com/share/1CVF4We3Ld/', { headers: { 'user-agent': ua }, redirect: 'follow' });
       const t = await r.text();
-      const items = [...t.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 6).map(m => {
-        const g = tag => (m[1].match(new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${tag}>`)) || [])[1];
-        return { title: g('title'), link: g('link'), cat: g('category'), img: (m[1].match(/(?:url|src)="([^"]+\.(?:jpg|jpeg|png|webp)[^"]*)"/i) || [])[1] };
-      });
-      out[k] = { status: r.status, n: (t.match(/<item>/g) || []).length, items, head: items.length ? undefined : t.slice(0, 200) };
+      const m = (p) => (t.match(new RegExp(`<meta[^>]+property="${p}"[^>]+content="([^"]*)"`)) || [])[1];
+      out[k] = { status: r.status, url: r.url, title: m('og:title'), desc: m('og:description'), image: m('og:image'), len: t.length, login: /login/i.test(r.url) };
     } catch (e) { out[k] = { error: e.message }; }
   }
-  fs.writeFileSync('state/ent-probe.json', JSON.stringify(out, null, 2));
+  // Graph API: does the token see this Page's posts?
+  try {
+    const target = out.fb?.url || out.ch?.url || '';
+    const slug = (target.match(/facebook\.com\/(?:profile\.php\?id=(\d+)|([^/?#]+))/) || []).slice(1).find(Boolean);
+    out.slug = slug;
+    if (slug && process.env.FB_USER_TOKEN) {
+      const g = await (await fetch(`https://graph.facebook.com/v26.0/${slug}?fields=id,name,posts.limit(3){message,created_time,full_picture,permalink_url}&access_token=${process.env.FB_USER_TOKEN}`)).json();
+      out.graph = g.error ? { error: g.error.message, code: g.error.code } : { id: g.id, name: g.name, posts: g.posts?.data?.map(p => ({ t: p.created_time, m: (p.message || '').slice(0, 120), pic: !!p.full_picture })) };
+    }
+  } catch (e) { out.graphErr = e.message; }
+  // Headless browser, no login
+  try {
+    const b = await chromium.launch(); const pg = await b.newPage({ userAgent: UA.ch });
+    await pg.goto('https://www.facebook.com/share/1CVF4We3Ld/', { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await pg.waitForTimeout(5000);
+    const txt = await pg.evaluate(() => document.body.innerText.slice(0, 1500));
+    out.browser = { url: pg.url(), text: txt };
+    await b.close();
+  } catch (e) { out.browserErr = e.message; }
+  fs.writeFileSync('state/fb-probe.json', JSON.stringify(out, null, 2));
 })();
