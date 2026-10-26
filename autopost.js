@@ -1437,7 +1437,6 @@ async function sportsDemo() {
 // Each story becomes a branded card (the source's photo, the headline, a category tag, the source's name),
 // one per ENT_GAP_MIN minutes between ENT_FROM_HOUR and ENT_TO_HOUR Dhaka time. Near-duplicate headlines
 // (the same story from several papers) are posted once. State: state/ent.json.
-const ENT_FILE = path.join(__dirname, 'state', 'ent.json');
 const ENT_FEEDS = [
   'https://news.google.com/rss/headlines/section/topic/ENTERTAINMENT?hl=bn&gl=BD&ceid=BD:bn',
   'https://news.google.com/rss/headlines/section/topic/ENTERTAINMENT?hl=bn&gl=IN&ceid=IN:bn',
@@ -1454,15 +1453,33 @@ const ENT_TAGS = [
   ['সিনেমা', /সিনেমা|চলচ্চিত্র|ছবির|ট্রেলার|বক্স অফিস/],
 ];
 // Papers whose stories are used (others, mostly small sites, are skipped).
-const ENT_SOURCES = /Prothom Alo|প্রথম আলো|Jugantor|যুগান্তর|Kaler Kantho|কালের কণ্ঠ|Samakal|সমকাল|bdnews24|Jagonews24|জাগো|Dhaka Post|ঢাকা পোস্ট|Channel i|Bangla Tribune|বাংলা ট্রিবিউন|Somoy|সময়|Ittefaq|ইত্তেফাক|Desh Rupantor|দেশ রূপান্তর|Daily Star|Bangladesh Pratidin|বাংলাদেশ প্রতিদিন|banglanews24|বাংলানিউজ|Ajker Patrika|আজকের পত্রিকা|Kalbela|কালবেলা|NTV|RTV|Jamuna|যমুনা|Independent|Ekattor|একাত্তর|DBC|Dhaka Times|ঢাকা টাইমস|Risingbd|রাইজিংবিডি|Manab Zamin|মানবজমিন|Naya Diganta|নয়া দিগন্ত|Inqilab|BBC|বিবিসি|Deutsche Welle|DW|Anandabazar|আনন্দবাজার|ABP Ananda|এবিপি|Sangbad Pratidin|সংবাদ প্রতিদিন|Ei Samay|এই সময়|Hindustan Times|Indian Express|Zee 24|জি ২৪|News18|TV9|Aajkaal|আজকাল|Bartaman|বর্তমান|Kolkata TV|Sangbad|Bangla Hunt/i;
-const entTag = t => (ENT_TAGS.find(([, re]) => re.test(t)) || ['বিনোদন'])[0];
+const ENT_SOURCES = /Prothom Alo|প্রথম আলো|Jugantor|যুগান্তর|Kaler Kantho|কালের কণ্ঠ|Samakal|সমকাল|bdnews24|Jagonews24|জাগো|Dhaka Post|ঢাকা পোস্ট|Channel i|Bangla Tribune|বাংলা ট্রিবিউন|Somoy|সময়|Ittefaq|ইত্তেফাক|Desh Rupantor|দেশ রূপান্তর|Daily Star|Bangladesh Pratidin|বাংলাদেশ প্রতিদিন|banglanews24|বাংলানিউজ|Ajker Patrika|আজকের পত্রিকা|Kalbela|কালবেলা|NTV|RTV|Jamuna|যমুনা|Independent|Ekattor|একাত্তর|DBC|Dhaka Times|ঢাকা টাইমস|Risingbd|রাইজিংবিডি|Manab Zamin|মানবজমিন|Naya Diganta|নয়া দিগন্ত|Inqilab|BBC|বিবিসি|Deutsche Welle|DW|Anandabazar|আনন্দবাজার|ABP Ananda|এবিপি|Sangbad Pratidin|সংবাদ প্রতিদিন|Ei Samay|এই সময়|Hindustan Times|Indian Express|Zee 24|জি ২৪|News18|TV9|Aajkaal|আজকাল|Bartaman|বর্তমান|Kolkata TV|Sangbad|Bangla Hunt|Bonik Barta|বণিক বার্তা|Business Standard|টিবিএস|Arthosuchak|অর্থসূচক|Sharebiz|শেয়ার বিজ|Financial Express|Techshohor|টেকশহর|Kaler Kantho|Bangladesh Post/i;
+const entTag = (t, tags = ENT_TAGS, label = 'বিনোদন') => (tags.find(([, re]) => re.test(t)) || [label])[0];
 // Word sets for spotting the same story from different papers.
 const entWords = t => new Set(t.replace(/[^ঀ-৿A-Za-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 2));
 const entSame = (a, b) => { const A = entWords(a), B = entWords(b); let n = 0; for (const w of A) if (B.has(w)) n++; return n >= 3 && n / Math.min(A.size, B.size) >= 0.5; };
 
-async function entItems() {
+// Money and tech stories leak into the entertainment feeds (mostly the Indian ones); they go to their own desks instead.
+const MONEY_RE = /শেয়ার|শেয়ার|পুঁজিবাজার|ব্যাঙ্ক|ব্যাংক|ব্রোকারেজ|সেনসেক্স|নিফটি|মিউচুয়াল ফান্ড/;
+const TECH_RE = /স্মার্টফোন|মোবাইল ফোন|ফোন আন|ফোন লঞ্চ|ফোনের দাম|নতুন ফোন|দারুণ ফোন|পাওয়ার ব্যাঙ্ক|ব্যাটারি|চার্জে|প্রসেসর|ল্যাপটপ|গ্যাজেট|আইফোন|iPhone|স্যামসাং|Samsung|শাওমি|রিয়েলমি|ওয়ানপ্লাস|মটোরোলা|৫জি|5G/i;
+const GN = q => `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=bn&gl=BD&ceid=BD:bn`;
+// Desks that share this pipeline. Each has its own feeds, label, tags, state file, on/off flag (env) and gap.
+// BIZ=1: Bangladesh business (share market, banks, dollar, prices). TECH=1: technology (phones, AI, internet).
+const DESKS = {
+  ent: { key: 'ent', label: 'বিনোদন', flag: 'ENT', gapDef: 30, feeds: ENT_FEEDS, tags: ENT_TAGS, skip: t => MONEY_RE.test(t) || TECH_RE.test(t) },
+  biz: { key: 'biz', label: 'অর্থনীতি', flag: 'BIZ', gapDef: 60, feeds: ['https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=bn&gl=BD&ceid=BD:bn', GN('শেয়ারবাজার'), GN('ব্যাংক')],
+    tags: [['শেয়ারবাজার', /শেয়ার|শেয়ার|পুঁজিবাজার|ডিএসই|সিএসই|সূচক/], ['ব্যাংক', /ব্যাংক|ব্যাঙ্ক|ঋণ|সুদহার|আমানত/], ['ডলার', /ডলার|রেমিট্যান্স|রিজার্ভ|টাকার মান/],
+      ['বাজার', /দাম|বাজারে|মূল্য|সয়াবিন|চাল|পেঁয়াজ/], ['বাজেট', /বাজেট|রাজস্ব|ভ্যাট|এনবিআর/], ['রপ্তানি', /রপ্তানি|আমদানি|পোশাক খাত|তৈরি পোশাক/]] },
+  tech: { key: 'tech', label: 'প্রযুক্তি', flag: 'TECH', gapDef: 60, feeds: ['https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=bn&gl=BD&ceid=BD:bn',
+    'https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=bn&gl=IN&ceid=IN:bn', GN('প্রযুক্তি')],
+    tags: [['মোবাইল', /ফোন|মোবাইল|আইফোন|iPhone|স্যামসাং|শাওমি/i], ['এআই', /এআই|AI|কৃত্রিম বুদ্ধিমত্তা|চ্যাটজিপিটি|ChatGPT|জেমিনি/], ['ইন্টারনেট', /ইন্টারনেট|ফেসবুক|হোয়াটসঅ্যাপ|ইউটিউব|ইনস্টাগ্রাম|টিকটক|গুগল|অ্যাপ/],
+      ['গ্যাজেট', /ল্যাপটপ|গ্যাজেট|স্মার্টওয়াচ|ঘড়ি|ক্যামেরা|টিভি/], ['মহাকাশ', /নাসা|মহাকাশ|রকেট|স্যাটেলাইট|স্পেসএক্স/]] },
+};
+for (const d of Object.values(DESKS)) d.file = path.join(__dirname, 'state', `${d.key}.json`);
+
+async function entItems(desk = DESKS.ent) {
   const out = [];
-  for (const u of ENT_FEEDS) {
+  for (const u of desk.feeds) {
     let xml = '';
     try { xml = await (await fetch(u, { headers: { 'user-agent': 'Mozilla/5.0' } })).text(); } catch { continue; }
     for (const m of xml.matchAll(/<item>([\s\S]*?)<\/item>/g)) {
@@ -1470,8 +1487,7 @@ async function entItems() {
       const raw = g('title'), source = g('source') || raw.split(' - ').pop();
       const title = raw.replace(/\s+-\s+[^-]+$/, '').replace(/\s*\|\s*[^|]+$/, '').trim(); // drop " - Source" and " | Hindustan Times Bangla"
       if (/live (news )?updates?|লাইভ আপডেট|^[A-Za-z0-9 ,.'’-]+:/i.test(title)) continue; // live blogs and English-prefixed titles
-      if (/শেয়ার|শেয়ারবাজার|ব্যাঙ্ক|ব্যাংক|ব্রোকারেজ|সেনসেক্স|নিফটি|মিউচুয়াল ফান্ড/.test(title)) continue; // money stories that slip into the entertainment feed
-      if (/স্মার্টফোন|মোবাইল ফোন|ফোন আন|ফোন লঞ্চ|ফোনের দাম|নতুন ফোন|দারুণ ফোন|পাওয়ার ব্যাঙ্ক|ব্যাটারি|চার্জে|প্রসেসর|ল্যাপটপ|গ্যাজেট|আইফোন|iPhone|স্যামসাং|Samsung|শাওমি|রিয়েলমি|ওয়ানপ্লাস|মটোরোলা|৫জি|5G/i.test(title)) continue; // phones and gadgets
+      if (desk.skip && desk.skip(title)) continue;
       out.push({ id: g('guid') || g('link'), link: g('link'), title, source, at: Date.parse(g('pubDate')) || 0 });
     }
   }
@@ -1537,7 +1553,7 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
 .ftr{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
   display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800}
 </style>
-<div class="ph"></div>${logoImg}<div class="badge"><span class="a">বিনোদন</span>${it.tag !== 'বিনোদন' ? `<span class="b">${it.tag}</span>` : ''}</div>
+<div class="ph"></div>${logoImg}<div class="badge"><span class="a">${it.label || 'বিনোদন'}</span>${it.tag !== (it.label || 'বিনোদন') ? `<span class="b">${it.tag}</span>` : ''}</div>
 <div class="body"><div class="bar"></div><div class="hl">${it.title.replace(/</g, '&lt;')}</div>
 <div class="meta"><span>${bnDate(dhakaNow())}</span></div></div>
 <div class="ftr">www.utsabtv.com</div>`, { waitUntil: 'networkidle', timeout: 60000 });
@@ -1548,20 +1564,21 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
   return outFile;
 }
 
-async function entTick() {
-  if (process.env.ENT !== '1') return;
+async function entTick(desk = DESKS.ent) {
+  if (process.env[desk.flag] !== '1') return false;
   let st = {};
-  try { st = JSON.parse(fs.readFileSync(ENT_FILE, 'utf8')); } catch {}
+  try { st = JSON.parse(fs.readFileSync(desk.file, 'utf8')); } catch {}
   const first = !st.seen;
   st.seen = st.seen || []; st.titles = st.titles || []; st.lastAt = st.lastAt || 0; st.pages = st.pages || {};
-  const save = () => { st.seen = st.seen.slice(-600); st.titles = st.titles.slice(-150); fs.mkdirSync(path.dirname(ENT_FILE), { recursive: true }); fs.writeFileSync(ENT_FILE, JSON.stringify(st, null, 2)); };
+  const save = () => { st.seen = st.seen.slice(-600); st.titles = st.titles.slice(-150); fs.mkdirSync(path.dirname(desk.file), { recursive: true }); fs.writeFileSync(desk.file, JSON.stringify(st, null, 2)); };
   const h = dhakaNow().getUTCHours();
   if (!first && (h < Number(process.env.ENT_FROM_HOUR || 8) || h >= Number(process.env.ENT_TO_HOUR || 24))) return;
-  if (Date.now() < st.lastAt + Number(process.env.ENT_GAP_MIN || 30) * 60e3) return;
-  const items = await entItems();
-  if (first) { st.seen = items.map(i => i.id); save(); return log(`ent: first run, ${items.length} stories marked seen`); }
+  if (Date.now() < st.lastAt + Number(process.env[`${desk.flag}_GAP_MIN`] || desk.gapDef) * 60e3) return false;
+  const items = await entItems(desk);
+  if (first) { st.seen = items.map(i => i.id); save(); log(`${desk.key}: first run, ${items.length} stories marked seen`); return false; }
   const fresh = items.filter(i => !st.seen.includes(i.id) && Date.now() - i.at < 6 * 3600e3 && ENT_SOURCES.test(i.source));
-  if (!fresh.length) return;
+  if (!fresh.length) return false;
+  let posted = false;
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
   try {
@@ -1569,12 +1586,12 @@ async function entTick() {
       st.seen.push(it.id);
       if (st.titles.some(t => entSame(t, it.title))) continue; // already posted from another paper
       const r = await entResolve(browser, it);
-      if (!r.image) { log('ent: no photo, skipped:', it.title); continue; }
-      Object.assign(it, r, { tag: entTag(it.title) });
-      const card = await entCard(browser, it, path.join(OUT_DIR, `ent-${st.seen.length}.png`), await channelLogo(browser));
+      if (!r.image) { log(`${desk.key}: no photo, skipped:`, it.title); continue; }
+      Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
+      const card = await entCard(browser, it, path.join(OUT_DIR, `${desk.key}-${st.seen.length}.png`), await channelLogo(browser));
       const done = st.pages[it.id] = st.pages[it.id] || [];
-      try { await postToFacebook(card, '', '', done, browser); st.titles.push(it.title); delete st.pages[it.id]; }
-      catch (e) { event(`ent FAILED: ${e.message}`); }
+      try { await postToFacebook(card, '', '', done, browser); st.titles.push(it.title); delete st.pages[it.id]; posted = true; }
+      catch (e) { event(`${desk.key} FAILED: ${e.message}`); }
       finally { st.lastAt = Date.now(); }
       break;
     }
@@ -1582,11 +1599,12 @@ async function entTick() {
     save();
     await browser.close();
   }
+  return posted;
 }
 
 // DEMO_ENT=1: cards for the 4 newest different stories into ./preview. Posts nothing.
-async function entDemo() {
-  const items = await entItems();
+async function entDemo(desk = DESKS.ent, n = 4) {
+  const items = await entItems(desk);
   const preview = path.join(__dirname, 'preview');
   fs.mkdirSync(preview, { recursive: true });
   const browser = await chromium.launch();
@@ -1594,15 +1612,15 @@ async function entDemo() {
   try {
     const logo = await channelLogo(browser);
     for (const it of items) {
-      if (made.length >= 4) break;
+      if (made.length >= n) break;
       if (!ENT_SOURCES.test(it.source) || made.some(m => entSame(m.title, it.title))) continue;
       const r = await entResolve(browser, it);
       if (!r.image) continue;
-      Object.assign(it, r, { tag: entTag(it.title) });
-      await entCard(browser, it, path.join(preview, `ent-demo-${made.length + 1}.png`), logo);
+      Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
+      await entCard(browser, it, path.join(preview, `${desk.key}-demo-${made.length + 1}.png`), logo);
       made.push(it);
     }
-    fs.writeFileSync(path.join(preview, 'ent-demo.json'), JSON.stringify({ total: items.length, made: made.map(m => ({ title: m.title, source: m.source, tag: m.tag, url: m.url })) }, null, 2));
+    fs.writeFileSync(path.join(preview, `${desk.key}-demo.json`), JSON.stringify({ total: items.length, made: made.map(m => ({ title: m.title, source: m.source, tag: m.tag, url: m.url })) }, null, 2));
   } finally {
     await browser.close();
   }
@@ -1828,7 +1846,7 @@ async function munDemo() {
   if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun().catch(e => { event(`reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_PRAYER === '1') return prayerDemo();
   if (process.env.DEMO_SPORTS === '1') return sportsDemo();
-  if (process.env.DEMO_ENT === '1') return entDemo();
+  if (process.env.DEMO_ENT === '1') { for (const d of Object.values(DESKS)) await entDemo(d, d.key === 'ent' ? 4 : 3).catch(e => log(`${d.key} demo: ${e.message}`)); return; }
   if (process.env.DEMO_MUN === '1') return munDemo();
   if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();
@@ -1837,7 +1855,8 @@ async function munDemo() {
   await prayerTick().catch(e => event(`prayer FAILED: ${e.message}`));
   await gmTick().catch(e => event(`good morning FAILED: ${e.message}`));
   await sportsTick().catch(e => event(`sports FAILED: ${e.message}`));
-  await entTick().catch(e => event(`ent FAILED: ${e.message}`));
+  // One desk card per run at most, so entertainment, business and tech never land together.
+  for (const d of Object.values(DESKS)) if (await entTick(d).catch(e => event(`${d.key} FAILED: ${e.message}`))) break;
   await munTick().catch(e => event(`missing FAILED: ${e.message}`));
   const links = await homepageLinks();
   log(`homepage: ${links.length} candidate links`);
