@@ -77,7 +77,7 @@ jobs:
           ENT: ${{ vars.ENT || '1' }}
           GM: ${{ vars.GM || '1' }}
           MUN: ${{ vars.MUN || '1' }}
-          MUN_FOUND: ${{ vars.MUN_FOUND || '0' }}
+          MUN_FOUND: ${{ vars.MUN_FOUND || '1' }}
           DEMO_MUN: ${{ inputs.demo_mun && '1' || '0' }}
           DEMO_ENT: ${{ inputs.demo_ent && '1' || '0' }}
           DEMO_RATIO: ${{ inputs.demo_ratio }}
