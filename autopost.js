@@ -1506,7 +1506,10 @@ function entSummary(title, desc, paras) {
   if (text.length < 80 || plain(text) === plain(title) || plain(title).includes(plain(text))) text = '';
   for (const p of paras) { if (text.length >= 200) break; if (!text.includes(p.slice(0, 40))) text = (text ? text + ' ' : '') + p; }
   if (text.length > max) { const cut = text.slice(0, max); const end = Math.max(cut.lastIndexOf('।'), cut.lastIndexOf('?'), cut.lastIndexOf('!'), cut.lastIndexOf('. ')); text = end > 120 ? cut.slice(0, end + 1) : cut.replace(/\s+\S*$/, '') + '…'; }
-  return text.trim();
+  text = text.replace(/\s*ছবি\s*:\s*\S+\s*/g, ' ').replace(/\s+/g, ' ').trim(); // photo credits ("ছবি: পিএমও")
+  // Papers often clip their description mid-sentence; end on the last full sentence instead.
+  if (!/[।?!.…'’"]$/.test(text)) { const end = Math.max(text.lastIndexOf('।'), text.lastIndexOf('?'), text.lastIndexOf('!')); text = end > 80 ? text.slice(0, end + 1) : text ? text + '…' : ''; }
+  return text;
 }
 async function entResolve(browser, it) {
   const pg = await browser.newPage();
