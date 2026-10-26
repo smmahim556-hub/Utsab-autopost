@@ -28,11 +28,15 @@ on:
         description: 'Make demo entertainment cards (posts nothing)'
         type: boolean
         default: false
+      demo_mun:
+        description: 'Make demo missing-child cards (posts nothing)'
+        type: boolean
+        default: false
       demo_ratio:
         description: 'Demo card size: 4:5, 1:1, 16:9, 9:16 or story'
         type: string
         default: '9:16'
-concurrency: ${{ (inputs.demo_weather || inputs.demo_link || inputs.demo_prayer || inputs.demo_sports || inputs.demo_ent) && 'autopost-demo' || 'autopost' }}   # demos post nothing, so they do not queue behind the news runs
+concurrency: ${{ (inputs.demo_weather || inputs.demo_link || inputs.demo_prayer || inputs.demo_sports || inputs.demo_ent || inputs.demo_mun) && 'autopost-demo' || 'autopost' }}   # demos post nothing, so they do not queue behind the news runs
 permissions:
   contents: write
   actions: write   # to start the nightly reel workflow
@@ -72,13 +76,15 @@ jobs:
           DEMO_SPORTS: ${{ inputs.demo_sports && '1' || '0' }}
           ENT: ${{ vars.ENT || '1' }}
           GM: ${{ vars.GM || '1' }}
+          MUN: ${{ vars.MUN || '0' }}
+          DEMO_MUN: ${{ inputs.demo_mun && '1' || '0' }}
           DEMO_ENT: ${{ inputs.demo_ent && '1' || '0' }}
           DEMO_RATIO: ${{ inputs.demo_ratio }}
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: cards, path: out/, if-no-files-found: ignore, retention-days: 3 }
       - name: Start the nightly reel
-        if: inputs.demo_weather == '' && inputs.demo_link == '' && !inputs.check && !inputs.demo_prayer && !inputs.demo_sports && !inputs.demo_ent
+        if: inputs.demo_weather == '' && inputs.demo_link == '' && !inputs.check && !inputs.demo_prayer && !inputs.demo_sports && !inputs.demo_ent && !inputs.demo_mun
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

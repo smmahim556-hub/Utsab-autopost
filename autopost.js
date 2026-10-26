@@ -1670,6 +1670,102 @@ async function gmTick() {
   } catch (e) { event(`good morning FAILED: ${e.message}`); } finally { await browser.close(); }
 }
 
+// ------------------------------------------------------------------ missing children (MUN Alert)
+// MUN=1: new missing-child reports from MUN Alert (munalert.org, Bangladesh's missing child alert system),
+// only those its team has approved, become a "নিখোঁজ সংবাদ" card on every Page (MUN_GAP_MIN apart).
+// State: state/mun.json ({seen: [report ids], lastAt}).
+const MUN_FILE = path.join(__dirname, 'state', 'mun.json');
+const MUN_SITE = 'https://munalert.org';
+async function munReports() {
+  const r = await fetch(`${MUN_SITE}/api/reports`, { headers: { 'user-agent': 'Mozilla/5.0', accept: 'application/json' } });
+  if (!r.ok) throw new Error(`MUN Alert ${r.status}`);
+  const list = await r.json();
+  return list.filter(x => x.type === 'missing' && x.status === 'active' && x.approved && x.imageUrl)
+    .sort((a, b) => Date.parse(b.reportedAt) - Date.parse(a.reportedAt));
+}
+const munEsc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
+async function munCard(browser, rep, outFile, logo) {
+  const img = await fetch(MUN_SITE + rep.imageUrl, { headers: { 'user-agent': 'Mozilla/5.0' } });
+  if (!img.ok) throw new Error(`photo ${img.status}`);
+  const photo = `data:${img.headers.get('content-type') || 'image/jpeg'};base64,${Buffer.from(await img.arrayBuffer()).toString('base64')}`;
+  const gender = /^f/i.test(rep.gender) ? 'মেয়ে' : /^m/i.test(rep.gender) ? 'ছেলে' : '';
+  const rows = [['বয়স', `${bn(rep.age)} বছর${gender ? ` (${gender})` : ''}`], ['নিখোঁজের সময়', String(rep.date || '').replace(/ এ /, ', ')],
+    ['শেষ দেখা গেছে', rep.lastSeen], ['জেলা', rep.district], ['বিস্তারিত', rep.description || rep.additionalDetails]].filter(([, v]) => v);
+  const logoImg = logo ? `<img class="logo" src="${logo}">` : '';
+  const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+  await pg.setContent(`<!doctype html><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;position:relative;background:#fff6e5}
+.top{position:absolute;left:0;right:0;top:0;height:250px;background:repeating-linear-gradient(135deg,#c8202f 0 40px,#a3141f 40px 80px);border-bottom:10px solid #111}
+.logo{position:absolute;right:40px;top:36px;height:96px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.title{position:absolute;left:40px;top:40px;font-size:120px;font-weight:900;color:#fff;text-shadow:0 6px 0 #111;letter-spacing:2px}
+.sub{position:absolute;left:46px;top:186px;background:#111;color:#ffd54f;padding:2px 22px;border-radius:10px;font-size:36px;font-weight:800}
+.ph{position:absolute;left:50px;top:300px;width:420px;height:520px;border:10px solid #111;border-radius:18px;background:#d9d9d9 center/cover no-repeat;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.name{position:absolute;left:510px;right:40px;top:296px;font-size:${[...rep.name].length > 18 ? 48 : 60}px;font-weight:900;color:#a3141f;line-height:1.2}
+.info{position:absolute;left:510px;right:40px;top:390px;bottom:470px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.info div{display:flex;align-items:center;gap:14px;border-left:8px solid #c8202f;background:#fff;padding:10px 18px;border-radius:0 14px 14px 0;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.info small{flex:none;width:150px;font-size:24px;color:#7a5c00;line-height:1.2}
+.info b{font-size:28px;color:#111;font-weight:800;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ask{position:absolute;left:50px;right:50px;top:880px;text-align:center;font-size:42px;color:#111;font-weight:800;line-height:1.4}
+.ask span{color:#c8202f}
+.call{position:absolute;left:50px;right:50px;top:1035px;height:170px;background:#111;border-radius:30px;border:8px solid #ffd54f;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.call small{font-size:34px;color:#ffd54f;line-height:1.3}.call b{font-size:80px;color:#fff;font-weight:900;letter-spacing:2px;line-height:1.25}
+.ftr{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800;color:#fff}
+</style>
+<div class="top"></div><div class="title">নিখোঁজ সংবাদ</div><div class="sub">সন্ধান চাই</div>${logoImg}
+<div class="ph" style="background-image:url('${photo}')"></div>
+<div class="name">${munEsc(rep.name)}</div>
+<div class="info">${rows.map(([k, v]) => `<div><small>${k}</small><b>${munEsc(v)}</b></div>`).join('')}</div>
+<div class="ask">কেউ সন্ধান পেলে <span>দয়া করে নিচের নম্বরে</span><br>যোগাযোগ করুন</div>
+<div class="call"><small>${munEsc(rep.contactName || 'যোগাযোগ')}</small><b>${bn(String(rep.contactPhone || '১৩২১৯').replace(/^\+88/, ''))}</b></div>
+<div class="ftr">www.utsabtv.com</div>`, { waitUntil: 'networkidle', timeout: 60000 });
+  await pg.evaluate(() => document.fonts.ready);
+  await pg.waitForTimeout(500);
+  await pg.screenshot({ path: outFile });
+  await pg.close();
+  return outFile;
+}
+async function munTick() {
+  if (process.env.MUN !== '1') return;
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(MUN_FILE, 'utf8')); } catch {}
+  const first = !st.seen;
+  st.seen = st.seen || []; st.lastAt = st.lastAt || 0; st.pages = st.pages || {};
+  const save = () => { st.seen = st.seen.slice(-500); fs.mkdirSync(path.dirname(MUN_FILE), { recursive: true }); fs.writeFileSync(MUN_FILE, JSON.stringify(st, null, 2)); };
+  if (Date.now() < st.lastAt + Number(process.env.MUN_GAP_MIN || 10) * 60e3) return;
+  const list = await munReports();
+  // First run: older reports are left out; only those from the last MUN_FIRST_HOURS hours are posted.
+  if (first) { st.seen = list.filter(x => Date.now() - Date.parse(x.reportedAt) > Number(process.env.MUN_FIRST_HOURS || 12) * 3600e3).map(x => x.id); save(); }
+  const rep = list.find(x => !st.seen.includes(x.id) && Date.now() - Date.parse(x.reportedAt) < 3 * 864e5);
+  if (!rep) return;
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const card = await munCard(browser, rep, path.join(OUT_DIR, `mun-${rep.id}.png`), await channelLogo(browser));
+    const done = st.pages[rep.id] = st.pages[rep.id] || [];
+    try { await postToFacebook(card, '', '', done, browser); st.seen.push(rep.id); delete st.pages[rep.id]; } finally { st.lastAt = Date.now(); save(); }
+  } catch (e) {
+    event(`missing card ${rep.id} FAILED: ${e.message}`);
+    st.seen.push(rep.id); save();
+  } finally {
+    await browser.close();
+  }
+}
+// DEMO_MUN=1: cards for the 3 newest approved reports into ./preview. Posts nothing.
+async function munDemo() {
+  const list = await munReports();
+  const preview = path.join(__dirname, 'preview');
+  fs.mkdirSync(preview, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const logo = await channelLogo(browser);
+    for (const [i, rep] of list.slice(0, 3).entries()) await munCard(browser, rep, path.join(preview, `mun-demo-${i + 1}.png`), logo);
+  } finally {
+    await browser.close();
+  }
+}
+
 (async () => {
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'weather')
     return weatherReelRun().catch(e => { event(`weather reel FAILED: ${e.stack || e.message}`); process.exit(1); });
@@ -1679,6 +1775,7 @@ async function gmTick() {
   if (process.env.DEMO_PRAYER === '1') return prayerDemo();
   if (process.env.DEMO_SPORTS === '1') return sportsDemo();
   if (process.env.DEMO_ENT === '1') return entDemo();
+  if (process.env.DEMO_MUN === '1') return munDemo();
   if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();
   if (process.env.CHECK === '1') return checkPages();
@@ -1687,6 +1784,7 @@ async function gmTick() {
   await gmTick().catch(e => event(`good morning FAILED: ${e.message}`));
   await sportsTick().catch(e => event(`sports FAILED: ${e.message}`));
   await entTick().catch(e => event(`ent FAILED: ${e.message}`));
+  await munTick().catch(e => event(`missing FAILED: ${e.message}`));
   const links = await homepageLinks();
   log(`homepage: ${links.length} candidate links`);
   let state = loadState();
