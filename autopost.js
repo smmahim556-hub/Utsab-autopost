@@ -1554,7 +1554,7 @@ async function entRewrite(title, text) {
     out = out.replace(/\s+/g, ' ').replace(/^["“'‘]|["”'’]$/g, '').trim();
     // Guard: anything still sharing a long run of words with the original is dropped.
     const w = text.split(/\s+/), o = ` ${out} `;
-    for (let i = 0; i + 6 <= w.length; i++) if (o.includes(` ${w.slice(i, i + 6).join(' ')} `)) { entRewriteNote = `copied: ${out.slice(0, 200)}`; return ''; }
+    for (let i = 0; i + 8 <= w.length; i++) if (o.includes(` ${w.slice(i, i + 8).join(' ')} `)) { entRewriteNote = `copied: ${out.slice(0, 200)}`; return ''; }
     if (out.length <= 40) entRewriteNote = `short: ${out}`;
     return out.length > 40 ? out : '';
   } catch (e) { entRewriteNote = e.message; log('ent rewrite failed:', e.message); return ''; }
