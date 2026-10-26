@@ -1467,11 +1467,11 @@ const GN = q => `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&h
 // BIZ=1: Bangladesh business (share market, banks, dollar, prices). TECH=1: technology (phones, AI, internet).
 const DESKS = {
   ent: { key: 'ent', label: 'বিনোদন', flag: 'ENT', gapDef: 30, feeds: ENT_FEEDS, tags: ENT_TAGS, skip: t => MONEY_RE.test(t) || TECH_RE.test(t) },
-  biz: { key: 'biz', label: 'অর্থনীতি', flag: 'BIZ', gapDef: 60, feeds: ['https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=bn&gl=BD&ceid=BD:bn', GN('শেয়ারবাজার'), GN('ব্যাংক')],
+  biz: { key: 'biz', label: 'অর্থনীতি', flag: 'BIZ', gapDef: 60, feeds: ['https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=bn&gl=BD&ceid=BD:bn', GN('শেয়ারবাজার')],
     tags: [['শেয়ারবাজার', /শেয়ার|শেয়ার|পুঁজিবাজার|ডিএসই|সিএসই|সূচক/], ['ব্যাংক', /ব্যাংক|ব্যাঙ্ক|ঋণ|সুদহার|আমানত/], ['ডলার', /ডলার|রেমিট্যান্স|রিজার্ভ|টাকার মান/],
       ['বাজার', /দাম|বাজারে|মূল্য|সয়াবিন|চাল|পেঁয়াজ/], ['বাজেট', /বাজেট|রাজস্ব|ভ্যাট|এনবিআর/], ['রপ্তানি', /রপ্তানি|আমদানি|পোশাক খাত|তৈরি পোশাক/]] },
   tech: { key: 'tech', label: 'প্রযুক্তি', flag: 'TECH', gapDef: 60, feeds: ['https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=bn&gl=BD&ceid=BD:bn',
-    'https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=bn&gl=IN&ceid=IN:bn', GN('প্রযুক্তি')],
+    'https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=bn&gl=IN&ceid=IN:bn'],
     tags: [['মোবাইল', /ফোন|মোবাইল|আইফোন|iPhone|স্যামসাং|শাওমি/i], ['এআই', /এআই|AI|কৃত্রিম বুদ্ধিমত্তা|চ্যাটজিপিটি|ChatGPT|জেমিনি/], ['ইন্টারনেট', /ইন্টারনেট|ফেসবুক|হোয়াটসঅ্যাপ|ইউটিউব|ইনস্টাগ্রাম|টিকটক|গুগল|অ্যাপ/],
       ['গ্যাজেট', /ল্যাপটপ|গ্যাজেট|স্মার্টওয়াচ|ঘড়ি|ক্যামেরা|টিভি/], ['মহাকাশ', /নাসা|মহাকাশ|রকেট|স্যাটেলাইট|স্পেসএক্স/]] },
 };
@@ -1485,7 +1485,7 @@ async function entItems(desk = DESKS.ent) {
     for (const m of xml.matchAll(/<item>([\s\S]*?)<\/item>/g)) {
       const g = tag => decodeEntities((m[1].match(new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${tag}>`)) || [])[1] || '');
       const raw = g('title'), source = g('source') || raw.split(' - ').pop();
-      const title = raw.replace(/\s+-\s+[^-]+$/, '').replace(/\s*\|\s*[^|]+$/, '').trim(); // drop " - Source" and " | Hindustan Times Bangla"
+      const title = raw.replace(/\s+-\s+[^-]+$/, '').replace(/\s*\|\s*[^|]+$/, '').replace(/\s+/g, ' ').trim(); // drop " - Source" and " | Hindustan Times Bangla"
       if (/live (news )?updates?|লাইভ আপডেট|^[A-Za-z0-9 ,.'’-]+:/i.test(title)) continue; // live blogs and English-prefixed titles
       if (desk.skip && desk.skip(title)) continue;
       out.push({ id: g('guid') || g('link'), link: g('link'), title, source, at: Date.parse(g('pubDate')) || 0 });
