@@ -1497,6 +1497,16 @@ async function entItems(desk = DESKS.ent) {
   return out.sort((a, b) => b.at - a.at);
 }
 // Opens the Google News link in the browser (it forwards to the paper) and reads the paper's photo.
+// Up to ~2-3 sentences (ENT_SUMMARY_MAX chars), cut at a sentence end. Empty when nothing says more than the headline.
+function entSummary(title, desc, paras) {
+  const max = Number(process.env.ENT_SUMMARY_MAX || 420);
+  const plain = t => t.replace(/[^ঀ-৿A-Za-z0-9]/g, '');
+  let text = desc.trim();
+  if (text.length < 80 || plain(text) === plain(title) || plain(title).includes(plain(text))) text = '';
+  for (const p of paras) { if (text.length >= 200) break; if (!text.includes(p.slice(0, 40))) text = (text ? text + ' ' : '') + p; }
+  if (text.length > max) { const cut = text.slice(0, max); const end = Math.max(cut.lastIndexOf('।'), cut.lastIndexOf('?'), cut.lastIndexOf('!'), cut.lastIndexOf('. ')); text = end > 120 ? cut.slice(0, end + 1) : cut.replace(/\s+\S*$/, '') + '…'; }
+  return text.trim();
+}
 async function entResolve(browser, it) {
   const pg = await browser.newPage();
   try {
@@ -1505,8 +1515,12 @@ async function entResolve(browser, it) {
     await pg.waitForTimeout(1500);
     const html = await pg.content();
     const image = meta(html, 'og:image') || meta(html, 'twitter:image');
-    return { url: pg.url(), image: image && !/logo|default|placeholder/i.test(image) ? new URL(image, pg.url()).href : '' };
-  } catch (e) { log('ent resolve failed:', it.link, e.message); return { url: '', image: '' }; } finally { await pg.close(); }
+    // A short summary for the post caption: the paper's own description, or else its opening paragraphs.
+    const paras = await pg.evaluate(() => [...document.querySelectorAll('article p, main p, .content p, p')]
+      .map(p => p.innerText.replace(/\s+/g, ' ').trim()).filter(t => t.length > 60 && /[ঀ-৿]/.test(t)).slice(0, 3)).catch(() => []);
+    return { url: pg.url(), image: image && !/logo|default|placeholder/i.test(image) ? new URL(image, pg.url()).href : '',
+      summary: entSummary(it.title, decodeEntities(meta(html, 'og:description') || meta(html, 'description') || ''), paras) };
+  } catch (e) { log('ent resolve failed:', it.link, e.message); return { url: '', image: '', summary: '' }; } finally { await pg.close(); }
 }
 // Most Bangladeshi papers stamp a branded strip (logo, "First with the news 24/7", …) along the bottom of their
 // og:image. entCard cuts it off: at a sharp full-width horizontal edge in the bottom 32% when there is one, otherwise
@@ -1591,10 +1605,12 @@ async function entTick(desk = DESKS.ent) {
       if (st.titles.concat(others).some(t => entSame(t, it.title))) continue; // already posted from another paper or desk
       const r = await entResolve(browser, it);
       if (!r.image) { log(`${desk.key}: no photo, skipped:`, it.title); continue; }
+      // A question headline means nothing on its own, so it needs a summary to go with it.
+      if (/[?？]/.test(it.title) && !r.summary) { log(`${desk.key}: question headline with no summary, skipped:`, it.title); continue; }
       Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
       const card = await entCard(browser, it, path.join(OUT_DIR, `${desk.key}-${st.seen.length}.png`), await channelLogo(browser));
       const done = st.pages[it.id] = st.pages[it.id] || [];
-      try { await postToFacebook(card, '', '', done, browser); st.titles.push(it.title); delete st.pages[it.id]; posted = true; }
+      try { await postToFacebook(card, it.summary ? `${it.title}\n\n${it.summary}` : '', '', done, browser); st.titles.push(it.title); delete st.pages[it.id]; posted = true; }
       catch (e) { event(`${desk.key} FAILED: ${e.message}`); }
       finally { st.lastAt = Date.now(); }
       break;
@@ -1624,7 +1640,7 @@ async function entDemo(desk = DESKS.ent, n = 4) {
       await entCard(browser, it, path.join(preview, `${desk.key}-demo-${made.length + 1}.png`), logo);
       made.push(it);
     }
-    fs.writeFileSync(path.join(preview, `${desk.key}-demo.json`), JSON.stringify({ total: items.length, made: made.map(m => ({ title: m.title, source: m.source, tag: m.tag, url: m.url })) }, null, 2));
+    fs.writeFileSync(path.join(preview, `${desk.key}-demo.json`), JSON.stringify({ total: items.length, made: made.map(m => ({ title: m.title, source: m.source, tag: m.tag, url: m.url, summary: m.summary })) }, null, 2));
   } finally {
     await browser.close();
   }
