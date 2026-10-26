@@ -1,5 +1,5 @@
 {
-  "total": 285,
+  "total": 286,
   "made": [
     {
       "title": "আগল ভেঙে বেরিয়ে যেতে চাইছিল ‘পড়ুয়া’ এআইরা! শাস্তি দিতে কী করল ওপেনএআই?",
@@ -8,7 +8,7 @@
       "url": "https://www.sangbadpratidin.in/uncategorized/openai-cuts-training-net-access-after-advanced-ai-models/pid/1399766/",
       "orig": "প্রশিক্ষণের সময় আগল ভেঙে বেরিয়ে যেতে চেয়েছিল ‘পড়ুয়া’ এআইরা। শাস্তিস্বরূপ প্রশিক্ষণের সময় সবচেয়ে উন্নত এআই মডেলগুলোর ইন্টারনেট সংযোগ বিচ্ছিন্ন করে দিয়েছে সেই ওপেন এআই। কারণ, প্রশিক্ষণরত এআইয়ের কার্যকলাপে পরীক্ষামূলক সিস্টেম চলে এসেছিল প্রকাশ্যে! সংস্থার তরফে জানানো হয়েছে, এরপরই তাঁরা একটি ‘অফলাইন জগৎ’ তৈরি করেছে। যা মূলত ইনডেক্স করা ও ক্যাশে রাখা ওয়েব কন্টেন্টের একটি বিশাল ভাণ্ডার।",
       "summary": "",
-      "note": "Gemini: {\"code\":404,\"message\":\"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recom"
+      "note": "The operation was aborted due to timeout"
     },
     {
       "title": "‘প্রযুক্তি ও উদ্ভাবনী নগরী’ গড়তে জাপানের সহযোগিতা চান প্রধানমন্ত্রী",
@@ -17,7 +17,7 @@
       "url": "https://bangla.bdnews24.com/bangladesh/3a4o3u94ad",
       "orig": "প্রধানমন্ত্রী তারেক রহমান সোমবার টোকিওতে জাইকার প্রেসিডেন্ট তানাকা আকিহিকোর সঙ্গে বৈঠক করেন। বাংলাদেশে একটি ‘প্রযুক্তি ও উদ্ভাবনী নগরী’ প্রতিষ্ঠায় জাপানের সহযোগিতা চেয়েছেন প্রধানমন্ত্রী তারেক রহমান।",
       "summary": "",
-      "note": "Gemini: {\"code\":404,\"message\":\"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recom"
+      "note": "Gemini: {\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}"
     },
     {
       "title": "মৃত প্রমাণ করতে ‘এআই’ ব্যবহার, খুনের সাজা থেকে বাঁচতেই কি এমন গল্প ফাঁদলেন যুবক?",
@@ -26,7 +26,7 @@
       "url": "https://eisamay.com/nation/police-arrested-a-man-for-creating-ai-image-to-evade-punishment-on-a-case-at-uttar-pradesh/200558490.cms",
       "orig": "গল্প হলেও সত্য ঘটনা। খুনের সাজা থেকে বাঁচতে নিজেরই মৃত্যু কাহিনী ফাঁদলেন উত্তরপ্রদেশের বাসিন্দা রাজকুমার রাজভর। পুলিশ সূত্রে খবর, এক ব্যক্তিকে গুলি করে হত্যার ম স্থানীয় সূত্রে খবর, ২০১৬ সালে ১৯ ডিসেম্বর মুন্সিপুরা রেললাইনের কাছে যোগেশ সিং নামে বছর ৩৮-এর এক ব্যক্তিকে গুলি করে খুন করে রাজকুমার। এই ঘটনায় নিহতের ভাগ্নে অবিনাশ সিং স্থানীয় থানায় অভিযোগ জানান।",
       "summary": "",
-      "note": "Gemini: {\"code\":404,\"message\":\"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recom"
+      "note": "The operation was aborted due to timeout"
     }
   ]
 }
