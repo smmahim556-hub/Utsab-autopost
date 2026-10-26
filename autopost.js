@@ -1692,7 +1692,7 @@ async function munCard(browser, rep, outFile, logo, found = false) {
   const photo = `data:${img.headers.get('content-type') || 'image/jpeg'};base64,${Buffer.from(await img.arrayBuffer()).toString('base64')}`;
   const gender = /^f/i.test(rep.gender) ? 'মেয়ে' : /^m/i.test(rep.gender) ? 'ছেলে' : '';
   const rows = [['বয়স', `${bn(rep.age)} বছর${gender ? ` (${gender})` : ''}`], [found ? 'নিখোঁজ হয়েছিল' : 'নিখোঁজের সময়', String(rep.date || '').replace(/ এ /, ', ')],
-    ['শেষ দেখা গেছে', rep.lastSeen], ['জেলা', rep.district], ['বিস্তারিত', found ? '' : rep.description || rep.additionalDetails]].filter(([, v]) => v);
+    ['শেষ দেখা গেছে', rep.lastSeen], ['জেলা', String(rep.district || '').replace(/^\w/, c => c.toUpperCase())], ['বিস্তারিত', found ? '' : rep.description || rep.additionalDetails]].filter(([, v]) => v);
   const [c1, c2] = found ? ['#1b8a4b', '#136b39'] : ['#c8202f', '#a3141f'];
   const logoImg = logo ? `<img class="logo" src="${logo}">` : '';
   const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
