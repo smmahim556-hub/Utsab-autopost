@@ -1528,14 +1528,14 @@ async function entRewrite(title, text) {
     let out = '';
     if (process.env.GEMINI_API_KEY) {
       const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${process.env.AI_MODEL || 'gemini-3.8-flash'}:generateContent`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+        method: 'POST', signal: AbortSignal.timeout(60000), headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
         body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.7 } }) });
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(`Gemini: ${JSON.stringify(body.error || body).slice(0, 200)}`);
       out = body.candidates?.[0]?.content?.parts?.map(p => p.text).join('') || '';
     } else if (process.env.ANTHROPIC_API_KEY) {
       const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
+        method: 'POST', signal: AbortSignal.timeout(60000), headers: { 'Content-Type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
         body: JSON.stringify({ model: process.env.AI_MODEL || 'claude-haiku-5-5', max_tokens: 800, messages: [{ role: 'user', content: prompt }] }) });
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(`Claude: ${JSON.stringify(body.error || body).slice(0, 200)}`);
