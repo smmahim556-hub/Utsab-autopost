@@ -75,8 +75,8 @@ jobs:
           SPORTS: ${{ vars.SPORTS || '1' }}
           DEMO_SPORTS: ${{ inputs.demo_sports && '1' || '0' }}
           ENT: ${{ vars.ENT || '1' }}
-          BIZ: ${{ vars.BIZ || '0' }}
-          TECH: ${{ vars.TECH || '0' }}
+          BIZ: ${{ vars.BIZ || '1' }}
+          TECH: ${{ vars.TECH || '1' }}
           GM: ${{ vars.GM || '1' }}
           MUN: ${{ vars.MUN || '1' }}
           MUN_FOUND: ${{ vars.MUN_FOUND || '1' }}
