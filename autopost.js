@@ -1470,6 +1470,7 @@ async function entItems() {
       const raw = g('title'), source = g('source') || raw.split(' - ').pop();
       const title = raw.replace(/\s+-\s+[^-]+$/, '').trim();
       if (/live (news )?updates?|লাইভ আপডেট|^[A-Za-z0-9 ,.'’-]+:/i.test(title)) continue; // live blogs and English-prefixed titles
+      if (/শেয়ার|শেয়ারবাজার|ব্যাঙ্ক|ব্যাংক|ব্রোকারেজ|সেনসেক্স|নিফটি|মিউচুয়াল ফান্ড/.test(title)) continue; // money stories that slip into the entertainment feed
       out.push({ id: g('guid') || g('link'), link: g('link'), title, source, at: Date.parse(g('pubDate')) || 0 });
     }
   }
