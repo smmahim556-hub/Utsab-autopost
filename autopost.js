@@ -1582,12 +1582,13 @@ async function entTick(desk = DESKS.ent) {
   const fresh = items.filter(i => !st.seen.includes(i.id) && Date.now() - i.at < 6 * 3600e3 && ENT_SOURCES.test(i.source));
   if (!fresh.length) return false;
   let posted = false;
+  const others = Object.values(DESKS).filter(d => d !== desk).flatMap(d => { try { return JSON.parse(fs.readFileSync(d.file, 'utf8')).titles || []; } catch { return []; } });
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
   try {
     for (const it of fresh.slice(0, 6)) {
       st.seen.push(it.id);
-      if (st.titles.some(t => entSame(t, it.title))) continue; // already posted from another paper
+      if (st.titles.concat(others).some(t => entSame(t, it.title))) continue; // already posted from another paper or desk
       const r = await entResolve(browser, it);
       if (!r.image) { log(`${desk.key}: no photo, skipped:`, it.title); continue; }
       Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
