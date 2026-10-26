@@ -1468,9 +1468,10 @@ async function entItems() {
     for (const m of xml.matchAll(/<item>([\s\S]*?)<\/item>/g)) {
       const g = tag => decodeEntities((m[1].match(new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${tag}>`)) || [])[1] || '');
       const raw = g('title'), source = g('source') || raw.split(' - ').pop();
-      const title = raw.replace(/\s+-\s+[^-]+$/, '').trim();
+      const title = raw.replace(/\s+-\s+[^-]+$/, '').replace(/\s*\|\s*[^|]+$/, '').trim(); // drop " - Source" and " | Hindustan Times Bangla"
       if (/live (news )?updates?|লাইভ আপডেট|^[A-Za-z0-9 ,.'’-]+:/i.test(title)) continue; // live blogs and English-prefixed titles
       if (/শেয়ার|শেয়ারবাজার|ব্যাঙ্ক|ব্যাংক|ব্রোকারেজ|সেনসেক্স|নিফটি|মিউচুয়াল ফান্ড/.test(title)) continue; // money stories that slip into the entertainment feed
+      if (/স্মার্টফোন|মোবাইল ফোন|ফোন আন|ফোন লঞ্চ|ফোনের দাম|নতুন ফোন|দারুণ ফোন|পাওয়ার ব্যাঙ্ক|ব্যাটারি|চার্জে|প্রসেসর|ল্যাপটপ|গ্যাজেট|আইফোন|iPhone|স্যামসাং|Samsung|শাওমি|রিয়েলমি|ওয়ানপ্লাস|মটোরোলা|৫জি|5G/i.test(title)) continue; // phones and gadgets
       out.push({ id: g('guid') || g('link'), link: g('link'), title, source, at: Date.parse(g('pubDate')) || 0 });
     }
   }
