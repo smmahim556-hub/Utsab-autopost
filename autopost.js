@@ -2211,6 +2211,152 @@ async function breakingReelRun() {
   } finally { await browser.close(); }
 }
 
+// ------------------------------------------------------------------ voiced news reels and daily quiz (demo)
+// Voice reel: AI writes a short Bangla script from one story, a Bangla TTS voice reads it sentence by sentence,
+// each sentence is one 9:16 slide (photo, headline, subtitle) shown for as long as it is read.
+async function newsText(url) {
+  const html = await getText(url);
+  const paras = [...html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(m => decodeEntities(m[1].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim())
+    .filter(p => p.length > 60 && /[ঀ-৿]/.test(p));
+  return { title: meta(html, 'og:title'), image: meta(html, 'og:image'), text: paras.join(' ').slice(0, 2500) };
+}
+async function voiceScript(story) {
+  const out = await aiAsk(`তুমি একটি বাংলাদেশি টিভির সংবাদ পাঠক। নিচের খবর থেকে ফেসবুক রিলের জন্য ছোট একটি পাঠ লেখো।
+নিয়ম: চলিত বাংলায় ৪-৬টি ছোট বাক্য, মোট ৬০-৯০ শব্দ। প্রথম বাক্যেই মূল খবর। শুধু খবরে থাকা তথ্য, নিজের মত নয়।
+কোনো পত্রিকার নাম নয়, ইমোজি বা হ্যাশট্যাগ নয়। সংখ্যা বাংলায় লেখো। প্রতিটি বাক্য আলাদা লাইনে লেখো, আর কিছু নয়।
+
+শিরোনাম: ${story.title}
+খবর: ${story.text}`, 0.4);
+  return out.split(/\n+/).map(s => s.replace(/^[-*•\d.)\s]+/, '').trim()).filter(s => s.length > 8).slice(0, 7);
+}
+// One sentence -> mp3/wav file. engine: 'edge:<voice>' (Microsoft Edge voices via the edge-tts tool) or 'gemini:<voice>'.
+async function speak(text, engine, outBase) {
+  const { execFileSync } = require('child_process');
+  const [kind, voice] = engine.split(':');
+  if (kind === 'edge') {
+    execFileSync('edge-tts', ['--voice', voice, '--rate', '+8%', '--text', text, '--write-media', `${outBase}.mp3`]);
+    return `${outBase}.mp3`;
+  }
+  const models = (process.env.TTS_MODEL || 'gemini-2.5-flash-preview-tts,gemini-2.5-pro-preview-tts').split(',');
+  const errs = [];
+  for (const model of models) {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+      method: 'POST', signal: AbortSignal.timeout(60000), headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+      body: JSON.stringify({ contents: [{ parts: [{ text: `সংবাদ পাঠকের মতো স্পষ্ট ও স্বাভাবিক গতিতে পড়ো: ${text}` }] }],
+        generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } } } }) });
+    const body = await res.json().catch(() => ({}));
+    const b64 = body.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
+    if (b64) {
+      fs.writeFileSync(`${outBase}.pcm`, Buffer.from(b64, 'base64'));
+      execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 's16le', '-ar', '24000', '-ac', '1', '-i', `${outBase}.pcm`, `${outBase}.wav`]);
+      return `${outBase}.wav`;
+    }
+    errs.push(`${model}: ${res.status} ${(body.error?.message || '').slice(0, 100)}`);
+  }
+  throw new Error(`Gemini TTS: ${errs.join(' | ')}`);
+}
+const audioSecs = f => Number(require('child_process').execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f]).toString()) || 3;
+async function voiceSlide(browser, story, line, i, n, outFile, logo) {
+  return shot(browser, `<style>${BRAND_CSS}
+body{width:1080px;height:1920px;background:#0b2a17}
+.hdr{height:230px}
+.ph{position:absolute;left:0;right:0;top:230px;height:820px;background:#222 center/cover no-repeat;background-image:url('${esc(story.image)}')}
+.ph:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,#0b5e2a 100%)}
+.hl{position:absolute;left:50px;right:50px;top:1010px;color:#fff;font-size:56px;font-weight:900;line-height:1.35;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bg2{position:absolute;left:0;right:0;top:1050px;bottom:0;background:linear-gradient(180deg,#0b5e2a,#063d1b)}
+.sub{position:absolute;left:50px;right:50px;top:1300px;height:400px;display:flex;align-items:center;justify-content:center;text-align:center}
+.sub span{background:#fff;color:#0b2a17;font-size:54px;font-weight:800;line-height:1.5;padding:18px 30px;border-radius:24px;border-left:14px solid #c8202f;
+  box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.bar{position:absolute;left:50px;right:50px;top:1250px;height:12px;border-radius:6px;background:rgba(255,255,255,.2)}
+.bar i{display:block;height:100%;width:${Math.round((i + 1) / n * 100)}%;background:#ffd54f;border-radius:6px}
+.ftr{height:130px;font-size:52px}
+</style>${brandHead(logo, 'সংবাদ', bnDate(dhakaNow()))}<div class="bg2"></div><div class="ph"></div>
+<div class="hl">${esc(story.title)}</div><div class="bar"><i></i></div><div class="sub"><span>${esc(line)}</span></div>
+<div class="ftr">www.utsabtv.com</div>`, outFile, 1080, 1920);
+}
+async function voiceReel(browser, url, engine, outFile, logo) {
+  const story = await newsText(url);
+  const lines = await voiceScript(story);
+  if (lines.length < 3) throw new Error('script too short');
+  const { execFileSync } = require('child_process');
+  const parts = [];
+  for (const [i, line] of lines.entries()) {
+    const audio = await speak(line, engine, `${outFile}-a${i}`);
+    parts.push({ line, audio, sec: audioSecs(audio) + 0.35, slide: await voiceSlide(browser, story, line, i, lines.length, `${outFile}-s${i}.png`, logo) });
+  }
+  // Video: each slide for its sentence; audio: the sentences with a short pause, soft music under them.
+  const ff = args => execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...args]);
+  const list = parts.map(p => `file '${p.slide}'\nduration ${p.sec.toFixed(2)}`).join('\n') + `\nfile '${parts[parts.length - 1].slide}'`;
+  fs.writeFileSync(`${outFile}-v.txt`, list);
+  ff(['-f', 'concat', '-safe', '0', '-i', `${outFile}-v.txt`, '-vf', 'fps=30,format=yuv420p', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '23', `${outFile}-v.mp4`]);
+  const pads = parts.map((p, i) => `[${i}:a]aresample=48000,aformat=channel_layouts=stereo,apad=pad_dur=0.35,atrim=0:${p.sec.toFixed(2)}[p${i}]`);
+  const total = parts.reduce((a, p) => a + p.sec, 0);
+  const m = parts.length;
+  ff([...parts.flatMap(p => ['-i', p.audio]), '-stream_loop', '-1', '-i', process.env.VOICE_MUSIC || path.join(__dirname, 'assets', 'weather-music.mp3'), '-filter_complex',
+    `${pads.join(';')};${parts.map((_, i) => `[p${i}]`).join('')}concat=n=${m}:v=0:a=1[v];[${m}:a]atrim=0:${total},volume=0.12,afade=t=out:st=${total - 1.5}:d=1.5[bg];[v][bg]amix=inputs=2:normalize=0:duration=first[a]`,
+    '-map', '[a]', '-c:a', 'aac', '-b:a', '160k', `${outFile}-a.m4a`]);
+  ff(['-i', `${outFile}-v.mp4`, '-i', `${outFile}-a.m4a`, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'copy', '-shortest', '-movflags', '+faststart', outFile]);
+  return { file: outFile, lines, title: story.title };
+}
+
+// Daily quiz: one general-knowledge question with three options, asked twice to check the answer.
+async function quizMake(topic = 'বাংলাদেশের ইতিহাস, ভূগোল, সংস্কৃতি, খেলা বা বিজ্ঞান') {
+  const ask = async () => JSON.parse((await aiAsk(`সাধারণ জ্ঞানের একটি সহজ কিন্তু মজার প্রশ্ন বানাও, বিষয়: ${topic}।
+নিয়ম: উত্তর নিয়ে কোনো বিতর্ক বা অনিশ্চয়তা থাকবে না, সুপরিচিত ও যাচাইযোগ্য তথ্য। রাজনীতি বা ধর্মীয় বিতর্ক নয়। প্রশ্ন সর্বোচ্চ ৯০ অক্ষর, তিনটি অপশন ছোট।
+শুধু এই JSON দাও: {"q":"প্রশ্ন","options":["ক","খ","গ"],"answer":0,"fact":"উত্তরের পক্ষে এক লাইনের তথ্য"}`, 0.9)).replace(/^[^{]*|[^}]*$/g, ''));
+  for (let t = 0; t < 4; t++) {
+    try {
+      const q = await ask();
+      if (!q.q || q.options?.length !== 3 || !(q.answer >= 0 && q.answer < 3)) continue;
+      // Second opinion: the answer must be picked again without being shown.
+      const check = await aiAsk(`প্রশ্ন: ${q.q}\nঅপশন: ১) ${q.options[0]} ২) ${q.options[1]} ৩) ${q.options[2]}\nসঠিক অপশনের শুধু সংখ্যাটা (1, 2 বা 3) লেখো। নিশ্চিত না হলে 0 লেখো।`, 0);
+      if (Number(toAscii(check.trim()).match(/\d/)?.[0]) === q.answer + 1) return q;
+    } catch (e) { log('quiz:', e.message); }
+  }
+  return null;
+}
+async function quizCard(browser, q, outFile, logo, reveal = false) {
+  const opt = (o, i) => `<div class="op${reveal && i === q.answer ? ' ok' : ''}"><b>${'কখগ'[i]}</b>${esc(o)}</div>`;
+  return shot(browser, `<style>${BRAND_CSS}
+body{background:linear-gradient(160deg,#0b5e2a 0%,#12873d 50%,#0b5e2a 100%)}
+.box{position:absolute;left:60px;right:60px;top:280px;bottom:150px;background:#fff;border-radius:40px;box-shadow:0 30px 70px rgba(0,0,0,.35);
+  border-top:16px solid #ffd54f;padding:50px 50px;display:flex;flex-direction:column;gap:30px}
+.tag{align-self:flex-start;background:#c8202f;color:#fff;font-size:38px;font-weight:800;padding:6px 32px;border-radius:40px}
+.q{font-size:60px;font-weight:900;color:#0b2a17;line-height:1.35}
+.op{display:flex;align-items:center;gap:26px;font-size:48px;font-weight:800;color:#0b2a17;background:#f1f6f2;border-radius:24px;padding:16px 26px;border:4px solid #d6e6da}
+.op b{width:78px;height:78px;flex:none;border-radius:50%;background:#0b5e2a;color:#fff;display:flex;align-items:center;justify-content:center}
+.op.ok{background:#e3f7e8;border-color:#12873d}.op.ok:after{content:'✓';margin-left:auto;color:#12873d;font-size:56px}
+.cta{margin-top:auto;font-size:40px;font-weight:800;color:#c8202f;text-align:center}
+.fact{margin-top:auto;font-size:36px;color:#3d5446;line-height:1.45;border-left:8px solid #12873d;padding-left:20px}
+</style>${brandHead(logo, reveal ? 'কুইজের উত্তর' : 'আজকের কুইজ', bnDate(dhakaNow()))}
+<div class="box"><div class="tag">${reveal ? 'সঠিক উত্তর' : 'প্রশ্ন'}</div><div class="q">${esc(q.q)}</div>${q.options.map(opt).join('')}
+${reveal ? `<div class="fact">${esc(q.fact || '')}</div>` : '<div class="cta">কমেন্টে উত্তর লিখুন: ক, খ নাকি গ? সঠিক উত্তর কাল</div>'}</div>
+<div class="ftr">www.utsabtv.com</div>`, outFile);
+}
+
+async function voiceDemo() {
+  const preview = path.join(__dirname, 'preview');
+  fs.mkdirSync(preview, { recursive: true }); fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  const notes = {};
+  try {
+    const logo = await channelLogo(browser);
+    const q = await quizMake();
+    notes.quiz = q;
+    if (q) { await quizCard(browser, q, path.join(preview, 'quiz-demo.png'), logo); await quizCard(browser, q, path.join(preview, 'quiz-answer-demo.png'), logo, true); }
+    const url = process.env.VOICE_URL || (await latestNews(1))[0].url;
+    notes.url = url;
+    for (const [name, engine] of [['female', 'edge:bn-BD-NabanitaNeural'], ['male', 'edge:bn-BD-PradeepNeural'], ['gemini', 'gemini:Kore']]) {
+      try { const r = await voiceReel(browser, url, engine, path.join(OUT_DIR, `voice-${name}.mp4`), logo); fs.copyFileSync(r.file, path.join(preview, `voice-reel-${name}.mp4`)); notes[name] = r.lines; }
+      catch (e) { notes[name] = `FAILED ${e.message}`; }
+    }
+  } finally {
+    fs.writeFileSync(path.join(preview, 'voice-demo.json'), JSON.stringify(notes, null, 2));
+    await browser.close();
+  }
+}
+
 async function extrasDemo() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const preview = path.join(__dirname, 'preview');
@@ -2265,6 +2411,7 @@ async function extrasDemo() {
   if (process.env.DEMO_ENT === '1') { for (const d of Object.values(DESKS)) await entDemo(d, d.key === 'ent' ? 4 : 3).catch(e => log(`${d.key} demo: ${e.message}`)); return; }
   if (process.env.DEMO_MUN === '1') return munDemo();
   if (process.env.DEMO_EXTRAS === '1') return extrasDemo();
+  if (process.env.DEMO_VOICE === '1') return voiceDemo();
   if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();
   if (process.env.CHECK === '1') return checkPages();
