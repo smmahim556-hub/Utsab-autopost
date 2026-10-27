@@ -21,4 +21,4 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       - run: |
           git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
-          git add state/*-probe.json && git commit -m "feed probe" && (git push || (git pull --rebase -X theirs origin main && git push))
+          git add -A preview state/*-probe.json && git commit -m "feed probe" && (git push || (git pull --rebase -X theirs origin main && git push))
