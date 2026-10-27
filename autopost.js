@@ -2413,6 +2413,19 @@ async function extrasDemo() {
   if (process.env.DEMO_MUN === '1') return munDemo();
   if (process.env.DEMO_EXTRAS === '1') return extrasDemo();
   if (process.env.DEMO_VOICE === '1') return voiceDemo();
+  if (process.env.CLONE_DEMO) {
+    // Voice clone demo: lines already spoken into CLONE_DEMO.dir; the reel is encrypted for the public repo (tools/voice-clone-demo.js).
+    const { dir, lines } = JSON.parse(process.env.CLONE_DEMO), b = await chromium.launch();
+    try {
+      fs.mkdirSync(OUT_DIR, { recursive: true });
+      const r = await voiceReel(b, process.env.VOICE_URL, `dir:${dir}`, path.join(OUT_DIR, 'clone.mp4'), await channelLogo(b), lines);
+      // Encrypted for the requester only (random key wrapped with tools/assets/vc-local-pub.pem); the repo is public.
+      const { execSync } = require('child_process'), k = path.join(OUT_DIR, 'clone.k');
+      execSync(`openssl rand -hex 32 > ${k} && openssl enc -aes-256-cbc -pbkdf2 -salt -in ${r.file} -out preview/clone-demo.enc -pass file:${k}`
+        + ` && openssl pkeyutl -encrypt -pubin -inkey tools/assets/vc-local-pub.pem -pkeyopt rsa_padding_mode:oaep -in ${k} -out preview/clone-demo.key`);
+    } finally { await b.close(); }
+    return;
+  }
   if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();
   if (process.env.CHECK === '1') return checkPages();
