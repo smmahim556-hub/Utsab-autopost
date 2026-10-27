@@ -566,11 +566,11 @@ body:before{content:'';position:absolute;inset:0;opacity:.08;background-image:
   radial-gradient(circle at 25px 25px,#fff 2px,transparent 3px),linear-gradient(45deg,transparent 46%,#fff 47%,#fff 53%,transparent 54%);
   background-size:50px 50px,100px 100px}
 .hdr{position:relative;display:flex;align-items:center;gap:26px;padding:50px 56px 0}
-.logo{height:104px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.logo{order:9;height:100px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
 .logo.txt{display:flex;align-items:center;padding:0 22px;font-size:48px;font-weight:800;color:#c8202f}
 .ht{flex:1}.h1{font-size:64px;font-weight:800;line-height:1.1}.h2{font-size:34px;font-weight:700;color:#c8f7d4;margin-top:6px}
 .moon{width:110px;height:110px}
-.ftr{position:absolute;left:0;right:0;bottom:0;height:110px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
+.ftr{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
   display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:800}`;
 const MOON_SVG = `<svg class="moon" viewBox="0 0 100 100"><path d="M62 10a40 40 0 1 0 28 62a32 32 0 1 1-28-62z" fill="#ffd54f"/>
   <path d="M74 22l3 9h9l-7 6 3 9-8-6-8 6 3-9-7-6h9z" fill="#ffd54f"/></svg>`;
@@ -1284,7 +1284,7 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
 .bg:after{content:'';position:absolute;inset:0;opacity:.09;background:repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 108px),
   radial-gradient(circle at 50% 50%,transparent 0 180px,#fff 181px 184px,transparent 185px)}
 .hdr{position:relative;display:flex;align-items:center;gap:24px;padding:44px 50px 0}
-.logo{height:100px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.logo{order:9;height:100px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
 .logo.txt{display:flex;align-items:center;padding:0 22px;font-size:46px;font-weight:800;color:#c8202f}
 .ht{flex:1}.h1{font-size:60px;font-weight:800;line-height:1.1}.h2{font-size:32px;font-weight:700;color:#c8f7d4;margin-top:4px}
 .tag{background:#c8202f;border:4px solid #ffd54f;border-radius:50px;padding:4px 26px;font-size:36px;font-weight:800}
@@ -1759,7 +1759,7 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
 .row{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:3px dashed #cfe3d5}
 .row:last-child{border-bottom:0}
 .row small{font-size:38px;color:#557a62;font-weight:700}.row b{font-size:54px;font-weight:900;color:#0b5e2a}.row b.r{color:#c8202f}
-.ftr{position:absolute;left:0;right:0;bottom:0;height:110px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
+.ftr{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
   display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:800;z-index:3}
 </style>
 <div class="rays"></div><div class="sun"></div><div class="hill h1"></div><div class="hill h2"></div>
@@ -1941,10 +1941,10 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
   background:#f3f5f2;background-image:repeating-linear-gradient(135deg,rgba(18,135,61,.05) 0 26px,transparent 26px 52px)}
 .hdr{position:absolute;left:0;right:0;top:0;height:220px;background:linear-gradient(135deg,#12873d,#0b5e2a);border-bottom:10px solid #c8202f;
   display:flex;align-items:center;gap:28px;padding:0 48px;color:#fff}
-.hdr .logo{height:110px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.hdr .logo{order:9;height:100px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25)}
 .hdr .logo.txt{display:flex;align-items:center;padding:0 22px;font-size:46px;font-weight:800;color:#c8202f}
 .hdr .t{flex:1}.hdr .t b{display:block;font-size:68px;font-weight:900;line-height:1.15}.hdr .t span{font-size:36px;opacity:.92}
-.ftr{position:absolute;left:0;right:0;bottom:0;height:96px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #12873d;
+.ftr{position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;
   display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;font-weight:800}`;
 const brandHead = (logo, title, sub) => `<div class="hdr">${logo ? `<img class="logo" src="${logo}">` : '<div class="logo txt">উৎসব TV</div>'}
 <div class="t"><b>${title}</b><span>${sub}</span></div></div>`;
@@ -2127,7 +2127,7 @@ async function marketCard(browser, m, outFile, logo) {
 .p{font-size:42px;font-weight:900;color:#931624;line-height:1.2}.p small{font-size:26px;color:#5b6b60;font-weight:700}
 i{position:absolute;right:14px;top:10px;font-style:normal;font-size:22px;font-weight:800;padding:2px 12px;border-radius:20px}
 .up{color:#fff;background:#c8202f}.dn{color:#fff;background:#12873d}.eq{color:#7b8a80;background:#eef2ef}
-.src{position:absolute;left:0;right:0;bottom:106px;text-align:center;font-size:26px;color:#4d5f53}
+.src{position:absolute;left:0;right:0;bottom:110px;text-align:center;font-size:26px;color:#4d5f53}
 </style>${brandHead(logo, 'আজকের বাজারদর', `${BN_DAYS[day.getUTCDay()]}, ${bnDate(day)} · ঢাকা`)}
 <div class="grid">${tiles}</div>
 <div class="src">খুচরা দাম · তথ্য: টিসিবি · চিহ্ন গত সপ্তাহের তুলনায়</div><div class="ftr">www.utsabtv.com</div>`, outFile);
@@ -2257,6 +2257,7 @@ async function extrasDemo() {
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'breaking')
     return breakingReelRun().catch(e => { event(`breaking reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun().catch(e => { event(`reel FAILED: ${e.stack || e.message}`); process.exit(1); });
+  if (process.env.DEMO_GM === '1') { const b = await chromium.launch(); try { fs.mkdirSync(path.join(__dirname, 'preview'), { recursive: true }); await goodMorningCard(b, path.join(__dirname, 'preview', 'gm-demo.png'), await channelLogo(b)); } finally { await b.close(); } return; }
   if (process.env.DEMO_PRAYER === '1') return prayerDemo();
   if (process.env.DEMO_SPORTS === '1') return sportsDemo();
   if (process.env.DEMO_ENT === '1') { for (const d of Object.values(DESKS)) await entDemo(d, d.key === 'ent' ? 4 : 3).catch(e => log(`${d.key} demo: ${e.message}`)); return; }
