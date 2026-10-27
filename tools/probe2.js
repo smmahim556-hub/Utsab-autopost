@@ -10,11 +10,9 @@ const { chromium } = require('playwright');
   pg.on('response', async r => { const u = r.url(); if (/rmp|price|bazar|ajax|api/i.test(u) && !/office/.test(u)) { try { out.api.push({ u, s: r.status(), ct: r.headers()['content-type'], b: (await r.text()).slice(0, 1500) }); } catch {} } });
   try {
     await pg.goto('https://tcb.gov.bd/pages/daily-rmps', { timeout: 60000, waitUntil: 'networkidle' });
-    out.rowHtml = (await pg.evaluate(() => document.querySelector('table tbody tr')?.outerHTML || '')).slice(0, 3000);
-    const view = pg.locator('table tbody tr').first().locator('a', { hasText: 'দেখুন' }).first();
-    out.viewHref = await view.getAttribute('href').catch(() => null);
-    await Promise.all([pg.waitForLoadState('networkidle').catch(() => {}), view.click()]);
-    await pg.waitForTimeout(4000);
+    out.links = await pg.evaluate(() => [...document.querySelectorAll('a')].filter(a => /দেখুন/.test(a.textContent) && /rmp|view|details|show/i.test(a.href)).map(a => a.href).slice(0, 5));
+    await pg.goto(out.links[0], { timeout: 60000, waitUntil: 'networkidle' });
+    await pg.waitForTimeout(3000);
     out.detailUrl = pg.url();
     out.detailText = (await pg.evaluate(() => document.querySelector('main, #content, .content, body').innerText)).slice(-3000);
     out.files = await pg.evaluate(() => [...document.querySelectorAll('a[href], iframe[src], embed[src], object[data]')].map(a => a.href || a.src || a.data).filter(h => /\.(pdf|xlsx?|docx?|jpe?g|png)(\?|$)|files|upload|storage/i.test(h)).slice(0, 10));
