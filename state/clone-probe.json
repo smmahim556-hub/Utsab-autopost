@@ -1,0 +1,6 @@
+{
+  "key": true,
+  "decrypted": true,
+  "transcript": true,
+  "error": "Command failed: python3 tools/clone_tts.py /tmp/vc/ref.wav \"$(cat /tmp/vc/reftext.txt)\" /tmp/vc/lines.json /tmp/vc/out"
+}
