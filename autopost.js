@@ -25,8 +25,8 @@ const CARD_SITE = process.env.CARD_SITE || 'https://card.utsabtv.com/';
 const STATE_FILE = path.join(__dirname, 'state', 'seen.json');
 const OUT_DIR = path.join(__dirname, 'out');
 const DRY_RUN = process.env.DRY_RUN !== '0';
-// FRAME=1: shared brand frame (logo top-right, same footer on every card); demo only until approved.
-const FRAME = process.env.FRAME === '1';
+// Shared brand frame (logo top-right, same footer on every card), approved 2026-10-27; FRAME=0 brings back the old look.
+const FRAME = process.env.FRAME !== '0';
 const MAX_PER_RUN = Number(process.env.MAX_PER_RUN || 3);
 const GRAPH = `https://graph.facebook.com/${process.env.GRAPH_VERSION || 'v26.0'}`;
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36';
