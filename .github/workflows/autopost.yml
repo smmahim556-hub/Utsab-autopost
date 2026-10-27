@@ -83,10 +83,10 @@ jobs:
           MUN: ${{ vars.MUN || '1' }}
           MUN_FOUND: ${{ vars.MUN_FOUND || '1' }}
           MUN_DEAD_CARD: ${{ vars.MUN_DEAD_CARD || '1' }}
-          OTD: ${{ vars.OTD || '0' }}
-          MARKET: ${{ vars.MARKET || '0' }}
-          TOP5: ${{ vars.TOP5 || '0' }}
-          POLL: ${{ vars.POLL || '0' }}
+          OTD: ${{ vars.OTD || '1' }}
+          MARKET: ${{ vars.MARKET || '1' }}
+          TOP5: ${{ vars.TOP5 || '1' }}
+          POLL: ${{ vars.POLL || '1' }}
           DEMO_MUN: ${{ inputs.demo_mun && '1' || '0' }}
           DEMO_ENT: ${{ inputs.demo_ent && '1' || '0' }}
           DEMO_RATIO: ${{ inputs.demo_ratio }}
@@ -111,7 +111,7 @@ jobs:
           # Breaking reel: latest news at 13:00 and 17:30 Dhaka, once per slot.
           m=$(( 10#$(TZ=Asia/Dhaka date +%H) * 60 + 10#$(TZ=Asia/Dhaka date +%M) ))
           for slot in 780 1050; do
-            if [ "${{ vars.BREAKING_REEL || '0' }}" = 1 ] && [ $m -ge $slot ] && [ $m -lt $((slot + 60)) ] && ! grep -qx "$d-$slot" state/breaking-dispatch.txt 2>/dev/null; then
+            if [ "${{ vars.BREAKING_REEL || '1' }}" = 1 ] && [ $m -ge $slot ] && [ $m -lt $((slot + 60)) ] && ! grep -qx "$d-$slot" state/breaking-dispatch.txt 2>/dev/null; then
               gh workflow run reel.yml -f demo=false -f kind=breaking && echo "$d-$slot" >> state/breaking-dispatch.txt
             fi
           done
