@@ -1,13 +1,15 @@
 {
-  "football": 42,
-  "cricket": 1,
+  "football": 36,
+  "cricket": 3,
   "cricketList": [
-    "post Pakistan v England | Pakistan ODI Tri-Series | Pakistan ১ উইকেটে জয়ী"
+    "post Afghanistan v Zimbabwe | Zimbabwe দলের United Arab Emirates সফর | Afghanistan ৩৭ রানে জয়ী",
+    "in South Africa v Australia | Australia দলের South Africa সফর | Australia জয়ী",
+    "pre Bangladesh v West Indies | West Indies দলের Bangladesh সফর | Match scheduled to begin at 09:30 local time (03:30 GMT)"
   ],
   "picked": [
     "fb-401879254",
     "fb-401878766",
-    "cr-1550716"
+    "cr-1555120"
   ],
-  "fixtures": 7
+  "fixtures": 8
 }
