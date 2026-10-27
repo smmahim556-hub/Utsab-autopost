@@ -4,7 +4,7 @@ import numpy as np, soundfile as sf
 from transformers import AutoModel
 
 ref, ref_text, lines_file, out_dir = sys.argv[1:5]
-model = AutoModel.from_pretrained("ai4bharat/IndicF5", trust_remote_code=True)
+model = AutoModel.from_pretrained("ai4bharat/IndicF5", trust_remote_code=True, low_cpu_mem_usage=False)
 for i, line in enumerate(json.load(open(lines_file, encoding="utf-8"))):
     audio = np.asarray(model(line, ref_audio_path=ref, ref_text=ref_text))
     if audio.dtype == np.int16:

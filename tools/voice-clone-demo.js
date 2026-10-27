@@ -36,7 +36,7 @@ const done = () => fs.writeFileSync('state/clone-probe.json', JSON.stringify(sta
     fs.writeFileSync(`${W}/reftext.txt`, refText);
     sh('python3 -m pip install -q --break-system-packages torch torchaudio --index-url https://download.pytorch.org/whl/cpu');
     sh('python3 -m pip install -q --break-system-packages git+https://github.com/ai4bharat/IndicF5.git soundfile');
-    sh('python3 -m pip install -q --break-system-packages "pyarrow<18" "datasets<3"'); // IndicF5 pins NumPy 1.x; newer pyarrow/datasets need NumPy 2
+    sh('python3 -m pip install -q --break-system-packages "pyarrow<18" "datasets<3" "transformers<4.50"'); // IndicF5 pins NumPy 1.x (newer pyarrow/datasets need 2); newer transformers load it on the meta device
     try { execSync(`python3 tools/clone_tts.py ${W}/ref.wav "$(cat ${W}/reftext.txt)" ${W}/lines.json ${W}/out 2>&1`, { maxBuffer: 1 << 26 }); }
     catch (e) { status.pyLog = String(e.stdout || '').replace(/\/tmp\/vc\/[^\s]*/g, '').slice(-2500); throw new Error('clone model failed'); }
     status.spoken = fs.readdirSync(`${W}/out`).length;
