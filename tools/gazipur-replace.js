@@ -11,10 +11,12 @@ const OUT = 'state/gazipur-probe.json';
   for (const pid of ['872606492607357', '1276101408920358']) {
     if (prev.find(x => x.page === pid && x.newPost)) { out.push(prev.find(x => x.page === pid)); continue; }
     const t = acc.data.find(p => p.id === pid).access_token;
-    const feed = await (await fetch(`${GRAPH}/${pid}/posts?fields=id,created_time,comments.limit(3){message}&limit=100&access_token=${t}`)).json();
+    const feed = { data: [] };
+    let url = `${GRAPH}/${pid}/published_posts?fields=id,created_time,comments.limit(5).filter(stream){message}&since=2026-10-25T00:00:00&limit=100&access_token=${t}`;
+    for (let i = 0; url && i < 6; i++) { const j = await (await fetch(url)).json(); if (j.error) { feed.error = j.error; break; } feed.data.push(...(j.data || [])); url = j.paging?.next; }
     if (feed.error) { out.push({ page: pid, error: feed.error.message }); continue; }
-    const hits = (feed.data || []).filter(p => (p.comments?.data || []).some(c => (c.message || '').includes(LINK)));
-    const rec = { page: pid, found: hits.map(h => [h.id, h.created_time]) };
+    const hits = (feed.data || []).filter(p => (p.comments?.data || []).some(c => (c.message || '').includes('fire-at-jhut-warehouse-gazipur-four-fire-units')));
+    const rec = { page: pid, scanned: feed.data.length, sample: feed.data.slice(0, 3).map(p => [p.id, p.created_time, (p.comments?.data || []).map(c => c.message).join(' | ')]), found: hits.map(h => [h.id, h.created_time]) };
     if (hits.length === 1) {
       const del = await (await fetch(`${GRAPH}/${hits[0].id}?access_token=${t}`, { method: 'DELETE' })).json();
       rec.deleted = del.success === true; rec.delError = del.error?.message;
