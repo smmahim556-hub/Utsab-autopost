@@ -14,14 +14,10 @@ const { chromium } = require('playwright');
     await pg.goto(out.links[0], { timeout: 60000, waitUntil: 'networkidle' });
     await pg.waitForTimeout(3000);
     out.detailUrl = pg.url();
-    out.detailText = (await pg.evaluate(() => document.querySelector('main, #content, .content, body').innerText)).slice(-3000);
+    
     out.files = await pg.evaluate(() => [...document.querySelectorAll('a[href], iframe[src], embed[src], object[data]')].map(a => a.href || a.src || a.data).filter(h => /\.(pdf|xlsx?|docx?|jpe?g|png)(\?|$)|files|upload|storage/i.test(h)).slice(0, 10));
-    const f = out.files.find(h => /\.pdf/i.test(h));
-    if (f) {
-      fs.writeFileSync('/tmp/tcb.pdf', await (await ctx.request.get(f)).body());
-      execSync('which pdftotext || (sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils)');
-      out.pdfText = execSync('pdftotext -layout /tmp/tcb.pdf -').toString().slice(0, 7000);
-    }
+    const f = out.files.find(h => /\.xlsx?(\?|$)/i.test(h));
+    if (f) fs.writeFileSync('preview/tcb-sample.xlsx', await (await ctx.request.get(f)).body());
   } catch (e) { out.err = e.message.slice(0, 400); }
   await browser.close();
   fs.writeFileSync('state/market-probe.json', JSON.stringify(out, null, 2));
