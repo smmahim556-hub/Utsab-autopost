@@ -2230,9 +2230,10 @@ async function voiceScript(story) {
   return out.split(/\n+/).map(s => s.replace(/^[-*•\d.)\s]+/, '').trim()).filter(s => s.length > 8).slice(0, 7);
 }
 // One sentence -> mp3/wav file. engine: 'edge:<voice>' (Microsoft Edge voices via the edge-tts tool) or 'gemini:<voice>'.
-async function speak(text, engine, outBase) {
+async function speak(text, engine, outBase, i = 0) {
   const { execFileSync } = require('child_process');
   const [kind, voice] = engine.split(':');
+  if (kind === 'dir') return path.join(voice, `${i}.wav`); // already spoken (voice clone demo)
   if (kind === 'edge') {
     execFileSync('edge-tts', ['--voice', voice, '--rate', '+8%', '--text', text, '--write-media', `${outBase}.mp3`]);
     return `${outBase}.mp3`;
@@ -2275,14 +2276,14 @@ body{width:1080px;height:1920px;background:#0b2a17}
 <div class="hl">${esc(story.title)}</div><div class="bar"><i></i></div><div class="sub"><span>${esc(line)}</span></div>
 <div class="ftr">www.utsabtv.com</div>`, outFile, 1080, 1920);
 }
-async function voiceReel(browser, url, engine, outFile, logo) {
+async function voiceReel(browser, url, engine, outFile, logo, given) {
   const story = await newsText(url);
-  const lines = await voiceScript(story);
+  const lines = given || await voiceScript(story);
   if (lines.length < 3) throw new Error('script too short');
   const { execFileSync } = require('child_process');
   const parts = [];
   for (const [i, line] of lines.entries()) {
-    const audio = await speak(line, engine, `${outFile}-a${i}`);
+    const audio = await speak(line, engine, `${outFile}-a${i}`, i);
     parts.push({ line, audio, sec: audioSecs(audio) + 0.35, slide: await voiceSlide(browser, story, line, i, lines.length, `${outFile}-s${i}.png`, logo) });
   }
   // Video: each slide for its sentence; audio: the sentences with a short pause, soft music under them.
