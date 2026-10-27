@@ -23,6 +23,7 @@ jobs:
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      - run: |
+      - if: always()
+        run: |
           git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
           git add -A preview state/*-probe.json && git commit -m "feed probe" && (git push || (git pull --rebase -X theirs origin main && git push))

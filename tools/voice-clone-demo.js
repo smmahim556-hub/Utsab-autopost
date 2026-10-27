@@ -7,14 +7,17 @@ const { execSync } = require('child_process');
 const sh = cmd => execSync(cmd, { stdio: 'inherit' });
 const W = '/tmp/vc', PRIV = path.join(os.homedir(), '.vc-key', 'priv.pem');
 fs.mkdirSync(`${W}/out`, { recursive: true });
-// Hybrid decryption: RSA-wrapped random key, then AES.
-sh(`openssl pkeyutl -decrypt -inkey ${PRIV} -pkeyopt rsa_padding_mode:oaep -in tools/assets/ref-voice.key -out ${W}/k`);
-sh(`openssl enc -d -aes-256-cbc -pbkdf2 -in tools/assets/ref-voice.enc -out ${W}/ref.m4a -pass file:${W}/k`);
-sh(`ffmpeg -y -loglevel error -i ${W}/ref.m4a -ss 2.6 -to 14.0 -ac 1 -ar 24000 ${W}/ref.wav`);
 const status = {};
 const done = () => fs.writeFileSync('state/clone-probe.json', JSON.stringify(status, null, 2));
 (async () => {
   try {
+    sh('which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)');
+    status.key = fs.existsSync(PRIV);
+    // Hybrid decryption: RSA-wrapped random key, then AES.
+    sh(`openssl pkeyutl -decrypt -inkey ${PRIV} -pkeyopt rsa_padding_mode:oaep -in tools/assets/ref-voice.key -out ${W}/k`);
+    sh(`openssl enc -d -aes-256-cbc -pbkdf2 -in tools/assets/ref-voice.enc -out ${W}/ref.m4a -pass file:${W}/k`);
+    sh(`ffmpeg -y -loglevel error -i ${W}/ref.m4a -ss 2.6 -to 14.0 -ac 1 -ar 24000 ${W}/ref.wav`);
+    status.decrypted = true;
     // Exact words of the reference clip, which the model needs alongside the audio.
     let refText = '';
     for (const model of ['gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-3.5-flash']) {
@@ -31,7 +34,6 @@ const done = () => fs.writeFileSync('state/clone-probe.json', JSON.stringify(sta
     const lines = JSON.parse(fs.readFileSync('preview/voice-demo.json', 'utf8')).female;
     fs.writeFileSync(`${W}/lines.json`, JSON.stringify(lines));
     fs.writeFileSync(`${W}/reftext.txt`, refText);
-    sh('which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)');
     sh('python3 -m pip install -q --break-system-packages torch torchaudio --index-url https://download.pytorch.org/whl/cpu');
     sh('python3 -m pip install -q --break-system-packages git+https://github.com/ai4bharat/IndicF5.git soundfile');
     sh(`python3 tools/clone_tts.py ${W}/ref.wav "$(cat ${W}/reftext.txt)" ${W}/lines.json ${W}/out`);
