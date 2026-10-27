@@ -14,7 +14,7 @@ on:
       kind:
         description: 'Which reel: top10 (night), weather (morning) or prayer (before Fajr)'
         type: choice
-        options: [top10, weather, prayer]
+        options: [top10, weather, prayer, breaking]
         default: top10
 concurrency: reel-${{ inputs.kind || 'top10' }}
 permissions:

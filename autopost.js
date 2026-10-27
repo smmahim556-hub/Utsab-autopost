@@ -2033,7 +2033,7 @@ body{background:linear-gradient(160deg,#0b5e2a 0%,#12873d 46%,#c8202f 46.2%,#931
 }
 
 // The newest news of the last hours, newest first, with photo (for the breaking reel).
-async function latestNews(n = 5, hours = 6) {
+async function latestNews(n = 5) {
   const out = [];
   for (const u of (await homepageLinks()).slice(0, 25)) {
     const it = await readInfo(u).catch(() => null);
@@ -2085,7 +2085,7 @@ function xlsxRows(buf) {
   });
 }
 const MARKET_ITEMS = [
-  ['চাল সরু (নাজির/মিনিকেট)', 'চাল (সরু)'], ['চাল (মাঝারী)', 'চাল (মাঝারি)'], ['চাল (মোটা)', 'চাল (মোটা)'], ['আটা সাদা (খোলা)', 'আটা (খোলা)'],
+  ['চাল সরু (নাজির/মিনিকেট)', 'চাল (সরু)'], ['চাল (মোটা)', 'চাল (মোটা)'], ['আটা সাদা (খোলা)', 'আটা (খোলা)'],
   ['সয়াবিন তেল (লুজ)', 'সয়াবিন তেল (খোলা)', 'লিটার'], ['সয়াবিন তেল (বোতল)|১ লিটার', 'সয়াবিন তেল (১ লি. বোতল)', 'বোতল'], ['মশুর ডাল (বড় দানা)', 'মসুর ডাল (মোটা)'],
   ['আলু', 'আলু'], ['পিঁয়াজ (দেশী)', 'পেঁয়াজ (দেশি)'], ['রসুন (দেশী)', 'রসুন (দেশি)'], ['কাঁচামরিচ', 'কাঁচা মরিচ'], ['ডিম (ফার্ম)', 'ডিম (ফার্ম)', 'হালি'],
   ['মুরগী(ব্রয়লার)', 'ব্রয়লার মুরগি'], ['গরু', 'গরুর মাংস'], ['চিনি', 'চিনি'],
@@ -2113,21 +2113,100 @@ async function tcbPrices(browser) {
     return { date: date ? toAscii(date).split('-').reverse().join('-') : '', items };
   } finally { await ctx.close(); }
 }
-async function marketCard(browser, m, outFile, logo, now = dhakaNow()) {
+async function marketCard(browser, m, outFile, logo) {
+  const day = m.date ? new Date(`${m.date}T00:00:00Z`) : dhakaNow();
   const tr = t => t > 0 ? '<i class="up">▲ বেড়েছে</i>' : t < 0 ? '<i class="dn">▼ কমেছে</i>' : '<i class="eq">● স্থির</i>';
-  const rows = m.items.map(x => `<tr><td>${x.label}</td><td class="p">৳${bn(x.lo)}${x.hi !== x.lo ? `–${bn(x.hi)}` : ''}<small>/${x.unit}</small></td><td>${tr(x.trend)}</td></tr>`).join('');
+  const tiles = m.items.map(x => `<div class="tile">${tr(x.trend)}<div class="nm">${x.label}</div>
+<div class="p">৳${bn(x.lo)}${x.hi !== x.lo ? `–${bn(x.hi)}` : ''}<small> / ${x.unit}</small></div></div>`).join('');
   return shot(browser, `<style>${BRAND_CSS}
-table{position:absolute;left:36px;right:36px;top:244px;width:1008px;border-collapse:separate;border-spacing:0 8px}
-th{font-size:30px;color:#fff;background:#0b5e2a;padding:8px 20px;text-align:left}th:first-child{border-radius:14px 0 0 14px}th:last-child{border-radius:0 14px 14px 0}
-td{background:#fff;font-size:36px;padding:9px 20px;color:#0b2a17;box-shadow:0 3px 8px rgba(0,0,0,.06)}
-td:first-child{border-radius:14px 0 0 14px;border-left:10px solid #12873d}tr:nth-child(even) td:first-child{border-left-color:#c8202f}
-td:last-child{border-radius:0 14px 14px 0;width:210px}
-td.p{font-weight:900;color:#931624;white-space:nowrap}td.p small{font-size:26px;color:#5b6b60;font-weight:700}
-i{font-style:normal;font-size:28px;font-weight:800}.up{color:#c8202f}.dn{color:#12873d}.eq{color:#8a9890}
-.src{position:absolute;left:0;right:0;bottom:104px;text-align:center;font-size:24px;color:#5b6b60}
-</style>${brandHead(logo, 'আজকের বাজারদর', `${BN_DAYS[now.getUTCDay()]}, ${bnDate(now)} · ঢাকা`)}
-<table><tr><th>পণ্য</th><th>দাম (খুচরা)</th><th>গত সপ্তাহের তুলনায়</th></tr>${rows}</table>
-<div class="src">তথ্য: টিসিবি, ঢাকার খুচরা বাজার</div><div class="ftr">www.utsabtv.com</div>`, outFile);
+.grid{position:absolute;left:34px;right:34px;top:246px;bottom:150px;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:12px 16px}
+.tile{background:#fff;border-radius:18px;border-left:12px solid #12873d;box-shadow:0 5px 14px rgba(0,0,0,.08);padding:10px 20px;position:relative;
+  display:flex;flex-direction:column;justify-content:center;gap:2px}
+.tile:nth-child(4n+2),.tile:nth-child(4n+3){border-left-color:#c8202f}
+.nm{font-size:33px;color:#0b2a17;line-height:1.25}
+.p{font-size:42px;font-weight:900;color:#931624;line-height:1.2}.p small{font-size:26px;color:#5b6b60;font-weight:700}
+i{position:absolute;right:14px;top:10px;font-style:normal;font-size:22px;font-weight:800;padding:2px 12px;border-radius:20px}
+.up{color:#fff;background:#c8202f}.dn{color:#fff;background:#12873d}.eq{color:#7b8a80;background:#eef2ef}
+.src{position:absolute;left:0;right:0;bottom:106px;text-align:center;font-size:26px;color:#4d5f53}
+</style>${brandHead(logo, 'আজকের বাজারদর', `${BN_DAYS[day.getUTCDay()]}, ${bnDate(day)} · ঢাকা`)}
+<div class="grid">${tiles}</div>
+<div class="src">খুচরা দাম · তথ্য: টিসিবি · চিহ্ন গত সপ্তাহের তুলনায়</div><div class="ftr">www.utsabtv.com</div>`, outFile);
+}
+// One daily card per kind: [env flag, Dhaka minute from, minute to, maker]. State: state/extras.json ({date, done: {kind: [page ids]}, ...}).
+async function extrasTick() {
+  const now = dhakaNow(), today = now.toISOString().slice(0, 10), mins = now.getUTCHours() * 60 + now.getUTCMinutes();
+  const at = (k, h) => Number(process.env[`${k}_HOUR`] || h) * 60;
+  const due = [
+    ['OTD', at('OTD', 9.5), 12 * 60], ['MARKET', at('MARKET', 13), 18 * 60], ['TOP5', at('TOP5', 19), 21 * 60], ['POLL', at('POLL', 20.5), 22 * 60],
+  ].filter(([k, from, to]) => process.env[k] === '1' && mins >= from && mins < to);
+  if (!due.length) return;
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(EXTRAS_FILE, 'utf8')); } catch {}
+  if (st.date !== today) st = { date: today, done: {}, finished: [], usedPoll: st.usedPoll || [] };
+  const save = () => { fs.mkdirSync(path.dirname(EXTRAS_FILE), { recursive: true }); fs.writeFileSync(EXTRAS_FILE, JSON.stringify(st, null, 2)); };
+  const kind = due.map(d => d[0]).find(k => !st.finished.includes(k) && !(k === 'MARKET' && Date.now() < (st.marketCheckedAt || 0) + 15 * 60e3));
+  if (!kind) return;
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  const finish = () => { st.finished.push(kind); save(); };
+  try {
+    const logo = await channelLogo(browser), file = path.join(OUT_DIR, `${kind.toLowerCase()}-${today}.png`);
+    let caption, link = '';
+    if (kind === 'OTD') {
+      const pick = otdPick(await onThisDay(now));
+      if (pick.events.length < 3) return finish();
+      await otdCard(browser, pick, file, logo);
+      caption = `ইতিহাসের এই দিনে, ${bn(now.getUTCDate())} ${BN_MONTHS[now.getUTCMonth()]}:\n${pick.events.map(x => `• ${x.year}: ${x.text}`).join('\n')}${pick.birth ? `\n• জন্ম, ${pick.birth.year}: ${pick.birth.text}` : ''}\n\n${hashtags('ইতিহাসের_এই_দিনে', 'আজকের_দিনে', 'ইতিহাস')}`;
+    } else if (kind === 'MARKET') {
+      st.marketCheckedAt = Date.now(); save();
+      const m = await tcbPrices(browser);
+      if (m.date !== today || m.items.length < 8) return log(`market: TCB list for ${m.date || '?'} (${m.items.length} items), waiting for today's`);
+      await marketCard(browser, m, file, logo);
+      caption = `আজকের বাজারদর (ঢাকার খুচরা বাজার, টিসিবির তথ্য):\n${m.items.map(x => `• ${x.label}: ${bn(x.lo)}${x.hi !== x.lo ? `-${bn(x.hi)}` : ''} টাকা/${x.unit}${x.trend > 0 ? ' (বেড়েছে)' : x.trend < 0 ? ' (কমেছে)' : ''}`).join('\n')}\n\n${hashtags('বাজারদর', 'দ্রব্যমূল্য', 'আজকের_বাজার')}`;
+    } else if (kind === 'TOP5') {
+      const top = await topToday(5);
+      if (top.length < 5) return finish();
+      await top5Card(browser, top, file, logo);
+      caption = `আজকের শীর্ষ ৫ সংবাদ:\n${top.map((x, i) => `${bn(i + 1)}. ${x.title}`).join('\n')}\n\nবিস্তারিত পড়ুন www.utsabtv.com-এ\n\n${hashtags('শীর্ষ_সংবাদ', 'আজকের_খবর')}`;
+    } else if (kind === 'POLL') {
+      let q = '', story = null;
+      for (const s of await topToday(6)) {
+        if (st.usedPoll.includes(s.url)) continue;
+        const info = await articleInfo(s.url).catch(() => ({}));
+        q = await pollQuestion({ title: s.title, description: info.description }).catch(e => (log('poll:', e.message), ''));
+        if (q) { story = s; break; }
+      }
+      if (!q) return finish();
+      await pollCard(browser, q, story, file, logo);
+      st.usedPoll = [...st.usedPoll, story.url].slice(-50);
+      caption = `${q}\n\nআপনার মতামত কমেন্টে লিখুন। খবরটি পড়ুন প্রথম কমেন্টের লিংকে।\n\n${hashtags('পাঠকের_মতামত', 'আপনার_মত')}`;
+      link = story.url;
+    }
+    const done = st.done[kind] = st.done[kind] || [];
+    try { await postToFacebook(file, caption, link, done, browser, true); finish(); } finally { save(); }
+  } catch (e) { event(`${kind.toLowerCase()} FAILED: ${e.message}`); } finally { await browser.close(); }
+}
+
+// Breaking reel (reel.yml, kind=breaking): the latest 5 news as a reel on every Page, at most once per slot.
+async function breakingReelRun() {
+  const demo = process.env.DEMO_REEL === '1';
+  const file = path.join(__dirname, 'state', 'breaking-reel.json'), today = dhakaNow().toISOString().slice(0, 10);
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
+  const items = await latestNews(5);
+  if (!demo && items.every(x => (st.urls || []).includes(x.url))) return log('breaking reel: nothing new since the last one');
+  if (items.length < 3) return log('breaking reel: not enough news');
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const video = await breakingReel(browser, items, path.join(OUT_DIR, `breaking-${today}.mp4`), await channelLogo(browser));
+    if (demo) { fs.mkdirSync(path.join(__dirname, 'preview'), { recursive: true }); return fs.copyFileSync(video, path.join(__dirname, 'preview', 'breaking-reel-demo.mp4')); }
+    const desc = `সর্বশেষ সংবাদ:\n${items.map((x, i) => `${bn(i + 1)}. ${x.title}`).join('\n')}\n\nবিস্তারিত পড়ুন www.utsabtv.com-এ\n\n${hashtags('সর্বশেষ_সংবাদ', 'ব্রেকিং_নিউজ')}`;
+    for (const page of await pages()) {
+      try { event(`breaking reel on Page ${page.id}: ${JSON.stringify(await postReel(page, video, desc))}`); } catch (e) { event(`breaking reel on Page ${page.id} FAILED: ${e.message}`); }
+    }
+    fs.writeFileSync(file, JSON.stringify({ at: new Date().toISOString(), urls: items.map(x => x.url) }, null, 2));
+  } finally { await browser.close(); }
 }
 
 async function extrasDemo() {
@@ -2175,6 +2254,8 @@ async function extrasDemo() {
     return weatherReelRun().catch(e => { event(`weather reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'prayer')
     return prayerReelRun().catch(e => { event(`prayer reel FAILED: ${e.stack || e.message}`); process.exit(1); });
+  if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'breaking')
+    return breakingReelRun().catch(e => { event(`breaking reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun().catch(e => { event(`reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_PRAYER === '1') return prayerDemo();
   if (process.env.DEMO_SPORTS === '1') return sportsDemo();
@@ -2191,6 +2272,7 @@ async function extrasDemo() {
   // One desk card per run at most, so entertainment, business and tech never land together.
   for (const d of Object.values(DESKS)) if (await entTick(d).catch(e => event(`${d.key} FAILED: ${e.message}`))) break;
   await munTick().catch(e => event(`missing FAILED: ${e.message}`));
+  await extrasTick().catch(e => event(`extras FAILED: ${e.message}`));
   const links = await homepageLinks();
   log(`homepage: ${links.length} candidate links`);
   let state = loadState();
