@@ -36,7 +36,8 @@ const done = () => fs.writeFileSync('state/clone-probe.json', JSON.stringify(sta
     fs.writeFileSync(`${W}/reftext.txt`, refText);
     sh('python3 -m pip install -q --break-system-packages torch torchaudio --index-url https://download.pytorch.org/whl/cpu');
     sh('python3 -m pip install -q --break-system-packages git+https://github.com/ai4bharat/IndicF5.git soundfile');
-    sh(`python3 tools/clone_tts.py ${W}/ref.wav "$(cat ${W}/reftext.txt)" ${W}/lines.json ${W}/out`);
+    try { execSync(`python3 tools/clone_tts.py ${W}/ref.wav "$(cat ${W}/reftext.txt)" ${W}/lines.json ${W}/out 2>&1`, { maxBuffer: 1 << 26 }); }
+    catch (e) { status.pyLog = String(e.stdout || '').replace(/\/tmp\/vc\/[^\s]*/g, '').slice(-2500); throw new Error('clone model failed'); }
     status.spoken = fs.readdirSync(`${W}/out`).length;
     process.env.VOICE_URL = 'https://utsabtv.com/proposal-to-raise-soybean-oil-price-by-14-taka-per-litre-before-ramadan';
     process.env.CLONE_DEMO = JSON.stringify({ dir: `${W}/out`, lines });
