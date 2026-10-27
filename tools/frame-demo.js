@@ -2,6 +2,7 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const run = env => { try { execSync('node autopost.js', { stdio: 'inherit', timeout: 6 * 60e3, env: { ...process.env, DRY_RUN: '1', ...env } }); } catch (e) { console.log('demo failed', env, e.message); } };
+process.env.FRAME = '1';
 run({ DEMO_PRAYER: '1' }); run({ DEMO_SPORTS: '1' }); run({ DEMO_ENT: '1' }); run({ DEMO_MUN: '1' }); run({ DEMO_GM: '1' }); run({ DEMO_EXTRAS: '1', DEMO_EXTRAS_REEL: '0' });
 const files = ['ent-demo-1.png', 'biz-demo-1.png', 'sports-demo-1.png', 'sports-demo-fixtures.png', 'prayer-demo-schedule.png', 'prayer-demo-reminder.png',
   'mun-demo-1.png', 'gm-demo.png', 'extra-top5.png', 'extra-market.png', 'extra-otd.png', 'extra-poll.png'].filter(f => fs.existsSync(`preview/${f}`));
