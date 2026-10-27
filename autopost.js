@@ -1970,7 +1970,7 @@ async function onThisDay(now = dhakaNow()) {
   const r = await fetch(`https://bn.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=${encodeURIComponent(page)}`, { headers: { 'User-Agent': UA } });
   const wt = (await r.json()).parse.wikitext['*'];
   const clean = s => s.replace(/<ref[^>]*\/>|<ref[\s\S]*?<\/ref>/g, '').replace(/\{\{[^{}]*\}\}/g, '').replace(/\[\[(?:[^|\]]*\|)?([^\]]*)\]\]/g, '$1')
-    .replace(/'{2,}/g, '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    .replace(/'{2,}/g, '').replace(/<[^>]+>/g, '').replace(/\((?:মৃ|জ)[.ঃ:][^)]*\)/g, '').replace(/\s+/g, ' ').trim();
   const section = name => (wt.split(/^==\s*/m).find(x => x.startsWith(name)) || '').split('\n').filter(l => /^\*\s*\[?\[?[০-৯\d]/.test(l))
     .map(l => { const m = clean(l.replace(/^\*\s*/, '')).match(/^([০-৯\d]+(?:\s*খ্রিস্টপূর্বাব্দ)?)\s*[–—-]\s*(.+)$/); return m && { year: m[1], text: m[2] }; })
     .filter(x => x && x.text.length > 12);
@@ -1978,7 +1978,8 @@ async function onThisDay(now = dhakaNow()) {
 }
 const OTD_LOCAL = /বাংলাদেশ|ঢাকা|চট্টগ্রাম|বাংলা|বঙ্গ|কলকাতা|ভারত|পাকিস্তান|মুক্তিযুদ্ধ|মোগল|মুঘল|ব্রিটিশ|রবীন্দ্র|নজরুল|শেখ মুজিব|সিলেট|রাজশাহী|খুলনা/;
 function otdPick(o, n = 5) {
-  const yr = x => Number(toAscii(x.year)) || 0, short = x => x.text.length <= 130;
+  // Killings and attacks abroad make a grim history card, so they are left out.
+  const yr = x => Number(toAscii(x.year)) || 0, short = x => x.text.length <= 130 && !/নিহত|হত্যা|হামলা|গুলি|বোমা|ধর্ষণ/.test(x.text);
   const local = o.events.filter(x => OTD_LOCAL.test(x.text) && short(x));
   const rest = o.events.filter(x => !local.includes(x) && short(x) && yr(x) >= 1800).sort((a, b) => yr(b) - yr(a));
   const ev = [...local.slice(0, 3), ...rest].slice(0, n - 1).sort((a, b) => yr(a) - yr(b));
