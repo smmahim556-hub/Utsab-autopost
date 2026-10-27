@@ -2053,6 +2053,83 @@ async function breakingReel(browser, items, outFile, logo) {
   return buildVideo(slides, outFile);
 }
 
+// MARKET=1: "আজকের বাজারদর" card from TCB's daily Dhaka retail price workbook (published around 12:30 on work days),
+// posted once it is out for today, from MARKET_HOUR (13) to 18:00.
+// Rows of the first sheet of an .xlsx (a zip of XML files), read with zlib only: [[cell text, ...], ...].
+function xlsxRows(buf) {
+  const zlib = require('zlib');
+  const files = {};
+  let e = buf.length - 22;
+  while (e > 0 && buf.readUInt32LE(e) !== 0x06054b50) e--;
+  let p = buf.readUInt32LE(e + 16);
+  for (let n = buf.readUInt16LE(e + 10); n--;) {
+    const method = buf.readUInt16LE(p + 10), size = buf.readUInt32LE(p + 20), nameLen = buf.readUInt16LE(p + 28);
+    const extra = buf.readUInt16LE(p + 30), comment = buf.readUInt16LE(p + 32), off = buf.readUInt32LE(p + 42);
+    const name = buf.toString('utf8', p + 46, p + 46 + nameLen);
+    const start = off + 30 + buf.readUInt16LE(off + 26) + buf.readUInt16LE(off + 28), data = buf.subarray(start, start + size);
+    files[name] = () => (method ? zlib.inflateRawSync(data) : data).toString('utf8');
+    p += 46 + nameLen + extra + comment;
+  }
+  const unx = s => s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, '&');
+  const shared = files['xl/sharedStrings.xml'] ? [...files['xl/sharedStrings.xml']().matchAll(/<si>([\s\S]*?)<\/si>/g)]
+    .map(m => unx([...m[1].matchAll(/<t[^>]*>([\s\S]*?)<\/t>/g)].map(t => t[1]).join(''))) : [];
+  const sheet = files['xl/worksheets/sheet1.xml']();
+  const col = ref => [...ref.replace(/\d+/g, '')].reduce((a, ch) => a * 26 + ch.charCodeAt(0) - 64, 0) - 1;
+  return [...sheet.matchAll(/<row[^>]*>([\s\S]*?)<\/row>/g)].map(r => {
+    const row = [];
+    for (const c of r[1].matchAll(/<c r="([A-Z]+)\d+"([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g)) {
+      const v = (c[3] || '').match(/<v>([\s\S]*?)<\/v>/)?.[1], is = (c[3] || '').match(/<t[^>]*>([\s\S]*?)<\/t>/)?.[1];
+      row[col(c[1])] = /t="s"/.test(c[2]) ? shared[Number(v)] : unx(v ?? is ?? '');
+    }
+    return Array.from(row, x => (x ?? '').trim());
+  });
+}
+const MARKET_ITEMS = [
+  ['চাল সরু (নাজির/মিনিকেট)', 'চাল (সরু)'], ['চাল (মাঝারী)', 'চাল (মাঝারি)'], ['চাল (মোটা)', 'চাল (মোটা)'], ['আটা সাদা (খোলা)', 'আটা (খোলা)'],
+  ['সয়াবিন তেল (লুজ)', 'সয়াবিন তেল (খোলা)', 'লিটার'], ['সয়াবিন তেল (বোতল)|১ লিটার', 'সয়াবিন তেল (১ লি. বোতল)', 'বোতল'], ['মশুর ডাল (বড় দানা)', 'মসুর ডাল (মোটা)'],
+  ['আলু', 'আলু'], ['পিঁয়াজ (দেশী)', 'পেঁয়াজ (দেশি)'], ['রসুন (দেশী)', 'রসুন (দেশি)'], ['কাঁচামরিচ', 'কাঁচা মরিচ'], ['ডিম (ফার্ম)', 'ডিম (ফার্ম)', 'হালি'],
+  ['মুরগী(ব্রয়লার)', 'ব্রয়লার মুরগি'], ['গরু', 'গরুর মাংস'], ['চিনি', 'চিনি'],
+];
+async function tcbPrices(browser) {
+  const ctx = await browser.newContext({ ignoreHTTPSErrors: true, userAgent: UA });
+  try {
+    const pg = await ctx.newPage();
+    await pg.goto('https://tcb.gov.bd/pages/daily-rmps', { timeout: 90000, waitUntil: 'domcontentloaded' });
+    const detail = await (await pg.waitForSelector('a[href*="daily-rmps/"]', { timeout: 60000 })).evaluate(x => x.href);
+    await pg.goto(detail, { timeout: 90000, waitUntil: 'domcontentloaded' });
+    const file = await (await pg.waitForSelector('a[href*=".xls"]', { timeout: 60000, state: 'attached' })).evaluate(x => x.href);
+    const rows = xlsxRows(Buffer.from(await (await ctx.request.get(file, { timeout: 90000 })).body()));
+    const date = (rows.slice(0, 8).flat().join(' ').match(/তারিখঃ?\s*([০-৯\d]{2}-[০-৯\d]{2}-[০-৯\d]{4})/) || [])[1];
+    const items = [];
+    for (const [key, label, unit] of MARKET_ITEMS) {
+      const [name, size] = key.split('|');
+      // NFD: the sheet mixes precomposed and split forms of letters like য়.
+      const k = t => String(t || '').normalize('NFD').replace(/\s+/g, '');
+      const r = rows.find(x => x[0] && k(x[0]).startsWith(k(name)) && (!size || k(x[1]) === k(size)));
+      if (!r || !Number(r[2])) continue;
+      const now = (+r[2] + +r[3]) / 2, week = (+r[4] + +r[5]) / 2;
+      items.push({ label, unit: unit || (/হালি/.test(r[1]) ? 'হালি' : /লিটার/.test(r[1]) ? 'লিটার' : 'কেজি'), lo: +r[2], hi: +r[3], trend: !week ? 0 : Math.sign(Math.round((now - week) / week * 100)) });
+    }
+    return { date: date ? toAscii(date).split('-').reverse().join('-') : '', items };
+  } finally { await ctx.close(); }
+}
+async function marketCard(browser, m, outFile, logo, now = dhakaNow()) {
+  const tr = t => t > 0 ? '<i class="up">▲ বেড়েছে</i>' : t < 0 ? '<i class="dn">▼ কমেছে</i>' : '<i class="eq">● স্থির</i>';
+  const rows = m.items.map(x => `<tr><td>${x.label}</td><td class="p">৳${bn(x.lo)}${x.hi !== x.lo ? `–${bn(x.hi)}` : ''}<small>/${x.unit}</small></td><td>${tr(x.trend)}</td></tr>`).join('');
+  return shot(browser, `<style>${BRAND_CSS}
+table{position:absolute;left:36px;right:36px;top:244px;width:1008px;border-collapse:separate;border-spacing:0 8px}
+th{font-size:30px;color:#fff;background:#0b5e2a;padding:8px 20px;text-align:left}th:first-child{border-radius:14px 0 0 14px}th:last-child{border-radius:0 14px 14px 0}
+td{background:#fff;font-size:36px;padding:9px 20px;color:#0b2a17;box-shadow:0 3px 8px rgba(0,0,0,.06)}
+td:first-child{border-radius:14px 0 0 14px;border-left:10px solid #12873d}tr:nth-child(even) td:first-child{border-left-color:#c8202f}
+td:last-child{border-radius:0 14px 14px 0;width:210px}
+td.p{font-weight:900;color:#931624;white-space:nowrap}td.p small{font-size:26px;color:#5b6b60;font-weight:700}
+i{font-style:normal;font-size:28px;font-weight:800}.up{color:#c8202f}.dn{color:#12873d}.eq{color:#8a9890}
+.src{position:absolute;left:0;right:0;bottom:104px;text-align:center;font-size:24px;color:#5b6b60}
+</style>${brandHead(logo, 'আজকের বাজারদর', `${BN_DAYS[now.getUTCDay()]}, ${bnDate(now)} · ঢাকা`)}
+<table><tr><th>পণ্য</th><th>দাম (খুচরা)</th><th>গত সপ্তাহের তুলনায়</th></tr>${rows}</table>
+<div class="src">তথ্য: টিসিবি, ঢাকার খুচরা বাজার</div><div class="ftr">www.utsabtv.com</div>`, outFile);
+}
+
 async function extrasDemo() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const preview = path.join(__dirname, 'preview');
@@ -2076,6 +2153,11 @@ async function extrasDemo() {
       notes.poll.push([s.title, q]);
       if (q && !q.startsWith('ERR') && !fs.existsSync(path.join(preview, 'extra-poll.png'))) await pollCard(browser, q, s, path.join(preview, 'extra-poll.png'), logo);
     }
+    try {
+      const m = await tcbPrices(browser);
+      notes.market = m;
+      await marketCard(browser, m, path.join(preview, 'extra-market.png'), logo);
+    } catch (e) { notes.market = e.message; }
     if (process.env.DEMO_EXTRAS_REEL !== '0') {
       const items = await latestNews(5);
       notes.reel = items.map(x => x.title);
