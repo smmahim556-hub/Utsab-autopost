@@ -1513,6 +1513,34 @@ function entSummary(title, desc, paras) {
   if (!/[।?!.…'’"]$/.test(text)) { const end = Math.max(text.lastIndexOf('।'), text.lastIndexOf('?'), text.lastIndexOf('!')); text = end > 80 ? text.slice(0, end + 1) : text ? text + '…' : ''; }
   return text;
 }
+// One prompt to the AI writer (GEMINI_API_KEY, else ANTHROPIC_API_KEY); throws when none answers.
+async function aiAsk(prompt, temperature = 0.7) {
+  let out = '';
+  if (process.env.GEMINI_API_KEY) {
+    // Google's newest models are often overloaded (503) or slow, so the next one is tried on any failure.
+    const errs = [];
+    for (const model of (process.env.AI_MODEL || 'gemini-3.5-flash,gemini-3.1-flash-lite,gemini-3-flash-preview,gemini-3.8-flash').split(',')) {
+      try {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+          method: 'POST', signal: AbortSignal.timeout(30000), headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+          body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature } }) });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(`${res.status} ${body.error?.message || ''}`.slice(0, 120));
+        out = body.candidates?.[0]?.content?.parts?.filter(p => !p.thought).map(p => p.text).join('') || '';
+        if (out) break;
+      } catch (e) { errs.push(`${model}: ${e.message}`); }
+    }
+    if (!out) throw new Error(`Gemini: ${errs.join(' | ')}`);
+  } else if (process.env.ANTHROPIC_API_KEY) {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST', signal: AbortSignal.timeout(60000), headers: { 'Content-Type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({ model: process.env.AI_MODEL || 'claude-haiku-5-5', max_tokens: 800, temperature, messages: [{ role: 'user', content: prompt }] }) });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(`Claude: ${JSON.stringify(body.error || body).slice(0, 200)}`);
+    out = (body.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
+  } else throw new Error('no AI key');
+  return out;
+}
 // Rewrites a paper's summary in our own words (GEMINI_API_KEY, else ANTHROPIC_API_KEY), so no paper's text is copied.
 // Returns '' without a key or on any failure: the post then goes out without a summary.
 let entRewriteNote = '';
@@ -1526,31 +1554,9 @@ async function entRewrite(title, text) {
 
 শিরোনাম: ${title}
 মূল সারাংশ: ${text}`;
+  if (!process.env.GEMINI_API_KEY && !process.env.ANTHROPIC_API_KEY) { entRewriteNote = 'no AI key'; return ''; }
   try {
-    let out = '';
-    if (process.env.GEMINI_API_KEY) {
-      // Google's newest models are often overloaded (503) or slow, so the next one is tried on any failure.
-      const errs = [];
-      for (const model of (process.env.AI_MODEL || 'gemini-3.5-flash,gemini-3.1-flash-lite,gemini-3-flash-preview,gemini-3.8-flash').split(',')) {
-        try {
-          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
-            method: 'POST', signal: AbortSignal.timeout(30000), headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
-            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.7 } }) });
-          const body = await res.json().catch(() => ({}));
-          if (!res.ok) throw new Error(`${res.status} ${body.error?.message || ''}`.slice(0, 120));
-          out = body.candidates?.[0]?.content?.parts?.filter(p => !p.thought).map(p => p.text).join('') || '';
-          if (out) break;
-        } catch (e) { errs.push(`${model}: ${e.message}`); }
-      }
-      if (!out) throw new Error(`Gemini: ${errs.join(' | ')}`);
-    } else if (process.env.ANTHROPIC_API_KEY) {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST', signal: AbortSignal.timeout(60000), headers: { 'Content-Type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-        body: JSON.stringify({ model: process.env.AI_MODEL || 'claude-haiku-5-5', max_tokens: 800, messages: [{ role: 'user', content: prompt }] }) });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(`Claude: ${JSON.stringify(body.error || body).slice(0, 200)}`);
-      out = (body.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
-    } else { entRewriteNote = 'no AI key'; return ''; }
+    let out = await aiAsk(prompt);
     out = out.replace(/\s+/g, ' ').replace(/^["“'‘]|["”'’]$/g, '').trim();
     // Guard: anything still sharing a long run of words with the original is dropped.
     const w = text.split(/\s+/), o = ` ${out} `;
@@ -1912,6 +1918,175 @@ async function munDemo() {
   }
 }
 
+// ------------------------------------------------------------------ extra daily cards
+// TOP5=1: evening top-5 card (TOP5_HOUR, 19:00). OTD=1: "ইতিহাসের এই দিনে" from Bangla Wikipedia (OTD_HOUR, 9:30).
+// POLL=1: a neutral "আপনার মত কী?" question on the day's most-read story (POLL_HOUR, 20:30); readers answer in comments.
+// BREAKING_REEL=1: a short reel of the latest news at BREAKING_REEL_HOURS (13, 17:30). State: state/extras.json.
+const EXTRAS_FILE = path.join(__dirname, 'state', 'extras.json');
+const esc = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+async function shot(browser, html, outFile, w = 1080, h = 1350) {
+  const pg = await browser.newPage({ viewport: { width: w, height: h } });
+  await pg.setContent(`<!doctype html><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
+${html}`, { waitUntil: 'networkidle', timeout: 60000 });
+  await pg.evaluate(() => document.fonts.ready);
+  await pg.waitForTimeout(500);
+  await pg.screenshot({ path: outFile });
+  await pg.close();
+  return outFile;
+}
+// Green header with logo, title and date; red footer with the site. Body goes in between.
+const BRAND_CSS = `*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;position:relative;color:#123;
+  background:#f3f5f2;background-image:repeating-linear-gradient(135deg,rgba(18,135,61,.05) 0 26px,transparent 26px 52px)}
+.hdr{position:absolute;left:0;right:0;top:0;height:220px;background:linear-gradient(135deg,#12873d,#0b5e2a);border-bottom:10px solid #c8202f;
+  display:flex;align-items:center;gap:28px;padding:0 48px;color:#fff}
+.hdr .logo{height:110px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.hdr .logo.txt{display:flex;align-items:center;padding:0 22px;font-size:46px;font-weight:800;color:#c8202f}
+.hdr .t{flex:1}.hdr .t b{display:block;font-size:68px;font-weight:900;line-height:1.15}.hdr .t span{font-size:36px;opacity:.92}
+.ftr{position:absolute;left:0;right:0;bottom:0;height:96px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #12873d;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;font-weight:800}`;
+const brandHead = (logo, title, sub) => `<div class="hdr">${logo ? `<img class="logo" src="${logo}">` : '<div class="logo txt">উৎসব TV</div>'}
+<div class="t"><b>${title}</b><span>${sub}</span></div></div>`;
+
+async function top5Card(browser, items, outFile, logo, now = dhakaNow()) {
+  const rows = items.map((it, i) => `<div class="row"><div class="ph" style="background-image:url('${esc(it.image)}')"><i>${bn(i + 1)}</i></div>
+<div class="hl">${esc(it.title)}</div></div>`).join('');
+  return shot(browser, `<style>${BRAND_CSS}
+.list{position:absolute;left:40px;right:40px;top:250px;bottom:126px;display:flex;flex-direction:column;justify-content:space-between}
+.row{height:178px;background:#fff;border-radius:22px;box-shadow:0 8px 22px rgba(0,0,0,.12);display:flex;align-items:center;gap:26px;padding:14px;border-left:12px solid #12873d}
+.row:nth-child(even){border-left-color:#c8202f}
+.ph{width:250px;height:150px;border-radius:14px;background:#ddd center/cover no-repeat;position:relative;flex:none}
+.ph i{position:absolute;left:-12px;top:-12px;width:66px;height:66px;border-radius:50%;background:#c8202f;color:#fff;border:5px solid #fff;
+  font-style:normal;font-size:38px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.hl{flex:1;font-size:38px;line-height:1.35;color:#0b2a17;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+</style>${brandHead(logo, `আজকের শীর্ষ ${bn(items.length)} সংবাদ`, `${BN_DAYS[now.getUTCDay()]}, ${bnDate(now)}`)}
+<div class="list">${rows}</div><div class="ftr">বিস্তারিত পড়ুন www.utsabtv.com</div>`, outFile);
+}
+
+// Events, births and deaths for today from Bangla Wikipedia's day page (e.g. "২৭ অক্টোবর"), wiki markup removed.
+async function onThisDay(now = dhakaNow()) {
+  const page = `${bn(now.getUTCDate())} ${BN_MONTHS[now.getUTCMonth()]}`;
+  const r = await fetch(`https://bn.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=${encodeURIComponent(page)}`, { headers: { 'User-Agent': UA } });
+  const wt = (await r.json()).parse.wikitext['*'];
+  const clean = s => s.replace(/<ref[^>]*\/>|<ref[\s\S]*?<\/ref>/g, '').replace(/\{\{[^{}]*\}\}/g, '').replace(/\[\[(?:[^|\]]*\|)?([^\]]*)\]\]/g, '$1')
+    .replace(/'{2,}/g, '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  const section = name => (wt.split(/^==\s*/m).find(x => x.startsWith(name)) || '').split('\n').filter(l => /^\*\s*\[?\[?[০-৯\d]/.test(l))
+    .map(l => { const m = clean(l.replace(/^\*\s*/, '')).match(/^([০-৯\d]+(?:\s*খ্রিস্টপূর্বাব্দ)?)\s*[–—-]\s*(.+)$/); return m && { year: m[1], text: m[2] }; })
+    .filter(x => x && x.text.length > 12);
+  return { page, events: section('ঘটনা'), births: section('জন্ম'), deaths: section('মৃত্যু') };
+}
+const OTD_LOCAL = /বাংলাদেশ|ঢাকা|চট্টগ্রাম|বাংলা|বঙ্গ|কলকাতা|ভারত|পাকিস্তান|মুক্তিযুদ্ধ|মোগল|মুঘল|ব্রিটিশ|রবীন্দ্র|নজরুল|শেখ মুজিব|সিলেট|রাজশাহী|খুলনা/;
+function otdPick(o, n = 5) {
+  const yr = x => Number(toAscii(x.year)) || 0, short = x => x.text.length <= 130;
+  const local = o.events.filter(x => OTD_LOCAL.test(x.text) && short(x));
+  const rest = o.events.filter(x => !local.includes(x) && short(x) && yr(x) >= 1800).sort((a, b) => yr(b) - yr(a));
+  const ev = [...local.slice(0, 3), ...rest].slice(0, n - 1).sort((a, b) => yr(a) - yr(b));
+  const birth = o.births.filter(x => OTD_LOCAL.test(x.text) && x.text.length <= 90)[0] || o.births.filter(x => x.text.length <= 80).sort((a, b) => yr(b) - yr(a))[0];
+  return { events: ev, birth };
+}
+async function otdCard(browser, pick, outFile, logo, now = dhakaNow()) {
+  const rows = pick.events.map(x => `<div class="ev"><b>${esc(x.year)}</b><p>${esc(x.text)}</p></div>`).join('')
+    + (pick.birth ? `<div class="ev bd"><b>${esc(pick.birth.year)}</b><p><u>জন্ম:</u> ${esc(pick.birth.text)}</p></div>` : '');
+  return shot(browser, `<style>${BRAND_CSS}
+body{background:#fbf6e9;background-image:radial-gradient(circle at 20% 30%,rgba(160,120,40,.08),transparent 40%),radial-gradient(circle at 80% 70%,rgba(160,120,40,.08),transparent 40%)}
+.tl{position:absolute;left:60px;right:50px;top:262px;bottom:120px;display:flex;flex-direction:column;justify-content:space-evenly}
+.tl:before{content:'';position:absolute;left:96px;top:10px;bottom:10px;width:6px;background:linear-gradient(#12873d,#c8202f);border-radius:3px}
+.ev{display:flex;align-items:center;gap:30px;position:relative}
+.ev b{flex:none;width:198px;text-align:center;background:#12873d;color:#fff;font-size:40px;font-weight:900;padding:8px 0;border-radius:40px;border:5px solid #fff;
+  box-shadow:0 6px 14px rgba(0,0,0,.2);z-index:1}
+.ev:nth-child(even) b{background:#c8202f}
+.ev p{flex:1;font-size:35px;line-height:1.4;color:#2b2112;background:#fff;border-radius:18px;padding:14px 22px;box-shadow:0 6px 16px rgba(80,60,20,.12)}
+.ev.bd b{background:#b8860b}.ev u{text-decoration:none;color:#b8860b}
+</style>${brandHead(logo, 'ইতিহাসের এই দিনে', `${bn(now.getUTCDate())} ${BN_MONTHS[now.getUTCMonth()]}`)}
+<div class="tl">${rows}</div><div class="ftr">www.utsabtv.com</div>`, outFile);
+}
+
+// A neutral opinion question on one story, written by the AI. '' when the story is not suitable (crime, death, partisan fight).
+async function pollQuestion(story) {
+  const out = await aiAsk(`তুমি একটি বাংলাদেশি সংবাদ পেজের জন্য পাঠকের মতামত জানতে চাওয়ার একটি প্রশ্ন লিখবে।
+খবরের শিরোনাম: ${story.title}
+${story.description ? `খবরের সারাংশ: ${story.description}` : ''}
+নিয়ম: বাংলায় একটি ছোট, নিরপেক্ষ প্রশ্ন (সর্বোচ্চ ৯০ অক্ষর), যার উত্তর সাধারণ মানুষ নিজের অভিজ্ঞতা বা মত থেকে দিতে পারে।
+কোনো দল, নেতা বা ব্যক্তিকে আক্রমণ বা সমর্থন করবে না, উসকানিমূলক বা পক্ষপাতমূলক শব্দ নয়। "লাইক দিন" বা "শেয়ার করুন" জাতীয় কথা নয়।
+খবরটি যদি মৃত্যু, দুর্ঘটনা, অপরাধ, ধর্ষণ বা সহিংসতা নিয়ে হয়, অথবা নিরপেক্ষ প্রশ্ন করা না যায়, তাহলে শুধু SKIP লেখো।
+শুধু প্রশ্নটা লেখো, আর কিছু না।`, 0.5);
+  const q = out.replace(/\s+/g, ' ').replace(/^["“'‘]|["”'’]$/g, '').trim();
+  return /SKIP/i.test(q) || q.length < 15 || q.length > 140 ? '' : q;
+}
+async function pollCard(browser, q, story, outFile, logo) {
+  return shot(browser, `<style>${BRAND_CSS}
+body{background:linear-gradient(160deg,#0b5e2a 0%,#12873d 46%,#c8202f 46.2%,#931624 100%)}
+.qm{position:absolute;right:-40px;top:150px;font-size:700px;font-weight:900;color:rgba(255,255,255,.08);line-height:1}
+.box{position:absolute;left:60px;right:60px;top:290px;height:820px;background:#fff;border-radius:40px;box-shadow:0 30px 70px rgba(0,0,0,.35);
+  border-top:16px solid #12873d;border-bottom:16px solid #c8202f;padding:60px 56px;display:flex;flex-direction:column;justify-content:center;gap:40px}
+.tag{align-self:flex-start;background:#c8202f;color:#fff;font-size:40px;font-weight:800;padding:8px 34px;border-radius:40px}
+.q{font-size:64px;font-weight:900;color:#0b2a17;line-height:1.35}
+.ctx{font-size:32px;color:#5b6b60;line-height:1.4;border-left:8px solid #12873d;padding-left:20px}
+.ans{display:flex;align-items:center;gap:18px;font-size:44px;font-weight:800;color:#0b5e2a}
+.ans i{font-style:normal;background:#12873d;color:#fff;width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:44px}
+</style><div class="qm">?</div>${brandHead(logo, 'আপনার মত কী?', bnDate(dhakaNow()))}
+<div class="box"><div class="tag">পাঠকের মতামত</div><div class="q">${esc(q)}</div>
+<div class="ctx">প্রসঙ্গ: ${esc(story.title)}</div><div class="ans"><i>💬</i>কমেন্টে আপনার মতামত জানান</div></div>
+<div class="ftr">www.utsabtv.com</div>`, outFile);
+}
+
+// The newest news of the last hours, newest first, with photo (for the breaking reel).
+async function latestNews(n = 5, hours = 6) {
+  const out = [];
+  for (const u of (await homepageLinks()).slice(0, 25)) {
+    const it = await readInfo(u).catch(() => null);
+    if (it && /\/storage\/posts\//.test(it.image)) out.push(it);
+    if (out.length >= n) break;
+  }
+  return out;
+}
+async function breakingReel(browser, items, outFile, logo) {
+  const t = { head: 'সর্বশেষ সংবাদ', t1: 'এই মুহূর্তের', t2: 'সর্বশেষ খবর', small: true };
+  const slides = [{ file: await reelSlide(browser, null, 0, items.length, `${outFile}-0.png`, logo, 'intro', t), sec: 2.5 }];
+  for (const [i, it] of items.entries()) {
+    const card = await makeCard(browser, it.url, `${outFile}-card-${i + 1}`);
+    slides.push({ file: await reelSlide(browser, card, i + 1, items.length, `${outFile}-${i + 1}.png`, logo, 'card', t), sec: REEL_SLIDE_SEC });
+  }
+  slides.push({ file: await reelSlide(browser, null, 0, items.length, `${outFile}-end.png`, logo, 'end'), sec: 3 });
+  return buildVideo(slides, outFile);
+}
+
+async function extrasDemo() {
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const preview = path.join(__dirname, 'preview');
+  fs.mkdirSync(preview, { recursive: true });
+  const browser = await chromium.launch();
+  const notes = {};
+  try {
+    const logo = await channelLogo(browser);
+    const top = await topToday(5);
+    notes.top5 = top.map(x => `${x.reads}: ${x.title}`);
+    if (top.length) await top5Card(browser, top, path.join(preview, 'extra-top5.png'), logo);
+    try {
+      const o = await onThisDay(), pick = otdPick(o);
+      notes.otd = { counts: [o.events.length, o.births.length, o.deaths.length], pick };
+      await otdCard(browser, pick, path.join(preview, 'extra-otd.png'), logo);
+    } catch (e) { notes.otd = e.message; }
+    notes.poll = [];
+    for (const s of top) {
+      const info = await articleInfo(s.url).catch(() => ({}));
+      const q = await pollQuestion({ title: s.title, description: info.description }).catch(e => `ERR ${e.message}`);
+      notes.poll.push([s.title, q]);
+      if (q && !q.startsWith('ERR') && !fs.existsSync(path.join(preview, 'extra-poll.png'))) await pollCard(browser, q, s, path.join(preview, 'extra-poll.png'), logo);
+    }
+    if (process.env.DEMO_EXTRAS_REEL !== '0') {
+      const items = await latestNews(5);
+      notes.reel = items.map(x => x.title);
+      const video = await breakingReel(browser, items, path.join(OUT_DIR, 'breaking.mp4'), logo);
+      fs.copyFileSync(video, path.join(preview, 'extra-breaking-reel.mp4'));
+    }
+  } finally {
+    fs.writeFileSync(path.join(preview, 'extras-demo.json'), JSON.stringify(notes, null, 2));
+    await browser.close();
+  }
+}
+
 (async () => {
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'weather')
     return weatherReelRun().catch(e => { event(`weather reel FAILED: ${e.stack || e.message}`); process.exit(1); });
@@ -1922,6 +2097,7 @@ async function munDemo() {
   if (process.env.DEMO_SPORTS === '1') return sportsDemo();
   if (process.env.DEMO_ENT === '1') { for (const d of Object.values(DESKS)) await entDemo(d, d.key === 'ent' ? 4 : 3).catch(e => log(`${d.key} demo: ${e.message}`)); return; }
   if (process.env.DEMO_MUN === '1') return munDemo();
+  if (process.env.DEMO_EXTRAS === '1') return extrasDemo();
   if (process.env.DEMO_WEATHER) return weatherDemo();
   if (process.env.DEMO_LINK) return demoCard();
   if (process.env.CHECK === '1') return checkPages();
