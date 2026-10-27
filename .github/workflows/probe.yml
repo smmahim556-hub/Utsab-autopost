@@ -8,13 +8,16 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: npm ci && npx playwright install chromium
+      # Private key of this repo's runners (voice clone demo): kept only in the Actions cache, which only this repo's workflows can read.
+      - uses: actions/cache@v4
+        with: { path: ~/.vc-key, key: vc-key-v1 }
       - run: node ${{ inputs.script || 'tools/probe.js' }}
         env:
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
