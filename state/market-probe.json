@@ -1,0 +1,69 @@
+{
+  "fetch": {
+    "https://tcb.gov.bd/site/view/daily_rmp": {
+      "status": 0,
+      "err": "UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+      "text": "",
+      "pdf": []
+    },
+    "http://tcb.gov.bd/": {
+      "status": 0,
+      "err": "UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+      "text": "",
+      "pdf": []
+    },
+    "https://tcb.portal.gov.bd/": {
+      "status": 0,
+      "err": "DEPTH_ZERO_SELF_SIGNED_CERT",
+      "text": "",
+      "pdf": []
+    },
+    "http://dam.gov.bd/": {
+      "status": 0,
+      "err": "UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+      "text": "",
+      "pdf": []
+    },
+    "https://dam.gov.bd/market_daily_price_report?L=B": {
+      "status": 0,
+      "err": "UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+      "text": "",
+      "pdf": []
+    },
+    "http://service.moa.gov.bd/market-prices/": {
+      "status": 0,
+      "err": "ENOTFOUND",
+      "text": "",
+      "pdf": []
+    },
+    "https://www.bajus.org/gold-price": {
+      "status": 403,
+      "text": " Just a moment... Enable JavaScript and cookies to continue ",
+      "pdf": []
+    },
+    "https://www.bb.org.bd/en/index.php/econdata/exchangerate": {
+      "status": 200,
+      "text": " Please enable JavaScript to view the page content. Your support ID is: 2165770897375907027. This question is for testing whether you are a human visitor and to prevent automated spam submission. Audio is not supported in your browser. What code is in the image? submit Your support ID is: 2165770897",
+      "pdf": []
+    }
+  },
+  "browser": {
+    "https://www.bajus.org/gold-price": {
+      "title": "Just a moment...",
+      "text": " Just a moment... www.bajus.org Performing security verification This website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot. Verification successful. Waiting for www.bajus.org to respond Enable JavaScript and cookies to continue Ray ID: a51385fcfb83fb15 Performance and Security by Cloudflare Privacy ",
+      "links": []
+    },
+    "https://tcb.gov.bd/site/view/daily_rmp": {
+      "title": "সমস্যা হয়েছে | ট্রেডিং কর্পোরেশন অব বাংলাদেশ (টিসিবি)",
+      "text": " সমস্যা হয়েছে | ট্রেডিং কর্পোরেশন অব বাংলাদেশ (টিসিবি) কন্টেন্টে চলে যান এক্সেসিবিলিটি মেনুতে যান বাংলাদেশ জাতীয় তথ্য বাতায়ন অফিসের ধরণ নির্বাচন করুন স্বায়ত্তশাসিত মন্ত্রণালয় মন্ত্রণালয় বিভাগ অধিদপ্তর কর্পোরেশন কমিশন কোম্পানি কর্তৃপক্ষ/অথরিটি এজেন্সী কাউন্সিল ট্রাস্ট জাদুঘর ফাউন্ডেশন একাডেমি দপ্তর/সংস্থা বোর্ড ইনস্টিটিউট ফেডারেশন ব্যুরো এডুকেশন বোর্ড ব্যাংক / বীমা / আর্থিক প্রতিষ্ঠান বিভাগীয় পোর্টাল জেলা পোর্টাল পৌরসভা পোর্টাল উপজেলা পোর্টাল ইউনিয়ন পোর্টাল রেজাল্ট প্রকল্প/কর্মসূচী বিদেশী দূতাবাস/মিশন জেলা পরিষদ পোর্টাল সিটি কর্পোরেশন পোর্টাল প্রশিক্ষণ শিক্ষা প্রতিষ্ঠান সরকারি মাঠ পর্যায়ের অফিস অন্যান্য অফিস স্তর নির্বাচন করুন প্রধান কার্যালয় আঞ্চলিক অফিস অফিস নির্বাচন করুন বাংলাদেশ মৎস্য উন্নয়ন কর্পোরেশন বাংলাদেশ কৃষি উন্নয়ন কর্পোরেশন (বিএডিসি) বাংলাদেশ কেমিক্যাল ইন্ডাস্ট্রিজ কর্পোরেশন বাংলাদেশ চলচ্চিত্র উন্নয়ন কর্পোরেশন বাংলাদেশ বনশিল্প উন্নয়ন কর্পোরেশন বাংলাদেশ হাউজ বিল্ডিং ফ",
+      "links": []
+    },
+    "https://dam.gov.bd/": {
+      "title": "হোম | কৃষি বিপণন অধিদপ্তর",
+      "text": " হোম | কৃষি বিপণন অধিদপ্তর কন্টেন্টে চলে যান এক্সেসিবিলিটি মেনুতে যান বাংলাদেশ জাতীয় তথ্য বাতায়ন অফিসের ধরণ নির্বাচন করুন স্বায়ত্তশাসিত মন্ত্রণালয় মন্ত্রণালয় বিভাগ অধিদপ্তর কর্পোরেশন কমিশন কোম্পানি কর্তৃপক্ষ/অথরিটি এজেন্সী কাউন্সিল ট্রাস্ট জাদুঘর ফাউন্ডেশন একাডেমি দপ্তর/সংস্থা বোর্ড ইনস্টিটিউট ফেডারেশন ব্যুরো এডুকেশন বোর্ড ব্যাংক / বীমা / আর্থিক প্রতিষ্ঠান বিভাগীয় পোর্টাল জেলা পোর্টাল পৌরসভা পোর্টাল উপজেলা পোর্টাল ইউনিয়ন পোর্টাল রেজাল্ট প্রকল্প/কর্মসূচী বিদেশী দূতাবাস/মিশন জেলা পরিষদ পোর্টাল সিটি কর্পোরেশন পোর্টাল প্রশিক্ষণ শিক্ষা প্রতিষ্ঠান সরকারি মাঠ পর্যায়ের অফিস অন্যান্য অফিস নির্বাচন করুন কৃষি সম্প্রসারণ অধিদপ্তর নিরীক্ষা, গোয়েন্দা ও তদন্ত অধিদপ্তর, মূল্য সংযোজন কর, ঢাকা বাংলাদেশ আবহাওয়া অধিদপ্তর বাংলাদেশ ন্যাশনাল ক্যাডেট কোর অধিদপ্তর বাংলাদেশ রেলওয়ে বাংলাদেশ টেলিভিশন কমিউনিটি ক্লিনিক স্বাস্থ্য সহায়তা ট্রাস্ট কাস্টমস গোয়েন্দা ও তদন্ত অধিদপ্তর মৎস্য অধিদপ্তর প্রাণিসম্পদ অধিদপ্",
+      "links": [
+        "office-dam/2024/12/ef208e476e194d4ebb62e502ed75335b.xlsx"
+      ]
+    }
+  }
+}
