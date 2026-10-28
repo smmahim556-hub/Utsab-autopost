@@ -2265,7 +2265,7 @@ async function newsText(url) {
   const html = await getText(url);
   const paras = [...html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(m => decodeEntities(m[1].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim())
     .filter(p => p.length > 60 && /[ঀ-৿]/.test(p));
-  return { title: meta(html, 'og:title'), image: meta(html, 'og:image'), text: paras.join(' ').slice(0, 2500) };
+  return { title: meta(html, 'og:title').replace(/\s*[|–-]\s*Utsab\s*TV\s*$/i, '').trim(), image: meta(html, 'og:image'), text: paras.join(' ').slice(0, 2500) };
 }
 async function voiceScript(story) {
   const out = await aiAsk(`তুমি একটি বাংলাদেশি টিভির সংবাদ পাঠক। নিচের খবর থেকে ফেসবুক রিলের জন্য ছোট একটি পাঠ লেখো।
