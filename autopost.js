@@ -2522,6 +2522,36 @@ async function voiceRun() {
   if (process.env.DEMO_ENT === '1') { for (const d of Object.values(DESKS)) await entDemo(d, d.key === 'ent' ? 4 : 3).catch(e => log(`${d.key} demo: ${e.message}`)); return; }
   if (process.env.DEMO_MUN === '1') return munDemo();
   if (process.env.DEMO_EXTRAS === '1') return extrasDemo();
+  if (process.env.DEMO_INSIGHTS === '1') { // data for the reach-report / album demos; the repo is public, so the result is encrypted for the requester
+    const out = { pages: {}, articles: [] }, get = async u => (await fetch(`${GRAPH}/${u}`, { signal: AbortSignal.timeout(60000) })).json().catch(e => ({ error: e.message }));
+    out.perms = ((await get(`me/permissions?access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).data || []).filter(p => p.status === 'granted').map(p => p.permission);
+    const since = Math.floor(Date.now() / 1000) - 7 * 86400;
+    for (const page of await pages()) {
+      const t = encodeURIComponent(page.token), posts = [];
+      let u = `${page.id}/published_posts?fields=id,created_time,message,attachments{media_type,type},reactions.summary(total_count).limit(0),comments.summary(true).limit(0),shares&since=${since}&limit=100&access_token=${t}`;
+      for (let i = 0; i < 15 && u; i++) { const r = await get(u); if (r.error) { out.pages[page.id] = { error: r.error }; break; } posts.push(...(r.data || [])); u = r.paging?.next ? r.paging.next.replace(`${GRAPH}/`, '') : ''; }
+      const metrics = {};
+      for (const m of ['post_impressions_unique', 'post_total_media_view_unique', 'post_media_view', 'post_impressions', 'post_clicks', 'post_reactions_by_type_total']) {
+        const r = posts[0] ? await get(`${posts[0].id}/insights?metric=${m}&access_token=${t}`) : {};
+        metrics[m] = r.error ? r.error.message.slice(0, 120) : 'ok';
+      }
+      const good = Object.keys(metrics).filter(m => metrics[m] === 'ok' && m !== 'post_reactions_by_type_total');
+      for (const p of posts) {
+        if (good.length) { const r = await get(`${p.id}/insights?metric=${good.join(',')}&access_token=${t}`); p.ins = Object.fromEntries((r.data || []).map(d => [d.name, d.values?.[0]?.value])); }
+        p.message = (p.message || '').slice(0, 160);
+      }
+      const fi = await get(`${page.id}?fields=followers_count,fan_count&access_token=${t}`);
+      const pins = await get(`${page.id}/insights?metric=page_impressions_unique,page_post_engagements,page_daily_follows_unique,page_media_view&period=day&since=${since}&access_token=${t}`);
+      out.pages[page.id] = { name: page.name, followers: fi.followers_count, fans: fi.fan_count, metrics, pageInsights: pins.error ? pins.error.message : (pins.data || []).map(d => ({ name: d.name, values: d.values })), posts };
+    }
+    for (const u of (await homepageLinks()).slice(0, 8)) {
+      const html = await getText(u).catch(() => '');
+      out.articles.push({ url: u, imgs: [...new Set([...html.matchAll(/<img[^>]+src="([^"]+)"/g)].map(m => m[1]).filter(x => /storage\/(posts|uploads|photos|images)|\/storage\//.test(x)))].slice(0, 12) });
+    }
+    const { execSync } = require('child_process'); fs.mkdirSync(OUT_DIR, { recursive: true }); fs.writeFileSync(path.join(OUT_DIR, 'ins.json'), JSON.stringify(out));
+    execSync(`openssl rand -hex 32 > out/k && openssl enc -aes-256-cbc -pbkdf2 -salt -in out/ins.json -out preview/insights.enc -pass file:out/k && openssl pkeyutl -encrypt -pubin -inkey tools/assets/vc-local-pub.pem -pkeyopt rsa_padding_mode:oaep -in out/k -out preview/insights.key`, { cwd: __dirname });
+    return;
+  }
   if (process.env.DEMO_BRAND) { // check of the logo-photo filter on one headline: state/brand-probe.json
     const b = await chromium.launch(), out = {};
     try {
