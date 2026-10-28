@@ -1,0 +1,55 @@
+name: Utsab TV voice reel
+on:
+  workflow_dispatch:
+    inputs:
+      demo:
+        description: 'Only build the video (posts nothing)'
+        type: boolean
+        default: true
+concurrency: voice-reel
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci && npx playwright install chromium
+      - run: sudo apt-get install -y -qq ffmpeg && pipx install edge-tts
+      # Private key of this repo's runners: decrypts the reference voice (tools/assets/ref-voice.enc).
+      - uses: actions/cache@v4
+        with: { path: ~/.vc-key, key: vc-key-v1 }
+      # Voice model and Python packages, so a run doesn't download several GB each time.
+      - uses: actions/cache@v4
+        with: { path: "~/.cache/huggingface\n~/.cache/pip", key: indicf5-v1 }
+      - run: |
+          python3 -m pip install -q --break-system-packages torch==2.7.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cpu
+          python3 -m pip install -q --break-system-packages git+https://github.com/ai4bharat/IndicF5.git soundfile
+          python3 -m pip install -q --break-system-packages "pyarrow<18" "datasets<3" "transformers<4.50" torch==2.7.1 torchaudio==2.7.1 --extra-index-url https://download.pytorch.org/whl/cpu
+        env: { HF_TOKEN: "${{ secrets.HF_TOKEN }}" }
+      - run: node autopost.js
+        env:
+          FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          DRY_RUN: ${{ vars.DRY_RUN || '0' }}
+          REEL_KIND: voice
+          REEL_RUN: ${{ !inputs.demo && '1' || '0' }}
+          DEMO_REEL: ${{ inputs.demo && '1' || '0' }}
+      # The demo video is encrypted for the requester only (the repo is public).
+      - if: inputs.demo
+        run: |
+          k=$(mktemp); openssl rand -hex 32 > $k
+          openssl enc -aes-256-cbc -pbkdf2 -salt -in out/voice-reel.mp4 -out preview/clone-demo.enc -pass file:$k
+          openssl pkeyutl -encrypt -pubin -inkey tools/assets/vc-local-pub.pem -pkeyopt rsa_padding_mode:oaep -in $k -out preview/clone-demo.key
+      - name: Save state
+        if: always()
+        run: |
+          git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
+          git add state preview 2>/dev/null || git add state
+          git diff --cached --quiet || (git commit -m "voice reel state" && (git push || (git pull --rebase -X theirs origin main && git push)))

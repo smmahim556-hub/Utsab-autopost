@@ -2399,6 +2399,67 @@ async function extrasDemo() {
   }
 }
 
+// Voiced news reel (voice.yml): one fresh story read in the cloned voice (owner-approved speaker, 2026-10-28) and posted
+// as a Reel on every Page. The reference recording is committed only encrypted for this repo's runners (tools/voice-clone-demo.js);
+// without the runner key it falls back to a stock Edge voice so a slot is never lost.
+async function cloneRef() {
+  const { execSync } = require('child_process'), os = require('os');
+  const priv = path.join(os.homedir(), '.vc-key', 'priv.pem'), W = '/tmp/vc';
+  if (!fs.existsSync(priv) || !fs.existsSync(path.join(__dirname, 'tools/assets/ref-voice.enc'))) return null;
+  fs.mkdirSync(W, { recursive: true });
+  execSync(`openssl pkeyutl -decrypt -inkey ${priv} -pkeyopt rsa_padding_mode:oaep -in tools/assets/ref-voice.key -out ${W}/k`
+    + ` && openssl enc -d -aes-256-cbc -pbkdf2 -in tools/assets/ref-voice.enc -out ${W}/ref.m4a -pass file:${W}/k`
+    + ` && ffmpeg -y -loglevel error -i ${W}/ref.m4a -ss 1.75 -to 13.6 -ac 1 -ar 24000 ${W}/ref.wav && rm -f ${W}/k ${W}/ref.m4a`, { cwd: __dirname });
+  for (const model of ['gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-3.5-flash']) {
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: 'POST', signal: AbortSignal.timeout(90000),
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+      body: JSON.stringify({ contents: [{ parts: [{ inline_data: { mime_type: 'audio/wav', data: fs.readFileSync(`${W}/ref.wav`).toString('base64') } },
+        { text: 'এই অডিওতে যা বলা হয়েছে হুবহু বাংলায় লিখে দাও। শুধু কথাগুলো, আর কিছু না।' }] }] }) }).catch(() => null);
+    const b = r ? await r.json().catch(() => ({})) : {};
+    const text = (b.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('').replace(/\s+/g, ' ').trim();
+    if (text) return { wav: `${W}/ref.wav`, text };
+  }
+  return null;
+}
+async function voiceRun() {
+  const demo = process.env.DEMO_REEL === '1';
+  const file = path.join(__dirname, 'state', 'voice-reel.json');
+  let st = { used: [] };
+  try { st = JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
+  let story = null, url = '';
+  for (const x of await latestNews(10)) {
+    if (st.used.includes(x.url)) continue;
+    const s = await newsText(x.url).catch(() => null);
+    if (s?.image && s.text.length > 300) { story = s; url = x.url; break; }
+  }
+  if (!story) return log('voice reel: no fresh story');
+  const lines = await voiceScript(story);
+  if (lines.length < 3) return log('voice reel: script too short');
+  let engine = 'edge:bn-BD-PradeepNeural';
+  const ref = await cloneRef().catch(e => (event(`voice reel: clone ref failed: ${e.message}`), null));
+  if (ref) {
+    const W = '/tmp/vc/out';
+    fs.rmSync(W, { recursive: true, force: true }); fs.mkdirSync(W, { recursive: true });
+    fs.writeFileSync('/tmp/vc/lines.json', JSON.stringify(lines.map(spoken)));
+    try {
+      require('child_process').execFileSync('python3', [path.join(__dirname, 'tools/clone_tts.py'), ref.wav, ref.text, '/tmp/vc/lines.json', W], { stdio: 'inherit', timeout: 40 * 60000 });
+      if (lines.every((_, i) => fs.existsSync(`${W}/${i}.wav`))) engine = `dir:${W}`;
+    } catch (e) { event(`voice reel: clone model failed, using stock voice: ${e.message.slice(0, 200)}`); }
+  } else event('voice reel: no clone reference, using stock voice');
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const r = await voiceReel(browser, url, engine, path.join(OUT_DIR, 'voice-reel.mp4'), await channelLogo(browser), lines);
+    if (demo) return log(`voice reel demo built (${engine.split(':')[0]}), not posted`);
+    const desc = `${story.title}\n\n${lines.join(' ')}\n\nবিস্তারিত পড়ুন www.utsabtv.com-এ\n\n${hashtags('সংবাদ', 'আজকের_খবর')}`;
+    for (const page of await pages()) {
+      try { event(`voice reel on Page ${page.id}: ${JSON.stringify(await postReel(page, r.file, desc))}`); } catch (e) { event(`voice reel on Page ${page.id} FAILED: ${e.message}`); }
+    }
+    st.used = [...st.used, url].slice(-60); st.at = new Date().toISOString(); st.engine = engine.split(':')[0];
+    fs.writeFileSync(file, JSON.stringify(st, null, 2));
+  } finally { await browser.close(); }
+}
+
 (async () => {
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'weather')
     return weatherReelRun().catch(e => { event(`weather reel FAILED: ${e.stack || e.message}`); process.exit(1); });
@@ -2406,6 +2467,8 @@ async function extrasDemo() {
     return prayerReelRun().catch(e => { event(`prayer reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'breaking')
     return breakingReelRun().catch(e => { event(`breaking reel FAILED: ${e.stack || e.message}`); process.exit(1); });
+  if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'voice')
+    return voiceRun().catch(e => { event(`voice reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') return reelRun().catch(e => { event(`reel FAILED: ${e.stack || e.message}`); process.exit(1); });
   if (process.env.DEMO_GM === '1') { const b = await chromium.launch(); try { fs.mkdirSync(path.join(__dirname, 'preview'), { recursive: true }); await goodMorningCard(b, path.join(__dirname, 'preview', 'gm-demo.png'), await channelLogo(b)); } finally { await b.close(); } return; }
   if (process.env.DEMO_PRAYER === '1') return prayerDemo();
