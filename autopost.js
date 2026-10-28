@@ -2527,6 +2527,7 @@ async function voiceRun() {
     try {
       const it = (await entItems({ feeds: [GN(process.env.DEMO_BRAND)] }))[0];
       out.first = { source: it.source, ...(await entResolve(b, it)) }; out.first.branded = out.first.image ? await entBranded(out.first.image) : null;
+      if (out.first.image) fs.writeFileSync(path.join(__dirname, 'preview', 'brand-probe.jpg'), Buffer.from(await (await fetch(out.first.image)).arrayBuffer()));
       out.other = await entOtherPhoto(b, it);
       const pg = await b.newPage(); await pg.goto(out.first.url, { waitUntil: 'domcontentloaded', timeout: 45000 }); const html = await pg.content();
       out.raw = { og: meta(html, 'og:image'), tw: meta(html, 'twitter:image') };
