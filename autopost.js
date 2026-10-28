@@ -2530,16 +2530,20 @@ async function albumSlide(browser, story, pt, i, n, outFile, logo) {
 <div class="ph"></div><div class="num">${bn(i)}</div><div class="pg">${bn(i)}/${bn(n)}</div>
 <div class="box"><div class="h">${esc(pt.h)}</div><div class="t">${esc(pt.t)}</div></div><div class="ftr">www.utsabtv.com</div>`, outFile);
 }
+async function albumBuild(browser, url, logo, tag) {
+  const story = await newsText(url), pts = await albumPoints(story);
+  if (!story.image || pts.length < 3) throw new Error('album: no photo or too few points');
+  const files = [await makeCard(browser, url, path.join(OUT_DIR, `album-${tag}-0`))];
+  for (const [i, pt] of pts.entries()) files.push(await albumSlide(browser, story, pt, i + 1, pts.length, path.join(OUT_DIR, `album-${tag}-${i + 1}.png`), logo));
+  return { story, pts, files };
+}
 async function albumDemo() {
   const preview = path.join(__dirname, 'preview');
   fs.mkdirSync(preview, { recursive: true }); fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
   try {
-    const logo = await channelLogo(browser);
     const url = process.env.ALBUM_URL || ((await topToday(1))[0] || (await latestNews(1))[0]).url;
-    const story = await newsText(url), pts = await albumPoints(story);
-    const files = [await makeCard(browser, url, path.join(OUT_DIR, 'album-0'))];
-    for (const [i, pt] of pts.entries()) files.push(await albumSlide(browser, story, pt, i + 1, pts.length, path.join(OUT_DIR, `album-${i + 1}.png`), logo));
+    const { story, pts, files } = await albumBuild(browser, url, await channelLogo(browser), 'demo');
     files.forEach((f, i) => fs.copyFileSync(f, path.join(preview, `album-demo-${i + 1}.png`)));
     // How the album shows in the feed: the first picture big, the rest in a row under it.
     const uri = f => `data:image/png;base64,${fs.readFileSync(f).toString('base64')}`;
@@ -2550,6 +2554,55 @@ async function albumDemo() {
       path.join(preview, 'album-demo-feed.png'), 1080, 1350 + 6 + 440 + 110);
     fs.writeFileSync(path.join(preview, 'album-demo.json'), JSON.stringify({ url, title: story.title, points: pts }, null, 2));
   } finally { await browser.close(); }
+}
+// ALBUM=1: at ALBUM_SLOTS (Dhaka minutes, default 12:00, 16:00, 20:00) the day's most-read story not yet used, as a
+// multi-photo post (photocard + 3 key-fact cards) on every Page, story link in the first comment. State: state/album.json.
+async function albumTick() {
+  if (process.env.ALBUM !== '1' || process.env.DRY_RUN === '1') return;
+  const now = dhakaNow(), today = now.toISOString().slice(0, 10), mins = now.getUTCHours() * 60 + now.getUTCMinutes();
+  const slot = (process.env.ALBUM_SLOTS || '720,960,1200').split(',').map(Number).find(m => mins >= m && mins < m + 120);
+  if (slot === undefined) return;
+  const file = path.join(__dirname, 'state', 'album.json');
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
+  st.used = st.used || [];
+  if (st.date !== today) Object.assign(st, { date: today, done: {}, slotUrl: {} });
+  const key = String(slot), done = st.done[key] = st.done[key] || [];
+  const all = await pages();
+  if (all.every(p => done.includes(p.id)) || st.failedAt > Date.now() - 20 * 60e3) return;
+  const save = () => { st.used = st.used.slice(-100); fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, JSON.stringify(st, null, 2)); };
+  let url = st.slotUrl[key];
+  if (!url) {
+    const pick = (await topToday(8)).find(x => !st.used.includes(x.url));
+    if (!pick) { done.push(...all.map(p => p.id)); return save(); }
+    url = st.slotUrl[key] = pick.url; st.used.push(url); save();
+  }
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const { story, pts, files } = await albumBuild(browser, url, await channelLogo(browser), key);
+    const caption = `${story.title}\n\n${pts.map(p => `• ${p.h}: ${p.t}`).join('\n')}\n\nবিস্তারিত পড়ুন প্রথম কমেন্টের লিংকে।\n\n${hashtags('সংবাদ', 'মূল_তথ্য')}`;
+    for (const page of all) {
+      if (done.includes(page.id)) continue;
+      try {
+        const ids = [];
+        for (const f of files) {
+          const fd = new FormData();
+          fd.append('source', new Blob([fs.readFileSync(f)]), path.basename(f)); fd.append('published', 'false'); fd.append('access_token', page.token);
+          ids.push((await graph(`${page.id}/photos`, fd)).id);
+        }
+        const post = new FormData();
+        post.append('message', caption);
+        ids.forEach((id, i) => post.append(`attached_media[${i}]`, JSON.stringify({ media_fbid: id })));
+        post.append('access_token', page.token);
+        const { id } = await graph(`${page.id}/feed`, post);
+        done.push(page.id); save();
+        const c = new FormData(); c.append('message', url); c.append('access_token', page.token);
+        await graph(`${id}/comments`, c).catch(e => event(`album comment on ${id} FAILED: ${e.message}`));
+        event(`album on Page ${page.id}: ${id} ${url}`);
+      } catch (e) { st.failedAt = Date.now(); event(`album on Page ${page.id} FAILED: ${e.message}`); }
+    }
+  } catch (e) { st.failedAt = Date.now(); event(`album FAILED: ${e.message}`); } finally { save(); await browser.close(); }
 }
 
 (async () => {
@@ -2646,6 +2699,7 @@ async function albumDemo() {
   for (const d of Object.values(DESKS)) if (await entTick(d).catch(e => event(`${d.key} FAILED: ${e.message}`))) break;
   await munTick().catch(e => event(`missing FAILED: ${e.message}`));
   await extrasTick().catch(e => event(`extras FAILED: ${e.message}`));
+  await albumTick().catch(e => event(`album FAILED: ${e.message}`));
   const links = await homepageLinks();
   log(`homepage: ${links.length} candidate links`);
   let state = loadState();
