@@ -1644,7 +1644,7 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
 
 // A paper's stock share image (its logo or name on a plain background) is not a news photo and must never go on our card.
 // The vision model looks at the photo; without a key or on an error the photo is kept.
-async function entBranded(url) {
+async function entBranded(url, source = '') {
   if (!process.env.GEMINI_API_KEY) return false;
   try {
     const res = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0' }, signal: AbortSignal.timeout(30000) });
@@ -1653,7 +1653,7 @@ async function entBranded(url) {
       const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: 'POST', signal: AbortSignal.timeout(60000),
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
         body: JSON.stringify({ contents: [{ parts: [{ inline_data: { mime_type: mime, data: buf.toString('base64') } },
-          { text: 'Is this image mainly a newspaper, TV channel or news website logo / brand name / default share image (for example a big "Prothom Alo", "Jugantor" or "bdnews24" logo), or a placeholder with no real news photo? A real news photo that only has a small watermark in a corner is NO. Answer only YES or NO.' }] }] }) }).catch(() => null);
+          { text: `Is this image mainly the logo or name of a NEWS PUBLISHER (a newspaper, TV channel or news website, such as ${source || 'Prothom Alo, Jugantor or bdnews24'}) used as a default share picture, or a blank placeholder? Answer NO when it is a real photo, even a photo of the logo of the company or thing the story is about (for example OpenAI, Apple or a bank), or a photo with only a small watermark. Answer only YES or NO.` }] }] }) }).catch(() => null);
       const b = r ? await r.json().catch(() => ({})) : {};
       const a = (b.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('').trim().toUpperCase();
       if (a) return a.startsWith('YES');
@@ -1666,7 +1666,7 @@ async function entOtherPhoto(browser, it) {
   const alts = (await entItems({ feeds: [GN(it.title)] })).filter(x => x.link !== it.link && ENT_SOURCES.test(x.source) && entSame(x.title, it.title));
   for (const x of alts.slice(0, 4)) {
     const r = await entResolve(browser, x);
-    if (r.image && !await entBranded(r.image)) return r.image;
+    if (r.image && !await entBranded(r.image, x.source)) return r.image;
   }
   return '';
 }
@@ -1693,7 +1693,7 @@ async function entTick(desk = DESKS.ent) {
       st.seen.push(it.id);
       if (st.titles.concat(others).some(t => entSame(t, it.title))) continue; // already posted from another paper or desk
       const r = await entResolve(browser, it);
-      if (r.image && await entBranded(r.image)) r.image = '';
+      if (r.image && await entBranded(r.image, it.source)) r.image = '';
       if (!r.image) r.image = await entOtherPhoto(browser, it).catch(() => '');
       if (!r.image) { log(`${desk.key}: no photo, skipped:`, it.title); continue; }
       // A question headline means nothing on its own, so it needs a summary to go with it.
@@ -1727,7 +1727,7 @@ async function entDemo(desk = DESKS.ent, n = 4) {
       if (made.length >= n) break;
       if (!ENT_SOURCES.test(it.source) || made.some(m => entSame(m.title, it.title))) continue;
       const r = await entResolve(browser, it);
-      if (r.image && await entBranded(r.image)) r.image = '';
+      if (r.image && await entBranded(r.image, it.source)) r.image = '';
       if (!r.image) r.image = await entOtherPhoto(browser, it).catch(() => '');
       if (!r.image) continue;
       r.orig = r.summary; r.summary = await entRewrite(it.title, r.summary); r.note = entRewriteNote;
@@ -2526,7 +2526,8 @@ async function voiceRun() {
     const b = await chromium.launch(), out = {};
     try {
       const it = (await entItems({ feeds: [GN(process.env.DEMO_BRAND)] }))[0];
-      out.first = { source: it.source, ...(await entResolve(b, it)) }; out.first.branded = out.first.image ? await entBranded(out.first.image) : null;
+      out.first = { source: it.source, ...(await entResolve(b, it)) }; out.first.branded = out.first.image ? await entBranded(out.first.image, it.source) : null;
+      out.defaultBranded = await entBranded('https://media.prothomalo.com/prothomalo-bangla%2F2025-11-23%2F1558a7oz%2Fdefaultog.webp', 'প্রথম আলো');
       if (out.first.image) fs.writeFileSync(path.join(__dirname, 'preview', 'brand-probe.jpg'), Buffer.from(await (await fetch(out.first.image)).arrayBuffer()));
       out.other = await entOtherPhoto(b, it);
       const pg = await b.newPage(); await pg.goto(out.first.url, { waitUntil: 'domcontentloaded', timeout: 45000 }); const html = await pg.content();
