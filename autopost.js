@@ -2506,6 +2506,52 @@ async function voiceRun() {
   } finally { await browser.close(); }
 }
 
+// Album post (demo): the story's photocard first, then 3 "key facts" cards made from the story itself (own content, not a copy).
+async function albumPoints(story) {
+  const out = await aiAsk(`নিচের খবর থেকে ৩টি মূল তথ্য বের করো, ফেসবুক অ্যালবামের কার্ডের জন্য।
+নিয়ম: শুধু খবরে থাকা তথ্য, নিজের মত নয়। প্রতিটির একটি ছোট শিরোনাম (সর্বোচ্চ ৫ শব্দ) আর ১-২টি ছোট বাক্য (সর্বোচ্চ ১৪০ অক্ষর)। সংখ্যা বাংলা অঙ্কে।
+কোনো পত্রিকার নাম নয়। শুধু এই JSON দাও: [{"h":"শিরোনাম","t":"বাক্য"}]
+
+শিরোনাম: ${story.title}
+খবর: ${story.text}`, 0.3);
+  return JSON.parse(out.replace(/^[^\[]*|[^\]]*$/g, '')).filter(p => p.h && p.t).slice(0, 3);
+}
+async function albumSlide(browser, story, pt, i, n, outFile, logo) {
+  return shot(browser, `<style>${BRAND_CSS}
+.ph{position:absolute;left:0;right:0;top:220px;height:560px;background:#222 center/cover no-repeat;background-image:url('${esc(story.image)}')}
+.ph:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 60%,rgba(0,0,0,.45))}
+.num{position:absolute;left:56px;top:700px;width:150px;height:150px;border-radius:50%;background:#c8202f;border:8px solid #fff;color:#fff;
+  font-size:84px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.3);z-index:2}
+.box{position:absolute;left:0;right:0;top:780px;bottom:100px;padding:100px 60px 30px;display:flex;flex-direction:column;gap:22px}
+.h{font-size:64px;font-weight:900;color:#0b5e2a;line-height:1.25}
+.t{font-size:44px;color:#1d2b22;line-height:1.5;border-left:10px solid #ffd54f;padding-left:24px}
+.pg{position:absolute;right:56px;top:810px;font-size:34px;color:#5b6b60}
+</style>${brandHead(logo, 'মূল তথ্য', esc(story.title.length > 46 ? story.title.slice(0, 44) + '…' : story.title))}
+<div class="ph"></div><div class="num">${bn(i)}</div><div class="pg">${bn(i)}/${bn(n)}</div>
+<div class="box"><div class="h">${esc(pt.h)}</div><div class="t">${esc(pt.t)}</div></div><div class="ftr">www.utsabtv.com</div>`, outFile);
+}
+async function albumDemo() {
+  const preview = path.join(__dirname, 'preview');
+  fs.mkdirSync(preview, { recursive: true }); fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const logo = await channelLogo(browser);
+    const url = process.env.ALBUM_URL || ((await topToday(1))[0] || (await latestNews(1))[0]).url;
+    const story = await newsText(url), pts = await albumPoints(story);
+    const files = [await makeCard(browser, url, path.join(OUT_DIR, 'album-0'))];
+    for (const [i, pt] of pts.entries()) files.push(await albumSlide(browser, story, pt, i + 1, pts.length, path.join(OUT_DIR, `album-${i + 1}.png`), logo));
+    files.forEach((f, i) => fs.copyFileSync(f, path.join(preview, `album-demo-${i + 1}.png`)));
+    // How the album shows in the feed: the first picture big, the rest in a row under it.
+    const uri = f => `data:image/png;base64,${fs.readFileSync(f).toString('base64')}`;
+    await shot(browser, `<style>body{margin:0;width:1080px;background:#fff;font-family:'Noto Serif Bengali',serif}
+.cap{padding:24px 30px;font-size:34px;color:#111;line-height:1.4}.big{width:1080px;height:1350px;object-fit:cover;display:block}
+.row{display:flex;gap:6px;margin-top:6px}.row img{flex:1;width:0;height:440px;object-fit:cover}</style>
+<div class="cap">${esc(story.title)}</div><img class="big" src="${uri(files[0])}"><div class="row">${files.slice(1).map(f => `<img src="${uri(f)}">`).join('')}</div>`,
+      path.join(preview, 'album-demo-feed.png'), 1080, 1350 + 6 + 440 + 110);
+    fs.writeFileSync(path.join(preview, 'album-demo.json'), JSON.stringify({ url, title: story.title, points: pts }, null, 2));
+  } finally { await browser.close(); }
+}
+
 (async () => {
   if ((process.env.DEMO_REEL === '1' || process.env.REEL_RUN === '1') && process.env.REEL_KIND === 'weather')
     return weatherReelRun().catch(e => { event(`weather reel FAILED: ${e.stack || e.message}`); process.exit(1); });
@@ -2522,6 +2568,7 @@ async function voiceRun() {
   if (process.env.DEMO_ENT === '1') { for (const d of Object.values(DESKS)) await entDemo(d, d.key === 'ent' ? 4 : 3).catch(e => log(`${d.key} demo: ${e.message}`)); return; }
   if (process.env.DEMO_MUN === '1') return munDemo();
   if (process.env.DEMO_EXTRAS === '1') return extrasDemo();
+  if (process.env.DEMO_ALBUM === '1') return albumDemo();
   if (process.env.DEMO_INSIGHTS === '1') { // data for the reach-report / album demos; the repo is public, so the result is encrypted for the requester
     try { await insightsProbe(); } catch (e) { fs.writeFileSync(path.join(__dirname, 'state', 'insights-probe.json'), JSON.stringify({ error: e.stack.slice(0, 800) })); }
     return;
