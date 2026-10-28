@@ -2140,11 +2140,12 @@ async function extrasTick() {
   const at = (k, h) => Number(process.env[`${k}_HOUR`] || h) * 60;
   const due = [
     ['OTD', at('OTD', 9.5), 12 * 60], ['MARKET', at('MARKET', 13), 18 * 60], ['TOP5', at('TOP5', 19), 21 * 60], ['POLL', at('POLL', 20.5), 22 * 60],
+    ['QUIZANS', at('QUIZANS', 15), 17 * 60], ['QUIZ', at('QUIZ', 16), 18 * 60],
   ].filter(([k, from, to]) => process.env[k] === '1' && mins >= from && mins < to);
   if (!due.length) return;
   let st = {};
   try { st = JSON.parse(fs.readFileSync(EXTRAS_FILE, 'utf8')); } catch {}
-  if (st.date !== today) st = { date: today, done: {}, finished: [], usedPoll: st.usedPoll || [] };
+  if (st.date !== today) st = { date: today, done: {}, finished: [], usedPoll: st.usedPoll || [], quiz: st.quiz, usedQuiz: st.usedQuiz || [] };
   const save = () => { fs.mkdirSync(path.dirname(EXTRAS_FILE), { recursive: true }); fs.writeFileSync(EXTRAS_FILE, JSON.stringify(st, null, 2)); };
   const kind = due.map(d => d[0]).find(k => !st.finished.includes(k) && !(k === 'MARKET' && Date.now() < (st.marketCheckedAt || 0) + 15 * 60e3));
   if (!kind) return;
@@ -2183,6 +2184,18 @@ async function extrasTick() {
       st.usedPoll = [...st.usedPoll, story.url].slice(-50);
       caption = `${q}\n\nআপনার মতামত কমেন্টে লিখুন। খবরটি পড়ুন প্রথম কমেন্টের লিংকে।\n\n${hashtags('পাঠকের_মতামত', 'আপনার_মত')}`;
       link = story.url;
+    } else if (kind === 'QUIZANS') {
+      // Yesterday's quiz answer (the question went out at 16:00 the day before).
+      if (!st.quiz || st.quiz.date >= today) return finish();
+      await quizCard(browser, st.quiz, file, logo, true);
+      caption = `গতকালের কুইজের উত্তর:\n${st.quiz.q}\nসঠিক উত্তর: ${'কখগ'[st.quiz.answer]}) ${st.quiz.options[st.quiz.answer]}\n${st.quiz.fact || ''}\n\nআজকের নতুন কুইজ আসছে বিকেল ৪টায়।\n\n${hashtags('কুইজ', 'সাধারণ_জ্ঞান')}`;
+    } else if (kind === 'QUIZ') {
+      let q = null;
+      for (let t = 0; t < 3 && !q; t++) { q = await quizMake(); if (q && st.usedQuiz.includes(q.q)) q = null; }
+      if (!q) return finish();
+      await quizCard(browser, q, file, logo);
+      st.quiz = { ...q, date: today }; st.usedQuiz = [...st.usedQuiz, q.q].slice(-200);
+      caption = `আজকের কুইজ:\n${q.q}\nক) ${q.options[0]}\nখ) ${q.options[1]}\nগ) ${q.options[2]}\n\nআপনার উত্তর কমেন্টে লিখুন। সঠিক উত্তর কাল বিকেল ৩টায়।\n\n${hashtags('কুইজ', 'সাধারণ_জ্ঞান')}`;
     }
     const done = st.done[kind] = st.done[kind] || [];
     try { await postToFacebook(file, caption, link, done, browser, true); finish(); } finally { save(); }

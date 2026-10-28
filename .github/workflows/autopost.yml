@@ -87,6 +87,8 @@ jobs:
           MARKET: ${{ vars.MARKET || '1' }}
           TOP5: ${{ vars.TOP5 || '1' }}
           POLL: ${{ vars.POLL || '1' }}
+          QUIZ: ${{ vars.QUIZ || '1' }}
+          QUIZANS: ${{ vars.QUIZ || '1' }}
           DEMO_MUN: ${{ inputs.demo_mun && '1' || '0' }}
           DEMO_ENT: ${{ inputs.demo_ent && '1' || '0' }}
           DEMO_RATIO: ${{ inputs.demo_ratio }}
@@ -113,6 +115,12 @@ jobs:
           for slot in 780 1050; do
             if [ "${{ vars.BREAKING_REEL || '1' }}" = 1 ] && [ $m -ge $slot ] && [ $m -lt $((slot + 60)) ] && ! grep -qx "$d-$slot" state/breaking-dispatch.txt 2>/dev/null; then
               gh workflow run reel.yml -f demo=false -f kind=breaking && echo "$d-$slot" >> state/breaking-dispatch.txt
+            fi
+          done
+          # Voiced news reel (voice.yml): 10:00, 14:00, 18:00 and 21:00 Dhaka, once per slot.
+          for slot in 600 840 1080 1260; do
+            if [ "${{ vars.VOICE_REEL || '1' }}" = 1 ] && [ $m -ge $slot ] && [ $m -lt $((slot + 60)) ] && ! grep -qx "$d-$slot" state/voice-dispatch.txt 2>/dev/null; then
+              gh workflow run voice.yml -f demo=false && echo "$d-$slot" >> state/voice-dispatch.txt
             fi
           done
           # Prayer reel: once the 8 division schedule cards are out and the last one is 5+ minutes old.
