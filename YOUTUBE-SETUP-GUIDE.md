@@ -1,6 +1,6 @@
 # YouTube Auto-Copy সেটআপের নিয়ম
 
-মূল চ্যানেলে ভিডিও Public হলে, ১৫ মিনিটের মধ্যে সেটা নিজে থেকে দ্বিতীয় চ্যানেলে আপলোড হবে। নতুন title, description আর tags AI বানাবে, আর thumbnail মূল ভিডিওরটাই বসবে। সবকিছু GitHub Actions-এ চলে, তাই PC চালু রাখতে হবে না।
+মূল চ্যানেলে ভিডিও Public করুন, আর একই ভিডিও ফাইলটা Google Drive-এর একটা ফোল্ডারে রাখুন। ১৫ মিনিটের মধ্যে সেটা নিজে থেকে দ্বিতীয় চ্যানেলে আপলোড হবে। (YouTube GitHub-এর সার্ভার থেকে ভিডিও ডাউনলোড করতে দেয় না, তাই ফাইলটা Drive থেকে নেওয়া হয়।) নতুন title, description আর tags AI বানাবে, আর thumbnail মূল ভিডিওরটাই বসবে। সবকিছু GitHub Actions-এ চলে, তাই PC চালু রাখতে হবে না।
 
 সব কাজ মোবাইল থেকেও করা যায়। Chrome-এর মেনু থেকে **Desktop site** চালু করে নিন।
 
@@ -10,6 +10,7 @@
 1. https://console.cloud.google.com এ যেকোনো একটা Gmail দিয়ে ঢুকুন।
 2. উপরের project list থেকে **New Project** বানান, নাম দিন যেমন `YouTube Copy`।
 3. https://console.cloud.google.com/apis/library/youtube.googleapis.com খুলে **Enable** চাপুন।
+4. https://console.cloud.google.com/apis/library/drive.googleapis.com খুলে **Google Drive API**-ও **Enable** করুন।
 
 ## ২. OAuth consent screen
 1. **APIs & Services → OAuth consent screen** (বা **Google Auth Platform**) খুলুন, **Get started** চাপুন।
@@ -31,12 +32,20 @@
 1. https://developers.google.com/oauthplayground খুলুন।
 2. ডানদিকে ⚙️ (settings) চাপুন, **Use your own OAuth credentials** টিক দিন, ধাপ ৩-এর Client ID আর Secret বসান।
 3. বামদিকে নিচের ঘরে এটা লিখুন, তারপর **Authorize APIs** চাপুন:
-   `https://www.googleapis.com/auth/youtube`
+   - মূল চ্যানেলের জন্য (YouTube + Drive পড়ার অনুমতি, মাঝে একটা space):
+     `https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/drive.readonly`
+   - দ্বিতীয় চ্যানেলের জন্য: `https://www.googleapis.com/auth/youtube`
 4. সেই চ্যানেলের Gmail দিয়ে লগইন করুন। একাধিক চ্যানেল থাকলে সঠিক চ্যানেলটা বাছুন।
    "Google hasn't verified this app" দেখালে **Advanced → Go to ... (unsafe)** চাপুন। এটা আপনার নিজের app, তাই সমস্যা নেই।
 5. **Exchange authorization code for tokens** চাপুন। **Refresh token** কপি করুন।
 
 মূল চ্যানেলের token = `YT_MAIN_REFRESH_TOKEN`, দ্বিতীয় চ্যানেলের token = `YT_TARGET_REFRESH_TOKEN`।
+
+## ৪.৫ Drive ফোল্ডার বানান
+1. মূল চ্যানেলের Gmail দিয়ে https://drive.google.com খুলুন, **New → Folder**, নাম দিন `YouTube Copy`।
+2. ফোল্ডারটা খুলুন। লিংকের শেষে `folders/` এর পরের অংশটা ফোল্ডার ID (যেমন `1AbC...xyz`)। এটা `DRIVE_FOLDER_ID`।
+3. প্রতিটা ভিডিও মূল চ্যানেলে দেওয়ার সময় একই ফাইলটা এই ফোল্ডারে আপলোড করুন। ফাইলের নাম ভিডিওর title-এর মতো হলে ভালো, না হলে সবচেয়ে পুরনো নতুন ফাইলটা নেওয়া হয়।
+   ৩ দিনের মধ্যে ফাইল না পেলে সেই ভিডিওটা বাদ দেওয়া হয়।
 
 ## ৫. AI-এর জন্য ফ্রি Gemini API Key
 1. https://aistudio.google.com/apikey খুলুন, **Create API key** চাপুন, কপি করুন।
@@ -53,6 +62,7 @@ Repo → **Settings → Secrets and variables → Actions → New repository sec
 | `YT_MAIN_REFRESH_TOKEN` | মূল চ্যানেলের refresh token |
 | `YT_TARGET_REFRESH_TOKEN` | দ্বিতীয় চ্যানেলের refresh token |
 | `GEMINI_API_KEY` | ধাপ ৫-এর key |
+| `DRIVE_FOLDER_ID` | ধাপ ৪.৫-এর ফোল্ডার ID |
 
 ভবিষ্যতে তৃতীয় চ্যানেল যোগ করতে চাইলে `YT_TARGET_REFRESH_TOKEN_2` যোগ করুন।
 
@@ -69,5 +79,3 @@ Repo → **Settings → Secrets and variables → Actions → New repository sec
 - **Quota:** প্রতিদিন ফ্রি ১০,০০০ unit। একটা আপলোডে ~১৬৫০ লাগে, মানে দিনে প্রায় ৬টা ভিডিও। বাকিগুলো পরের দিন যায়।
 - **Duplicate content:** একই ভিডিও দুই চ্যানেলে দিলে YouTube "reused content" ধরতে পারে, monetization-এ সমস্যা হতে পারে।
 - **Thumbnail:** দ্বিতীয় চ্যানেলে custom thumbnail দিতে চ্যানেলটা phone verified হতে হবে (https://www.youtube.com/verify)।
-- **ডাউনলোড আটকে গেলে:** `state/youtube-events.json`-এ "Sign in to confirm you're not a bot" দেখালে YouTube GitHub-এর সার্ভার থেকে ডাউনলোড আটকাচ্ছে।
-  তখন একটা cookies.txt ফাইলের লেখা `YT_COOKIES` secret-এ রাখলে কাজ করে। দরকার হলে জানাবেন, ধাপগুলো বলে দেবো।
