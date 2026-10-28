@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-10-27T12:13:13.247Z",
-    "text": "run failed: missing secret YT_CLIENT_ID"
-  },
-  {
     "at": "2026-10-27T13:13:33.903Z",
     "text": "run failed: missing secret YT_CLIENT_ID"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-10-28T21:03:35.614Z",
     "text": "run failed: missing secret YT_CLIENT_ID"
+  },
+  {
+    "at": "2026-10-28T21:44:44.659Z",
+    "text": "first run: recorded 10 existing videos of উৎসব TV, nothing copied"
   }
 ]
