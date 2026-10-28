@@ -2523,7 +2523,11 @@ async function voiceRun() {
   if (process.env.DEMO_MUN === '1') return munDemo();
   if (process.env.DEMO_EXTRAS === '1') return extrasDemo();
   if (process.env.DEMO_INSIGHTS === '1') { // data for the reach-report / album demos; the repo is public, so the result is encrypted for the requester
-    const out = { pages: {}, articles: [] }, get = async u => (await fetch(`${GRAPH}/${u}`, { signal: AbortSignal.timeout(60000) })).json().catch(e => ({ error: e.message }));
+    try { await insightsProbe(); } catch (e) { fs.writeFileSync(path.join(__dirname, 'state', 'insights-probe.json'), JSON.stringify({ error: e.stack.slice(0, 800) })); }
+    return;
+  }
+  async function insightsProbe() {
+    const out = { pages: {}, articles: [] }, get = async u => { try { return await (await fetch(`${GRAPH}/${u}`, { signal: AbortSignal.timeout(60000) })).json(); } catch (e) { return { error: { message: e.message } }; } };
     out.perms = ((await get(`me/permissions?access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).data || []).filter(p => p.status === 'granted').map(p => p.permission);
     const since = Math.floor(Date.now() / 1000) - 7 * 86400;
     for (const page of await pages()) {
