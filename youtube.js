@@ -1,7 +1,8 @@
 // YouTube channel copier.
 // 1. Looks at the newest uploads of the main channel (YouTube Data API v3).
-// 2. For each new public video: downloads it (yt-dlp), asks an AI for fresh SEO
-//    (title, description, tags) per target channel, uploads it there and sets the same thumbnail.
+// 2. For each new public video: takes its video file from a Google Drive folder (YouTube blocks
+//    downloads from GitHub's servers), asks an AI for fresh SEO (title, description, tags)
+//    per target channel, uploads it there and sets the same thumbnail.
 //
 // Env:
 //   YT_CLIENT_ID, YT_CLIENT_SECRET     the Google Cloud OAuth client (see YOUTUBE-SETUP-GUIDE.md)
@@ -9,16 +10,18 @@
 //   YT_TARGET_REFRESH_TOKEN, _2, _3    refresh tokens of the channels to copy to
 //   GEMINI_API_KEY or ANTHROPIC_API_KEY  AI for the SEO text; without one the original title/description/tags are reused
 //   AI_MODEL                           override the AI model
-//   YT_COOKIES                         optional cookies.txt content for yt-dlp, if YouTube blocks the download
+//   DRIVE_FOLDER_ID                    the Drive folder the video files are put in (one file per main-channel video)
+//   DRIVE_REFRESH_TOKEN                token that can read that folder; default YT_MAIN_REFRESH_TOKEN (needs the drive.readonly scope)
 //   YT_PRIVACY                         public (default), unlisted or private
 //   VIDEO_ID                           copy only this main-channel video now (manual run), seen or not
 //   CHECK=1                            only test the tokens, write the channel names to state/youtube-check.json
-//   DRY_RUN=1                          download and make the SEO, but do not upload
+//   DRY_RUN=1                          find the file and make the SEO, but do not upload
 //   MAX_PER_RUN                        at most this many videos per run (default 1; an upload costs 1600 of the 10000 daily quota)
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
-const { spawnSync } = require('child_process');
+const { Readable } = require('stream');
+const { pipeline } = require('stream/promises');
 
 const STATE_FILE = path.join(__dirname, 'state', 'youtube.json');
 const EVENTS_FILE = path.join(__dirname, 'state', 'youtube-events.json');
@@ -27,6 +30,7 @@ const OUT_DIR = path.join(__dirname, 'out');
 const DRY_RUN = process.env.DRY_RUN === '1';
 const MAX_PER_RUN = Number(process.env.MAX_PER_RUN || 1);
 const MAX_TRIES = 3;
+const WAIT_DAYS = 3; // give up on a video whose file has not shown up in Drive after this long
 const API = 'https://www.googleapis.com/youtube/v3';
 const UPLOAD_API = 'https://www.googleapis.com/upload/youtube/v3';
 
@@ -105,22 +109,31 @@ async function recentVideos(token, uploads, ids = []) {
 const ready = v => v.status.privacyStatus === 'public' && v.status.uploadStatus === 'processed'
   && v.snippet.liveBroadcastContent === 'none';
 
-function download(id) {
+class WaitingForFile extends Error {}
+
+// The video file for a main-channel video: a file in the Drive folder whose name matches the title,
+// else the oldest video file not used yet (people drop one file per upload, in order).
+async function driveFile(token, v, used) {
+  const q = `'${process.env.DRIVE_FOLDER_ID}' in parents and mimeType contains 'video/' and trashed = false`;
+  const { json } = await yt(token, 'GET', `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(q)}`
+    + '&orderBy=createdTime&pageSize=100&fields=files(id,name,size,createdTime)&supportsAllDrives=true&includeItemsFromAllDrives=true');
+  const files = (json.files || []).filter(f => !used[f.id]);
+  const norm = x => x.toLowerCase().replace(/\.[a-z0-9]+$/, '').replace(/[^\p{L}\p{M}\p{N}]+/gu, ' ').trim();
+  const title = norm(v.snippet.title);
+  return files.find(f => norm(f.name) && (title.includes(norm(f.name)) || norm(f.name).includes(title))) || files[0];
+}
+
+async function download(token, v, used) {
+  const f = await driveFile(token, v, used);
+  if (!f) throw new WaitingForFile(`no new video file in the Drive folder yet for ${v.id} "${v.snippet.title}"`);
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  const file = path.join(OUT_DIR, `${id}.mp4`);
-  if (fs.existsSync(file)) return file;
-  const args = ['-f', 'bv*+ba/b', '--merge-output-format', 'mp4', '--no-playlist', '-o', file];
-  if (process.env.YT_COOKIES) {
-    const cookies = path.join(OUT_DIR, 'cookies.txt');
-    fs.writeFileSync(cookies, process.env.YT_COOKIES);
-    args.push('--cookies', cookies);
-  }
-  args.push(`https://www.youtube.com/watch?v=${id}`);
-  const r = spawnSync('yt-dlp', args, { encoding: 'utf8', maxBuffer: 1 << 26 });
-  if (r.status !== 0 || !fs.existsSync(file)) {
-    throw new Error(`download failed: ${(r.stderr || r.error?.message || '').trim().split('\n').slice(-3).join(' ')}`);
-  }
-  return file;
+  const file = path.join(OUT_DIR, `${v.id}.mp4`);
+  const res = await fetch(`https://www.googleapis.com/drive/v3/files/${f.id}?alt=media&supportsAllDrives=true`,
+    { headers: { Authorization: `Bearer ${token}` } });
+  if (!res.ok) throw new Error(`Drive download ${f.name}: HTTP ${res.status} ${(await res.text()).slice(0, 300)}`);
+  await pipeline(Readable.fromWeb(res.body), fs.createWriteStream(file));
+  log(`got ${f.name} (${f.size} bytes) from Drive for ${v.id}`);
+  return { file, driveId: f.id };
 }
 
 // ---------- SEO ----------
@@ -259,13 +272,16 @@ async function copyThumbnail(token, v, newId) {
 // ---------- main ----------
 
 async function main() {
-  for (const k of ['YT_CLIENT_ID', 'YT_CLIENT_SECRET', 'YT_MAIN_REFRESH_TOKEN']) {
+  // Not set up yet (see YOUTUBE-SETUP-GUIDE.md): skip quietly instead of failing every 15 minutes.
+  if (!process.env.YT_CLIENT_ID) return log('YouTube secrets not set yet, skipping');
+  for (const k of ['YT_CLIENT_ID', 'YT_CLIENT_SECRET', 'YT_MAIN_REFRESH_TOKEN', 'DRIVE_FOLDER_ID']) {
     if (!process.env[k]) throw new Error(`missing secret ${k}`);
   }
   const targetTokens = ['', '_2', '_3'].map(s => process.env[`YT_TARGET_REFRESH_TOKEN${s}`]).filter(Boolean);
   if (!targetTokens.length) throw new Error('missing secret YT_TARGET_REFRESH_TOKEN');
 
   const mainToken = await accessToken(process.env.YT_MAIN_REFRESH_TOKEN);
+  const driveToken = process.env.DRIVE_REFRESH_TOKEN ? await accessToken(process.env.DRIVE_REFRESH_TOKEN) : mainToken;
   const main = await myChannel(mainToken);
   const targets = [];
   for (const rt of targetTokens) {
@@ -277,6 +293,12 @@ async function main() {
   if (process.env.CHECK === '1') {
     const check = { at: new Date().toISOString(), main: main.title, targets: targets.map(t => t.title),
       ai: process.env.GEMINI_API_KEY ? 'gemini' : process.env.ANTHROPIC_API_KEY ? 'claude' : 'none (original text reused)' };
+    try {
+      const { json } = await yt(driveToken, 'GET', `https://www.googleapis.com/drive/v3/files/${process.env.DRIVE_FOLDER_ID}?fields=name&supportsAllDrives=true`);
+      check.drive_folder = json.name;
+    } catch (e) {
+      check.drive_folder = `not readable: ${e.message}`;
+    }
     if (targets.some(t => t.id === main.id)) check.warning = 'a target token belongs to the main channel';
     fs.writeFileSync(CHECK_FILE, JSON.stringify(check, null, 2));
     log('check ok', JSON.stringify(check));
@@ -288,12 +310,13 @@ async function main() {
   let state = loadState();
   if (!state) {
     // First run: remember what is already there so old videos are not copied.
-    state = { seen: videos.map(v => v.id), copies: {}, tries: {} };
+    state = { seen: videos.map(v => v.id), copies: {}, tries: {}, driveUsed: {} };
     saveState(state);
     event(`first run: recorded ${videos.length} existing videos of ${main.title}, nothing copied`);
     return;
   }
 
+  state.driveUsed ||= {};
   // The playlist is newest first; copy oldest first.
   const todo = videos.filter(v => forced ? v.id === forced : !state.seen.includes(v.id) && ready(v)).reverse().slice(0, MAX_PER_RUN);
   if (!todo.length) return log('no new videos');
@@ -301,7 +324,7 @@ async function main() {
   for (const v of todo) {
     const copies = state.copies[v.id] || {};
     try {
-      const file = download(v.id);
+      const { file, driveId } = await download(driveToken, v, state.driveUsed);
       for (const t of targets) {
         if (copies[t.id]) continue;
         const seo = await makeSeo(v, t.title);
@@ -321,13 +344,26 @@ async function main() {
         }
       }
       if (DRY_RUN) continue;
+      state.driveUsed[driveId] = v.id;
       state.seen.push(v.id);
       delete state.tries[v.id];
       fs.rmSync(file, { force: true });
     } catch (e) {
+      if (e instanceof WaitingForFile) {
+        const days = (Date.now() - Date.parse(v.snippet.publishedAt)) / 864e5;
+        if (days > WAIT_DAYS && !forced) {
+          state.seen.push(v.id);
+          event(`gave up on ${v.id}: no file in the Drive folder after ${WAIT_DAYS} days`);
+        } else log(e.message);
+        continue;
+      }
       if (e instanceof QuotaError) {
         event(`daily YouTube quota used up, will continue tomorrow: ${e.message}`);
         break;
+      }
+      if (DRY_RUN) {
+        event(`dry run ${v.id} failed: ${e.message}`);
+        continue;
       }
       state.tries[v.id] = (state.tries[v.id] || 0) + 1;
       event(`failed ${v.id} (try ${state.tries[v.id]}/${MAX_TRIES}): ${e.message}`);

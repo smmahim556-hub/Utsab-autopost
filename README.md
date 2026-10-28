@@ -15,7 +15,7 @@ Local run: `npm install && npx playwright install chromium && DRY_RUN=1 node aut
 
 # YouTube copy
 
-`youtube.js` (workflow **YouTube copy**, every 15 minutes) copies each new public video of the main channel to the other channel(s): downloads it with yt-dlp, writes fresh title/description/tags with AI (Gemini or Claude), uploads it and sets the same thumbnail.
+`youtube.js` (workflow **YouTube copy**, every 15 minutes) copies each new public video of the main channel to the other channel(s): takes its file from a Google Drive folder (YouTube blocks downloads from GitHub's servers), writes fresh title/description/tags with AI (Gemini or Claude), uploads it and sets the same thumbnail.
 
 - Setup and secrets: see YOUTUBE-SETUP-GUIDE.md.
 - First run only records the existing videos. Run by hand with **check** to test the tokens (`state/youtube-check.json`), or with **video_id** (and **dry_run**) to test one video.
