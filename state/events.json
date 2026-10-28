@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-28T08:41:36.285Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1814846446433461\"}"
-  },
-  {
-    "at": "2026-10-28T08:41:39.651Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123406807459930 ()"
-  },
-  {
-    "at": "2026-10-28T08:41:47.027Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1650084289906415\"}"
-  },
-  {
-    "at": "2026-10-28T08:52:37.864Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147494785140193 (https://utsabtv.com/yubo-dal-expels-mp-son-mintu-oc-withdrawn-chhatra-dal-leader-killing-natore)"
-  },
-  {
     "at": "2026-10-28T08:52:43.962Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1418618700471272\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-28T10:55:20.499Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-10-28T10:56:08.446Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147505609140193 ()"
+  },
+  {
+    "at": "2026-10-28T10:56:16.329Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2192634777990899\"}"
+  },
+  {
+    "at": "2026-10-28T10:56:20.249Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123450457459930 ()"
+  },
+  {
+    "at": "2026-10-28T10:56:28.987Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1591392362468369\"}"
   }
 ]
