@@ -259,6 +259,8 @@ async function copyThumbnail(token, v, newId) {
 // ---------- main ----------
 
 async function main() {
+  // Not set up yet (see YOUTUBE-SETUP-GUIDE.md): skip quietly instead of failing every 15 minutes.
+  if (!process.env.YT_CLIENT_ID) return log('YouTube secrets not set yet, skipping');
   for (const k of ['YT_CLIENT_ID', 'YT_CLIENT_SECRET', 'YT_MAIN_REFRESH_TOKEN']) {
     if (!process.env[k]) throw new Error(`missing secret ${k}`);
   }
