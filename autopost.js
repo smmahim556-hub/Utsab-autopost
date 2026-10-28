@@ -1641,6 +1641,34 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
   return outFile;
 }
 
+// A paper's stock share image (its logo or name on a plain background) is not a news photo and must never go on our card.
+// The vision model looks at the photo; without a key or on an error the photo is kept.
+async function entBranded(url) {
+  if (!process.env.GEMINI_API_KEY) return false;
+  try {
+    const res = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0' }, signal: AbortSignal.timeout(30000) });
+    const buf = Buffer.from(await res.arrayBuffer()), mime = (res.headers.get('content-type') || 'image/jpeg').split(';')[0];
+    for (const model of ['gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-3.5-flash']) {
+      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: 'POST', signal: AbortSignal.timeout(60000),
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+        body: JSON.stringify({ contents: [{ parts: [{ inline_data: { mime_type: mime, data: buf.toString('base64') } },
+          { text: 'Is this image mainly a newspaper, TV channel or news website logo / brand name / default share image (for example a big "Prothom Alo", "Jugantor" or "bdnews24" logo), or a placeholder with no real news photo? A real news photo that only has a small watermark in a corner is NO. Answer only YES or NO.' }] }] }) }).catch(() => null);
+      const b = r ? await r.json().catch(() => ({})) : {};
+      const a = (b.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('').trim().toUpperCase();
+      if (a) return a.startsWith('YES');
+    }
+  } catch (e) { log('ent brand check failed:', e.message); }
+  return false;
+}
+// Same story from another trusted paper, for its photo when the first paper had none of its own.
+async function entOtherPhoto(browser, it) {
+  const alts = (await entItems({ feeds: [GN(it.title)] })).filter(x => x.link !== it.link && ENT_SOURCES.test(x.source) && entSame(x.title, it.title));
+  for (const x of alts.slice(0, 4)) {
+    const r = await entResolve(browser, x);
+    if (r.image && !await entBranded(r.image)) return r.image;
+  }
+  return '';
+}
 async function entTick(desk = DESKS.ent) {
   if (process.env[desk.flag] !== '1') return false;
   let st = {};
@@ -1664,6 +1692,8 @@ async function entTick(desk = DESKS.ent) {
       st.seen.push(it.id);
       if (st.titles.concat(others).some(t => entSame(t, it.title))) continue; // already posted from another paper or desk
       const r = await entResolve(browser, it);
+      if (r.image && await entBranded(r.image)) r.image = '';
+      if (!r.image) r.image = await entOtherPhoto(browser, it).catch(() => '');
       if (!r.image) { log(`${desk.key}: no photo, skipped:`, it.title); continue; }
       // A question headline means nothing on its own, so it needs a summary to go with it.
       r.summary = await entRewrite(it.title, r.summary);
@@ -1696,6 +1726,8 @@ async function entDemo(desk = DESKS.ent, n = 4) {
       if (made.length >= n) break;
       if (!ENT_SOURCES.test(it.source) || made.some(m => entSame(m.title, it.title))) continue;
       const r = await entResolve(browser, it);
+      if (r.image && await entBranded(r.image)) r.image = '';
+      if (!r.image) r.image = await entOtherPhoto(browser, it).catch(() => '');
       if (!r.image) continue;
       r.orig = r.summary; r.summary = await entRewrite(it.title, r.summary); r.note = entRewriteNote;
       Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
@@ -2489,6 +2521,15 @@ async function voiceRun() {
   if (process.env.DEMO_ENT === '1') { for (const d of Object.values(DESKS)) await entDemo(d, d.key === 'ent' ? 4 : 3).catch(e => log(`${d.key} demo: ${e.message}`)); return; }
   if (process.env.DEMO_MUN === '1') return munDemo();
   if (process.env.DEMO_EXTRAS === '1') return extrasDemo();
+  if (process.env.DEMO_BRAND) { // check of the logo-photo filter on one headline: state/brand-probe.json
+    const b = await chromium.launch(), out = {};
+    try {
+      const it = (await entItems({ feeds: [GN(process.env.DEMO_BRAND)] }))[0];
+      out.first = { source: it.source, ...(await entResolve(b, it)) }; out.first.branded = out.first.image ? await entBranded(out.first.image) : null;
+      out.other = await entOtherPhoto(b, it);
+    } catch (e) { out.error = e.message; } finally { await b.close(); }
+    return fs.writeFileSync(path.join(__dirname, 'state', 'brand-probe.json'), JSON.stringify(out, null, 2));
+  }
   if (process.env.DEMO_VOICE === '1') return voiceDemo();
   if (process.env.CLONE_DEMO) {
     // Voice clone demo: lines already spoken into CLONE_DEMO.dir; the reel is encrypted for the public repo (tools/voice-clone-demo.js).
