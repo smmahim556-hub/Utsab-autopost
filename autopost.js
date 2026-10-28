@@ -1574,7 +1574,8 @@ async function entResolve(browser, it) {
     for (let i = 0; i < 20 && /news\.google\.com/.test(pg.url()); i++) await pg.waitForTimeout(500);
     await pg.waitForTimeout(1500);
     const html = await pg.content();
-    const image = meta(html, 'og:image') || meta(html, 'twitter:image');
+    // Prothom Alo-style share images put the paper's logo strip on the photo through overlay=… parameters; without them it is the bare photo.
+    const image = (meta(html, 'og:image') || meta(html, 'twitter:image')).replace(/&(amp;)?overlay[a-z_]*=[^&]*/gi, '');
     // A short summary for the post caption: the paper's own description, or else its opening paragraphs.
     const paras = await pg.evaluate(() => [...document.querySelectorAll('article p, main p, .content p, p')]
       .map(p => p.innerText.replace(/\s+/g, ' ').trim()).filter(t => t.length > 60 && /[ঀ-৿]/.test(t)).slice(0, 3)).catch(() => []);
@@ -2529,7 +2530,7 @@ async function voiceRun() {
       out.other = await entOtherPhoto(b, it);
       const pg = await b.newPage(); await pg.goto(out.first.url, { waitUntil: 'domcontentloaded', timeout: 45000 }); const html = await pg.content();
       out.raw = { og: meta(html, 'og:image'), tw: meta(html, 'twitter:image') };
-      if (out.raw.og) out.raw.branded = await entBranded(new URL(out.raw.og, out.first.url).href);
+      out.first.branded = out.first.image ? await entBranded(out.first.image) : null;
     } catch (e) { out.error = e.message; } finally { await b.close(); }
     return fs.writeFileSync(path.join(__dirname, 'state', 'brand-probe.json'), JSON.stringify(out, null, 2));
   }
