@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-10-28T13:32:19.777Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147524077140193 (https://utsabtv.com/tibet-earthquake-nagqu-bakken-rescue-rehabilitation-challenges)"
-  },
-  {
-    "at": "2026-10-28T13:32:28.519Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2401998353887989\"}"
-  },
-  {
     "at": "2026-10-28T13:32:35.827Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122123484741459930 (https://utsabtv.com/tibet-earthquake-nagqu-bakken-rescue-rehabilitation-challenges)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-10-28T15:40:21.250Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1135383462330104\"}"
+  },
+  {
+    "at": "2026-10-28T16:04:27.552Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122147535705140193\"}"
+  },
+  {
+    "at": "2026-10-28T16:04:33.666Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122123509821459930\"}"
   }
 ]
