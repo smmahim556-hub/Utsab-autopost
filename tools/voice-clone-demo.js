@@ -16,7 +16,7 @@ const done = () => fs.writeFileSync('state/clone-probe.json', JSON.stringify(sta
     // Hybrid decryption: RSA-wrapped random key, then AES.
     sh(`openssl pkeyutl -decrypt -inkey ${PRIV} -pkeyopt rsa_padding_mode:oaep -in tools/assets/ref-voice.key -out ${W}/k`);
     sh(`openssl enc -d -aes-256-cbc -pbkdf2 -in tools/assets/ref-voice.enc -out ${W}/ref.m4a -pass file:${W}/k`);
-    sh(`ffmpeg -y -loglevel error -i ${W}/ref.m4a -ss 2.6 -to 14.0 -ac 1 -ar 24000 ${W}/ref.wav`);
+    sh(`ffmpeg -y -loglevel error -i ${W}/ref.m4a -ss 1.75 -to 13.6 -ac 1 -ar 24000 ${W}/ref.wav`);
     status.decrypted = true;
     // Exact words of the reference clip, which the model needs alongside the audio.
     let refText = '';
