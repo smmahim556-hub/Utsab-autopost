@@ -12,13 +12,20 @@
     "TOP5": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "MARKET",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
-  "usedPoll": [],
+  "usedPoll": [
+    "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh"
+  ],
   "marketCheckedAt": 1793185784852
 }
