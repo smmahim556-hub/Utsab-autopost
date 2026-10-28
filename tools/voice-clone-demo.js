@@ -32,7 +32,7 @@ const done = () => fs.writeFileSync('state/clone-probe.json', JSON.stringify(sta
     if (!refText) throw new Error('no transcript');
     status.transcript = true;
     const lines = JSON.parse(fs.readFileSync('preview/voice-demo.json', 'utf8')).female;
-    fs.writeFileSync(`${W}/lines.json`, JSON.stringify(lines));
+    fs.writeFileSync(`${W}/lines.json`, JSON.stringify(lines.map(require('../bnwords').spoken))); // the model can't read digits
     fs.writeFileSync(`${W}/reftext.txt`, refText);
     sh('python3 -m pip install -q --break-system-packages torch==2.7.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cpu');
     sh('python3 -m pip install -q --break-system-packages git+https://github.com/ai4bharat/IndicF5.git soundfile');

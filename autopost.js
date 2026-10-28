@@ -2214,6 +2214,7 @@ async function breakingReelRun() {
 // ------------------------------------------------------------------ voiced news reels and daily quiz (demo)
 // Voice reel: AI writes a short Bangla script from one story, a Bangla TTS voice reads it sentence by sentence,
 // each sentence is one 9:16 slide (photo, headline, subtitle) shown for as long as it is read.
+const { spoken } = require('./bnwords');
 async function newsText(url) {
   const html = await getText(url);
   const paras = [...html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(m => decodeEntities(m[1].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim())
@@ -2223,7 +2224,7 @@ async function newsText(url) {
 async function voiceScript(story) {
   const out = await aiAsk(`তুমি একটি বাংলাদেশি টিভির সংবাদ পাঠক। নিচের খবর থেকে ফেসবুক রিলের জন্য ছোট একটি পাঠ লেখো।
 নিয়ম: চলিত বাংলায় ৪-৬টি ছোট বাক্য, মোট ৬০-৯০ শব্দ। প্রথম বাক্যেই মূল খবর। শুধু খবরে থাকা তথ্য, নিজের মত নয়।
-কোনো পত্রিকার নাম নয়, ইমোজি বা হ্যাশট্যাগ নয়। সংখ্যা বাংলায় লেখো। প্রতিটি বাক্য আলাদা লাইনে লেখো, আর কিছু নয়।
+কোনো পত্রিকার নাম নয়, ইমোজি বা হ্যাশট্যাগ নয়। সংখ্যা বাংলা অঙ্কে লেখো। প্রতিটি বাক্য আলাদা লাইনে লেখো, আর কিছু নয়।
 
 শিরোনাম: ${story.title}
 খবর: ${story.text}`, 0.4);
@@ -2283,7 +2284,7 @@ async function voiceReel(browser, url, engine, outFile, logo, given) {
   const { execFileSync } = require('child_process');
   const parts = [];
   for (const [i, line] of lines.entries()) {
-    const audio = await speak(line, engine, `${outFile}-a${i}`, i);
+    const audio = await speak(spoken(line), engine, `${outFile}-a${i}`, i);
     parts.push({ line, audio, sec: audioSecs(audio) + 0.35, slide: await voiceSlide(browser, story, line, i, lines.length, `${outFile}-s${i}.png`, logo) });
   }
   // Video: each slide for its sentence; audio: the sentences with a short pause, soft music under them.
