@@ -2541,11 +2541,15 @@ async function voiceRun() {
       }
       const good = Object.keys(metrics).filter(m => metrics[m] === 'ok' && m !== 'post_reactions_by_type_total');
       for (const p of posts) {
-        if (good.length) { const r = await get(`${p.id}/insights?metric=${good.join(',')}&access_token=${t}`); p.ins = Object.fromEntries((r.data || []).map(d => [d.name, d.values?.[0]?.value])); }
+        p.ins = {};
+        for (const m of ['post_total_media_view_unique', 'post_media_view', 'post_clicks']) {
+          const r = await get(`${p.id}/insights?metric=${m}&access_token=${t}`);
+          p.ins[m] = r.error ? `E:${r.error.message.slice(0, 80)}` : r.data?.[0]?.values?.[0]?.value ?? JSON.stringify(r).slice(0, 200);
+        }
         p.message = (p.message || '').slice(0, 160);
       }
       const fi = await get(`${page.id}?fields=followers_count,fan_count&access_token=${t}`);
-      const pins = await get(`${page.id}/insights?metric=page_impressions_unique,page_post_engagements,page_daily_follows_unique,page_media_view&period=day&since=${since}&access_token=${t}`);
+      const pins = await get(`${page.id}/insights?metric=page_total_media_view_unique,page_post_engagements,page_follows&period=day&since=${since}&access_token=${t}`);
       out.pages[page.id] = { name: page.name, followers: fi.followers_count, fans: fi.fan_count, metrics, pageInsights: pins.error ? pins.error.message : (pins.data || []).map(d => ({ name: d.name, values: d.values })), posts };
     }
     for (const u of (await homepageLinks()).slice(0, 8)) {
