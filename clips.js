@@ -48,6 +48,8 @@ body{width:${w}px;height:${h}px;font-family:'Noto Serif Bengali',serif;font-weig
 
 async function renderClip(browser, video, clip, logo, outFile, work, tag) {
   const W = 1080, H = 1920, len = clip.end - clip.start;
+  const [vw, vh] = execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', video]).toString().trim().split(',').map(Number);
+  const vertical = vh > vw; // already a branded 9:16 reel: keep its own look, add only the subtitles
   // Frame: header with logo + hook headline, footer with the site.
   const frame = await overlay(browser, `<div style="position:absolute;inset:0">
 <div style="position:absolute;left:0;right:0;top:0;height:420px;background:linear-gradient(135deg,#12873d,#0b5e2a);border-bottom:10px solid #c8202f"></div>
@@ -62,9 +64,11 @@ ${logo ? `<img src="${logo}" style="position:absolute;right:48px;top:44px;height
     path.join(work, `${tag}-sub${i}.png`), W, 360) });
   // Video: blurred full-bleed copy behind, the real picture 1080 wide in the middle.
   const inputs = ['-ss', String(clip.start), '-t', String(len), '-i', video, '-loop', '1', '-i', frame, ...subs.flatMap(s => ['-loop', '1', '-i', s.file])];
-  let f = `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},boxblur=30:2,eq=brightness=-0.12[bg];` +
-    `[0:v]scale=${W}:-2[fg];[bg][fg]overlay=(W-w)/2:(H-h)/2-40[v0];[v0][1:v]overlay=0:0[v1]`;
-  subs.forEach((s, i) => { f += `;[v${i + 1}][${i + 2}:v]overlay=0:${H - 130 - 380}:enable='between(t,${s.s.toFixed(2)},${Math.min(s.e, len).toFixed(2)})'[v${i + 2}]`; });
+  let f = vertical ? `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H}[v0];[v0][1:v]overlay=0:0:enable='lt(t,0)'[v1]`
+    : `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},boxblur=30:2,eq=brightness=-0.12[bg];` +
+      `[0:v]scale=${W}:-2[fg];[bg][fg]overlay=(W-w)/2:(H-h)/2-40[v0];[v0][1:v]overlay=0:0[v1]`;
+  const subY = vertical ? H - 620 : H - 130 - 380;
+  subs.forEach((s, i) => { f += `;[v${i + 1}][${i + 2}:v]overlay=0:${subY}:enable='between(t,${s.s.toFixed(2)},${Math.min(s.e, len).toFixed(2)})'[v${i + 2}]`; });
   ff([...inputs, '-filter_complex', f, '-map', `[v${subs.length + 1}]`, '-map', '0:a?', '-t', String(len), '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '22',
     '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', outFile]);
   return outFile;
