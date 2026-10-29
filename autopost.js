@@ -2780,4 +2780,4 @@ async function albumTick() {
   } finally {
     await browser.close();
   }
-})().catch(e => { console.error(e); process.exit(1); });
+})().catch(e => { console.error(e); if (process.env.CLONE_DEMO) fs.writeFileSync(path.join(__dirname, "state", "demo-error-probe.json"), JSON.stringify({ error: String(e.stack || e).slice(0, 800) })); process.exit(1); });
