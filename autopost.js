@@ -245,10 +245,12 @@ async function postToFacebook(cardFile, caption, link, done, browser, withCaptio
   const targets = await pages();
   if (!targets.length) throw new Error('no FB_PAGE_ID / FB_PAGE_TOKEN set');
   let failed = null;
+  const ids = {};
   for (const page of targets) {
     if (done.includes(page.id)) continue;
     try {
-      event(`posted to Page ${page.id}: ${await postToPage(page, cardFile, caption, link, withCaption)} (${link})`);
+      ids[page.id] = await postToPage(page, cardFile, caption, link, withCaption);
+      event(`posted to Page ${page.id}: ${ids[page.id]} (${link})`);
       done.push(page.id);
     } catch (e) {
       failed = e;
@@ -266,6 +268,7 @@ async function postToFacebook(cardFile, caption, link, done, browser, withCaptio
     }
   }
   if (failed) throw failed;
+  return ids;
 }
 
 // LEAN=1 (2026-10-29, owner approved): the many small cards that got almost no response (8 division weather cards,
@@ -2292,8 +2295,9 @@ async function extrasTick() {
     } else if (kind === 'QUIZANS') {
       // Yesterday's quiz answer (the question went out at 16:00 the day before).
       if (!st.quiz || st.quiz.date >= today) return finish();
+      st.quiz.winners = await quizWinners(st.quiz).catch(e => (log('quiz winners:', e.message), []));
       await quizCard(browser, st.quiz, file, logo, true);
-      caption = `গতকালের কুইজের উত্তর:\n${st.quiz.q}\nসঠিক উত্তর: ${'কখগ'[st.quiz.answer]}) ${st.quiz.options[st.quiz.answer]}\n${st.quiz.fact || ''}\n\nআজকের নতুন কুইজ আসছে বিকেল ৪টায়।\n\n${hashtags('কুইজ', 'সাধারণ_জ্ঞান')}`;
+      caption = `গতকালের কুইজের উত্তর:\n${st.quiz.q}\nসঠিক উত্তর: ${'কখগ'[st.quiz.answer]}) ${st.quiz.options[st.quiz.answer]}\n${st.quiz.fact || ''}${st.quiz.winners?.length ? `\n\nসবার আগে সঠিক উত্তর দিয়েছেন: ${st.quiz.winners.join(', ')}। অভিনন্দন!` : ''}\n\nআজকের নতুন কুইজ আসছে বিকেল ৪টায়।\n\n${hashtags('কুইজ', 'সাধারণ_জ্ঞান')}`;
     } else if (kind === 'QUIZ') {
       let q = null;
       for (let t = 0; t < 3 && !q; t++) { q = await quizMake(); if (q && st.usedQuiz.includes(q.q)) q = null; }
@@ -2303,7 +2307,7 @@ async function extrasTick() {
       caption = `আজকের কুইজ:\n${q.q}\nক) ${q.options[0]}\nখ) ${q.options[1]}\nগ) ${q.options[2]}\n\nআপনার উত্তর কমেন্টে লিখুন। সঠিক উত্তর কাল বিকেল ৩টায়।\n\n${hashtags('কুইজ', 'সাধারণ_জ্ঞান')}`;
     }
     const done = st.done[kind] = st.done[kind] || [];
-    try { await postToFacebook(file, caption, link, done, browser, true); finish(); } finally { save(); }
+    try { const ids = await postToFacebook(file, caption, link, done, browser, true); if (kind === 'QUIZ') st.quiz.posts = { ...(st.quiz.posts || {}), ...ids }; finish(); } finally { save(); }
   } catch (e) { event(`${kind.toLowerCase()} FAILED: ${e.message}`); } finally { await browser.close(); }
 }
 
@@ -2459,11 +2463,51 @@ body{background:linear-gradient(160deg,#0b5e2a 0%,#12873d 50%,#0b5e2a 100%)}
 .op b{width:78px;height:78px;flex:none;border-radius:50%;background:#0b5e2a;color:#fff;display:flex;align-items:center;justify-content:center}
 .op.ok{background:#e3f7e8;border-color:#12873d}.op.ok:after{content:'✓';margin-left:auto;color:#12873d;font-size:56px}
 .cta{margin-top:auto;font-size:40px;font-weight:800;color:#c8202f;text-align:center}
+.win{font-size:34px;font-weight:800;color:#c8202f;text-align:center;background:#fff6d6;border-radius:18px;padding:10px 16px}
 .fact{margin-top:auto;font-size:36px;color:#3d5446;line-height:1.45;border-left:8px solid #12873d;padding-left:20px}
 </style>${brandHead(logo, reveal ? 'কুইজের উত্তর' : 'আজকের কুইজ', bnDate(dhakaNow()))}
 <div class="box"><div class="tag">${reveal ? 'সঠিক উত্তর' : 'প্রশ্ন'}</div><div class="q">${esc(q.q)}</div>${q.options.map(opt).join('')}
-${reveal ? `<div class="fact">${esc(q.fact || '')}</div>` : '<div class="cta">কমেন্টে উত্তর লিখুন: ক, খ নাকি গ? সঠিক উত্তর কাল</div>'}</div>
+${reveal ? `<div class="fact">${esc(q.fact || '')}</div>${q.winners?.length ? `<div class="win">সবার আগে সঠিক উত্তর: ${q.winners.map(esc).join(', ')}</div>` : ''}` : '<div class="cta">কমেন্টে উত্তর লিখুন: ক, খ নাকি গ? সঠিক উত্তর কাল</div>'}</div>
 <div class="ftr">www.utsabtv.com</div>`, outFile);
+}
+
+// First 3 people (by comment time, any Page) whose comment picks the right option of the quiz.
+async function quizWinners(q) {
+  const right = [`${'কখগ'[q.answer]}`, String(q.answer + 1), q.options[q.answer]], wrong = q.options.filter((_, i) => i !== q.answer);
+  const all = [];
+  for (const page of await pages()) {
+    const pid = q.posts?.[page.id];
+    if (!pid) continue;
+    const r = await (await fetch(`${GRAPH}/${pid}/comments?fields=from{name},message,created_time&order=chronological&filter=stream&limit=500&access_token=${encodeURIComponent(page.token)}`)).json();
+    for (const c of r.data || []) all.push(c);
+  }
+  const ok = c => { const m = (c.message || '').trim(); return m.length < 120 && (right.some(x => m === x || m.startsWith(`${x})`) || m.startsWith(`${x} `) || m.includes(q.options[q.answer])) && !wrong.some(w => m.includes(w))); };
+  const names = [];
+  for (const c of all.sort((a, b) => a.created_time.localeCompare(b.created_time))) if (c.from?.name && ok(c) && !names.includes(c.from.name)) names.push(c.from.name);
+  return names.slice(0, 3);
+}
+// COMMENT_LIKE=1: every COMMENT_EVERY_MIN, the Page likes the new comments on its posts of the last 6 hours, so people get a quick response.
+async function commentTick() {
+  if (process.env.COMMENT_LIKE !== '1' || DRY_RUN) return;
+  const file = path.join(__dirname, 'state', 'comments.json');
+  let st = {};
+  try { st = JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
+  if (Date.now() < (st.at || 0) + Number(process.env.COMMENT_EVERY_MIN || 15) * 60e3) return;
+  st.at = Date.now();
+  const since = Math.floor(Date.now() / 1000) - 6 * 3600;
+  let liked = 0;
+  for (const page of await pages()) {
+    const t = encodeURIComponent(page.token);
+    const r = await (await fetch(`${GRAPH}/${page.id}/published_posts?since=${since}&limit=60&fields=id,comments.limit(100){id,user_likes,can_like,from{id}}&access_token=${t}`)).json().catch(() => ({}));
+    for (const p of r.data || []) for (const c of p.comments?.data || []) {
+      if (liked >= 150 || c.user_likes || c.can_like === false || c.from?.id === page.id) continue;
+      const fd = new FormData(); fd.append('access_token', page.token);
+      try { await graph(`${c.id}/likes`, fd); liked++; } catch (e) { log('comment like:', e.message.slice(0, 120)); }
+    }
+  }
+  st.liked = (st.liked || 0) + liked;
+  if (liked) log(`comments: liked ${liked}`);
+  fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, JSON.stringify(st));
 }
 
 async function voiceDemo() {
@@ -2798,6 +2842,7 @@ async function albumTick() {
   await munTick().catch(e => event(`missing FAILED: ${e.message}`));
   await extrasTick().catch(e => event(`extras FAILED: ${e.message}`));
   await albumTick().catch(e => event(`album FAILED: ${e.message}`));
+  await commentTick().catch(e => event(`comments FAILED: ${e.message}`));
   const links = await homepageLinks();
   log(`homepage: ${links.length} candidate links`);
   let state = loadState();
