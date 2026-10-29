@@ -2281,6 +2281,17 @@ async function speak(text, engine, outBase, i = 0) {
   const { execFileSync } = require('child_process');
   const [kind, voice] = engine.split(':');
   if (kind === 'dir') return path.join(voice, `${i}.wav`); // already spoken (voice clone demo)
+  if (kind === 'eleven') { // ElevenLabs voice (ELEVENLABS_API_KEY); eleven_v3 reads Bangla
+    const errs = [];
+    for (const model of (process.env.ELEVEN_MODEL || 'eleven_v3,eleven_multilingual_v2').split(',')) {
+      const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice}?output_format=mp3_44100_128`, { method: 'POST', signal: AbortSignal.timeout(120000),
+        headers: { 'xi-api-key': process.env.ELEVENLABS_API_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, model_id: model, language_code: 'bn', voice_settings: { stability: 0.5, similarity_boost: 0.85 } }) });
+      if (r.ok) { fs.writeFileSync(`${outBase}.mp3`, Buffer.from(await r.arrayBuffer())); return `${outBase}.mp3`; }
+      errs.push(`${model}: ${r.status} ${(await r.text()).slice(0, 160)}`);
+    }
+    throw new Error(`ElevenLabs: ${errs.join(' | ')}`);
+  }
   if (kind === 'edge') {
     execFileSync('edge-tts', ['--voice', voice, '--rate', '+8%', '--text', text, '--write-media', `${outBase}.mp3`]);
     return `${outBase}.mp3`;
@@ -2683,10 +2694,10 @@ async function albumTick() {
   if (process.env.DEMO_VOICE === '1') return voiceDemo();
   if (process.env.CLONE_DEMO) {
     // Voice clone demo: lines already spoken into CLONE_DEMO.dir; the reel is encrypted for the public repo (tools/voice-clone-demo.js).
-    const { dir, lines } = JSON.parse(process.env.CLONE_DEMO), b = await chromium.launch();
+    const { dir, lines, engine } = JSON.parse(process.env.CLONE_DEMO), b = await chromium.launch();
     try {
       fs.mkdirSync(OUT_DIR, { recursive: true });
-      const r = await voiceReel(b, process.env.VOICE_URL, `dir:${dir}`, path.join(OUT_DIR, 'clone.mp4'), await channelLogo(b), lines);
+      const r = await voiceReel(b, process.env.VOICE_URL, engine || `dir:${dir}`, path.join(OUT_DIR, 'clone.mp4'), await channelLogo(b), lines);
       // Encrypted for the requester only (random key wrapped with tools/assets/vc-local-pub.pem); the repo is public.
       const { execSync } = require('child_process'), k = path.join(OUT_DIR, 'clone.k');
       execSync(`openssl rand -hex 32 > ${k} && openssl enc -aes-256-cbc -pbkdf2 -salt -in ${r.file} -out preview/clone-demo.enc -pass file:${k}`
