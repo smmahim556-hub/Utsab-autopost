@@ -126,6 +126,10 @@ jobs:
               gh workflow run voice.yml -f demo=false && echo "$d-$slot" >> state/voice-dispatch.txt
             fi
           done
+          # Package clips (clips.yml): every 30 minutes it looks for a new package video and posts its hook reels.
+          if [ "${{ vars.CLIPS || '1' }}" = 1 ] && [ $((m % 30)) -lt 3 ] && [ "$(cat state/clips-dispatch.txt 2>/dev/null)" != "$d-$((m / 30))" ]; then
+            gh workflow run clips.yml && echo "$d-$((m / 30))" > state/clips-dispatch.txt
+          fi
           # Prayer reel: once the 8 division schedule cards are out and the last one is 5+ minutes old.
           if [ "${{ vars.PRAYER_REEL || '1' }}" = 1 ] && [ -f state/prayer.json ] && [ "$(jq -r .date state/prayer.json)" = "$d" ] \
              && [ "$(jq '.sched|length' state/prayer.json)" -ge 8 ] && [ $(( $(date +%s) * 1000 - $(jq .lastAt state/prayer.json) )) -ge 300000 ] \

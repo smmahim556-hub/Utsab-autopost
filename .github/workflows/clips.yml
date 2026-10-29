@@ -1,0 +1,30 @@
+name: Utsab TV package clips
+on:
+  workflow_dispatch:
+concurrency: clips
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci && npx playwright install chromium
+      - run: node tools/clip-run.js
+        env:
+          FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DRY_RUN: ${{ vars.DRY_RUN || '0' }}
+          CLIPS: ${{ vars.CLIPS || '1' }}
+      - name: Save state
+        if: always()
+        run: |
+          git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
+          git add state/clips.json 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "clips state" && (git push || (git pull --rebase -X theirs origin main && git push)))
