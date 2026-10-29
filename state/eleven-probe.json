@@ -1,11 +1,30 @@
 {
-  "plan": {
-    "tier": "starter",
-    "used": 946,
-    "limit": 30650,
-    "voices": 10,
-    "clone": true,
-    "reset": 1795444083
-  },
-  "voice": true
+  "name": "Tanvir",
+  "mine": [
+    "Roger - Laid-Back, Casual, Resonant [premade] en",
+    "Sarah - Mature, Reassuring, Confident [premade] en",
+    "Laura - Enthusiast, Quirky Attitude [premade] en",
+    "Charlie - Deep, Confident, Energetic [premade] en",
+    "George - Warm, Captivating Storyteller [premade] en",
+    "Callum - Husky Trickster [premade] en",
+    "River - Relaxed, Neutral, Informative [premade] en",
+    "Harry - Fierce Warrior [premade] en",
+    "Liam - Energetic, Social Media Creator [premade] en",
+    "Alice - Clear, Engaging Educator [premade] en",
+    "Matilda - Knowledgable, Professional [premade] en",
+    "Will - Relaxed Optimist [premade] en",
+    "Jessica - Playful, Bright, Warm [premade] en",
+    "Eric - Smooth, Trustworthy [premade] en",
+    "Bella - Professional, Bright, Warm [premade] en",
+    "Chris - Charming, Down-to-Earth [premade] en",
+    "Brian - Deep, Resonant and Comforting [premade] en",
+    "Daniel - Steady Broadcaster [premade] en",
+    "Lily - Velvety Actress [premade] en",
+    "Adam - Dominant, Firm [premade] en",
+    "Bill - Wise, Mature, Balanced [premade] en",
+    "Utsab TV - Amin [cloned] ",
+    "Tanvir - Confident, Upbeat, Deep [generated] bn",
+    "Maya - South Asian Female [professional] en"
+  ],
+  "picked": "Tanvir - Confident, Upbeat, Deep (in account)"
 }
