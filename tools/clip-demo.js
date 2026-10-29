@@ -10,12 +10,16 @@ const done = () => fs.writeFileSync('state/clip-probe.json', JSON.stringify(out,
     execSync('which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)', { stdio: 'inherit' });
     const acc = await (await fetch(`${GRAPH}/me/accounts?fields=id,access_token&access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).json();
     const page = (acc.data || []).find(p => p.id === process.env.FB_PAGE_ID);
-    const vids = await (await fetch(`${GRAPH}/${page.id}/videos?fields=id,title,description,length,source,created_time,permalink_url&limit=100&access_token=${encodeURIComponent(page.access_token)}`)).json();
-    if (vids.error) throw new Error(`videos: ${vids.error.message}`);
-    out.videos = (vids.data || []).map(v => `${v.created_time.slice(0, 10)} ${Math.round(v.length)}s ${(v.title || v.description || '').slice(0, 50)}`).slice(0, 15);
-    const long = (vids.data || []).filter(x => x.length >= Number(process.env.CLIP_MIN_LEN || 150) && x.source);
-    const v = long.sort((a, b) => b.length - a.length)[0];
-    if (!v) throw new Error('no long video with a source');
+    // Packages: landscape videos of 1.5+ minutes (the vertical ones are reels already). Up to 300 recent videos.
+    const vids = { data: [] };
+    let u = `${GRAPH}/${page.id}/videos?fields=id,title,description,length,source,created_time,permalink_url,format{width,height}&limit=100&access_token=${encodeURIComponent(page.access_token)}`;
+    for (let i = 0; i < 3 && u; i++) { const r = await (await fetch(u)).json(); if (r.error) throw new Error(`videos: ${r.error.message}`); vids.data.push(...(r.data || [])); u = r.paging?.next || ''; }
+    const wide = x => { const f = (x.format || []).slice(-1)[0] || {}; return f.width > f.height; };
+    const pk = vids.data.filter(x => wide(x) && x.length >= Number(process.env.CLIP_MIN_LEN || 90) && x.source);
+    out.packages = pk.map(v => `${v.created_time.slice(0, 10)} ${Math.round(v.length)}s ${(v.title || v.description || '').slice(0, 60).replace(/\n/g, ' ')}`).slice(0, 15);
+    out.total = vids.data.length;
+    const v = pk[0];
+    if (!v) throw new Error('no landscape package video');
     out.picked = { id: v.id, len: v.length, title: (v.title || v.description || '').slice(0, 120), url: v.permalink_url };
     const W = '/tmp/clips'; fs.mkdirSync(W, { recursive: true });
     fs.writeFileSync(`${W}/src.mp4`, Buffer.from(await (await fetch(v.source)).arrayBuffer()));
