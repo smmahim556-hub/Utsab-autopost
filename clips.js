@@ -7,6 +7,7 @@ const { execFileSync } = require('child_process');
 const ff = args => execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...args], { maxBuffer: 1 << 26 });
 const secs = f => Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f]).toString()) || 0;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const LOGO_VIDEO = path.join(__dirname, 'assets', 'video-logo.webm');
 const FONT = '<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&display=swap" rel="stylesheet">';
 
 // The first complete JSON array/object in a model reply (it sometimes adds a second block or text after it).
@@ -71,15 +72,18 @@ async function renderClip(browser, video, clip, logo, outFile, work, tag) {
   const cut = vh > vw ? 0 : Number(process.env.CLIP_CROP_BOTTOM || 0.27); // the package's strap band
   const frame = await overlay(browser, `<div style="position:absolute;inset:0;background:linear-gradient(180deg,#0b5e2a 0%,#12873d 40%,#0b5e2a 100%)">
 <div style="position:absolute;left:0;right:0;top:0;height:${TOP}px;background:linear-gradient(135deg,#12873d,#0b5e2a);border-bottom:10px solid #c8202f"></div>
-${logo ? `<img src="${logo}" style="position:absolute;right:44px;top:50px;height:110px;border-radius:14px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)">` : ''}
+${logo && !fs.existsSync(LOGO_VIDEO) ? `<img src="${logo}" style="position:absolute;right:44px;top:50px;height:110px;border-radius:14px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)">` : ''}
 <div style="position:absolute;left:44px;top:62px;background:#c8202f;color:#fff;font-size:40px;padding:6px 30px;border-radius:40px;border:3px solid #ffd54f">সংবাদ</div>
 <div style="position:absolute;left:44px;right:44px;top:190px;height:250px;display:flex;align-items:center;color:#fff;font-size:68px;line-height:1.3;text-align:left">${esc(clip.hook)}</div>
 <div style="position:absolute;left:0;right:0;top:${TOP + S}px;height:${H - TOP - S - 130}px;display:flex;align-items:center;justify-content:center;color:#ffd54f;font-size:46px">পুরো ভিডিও দেখুন উৎসব টিভির পেজে</div>
 <div style="position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;color:#fff;font-size:52px;display:flex;align-items:center;justify-content:center">www.utsabtv.com</div></div>`,
     path.join(work, `${tag}-frame.png`), W, H);
+  // The channel's own animated logo (keyed from its blue screen, assets/video-logo.webm) plays at the top right.
+  const anim = fs.existsSync(LOGO_VIDEO);
   const f = `[0:v]crop=iw:ih*${(1 - cut).toFixed(3)}:0:0,scale=${S}:${S}:force_original_aspect_ratio=increase,crop=${S}:${S}[sq];` +
-    `[1:v][sq]overlay=0:${TOP}[v]`;
-  ff(['-ss', String(clip.start), '-t', String(len), '-i', video, '-loop', '1', '-i', frame, '-filter_complex', f, '-map', '[v]', '-map', '0:a?',
+    `[1:v][sq]overlay=0:${TOP}${anim ? '[b];[2:v]setpts=PTS-STARTPTS[lg];[b][lg]overlay=W-w-40:36:shortest=0' : ''}[v]`;
+  ff(['-ss', String(clip.start), '-t', String(len), '-i', video, '-loop', '1', '-i', frame,
+    ...(anim ? ['-stream_loop', '-1', '-c:v', 'libvpx-vp9', '-i', LOGO_VIDEO] : []), '-filter_complex', f, '-map', '[v]', '-map', '0:a?',
     '-t', String(len), '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '21', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', outFile]);
   return outFile;
 }
