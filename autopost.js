@@ -2283,7 +2283,7 @@ async function speak(text, engine, outBase, i = 0) {
   if (kind === 'dir') return path.join(voice, `${i}.wav`); // already spoken (voice clone demo)
   if (kind === 'eleven') { // ElevenLabs voice (ELEVENLABS_API_KEY); eleven_v3 reads Bangla
     const errs = [];
-    for (const model of (process.env.ELEVEN_MODEL || 'eleven_v3,eleven_multilingual_v2').split(',')) {
+    for (const model of (process.env.ELEVEN_MODEL || 'eleven_v4_turbo,eleven_v4').split(',')) {
       const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice}?output_format=mp3_44100_128`, { method: 'POST', signal: AbortSignal.timeout(120000),
         headers: { 'xi-api-key': process.env.ELEVENLABS_API_KEY, 'Content-Type': 'application/json' },
         body: JSON.stringify({ text, model_id: model, language_code: 'bn', voice_settings: { stability: 0.5, similarity_boost: 0.85 } }) });
@@ -2494,17 +2494,15 @@ async function voiceRun() {
   if (!story) return log('voice reel: no fresh story');
   const lines = await voiceScript(story);
   if (lines.length < 3) return log('voice reel: script too short');
-  let engine = 'edge:bn-BD-PradeepNeural';
-  const ref = await cloneRef().catch(e => (event(`voice reel: clone ref failed: ${e.message}`), null));
-  if (ref) {
-    const W = '/tmp/vc/out';
-    fs.rmSync(W, { recursive: true, force: true }); fs.mkdirSync(W, { recursive: true });
-    fs.writeFileSync('/tmp/vc/lines.json', JSON.stringify(lines.map(spoken)));
-    try {
-      require('child_process').execFileSync('python3', [path.join(__dirname, 'tools/clone_tts.py'), ref.wav, ref.text, '/tmp/vc/lines.json', W], { stdio: 'inherit', timeout: 40 * 60000 });
-      if (lines.every((_, i) => fs.existsSync(`${W}/${i}.wav`))) engine = `dir:${W}`;
-    } catch (e) { event(`voice reel: clone model failed, using stock voice: ${e.message.slice(0, 200)}`); }
-  } else event('voice reel: no clone reference, using stock voice');
+  // ElevenLabs "Tanvir" voice on eleven_v4_turbo (owner's pick 2026-10-29). The cloned voice is no longer used: the owner
+  // found it unnatural. Without ElevenLabs (no key, no voice or credits left) the slot is skipped rather than read badly.
+  let el = {};
+  try { el = JSON.parse(fs.readFileSync(path.join(__dirname, 'state', 'eleven.json'), 'utf8')); } catch {}
+  if (!process.env.ELEVENLABS_API_KEY || !el.pick) return event('voice reel skipped: no ElevenLabs key or voice');
+  const sub = await (await fetch('https://api.elevenlabs.io/v1/user/subscription', { headers: { 'xi-api-key': process.env.ELEVENLABS_API_KEY } })).json().catch(() => ({}));
+  const left = (sub.character_limit || 0) - (sub.character_count || 0), need = lines.map(spoken).join(' ').length;
+  if (sub.character_limit && left < need + 200) return event(`voice reel skipped: ElevenLabs credits left ${left}, need ${need}`);
+  const engine = `eleven:${el.pick}`;
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
   try {
