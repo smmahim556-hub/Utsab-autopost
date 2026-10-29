@@ -62,24 +62,24 @@ body{width:${w}px;height:${h}px;font-family:'Noto Serif Bengali',serif;font-weig
   return file;
 }
 
-// Owner's look (2026-10-29): the video fills the whole 9:16 screen (a landscape package is centre-cropped), one logo only
-// (ours, top right; the package's corner logo falls outside the crop), no lower-third strap or subtitles, and the hook
-// headline over the top of the picture for the first few seconds only.
+// Owner's look (2026-10-29, second try): a 9:16 Utsab TV template with the video as a 1:1 square inside it. Header: our logo +
+// the hook headline; the square video in the middle (a landscape package is centre-cropped above its lower-third strap, so
+// its own corner logo and strap fall away); red footer with the site. No subtitles.
 async function renderClip(browser, video, clip, logo, outFile, work, tag) {
-  const W = 1080, H = 1920, len = clip.end - clip.start, hookSec = Number(process.env.CLIP_HOOK_SEC || 4);
+  const W = 1080, H = 1920, S = 1080, TOP = 470, len = clip.end - clip.start;
   const [vw, vh] = execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', video]).toString().trim().split(',').map(Number);
-  const vertical = vh > vw; // already a branded 9:16 reel: it keeps its own logo
-  const mark = await overlay(browser, `<div style="position:absolute;inset:0">
-${!vertical && logo ? `<img src="${logo}" style="position:absolute;right:40px;top:60px;height:100px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.35)">` : ''}</div>`,
-    path.join(work, `${tag}-mark.png`), W, H);
-  const hook = await overlay(browser, `<div style="position:absolute;left:0;right:0;top:0;height:560px;background:linear-gradient(180deg,rgba(0,0,0,.75),rgba(0,0,0,0))"></div>
-<div style="position:absolute;left:50px;right:${vertical ? 50 : 200}px;top:${vertical ? 120 : 190}px;color:#fff;font-size:70px;line-height:1.3;text-align:left;text-shadow:0 4px 14px rgba(0,0,0,.9)">${esc(clip.hook)}</div>`,
-    path.join(work, `${tag}-hook.png`), W, H);
-  // A landscape package carries its own lower-third strap along the bottom; cut that band off before filling the screen.
-  const cut = vertical ? 0 : Number(process.env.CLIP_CROP_BOTTOM || 0.27);
-  const f = `[0:v]crop=iw:ih*${(1 - cut).toFixed(3)}:0:0,scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H}[v0];[v0][1:v]overlay=0:0[v1];` +
-    `[2:v]format=rgba,fade=t=out:st=${(hookSec - 0.5).toFixed(2)}:d=0.5:alpha=1[hk];[v1][hk]overlay=0:0:enable='lt(t,${hookSec})'[v2]`;
-  ff(['-ss', String(clip.start), '-t', String(len), '-i', video, '-loop', '1', '-i', mark, '-loop', '1', '-i', hook, '-filter_complex', f, '-map', '[v2]', '-map', '0:a?',
+  const cut = vh > vw ? 0 : Number(process.env.CLIP_CROP_BOTTOM || 0.27); // the package's strap band
+  const frame = await overlay(browser, `<div style="position:absolute;inset:0;background:linear-gradient(180deg,#0b5e2a 0%,#12873d 40%,#0b5e2a 100%)">
+<div style="position:absolute;left:0;right:0;top:0;height:${TOP}px;background:linear-gradient(135deg,#12873d,#0b5e2a);border-bottom:10px solid #c8202f"></div>
+${logo ? `<img src="${logo}" style="position:absolute;right:44px;top:50px;height:110px;border-radius:14px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)">` : ''}
+<div style="position:absolute;left:44px;top:62px;background:#c8202f;color:#fff;font-size:40px;padding:6px 30px;border-radius:40px;border:3px solid #ffd54f">সংবাদ</div>
+<div style="position:absolute;left:44px;right:44px;top:190px;height:250px;display:flex;align-items:center;color:#fff;font-size:68px;line-height:1.3;text-align:left">${esc(clip.hook)}</div>
+<div style="position:absolute;left:0;right:0;top:${TOP + S}px;height:${H - TOP - S - 130}px;display:flex;align-items:center;justify-content:center;color:#ffd54f;font-size:46px">পুরো ভিডিও দেখুন উৎসব টিভির পেজে</div>
+<div style="position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;color:#fff;font-size:52px;display:flex;align-items:center;justify-content:center">www.utsabtv.com</div></div>`,
+    path.join(work, `${tag}-frame.png`), W, H);
+  const f = `[0:v]crop=iw:ih*${(1 - cut).toFixed(3)}:0:0,scale=${S}:${S}:force_original_aspect_ratio=increase,crop=${S}:${S}[sq];` +
+    `[1:v][sq]overlay=0:${TOP}[v]`;
+  ff(['-ss', String(clip.start), '-t', String(len), '-i', video, '-loop', '1', '-i', frame, '-filter_complex', f, '-map', '[v]', '-map', '0:a?',
     '-t', String(len), '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '21', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', outFile]);
   return outFile;
 }
