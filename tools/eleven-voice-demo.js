@@ -8,6 +8,7 @@ const done = () => fs.writeFileSync('state/eleven-probe.json', JSON.stringify(st
 process.on('unhandledRejection', e => { status.error = String(e && e.stack || e).slice(0, 600); done(); process.exit(1); });
 (async () => {
   try {
+    require('child_process').execSync('which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)', { stdio: 'inherit' });
     const H = { 'xi-api-key': process.env.ELEVENLABS_API_KEY };
     const j = async (u, o) => (await fetch(`https://api.elevenlabs.io${u}`, { headers: H, ...o })).json();
     const mine = (await j('/v1/voices')).voices || [];
