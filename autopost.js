@@ -2498,7 +2498,9 @@ async function voiceRun() {
     const r = await voiceReel(browser, url, engine, path.join(OUT_DIR, 'voice-reel.mp4'), await channelLogo(browser), lines);
     if (demo) return log(`voice reel demo built (${engine.split(':')[0]}), not posted`);
     const desc = `${story.title}\n\n${lines.join(' ')}\n\nবিস্তারিত পড়ুন www.utsabtv.com-এ\n\n${hashtags('সংবাদ', 'আজকের_খবর')}`;
-    for (const page of await pages()) {
+    const all = await pages();
+    if (!all.length) throw new Error('no Pages configured');
+    for (const page of all) {
       try { event(`voice reel on Page ${page.id}: ${JSON.stringify(await postReel(page, r.file, desc))}`); } catch (e) { event(`voice reel on Page ${page.id} FAILED: ${e.message}`); }
     }
     st.used = [...st.used, url].slice(-60); st.at = new Date().toISOString(); st.engine = engine.split(':')[0];
