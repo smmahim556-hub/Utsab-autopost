@@ -62,31 +62,23 @@ body{width:${w}px;height:${h}px;font-family:'Noto Serif Bengali',serif;font-weig
   return file;
 }
 
+// Owner's look (2026-10-29): the video fills the whole 9:16 screen (a landscape package is centre-cropped), one logo only
+// (ours, top right; the package's corner logo falls outside the crop), no lower-third strap or subtitles, and the hook
+// headline over the top of the picture for the first few seconds only.
 async function renderClip(browser, video, clip, logo, outFile, work, tag) {
-  const W = 1080, H = 1920, len = clip.end - clip.start;
+  const W = 1080, H = 1920, len = clip.end - clip.start, hookSec = Number(process.env.CLIP_HOOK_SEC || 4);
   const [vw, vh] = execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', video]).toString().trim().split(',').map(Number);
-  const vertical = vh > vw; // already a branded 9:16 reel: keep its own look, add only the subtitles
-  // Frame: header with logo + hook headline, footer with the site.
-  const frame = await overlay(browser, `<div style="position:absolute;inset:0">
-<div style="position:absolute;left:0;right:0;top:0;height:420px;background:linear-gradient(135deg,#12873d,#0b5e2a);border-bottom:10px solid #c8202f"></div>
-${logo ? `<img src="${logo}" style="position:absolute;right:48px;top:44px;height:110px;border-radius:14px;background:#fff">` : ''}
-<div style="position:absolute;left:48px;top:58px;background:#c8202f;color:#fff;font-size:40px;padding:6px 28px;border-radius:40px;border:3px solid #ffd54f">উৎসব টিভি</div>
-<div style="position:absolute;left:48px;right:48px;top:180px;height:220px;display:flex;align-items:center;color:#fff;font-size:66px;line-height:1.3;text-align:left">${esc(clip.hook)}</div>
-<div style="position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;color:#fff;font-size:52px;display:flex;align-items:center;justify-content:center">www.utsabtv.com</div></div>`,
-    path.join(work, `${tag}-frame.png`), W, H);
-  const subs = [];
-  for (const [i, s] of clip.subs.entries()) subs.push({ ...s, file: await overlay(browser,
-    `<div style="max-width:980px;background:#fff;color:#0b2a17;font-size:56px;line-height:1.45;padding:14px 30px;border-radius:22px;border-left:14px solid #c8202f;box-shadow:0 10px 28px rgba(0,0,0,.4)">${esc(s.t)}</div>`,
-    path.join(work, `${tag}-sub${i}.png`), W, 360) });
-  // Video: blurred full-bleed copy behind, the real picture 1080 wide in the middle.
-  const inputs = ['-ss', String(clip.start), '-t', String(len), '-i', video, '-loop', '1', '-i', frame, ...subs.flatMap(s => ['-loop', '1', '-i', s.file])];
-  let f = vertical ? `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H}[v0];[v0][1:v]overlay=0:0:enable='lt(t,0)'[v1]`
-    : `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},boxblur=30:2,eq=brightness=-0.12[bg];` +
-      `[0:v]scale=${W}:-2[fg];[bg][fg]overlay=(W-w)/2:(H-h)/2-40[v0];[v0][1:v]overlay=0:0[v1]`;
-  const subY = vertical ? H - 620 : H - 130 - 380;
-  subs.forEach((s, i) => { f += `;[v${i + 1}][${i + 2}:v]overlay=0:${subY}:enable='between(t,${s.s.toFixed(2)},${Math.min(s.e, len).toFixed(2)})'[v${i + 2}]`; });
-  ff([...inputs, '-filter_complex', f, '-map', `[v${subs.length + 1}]`, '-map', '0:a?', '-t', String(len), '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '22',
-    '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', outFile]);
+  const vertical = vh > vw; // already a branded 9:16 reel: it keeps its own logo
+  const mark = await overlay(browser, `<div style="position:absolute;inset:0">
+${!vertical && logo ? `<img src="${logo}" style="position:absolute;right:40px;top:60px;height:100px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.35)">` : ''}</div>`,
+    path.join(work, `${tag}-mark.png`), W, H);
+  const hook = await overlay(browser, `<div style="position:absolute;left:0;right:0;top:0;height:560px;background:linear-gradient(180deg,rgba(0,0,0,.75),rgba(0,0,0,0))"></div>
+<div style="position:absolute;left:50px;right:${vertical ? 50 : 200}px;top:${vertical ? 120 : 190}px;color:#fff;font-size:70px;line-height:1.3;text-align:left;text-shadow:0 4px 14px rgba(0,0,0,.9)">${esc(clip.hook)}</div>`,
+    path.join(work, `${tag}-hook.png`), W, H);
+  const f = `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H}[v0];[v0][1:v]overlay=0:0[v1];` +
+    `[2:v]format=rgba,fade=t=out:st=${(hookSec - 0.5).toFixed(2)}:d=0.5:alpha=1[hk];[v1][hk]overlay=0:0:enable='lt(t,${hookSec})'[v2]`;
+  ff(['-ss', String(clip.start), '-t', String(len), '-i', video, '-loop', '1', '-i', mark, '-loop', '1', '-i', hook, '-filter_complex', f, '-map', '[v2]', '-map', '0:a?',
+    '-t', String(len), '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '21', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', outFile]);
   return outFile;
 }
 
