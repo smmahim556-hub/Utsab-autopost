@@ -127,7 +127,7 @@ jobs:
             fi
           done
           # Package clips (clips.yml): every 30 minutes it looks for a new package video and posts its hook reels.
-          if [ "${{ vars.CLIPS || '0' }}" = 1 ] && [ $((m % 30)) -lt 3 ] && [ "$(cat state/clips-dispatch.txt 2>/dev/null)" != "$d-$((m / 30))" ]; then
+          if [ "${{ vars.CLIPS || '1' }}" = 1 ] && [ $((m % 30)) -lt 3 ] && [ "$(cat state/clips-dispatch.txt 2>/dev/null)" != "$d-$((m / 30))" ]; then
             gh workflow run clips.yml && echo "$d-$((m / 30))" > state/clips-dispatch.txt
           fi
           # Prayer reel: once the 8 division schedule cards are out and the last one is 5+ minutes old.

@@ -21,7 +21,7 @@ jobs:
           FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DRY_RUN: ${{ vars.DRY_RUN || '0' }}
-          CLIPS: ${{ vars.CLIPS || '0' }}
+          CLIPS: ${{ vars.CLIPS || '1' }}
       - name: Save state
         if: always()
         run: |
