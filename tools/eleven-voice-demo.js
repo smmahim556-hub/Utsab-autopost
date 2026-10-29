@@ -5,6 +5,7 @@ const fs = require('fs');
 const NAME = process.env.ELEVEN_PICK || 'Tanvir', STATE = 'state/eleven.json';
 const status = { name: NAME };
 const done = () => fs.writeFileSync('state/eleven-probe.json', JSON.stringify(status, null, 2));
+process.on('unhandledRejection', e => { status.error = String(e && e.stack || e).slice(0, 600); done(); process.exit(1); });
 (async () => {
   try {
     const H = { 'xi-api-key': process.env.ELEVENLABS_API_KEY };
