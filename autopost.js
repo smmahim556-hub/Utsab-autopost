@@ -268,6 +268,21 @@ async function postToFacebook(cardFile, caption, link, done, browser, withCaptio
   if (failed) throw failed;
 }
 
+// LEAN=1 (2026-10-29, owner approved): the many small cards that got almost no response (8 division weather cards,
+// 8 division prayer schedules, waqt reminders, minor-league results) go to the Page stories only; the feed gets one combined
+// weather and one combined prayer card a day. LEAN=0 brings the old format back unchanged.
+const LEAN = process.env.LEAN === '1';
+async function postStoriesOnly(cardFile, done, browser) {
+  for (const page of await pages()) {
+    if (done.includes(page.id)) continue;
+    try {
+      const file = await composeStory(browser, cardFile, page, cardFile.replace(/\.png$/, `-story-${page.id}.png`));
+      event(`story only on Page ${page.id}: ${JSON.stringify(await postStory(page, file))}`);
+    } catch (e) { event(`story only on Page ${page.id} FAILED: ${e.message}`); }
+    done.push(page.id);
+  }
+}
+
 // Read-only check that each Page token works and whether it expires. Never posts.
 async function checkPages() {
   const result = { checkedAt: new Date().toISOString(), usingUserToken: !!process.env.FB_USER_TOKEN, pages: [] };
@@ -442,6 +457,34 @@ async function makeWeatherCard(browser, w, file) {
 }
 const dhakaNow = () => new Date(Date.now() + 6 * 3600e3);
 
+// All 8 divisions on one card (LEAN feed card), from the day's per-division readings in state/weather.json.
+async function weatherAllCard(browser, data, outFile, logo) {
+  const now = dhakaNow();
+  const tiles = DIVISIONS.filter(d => data[d.name]).map(d => { const w = data[d.name];
+    return `<div class="t"><div class="n">${d.name}</div><div class="i" style="background:linear-gradient(135deg,${(SKIES[w.sky] || SKIES.part).join(',')})"></div><div class="v">${w.temp}</div><div class="c">${w.condition}</div><div class="m">${(w.note || '').replace(/ · বৃষ্টির সম্ভাবনা/, '<br>বৃষ্টি')}</div></div>`; }).join('');
+  return shot(browser, `<style>${BRAND_CSS}
+body{background:linear-gradient(180deg,#7cc3f4 0%,#d7ecfb 60%,#f3f8fc 100%)}
+.g{position:absolute;left:40px;right:40px;top:250px;bottom:130px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:18px}
+.t{background:rgba(255,255,255,.93);border-radius:24px;box-shadow:0 8px 20px rgba(0,0,0,.12);border-top:10px solid #12873d;padding:16px 10px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center}
+.t:nth-child(2n){border-top-color:#c8202f}
+.n{font-size:36px;font-weight:900;color:#0b2a17}.i{width:90px;height:90px;border-radius:50%;box-shadow:inset 0 0 0 5px rgba(255,255,255,.7)}.v{font-size:58px;font-weight:900;color:#c8202f;line-height:1.1}
+.c{font-size:24px;color:#1d2b22}.m{font-size:19px;color:#4d5f53;line-height:1.35}
+</style>${brandHead(logo, 'আজকের আবহাওয়া', `${BN_DAYS[now.getUTCDay()]}, ${bnDate(now)} · ৮ বিভাগ`)}<div class="g">${tiles}</div><div class="ftr">www.utsabtv.com</div>`, outFile);
+}
+async function weatherAllPost(st, save) {
+  const data = st.data || {};
+  if (Object.keys(data).length < 6) { st.allDone = true; return save(); }
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const browser = await chromium.launch();
+  try {
+    const card = await weatherAllCard(browser, data, path.join(OUT_DIR, `weather-all-${st.date}.png`), await channelLogo(browser));
+    const lines = DIVISIONS.filter(d => data[d.name]).map(d => `• ${d.name}: ${data[d.name].temp}, ${data[d.name].condition}`).join('\n');
+    const done = st.pages.all = st.pages.all || [];
+    try { await postToFacebook(card, `আজকের আবহাওয়া, ৮ বিভাগ:\n${lines}\n\n${hashtags('আবহাওয়া', 'আজকের_আবহাওয়া', 'বাংলাদেশ')}`, '', done, browser, true); st.allDone = true; } finally { save(); }
+  } catch (e) { event(`weather all FAILED: ${e.message}`); st.allDone = true; save(); } finally { await browser.close(); }
+}
+
 async function weatherTick() {
   if (process.env.WEATHER !== '1') return;
   const now = dhakaNow(), today = now.toISOString().slice(0, 10);
@@ -450,9 +493,9 @@ async function weatherTick() {
   if (st.date !== today) st = { date: today, done: [], pages: {}, tries: {}, lastAt: 0 };
   const start = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), WEATHER_HOUR) - 6 * 3600e3;
   if (now.getUTCHours() >= 12 || Date.now() < Math.max(start, st.lastAt + WEATHER_GAP_MIN * 60e3)) return;
-  const d = DIVISIONS.find(x => !st.done.includes(x.name));
-  if (!d) return;
   const save = () => { fs.mkdirSync(path.dirname(WEATHER_FILE), { recursive: true }); fs.writeFileSync(WEATHER_FILE, JSON.stringify(st, null, 2)); };
+  const d = DIVISIONS.find(x => !st.done.includes(x.name));
+  if (!d) return LEAN && !DRY_RUN && !st.allDone ? weatherAllPost(st, save) : undefined;
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch();
   try {
@@ -465,7 +508,8 @@ async function weatherTick() {
       fs.copyFileSync(card, path.join(preview, path.basename(card)));
     } else {
       const done = st.pages[d.name] = st.pages[d.name] || [];
-      try { await postToFacebook(card, `আজ ${d.name}-এর আবহাওয়া: ${w.condition}, এখন তাপমাত্রা ${w.temp}।${w.note ? `\n${w.note}` : ''}\n\n${hashtags('আবহাওয়া', `${d.name}_আবহাওয়া`, 'বাংলাদেশ')}`, '', done, browser, true); } finally { save(); }
+      if (LEAN) await postStoriesOnly(card, done, browser);
+      else try { await postToFacebook(card, `আজ ${d.name}-এর আবহাওয়া: ${w.condition}, এখন তাপমাত্রা ${w.temp}।${w.note ? `\n${w.note}` : ''}\n\n${hashtags('আবহাওয়া', `${d.name}_আবহাওয়া`, 'বাংলাদেশ')}`, '', done, browser, true); } finally { save(); }
     }
     st.data = st.data || {};
     st.data[d.name] = w;
@@ -623,6 +667,24 @@ function prayerReminderCard(browser, key, outFile, logo) {
 .cell b{color:#c8202f;font-size:52px}`, outFile, logo);
 }
 
+// Whole day, all 8 divisions on one card (LEAN feed card).
+function prayerAllCard(browser, outFile, logo) {
+  const now = dhakaNow(), keys = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
+  const head = `<div class="r h"><span>বিভাগ</span>${keys.map(k => `<b>${prayerName(k, now)}</b>`).join('')}</div>`;
+  const rows = DIVISIONS.map(d => { const t = timesFor(d, now); return `<div class="r"><span>${d.name}</span>${keys.map(k => `<b>${bnTime(t[k])}</b>`).join('')}</div>`; }).join('');
+  return renderPrayerCard(browser, `
+<div class="hdr">{LOGO}<div class="ht"><div class="h1">নামাজের সময়সূচি</div><div class="h2">${BN_DAYS[now.getUTCDay()]}, ${bnDate(now)} · ৮ বিভাগ</div></div>${MOON_SVG}</div>
+<div class="tbl">${head}${rows}</div>
+<div class="note">সূর্যোদয় (ঢাকা) ${bnTime(timesFor(DIVISIONS[0], now).sunrise)} · সময় আনুমানিক, স্থানীয় মসজিদে ১-২ মিনিট আলাদা হতে পারে</div>
+<div class="ftr">www.utsabtv.com</div>`, `
+.tbl{position:relative;margin:36px 40px 0;display:flex;flex-direction:column;gap:12px}
+.r{display:grid;grid-template-columns:1.5fr repeat(5,1fr);align-items:center;background:rgba(255,255,255,.95);color:#0b5e2a;border-radius:18px;padding:12px 18px;
+  font-size:36px;font-weight:800;box-shadow:0 6px 14px rgba(0,0,0,.2)}
+.r b{text-align:center;color:#c8202f;font-size:36px}
+.r.h{background:#c8202f;color:#fff;border:4px solid #ffd54f}.r.h b{color:#ffd54f;font-size:34px}
+.note{position:relative;text-align:center;margin:22px 40px 0;font-size:27px;color:#c8f7d4}`, outFile, logo);
+}
+
 async function prayerTick() {
   if (process.env.PRAYER !== '1') return;
   const now = dhakaNow(), today = now.toISOString().slice(0, 10);
@@ -640,6 +702,7 @@ async function prayerTick() {
   const lead = Number(process.env.PRAYER_LEAD_MIN || 75) / 60, gap = Number(process.env.PRAYER_GAP_MIN || 4) * 60e3;
   if (!job && nowH >= dhaka.fajr - lead && nowH < dhaka.sunrise && Date.now() >= st.lastAt + gap) {
     const d = DIVISIONS.find(x => !st.sched.includes(x.name));
+    if (!d && LEAN && !st.allDone) job = { feed: true, tags: `আজকের নামাজের সময়সূচি, ৮ বিভাগ (${BN_DAYS[now.getUTCDay()]}, ${bnDate(now)})। সময়মতো নামাজ আদায় করুন, অন্যদেরও মনে করিয়ে দিন।\n\n${hashtags('নামাজের_সময়সূচি', 'নামাজ', 'বাংলাদেশ')}`, key: 'sched-all', done: () => { st.allDone = true; }, make: (b, f, l) => prayerAllCard(b, f, l) };
     if (d) job = { tags: `আজ ${d.name} ও আশপাশের এলাকার নামাজের সময়সূচি। সময়মতো নামাজ আদায় করুন, অন্যদেরও মনে করিয়ে দিন।\n\n${hashtags('নামাজের_সময়সূচি', d.name)}`, key: `sched-${d.name}`, done: () => st.sched.push(d.name), make: (b, f, l) => prayerScheduleCard(b, d, f, l) };
   }
   if (!job) return;
@@ -649,7 +712,8 @@ async function prayerTick() {
   try {
     const card = await job.make(browser, path.join(OUT_DIR, `prayer-${job.key}.png`), await channelLogo(browser));
     const done = st.pages[job.key] = st.pages[job.key] || [];
-    try { await postToFacebook(card, job.tags, '', done, browser, true); job.done(); } finally { st.lastAt = Date.now(); save(); }
+    if (LEAN && !job.feed) { await postStoriesOnly(card, done, browser); job.done(); st.lastAt = Date.now(); save(); }
+    else try { await postToFacebook(card, job.tags, '', done, browser, true); job.done(); } finally { st.lastAt = Date.now(); save(); }
   } catch (e) {
     event(`prayer ${job.key} FAILED: ${e.message}`);
     job.done(); // a missed prayer card is not retried: the next one comes soon enough
@@ -1395,8 +1459,16 @@ async function sportsTick() {
     job = { tags: `আজকের খেলা:\n${list.map(x => `• ${x.home.en} বনাম ${x.away.en}`).join('\n')}\n\n${hashtags('খেলা', 'আজকের_খেলা', list.some(x => x.bd) ? 'বাংলাদেশ' : '')}`, key: `fixtures-${today}`, done: () => { st.fixtures = today; }, make: (b, f, l) => sportsFixturesCard(b, list, f, l) };
   }
   if (!job) {
+    // LEAN: other countries' results only for big teams (BIG_CLUBS/BIG_NATIONS, full-member cricket), at most SPORTS_LEAN_MAX a day.
+    const big = x => x.sport === 'cricket' || [x.home?.en, x.away?.en].some(n => BIG_CLUBS.includes(n) || BIG_NATIONS.includes(n));
+    if (LEAN) {
+      for (const x of all.filter(x => x.done && !x.bd && !big(x) && !st.done.includes(x.id))) st.done.push(x.id);
+      st.leanDay = st.leanDay === today ? today : (st.leanCount = 0, today);
+      if ((st.leanCount || 0) >= Number(process.env.SPORTS_LEAN_MAX || 6)) return save();
+    }
     const m = all.find(x => x.done && !x.bd && !st.done.includes(x.id));
-    if (!m) return;
+    if (!m) return save();
+    if (LEAN) st.leanCount = (st.leanCount || 0) + 1;
     job = { tags: `ম্যাচ শেষ: ${m.home.en} বনাম ${m.away.en}${m.result ? `\n${m.result}` : ''}${m.league ? `\n${m.league}` : ''}\n\n${hashtags('খেলা', m.sport === 'cricket' ? 'ক্রিকেট' : 'ফুটবল', m.bd ? 'বাংলাদেশ' : '', m.home?.en, m.away?.en)}`, key: m.id, done: () => st.done.push(m.id), make: (b, f, l) => sportsResultCard(b, m, f, l) };
   }
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -2636,6 +2708,17 @@ async function albumTick() {
   if (process.env.DEMO_ENT === '1') { for (const d of Object.values(DESKS)) await entDemo(d, d.key === 'ent' ? 4 : 3).catch(e => log(`${d.key} demo: ${e.message}`)); return; }
   if (process.env.DEMO_MUN === '1') return munDemo();
   if (process.env.DEMO_EXTRAS === '1') return extrasDemo();
+  if (process.env.DEMO_LEAN === '1') { // combined prayer + weather cards into preview/ (posts nothing)
+    const b = await chromium.launch();
+    try {
+      const logo = await channelLogo(b), data = {};
+      for (const d of DIVISIONS) data[d.name] = await weatherFor(d);
+      fs.mkdirSync(path.join(__dirname, 'preview'), { recursive: true });
+      await prayerAllCard(b, path.join(__dirname, 'preview', 'lean-prayer.png'), logo);
+      await weatherAllCard(b, data, path.join(__dirname, 'preview', 'lean-weather.png'), logo);
+    } finally { await b.close(); }
+    return;
+  }
   if (process.env.DEMO_ALBUM === '1') return albumDemo();
   if (process.env.DEMO_INSIGHTS === '1') { // data for the reach-report / album demos; the repo is public, so the result is encrypted for the requester
     try { await insightsProbe(); } catch (e) { fs.writeFileSync(path.join(__dirname, 'state', 'insights-probe.json'), JSON.stringify({ error: e.stack.slice(0, 800) })); }
