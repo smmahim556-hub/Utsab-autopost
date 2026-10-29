@@ -76,7 +76,7 @@ ${!vertical && logo ? `<img src="${logo}" style="position:absolute;right:40px;to
 <div style="position:absolute;left:50px;right:${vertical ? 50 : 200}px;top:${vertical ? 120 : 190}px;color:#fff;font-size:70px;line-height:1.3;text-align:left;text-shadow:0 4px 14px rgba(0,0,0,.9)">${esc(clip.hook)}</div>`,
     path.join(work, `${tag}-hook.png`), W, H);
   // A landscape package carries its own lower-third strap along the bottom; cut that band off before filling the screen.
-  const cut = vertical ? 0 : Number(process.env.CLIP_CROP_BOTTOM || 0.24);
+  const cut = vertical ? 0 : Number(process.env.CLIP_CROP_BOTTOM || 0.27);
   const f = `[0:v]crop=iw:ih*${(1 - cut).toFixed(3)}:0:0,scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H}[v0];[v0][1:v]overlay=0:0[v1];` +
     `[2:v]format=rgba,fade=t=out:st=${(hookSec - 0.5).toFixed(2)}:d=0.5:alpha=1[hk];[v1][hk]overlay=0:0:enable='lt(t,${hookSec})'[v2]`;
   ff(['-ss', String(clip.start), '-t', String(len), '-i', video, '-loop', '1', '-i', mark, '-loop', '1', '-i', hook, '-filter_complex', f, '-map', '[v2]', '-map', '0:a?',
