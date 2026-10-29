@@ -2507,7 +2507,9 @@ async function commentTick() {
   let liked = 0;
   for (const page of await pages()) {
     const t = encodeURIComponent(page.token);
-    const r = await (await fetch(`${GRAPH}/${page.id}/published_posts?since=${since}&limit=60&fields=id,comments.limit(100){id,user_likes,can_like,from{id}}&access_token=${t}`)).json().catch(() => ({}));
+    const r = await (await fetch(`${GRAPH}/${page.id}/published_posts?since=${since}&limit=60&fields=id,comments.limit(100){id,user_likes,can_like,from{id}}&access_token=${t}`)).json().catch(e => ({ error: { message: e.message } }));
+    st.last = st.last || {};
+    st.last[page.id] = r.error ? `E: ${r.error.message.slice(0, 150)}` : `${(r.data || []).length} posts, ${(r.data || []).reduce((n, p) => n + (p.comments?.data?.length || 0), 0)} comments`;
     for (const p of r.data || []) for (const c of p.comments?.data || []) {
       if (liked >= 150 || c.user_likes || c.can_like === false || c.from?.id === page.id) continue;
       const fd = new FormData(); fd.append('access_token', page.token);
