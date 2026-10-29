@@ -1,31 +1,16 @@
 {
-  "date": "2026-10-28",
+  "date": "2026-10-29",
   "done": {
     "OTD": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "MARKET": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "TOP5": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "POLL": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "finished": [
-    "OTD",
-    "MARKET",
-    "TOP5",
-    "POLL"
+    "OTD"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh"
   ],
-  "marketCheckedAt": 1793185784852
+  "usedQuiz": []
 }
