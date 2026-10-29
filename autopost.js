@@ -461,17 +461,26 @@ async function makeWeatherCard(browser, w, file) {
 const dhakaNow = () => new Date(Date.now() + 6 * 3600e3);
 
 // All 8 divisions on one card (LEAN feed card), from the day's per-division readings in state/weather.json.
+const WXI_CLOUD = (fill = '#e9eef2') => `<path d="M30 70h56a18 18 0 0 0 0-36a26 26 0 0 0-50-6a20 20 0 0 0-6 42z" fill="${fill}" stroke="#9aaab9" stroke-width="3"/>`;
+const WX_ICON = {
+  sun: '<svg viewBox="0 0 120 100"><g stroke="#ffb300" stroke-width="6" stroke-linecap="round"><line x1="60" y1="6" x2="60" y2="18"/><line x1="60" y1="82" x2="60" y2="94"/><line x1="16" y1="50" x2="28" y2="50"/><line x1="92" y1="50" x2="104" y2="50"/><line x1="29" y1="19" x2="37" y2="27"/><line x1="83" y1="73" x2="91" y2="81"/><line x1="29" y1="81" x2="37" y2="73"/><line x1="83" y1="27" x2="91" y2="19"/></g><circle cx="60" cy="50" r="24" fill="#ffc107"/></svg>',
+  part: `<svg viewBox="0 0 120 100"><circle cx="44" cy="36" r="22" fill="#ffc107"/>${WXI_CLOUD('#fff')}</svg>`,
+  cloud: `<svg viewBox="0 0 120 100">${WXI_CLOUD('#cfd6dc')}</svg>`,
+  fog: `<svg viewBox="0 0 120 100">${WXI_CLOUD('#e3e7ea')}<g stroke="#9aaab9" stroke-width="5" stroke-linecap="round"><line x1="20" y1="82" x2="100" y2="82"/><line x1="30" y1="94" x2="90" y2="94"/></g></svg>`,
+  rain: `<svg viewBox="0 0 120 100">${WXI_CLOUD('#b8c4cf')}<g stroke="#1f78d1" stroke-width="5" stroke-linecap="round"><line x1="40" y1="78" x2="34" y2="94"/><line x1="60" y1="78" x2="54" y2="94"/><line x1="80" y1="78" x2="74" y2="94"/></g></svg>`,
+  storm: `<svg viewBox="0 0 120 100">${WXI_CLOUD('#8497a8')}<path d="M62 70l-14 18h12l-6 12 20-22h-12l8-8z" fill="#ffc107"/></svg>`,
+};
 async function weatherAllCard(browser, data, outFile, logo) {
   const now = dhakaNow();
   const tiles = DIVISIONS.filter(d => data[d.name]).map(d => { const w = data[d.name];
-    return `<div class="t"><div class="n">${d.name}</div><div class="i" style="background:linear-gradient(135deg,${(SKIES[w.sky] || SKIES.part).join(',')})"></div><div class="v">${w.temp}</div><div class="c">${w.condition}</div><div class="m">${(w.note || '').replace(/ · বৃষ্টির সম্ভাবনা/, '<br>বৃষ্টি')}</div></div>`; }).join('');
+    return `<div class="tile"><div class="n">${d.name}</div><div class="i">${WX_ICON[w.sky] || WX_ICON.part}</div><div class="v">${w.temp}</div><div class="c">${w.condition}</div><div class="m">${(w.note || '').replace(/ · বৃষ্টির সম্ভাবনা/, '<br>বৃষ্টি')}</div></div>`; }).join('');
   return shot(browser, `<style>${BRAND_CSS}
 body{background:linear-gradient(180deg,#7cc3f4 0%,#d7ecfb 60%,#f3f8fc 100%)}
 .g{position:absolute;left:40px;right:40px;top:250px;bottom:130px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:18px}
-.t{background:rgba(255,255,255,.93);border-radius:24px;box-shadow:0 8px 20px rgba(0,0,0,.12);border-top:10px solid #12873d;padding:16px 10px;
+.tile{background:rgba(255,255,255,.93);border-radius:24px;box-shadow:0 8px 20px rgba(0,0,0,.12);border-top:10px solid #12873d;padding:16px 10px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center}
-.t:nth-child(2n){border-top-color:#c8202f}
-.n{font-size:36px;font-weight:900;color:#0b2a17}.i{width:90px;height:90px;border-radius:50%;box-shadow:inset 0 0 0 5px rgba(255,255,255,.7)}.v{font-size:58px;font-weight:900;color:#c8202f;line-height:1.1}
+.tile:nth-child(2n){border-top-color:#c8202f}
+.n{font-size:36px;font-weight:900;color:#0b2a17}.i svg{width:110px;height:90px}.v{font-size:58px;font-weight:900;color:#c8202f;line-height:1.1}
 .c{font-size:24px;color:#1d2b22}.m{font-size:19px;color:#4d5f53;line-height:1.35}
 </style>${brandHead(logo, 'আজকের আবহাওয়া', `${BN_DAYS[now.getUTCDay()]}, ${bnDate(now)} · ৮ বিভাগ`)}<div class="g">${tiles}</div><div class="ftr">www.utsabtv.com</div>`, outFile);
 }
