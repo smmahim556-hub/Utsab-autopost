@@ -2511,9 +2511,9 @@ async function commentTick() {
     st.last = st.last || {};
     st.last[page.id] = r.error ? `E: ${r.error.message.slice(0, 150)}` : `${(r.data || []).length} posts, ${(r.data || []).reduce((n, p) => n + (p.comments?.data?.length || 0), 0)} comments`;
     for (const p of r.data || []) for (const c of p.comments?.data || []) {
-      if (liked >= 150 || c.user_likes || c.can_like === false || c.from?.id === page.id) continue;
+      if (liked >= 150 || c.user_likes || c.can_like === false || c.from?.id === page.id) { st.last[page.id] += ` skip(${c.user_likes ? 'liked' : c.can_like === false ? 'cant' : 'own'})`; continue; }
       const fd = new FormData(); fd.append('access_token', page.token);
-      try { await graph(`${c.id}/likes`, fd); liked++; } catch (e) { log('comment like:', e.message.slice(0, 120)); }
+      try { await graph(`${c.id}/likes`, fd); liked++; } catch (e) { st.last[page.id] += ` E:${e.message.slice(0, 160)}`; }
     }
   }
   st.liked = (st.liked || 0) + liked;
