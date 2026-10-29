@@ -9,6 +9,18 @@ const secs = f => Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries'
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const FONT = '<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&display=swap" rel="stylesheet">';
 
+// The first complete JSON array/object in a model reply (it sometimes adds a second block or text after it).
+function firstJson(t) {
+  const i = t.search(/[[{]/);
+  if (i < 0) return null;
+  let depth = 0, str = false;
+  for (let k = i; k < t.length; k++) {
+    const c = t[k];
+    if (str) { if (c === '\\') k++; else if (c === '"') str = false; continue; }
+    if (c === '"') str = true; else if (c === '[' || c === '{') depth++; else if (c === ']' || c === '}') { if (--depth === 0) { try { return JSON.parse(t.slice(i, k + 1)); } catch { return null; } } }
+  }
+  return null;
+}
 async function gemini(parts) {
   for (const model of (process.env.CLIP_MODELS || 'gemini-3.5-flash,gemini-3-flash-preview,gemini-3.1-flash-lite').split(',')) {
     const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: 'POST', signal: AbortSignal.timeout(300000),
@@ -16,7 +28,7 @@ async function gemini(parts) {
       body: JSON.stringify({ contents: [{ parts }], generationConfig: { temperature: 0.3, responseMimeType: 'application/json' } }) }).catch(() => null);
     const b = r ? await r.json().catch(() => ({})) : {};
     const t = (b.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
-    if (t) return JSON.parse(t.replace(/^[^[{]*|[^\]}]*$/g, ''));
+    if (t) { const j = firstJson(t); if (j) return j; }
   }
   throw new Error('Gemini gave no clip plan');
 }
