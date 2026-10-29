@@ -45,7 +45,11 @@ async function planClips(video, work, n = 2) {
 শুধু এই JSON দাও: [{"start":12.5,"end":48.0,"hook":"শিরোনাম","subs":[{"s":0.0,"e":2.6,"t":"কথা"}]}]` }]);
   const dur = secs(video);
   return (Array.isArray(plan) ? plan : []).filter(c => c.end > c.start + 8 && c.start >= 0 && c.start < dur)
-    .map(c => ({ ...c, end: Math.min(c.end, dur), subs: (c.subs || []).filter(x => x.t && x.e > x.s) })).slice(0, n);
+    .map(c => {
+      const subs = (c.subs || []).filter(x => x.t && x.e > x.s).sort((a, b) => a.s - b.s);
+      subs.forEach((x, i) => { if (subs[i + 1] && x.e > subs[i + 1].s - 0.05) x.e = subs[i + 1].s - 0.05; }); // one subtitle on screen at a time
+      return { ...c, end: Math.min(c.end, dur), subs: subs.filter(x => x.e > x.s) };
+    }).slice(0, n);
 }
 
 async function overlay(browser, html, file, w, h) {
