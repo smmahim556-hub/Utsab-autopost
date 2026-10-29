@@ -89,8 +89,8 @@ jobs:
           POLL: ${{ vars.POLL || '1' }}
           QUIZ: ${{ vars.QUIZ || '1' }}
           ALBUM: ${{ vars.ALBUM || '1' }}
-          LEAN: ${{ vars.LEAN || '0' }}
-          COMMENT_LIKE: ${{ vars.COMMENT_LIKE || '0' }}
+          LEAN: ${{ vars.LEAN || '1' }}
+          COMMENT_LIKE: ${{ vars.COMMENT_LIKE || '1' }}
           QUIZANS: ${{ vars.QUIZ || '1' }}
           DEMO_MUN: ${{ inputs.demo_mun && '1' || '0' }}
           DEMO_ENT: ${{ inputs.demo_ent && '1' || '0' }}
