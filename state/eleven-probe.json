@@ -1,4 +1,11 @@
 {
-  "plan": {},
-  "error": "voice add: 401 {\"detail\":{\"type\":\"authentication_error\",\"code\":\"unauthorized\",\"message\":\"The API key you used is missing the permission voices_write to execute this operation.\",\"status\":\"missing_permissions\",\"request_id\":\"c91992fa524c78c04ddf55430a0a5d8e\"}}"
+  "plan": {
+    "tier": "starter",
+    "used": 946,
+    "limit": 30650,
+    "voices": 10,
+    "clone": true,
+    "reset": 1795444083
+  },
+  "voice": true
 }
