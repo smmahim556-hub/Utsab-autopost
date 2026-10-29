@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-29T10:10:55.691Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123687733459930 (https://utsabtv.com/salman-shah-murder-case-don-bail-denied-again)"
-  },
-  {
-    "at": "2026-10-29T10:11:05.244Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1111153555240972\"}"
-  },
-  {
-    "at": "2026-10-29T10:26:22.898Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-10-29T10:36:52.926Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147631339140193 ()"
-  },
-  {
     "at": "2026-10-29T10:37:01.508Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1660063268961413\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-29T12:03:08.529Z",
     "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122123706609459930\"}"
+  },
+  {
+    "at": "2026-10-29T12:08:50.518Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147640495140193 ()"
+  },
+  {
+    "at": "2026-10-29T12:08:59.140Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2615944468848237\"}"
+  },
+  {
+    "at": "2026-10-29T12:09:05.191Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123707977459930 ()"
+  },
+  {
+    "at": "2026-10-29T12:09:14.159Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2088439408485060\"}"
   }
 ]
