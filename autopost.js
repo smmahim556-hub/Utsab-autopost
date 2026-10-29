@@ -2472,9 +2472,11 @@ async function voiceRun() {
   const file = path.join(__dirname, 'state', 'voice-reel.json');
   let st = { used: [] };
   try { st = JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
+  let albumUsed = [];
+  try { albumUsed = JSON.parse(fs.readFileSync(path.join(__dirname, 'state', 'album.json'), 'utf8')).used || []; } catch {}
   let story = null, url = '';
   for (const x of await latestNews(10)) {
-    if (st.used.includes(x.url)) continue;
+    if (st.used.includes(x.url) || albumUsed.includes(x.url)) continue;
     const s = await newsText(x.url).catch(() => null);
     if (s?.image && s.text.length > 300) { story = s; url = x.url; break; }
   }
@@ -2575,7 +2577,9 @@ async function albumTick() {
   const save = () => { st.used = st.used.slice(-100); fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, JSON.stringify(st, null, 2)); };
   let url = st.slotUrl[key];
   if (!url) {
-    const pick = (await topToday(8)).find(x => !st.used.includes(x.url));
+    let voiced = [];
+    try { voiced = JSON.parse(fs.readFileSync(path.join(__dirname, 'state', 'voice-reel.json'), 'utf8')).used || []; } catch {}
+    const pick = (await topToday(8)).find(x => !st.used.includes(x.url) && !voiced.includes(x.url)); // not the story a voice reel just told
     if (!pick) { done.push(...all.map(p => p.id)); return save(); }
     url = st.slotUrl[key] = pick.url; st.used.push(url); save();
   }
