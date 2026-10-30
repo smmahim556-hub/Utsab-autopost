@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T10:05:11.542Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T10:06:30.033Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T10:07:24.405Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T10:08:36.105Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147750121140193 ()"
-  },
-  {
     "at": "2026-10-30T10:08:42.302Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1818874409132662\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T10:39:42.920Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1602628757997578\"}"
+  },
+  {
+    "at": "2026-10-30T10:43:12.970Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147753925140193 (https://utsabtv.com/lung-cancer-new-treatment-15-months-progression-free-survival)"
+  },
+  {
+    "at": "2026-10-30T10:43:21.470Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1091007587170786\"}"
+  },
+  {
+    "at": "2026-10-30T10:43:29.477Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123943969459930 (https://utsabtv.com/lung-cancer-new-treatment-15-months-progression-free-survival)"
+  },
+  {
+    "at": "2026-10-30T10:43:37.706Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1562967715167041\"}"
   }
 ]
