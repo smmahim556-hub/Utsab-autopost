@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T10:47:07.487Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147754525140193 (https://utsabtv.com/new-york-catholic-archdiocese-80-million-sexual-abuse-settlement)"
-  },
-  {
-    "at": "2026-10-30T10:47:14.607Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2251119439079229\"}"
-  },
-  {
-    "at": "2026-10-30T10:47:21.411Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123944551459930 (https://utsabtv.com/new-york-catholic-archdiocese-80-million-sexual-abuse-settlement)"
-  },
-  {
-    "at": "2026-10-30T10:47:28.813Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2047868695875219\"}"
-  },
-  {
     "at": "2026-10-30T10:52:05.045Z",
     "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2383121722454232\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T11:12:49.468Z",
     "text": "album FAILED: me/accounts: (#4) Application request limit reached"
+  },
+  {
+    "at": "2026-10-30T11:14:23.339Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147758209140193 (https://utsabtv.com/drc-ebola-outbreak-10000-cases-challenges)"
+  },
+  {
+    "at": "2026-10-30T11:14:31.324Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1140321445060494\"}"
+  },
+  {
+    "at": "2026-10-30T11:14:39.653Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123949933459930 (https://utsabtv.com/drc-ebola-outbreak-10000-cases-challenges)"
+  },
+  {
+    "at": "2026-10-30T11:14:43.265Z",
+    "text": "story on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AVpL-gSU8iVtlIv1LPv2fSS\"}"
   }
 ]
