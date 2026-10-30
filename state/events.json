@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T05:36:13.195Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"39669972715951438\"}"
-  },
-  {
-    "at": "2026-10-30T05:36:18.999Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123892573459930 (https://utsabtv.com/septic-tank-explosion-gazipur-naojor-one-killed)"
-  },
-  {
-    "at": "2026-10-30T05:36:24.566Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1451313073603980\"}"
-  },
-  {
-    "at": "2026-10-30T05:42:19.436Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147723397140193 ()"
-  },
-  {
     "at": "2026-10-30T05:42:27.847Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"3274097339463615\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T07:17:28.847Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-10-30T07:19:30.876Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147731569140193 ()"
+  },
+  {
+    "at": "2026-10-30T07:19:38.185Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1029165923536979\"}"
+  },
+  {
+    "at": "2026-10-30T07:19:43.323Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123910135459930 ()"
+  },
+  {
+    "at": "2026-10-30T07:19:52.309Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1785677029149294\"}"
   }
 ]
