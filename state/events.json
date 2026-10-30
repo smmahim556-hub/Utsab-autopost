@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T11:10:16.984Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147757459140193 (https://utsabtv.com/university-tasmania-assured-assessment-standard-ai-era)"
-  },
-  {
-    "at": "2026-10-30T11:10:24.163Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2624301728082927\"}"
-  },
-  {
-    "at": "2026-10-30T11:10:31.897Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123949195459930 (https://utsabtv.com/university-tasmania-assured-assessment-standard-ai-era)"
-  },
-  {
-    "at": "2026-10-30T11:10:35.173Z",
-    "text": "story on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A2TSC05pBh99vN24YkTvYZt\"}"
-  },
-  {
     "at": "2026-10-30T11:12:49.219Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T12:08:49.901Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2246004852935426\"}"
+  },
+  {
+    "at": "2026-10-30T12:32:08.208Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147766903140193 ()"
+  },
+  {
+    "at": "2026-10-30T12:32:17.660Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1141757291761758\"}"
+  },
+  {
+    "at": "2026-10-30T12:32:22.489Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123963589459930 ()"
+  },
+  {
+    "at": "2026-10-30T12:32:32.565Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2536897896841177\"}"
   }
 ]
