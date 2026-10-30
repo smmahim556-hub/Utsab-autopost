@@ -103,9 +103,11 @@ async function makeCard(browser, url, file, ratio = process.env.CARD_RATIO || '4
     const hint = (await page.textContent('#articleStatusHint') || '').trim();
     log('card site says:', hint);
     if (/\berror\b/.test(await page.getAttribute('#articleStatusHint', 'class'))) throw new Error(`card site: ${hint}`);
-    if (!hint.includes('ছবি')) log('warning: no photo found for this news');
     await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
     await page.waitForTimeout(1500);
+    // The site can hand back a card with an empty photo area when the news photo fails to load: never post that.
+    const broken = await page.evaluate(() => [...document.querySelectorAll('#renderTarget img')].filter(i => !i.complete || !i.naturalWidth).length);
+    if (!hint.includes('ছবি') || broken) throw new Error(`card photo missing (${hint}; ${broken} broken images)`);
     // The date has no size control on the site, so scale it directly (1 = default).
     const date = await page.evaluate(([k, dy]) => {
       const el = document.querySelector('#renderTarget .utsab-date-text');
@@ -2910,11 +2912,18 @@ async function albumTick() {
           delete state.posted[link];
         }
         if (state.noPhoto) delete state.noPhoto[link];
+        if (state.cardFail) delete state.cardFail[link];
         state.seen.push(link); saveState(state);
         posted++;
       } catch (e) {
-        // Leave it unseen so the next run retries it.
+        // Leave it unseen so the next run retries it; a card whose photo keeps failing for 3 hours is dropped.
         log('FAILED', link, e.message);
+        if (/card photo missing/.test(e.message)) {
+          state.cardFail = state.cardFail || {};
+          const since = state.cardFail[link] = state.cardFail[link] || Date.now();
+          if (Date.now() - since > 3 * 3600e3) { event(`news dropped, card photo never loaded: ${link}`); delete state.cardFail[link]; state.seen.push(link); }
+          saveState(state);
+        }
       }
     }
   } finally {
