@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-10-30T10:09:59.847Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T10:10:56.947Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
     "at": "2026-10-30T10:11:47.570Z",
     "text": "missing FAILED: fetch failed"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-10-30T10:47:28.813Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2047868695875219\"}"
+  },
+  {
+    "at": "2026-10-30T10:52:05.045Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2383121722454232\"}"
+  },
+  {
+    "at": "2026-10-30T10:52:13.354Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"975521638961029\"}"
   }
 ]
