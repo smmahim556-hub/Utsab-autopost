@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T10:39:35.579Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123943159459930 (https://utsabtv.com/australia-student-visa-bangladeshi-applicants-drop-730-to-14)"
-  },
-  {
-    "at": "2026-10-30T10:39:42.920Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1602628757997578\"}"
-  },
-  {
-    "at": "2026-10-30T10:43:12.970Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147753925140193 (https://utsabtv.com/lung-cancer-new-treatment-15-months-progression-free-survival)"
-  },
-  {
-    "at": "2026-10-30T10:43:21.470Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1091007587170786\"}"
-  },
-  {
     "at": "2026-10-30T10:43:29.477Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122123943969459930 (https://utsabtv.com/lung-cancer-new-treatment-15-months-progression-free-survival)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T11:08:38.371Z",
     "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
+  },
+  {
+    "at": "2026-10-30T11:10:16.984Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147757459140193 (https://utsabtv.com/university-tasmania-assured-assessment-standard-ai-era)"
+  },
+  {
+    "at": "2026-10-30T11:10:24.163Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2624301728082927\"}"
+  },
+  {
+    "at": "2026-10-30T11:10:31.897Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123949195459930 (https://utsabtv.com/university-tasmania-assured-assessment-standard-ai-era)"
+  },
+  {
+    "at": "2026-10-30T11:10:35.173Z",
+    "text": "story on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A2TSC05pBh99vN24YkTvYZt\"}"
   }
 ]
