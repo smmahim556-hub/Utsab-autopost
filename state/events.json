@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T09:54:48.548Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T09:56:20.503Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147746581140193 ()"
-  },
-  {
-    "at": "2026-10-30T09:56:29.565Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1776989936927469\"}"
-  },
-  {
-    "at": "2026-10-30T09:56:33.321Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123935071459930 ()"
-  },
-  {
     "at": "2026-10-30T09:56:41.334Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1759343878689818\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T10:31:24.049Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1135414832509357\"}"
+  },
+  {
+    "at": "2026-10-30T10:33:40.709Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147752383140193 (https://utsabtv.com/two-more-youths-detained-for-questioning-db-office-mp-son-case)"
+  },
+  {
+    "at": "2026-10-30T10:33:48.685Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"4779876362331204\"}"
+  },
+  {
+    "at": "2026-10-30T10:33:57.465Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123941959459930 (https://utsabtv.com/two-more-youths-detained-for-questioning-db-office-mp-son-case)"
+  },
+  {
+    "at": "2026-10-30T10:34:06.216Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1306807741571033\"}"
   }
 ]
