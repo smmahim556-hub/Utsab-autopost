@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T11:12:49.219Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-10-30T11:12:49.468Z",
-    "text": "album FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-10-30T11:14:23.339Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147758209140193 (https://utsabtv.com/drc-ebola-outbreak-10000-cases-challenges)"
-  },
-  {
-    "at": "2026-10-30T11:14:31.324Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1140321445060494\"}"
-  },
-  {
     "at": "2026-10-30T11:14:39.653Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122123949933459930 (https://utsabtv.com/drc-ebola-outbreak-10000-cases-challenges)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T12:32:32.565Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2536897896841177\"}"
+  },
+  {
+    "at": "2026-10-30T12:36:59.902Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147767437140193 ()"
+  },
+  {
+    "at": "2026-10-30T12:37:07.349Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1565043228759274\"}"
+  },
+  {
+    "at": "2026-10-30T12:37:10.710Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123964597459930 ()"
+  },
+  {
+    "at": "2026-10-30T12:37:16.602Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2010592566181862\"}"
   }
 ]
