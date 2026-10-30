@@ -2918,4 +2918,4 @@ async function albumTick() {
   } finally {
     await browser.close();
   }
-})().catch(e => { console.error(e); if (process.env.CLONE_DEMO) fs.writeFileSync(path.join(__dirname, "state", "demo-error-probe.json"), JSON.stringify({ error: String(e.stack || e).slice(0, 800) })); process.exit(1); });
+})().catch(e => { console.error(e); try { fs.writeFileSync(path.join(__dirname, 'state', 'last-error.json'), JSON.stringify({ at: new Date().toISOString(), error: String(e.stack || e).slice(0, 1500) }, null, 1)); } catch {} if (process.env.CLONE_DEMO) fs.writeFileSync(path.join(__dirname, "state", "demo-error-probe.json"), JSON.stringify({ error: String(e.stack || e).slice(0, 800) })); process.exit(1); });
