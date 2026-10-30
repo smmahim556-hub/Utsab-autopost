@@ -16,17 +16,23 @@
     "TOP5": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
     "QUIZ",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
-    "https://utsabtv.com/garment-workers-blockade-mirpur-10-demanding-minimum-30000-taka-salary"
+    "https://utsabtv.com/garment-workers-blockade-mirpur-10-demanding-minimum-30000-taka-salary",
+    "https://utsabtv.com/bhutan-glacial-lake-outburst-flood-west-bengal-assam-alert-bangladesh-risk"
   ],
   "quiz": {
     "q": "'সাগরকন্যা' নামে পরিচিত বাংলাদেশের কোন স্থানটি?",
