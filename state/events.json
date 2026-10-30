@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-10-30T05:52:13.023Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1907272713963902\"}"
-  },
-  {
-    "at": "2026-10-30T05:52:18.170Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123895651459930 (https://utsabtv.com/bhutan-glacial-lake-outburst-flood-west-bengal-assam-alert-bangladesh-risk)"
-  },
-  {
     "at": "2026-10-30T05:52:24.508Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1917857799177706\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-10-30T07:51:33.583Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4705044963150739\"}"
+  },
+  {
+    "at": "2026-10-30T08:02:40.533Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122147734659140193\"}"
+  },
+  {
+    "at": "2026-10-30T08:02:48.880Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122123916057459930\"}"
   }
 ]
