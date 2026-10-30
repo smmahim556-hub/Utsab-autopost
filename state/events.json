@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-10-30T05:36:06.852Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147722965140193 (https://utsabtv.com/septic-tank-explosion-gazipur-naojor-one-killed)"
-  },
-  {
     "at": "2026-10-30T05:36:13.195Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"39669972715951438\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-10-30T07:03:17.911Z",
     "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122123907561459930\"}"
+  },
+  {
+    "at": "2026-10-30T07:17:28.847Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
