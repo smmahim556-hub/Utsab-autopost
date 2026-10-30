@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T13:49:18.891Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123977113459930 ()"
-  },
-  {
-    "at": "2026-10-30T13:49:24.482Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3646770425490142\"}"
-  },
-  {
-    "at": "2026-10-30T14:01:50.437Z",
-    "text": "album on Page 872606492607357: 872606492607357_122147776323140193 https://utsabtv.com/israel-election-no-coalition-majority-netanyahu-ahead-final-results"
-  },
-  {
-    "at": "2026-10-30T14:02:04.145Z",
-    "text": "album on Page 1276101408920358: 1276101408920358_122123978775459930 https://utsabtv.com/israel-election-no-coalition-majority-netanyahu-ahead-final-results"
-  },
-  {
     "at": "2026-10-30T14:09:12.371Z",
     "text": "posted to Page 872606492607357: 872606492607357_122147777019140193 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T16:04:05.308Z",
     "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122124003723459930\"}"
+  },
+  {
+    "at": "2026-10-30T16:14:56.190Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147787639140193 ()"
+  },
+  {
+    "at": "2026-10-30T16:15:02.264Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1361911369183314\"}"
+  },
+  {
+    "at": "2026-10-30T16:15:05.357Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122124005343459930 ()"
+  },
+  {
+    "at": "2026-10-30T16:15:11.526Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1135576508965741\"}"
   }
 ]
