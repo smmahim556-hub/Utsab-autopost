@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-10-30T10:38:31.637Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147753301140193 (https://utsabtv.com/israel-election-results-which-path-forward-politics)"
-  },
-  {
-    "at": "2026-10-30T10:38:38.468Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2829023784161978\"}"
-  },
-  {
     "at": "2026-10-30T10:38:47.827Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122123942763459930 (https://utsabtv.com/israel-election-results-which-path-forward-politics)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-10-30T11:05:18.710Z",
     "text": "album FAILED: me/accounts: (#4) Application request limit reached"
+  },
+  {
+    "at": "2026-10-30T11:05:59.927Z",
+    "text": "album FAILED: me/accounts: (#4) Application request limit reached"
+  },
+  {
+    "at": "2026-10-30T11:06:00.130Z",
+    "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
   }
 ]
