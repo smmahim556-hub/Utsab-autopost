@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-10-30T17:54:42.898Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147795931140193 (https://utsabtv.com/china-clean-tech-exports-carbon-emissions-reduction-analysis)"
-  },
-  {
-    "at": "2026-10-30T17:54:50.083Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1119493960997127\"}"
-  },
-  {
     "at": "2026-10-30T17:54:57.516Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122124024471459930 (https://utsabtv.com/china-clean-tech-exports-carbon-emissions-reduction-analysis)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-10-30T22:13:12.216Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1134086992343328\"}"
+  },
+  {
+    "at": "2026-10-30T22:17:51.523Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1421021556902771\"}"
+  },
+  {
+    "at": "2026-10-30T22:17:57.211Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2858469691220550\"}"
   }
 ]
