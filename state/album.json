@@ -3,16 +3,22 @@
     "https://utsabtv.com/israel-election-90-percent-votes-counted-power-struggle",
     "https://utsabtv.com/garment-workers-blockade-mirpur-10-demanding-minimum-30000-taka-salary",
     "https://utsabtv.com/ronaldo-beats-messi-ball-on-dor-best-of-all-time-vote",
-    "https://utsabtv.com/bhutan-glacial-lake-outburst-flood-west-bengal-assam-alert-bangladesh-risk"
+    "https://utsabtv.com/bhutan-glacial-lake-outburst-flood-west-bengal-assam-alert-bangladesh-risk",
+    "https://utsabtv.com/septic-tank-explosion-gazipur-naojor-one-killed"
   ],
   "date": "2026-10-30",
   "done": {
     "720": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "960": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/bhutan-glacial-lake-outburst-flood-west-bengal-assam-alert-bangladesh-risk"
+    "720": "https://utsabtv.com/bhutan-glacial-lake-outburst-flood-west-bengal-assam-alert-bangladesh-risk",
+    "960": "https://utsabtv.com/septic-tank-explosion-gazipur-naojor-one-killed"
   }
 }
