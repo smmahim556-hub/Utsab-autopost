@@ -1,53 +1,5 @@
 [
   {
-    "at": "2026-10-30T10:22:43.489Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123939343459930 (https://utsabtv.com/anthropic-ipo-s1-filing-nasdaq-ant-claude-maker)"
-  },
-  {
-    "at": "2026-10-30T10:22:50.690Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2260948198095071\"}"
-  },
-  {
-    "at": "2026-10-30T10:27:13.291Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147751561140193 ()"
-  },
-  {
-    "at": "2026-10-30T10:27:19.743Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1647780193368469\"}"
-  },
-  {
-    "at": "2026-10-30T10:27:23.377Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123940327459930 ()"
-  },
-  {
-    "at": "2026-10-30T10:27:30.012Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1721076292917366\"}"
-  },
-  {
-    "at": "2026-10-30T10:30:54.330Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147752047140193 (https://utsabtv.com/prime-minister-japan-visit-effective-fruitful-humayun-kabir)"
-  },
-  {
-    "at": "2026-10-30T10:31:07.320Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2754999031568369\"}"
-  },
-  {
-    "at": "2026-10-30T10:31:15.817Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123941563459930 (https://utsabtv.com/prime-minister-japan-visit-effective-fruitful-humayun-kabir)"
-  },
-  {
-    "at": "2026-10-30T10:31:24.049Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1135414832509357\"}"
-  },
-  {
-    "at": "2026-10-30T10:33:40.709Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147752383140193 (https://utsabtv.com/two-more-youths-detained-for-questioning-db-office-mp-son-case)"
-  },
-  {
-    "at": "2026-10-30T10:33:48.685Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"4779876362331204\"}"
-  },
-  {
     "at": "2026-10-30T10:33:57.465Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122123941959459930 (https://utsabtv.com/two-more-youths-detained-for-questioning-db-office-mp-son-case)"
   },
@@ -158,5 +110,53 @@
   {
     "at": "2026-10-30T10:56:48.923Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1492642976256189\"}"
+  },
+  {
+    "at": "2026-10-30T10:57:43.660Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147755713140193 ()"
+  },
+  {
+    "at": "2026-10-30T10:57:50.207Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1168080589061627\"}"
+  },
+  {
+    "at": "2026-10-30T10:57:53.444Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123946411459930 ()"
+  },
+  {
+    "at": "2026-10-30T10:57:58.846Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2587950474985080\"}"
+  },
+  {
+    "at": "2026-10-30T10:58:22.779Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147755911140193 ()"
+  },
+  {
+    "at": "2026-10-30T10:58:29.552Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1833999777738555\"}"
+  },
+  {
+    "at": "2026-10-30T10:58:32.671Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123946723459930 ()"
+  },
+  {
+    "at": "2026-10-30T10:58:36.062Z",
+    "text": "story on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AQ1hE3UlIQSa4l1W4IWBfn2\"}"
+  },
+  {
+    "at": "2026-10-30T10:58:54.739Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147756115140193 (https://utsabtv.com/rooppur-nuclear-plant-unit-1-trial-power-generation-starts)"
+  },
+  {
+    "at": "2026-10-30T10:58:57.998Z",
+    "text": "story on Page 872606492607357 FAILED: Graph 872606492607357/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"ABp4e1XVn2xoJ5401xMw9E8\"}"
+  },
+  {
+    "at": "2026-10-30T10:59:03.238Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123946927459930 (https://utsabtv.com/rooppur-nuclear-plant-unit-1-trial-power-generation-starts)"
+  },
+  {
+    "at": "2026-10-30T10:59:06.510Z",
+    "text": "story on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AK3ATsV0y0np1C_C-sF0eV2\"}"
   }
 ]
