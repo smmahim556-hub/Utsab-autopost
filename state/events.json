@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-10-30T09:15:58.217Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"4460639987485030\"}"
-  },
-  {
     "at": "2026-10-30T09:16:05.427Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"28541406045555156\"}"
   },
@@ -157,6 +153,10 @@
   },
   {
     "at": "2026-10-30T09:50:21.647Z",
+    "text": "missing FAILED: fetch failed"
+  },
+  {
+    "at": "2026-10-30T09:51:10.819Z",
     "text": "missing FAILED: fetch failed"
   }
 ]
