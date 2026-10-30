@@ -4,10 +4,15 @@
     "OTD": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "QUIZANS": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
-    "OTD"
+    "OTD",
+    "QUIZANS"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -22,7 +27,8 @@
     ],
     "answer": 0,
     "fact": "সেন্ট মার্টিন হলো বঙ্গোপসাগরে অবস্থিত বাংলাদেশের একমাত্র প্রবাল দ্বীপ।",
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "winners": []
   },
   "usedQuiz": [
     "বাংলাদেশের একমাত্র প্রবাল দ্বীপ কোনটি?"
