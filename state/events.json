@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-10-30T05:24:15.596Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123890653459930 (https://utsabtv.com/israel-election-no-coalition-majority-netanyahu-ahead-final-results)"
-  },
-  {
-    "at": "2026-10-30T05:24:21.618Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1127774639615496\"}"
-  },
-  {
     "at": "2026-10-30T05:36:06.852Z",
     "text": "posted to Page 872606492607357: 872606492607357_122147722965140193 (https://utsabtv.com/septic-tank-explosion-gazipur-naojor-one-killed)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-10-30T06:47:52.228Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"983693744200062\"}"
+  },
+  {
+    "at": "2026-10-30T07:03:12.770Z",
+    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122147730483140193\"}"
+  },
+  {
+    "at": "2026-10-30T07:03:17.911Z",
+    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122123907561459930\"}"
   }
 ]
