@@ -1,25 +1,5 @@
 [
   {
-    "at": "2026-10-30T08:35:31.447Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1423175950872472\"}"
-  },
-  {
-    "at": "2026-10-30T08:35:37.891Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123921367459930 (https://utsabtv.com/hsc-results-saturday-11am-know-three-ways)"
-  },
-  {
-    "at": "2026-10-30T08:35:44.129Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2196410720987661\"}"
-  },
-  {
-    "at": "2026-10-30T08:39:14.506Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147738985140193 (https://utsabtv.com/houthis-claim-attacks-saudi-airports-energy-facilities-deny-mecca-drone)"
-  },
-  {
-    "at": "2026-10-30T08:39:21.959Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2215943592599607\"}"
-  },
-  {
     "at": "2026-10-30T08:39:28.056Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122123922129459930 (https://utsabtv.com/houthis-claim-attacks-saudi-airports-energy-facilities-deny-mecca-drone)"
   },
@@ -158,5 +138,25 @@
   {
     "at": "2026-10-30T09:24:08.706Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-10-30T09:25:16.985Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147743167140193 ()"
+  },
+  {
+    "at": "2026-10-30T09:25:22.451Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"28865883859689451\"}"
+  },
+  {
+    "at": "2026-10-30T09:25:26.231Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123930259459930 ()"
+  },
+  {
+    "at": "2026-10-30T09:25:32.852Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1898966974601536\"}"
+  },
+  {
+    "at": "2026-10-30T09:25:43.345Z",
+    "text": "missing FAILED: fetch failed"
   }
 ]
