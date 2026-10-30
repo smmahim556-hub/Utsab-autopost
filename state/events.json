@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-10-30T08:26:44.289Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1104646059027630\"}"
-  },
-  {
     "at": "2026-10-30T08:32:09.112Z",
     "text": "posted to Page 872606492607357: 872606492607357_122147737845140193 (https://utsabtv.com/uae-secretly-helping-houthis-fight-saudi-backed-forces-yemen-report)"
   },
@@ -157,6 +153,10 @@
   },
   {
     "at": "2026-10-30T09:17:04.500Z",
+    "text": "missing FAILED: fetch failed"
+  },
+  {
+    "at": "2026-10-30T09:17:51.415Z",
     "text": "missing FAILED: fetch failed"
   }
 ]
