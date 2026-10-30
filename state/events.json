@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T11:05:18.392Z",
-    "text": "missing card MUN-2026-761828 FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-10-30T11:05:18.710Z",
-    "text": "album FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-10-30T11:05:59.927Z",
-    "text": "album FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-10-30T11:06:00.130Z",
-    "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-10-30T11:06:53.790Z",
     "text": "album FAILED: me/accounts: (#4) Application request limit reached"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T11:46:30.625Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2175568989980573\"}"
+  },
+  {
+    "at": "2026-10-30T12:00:57.886Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147763105140193 ()"
+  },
+  {
+    "at": "2026-10-30T12:01:03.415Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"28843497645259344\"}"
+  },
+  {
+    "at": "2026-10-30T12:01:06.706Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123958297459930 ()"
+  },
+  {
+    "at": "2026-10-30T12:01:12.445Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1009542822168533\"}"
   }
 ]
