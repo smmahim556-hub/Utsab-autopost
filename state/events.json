@@ -1,25 +1,5 @@
 [
   {
-    "at": "2026-10-30T08:02:40.533Z",
-    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122147734659140193\"}"
-  },
-  {
-    "at": "2026-10-30T08:02:48.880Z",
-    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122123916057459930\"}"
-  },
-  {
-    "at": "2026-10-30T08:06:17.108Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147735019140193 ()"
-  },
-  {
-    "at": "2026-10-30T08:06:24.318Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2305131970407673\"}"
-  },
-  {
-    "at": "2026-10-30T08:06:27.861Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123916561459930 ()"
-  },
-  {
     "at": "2026-10-30T08:06:34.519Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1808771430169725\"}"
   },
@@ -157,6 +137,26 @@
   },
   {
     "at": "2026-10-30T09:06:08.558Z",
+    "text": "missing FAILED: fetch failed"
+  },
+  {
+    "at": "2026-10-30T09:07:22.526Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147741547140193 ()"
+  },
+  {
+    "at": "2026-10-30T09:07:28.867Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1678215604021662\"}"
+  },
+  {
+    "at": "2026-10-30T09:07:31.632Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123926353459930 ()"
+  },
+  {
+    "at": "2026-10-30T09:07:39.339Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1118959244456155\"}"
+  },
+  {
+    "at": "2026-10-30T09:07:49.831Z",
     "text": "missing FAILED: fetch failed"
   }
 ]
