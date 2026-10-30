@@ -1,25 +1,5 @@
 [
   {
-    "at": "2026-10-30T09:18:55.414Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T09:19:50.043Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T09:21:12.295Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T09:22:35.850Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T09:24:08.706Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
     "at": "2026-10-30T09:25:16.985Z",
     "text": "posted to Page 872606492607357: 872606492607357_122147743167140193 ()"
   },
@@ -157,6 +137,26 @@
   },
   {
     "at": "2026-10-30T09:54:48.548Z",
+    "text": "missing FAILED: fetch failed"
+  },
+  {
+    "at": "2026-10-30T09:56:20.503Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147746581140193 ()"
+  },
+  {
+    "at": "2026-10-30T09:56:29.565Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1776989936927469\"}"
+  },
+  {
+    "at": "2026-10-30T09:56:33.321Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123935071459930 ()"
+  },
+  {
+    "at": "2026-10-30T09:56:41.334Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1759343878689818\"}"
+  },
+  {
+    "at": "2026-10-30T09:56:51.826Z",
     "text": "missing FAILED: fetch failed"
   }
 ]
