@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-10-30T09:07:39.339Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1118959244456155\"}"
-  },
-  {
     "at": "2026-10-30T09:07:49.831Z",
     "text": "missing FAILED: fetch failed"
   },
@@ -157,6 +153,10 @@
   },
   {
     "at": "2026-10-30T09:39:46.632Z",
+    "text": "missing FAILED: fetch failed"
+  },
+  {
+    "at": "2026-10-30T09:40:53.783Z",
     "text": "missing FAILED: fetch failed"
   }
 ]
