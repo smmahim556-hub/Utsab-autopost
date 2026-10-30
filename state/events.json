@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-10-30T11:08:38.180Z",
-    "text": "album FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-10-30T11:08:38.371Z",
-    "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-10-30T11:10:16.984Z",
     "text": "posted to Page 872606492607357: 872606492607357_122147757459140193 (https://utsabtv.com/university-tasmania-assured-assessment-standard-ai-era)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-10-30T12:03:11.405Z",
     "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122123959053459930\"}"
+  },
+  {
+    "at": "2026-10-30T12:08:44.427Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1669353821258131\"}"
+  },
+  {
+    "at": "2026-10-30T12:08:49.901Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2246004852935426\"}"
   }
 ]
