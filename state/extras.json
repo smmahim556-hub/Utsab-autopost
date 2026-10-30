@@ -1,38 +1,18 @@
 {
-  "date": "2026-10-29",
+  "date": "2026-10-30",
   "done": {
     "OTD": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "QUIZ": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "TOP5": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "POLL": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "finished": [
-    "OTD",
-    "QUIZANS",
-    "QUIZ",
-    "TOP5",
-    "POLL"
+    "OTD"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
     "https://utsabtv.com/garment-workers-blockade-mirpur-10-demanding-minimum-30000-taka-salary"
   ],
-  "usedQuiz": [
-    "বাংলাদেশের একমাত্র প্রবাল দ্বীপ কোনটি?"
-  ],
-  "marketCheckedAt": 1793275134533,
   "quiz": {
     "q": "বাংলাদেশের একমাত্র প্রবাল দ্বীপ কোনটি?",
     "options": [
@@ -43,5 +23,8 @@
     "answer": 0,
     "fact": "সেন্ট মার্টিন হলো বঙ্গোপসাগরে অবস্থিত বাংলাদেশের একমাত্র প্রবাল দ্বীপ।",
     "date": "2026-10-29"
-  }
+  },
+  "usedQuiz": [
+    "বাংলাদেশের একমাত্র প্রবাল দ্বীপ কোনটি?"
+  ]
 }
