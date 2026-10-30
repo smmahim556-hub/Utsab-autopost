@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T11:17:07.382Z",
-    "text": "album FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-10-30T11:17:43.844Z",
-    "text": "album FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-10-30T11:18:47.309Z",
-    "text": "album FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-10-30T11:19:41.233Z",
-    "text": "album FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-10-30T11:21:12.963Z",
     "text": "posted to Page 872606492607357: 872606492607357_122147758935140193 (https://utsabtv.com/pope-leo-assisi-no-holy-war-peace-message)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T12:47:55.456Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1641326020907350\"}"
+  },
+  {
+    "at": "2026-10-30T13:01:34.762Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147769345140193 ()"
+  },
+  {
+    "at": "2026-10-30T13:01:40.766Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1156697116713666\"}"
+  },
+  {
+    "at": "2026-10-30T13:01:43.983Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123969805459930 ()"
+  },
+  {
+    "at": "2026-10-30T13:01:50.340Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1109365635314077\"}"
   }
 ]
