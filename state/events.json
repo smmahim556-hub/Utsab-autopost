@@ -1,37 +1,5 @@
 [
   {
-    "at": "2026-10-30T09:59:25.284Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T10:00:22.595Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T10:00:57.222Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147747379140193 ()"
-  },
-  {
-    "at": "2026-10-30T10:01:04.790Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1427677049575342\"}"
-  },
-  {
-    "at": "2026-10-30T10:01:08.610Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123935905459930 ()"
-  },
-  {
-    "at": "2026-10-30T10:01:15.623Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"996309496508629\"}"
-  },
-  {
-    "at": "2026-10-30T10:03:55.666Z",
-    "text": "album on Page 872606492607357: 872606492607357_122147748459140193 https://utsabtv.com/septic-tank-explosion-gazipur-naojor-one-killed"
-  },
-  {
-    "at": "2026-10-30T10:04:06.883Z",
-    "text": "album on Page 1276101408920358: 1276101408920358_122123936763459930 https://utsabtv.com/septic-tank-explosion-gazipur-naojor-one-killed"
-  },
-  {
     "at": "2026-10-30T10:05:11.542Z",
     "text": "missing FAILED: fetch failed"
   },
@@ -158,5 +126,37 @@
   {
     "at": "2026-10-30T10:37:20.630Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4168531246778332\"}"
+  },
+  {
+    "at": "2026-10-30T10:38:31.637Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147753301140193 (https://utsabtv.com/israel-election-results-which-path-forward-politics)"
+  },
+  {
+    "at": "2026-10-30T10:38:38.468Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2829023784161978\"}"
+  },
+  {
+    "at": "2026-10-30T10:38:47.827Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123942763459930 (https://utsabtv.com/israel-election-results-which-path-forward-politics)"
+  },
+  {
+    "at": "2026-10-30T10:38:54.924Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2390737181668346\"}"
+  },
+  {
+    "at": "2026-10-30T10:39:21.770Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147753535140193 (https://utsabtv.com/australia-student-visa-bangladeshi-applicants-drop-730-to-14)"
+  },
+  {
+    "at": "2026-10-30T10:39:29.284Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1075948852138697\"}"
+  },
+  {
+    "at": "2026-10-30T10:39:35.579Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123943159459930 (https://utsabtv.com/australia-student-visa-bangladeshi-applicants-drop-730-to-14)"
+  },
+  {
+    "at": "2026-10-30T10:39:42.920Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1602628757997578\"}"
   }
 ]
