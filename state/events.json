@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T09:51:10.819Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T09:51:55.539Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T09:52:48.075Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T09:53:50.627Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
     "at": "2026-10-30T09:54:48.548Z",
     "text": "missing FAILED: fetch failed"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T10:27:30.012Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1721076292917366\"}"
+  },
+  {
+    "at": "2026-10-30T10:30:54.330Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147752047140193 (https://utsabtv.com/prime-minister-japan-visit-effective-fruitful-humayun-kabir)"
+  },
+  {
+    "at": "2026-10-30T10:31:07.320Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2754999031568369\"}"
+  },
+  {
+    "at": "2026-10-30T10:31:15.817Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123941563459930 (https://utsabtv.com/prime-minister-japan-visit-effective-fruitful-humayun-kabir)"
+  },
+  {
+    "at": "2026-10-30T10:31:24.049Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1135414832509357\"}"
   }
 ]
