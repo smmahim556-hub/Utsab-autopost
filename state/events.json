@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-10-30T08:26:37.812Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123919693459930 (https://utsabtv.com/bnp-mp-mirza-faisal-amin-visits-bangabhaban-with-family-president-invitation)"
-  },
-  {
     "at": "2026-10-30T08:26:44.289Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1104646059027630\"}"
   },
@@ -157,6 +153,10 @@
   },
   {
     "at": "2026-10-30T09:16:17.931Z",
+    "text": "missing FAILED: fetch failed"
+  },
+  {
+    "at": "2026-10-30T09:17:04.500Z",
     "text": "missing FAILED: fetch failed"
   }
 ]
