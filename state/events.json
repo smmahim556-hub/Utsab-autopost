@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T10:11:47.570Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T10:12:51.714Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-10-30T10:22:24.683Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147751087140193 (https://utsabtv.com/anthropic-ipo-s1-filing-nasdaq-ant-claude-maker)"
-  },
-  {
-    "at": "2026-10-30T10:22:37.069Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1423402236653250\"}"
-  },
-  {
     "at": "2026-10-30T10:22:43.489Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122123939343459930 (https://utsabtv.com/anthropic-ipo-s1-filing-nasdaq-ant-claude-maker)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T10:52:13.354Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"975521638961029\"}"
+  },
+  {
+    "at": "2026-10-30T10:56:29.617Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147755401140193 (https://utsabtv.com/microsoft-voluntary-exit-offer-ai-investment-workforce-change)"
+  },
+  {
+    "at": "2026-10-30T10:56:35.690Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1421305053489737\"}"
+  },
+  {
+    "at": "2026-10-30T10:56:42.380Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123946093459930 (https://utsabtv.com/microsoft-voluntary-exit-offer-ai-investment-workforce-change)"
+  },
+  {
+    "at": "2026-10-30T10:56:48.923Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1492642976256189\"}"
   }
 ]
