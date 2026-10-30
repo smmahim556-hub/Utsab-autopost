@@ -2855,7 +2855,9 @@ async function albumTick() {
   await extrasTick().catch(e => event(`extras FAILED: ${e.message}`));
   await albumTick().catch(e => event(`album FAILED: ${e.message}`));
   await commentTick().catch(e => event(`comments FAILED: ${e.message}`));
-  const links = await homepageLinks();
+  // The site sometimes drops connections for a few minutes; try again once, then skip only the news part of this run.
+  const links = await homepageLinks().catch(() => new Promise(r => setTimeout(r, 10000)).then(homepageLinks)).catch(e => null);
+  if (!links) return log('homepage unreachable, news check skipped this run');
   log(`homepage: ${links.length} candidate links`);
   let state = loadState();
   if (!state) {
