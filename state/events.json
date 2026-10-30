@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-10-30T10:08:42.302Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1818874409132662\"}"
-  },
-  {
-    "at": "2026-10-30T10:08:45.726Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122123937705459930 ()"
-  },
-  {
-    "at": "2026-10-30T10:08:51.891Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1132857155914801\"}"
-  },
-  {
-    "at": "2026-10-30T10:09:02.382Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
     "at": "2026-10-30T10:09:59.847Z",
     "text": "missing FAILED: fetch failed"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-10-30T10:43:37.706Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1562967715167041\"}"
+  },
+  {
+    "at": "2026-10-30T10:47:07.487Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147754525140193 (https://utsabtv.com/new-york-catholic-archdiocese-80-million-sexual-abuse-settlement)"
+  },
+  {
+    "at": "2026-10-30T10:47:14.607Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2251119439079229\"}"
+  },
+  {
+    "at": "2026-10-30T10:47:21.411Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122123944551459930 (https://utsabtv.com/new-york-catholic-archdiocese-80-million-sexual-abuse-settlement)"
+  },
+  {
+    "at": "2026-10-30T10:47:28.813Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2047868695875219\"}"
   }
 ]
