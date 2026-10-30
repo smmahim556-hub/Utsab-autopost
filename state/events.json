@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-10-30T07:51:33.583Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4705044963150739\"}"
-  },
-  {
     "at": "2026-10-30T08:02:40.533Z",
     "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122147734659140193\"}"
   },
@@ -157,6 +153,10 @@
   },
   {
     "at": "2026-10-30T09:05:19.560Z",
+    "text": "missing FAILED: fetch failed"
+  },
+  {
+    "at": "2026-10-30T09:06:08.558Z",
     "text": "missing FAILED: fetch failed"
   }
 ]
