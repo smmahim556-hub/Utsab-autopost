@@ -16,18 +16,24 @@
     "TOP5": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
     "QUIZ",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
     "https://utsabtv.com/garment-workers-blockade-mirpur-10-demanding-minimum-30000-taka-salary",
-    "https://utsabtv.com/bhutan-glacial-lake-outburst-flood-west-bengal-assam-alert-bangladesh-risk"
+    "https://utsabtv.com/bhutan-glacial-lake-outburst-flood-west-bengal-assam-alert-bangladesh-risk",
+    "https://utsabtv.com/hormuz-tanker-limpet-mine-explosion-27-indian-sailors-rescued"
   ],
   "quiz": {
     "q": "বাংলাদেশের একমাত্র কোন জেলার সাথে ভারত ও মিয়ানমার—দুই দেশেরই সীমান্ত রয়েছে?",
