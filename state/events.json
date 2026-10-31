@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-10-31T10:32:32.544Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1634729038026088\"}"
-  },
-  {
-    "at": "2026-10-31T10:36:03.938Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147883177140193 (https://utsabtv.com/tahseef-murder-case-arrested-dwip-four-day-remand)"
-  },
-  {
     "at": "2026-10-31T10:36:09.207Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1928148221495486\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-10-31T11:41:21.089Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2727199274384035\"}"
+  },
+  {
+    "at": "2026-10-31T12:02:27.585Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122147891103140193\"}"
+  },
+  {
+    "at": "2026-10-31T12:02:34.016Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122124211551459930\"}"
   }
 ]
