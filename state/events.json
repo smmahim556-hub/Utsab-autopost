@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-10-30T17:58:35.289Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147796609140193 (https://utsabtv.com/global-heat-related-deaths-rise-lancet-countdown-report)"
-  },
-  {
-    "at": "2026-10-30T17:58:42.076Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"4476632825911739\"}"
-  },
-  {
     "at": "2026-10-30T17:58:52.518Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122124025125459930 (https://utsabtv.com/global-heat-related-deaths-rise-lancet-countdown-report)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-10-31T00:31:21.181Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1615775716100514\"}"
+  },
+  {
+    "at": "2026-10-31T01:01:13.091Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"29696857153232686\"}"
+  },
+  {
+    "at": "2026-10-31T01:01:18.675Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"3377145799340870\"}"
   }
 ]
