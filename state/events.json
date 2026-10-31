@@ -1,37 +1,5 @@
 [
   {
-    "at": "2026-10-31T07:44:30.733Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1908778096751509\"}"
-  },
-  {
-    "at": "2026-10-31T07:44:34.091Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122124165987459930 ()"
-  },
-  {
-    "at": "2026-10-31T07:44:40.143Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1645616420376244\"}"
-  },
-  {
-    "at": "2026-10-31T07:50:12.089Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-10-31T08:00:53.326Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147864799140193 ()"
-  },
-  {
-    "at": "2026-10-31T08:01:00.115Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1146598221666396\"}"
-  },
-  {
-    "at": "2026-10-31T08:01:02.630Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122124167619459930 ()"
-  },
-  {
-    "at": "2026-10-31T08:01:08.607Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1460611209342017\"}"
-  },
-  {
     "at": "2026-10-31T08:03:10.419Z",
     "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122147865099140193\"}"
   },
@@ -158,5 +126,37 @@
   {
     "at": "2026-10-31T09:32:34.448Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2210200223247365\"}"
+  },
+  {
+    "at": "2026-10-31T09:35:16.232Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147875149140193 ()"
+  },
+  {
+    "at": "2026-10-31T09:35:23.765Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1596232091821011\"}"
+  },
+  {
+    "at": "2026-10-31T09:35:27.638Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122124183357459930 ()"
+  },
+  {
+    "at": "2026-10-31T09:35:35.675Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1815960469613188\"}"
+  },
+  {
+    "at": "2026-10-31T09:35:57.458Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122147875449140193 (https://utsabtv.com/gunfight-between-pcjss-updf-sajek)"
+  },
+  {
+    "at": "2026-10-31T09:36:04.701Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1095078783373089\"}"
+  },
+  {
+    "at": "2026-10-31T09:36:11.817Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122124183693459930 (https://utsabtv.com/gunfight-between-pcjss-updf-sajek)"
+  },
+  {
+    "at": "2026-10-31T09:36:18.993Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1083445094521215\"}"
   }
 ]
