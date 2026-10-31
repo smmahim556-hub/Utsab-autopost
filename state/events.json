@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-10-31T10:25:08.046Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122147881923140193 (https://utsabtv.com/failed-hsc-students-exam-within-one-two-months)"
-  },
-  {
     "at": "2026-10-31T10:25:14.766Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1126614729919389\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-10-31T11:10:33.813Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2157860268158591\"}"
+  },
+  {
+    "at": "2026-10-31T11:14:59.961Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
