@@ -4,10 +4,15 @@
     "OTD": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "QUIZANS": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
-    "OTD"
+    "OTD",
+    "QUIZANS"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -27,7 +32,8 @@
     "posts": {
       "872606492607357": "872606492607357_122147747379140193",
       "1276101408920358": "1276101408920358_122123935905459930"
-    }
+    },
+    "winners": []
   },
   "usedQuiz": [
     "বাংলাদেশের একমাত্র প্রবাল দ্বীপ কোনটি?",
