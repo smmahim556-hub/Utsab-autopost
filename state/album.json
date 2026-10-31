@@ -7,7 +7,8 @@
     "https://utsabtv.com/septic-tank-explosion-gazipur-naojor-one-killed",
     "https://utsabtv.com/israel-election-no-coalition-majority-netanyahu-ahead-final-results",
     "https://utsabtv.com/hormuz-tanker-limpet-mine-explosion-27-indian-sailors-rescued",
-    "https://utsabtv.com/bodies-of-seven-bangladeshis-killed-in-saudi-fire-arrive-home"
+    "https://utsabtv.com/bodies-of-seven-bangladeshis-killed-in-saudi-fire-arrive-home",
+    "https://utsabtv.com/hsc-2026-results-40084-students-gpa-5-pass-rate-52-12"
   ],
   "date": "2026-10-31",
   "done": {
@@ -18,10 +19,15 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/hormuz-tanker-limpet-mine-explosion-27-indian-sailors-rescued",
-    "960": "https://utsabtv.com/bodies-of-seven-bangladeshis-killed-in-saudi-fire-arrive-home"
+    "960": "https://utsabtv.com/bodies-of-seven-bangladeshis-killed-in-saudi-fire-arrive-home",
+    "1200": "https://utsabtv.com/hsc-2026-results-40084-students-gpa-5-pass-rate-52-12"
   }
 }
