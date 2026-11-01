@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-01T09:41:24.796Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122124427695459930 ()"
-  },
-  {
-    "at": "2026-11-01T09:41:30.849Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1669116328251779\"}"
-  },
-  {
     "at": "2026-11-01T10:02:32.095Z",
     "text": "album on Page 872606492607357: 872606492607357_122148030675140193 https://utsabtv.com/garment-workers-blockade-mirpur-10-traffic-halted-minimum-wage-protest"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-01T11:52:11.437Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"987597877105872\"}"
+  },
+  {
+    "at": "2026-11-01T12:02:40.344Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148049203140193\"}"
+  },
+  {
+    "at": "2026-11-01T12:02:46.729Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122124449505459930\"}"
   }
 ]
