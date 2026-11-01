@@ -1607,7 +1607,7 @@ async function aiAsk(prompt, temperature = 0.7) {
   if (process.env.GEMINI_API_KEY) {
     // Google's newest models are often overloaded (503) or slow, so the next one is tried on any failure.
     const errs = [];
-    for (const model of (process.env.AI_MODEL || 'gemini-3.5-flash,gemini-3.1-flash-lite,gemini-3-flash-preview,gemini-3.8-flash').split(',')) {
+    for (const model of (process.env.AI_MODEL || 'gemini-3.5-flash,gemini-3.1-flash-lite,gemini-3-flash-preview,gemini-3.8-flash,gemini-flash-latest,gemini-flash-lite-latest').split(',')) {
       try {
         const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
           method: 'POST', signal: AbortSignal.timeout(30000), headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
@@ -1618,15 +1618,17 @@ async function aiAsk(prompt, temperature = 0.7) {
         if (out) break;
       } catch (e) { errs.push(`${model}: ${e.message}`); }
     }
-    if (!out) throw new Error(`Gemini: ${errs.join(' | ')}`);
-  } else if (process.env.ANTHROPIC_API_KEY) {
+    if (!out && !process.env.ANTHROPIC_API_KEY) throw new Error(`Gemini: ${errs.join(' | ')}`);
+    if (!out) log('Gemini busy, asking Claude:', errs.join(' | ').slice(0, 200));
+  }
+  if (!out && process.env.ANTHROPIC_API_KEY) {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST', signal: AbortSignal.timeout(60000), headers: { 'Content-Type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: process.env.AI_MODEL || 'claude-haiku-5-5', max_tokens: 800, temperature, messages: [{ role: 'user', content: prompt }] }) });
+      body: JSON.stringify({ model: process.env.CLAUDE_MODEL || 'claude-haiku-5-5', max_tokens: 800, temperature, messages: [{ role: 'user', content: prompt }] }) });
     const body = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(`Claude: ${JSON.stringify(body.error || body).slice(0, 200)}`);
     out = (body.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
-  } else throw new Error('no AI key');
+  } else if (!out) throw new Error('no AI key');
   return out;
 }
 // Rewrites a paper's summary in our own words (GEMINI_API_KEY, else ANTHROPIC_API_KEY), so no paper's text is copied.
