@@ -1,5 +1,29 @@
 [
   {
+    "at": "2026-11-01T14:21:29.646Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148065619140193 ()"
+  },
+  {
+    "at": "2026-11-01T14:21:37.303Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"3765863793579897\"}"
+  },
+  {
+    "at": "2026-11-01T14:21:40.681Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122124476763459930 ()"
+  },
+  {
+    "at": "2026-11-01T14:21:47.106Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1464435888981591\"}"
+  },
+  {
+    "at": "2026-11-01T14:26:04.222Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148066135140193 ()"
+  },
+  {
+    "at": "2026-11-01T14:26:12.226Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1140317571802605\"}"
+  },
+  {
     "at": "2026-11-01T14:26:14.927Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122124477747459930 ()"
   },
@@ -128,35 +152,11 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1072412895792748\"}"
   },
   {
-    "at": "2026-11-01T16:01:31.929Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148082167140193 ()"
+    "at": "2026-11-01T16:05:00.136Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148082971140193\"}"
   },
   {
-    "at": "2026-11-01T16:01:39.455Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2008301363152153\"}"
-  },
-  {
-    "at": "2026-11-01T16:01:42.682Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122124500085459930 ()"
-  },
-  {
-    "at": "2026-11-01T16:01:48.725Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"998872099215465\"}"
-  },
-  {
-    "at": "2026-11-01T16:03:22.172Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148082647140193 (https://utsabtv.com/fact-check-video-netanyahu-gun-attack-old-footage-bulgaria-2013)"
-  },
-  {
-    "at": "2026-11-01T16:03:28.779Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2711262702665032\"}"
-  },
-  {
-    "at": "2026-11-01T16:03:36.107Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122124500529459930 (https://utsabtv.com/fact-check-video-netanyahu-gun-attack-old-footage-bulgaria-2013)"
-  },
-  {
-    "at": "2026-11-01T16:03:42.503Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1151517464495041\"}"
+    "at": "2026-11-01T16:05:06.839Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122124500859459930\"}"
   }
 ]
