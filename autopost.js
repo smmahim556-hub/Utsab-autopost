@@ -2085,6 +2085,87 @@ async function top5Card(browser, items, outFile, logo, now = dhakaNow()) {
 <div class="list">${rows}</div><div class="ftr">বিস্তারিত পড়ুন www.utsabtv.com</div>`, outFile);
 }
 
+// ------------------------------------------------------------------ quote card (demo)
+// A speaker's quote from one of our stories: date, quote (first part yellow), name and post, and the speaker cut out of
+// the story's own photo (rembg) at the bottom right. Logo top-right, section tag top-left, red footer as on every own card.
+async function quotePick(stories) {
+  const list = stories.map((s, i) => `[${i}] ${s.title}\n${s.text.slice(0, 1200)}`).join('\n\n');
+  const out = await aiAsk(`নিচে কয়েকটি খবর আছে। এমন একটি খবর বেছে নাও যেখানে কোনো পরিচিত ব্যক্তির সরাসরি উক্তি (উদ্ধৃতি) আছে।
+উক্তিটি খবরের ভেতরের কথা থেকেই নাও, ১৮-৪৫ শব্দ, অর্থ বদলাবে না, নিজের কথা যোগ করবে না। দরকার হলে শুধু ছোট করো।
+শুধু JSON দাও: {"i": খবরের নম্বর, "quote": "উক্তি", "split": উক্তির প্রথম যত শব্দ হলুদ রঙে দেখাবে (মোট শব্দের অর্ধেকের কাছাকাছি, বাক্য শেষে), "name": "বক্তার নাম", "post": "পদবি, ছোট করে (যেমন: সংসদ সদস্য, ঢাকা-৮)"}
+কোনো খবরে উপযুক্ত উক্তি না থাকলে {"i": -1} দাও।\n\n${list}`, 0.3);
+  const m = out.match(/\{[\s\S]*\}/); return m ? JSON.parse(m[0]) : { i: -1 };
+}
+// Head-and-shoulders box of the speaker in the photo (0-1000: ymin,xmin,ymax,xmax), or null when the speaker is not clearly in it.
+async function speakerBox(url, name) {
+  const res = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(30000) });
+  const buf = Buffer.from(await res.arrayBuffer()), mime = (res.headers.get('content-type') || 'image/jpeg').split(';')[0];
+  for (const model of ['gemini-3.5-flash', 'gemini-3-flash-preview', 'gemini-3.1-flash-lite']) {
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: 'POST', signal: AbortSignal.timeout(60000),
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+      body: JSON.stringify({ contents: [{ parts: [{ inline_data: { mime_type: mime, data: buf.toString('base64') } },
+        { text: `This news photo should show ${name}. Give the box of the main person's head, shoulders and upper body (from a little above the head down to the chest or waist), as JSON {"box":[ymin,xmin,ymax,xmax]} in 0-1000 units. If the photo has no clear single main person (a crowd, a building, a graphic), answer {"box":null}. JSON only.` }] }] }) }).catch(() => null);
+    const b = r ? await r.json().catch(() => ({})) : {};
+    const t = (b.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
+    const m = t.match(/\{[\s\S]*\}/); if (m) { try { return { buf, box: JSON.parse(m[0]).box }; } catch {} }
+  }
+  return { buf, box: null };
+}
+async function quoteCard(browser, q, photo, outFile, logo, now = dhakaNow()) {
+  const words = q.quote.split(/\s+/), k = Math.min(Math.max(Number(q.split) || 0, 0), words.length);
+  const size = words.length > 36 ? 50 : words.length > 26 ? 56 : 62;
+  return shot(browser, `<style>${BRAND_CSS}
+body{background:radial-gradient(circle at 30% 30%,#0f6a35,#06301a 70%);color:#fff}
+body:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 3px,transparent 3px 46px)}
+.box{position:absolute;left:56px;right:56px;top:270px;bottom:150px;border-radius:40px;border:3px solid rgba(255,213,79,.55);
+  background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.02));box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.qm{position:absolute;left:70px;top:205px;font-family:Georgia,serif;font-size:260px;line-height:1;color:#ffd54f;text-shadow:0 8px 24px rgba(0,0,0,.4)}
+.dt{position:absolute;left:0;right:0;top:300px;text-align:center;font-size:36px;color:#e9f5ec}
+.dt:before,.dt:after{content:'';display:inline-block;width:170px;height:2px;background:rgba(255,255,255,.5);vertical-align:middle;margin:0 22px}
+.q{position:absolute;left:110px;right:100px;top:390px;font-size:${size}px;line-height:1.5;font-weight:800}
+.q em{font-style:normal;color:#ffd54f}
+.sp{position:absolute;left:110px;bottom:200px;width:560px}
+.sp:before{content:'';display:block;width:300px;height:4px;background:#c8202f;margin-bottom:24px;border-radius:2px}
+.sp b{display:block;font-size:54px;font-weight:900;color:#fff}.sp span{display:block;font-size:34px;color:#cfe9d6;margin-top:6px;line-height:1.4}
+.ph{position:absolute;right:20px;bottom:100px;width:470px;height:560px;background:url('${photo}') bottom right/contain no-repeat;filter:drop-shadow(0 10px 24px rgba(0,0,0,.5))}
+.ph.round{right:70px;bottom:180px;width:330px;height:330px;border-radius:50%;background-size:cover;background-position:center;border:8px solid #ffd54f}
+.hdr{background:transparent;border:0;height:200px}.hdr .t b{font-size:58px;color:#ffd54f}
+</style>${brandHead(logo, 'উক্তি', '')}<div class="box"></div><div class="qm">“</div>
+<div class="dt">${bnDate(now)}</div>
+<div class="q"><em>${esc(words.slice(0, k).join(' '))}</em> ${esc(words.slice(k).join(' '))}</div>
+<div class="ph${q.cut ? '' : ' round'}"></div>
+<div class="sp"><b>${esc(q.name)}</b><span>${esc(q.post || '')}</span></div>
+<div class="ftr">www.utsabtv.com</div>`, outFile);
+}
+async function quoteDemo() {
+  const { execSync } = require('child_process');
+  try { execSync('python3 -m pip install -q "rembg[cpu]" pillow', { stdio: 'inherit', timeout: 600000 }); } catch (e) { log('rembg install failed'); }
+  const browser = await chromium.launch(), preview = path.join(__dirname, 'preview'), work = path.join(OUT_DIR, 'quote');
+  fs.mkdirSync(preview, { recursive: true }); fs.mkdirSync(work, { recursive: true });
+  const report = { made: [] };
+  try {
+    const logo = await channelLogo(browser);
+    const stories = [];
+    for (const u of (await homepageLinks()).slice(0, 25)) { const s = await newsText(u).catch(() => null); if (s && s.text && /\/storage\//.test(s.image)) stories.push({ ...s, url: u }); }
+    let pool = stories;
+    for (let n = 0; n < 2 && pool.length; n++) {
+      const q = await quotePick(pool.slice(0, 14));
+      if (!(q.i >= 0) || !pool[q.i]) break;
+      const s = pool[q.i]; pool = pool.filter(x => x !== s);
+      const { buf, box } = await speakerBox(s.image, q.name);
+      const src = path.join(work, `src-${n}.jpg`); fs.writeFileSync(src, buf);
+      let photo = `data:image/jpeg;base64,${buf.toString('base64')}`;
+      if (box) {
+        const cut = path.join(work, `cut-${n}.png`);
+        try { execSync(`python3 tools/quote-cut.py ${src} ${cut} ${box.join(',')}`, { stdio: 'inherit', timeout: 300000 }); photo = `data:image/png;base64,${fs.readFileSync(cut).toString('base64')}`; q.cut = true; } catch (e) { log('cut failed', e.message); }
+      }
+      await quoteCard(browser, q, photo, path.join(preview, `quote-demo-${n + 1}.png`), logo);
+      report.made.push({ url: s.url, ...q });
+    }
+  } catch (e) { report.error = String(e.stack || e).slice(0, 800); } finally { await browser.close(); }
+  fs.writeFileSync(path.join(__dirname, 'state', 'quote-probe.json'), JSON.stringify(report, null, 1));
+}
+
 // Events, births and deaths for today from Bangla Wikipedia's day page (e.g. "২৭ অক্টোবর"), wiki markup removed.
 async function onThisDay(now = dhakaNow()) {
   const page = `${bn(now.getUTCDate())} ${BN_MONTHS[now.getUTCMonth()]}`;
@@ -2778,6 +2859,7 @@ async function albumTick() {
     return;
   }
   if (process.env.DEMO_ALBUM === '1') return albumDemo();
+  if (process.env.DEMO_QUOTE === '1') return quoteDemo();
   if (process.env.DEMO_INSIGHTS === '1') { // data for the reach-report / album demos; the repo is public, so the result is encrypted for the requester
     try { await insightsProbe(); } catch (e) { fs.writeFileSync(path.join(__dirname, 'state', 'insights-probe.json'), JSON.stringify({ error: e.stack.slice(0, 800) })); }
     return;
