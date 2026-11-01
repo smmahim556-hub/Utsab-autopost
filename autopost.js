@@ -2092,7 +2092,7 @@ async function top5Card(browser, items, outFile, logo, now = dhakaNow()) {
 // the story's own photo (rembg) at the bottom right. Logo top-right, section tag top-left, red footer as on every own card.
 async function quotePick(stories, skip = []) {
   const list = stories.map((s, i) => `[${i}] ${s.title}\n${s.text.slice(0, 1200)}`).join('\n\n');
-  const out = await aiAsk(`নিচে কয়েকটি খবর আছে। এমন একটি খবর বেছে নাও যেখানে কোনো পরিচিত ব্যক্তির সরাসরি উক্তি (উদ্ধৃতি) আছে।
+  const out = await aiAsk(`নিচে কয়েকটি খবর আছে। এমন একটি খবর বেছে নাও যেখানে নাম জানা কোনো পরিচিত ব্যক্তির (নেতা, মন্ত্রী, খেলোয়াড়, শিল্পী ইত্যাদি) সরাসরি উক্তি আছে। নামহীন কর্মকর্তা বা মুখপাত্র চলবে না।
 উক্তিটি খবরের ভেতরের কথা থেকেই নাও, ১৮-৩৫ শব্দ, অর্থ বদলাবে না, নিজের কথা যোগ করবে না। দরকার হলে শুধু ছোট করো।
 শুধু JSON দাও: {"i": খবরের নম্বর, "quote": "উক্তি", "split": উক্তির প্রথম যত শব্দ হলুদ রঙে দেখাবে (মোট শব্দের অর্ধেকের কাছাকাছি, বাক্য শেষে), "name": "বক্তার নাম", "name_en": "speaker's name in English, as on Wikipedia", "post": "পদবি, ছোট করে (যেমন: সংসদ সদস্য, ঢাকা-৮)"}
 ${skip.length ? `এই বক্তাদের বাদ দাও: ${skip.join(', ')}। ` : ''}কোনো খবরে উপযুক্ত উক্তি না থাকলে {"i": -1} দাও।\n\n${list}`, 0.3);
@@ -2165,7 +2165,7 @@ async function quoteDemo() {
     const stories = [];
     for (const u of (await homepageLinks()).slice(0, 25)) { const s = await newsText(u).catch(() => null); if (s && s.text && /\/storage\//.test(s.image)) stories.push({ ...s, url: u }); }
     let pool = stories; const skip = [];
-    for (let n = 0; n < 2 && pool.length; n++) {
+    for (let n = 0, tries = 0; n < 2 && pool.length && tries++ < 5; n++) {
       let q;
       for (let t = 0; t < 6 && !q; t++) q = await quotePick(pool.slice(0, 14), skip).catch(e => (log('quote pick:', e.message.slice(0, 80)), new Promise(r => setTimeout(r, 30000)).then(() => null)));
       if (!q) throw new Error('AI busy');
@@ -2173,6 +2173,7 @@ async function quoteDemo() {
       const s = pool[q.i]; pool = pool.filter(x => x !== s); skip.push(q.name);
       const wiki = await wikiPortrait([['bn', q.name], ['en', q.name_en]]);
       q.photoFrom = wiki ? `wikipedia: ${wiki.title}` : 'story photo';
+      if (!wiki && !process.env.QUOTE_STORY_PHOTO) { const b = await speakerBox(s.image, q.name); if (!b.box) { n--; continue; } }
       const sb = await speakerBox(wiki ? wiki.url : s.image, q.name), buf = sb.buf, box = sb.box || (wiki ? [0, 0, 1000, 1000] : null);
       const src = path.join(work, `src-${n}.jpg`); fs.writeFileSync(src, buf);
       let photo = `data:image/jpeg;base64,${buf.toString('base64')}`;
