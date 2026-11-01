@@ -1,4 +1,4 @@
 {
  "made": [],
- "error": "Error: Gemini: gemini-3.5-flash: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3.1-flash-lite: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3-flash-preview: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3.8-flash: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\n    at aiAsk (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:1621:21)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async quotePick (/home/runner/work/Utsab-autopost/U"
+ "error": "Error: AI busy\n    at quoteDemo (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2154:21)"
 }
