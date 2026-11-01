@@ -8,12 +8,17 @@
     "QUIZANS": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "MARKET": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
-    "QUIZ"
+    "QUIZ",
+    "MARKET"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -42,5 +47,5 @@
     "'সাগরকন্যা' নামে পরিচিত বাংলাদেশের কোন স্থানটি?",
     "বাংলাদেশের একমাত্র কোন জেলার সাথে ভারত ও মিয়ানমার—দুই দেশেরই সীমান্ত রয়েছে?"
   ],
-  "marketCheckedAt": 1793526761386
+  "marketCheckedAt": 1793527725396
 }
