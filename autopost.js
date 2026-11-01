@@ -2090,12 +2090,12 @@ async function top5Card(browser, items, outFile, logo, now = dhakaNow()) {
 // ------------------------------------------------------------------ quote card (demo)
 // A speaker's quote from one of our stories: date, quote (first part yellow), name and post, and the speaker cut out of
 // the story's own photo (rembg) at the bottom right. Logo top-right, section tag top-left, red footer as on every own card.
-async function quotePick(stories) {
+async function quotePick(stories, skip = []) {
   const list = stories.map((s, i) => `[${i}] ${s.title}\n${s.text.slice(0, 1200)}`).join('\n\n');
   const out = await aiAsk(`নিচে কয়েকটি খবর আছে। এমন একটি খবর বেছে নাও যেখানে কোনো পরিচিত ব্যক্তির সরাসরি উক্তি (উদ্ধৃতি) আছে।
-উক্তিটি খবরের ভেতরের কথা থেকেই নাও, ১৮-৪৫ শব্দ, অর্থ বদলাবে না, নিজের কথা যোগ করবে না। দরকার হলে শুধু ছোট করো।
-শুধু JSON দাও: {"i": খবরের নম্বর, "quote": "উক্তি", "split": উক্তির প্রথম যত শব্দ হলুদ রঙে দেখাবে (মোট শব্দের অর্ধেকের কাছাকাছি, বাক্য শেষে), "name": "বক্তার নাম", "post": "পদবি, ছোট করে (যেমন: সংসদ সদস্য, ঢাকা-৮)"}
-কোনো খবরে উপযুক্ত উক্তি না থাকলে {"i": -1} দাও।\n\n${list}`, 0.3);
+উক্তিটি খবরের ভেতরের কথা থেকেই নাও, ১৮-৩৫ শব্দ, অর্থ বদলাবে না, নিজের কথা যোগ করবে না। দরকার হলে শুধু ছোট করো।
+শুধু JSON দাও: {"i": খবরের নম্বর, "quote": "উক্তি", "split": উক্তির প্রথম যত শব্দ হলুদ রঙে দেখাবে (মোট শব্দের অর্ধেকের কাছাকাছি, বাক্য শেষে), "name": "বক্তার নাম", "name_en": "speaker's name in English, as on Wikipedia", "post": "পদবি, ছোট করে (যেমন: সংসদ সদস্য, ঢাকা-৮)"}
+${skip.length ? `এই বক্তাদের বাদ দাও: ${skip.join(', ')}। ` : ''}কোনো খবরে উপযুক্ত উক্তি না থাকলে {"i": -1} দাও।\n\n${list}`, 0.3);
   const m = out.match(/\{[\s\S]*\}/); return m ? JSON.parse(m[0]) : { i: -1 };
 }
 // Head-and-shoulders box of the speaker in the photo (0-1000: ymin,xmin,ymax,xmax), or null when the speaker is not clearly in it.
@@ -2113,9 +2113,23 @@ async function speakerBox(url, name) {
   }
   return { buf, box: null };
 }
+// Portrait of a known person from Wikipedia (freely licensed photos), Bangla page first, then English.
+async function wikiPortrait(names) {
+  for (const [host, name] of names) {
+    if (!name) continue;
+    try {
+      const u = `https://${host}.wikipedia.org/w/api.php?action=query&format=json&generator=search&gsrlimit=1&gsrsearch=${encodeURIComponent(name)}&prop=pageimages&piprop=thumbnail&pithumbsize=900`;
+      const pg = Object.values((await (await fetch(u, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(30000) })).json()).query?.pages || {})[0];
+      if (pg?.thumbnail?.source) return { url: pg.thumbnail.source, title: pg.title };
+    } catch {}
+  }
+  return null;
+}
 async function quoteCard(browser, q, photo, outFile, logo, now = dhakaNow()) {
-  const words = q.quote.split(/\s+/), k = Math.min(Math.max(Number(q.split) || 0, 0), words.length);
-  const size = words.length > 36 ? 50 : words.length > 26 ? 56 : 62;
+  const words = q.quote.split(/\s+/);
+  let k = typeof q.split === 'string' && isNaN(q.split) ? q.split.trim().split(/\s+/).length : Number(q.split) || 0;
+  if (!k || k >= words.length) k = Math.ceil(words.length / 2);
+  const size = 64;
   return shot(browser, `<style>${BRAND_CSS}
 body{background:radial-gradient(circle at 30% 30%,#0f6a35,#06301a 70%);color:#fff}
 body:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 3px,transparent 3px 46px)}
@@ -2124,9 +2138,9 @@ body:before{content:'';position:absolute;inset:0;background:repeating-linear-gra
 .qm{position:absolute;left:70px;top:205px;font-family:Georgia,serif;font-size:260px;line-height:1;color:#ffd54f;text-shadow:0 8px 24px rgba(0,0,0,.4)}
 .dt{position:absolute;left:0;right:0;top:300px;text-align:center;font-size:36px;color:#e9f5ec}
 .dt:before,.dt:after{content:'';display:inline-block;width:170px;height:2px;background:rgba(255,255,255,.5);vertical-align:middle;margin:0 22px}
-.q{position:absolute;left:110px;right:100px;top:390px;font-size:${size}px;line-height:1.5;font-weight:800}
+.q{position:absolute;left:110px;right:100px;top:390px;height:420px;font-size:${size}px;line-height:1.5;font-weight:800;overflow:hidden}
 .q em{font-style:normal;color:#ffd54f}
-.sp{position:absolute;left:110px;bottom:200px;width:560px}
+.sp{position:absolute;left:110px;bottom:190px;width:540px}
 .sp:before{content:'';display:block;width:300px;height:4px;background:#c8202f;margin-bottom:24px;border-radius:2px}
 .sp b{display:block;font-size:54px;font-weight:900;color:#fff}.sp span{display:block;font-size:34px;color:#cfe9d6;margin-top:6px;line-height:1.4}
 .ph{position:absolute;right:20px;bottom:100px;width:470px;height:560px;background:url('${photo}') bottom right/contain no-repeat;filter:drop-shadow(0 10px 24px rgba(0,0,0,.5))}
@@ -2137,7 +2151,8 @@ body:before{content:'';position:absolute;inset:0;background:repeating-linear-gra
 <div class="q"><em>${esc(words.slice(0, k).join(' '))}</em> ${esc(words.slice(k).join(' '))}</div>
 <div class="ph${q.cut ? '' : ' round'}"></div>
 <div class="sp"><b>${esc(q.name)}</b><span>${esc(q.post || '')}</span></div>
-<div class="ftr">www.utsabtv.com</div>`, outFile);
+<div class="ftr">www.utsabtv.com</div>
+<script>document.fonts.ready.then(() => { const q = document.querySelector('.q'); let f = ${size}; while (q.scrollHeight > q.clientHeight && f > 36) q.style.fontSize = (f -= 2) + 'px'; });</script>`, outFile);
 }
 async function quoteDemo() {
   const { execSync } = require('child_process');
@@ -2149,14 +2164,16 @@ async function quoteDemo() {
     const logo = await channelLogo(browser);
     const stories = [];
     for (const u of (await homepageLinks()).slice(0, 25)) { const s = await newsText(u).catch(() => null); if (s && s.text && /\/storage\//.test(s.image)) stories.push({ ...s, url: u }); }
-    let pool = stories;
+    let pool = stories; const skip = [];
     for (let n = 0; n < 2 && pool.length; n++) {
       let q;
-      for (let t = 0; t < 6 && !q; t++) q = await quotePick(pool.slice(0, 14)).catch(e => (log('quote pick:', e.message.slice(0, 80)), new Promise(r => setTimeout(r, 30000)).then(() => null)));
+      for (let t = 0; t < 6 && !q; t++) q = await quotePick(pool.slice(0, 14), skip).catch(e => (log('quote pick:', e.message.slice(0, 80)), new Promise(r => setTimeout(r, 30000)).then(() => null)));
       if (!q) throw new Error('AI busy');
       if (!(q.i >= 0) || !pool[q.i]) break;
-      const s = pool[q.i]; pool = pool.filter(x => x !== s);
-      const { buf, box } = await speakerBox(s.image, q.name);
+      const s = pool[q.i]; pool = pool.filter(x => x !== s); skip.push(q.name);
+      const wiki = await wikiPortrait([['bn', q.name], ['en', q.name_en]]);
+      q.photoFrom = wiki ? `wikipedia: ${wiki.title}` : 'story photo';
+      const sb = await speakerBox(wiki ? wiki.url : s.image, q.name), buf = sb.buf, box = sb.box || (wiki ? [0, 0, 1000, 1000] : null);
       const src = path.join(work, `src-${n}.jpg`); fs.writeFileSync(src, buf);
       let photo = `data:image/jpeg;base64,${buf.toString('base64')}`;
       if (box) {
