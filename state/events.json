@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-01T04:47:43.084Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"29265127049747451\"}"
-  },
-  {
-    "at": "2026-11-01T04:47:45.886Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122124373761459930 ()"
-  },
-  {
     "at": "2026-11-01T04:47:52.560Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1095010666689852\"}"
   },
@@ -152,11 +144,19 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"28463775623305698\"}"
   },
   {
-    "at": "2026-11-01T07:03:22.308Z",
-    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148007605140193\"}"
+    "at": "2026-11-01T07:03:22.137Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148007599140193 ()"
   },
   {
-    "at": "2026-11-01T07:03:29.440Z",
-    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122124398865459930\"}"
+    "at": "2026-11-01T07:03:30.702Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1467317041938385\"}"
+  },
+  {
+    "at": "2026-11-01T07:03:33.752Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122124398907459930 ()"
+  },
+  {
+    "at": "2026-11-01T07:03:42.267Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"970621045633521\"}"
   }
 ]
