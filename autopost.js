@@ -2138,12 +2138,12 @@ body:before{content:'';position:absolute;inset:0;background:repeating-linear-gra
 .qm{position:absolute;left:70px;top:205px;font-family:Georgia,serif;font-size:260px;line-height:1;color:#ffd54f;text-shadow:0 8px 24px rgba(0,0,0,.4)}
 .dt{position:absolute;left:0;right:0;top:300px;text-align:center;font-size:36px;color:#e9f5ec}
 .dt:before,.dt:after{content:'';display:inline-block;width:170px;height:2px;background:rgba(255,255,255,.5);vertical-align:middle;margin:0 22px}
-.q{position:absolute;left:110px;right:100px;top:390px;height:420px;font-size:${size}px;line-height:1.5;font-weight:800;overflow:hidden}
+.q{position:absolute;left:110px;right:100px;top:390px;height:380px;font-size:${size}px;line-height:1.5;font-weight:800;overflow:hidden}
 .q em{font-style:normal;color:#ffd54f}
 .sp{position:absolute;left:110px;bottom:190px;width:540px}
 .sp:before{content:'';display:block;width:300px;height:4px;background:#c8202f;margin-bottom:24px;border-radius:2px}
 .sp b{display:block;font-size:54px;font-weight:900;color:#fff}.sp span{display:block;font-size:34px;color:#cfe9d6;margin-top:6px;line-height:1.4}
-.ph{position:absolute;right:20px;bottom:100px;width:470px;height:560px;background:url('${photo}') bottom right/contain no-repeat;filter:drop-shadow(0 10px 24px rgba(0,0,0,.5))}
+.ph{position:absolute;right:20px;bottom:100px;width:440px;height:500px;background:url('${photo}') bottom right/contain no-repeat;filter:drop-shadow(0 10px 24px rgba(0,0,0,.5))}
 .ph.round{right:70px;bottom:180px;width:330px;height:330px;border-radius:50%;background-size:cover;background-position:center;border:8px solid #ffd54f}
 .hdr{background:transparent;border:0;height:200px}.hdr .t b{font-size:58px;color:#ffd54f}
 </style>${brandHead(logo, 'উক্তি', '')}<div class="box"></div><div class="qm">“</div>
