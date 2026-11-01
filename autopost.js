@@ -2149,7 +2149,9 @@ async function quoteDemo() {
     for (const u of (await homepageLinks()).slice(0, 25)) { const s = await newsText(u).catch(() => null); if (s && s.text && /\/storage\//.test(s.image)) stories.push({ ...s, url: u }); }
     let pool = stories;
     for (let n = 0; n < 2 && pool.length; n++) {
-      const q = await quotePick(pool.slice(0, 14));
+      let q;
+      for (let t = 0; t < 6 && !q; t++) q = await quotePick(pool.slice(0, 14)).catch(e => (log('quote pick:', e.message.slice(0, 80)), new Promise(r => setTimeout(r, 30000)).then(() => null)));
+      if (!q) throw new Error('AI busy');
       if (!(q.i >= 0) || !pool[q.i]) break;
       const s = pool[q.i]; pool = pool.filter(x => x !== s);
       const { buf, box } = await speakerBox(s.image, q.name);
