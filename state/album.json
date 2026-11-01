@@ -9,16 +9,22 @@
     "https://utsabtv.com/hormuz-tanker-limpet-mine-explosion-27-indian-sailors-rescued",
     "https://utsabtv.com/bodies-of-seven-bangladeshis-killed-in-saudi-fire-arrive-home",
     "https://utsabtv.com/hsc-2026-results-40084-students-gpa-5-pass-rate-52-12",
-    "https://utsabtv.com/gopalganj-two-trucks-collision-one-killed-kashiani"
+    "https://utsabtv.com/gopalganj-two-trucks-collision-one-killed-kashiani",
+    "https://utsabtv.com/garment-workers-blockade-mirpur-10-traffic-halted-minimum-wage-protest"
   ],
   "date": "2026-11-01",
   "done": {
     "720": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "960": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/gopalganj-two-trucks-collision-one-killed-kashiani"
+    "720": "https://utsabtv.com/gopalganj-two-trucks-collision-one-killed-kashiani",
+    "960": "https://utsabtv.com/garment-workers-blockade-mirpur-10-traffic-halted-minimum-wage-protest"
   }
 }
