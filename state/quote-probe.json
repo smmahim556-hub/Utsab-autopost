@@ -1,25 +1,26 @@
 {
  "made": [
   {
-   "url": "https://utsabtv.com/11-party-roadside-meeting-gopalganj-jamaat-ameer-speech",
-   "i": 8,
-   "quote": "আমাদের মূল দাবি হচ্ছে, গণভোটে ৭০ শতাংশ মানুষ যে রায় দিয়েছেন, তা বাস্তবায়ন করতে হবে। এই দাবি বাস্তবায়ন হলে বাকি ছয় দফাও বাস্তবায়ন হয়ে যাবে।",
-   "split": 15,
-   "name": "ডা. শফিকুর রহমান",
-   "name_en": "Shafiqur Rahman (politician)",
+   "url": "https://utsabtv.com/jamaat-ameer-announces-continuous-movement-until-referendum-verdict-implemented",
+   "i": 5,
+   "quote": "গণভোটে ৭০ শতাংশ মানুষ যে রায় দিয়েছেন, তা বাস্তবায়ন করতে হবে। এই দাবি বাস্তবায়ন হলে বাকি দাবিগুলোও বাস্তবায়ন হয়ে যাবে।",
+   "split": "গণভোটে ৭০ শতাংশ মানুষ যে রায় দিয়েছেন,",
+   "name": "শফিকুর রহমান",
+   "name_en": "Shafiqur Rahman",
    "post": "আমির, জামায়াতে ইসলামী",
    "photoFrom": "wikipedia: শফিকুর রহমান",
    "cut": true
   },
   {
-   "url": "https://utsabtv.com/us-clarifies-date-of-strike-on-iran-november-4",
-   "i": 1,
-   "quote": "যেসব সংবেদনশীল সামরিক পরিকল্পনা থাকতে পারে বা নাও থাকতে পারে, সেগুলো নিয়ে আমরা মন্তব্য করি না।",
-   "split": "যেসব সংবেদনশীল সামরিক পরিকল্পনা থাকতে পারে",
-   "name": "হোয়াইট হাউসের কর্মকর্তা",
-   "name_en": "White House official",
-   "post": "কর্মকর্তা",
-   "photoFrom": "story photo"
+   "url": "https://utsabtv.com/failed-hsc-students-exam-within-one-two-months",
+   "i": 6,
+   "quote": "চলতি বছর সব বোর্ডে একক প্রশ্নে পরীক্ষা হয়েছে। এর মধ্যে ২ লাখ ৯৮ হাজার ৪০ শিক্ষার্থী এক বিষয়ে এবং ১ লাখ ২৪ হাজার ৮৬৫ জন দুই বিষয়ে অকৃতকার্য হয়েছেন।",
+   "split": "চলতি বছর সব বোর্ডে একক প্রশ্নে পরীক্ষা হয়েছে।",
+   "name": "ড. আ ন ম এহছানুল হক মিলন",
+   "name_en": "A. N. M. Ehsanul Hoque Milan",
+   "post": "শিক্ষামন্ত্রী",
+   "photoFrom": "wikipedia: আ ন ম এহসানুল হক মিলন",
+   "cut": true
   }
  ]
 }
