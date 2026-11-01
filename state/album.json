@@ -10,7 +10,8 @@
     "https://utsabtv.com/bodies-of-seven-bangladeshis-killed-in-saudi-fire-arrive-home",
     "https://utsabtv.com/hsc-2026-results-40084-students-gpa-5-pass-rate-52-12",
     "https://utsabtv.com/gopalganj-two-trucks-collision-one-killed-kashiani",
-    "https://utsabtv.com/garment-workers-blockade-mirpur-10-traffic-halted-minimum-wage-protest"
+    "https://utsabtv.com/garment-workers-blockade-mirpur-10-traffic-halted-minimum-wage-protest",
+    "https://utsabtv.com/tahseef-death-evidence-against-friend-dwip-bar-girl-disha-arrested"
   ],
   "date": "2026-11-01",
   "done": {
@@ -21,10 +22,15 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/gopalganj-two-trucks-collision-one-killed-kashiani",
-    "960": "https://utsabtv.com/garment-workers-blockade-mirpur-10-traffic-halted-minimum-wage-protest"
+    "960": "https://utsabtv.com/garment-workers-blockade-mirpur-10-traffic-halted-minimum-wage-protest",
+    "1200": "https://utsabtv.com/tahseef-death-evidence-against-friend-dwip-bar-girl-disha-arrested"
   }
 }
