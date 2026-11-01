@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-01T05:19:08.804Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122124381663459930 ()"
-  },
-  {
-    "at": "2026-11-01T05:19:14.908Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1121709707239912\"}"
-  },
-  {
     "at": "2026-11-01T05:21:07.635Z",
     "text": "posted to Page 872606492607357: 872606492607357_122147989869140193 (https://utsabtv.com/dhaka-tangail-highway-blockade-bgb-deployed-garment-workers-protest)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-01T07:34:42.833Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1817682759566445\"}"
+  },
+  {
+    "at": "2026-11-01T08:03:52.413Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148012681140193\"}"
+  },
+  {
+    "at": "2026-11-01T08:03:59.601Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122124409473459930\"}"
   }
 ]
