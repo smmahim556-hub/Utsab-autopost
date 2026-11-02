@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-02T04:02:59.211Z",
-    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148167013140193\"}"
-  },
-  {
-    "at": "2026-11-02T04:03:04.384Z",
-    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122124595761459930\"}"
-  },
-  {
-    "at": "2026-11-02T04:03:54.624Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148167199140193 ()"
-  },
-  {
-    "at": "2026-11-02T04:04:01.968Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1441153732415511\"}"
-  },
-  {
     "at": "2026-11-02T04:04:04.274Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122124596091459930 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-02T05:38:16.790Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4783879448597562\"}"
+  },
+  {
+    "at": "2026-11-02T05:43:01.529Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148182109140193 (https://utsabtv.com/us-halloween-weekend-shootings-six-killed-dallas-birmingham)"
+  },
+  {
+    "at": "2026-11-02T05:43:06.806Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2669943800188153\"}"
+  },
+  {
+    "at": "2026-11-02T05:43:11.566Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122124631863459930 (https://utsabtv.com/us-halloween-weekend-shootings-six-killed-dallas-birmingham)"
+  },
+  {
+    "at": "2026-11-02T05:43:17.300Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1107905988684848\"}"
   }
 ]
