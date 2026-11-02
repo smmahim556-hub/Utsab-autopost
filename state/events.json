@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-02T10:00:10.353Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148214677140193 (https://utsabtv.com/us-south-korea-drills-heighten-korean-peninsula-tension-pyongyang-warning)"
-  },
-  {
-    "at": "2026-11-02T10:00:17.523Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1077517425317946\"}"
-  },
-  {
     "at": "2026-11-02T10:00:25.422Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122124701505459930 (https://utsabtv.com/us-south-korea-drills-heighten-korean-peninsula-tension-pyongyang-warning)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-02T11:30:47.683Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1170469918739098\"}"
+  },
+  {
+    "at": "2026-11-02T11:33:38.700Z",
+    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148224733140193\"}"
+  },
+  {
+    "at": "2026-11-02T11:33:45.435Z",
+    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122124729741459930\"}"
   }
 ]
