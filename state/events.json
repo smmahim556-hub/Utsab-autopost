@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-02T08:14:43.491Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4450674188526546\"}"
-  },
-  {
-    "at": "2026-11-02T08:21:44.240Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-02T08:24:11.406Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148202257140193 ()"
-  },
-  {
-    "at": "2026-11-02T08:24:18.587Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1629443858665367\"}"
-  },
-  {
     "at": "2026-11-02T08:24:21.704Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122124677403459930 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-02T09:57:36.116Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2190231478233055\"}"
+  },
+  {
+    "at": "2026-11-02T10:00:10.353Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148214677140193 (https://utsabtv.com/us-south-korea-drills-heighten-korean-peninsula-tension-pyongyang-warning)"
+  },
+  {
+    "at": "2026-11-02T10:00:17.523Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1077517425317946\"}"
+  },
+  {
+    "at": "2026-11-02T10:00:25.422Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122124701505459930 (https://utsabtv.com/us-south-korea-drills-heighten-korean-peninsula-tension-pyongyang-warning)"
+  },
+  {
+    "at": "2026-11-02T10:00:32.190Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1820121132362312\"}"
   }
 ]
