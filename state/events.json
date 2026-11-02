@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-01T21:53:24.825Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2112125519396759\"}"
-  },
-  {
-    "at": "2026-11-01T21:53:31.110Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1674952551011808\"}"
-  },
-  {
     "at": "2026-11-01T21:57:49.902Z",
     "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2365461177328045\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-02T01:41:20.354Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1277283131253668\"}"
+  },
+  {
+    "at": "2026-11-02T01:53:54.252Z",
+    "text": "weather reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148151557140193\"}"
+  },
+  {
+    "at": "2026-11-02T01:54:01.056Z",
+    "text": "weather reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122124575475459930\"}"
   }
 ]
