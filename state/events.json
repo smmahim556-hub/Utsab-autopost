@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-02T05:19:42.402Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122124622491459930 ()"
-  },
-  {
-    "at": "2026-11-02T05:19:50.748Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4502945793280326\"}"
-  },
-  {
     "at": "2026-11-02T05:22:35.493Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148180249140193 (https://utsabtv.com/garment-workers-block-road-mirpur-again-wage-protest)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-02T06:21:43.627Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2206232226939887\"}"
+  },
+  {
+    "at": "2026-11-02T07:03:47.008Z",
+    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148193941140193\"}"
+  },
+  {
+    "at": "2026-11-02T07:03:52.521Z",
+    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122124648855459930\"}"
   }
 ]
