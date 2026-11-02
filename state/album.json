@@ -13,7 +13,8 @@
     "https://utsabtv.com/garment-workers-blockade-mirpur-10-traffic-halted-minimum-wage-protest",
     "https://utsabtv.com/tahseef-death-evidence-against-friend-dwip-bar-girl-disha-arrested",
     "https://utsabtv.com/netanyahu-pressing-trump-nuclear-strike-iran-pickaxe-mountain",
-    "https://utsabtv.com/dhaka-tangail-highway-blockade-10-platoons-bgb-deployed-gazipur"
+    "https://utsabtv.com/dhaka-tangail-highway-blockade-10-platoons-bgb-deployed-gazipur",
+    "https://utsabtv.com/gold-price-jumps-tk3266-per-bhori-bajus"
   ],
   "date": "2026-11-02",
   "done": {
@@ -24,10 +25,15 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/netanyahu-pressing-trump-nuclear-strike-iran-pickaxe-mountain",
-    "960": "https://utsabtv.com/dhaka-tangail-highway-blockade-10-platoons-bgb-deployed-gazipur"
+    "960": "https://utsabtv.com/dhaka-tangail-highway-blockade-10-platoons-bgb-deployed-gazipur",
+    "1200": "https://utsabtv.com/gold-price-jumps-tk3266-per-bhori-bajus"
   }
 }
