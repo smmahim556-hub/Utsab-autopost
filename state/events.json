@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-02T10:02:01.362Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122124703353459930 ()"
-  },
-  {
-    "at": "2026-11-02T10:02:08.781Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1439562830896287\"}"
-  },
-  {
     "at": "2026-11-02T10:03:26.738Z",
     "text": "album on Page 872606492607357: 872606492607357_122148215889140193 https://utsabtv.com/dhaka-tangail-highway-blockade-10-platoons-bgb-deployed-gazipur"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-02T11:48:53.561Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1458310766179698\"}"
+  },
+  {
+    "at": "2026-11-02T12:03:59.638Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148229329140193\"}"
+  },
+  {
+    "at": "2026-11-02T12:04:06.368Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122124734733459930\"}"
   }
 ]
