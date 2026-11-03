@@ -1,25 +1,5 @@
 [
   {
-    "at": "2026-11-03T06:02:12.141Z",
-    "text": "album on Page 1276101408920358: 1276101408920358_122124983775459930 https://utsabtv.com/bsf-personnel-beaten-tripura-ashabari-vehicle-vandalised"
-  },
-  {
-    "at": "2026-11-03T06:23:18.702Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148317115140193 ()"
-  },
-  {
-    "at": "2026-11-03T06:23:26.556Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"976328791690778\"}"
-  },
-  {
-    "at": "2026-11-03T06:23:30.505Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122124985989459930 ()"
-  },
-  {
-    "at": "2026-11-03T06:23:37.702Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1131120665983601\"}"
-  },
-  {
     "at": "2026-11-03T06:46:27.913Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148318717140193 ()"
   },
@@ -158,5 +138,25 @@
   {
     "at": "2026-11-03T08:49:23.361Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4630561553855548\"}"
+  },
+  {
+    "at": "2026-11-03T08:53:11.455Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148329265140193 ()"
+  },
+  {
+    "at": "2026-11-03T08:53:19.326Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"4673889259521850\"}"
+  },
+  {
+    "at": "2026-11-03T08:53:22.834Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125018041459930 ()"
+  },
+  {
+    "at": "2026-11-03T08:53:29.094Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1513716214149070\"}"
+  },
+  {
+    "at": "2026-11-03T08:55:03.265Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
