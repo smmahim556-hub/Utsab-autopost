@@ -20,6 +20,10 @@
     "TOP5": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
@@ -27,7 +31,8 @@
     "QUIZANS",
     "QUIZ",
     "MARKET",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -35,7 +40,8 @@
     "https://utsabtv.com/bhutan-glacial-lake-outburst-flood-west-bengal-assam-alert-bangladesh-risk",
     "https://utsabtv.com/hormuz-tanker-limpet-mine-explosion-27-indian-sailors-rescued",
     "https://utsabtv.com/tahseef-death-evidence-against-friend-dwip-bar-girl-disha-arrested",
-    "https://utsabtv.com/dhaka-tangail-highway-blockade-10-platoons-bgb-deployed-gazipur"
+    "https://utsabtv.com/dhaka-tangail-highway-blockade-10-platoons-bgb-deployed-gazipur",
+    "https://utsabtv.com/prime-minister-tarek-rahman-visit-turkey-cop31-climate-conference"
   ],
   "quiz": {
     "q": "বিশ্বের দীর্ঘতম প্রাকৃতিক সমুদ্র সৈকত কোনটি?",
