@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-03T09:55:25.647Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1569658395179626\"}"
-  },
-  {
-    "at": "2026-11-03T09:57:45.821Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-03T10:01:36.289Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148338295140193 ()"
-  },
-  {
-    "at": "2026-11-03T10:01:44.383Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1809314337076514\"}"
-  },
-  {
     "at": "2026-11-03T10:01:49.110Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122125031673459930 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-03T11:18:40.114Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1087525744310225\"}"
+  },
+  {
+    "at": "2026-11-03T11:23:04.951Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148347457140193 (https://utsabtv.com/emphasis-on-second-padma-jamuna-bridge-and-padma-barrage-construction)"
+  },
+  {
+    "at": "2026-11-03T11:23:12.041Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1661396008716811\"}"
+  },
+  {
+    "at": "2026-11-03T11:23:18.816Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125048395459930 (https://utsabtv.com/emphasis-on-second-padma-jamuna-bridge-and-padma-barrage-construction)"
+  },
+  {
+    "at": "2026-11-03T11:23:27.005Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1569345234965768\"}"
   }
 ]
