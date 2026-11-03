@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-03T11:32:58.872Z",
-    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148348849140193\"}"
-  },
-  {
-    "at": "2026-11-03T11:33:04.726Z",
-    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122125051011459930\"}"
-  },
-  {
-    "at": "2026-11-03T11:34:21.727Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148349149140193 (https://utsabtv.com/opposition-leader-meets-singapore-high-commissioner-derek-loh)"
-  },
-  {
-    "at": "2026-11-03T11:34:30.285Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1634732211711672\"}"
-  },
-  {
     "at": "2026-11-03T11:34:41.069Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122125051497459930 (https://utsabtv.com/opposition-leader-meets-singapore-high-commissioner-derek-loh)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-03T13:36:48.678Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1089530097240535\"}"
+  },
+  {
+    "at": "2026-11-03T13:38:43.030Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148361755140193 ()"
+  },
+  {
+    "at": "2026-11-03T13:38:49.777Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1383418853643832\"}"
+  },
+  {
+    "at": "2026-11-03T13:38:53.379Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125075869459930 ()"
+  },
+  {
+    "at": "2026-11-03T13:38:58.541Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1475564248100269\"}"
   }
 ]
