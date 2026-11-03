@@ -16,7 +16,8 @@
     "https://utsabtv.com/dhaka-tangail-highway-blockade-10-platoons-bgb-deployed-gazipur",
     "https://utsabtv.com/gold-price-jumps-tk3266-per-bhori-bajus",
     "https://utsabtv.com/bsf-personnel-beaten-tripura-ashabari-vehicle-vandalised",
-    "https://utsabtv.com/prime-minister-tarek-rahman-visit-turkey-cop31-climate-conference"
+    "https://utsabtv.com/prime-minister-tarek-rahman-visit-turkey-cop31-climate-conference",
+    "https://utsabtv.com/prime-minister-attends-bangladesh-solar-expo-2026-inauguration"
   ],
   "date": "2026-11-03",
   "done": {
@@ -27,11 +28,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/bsf-personnel-beaten-tripura-ashabari-vehicle-vandalised",
-    "960": "https://utsabtv.com/prime-minister-tarek-rahman-visit-turkey-cop31-climate-conference"
+    "960": "https://utsabtv.com/prime-minister-tarek-rahman-visit-turkey-cop31-climate-conference",
+    "1200": "https://utsabtv.com/prime-minister-attends-bangladesh-solar-expo-2026-inauguration"
   },
   "failedAt": 1793700193463
 }
