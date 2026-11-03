@@ -1,25 +1,5 @@
 [
   {
-    "at": "2026-11-03T08:49:07.800Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148328623140193 ()"
-  },
-  {
-    "at": "2026-11-03T08:49:15.650Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"3590690741098923\"}"
-  },
-  {
-    "at": "2026-11-03T08:49:18.103Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125016979459930 ()"
-  },
-  {
-    "at": "2026-11-03T08:49:23.361Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4630561553855548\"}"
-  },
-  {
-    "at": "2026-11-03T08:53:11.455Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148329265140193 ()"
-  },
-  {
     "at": "2026-11-03T08:53:19.326Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"4673889259521850\"}"
   },
@@ -158,5 +138,25 @@
   {
     "at": "2026-11-03T09:57:45.821Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-03T10:01:36.289Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148338295140193 ()"
+  },
+  {
+    "at": "2026-11-03T10:01:44.383Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1809314337076514\"}"
+  },
+  {
+    "at": "2026-11-03T10:01:49.110Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125031673459930 ()"
+  },
+  {
+    "at": "2026-11-03T10:01:56.251Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1115890784751792\"}"
+  },
+  {
+    "at": "2026-11-03T10:03:13.463Z",
+    "text": "album FAILED: Gemini: gemini-3.5-flash: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3.1-flash-lite: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3-flash-preview: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3.8-flash: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-flash-la"
   }
 ]
