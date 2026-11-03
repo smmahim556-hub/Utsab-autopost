@@ -1,25 +1,5 @@
 [
   {
-    "at": "2026-11-03T08:53:29.094Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1513716214149070\"}"
-  },
-  {
-    "at": "2026-11-03T08:55:03.265Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-03T09:01:08.740Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148329955140193 ()"
-  },
-  {
-    "at": "2026-11-03T09:01:15.470Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2229365834325641\"}"
-  },
-  {
-    "at": "2026-11-03T09:01:18.094Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125019157459930 ()"
-  },
-  {
     "at": "2026-11-03T09:01:23.427Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1583054020177723\"}"
   },
@@ -158,5 +138,25 @@
   {
     "at": "2026-11-03T10:24:32.067Z",
     "text": "album on Page 1276101408920358: 1276101408920358_122125035459459930 https://utsabtv.com/prime-minister-tarek-rahman-visit-turkey-cop31-climate-conference"
+  },
+  {
+    "at": "2026-11-03T10:26:21.832Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148340791140193 ()"
+  },
+  {
+    "at": "2026-11-03T10:26:30.891Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"965374666647477\"}"
+  },
+  {
+    "at": "2026-11-03T10:26:34.288Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125036161459930 ()"
+  },
+  {
+    "at": "2026-11-03T10:26:40.816Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1813586739844317\"}"
+  },
+  {
+    "at": "2026-11-03T10:28:27.277Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
