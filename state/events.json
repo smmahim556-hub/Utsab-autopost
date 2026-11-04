@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-04T10:37:59.658Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125285725459930 ()"
-  },
-  {
-    "at": "2026-11-04T10:38:05.277Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2281618905965171\"}"
-  },
-  {
     "at": "2026-11-04T10:47:13.326Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148472533140193 (https://utsabtv.com/ashulia-hemayetpur-garment-workers-police-clash-over-100-factories-holiday)"
   },
@@ -152,11 +144,19 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2105823830053397\"}"
   },
   {
-    "at": "2026-11-04T12:02:55.542Z",
-    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148482661140193\"}"
+    "at": "2026-11-04T12:03:47.968Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148482877140193 ()"
   },
   {
-    "at": "2026-11-04T12:03:01.743Z",
-    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122125303953459930\"}"
+    "at": "2026-11-04T12:03:55.735Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1875890187108519\"}"
+  },
+  {
+    "at": "2026-11-04T12:03:59.581Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125304355459930 ()"
+  },
+  {
+    "at": "2026-11-04T12:04:06.069Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1593645195847620\"}"
   }
 ]
