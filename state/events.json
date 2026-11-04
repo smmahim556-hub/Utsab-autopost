@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-04T17:24:07.152Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148514251140193 (https://utsabtv.com/australia-university-seats-increase-managed-growth-2027)"
-  },
-  {
-    "at": "2026-11-04T17:24:14.352Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1102025689367254\"}"
-  },
-  {
     "at": "2026-11-04T17:24:22.272Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122125360869459930 (https://utsabtv.com/australia-university-seats-increase-managed-growth-2027)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-04T21:55:02.696Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1486072813413334\"}"
+  },
+  {
+    "at": "2026-11-04T21:55:52.805Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1179160664785911\"}"
+  },
+  {
+    "at": "2026-11-04T21:55:59.348Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1417736386713552\"}"
   }
 ]
