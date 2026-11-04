@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-04T10:03:32.683Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125279533459930 ()"
-  },
-  {
-    "at": "2026-11-04T10:03:38.917Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3356846884486001\"}"
-  },
-  {
     "at": "2026-11-04T10:05:06.057Z",
     "text": "album on Page 872606492607357: 872606492607357_122148465987140193 https://utsabtv.com/ashulia-workers-return-to-work-hemayetpur-highway-blockade-clash"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-04T11:24:32.711Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1603320871043517\"}"
+  },
+  {
+    "at": "2026-11-04T11:33:24.843Z",
+    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148477615140193\"}"
+  },
+  {
+    "at": "2026-11-04T11:33:31.819Z",
+    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122125298901459930\"}"
   }
 ]
