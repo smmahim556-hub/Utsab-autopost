@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-04T08:56:15.873Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2449336735873797\"}"
-  },
-  {
-    "at": "2026-11-04T08:56:22.365Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125268757459930 (https://utsabtv.com/pm-tarique-meets-cpc-minister-liu-haixing-rohingya-economic-corridor)"
-  },
-  {
-    "at": "2026-11-04T08:56:28.351Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1487867966569692\"}"
-  },
-  {
-    "at": "2026-11-04T09:01:15.154Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148456393140193 ()"
-  },
-  {
     "at": "2026-11-04T09:01:21.043Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1473245251569548\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-04T10:12:24.632Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-04T10:21:36.372Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148469479140193 ()"
+  },
+  {
+    "at": "2026-11-04T10:21:43.392Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2047573579282768\"}"
+  },
+  {
+    "at": "2026-11-04T10:21:46.860Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125282923459930 ()"
+  },
+  {
+    "at": "2026-11-04T10:21:53.157Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1615946836092533\"}"
   }
 ]
