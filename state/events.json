@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-04T08:56:09.163Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148455739140193 (https://utsabtv.com/pm-tarique-meets-cpc-minister-liu-haixing-rohingya-economic-corridor)"
-  },
-  {
     "at": "2026-11-04T08:56:15.873Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2449336735873797\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-04T10:05:16.697Z",
     "text": "album on Page 1276101408920358: 1276101408920358_122125280121459930 https://utsabtv.com/ashulia-workers-return-to-work-hemayetpur-highway-blockade-clash"
+  },
+  {
+    "at": "2026-11-04T10:12:24.632Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
