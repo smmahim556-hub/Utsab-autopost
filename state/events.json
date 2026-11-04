@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-04T05:28:10.131Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"3640799056081610\"}"
-  },
-  {
-    "at": "2026-11-04T05:28:17.235Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125218561459930 (https://utsabtv.com/gazipur-highway-blockade-police-teargas-sound-grenades-garment-workers)"
-  },
-  {
     "at": "2026-11-04T05:28:23.752Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"28000813139595634\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-04T07:46:43.488Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1148348198153832\"}"
+  },
+  {
+    "at": "2026-11-04T08:03:30.260Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148448941140193\"}"
+  },
+  {
+    "at": "2026-11-04T08:03:36.401Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122125260873459930\"}"
   }
 ]
