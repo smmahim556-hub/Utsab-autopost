@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-04T09:01:24.716Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125269447459930 ()"
-  },
-  {
-    "at": "2026-11-04T09:01:30.440Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1177353348064109\"}"
-  },
-  {
-    "at": "2026-11-04T09:01:57.801Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148456633140193 (https://utsabtv.com/obama-says-american-people-sent-clear-message-democrats-win-midterms)"
-  },
-  {
-    "at": "2026-11-04T09:02:04.433Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1806405550512383\"}"
-  },
-  {
     "at": "2026-11-04T09:02:10.219Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122125269681459930 (https://utsabtv.com/obama-says-american-people-sent-clear-message-democrats-win-midterms)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-04T10:28:37.101Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-04T10:37:50.119Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148471273140193 ()"
+  },
+  {
+    "at": "2026-11-04T10:37:56.180Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"3723234817832951\"}"
+  },
+  {
+    "at": "2026-11-04T10:37:59.658Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125285725459930 ()"
+  },
+  {
+    "at": "2026-11-04T10:38:05.277Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2281618905965171\"}"
   }
 ]
