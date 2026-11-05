@@ -20,27 +20,18 @@
     "https://utsabtv.com/prime-minister-attends-bangladesh-solar-expo-2026-inauguration",
     "https://utsabtv.com/gazipur-highway-blockade-police-teargas-sound-grenades-garment-workers",
     "https://utsabtv.com/ashulia-workers-return-to-work-hemayetpur-highway-blockade-clash",
-    "https://utsabtv.com/new-garment-workers-wage-structure-by-december-effective-january"
+    "https://utsabtv.com/new-garment-workers-wage-structure-by-december-effective-january",
+    "https://utsabtv.com/gazipur-garment-workers-return-work-administration-on-alert"
   ],
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "done": {
     "720": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "960": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "1200": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/gazipur-highway-blockade-police-teargas-sound-grenades-garment-workers",
-    "960": "https://utsabtv.com/ashulia-workers-return-to-work-hemayetpur-highway-blockade-clash",
-    "1200": "https://utsabtv.com/new-garment-workers-wage-structure-by-december-effective-january"
+    "720": "https://utsabtv.com/gazipur-garment-workers-return-work-administration-on-alert"
   },
   "failedAt": 1793700193463
 }
