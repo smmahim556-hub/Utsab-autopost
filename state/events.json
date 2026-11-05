@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-05T05:43:21.271Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1113258534828299\"}"
-  },
-  {
-    "at": "2026-11-05T05:43:27.492Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125479039459930 (https://utsabtv.com/congo-ebola-outbreak-deaths-exceed-5000-invisible-chains)"
-  },
-  {
-    "at": "2026-11-05T05:43:34.422Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1426348766246423\"}"
-  },
-  {
-    "at": "2026-11-05T05:50:02.303Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148568677140193 ()"
-  },
-  {
     "at": "2026-11-05T05:50:08.559Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1121606796946716\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-05T07:17:44.900Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-05T07:25:10.912Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148577551140193 ()"
+  },
+  {
+    "at": "2026-11-05T07:25:19.093Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1739762437122596\"}"
+  },
+  {
+    "at": "2026-11-05T07:25:23.488Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125496049459930 ()"
+  },
+  {
+    "at": "2026-11-05T07:25:31.901Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1448563823269477\"}"
   }
 ]
