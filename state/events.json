@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-05T05:50:12.100Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125481025459930 ()"
-  },
-  {
     "at": "2026-11-05T05:50:18.505Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2778702906568917\"}"
   },
@@ -157,6 +153,10 @@
   },
   {
     "at": "2026-11-05T07:33:14.448Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-05T07:49:19.224Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
