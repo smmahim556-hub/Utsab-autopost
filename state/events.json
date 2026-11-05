@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-05T05:43:13.557Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148567603140193 (https://utsabtv.com/congo-ebola-outbreak-deaths-exceed-5000-invisible-chains)"
-  },
-  {
     "at": "2026-11-05T05:43:21.271Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1113258534828299\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-05T07:13:36.019Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1474140714842618\"}"
+  },
+  {
+    "at": "2026-11-05T07:17:44.900Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
