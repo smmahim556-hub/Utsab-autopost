@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-05T09:59:07.937Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125522017459930 (https://utsabtv.com/trump-administration-split-iran-war-jd-vance-criticizes-netanyahu)"
-  },
-  {
-    "at": "2026-11-05T09:59:13.580Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2840404976360434\"}"
-  },
-  {
     "at": "2026-11-05T10:01:11.778Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148593175140193 ()"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-05T11:29:08.419Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"28875230765481890\"}"
+  },
+  {
+    "at": "2026-11-05T11:32:49.484Z",
+    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148603909140193\"}"
+  },
+  {
+    "at": "2026-11-05T11:32:55.184Z",
+    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122125542927459930\"}"
   }
 ]
