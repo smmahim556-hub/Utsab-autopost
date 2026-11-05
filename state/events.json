@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-05T05:37:22.642Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125477617459930 (https://utsabtv.com/china-building-floating-science-island-ocean-research-platform)"
-  },
-  {
-    "at": "2026-11-05T05:37:29.670Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4532963083658568\"}"
-  },
-  {
     "at": "2026-11-05T05:41:09.758Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148567255140193 (https://utsabtv.com/ucl-dubai-health-management-education-center-plans)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-05T06:53:38.808Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1678007413949273\"}"
+  },
+  {
+    "at": "2026-11-05T07:03:25.843Z",
+    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148575901140193\"}"
+  },
+  {
+    "at": "2026-11-05T07:03:32.907Z",
+    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122125492311459930\"}"
   }
 ]
