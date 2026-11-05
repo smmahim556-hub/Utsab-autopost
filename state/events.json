@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-05T16:28:50.214Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148638073140193 ()"
-  },
-  {
-    "at": "2026-11-05T16:28:58.742Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1799347808008385\"}"
-  },
-  {
     "at": "2026-11-05T16:29:00.401Z",
     "text": "Page 1276101408920358 FAILED: Graph 1276101408920358/photos: {\"code\":1,\"message\":\"Please reduce the amount of data you're asking for, then retry your request\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-05T19:40:41.199Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1683364616477916\"}"
+  },
+  {
+    "at": "2026-11-05T21:37:50.484Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1668883534742882\"}"
+  },
+  {
+    "at": "2026-11-05T21:37:59.208Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1903752980788846\"}"
   }
 ]
