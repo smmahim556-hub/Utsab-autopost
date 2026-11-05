@@ -12,12 +12,17 @@
     "QUIZ": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "MARKET": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
-    "QUIZ"
+    "QUIZ",
+    "MARKET"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -53,5 +58,5 @@
     "বাংলাদেশের একমাত্র প্রবাল দ্বীপের নাম কী?",
     "বাংলাদেশের জাতীয় খেলা কোনটি?"
   ],
-  "marketCheckedAt": 1793875228183
+  "marketCheckedAt": 1793876145296
 }
