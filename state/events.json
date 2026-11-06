@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-06T05:22:13.450Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125736865459930 (https://utsabtv.com/bgb-seizes-foreign-currency-worth-3-crore-taka-joypurhat)"
-  },
-  {
-    "at": "2026-11-06T05:22:18.812Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1598058518205544\"}"
-  },
-  {
-    "at": "2026-11-06T05:44:18.563Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148693123140193 ()"
-  },
-  {
-    "at": "2026-11-06T05:44:26.217Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"977146151654388\"}"
-  },
-  {
     "at": "2026-11-06T05:44:31.118Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122125750725459930 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-06T07:17:18.750Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-06T07:21:20.616Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148700647140193 ()"
+  },
+  {
+    "at": "2026-11-06T07:21:29.192Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1774703483594623\"}"
+  },
+  {
+    "at": "2026-11-06T07:21:33.336Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125769979459930 ()"
+  },
+  {
+    "at": "2026-11-06T07:21:40.417Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1330004142491748\"}"
   }
 ]
