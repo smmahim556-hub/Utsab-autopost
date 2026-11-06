@@ -1,37 +1,5 @@
 [
   {
-    "at": "2026-11-06T06:47:14.226Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2322316805252285\"}"
-  },
-  {
-    "at": "2026-11-06T06:47:18.860Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125765473459930 ()"
-  },
-  {
-    "at": "2026-11-06T06:47:25.945Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"916896624723506\"}"
-  },
-  {
-    "at": "2026-11-06T07:01:55.508Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-06T07:04:14.576Z",
-    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148699969140193\"}"
-  },
-  {
-    "at": "2026-11-06T07:04:27.569Z",
-    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122125767471459930\"}"
-  },
-  {
-    "at": "2026-11-06T07:17:18.750Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-06T07:21:20.616Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148700647140193 ()"
-  },
-  {
     "at": "2026-11-06T07:21:29.192Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1774703483594623\"}"
   },
@@ -158,5 +126,37 @@
   {
     "at": "2026-11-06T09:12:10.098Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1158246523431161\"}"
+  },
+  {
+    "at": "2026-11-06T09:17:31.999Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148708843140193 (https://utsabtv.com/israel-president-announce-mandate-form-government-sunday-november-8)"
+  },
+  {
+    "at": "2026-11-06T09:17:38.845Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1065669456505046\"}"
+  },
+  {
+    "at": "2026-11-06T09:17:47.735Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125786599459930 (https://utsabtv.com/israel-president-announce-mandate-form-government-sunday-november-8)"
+  },
+  {
+    "at": "2026-11-06T09:17:54.765Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1829755611681067\"}"
+  },
+  {
+    "at": "2026-11-06T09:18:14.837Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148709089140193 (https://utsabtv.com/bnp-implementing-decisions-by-force-nahid-islam)"
+  },
+  {
+    "at": "2026-11-06T09:18:22.310Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2568133646998871\"}"
+  },
+  {
+    "at": "2026-11-06T09:18:29.730Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125786851459930 (https://utsabtv.com/bnp-implementing-decisions-by-force-nahid-islam)"
+  },
+  {
+    "at": "2026-11-06T09:18:36.938Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1608513674376558\"}"
   }
 ]
