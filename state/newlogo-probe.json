@@ -1,0 +1,30 @@
+[
+  {
+    "page": "872606492607357",
+    "window": [
+      [
+        "872606492607357_122148723777140193",
+        "2026-11-06T11:07:52+0000",
+        "‘লাইন মুখস্থ করতে পারে না, অথচ সবেতে নাক গলানো...’, কোন অভিন"
+      ]
+    ],
+    "deleted": {
+      "872606492607357_122148723777140193": "ok",
+      "4384434818366852": "Unsupported delete request. Object with ID '4384434818366852' does not exist, cannot be loaded due to missing permissions, or does not support this operation. P"
+    }
+  },
+  {
+    "page": "1276101408920358",
+    "window": [
+      [
+        "1276101408920358_122125833813459930",
+        "2026-11-06T11:08:06+0000",
+        "‘লাইন মুখস্থ করতে পারে না, অথচ সবেতে নাক গলানো...’, কোন অভিন"
+      ]
+    ],
+    "deleted": {
+      "1276101408920358_122125833813459930": "ok",
+      "3543872519117069": "Unsupported delete request. Object with ID '3543872519117069' does not exist, cannot be loaded due to missing permissions, or does not support this operation. P"
+    }
+  }
+]
