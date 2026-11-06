@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-06T09:31:28.341Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1670629801363810\"}"
-  },
-  {
-    "at": "2026-11-06T09:31:36.699Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125790787459930 (https://utsabtv.com/applied-human-science-college-principal-unwanted-72-hour-ultimatum)"
-  },
-  {
     "at": "2026-11-06T09:31:44.663Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1131556296173537\"}"
   },
@@ -152,11 +144,19 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1445940704352196\"}"
   },
   {
-    "at": "2026-11-06T11:33:26.384Z",
-    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148726693140193\"}"
+    "at": "2026-11-06T11:33:20.338Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148726591140193 ()"
   },
   {
-    "at": "2026-11-06T11:33:32.520Z",
-    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122125840779459930\"}"
+    "at": "2026-11-06T11:33:26.810Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1894688744860003\"}"
+  },
+  {
+    "at": "2026-11-06T11:33:30.651Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125840743459930 ()"
+  },
+  {
+    "at": "2026-11-06T11:33:37.830Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2405609176641467\"}"
   }
 ]
