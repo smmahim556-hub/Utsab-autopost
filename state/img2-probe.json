@@ -1,0 +1,7 @@
+{
+  "poll-turbo": "200 image/jpeg 50609",
+  "poll-default": "402 application/json; charset=utf-8 323",
+  "black-forest-labs/FLUX.1-schnell": "403 application/json; charset=utf-8 133 {\"error\":\"This authentication method does not have sufficient permissions to call Inference Providers on behalf of user mahim304494\"}",
+  "hfToken": true,
+  "stabilityai/stable-diffusion-xl-base-1.0": "403 application/json; charset=utf-8 133 {\"error\":\"This authentication method does not have sufficient permissions to call Inference Providers on behalf of user mahim304494\"}"
+}
