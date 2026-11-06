@@ -111,8 +111,9 @@ async function speak(text, outBase) {
       body: JSON.stringify({ text, model_id: process.env.ELEVEN_MODEL || 'eleven_v4_turbo', language_code: 'bn', voice_settings: { stability: 0.5, similarity_boost: 0.85 } }),
     });
     if (r.ok) { fs.writeFileSync(`${outBase}.mp3`, Buffer.from(await r.arrayBuffer())); return `${outBase}.mp3`; }
-    log('eleven failed', r.status, (await r.text()).slice(0, 160));
+    throw new Error(`ElevenLabs ${r.status} ${(await r.text()).slice(0, 160)}`); // no silent switch to a weaker voice
   }
+  if (process.env.STORY_TTS !== 'edge') throw new Error('ElevenLabs key or voice missing');
   execFileSync('edge-tts', ['--voice', process.env.STORY_EDGE_VOICE || 'bn-BD-PradeepNeural', '--text', text, '--write-media', `${outBase}.mp3`]);
   return `${outBase}.mp3`;
 }
