@@ -211,12 +211,12 @@ async function composeStory(browser, cardFile, page, outFile) {
   *{margin:0;padding:0;box-sizing:border-box}
   body{width:1080px;height:1920px;overflow:hidden;background:linear-gradient(180deg,#a2333c 0%,#922f39 100%);
        font-family:'Helvetica Neue',Helvetica,Arial,'Liberation Sans','Hind Siliguri',sans-serif}
-  .card{position:absolute;left:129px;top:356px;width:822px;height:1209px;background:#fff;border-radius:26px;
+  .card{position:absolute;left:129px;top:50%;transform:translateY(-50%);width:822px;background:#fff;border-radius:26px;
         overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.28)}
   .head{height:183px;display:flex;align-items:center;padding-left:41px;padding-right:30px;gap:26px}
   .av{width:106px;height:106px;border-radius:50%;border:2px solid #e4e6eb;background:#fff center/cover no-repeat;flex:none}
   .name{font-weight:700;font-size:39px;color:#050505;white-space:nowrap;overflow:hidden}
-  .photo{display:block;width:822px;height:1026px}
+  .photo{display:block;width:822px;height:auto}
 </style>
 <div class="card">
   <div class="head"><div class="av" style="background-image:url('${avatar}')"></div><div class="name" id="n"></div></div>
@@ -1392,8 +1392,8 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
   display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800}`;
 const teamBadge = t => t.logo ? `<img class="tl" src="${t.logo}" onerror="this.outerHTML='<div class=&quot;tl ph&quot;>${(t.en || '?').slice(0, 2).toUpperCase()}</div>'">`
   : `<div class="tl ph">${(t.en || '?').slice(0, 2).toUpperCase()}</div>`;
-// Sponsor strip (AD=sports,ent,tech: which cards carry it; assets/ad-jersey.png): added under the finished card, so the card itself is unchanged.
-const AD_ON = new Set((process.env.AD || '').split(',').map(x => x.trim()).filter(Boolean));
+// Sponsor strip (AD=sports,ent,tech: which cards carry it, default on with the new format; AD= turns it off; assets/ad-jersey.png): added under the finished card, so the card itself is unchanged.
+const AD_ON = new Set((process.env.AD ?? (NEW_FORMAT ? 'sports,ent,tech' : '')).split(',').map(x => x.trim()).filter(Boolean));
 async function withAd(browser, file, kind) {
   const ad = path.join(__dirname, 'assets', process.env.AD_FILE || 'ad-jersey.png');
   if (!AD_ON.has(kind) || !fs.existsSync(ad)) return file;
