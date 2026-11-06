@@ -1,5 +1,13 @@
 [
   {
+    "at": "2026-11-06T14:02:16.799Z",
+    "text": "album on Page 1276101408920358: 1276101408920358_122125868835459930 https://utsabtv.com/bangladesh-bowl-second-day-sylhet-test-west-indies"
+  },
+  {
+    "at": "2026-11-06T14:16:10.000Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148745707140193 ()"
+  },
+  {
     "at": "2026-11-06T14:16:16.947Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2134552827140640\"}"
   },
@@ -144,19 +152,11 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1544863090741473\"}"
   },
   {
-    "at": "2026-11-06T16:04:25.183Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148754797140193 ()"
+    "at": "2026-11-06T16:04:45.226Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148754965140193\"}"
   },
   {
-    "at": "2026-11-06T16:04:30.658Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1846562486346406\"}"
-  },
-  {
-    "at": "2026-11-06T16:04:33.587Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125890009459930 ()"
-  },
-  {
-    "at": "2026-11-06T16:04:38.835Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1800447964545512\"}"
+    "at": "2026-11-06T16:04:52.797Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122125890189459930\"}"
   }
 ]
