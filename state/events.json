@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-06T09:03:38.863Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2333741744135291\"}"
-  },
-  {
-    "at": "2026-11-06T09:11:07.429Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148708261140193 (https://utsabtv.com/vance-disagrees-with-trump-iran-war-us-politics-uproar)"
-  },
-  {
-    "at": "2026-11-06T09:11:13.183Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"960496226792914\"}"
-  },
-  {
-    "at": "2026-11-06T09:11:18.817Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125785813459930 (https://utsabtv.com/vance-disagrees-with-trump-iran-war-us-politics-uproar)"
-  },
-  {
     "at": "2026-11-06T09:11:24.378Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1632804801645309\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-06T10:16:11.014Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-06T10:29:56.788Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148716241140193 ()"
+  },
+  {
+    "at": "2026-11-06T10:30:02.264Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1155626026953603\"}"
+  },
+  {
+    "at": "2026-11-06T10:30:05.737Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125819473459930 ()"
+  },
+  {
+    "at": "2026-11-06T10:30:11.420Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3643160745858907\"}"
   }
 ]
