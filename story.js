@@ -135,7 +135,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#fff;font-family
 @keyframes kb{from{transform:scale(1.0)}to{transform:scale(1.045)}}
 #in{position:absolute;inset:0;background:#fff;animation:fadein .35s ease-out both;pointer-events:none}
 @keyframes fadein{from{opacity:1}to{opacity:0}}
-.tag{position:absolute;left:28px;top:30px;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.92);border:4px solid #3b2a20;border-radius:40px;
+.tag{position:absolute;left:28px;top:72px;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.92);border:4px solid #3b2a20;border-radius:40px;
   padding:6px 26px 6px 10px;font-size:34px;font-weight:800;color:#3b2a20}
 .tag i{width:42px;height:42px;border-radius:50%;background:#ffc93c;border:3px solid #3b2a20;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:28px}
 .logo{position:absolute;right:26px;top:22px;height:96px}
@@ -202,7 +202,9 @@ async function makeStory(scriptFile, outFile) {
     throw new Error(`scene ${i} failed`);
   });
   const logoFile = path.join(ROOT, 'assets', 'logo.png');
-  const logo = process.env.STORY_LOGO !== '0' && fs.existsSync(logoFile) ? `data:image/png;base64,${fs.readFileSync(logoFile).toString('base64')}` : '';
+  // The channel's animated logo (assets/video-logo.webm, keyed from its blue screen) is laid over the finished video; the still logo only without it.
+  const anim = path.join(ROOT, 'assets', 'video-logo.webm'), useAnim = process.env.STORY_LOGO !== '0' && fs.existsSync(anim);
+  const logo = process.env.STORY_LOGO !== '0' && !useAnim && fs.existsSync(logoFile) ? `data:image/png;base64,${fs.readFileSync(logoFile).toString('base64')}` : '';
   const browser = await chromium.launch();
   const clips = [];
   try {
@@ -223,7 +225,9 @@ async function makeStory(scriptFile, outFile) {
   ff([...audio.flatMap(x => ['-i', x.f]), '-stream_loop', '-1', '-i', music, '-filter_complex',
     `${pads.join(';')};${audio.map((_, i) => `[p${i}]`).join('')}concat=n=${m}:v=0:a=1[v];[${m}:a]atrim=0:${total.toFixed(3)},volume=0.13,afade=t=out:st=${(total - 1.5).toFixed(2)}:d=1.5[bg];[v][bg]amix=inputs=2:normalize=0:duration=first[a]`,
     '-map', '[a]', '-c:a', 'aac', '-b:a', '160k', path.join(OUT, 'audio.m4a')]);
-  ff(['-i', path.join(OUT, 'video.mp4'), '-i', path.join(OUT, 'audio.m4a'), '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'copy', '-shortest', '-movflags', '+faststart', outFile]);
+  ff(['-i', path.join(OUT, 'video.mp4'), '-i', path.join(OUT, 'audio.m4a'), ...(useAnim ? ['-stream_loop', '-1', '-c:v', 'libvpx-vp9', '-i', anim,
+    '-filter_complex', '[2:v]setpts=PTS-STARTPTS[lg];[0:v][lg]overlay=W-w-28:28:shortest=1,format=yuv420p[v]', '-map', '[v]', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20']
+    : ['-map', '0:v', '-c:v', 'copy']), '-map', '1:a', '-c:a', 'copy', '-shortest', '-movflags', '+faststart', outFile]);
   return { file: outFile, plan: pl, secs: total, usage: { ...usage, model: MODEL } };
 }
 
