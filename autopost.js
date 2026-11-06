@@ -1374,6 +1374,22 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
   display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800}`;
 const teamBadge = t => t.logo ? `<img class="tl" src="${t.logo}" onerror="this.outerHTML='<div class=&quot;tl ph&quot;>${(t.en || '?').slice(0, 2).toUpperCase()}</div>'">`
   : `<div class="tl ph">${(t.en || '?').slice(0, 2).toUpperCase()}</div>`;
+// Sponsor strip (AD=sports,ent,tech: which cards carry it; assets/ad-jersey.png): added under the finished card, so the card itself is unchanged.
+const AD_ON = new Set((process.env.AD || '').split(',').map(x => x.trim()).filter(Boolean));
+async function withAd(browser, file, kind) {
+  const ad = path.join(__dirname, 'assets', process.env.AD_FILE || 'ad-jersey.png');
+  if (!AD_ON.has(kind) || !fs.existsSync(ad)) return file;
+  const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+  try {
+    const card = `data:image/png;base64,${fs.readFileSync(file).toString('base64')}`, strip = `data:image/png;base64,${fs.readFileSync(ad).toString('base64')}`;
+    await pg.setContent(`<style>*{margin:0}body{width:1080px;background:#fff}img{display:block;width:1080px}</style><img src="${card}"><img src="${strip}">`);
+    await pg.waitForFunction(() => [...document.images].every(i => i.complete));
+    const h = await pg.evaluate(() => document.body.scrollHeight);
+    await pg.setViewportSize({ width: 1080, height: h });
+    await pg.screenshot({ path: file });
+  } finally { await pg.close(); }
+  return file;
+}
 async function renderSportsCard(browser, inner, css, outFile, logo) {
   const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
   const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
@@ -1384,7 +1400,7 @@ async function renderSportsCard(browser, inner, css, outFile, logo) {
   await pg.waitForTimeout(400);
   await pg.screenshot({ path: outFile });
   await pg.close();
-  return outFile;
+  return withAd(browser, outFile, 'sports');
 }
 function sportsResultCard(browser, m, outFile, logo, tag = 'ম্যাচ শেষ', line = m.result) {
   const fb = m.sport === 'football';
@@ -1727,7 +1743,7 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
   await pg.waitForTimeout(500);
   await pg.screenshot({ path: outFile });
   await pg.close();
-  return outFile;
+  return withAd(browser, outFile, ({ 'বিনোদন': 'ent', 'অর্থনীতি': 'biz', 'প্রযুক্তি': 'tech' })[it.label || 'বিনোদন']);
 }
 
 // A paper's stock share image (its logo or name on a plain background) is not a news photo and must never go on our card.
