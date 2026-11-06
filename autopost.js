@@ -1382,7 +1382,7 @@ async function withAd(browser, file, kind) {
   const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
   try {
     const card = `data:image/png;base64,${fs.readFileSync(file).toString('base64')}`, strip = `data:image/png;base64,${fs.readFileSync(ad).toString('base64')}`;
-    await pg.setContent(`<style>*{margin:0}body{width:1080px;background:#fff}img{display:block;width:1080px}</style><img src="${card}"><img src="${strip}">`);
+    await pg.setContent(`<style>*{margin:0}body{width:1080px;background:#fff}img{display:block;width:1080px}img+img{margin-top:-${Number(process.env.AD_OVERLAP || 28)}px;position:relative}</style><img src="${card}"><img src="${strip}">`);
     await pg.waitForFunction(() => [...document.images].every(i => i.complete));
     const h = await pg.evaluate(() => document.body.scrollHeight);
     await pg.setViewportSize({ width: 1080, height: h });
