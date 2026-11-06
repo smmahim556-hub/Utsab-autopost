@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-06T01:32:41.759Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1865889381436683\"}"
-  },
-  {
     "at": "2026-11-06T01:32:48.993Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"28969915659340578\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-06T03:46:35.405Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1118804141071789\"}"
+  },
+  {
+    "at": "2026-11-06T04:04:47.030Z",
+    "text": "voice reel skipped: ElevenLabs credits left 9, need 486"
   }
 ]
