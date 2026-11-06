@@ -84,6 +84,18 @@ async function articleInfo(url) {
   return { title: meta(html, 'og:title'), image: meta(html, 'og:image'), description: decodeEntities(meta(html, 'og:description') || ''), isArticle: html.includes('বার পড়া হয়েছে') };
 }
 
+const OWN_LOGO = process.env.OWN_LOGO !== '0' && fs.existsSync(path.join(__dirname, 'assets', 'logo.png'))
+  ? `data:image/png;base64,${fs.readFileSync(path.join(__dirname, 'assets', 'logo.png')).toString('base64')}` : '';
+// Puts our logo file in place of the card site's logo (an <img>, or an element holding one or a background image).
+async function swapSiteLogo(page, sel) {
+  if (!OWN_LOGO) return;
+  await page.evaluate(async ([sel, src]) => {
+    const el = document.querySelector(sel); if (!el) return;
+    const img = el.tagName === 'IMG' ? el : el.querySelector('img');
+    if (img) { img.src = src; img.style.objectFit = 'contain'; await img.decode().catch(() => {}); }
+    else el.style.backgroundImage = `url(${src})`;
+  }, [sel, OWN_LOGO]);
+}
 async function makeCard(browser, url, file, ratio = process.env.CARD_RATIO || '4:5') {
   const ctx = await browser.newContext({ acceptDownloads: true, viewport: { width: 1440, height: 1000 }, userAgent: UA });
   const page = await ctx.newPage();
@@ -122,6 +134,7 @@ async function makeCard(browser, url, file, ratio = process.env.CARD_RATIO || '4
     log('date font size:', JSON.stringify(date));
     // Logo: grow it from its top-right corner, then move it to the reference position
     // (LOGO_DX / LOGO_DY in card pixels; negative DX = left, positive DY = down).
+    await swapSiteLogo(page, '#renderTarget .utsab-channel-logo');
     await page.evaluate(([k, dx, dy]) => {
       const el = document.querySelector('#renderTarget .utsab-channel-logo');
       if (!el) return;
@@ -445,6 +458,7 @@ async function makeWeatherCard(browser, w, file) {
     for (const f of ['temp', 'condition', 'city', 'note']) await page.fill(`#dynamicContent [data-field="${f}"]`, w[f]);
     await page.waitForTimeout(2000);
     // Logo like the news cards: bigger, right edge at x=1027 and top at y=56 of the 1080x1350 card.
+    await swapSiteLogo(page, '#renderTarget .card-logo');
     await page.evaluate(([k, dx, dy]) => {
       const el = document.querySelector('#renderTarget .card-logo');
       if (!el) return;
@@ -791,6 +805,8 @@ async function topToday(n = 10) {
 
 // The channel logo as a data URL, taken from the card site (the same file the cards use).
 async function channelLogo(browser) {
+  // The channel's own logo file (assets/logo.png) is used on every card; the card site's logo only when it is missing.
+  if (OWN_LOGO) return OWN_LOGO;
   const pg = await browser.newPage();
   try {
     await pg.goto(CARD_SITE, { waitUntil: 'networkidle', timeout: 60000 });
@@ -1439,13 +1455,14 @@ function sportsFixturesCard(browser, list, outFile, logo) {
 <div class="list">${rows}</div>
 <div class="note">সময় বাংলাদেশ সময় অনুযায়ী</div>
 <div class="ftr">www.utsabtv.com</div>`, `
-.list{position:relative;margin:36px 50px 0;display:flex;flex-direction:column;gap:${list.length > 6 ? 12 : 18}px}
-.fx{display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.95);color:#0b5e2a;border-radius:22px;padding:${list.length > 6 ? 8 : 14}px 26px;box-shadow:0 8px 18px rgba(0,0,0,.25)}
+/* rows share the space between the header and the note, so the note never sits on the last row */
+.list{position:absolute;left:50px;right:50px;top:200px;bottom:178px;display:flex;flex-direction:column;justify-content:flex-start;gap:${list.length > 6 ? 10 : 18}px}
+.fx{flex:1 1 0;max-height:132px;min-height:0;overflow:hidden;display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.95);color:#0b5e2a;border-radius:22px;padding:${list.length > 6 ? 8 : 14}px 26px;box-shadow:0 8px 18px rgba(0,0,0,.25)}
 .fx.bd{background:#fff3c4;border:5px solid #c8202f}.ic{font-size:44px}.mt{flex:1;display:flex;flex-direction:column;min-width:0}
 .mt b{font-size:${list.length > 6 ? 36 : 42}px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mt b i{font-style:normal;color:#c8202f;font-size:.75em}
 .mt small{font-size:26px;font-weight:700;color:#557a62}
 .tm{background:#c8202f;color:#fff;border-radius:16px;padding:6px 18px;font-size:34px;font-weight:800;white-space:nowrap}
-.note{position:absolute;left:0;right:0;bottom:122px;text-align:center;font-size:28px;color:#c8f7d4}`, outFile, logo);
+.note{position:absolute;left:0;right:0;bottom:118px;text-align:center;font-size:28px;color:#c8f7d4}`, outFile, logo);
 }
 
 async function sportsTick() {
