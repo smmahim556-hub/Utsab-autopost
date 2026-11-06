@@ -23,27 +23,18 @@
     "https://utsabtv.com/new-garment-workers-wage-structure-by-december-effective-january",
     "https://utsabtv.com/gazipur-garment-workers-return-work-administration-on-alert",
     "https://utsabtv.com/china-building-floating-science-island-ocean-research-platform",
-    "https://utsabtv.com/ucl-dubai-health-management-education-center-plans"
+    "https://utsabtv.com/ucl-dubai-health-management-education-center-plans",
+    "https://utsabtv.com/kishoreganj-bhairab-clash-over-facebook-post-15-injured"
   ],
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "done": {
     "720": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "960": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "1200": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/gazipur-garment-workers-return-work-administration-on-alert",
-    "960": "https://utsabtv.com/china-building-floating-science-island-ocean-research-platform",
-    "1200": "https://utsabtv.com/ucl-dubai-health-management-education-center-plans"
+    "720": "https://utsabtv.com/kishoreganj-bhairab-clash-over-facebook-post-15-injured"
   },
   "failedAt": 1793700193463
 }
