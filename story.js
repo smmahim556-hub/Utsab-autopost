@@ -186,16 +186,17 @@ async function pool(items, n, fn) {
 
 async function makeStory(scriptFile, outFile) {
   fs.mkdirSync(OUT, { recursive: true });
-  const script = fs.readFileSync(scriptFile, 'utf8').trim();
-  const pl = await plan(script);
+  // A folder (stories/<name>/ with plan.json and s0.svg, s1.svg, ...) is a storyboard drawn ahead; a .txt is drawn here by the API.
+  const pre = fs.statSync(scriptFile).isDirectory() ? scriptFile : null;
+  const pl = pre ? JSON.parse(fs.readFileSync(path.join(pre, 'plan.json'), 'utf8')) : await plan(fs.readFileSync(scriptFile, 'utf8').trim());
   log('plan', pl.title, pl.scenes.length, 'scenes');
   fs.writeFileSync(path.join(OUT, 'plan.json'), JSON.stringify(pl, null, 2));
   // Voice first: each scene lasts as long as its sentence plus a short breath.
   const audio = [];
   for (const [i, s] of pl.scenes.entries()) { const f = await speak(s.narration, path.join(OUT, `a${i}`)); audio.push({ f, secs: secsOf(f) + 0.45 }); }
-  const sheet = await characterSheet(pl);
+  const sheet = pre ? (fs.existsSync(path.join(pre, 'sheet.svg')) ? fs.readFileSync(path.join(pre, 'sheet.svg'), 'utf8') : '<svg></svg>') : await characterSheet(pl);
   fs.writeFileSync(path.join(OUT, 'sheet.svg'), sheet);
-  const svgs = await pool(pl.scenes, 4, async (s, i) => {
+  const svgs = pre ? pl.scenes.map((_, i) => fs.readFileSync(path.join(pre, `s${i}.svg`), 'utf8')) : await pool(pl.scenes, 4, async (s, i) => {
     for (let t = 0; t < 2; t++) { try { const v = await sceneSvg(pl, sheet, s, i, audio[i].secs); fs.writeFileSync(path.join(OUT, `s${i}.svg`), v); return v; } catch (e) { log('scene', i, e.message); } }
     throw new Error(`scene ${i} failed`);
   });
