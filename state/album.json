@@ -25,7 +25,8 @@
     "https://utsabtv.com/china-building-floating-science-island-ocean-research-platform",
     "https://utsabtv.com/ucl-dubai-health-management-education-center-plans",
     "https://utsabtv.com/kishoreganj-bhairab-clash-over-facebook-post-15-injured",
-    "https://utsabtv.com/fire-destroyed-nine-business-establishments-khagrachhari-kalabagan"
+    "https://utsabtv.com/fire-destroyed-nine-business-establishments-khagrachhari-kalabagan",
+    "https://utsabtv.com/bangladesh-bowl-second-day-sylhet-test-west-indies"
   ],
   "date": "2026-11-06",
   "done": {
@@ -36,11 +37,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/kishoreganj-bhairab-clash-over-facebook-post-15-injured",
-    "960": "https://utsabtv.com/fire-destroyed-nine-business-establishments-khagrachhari-kalabagan"
+    "960": "https://utsabtv.com/fire-destroyed-nine-business-establishments-khagrachhari-kalabagan",
+    "1200": "https://utsabtv.com/bangladesh-bowl-second-day-sylhet-test-west-indies"
   },
   "failedAt": 1793700193463
 }
