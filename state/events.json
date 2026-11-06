@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-06T05:44:37.906Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1488713886510943\"}"
-  },
-  {
-    "at": "2026-11-06T05:45:00.157Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148693351140193 (https://utsabtv.com/kishoreganj-bhairab-clash-over-facebook-post-15-injured)"
-  },
-  {
-    "at": "2026-11-06T05:45:07.294Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1643735943968594\"}"
-  },
-  {
-    "at": "2026-11-06T05:45:15.405Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125751091459930 (https://utsabtv.com/kishoreganj-bhairab-clash-over-facebook-post-15-injured)"
-  },
-  {
     "at": "2026-11-06T05:45:22.814Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3374214316099596\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-06T07:32:54.792Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-06T07:43:32.025Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148702129140193 ()"
+  },
+  {
+    "at": "2026-11-06T07:43:39.279Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1764302991312701\"}"
+  },
+  {
+    "at": "2026-11-06T07:43:43.433Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125773471459930 ()"
+  },
+  {
+    "at": "2026-11-06T07:43:50.766Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"954247394145972\"}"
   }
 ]
