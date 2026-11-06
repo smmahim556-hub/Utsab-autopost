@@ -1,0 +1,20 @@
+{
+  "models": [
+    "models/gemini-2.5-flash-image",
+    "models/gemini-3-pro-image-preview",
+    "models/gemini-3-pro-image",
+    "models/nano-banana-pro-preview",
+    "models/gemini-3.1-flash-image-preview",
+    "models/gemini-3.1-flash-image",
+    "models/gemini-3.1-flash-lite-image",
+    "models/gemini-nano-banana-2.1"
+  ],
+  "tries": {
+    "models/gemini-2.5-flash-image": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, h",
+    "models/gemini-3-pro-image-preview": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, h",
+    "models/gemini-3-pro-image": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, h",
+    "models/nano-banana-pro-preview": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, h",
+    "models/gemini-3.1-flash-image-preview": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, h",
+    "models/gemini-3.1-flash-image": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, h"
+  }
+}
