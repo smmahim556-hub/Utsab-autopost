@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-06T09:27:01.119Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1665608094935473\"}"
-  },
-  {
-    "at": "2026-11-06T09:31:19.704Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148710937140193 (https://utsabtv.com/applied-human-science-college-principal-unwanted-72-hour-ultimatum)"
-  },
-  {
     "at": "2026-11-06T09:31:28.341Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1670629801363810\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-06T11:31:04.300Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1445940704352196\"}"
+  },
+  {
+    "at": "2026-11-06T11:33:26.384Z",
+    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148726693140193\"}"
+  },
+  {
+    "at": "2026-11-06T11:33:32.520Z",
+    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122125840779459930\"}"
   }
 ]
