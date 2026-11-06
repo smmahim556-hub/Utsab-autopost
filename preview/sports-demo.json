@@ -1,15 +1,13 @@
 {
-  "football": 36,
-  "cricket": 3,
+  "football": 28,
+  "cricket": 2,
   "cricketList": [
-    "post Afghanistan v Zimbabwe | Zimbabwe দলের United Arab Emirates সফর | Afghanistan ৩৭ রানে জয়ী",
-    "in South Africa v Australia | Australia দলের South Africa সফর | Australia জয়ী",
-    "pre Bangladesh v West Indies | West Indies দলের Bangladesh সফর | Match scheduled to begin at 09:30 local time (03:30 GMT)"
+    "in Bangladesh v West Indies | West Indies দলের Bangladesh সফর | Bangladesh trail by 268 runs with 7 wickets remaining in the 1st innings",
+    "in Afghanistan v Zimbabwe | Zimbabwe দলের United Arab Emirates সফর | Afghanistan trail by 498 runs with 9 wickets remaining in the 1st innings"
   ],
   "picked": [
-    "fb-401879254",
-    "fb-401878766",
-    "cr-1555120"
+    "fb-401915383",
+    "fb-401915382"
   ],
   "fixtures": 8
 }
