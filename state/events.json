@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-06T09:18:36.938Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1608513674376558\"}"
-  },
-  {
-    "at": "2026-11-06T09:25:28.027Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-06T09:25:55.142Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148710103140193 (https://utsabtv.com/infantino-message-ronaldo-inspired-generations-retirement)"
-  },
-  {
-    "at": "2026-11-06T09:26:02.126Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1657969992541728\"}"
-  },
-  {
     "at": "2026-11-06T09:26:09.873Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122125788279459930 (https://utsabtv.com/infantino-message-ronaldo-inspired-generations-retirement)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-06T10:50:56.186Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1670446801089345\"}"
+  },
+  {
+    "at": "2026-11-06T11:07:57.357Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148723777140193 ()"
+  },
+  {
+    "at": "2026-11-06T11:08:06.248Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"4384434818366852\"}"
+  },
+  {
+    "at": "2026-11-06T11:08:10.677Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125833813459930 ()"
+  },
+  {
+    "at": "2026-11-06T11:08:17.847Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3543872519117069\"}"
   }
 ]
