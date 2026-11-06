@@ -2889,18 +2889,25 @@ async function albumTick() {
   async function insightsProbe() {
     const out = { pages: {}, articles: [] }, get = async u => { try { return await (await fetch(`${GRAPH}/${u}`, { signal: AbortSignal.timeout(60000) })).json(); } catch (e) { return { error: { message: e.message } }; } };
     out.perms = ((await get(`me/permissions?access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).data || []).filter(p => p.status === 'granted').map(p => p.permission);
-    const since = Math.floor(Date.now() / 1000) - 7 * 86400;
+    const days = Number(process.env.INSIGHTS_DAYS || 7), since = Math.floor(Date.now() / 1000) - days * 86400;
     for (const page of await pages()) {
       const t = encodeURIComponent(page.token), posts = [];
       let u = `${page.id}/published_posts?fields=id,created_time,message,attachments{media_type,type},reactions.summary(total_count).limit(0),comments.summary(true).limit(0),shares&since=${since}&limit=100&access_token=${t}`;
-      for (let i = 0; i < 15 && u; i++) { const r = await get(u); if (r.error) { out.pages[page.id] = { error: r.error }; break; } posts.push(...(r.data || [])); u = r.paging?.next ? r.paging.next.replace(`${GRAPH}/`, '') : ''; }
+      for (let i = 0; i < 6 * Math.ceil(days / 7) + 9 && u; i++) { const r = await get(u); if (r.error) { out.pages[page.id] = { error: r.error }; break; } posts.push(...(r.data || [])); u = r.paging?.next ? r.paging.next.replace(`${GRAPH}/`, '') : ''; }
       const metrics = {};
       for (const m of ['post_impressions_unique', 'post_total_media_view_unique', 'post_media_view', 'post_impressions', 'post_clicks', 'post_reactions_by_type_total']) {
         const r = posts[0] ? await get(`${posts[0].id}/insights?metric=${m}&access_token=${t}`) : {};
         metrics[m] = r.error ? r.error.message.slice(0, 120) : 'ok';
       }
       const good = Object.keys(metrics).filter(m => metrics[m] === 'ok' && m !== 'post_reactions_by_type_total');
-      for (const p of posts) {
+      // Every video with its length, and the Page's reels list, so reels and long videos can be told apart.
+      const vids = [], reels = [];
+      for (const [list, ep] of [[vids, `${page.id}/videos?fields=id,length,created_time,description,title&since=${since}&limit=100`], [reels, `${page.id}/video_reels?fields=id,length,created_time,description&since=${since}&limit=100`]]) {
+        let v = `${ep}&access_token=${t}`;
+        for (let i = 0; i < 20 && v; i++) { const r = await get(v); if (r.error) { list.push({ error: r.error.message }); break; } list.push(...(r.data || []).map(x => ({ ...x, description: (x.description || '').slice(0, 120) }))); v = r.paging?.next ? r.paging.next.replace(`${GRAPH}/`, '') : ''; }
+      }
+      out.videos = out.videos || {}; out.videos[page.id] = { vids, reels };
+      for (const p of process.env.INSIGHTS_DAYS ? [] : posts) {
         p.ins = {};
         for (const m of ['post_total_media_view_unique', 'post_media_view', 'post_clicks']) {
           const r = await get(`${p.id}/insights?metric=${m}&access_token=${t}`);
