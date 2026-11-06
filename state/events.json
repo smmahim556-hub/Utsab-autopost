@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-06T10:01:21.977Z",
-    "text": "album on Page 872606492607357: 872606492607357_122148713739140193 https://utsabtv.com/fire-destroyed-nine-business-establishments-khagrachhari-kalabagan"
-  },
-  {
-    "at": "2026-11-06T10:01:31.802Z",
-    "text": "album on Page 1276101408920358: 1276101408920358_122125796319459930 https://utsabtv.com/fire-destroyed-nine-business-establishments-khagrachhari-kalabagan"
-  },
-  {
     "at": "2026-11-06T10:05:17.812Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148714357140193 ()"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-06T12:01:16.490Z",
     "text": "voice reel skipped: ElevenLabs credits left 9, need 544"
+  },
+  {
+    "at": "2026-11-06T12:05:04.100Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2180673099201121\"}"
+  },
+  {
+    "at": "2026-11-06T12:05:11.016Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1094382680083526\"}"
   }
 ]
