@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-06T09:26:09.873Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125788279459930 (https://utsabtv.com/infantino-message-ronaldo-inspired-generations-retirement)"
-  },
-  {
     "at": "2026-11-06T09:26:17.166Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2274234580143275\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-06T11:08:17.847Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3543872519117069\"}"
+  },
+  {
+    "at": "2026-11-06T11:20:22.583Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
