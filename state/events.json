@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-06T07:54:12.078Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1698621648344611\"}"
-  },
-  {
-    "at": "2026-11-06T07:54:16.923Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125774713459930 ()"
-  },
-  {
-    "at": "2026-11-06T07:54:25.633Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2547929339023310\"}"
-  },
-  {
-    "at": "2026-11-06T08:02:46.475Z",
-    "text": "voice reel skipped: ElevenLabs credits left 9, need 501"
-  },
-  {
     "at": "2026-11-06T08:19:33.728Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-06T09:27:01.119Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1665608094935473\"}"
+  },
+  {
+    "at": "2026-11-06T09:31:19.704Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148710937140193 (https://utsabtv.com/applied-human-science-college-principal-unwanted-72-hour-ultimatum)"
+  },
+  {
+    "at": "2026-11-06T09:31:28.341Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1670629801363810\"}"
+  },
+  {
+    "at": "2026-11-06T09:31:36.699Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122125790787459930 (https://utsabtv.com/applied-human-science-college-principal-unwanted-72-hour-ultimatum)"
+  },
+  {
+    "at": "2026-11-06T09:31:44.663Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1131556296173537\"}"
   }
 ]
