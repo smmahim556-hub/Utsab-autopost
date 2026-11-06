@@ -84,7 +84,9 @@ async function articleInfo(url) {
   return { title: meta(html, 'og:title'), image: meta(html, 'og:image'), description: decodeEntities(meta(html, 'og:description') || ''), isArticle: html.includes('বার পড়া হয়েছে') };
 }
 
-const OWN_LOGO = process.env.OWN_LOGO !== '0' && fs.existsSync(path.join(__dirname, 'assets', 'logo.png'))
+// New look (own logo file, new fixtures layout) starts at midnight Dhaka on 7 Nov 2026 (owner's choice); NEW_FORMAT_FROM moves it.
+const NEW_FORMAT = Date.now() >= Date.parse(process.env.NEW_FORMAT_FROM || '2026-11-06T18:00:00Z');
+const OWN_LOGO = NEW_FORMAT && process.env.OWN_LOGO !== '0' && fs.existsSync(path.join(__dirname, 'assets', 'logo.png'))
   ? `data:image/png;base64,${fs.readFileSync(path.join(__dirname, 'assets', 'logo.png')).toString('base64')}` : '';
 // Puts our logo file in place of the card site's logo (an <img>, or an element holding one or a background image).
 async function swapSiteLogo(page, sel) {
@@ -1455,14 +1457,15 @@ function sportsFixturesCard(browser, list, outFile, logo) {
 <div class="list">${rows}</div>
 <div class="note">সময় বাংলাদেশ সময় অনুযায়ী</div>
 <div class="ftr">www.utsabtv.com</div>`, `
-/* rows share the space between the header and the note, so the note never sits on the last row */
+${NEW_FORMAT ? `/* rows share the space between the header and the note, so the note never sits on the last row */
 .list{position:absolute;left:50px;right:50px;top:200px;bottom:178px;display:flex;flex-direction:column;justify-content:flex-start;gap:${list.length > 6 ? 10 : 18}px}
-.fx{flex:1 1 0;max-height:132px;min-height:0;overflow:hidden;display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.95);color:#0b5e2a;border-radius:22px;padding:${list.length > 6 ? 8 : 14}px 26px;box-shadow:0 8px 18px rgba(0,0,0,.25)}
+.fx{flex:1 1 0;max-height:132px;min-height:0;overflow:hidden;` : `.list{position:relative;margin:36px 50px 0;display:flex;flex-direction:column;gap:${list.length > 6 ? 12 : 18}px}
+.fx{`}display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.95);color:#0b5e2a;border-radius:22px;padding:${list.length > 6 ? 8 : 14}px 26px;box-shadow:0 8px 18px rgba(0,0,0,.25)}
 .fx.bd{background:#fff3c4;border:5px solid #c8202f}.ic{font-size:44px}.mt{flex:1;display:flex;flex-direction:column;min-width:0}
 .mt b{font-size:${list.length > 6 ? 36 : 42}px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mt b i{font-style:normal;color:#c8202f;font-size:.75em}
 .mt small{font-size:26px;font-weight:700;color:#557a62}
 .tm{background:#c8202f;color:#fff;border-radius:16px;padding:6px 18px;font-size:34px;font-weight:800;white-space:nowrap}
-.note{position:absolute;left:0;right:0;bottom:118px;text-align:center;font-size:28px;color:#c8f7d4}`, outFile, logo);
+.note{position:absolute;left:0;right:0;bottom:${NEW_FORMAT ? 118 : 122}px;text-align:center;font-size:28px;color:#c8f7d4}`, outFile, logo);
 }
 
 async function sportsTick() {
