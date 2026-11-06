@@ -12,13 +12,18 @@
     "TOP5": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
     "QUIZ",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -29,7 +34,8 @@
     "https://utsabtv.com/dhaka-tangail-highway-blockade-10-platoons-bgb-deployed-gazipur",
     "https://utsabtv.com/prime-minister-tarek-rahman-visit-turkey-cop31-climate-conference",
     "https://utsabtv.com/new-garment-workers-wage-structure-by-december-effective-january",
-    "https://utsabtv.com/gazipur-garment-workers-return-work-administration-on-alert"
+    "https://utsabtv.com/gazipur-garment-workers-return-work-administration-on-alert",
+    "https://utsabtv.com/kishoreganj-bhairab-clash-over-facebook-post-15-injured"
   ],
   "quiz": {
     "q": "বাংলাদেশের জাতীয় খেলা কোনটি?",
