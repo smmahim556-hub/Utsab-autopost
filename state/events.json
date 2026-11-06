@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-06T05:22:07.213Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1681574296903070\"}"
-  },
-  {
     "at": "2026-11-06T05:22:13.450Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122125736865459930 (https://utsabtv.com/bgb-seizes-foreign-currency-worth-3-crore-taka-joypurhat)"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-06T07:04:27.569Z",
     "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122125767471459930\"}"
+  },
+  {
+    "at": "2026-11-06T07:17:18.750Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
