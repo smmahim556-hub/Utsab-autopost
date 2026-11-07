@@ -170,6 +170,7 @@ async function loadPages() {
   if (process.env.FB_USER_TOKEN) {
     const res = await (await fetch(`${GRAPH}/me/accounts?fields=id,name,access_token&limit=100&access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).json();
     if (res.error) throw new Error(`me/accounts: ${res.error.message}`);
+    accounts = res.data || [];
     for (const p of ids) {
       const acct = (res.data || []).find(a => a.id === p.id);
       if (!acct) throw new Error(`Page ${p.id} not found in me/accounts`);
@@ -179,8 +180,14 @@ async function loadPages() {
   return ids.filter(p => p.token);
 }
 
-let pagesCache;
+let pagesCache, accounts = [];
 const pages = async () => (pagesCache = pagesCache || await loadPages());
+// Extra Pages for one section only (owner 2026-11-07: entertainment cards also go to 'Utsab TV Entertainment').
+const ENT_PAGE_ID = process.env.ENT_PAGE_ID === undefined ? '1406430145892267' : process.env.ENT_PAGE_ID;
+async function extraPages(ids) {
+  await pages();
+  return ids.filter(Boolean).map(id => accounts.find(a => a.id === id)).filter(Boolean).map(a => ({ id: a.id, token: a.access_token, name: a.name }));
+}
 
 async function postToPage(page, cardFile, caption, link, withCaption = false) {
   const photo = new FormData();
@@ -258,8 +265,8 @@ async function postStory(page, storyFile) {
 // Caption hashtags: always #utsabtv, then the card's own topics (spaces become _).
 const hashtags = (...t) => ['utsabtv', ...t].filter(Boolean).map(x => '#' + String(x).trim().replace(/[\s\-–:]+/g, '_').replace(/[^\p{L}\p{M}\p{N}_]/gu, '')).filter((x, i, a) => x.length > 1 && a.indexOf(x) === i).slice(0, 5).join(' ');
 // withCaption: post the caption even though FB_CAPTION is off (desk cards carry a summary there).
-async function postToFacebook(cardFile, caption, link, done, browser, withCaption = false) {
-  const targets = await pages();
+async function postToFacebook(cardFile, caption, link, done, browser, withCaption = false, extraIds = []) {
+  const targets = [...await pages(), ...await extraPages(extraIds)];
   if (!targets.length) throw new Error('no FB_PAGE_ID / FB_PAGE_TOKEN set');
   let failed = null;
   const ids = {};
@@ -1835,7 +1842,7 @@ async function entTick(desk = DESKS.ent) {
       Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
       const card = await entCard(browser, it, path.join(OUT_DIR, `${desk.key}-${st.seen.length}.png`), await channelLogo(browser));
       const done = st.pages[it.id] = st.pages[it.id] || [];
-      try { await postToFacebook(card, [it.title, it.summary, hashtags(desk.label, it.tag)].filter(Boolean).join('\n\n'), '', done, browser, true); st.titles.push(it.title); delete st.pages[it.id]; posted = true; }
+      try { await postToFacebook(card, [it.title, it.summary, hashtags(desk.label, it.tag)].filter(Boolean).join('\n\n'), '', done, browser, true, desk.key === 'ent' ? [ENT_PAGE_ID] : []); st.titles.push(it.title); delete st.pages[it.id]; posted = true; }
       catch (e) { event(`${desk.key} FAILED: ${e.message}`); }
       finally { st.lastAt = Date.now(); }
       break;
