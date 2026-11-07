@@ -26,27 +26,18 @@
     "https://utsabtv.com/ucl-dubai-health-management-education-center-plans",
     "https://utsabtv.com/kishoreganj-bhairab-clash-over-facebook-post-15-injured",
     "https://utsabtv.com/fire-destroyed-nine-business-establishments-khagrachhari-kalabagan",
-    "https://utsabtv.com/bangladesh-bowl-second-day-sylhet-test-west-indies"
+    "https://utsabtv.com/bangladesh-bowl-second-day-sylhet-test-west-indies",
+    "https://utsabtv.com/prime-minister-tarique-rahman-pays-tribute-ziaur-rahman-khaleda-zia-graves"
   ],
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "done": {
     "720": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "960": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "1200": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/kishoreganj-bhairab-clash-over-facebook-post-15-injured",
-    "960": "https://utsabtv.com/fire-destroyed-nine-business-establishments-khagrachhari-kalabagan",
-    "1200": "https://utsabtv.com/bangladesh-bowl-second-day-sylhet-test-west-indies"
+    "720": "https://utsabtv.com/prime-minister-tarique-rahman-pays-tribute-ziaur-rahman-khaleda-zia-graves"
   },
   "failedAt": 1793700193463
 }
