@@ -7,7 +7,8 @@
     "1086358584452822",
     "4531857443747303",
     "2391727891571870",
-    "1116883407609511"
+    "1116883407609511",
+    "1121181413984647"
   ],
   "log": [
     "2026-10-29T23:38:49.847Z first run: 2 packages marked seen",
@@ -31,7 +32,11 @@
     "2026-11-07T10:03:40.869Z clip reel on 872606492607357: 1132908472446668 from 2391727891571870",
     "2026-11-07T10:03:50.323Z clip reel on 1276101408920358: 4535377280062072 from 2391727891571870",
     "2026-11-07T16:03:13.207Z clip reel on 872606492607357: 1434817465486884 from 1116883407609511",
-    "2026-11-07T16:03:25.055Z clip reel on 1276101408920358: 973449879173061 from 1116883407609511"
+    "2026-11-07T16:03:25.055Z clip reel on 1276101408920358: 973449879173061 from 1116883407609511",
+    "2026-11-07T17:34:05.933Z clip reel on 872606492607357: 988215350570135 from 1121181413984647",
+    "2026-11-07T17:34:06.050Z comment 988215350570135: Graph 988215350570135/comments: {\"message\":\"Unsupported post request. Object with ID '988215350570135' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100,",
+    "2026-11-07T17:34:12.535Z clip reel on 1276101408920358: 1909408446891475 from 1121181413984647",
+    "2026-11-07T17:34:12.657Z comment 1909408446891475: Graph 1909408446891475/comments: {\"message\":\"Unsupported post request. Object with ID '1909408446891475' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100"
   ],
   "pending": [
     {
@@ -76,6 +81,49 @@
       "url": "https://www.facebook.com/122147678985140193/videos/1116883407609511",
       "title": "live",
       "at": 1794078171855
+    },
+    {
+      "video": "1121181413984647",
+      "clip": {
+        "start": 1925,
+        "end": 1972,
+        "hook": "কনসার্টে জেমসের কণ্ঠে কালজয়ী গান 'মা'",
+        "subs": [
+          {
+            "s": 0,
+            "e": 6.15,
+            "t": "১০ মাস ১০ দিন ধরে গর্ভধারণ"
+          },
+          {
+            "s": 6.2,
+            "e": 14.95,
+            "t": "কষ্টের তীব্রতায় করেছে আমায় লালন"
+          },
+          {
+            "s": 15,
+            "e": 23.45,
+            "t": "হঠাৎ কোথায় না বলে চলে গেল"
+          },
+          {
+            "s": 23.5,
+            "e": 31.95,
+            "t": "জন্মান্তরের বাঁধন কোথায় হারালো"
+          },
+          {
+            "s": 32,
+            "e": 39.95,
+            "t": "সবাই বলে ঐ আকাশে লুকিয়ে আছে"
+          },
+          {
+            "s": 40,
+            "e": 47,
+            "t": "খুঁজে দেখো পাবে..."
+          }
+        ]
+      },
+      "url": "https://www.facebook.com/122147678985140193/videos/1121181413984647",
+      "title": "live",
+      "at": 1794083612452
     }
   ]
 }
