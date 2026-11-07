@@ -1,41 +1,5 @@
 [
   {
-    "at": "2026-11-07T10:05:25.092Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1134437565743333\"}"
-  },
-  {
-    "at": "2026-11-07T10:05:29.148Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126056995459930 ()"
-  },
-  {
-    "at": "2026-11-07T10:05:35.535Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2127973231415669\"}"
-  },
-  {
-    "at": "2026-11-07T10:06:23.336Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148833211140193 ()"
-  },
-  {
-    "at": "2026-11-07T10:06:29.681Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1488347286506248\"}"
-  },
-  {
-    "at": "2026-11-07T10:06:33.706Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126057355459930 ()"
-  },
-  {
-    "at": "2026-11-07T10:06:40.179Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1838418274271836\"}"
-  },
-  {
-    "at": "2026-11-07T10:13:53.804Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148834309140193 (https://utsabtv.com/towhid-hridoy-breaks-mushfiqur-record-highest-test-score-bangladesh)"
-  },
-  {
-    "at": "2026-11-07T10:14:00.093Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2947673835593073\"}"
-  },
-  {
     "at": "2026-11-07T10:14:06.223Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122126058687459930 (https://utsabtv.com/towhid-hridoy-breaks-mushfiqur-record-highest-test-score-bangladesh)"
   },
@@ -158,5 +122,41 @@
   {
     "at": "2026-11-07T11:36:28.326Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"28917035364612653\"}"
+  },
+  {
+    "at": "2026-11-07T11:39:31.563Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148844881140193 ()"
+  },
+  {
+    "at": "2026-11-07T11:39:38.625Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1699539018239498\"}"
+  },
+  {
+    "at": "2026-11-07T11:39:41.805Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126077167459930 ()"
+  },
+  {
+    "at": "2026-11-07T11:39:48.197Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1459589906117105\"}"
+  },
+  {
+    "at": "2026-11-07T11:41:18.319Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-07T11:41:39.257Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148845307140193 (https://utsabtv.com/prime-minister-tarique-rahman-joins-historic-sovereignty-rally-on-foot)"
+  },
+  {
+    "at": "2026-11-07T11:41:45.328Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1793915325168717\"}"
+  },
+  {
+    "at": "2026-11-07T11:41:51.237Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126077719459930 (https://utsabtv.com/prime-minister-tarique-rahman-joins-historic-sovereignty-rally-on-foot)"
+  },
+  {
+    "at": "2026-11-07T11:41:57.949Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2668974280204928\"}"
   }
 ]
