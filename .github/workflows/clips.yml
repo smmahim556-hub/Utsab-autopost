@@ -1,20 +1,23 @@
 name: Utsab TV package clips
 on:
   workflow_dispatch:
+    inputs:
+      concert_plan: { type: string, description: 'Concert live video ids to cut into reels (comma separated)', default: '' }
 concurrency: clips
 permissions:
   contents: write
 jobs:
   run:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - run: npm ci && npx playwright install chromium
+      - run: npm ci && npx playwright install chromium && (which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg))
       - run: node tools/clip-run.js
+        if: ${{ !inputs.concert_plan }}
         env:
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
@@ -22,9 +25,20 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DRY_RUN: ${{ vars.DRY_RUN || '0' }}
           CLIPS: ${{ vars.CLIPS || '1' }}
+      # Concert reels (tools/concert-run.js): plan with the concert_plan input, otherwise post the next due one.
+      - run: node tools/concert-run.js
+        if: always()
+        env:
+          FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DRY_RUN: ${{ vars.DRY_RUN || '0' }}
+          CONCERT: ${{ vars.CONCERT || '1' }}
+          CONCERT_PLAN: ${{ inputs.concert_plan }}
       - name: Save state
         if: always()
         run: |
           git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
-          git add state/clips.json 2>/dev/null || true
+          git add state/clips.json state/concert.json preview/concert-check.png 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "clips state" && (git push || (git pull --rebase -X theirs origin main && git push)))

@@ -35,10 +35,16 @@ async function gemini(parts) {
 }
 
 // -> [{ start, end, hook, subs: [{ s, e, t }] }] (times in seconds; subs relative to the clip start)
-async function planClips(video, work, n = 2) {
+async function planClips(video, work, n = 2, kind = 'news') {
   const audio = path.join(work, 'audio.mp3');
   ff(['-i', video, '-vn', '-ac', '1', '-ar', '16000', '-b:a', '32k', audio]);
-  const plan = await gemini([{ inline_data: { mime_type: 'audio/mp3', data: fs.readFileSync(audio).toString('base64') } }, { text:
+  const total = Math.round(secs(audio));
+  const concert = `এটি উৎসব টিভির একটি কনসার্ট লাইভের অডিও (মোট ${total} সেকেন্ড)। ফেসবুক রিলের জন্য এর ভেতর থেকে সবচেয়ে জমজমাট গানের অংশগুলো বেছে নাও, যত বেশি ভালো অংশ পাও (সর্বোচ্চ ${n}টি), প্রতিটি আলাদা গান থেকে।
+নিয়ম: প্রতিটি অংশ ৩০-৫৫ সেকেন্ড, গানের সবচেয়ে পরিচিত বা জমজমাট অংশ (কোরাস, দর্শকের গলা মেলানো), লাইনের মাঝখানে শুরু বা শেষ নয়। কথাবার্তা, সাউন্ড চেক, নীরবতা বা ভাঙা অডিও বাদ দাও।
+প্রতিটির জন্য হুক শিরোনাম: গানের নাম আর শিল্পী নিশ্চিত হলে 'গানের নাম' - শিল্পী, নিশ্চিত না হলে গানের একটি লাইন উদ্ধৃতিচিহ্নে (সর্বোচ্চ ১০ শব্দ, অনুমানে নাম বানাবে না)। আর হুবহু গানের কথার সাবটাইটেল দাও,
+প্রতিটি সাবটাইটেল সর্বোচ্চ ৮-১০ শব্দ, সময় অংশের শুরু থেকে সেকেন্ডে।
+শুধু এই JSON দাও: [{"start":12.5,"end":48.0,"hook":"শিরোনাম","subs":[{"s":0.0,"e":2.6,"t":"কথা"}]}]`;
+  const plan = await gemini([{ inline_data: { mime_type: 'audio/mp3', data: fs.readFileSync(audio).toString('base64') } }, { text: kind === 'concert' ? concert :
 `এটি একটি বাংলাদেশি নিউজ চ্যানেলের ভিডিওর অডিও (মোট ${Math.round(secs(audio))} সেকেন্ড)। ফেসবুক রিলের জন্য এর ভেতর থেকে সবচেয়ে আকর্ষণীয় ${n}টি অংশ বেছে নাও।
 নিয়ম: প্রতিটি অংশ ২০-৫০ সেকেন্ড, আলাদাভাবে বোঝা যায় এমন, আর প্রথম ৩ সেকেন্ডেই চোখ আটকানো কথা (হুক) দিয়ে শুরু। বাক্যের মাঝখানে শুরু বা শেষ নয়।
 প্রতিটির জন্য একটি ছোট হুক শিরোনাম (সর্বোচ্চ ৮ শব্দ, যা বলা হয়েছে তার ভিত্তিতে, অতিরঞ্জন বা মিথ্যা নয়; কারো মন্তব্য হলে উদ্ধৃতিচিহ্নে রেখে বক্তার পরিচয় দাও, যেমন: 'কথা', বললেন অমুক — চ্যানেলের নিজের মত নয়) আর হুবহু কথাগুলোর সাবটাইটেল দাও,
@@ -69,13 +75,13 @@ body{width:${w}px;height:${h}px;font-family:'Noto Serif Bengali',serif;font-weig
 async function renderClip(browser, video, clip, logo, outFile, work, tag) {
   const W = 1080, H = 1920, S = 1080, TOP = 470, len = clip.end - clip.start;
   const [vw, vh] = execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', video]).toString().trim().split(',').map(Number);
-  const cut = vh > vw ? 0 : Number(process.env.CLIP_CROP_BOTTOM || 0.27); // the package's strap band
+  const cut = vh > vw ? 0 : clip.cut ?? Number(process.env.CLIP_CROP_BOTTOM || 0.27); // the package's strap band
   const frame = await overlay(browser, `<div style="position:absolute;inset:0;background:linear-gradient(180deg,#0b5e2a 0%,#12873d 40%,#0b5e2a 100%)">
 <div style="position:absolute;left:0;right:0;top:0;height:${TOP}px;background:linear-gradient(135deg,#12873d,#0b5e2a);border-bottom:10px solid #c8202f"></div>
 ${logo && !fs.existsSync(LOGO_VIDEO) ? `<img src="${logo}" style="position:absolute;right:44px;top:50px;height:110px;border-radius:14px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)">` : ''}
-<div style="position:absolute;left:44px;top:62px;background:#c8202f;color:#fff;font-size:40px;padding:6px 30px;border-radius:40px;border:3px solid #ffd54f">সংবাদ</div>
+<div style="position:absolute;left:44px;top:62px;background:#c8202f;color:#fff;font-size:40px;padding:6px 30px;border-radius:40px;border:3px solid #ffd54f">${esc(clip.tag || 'সংবাদ')}</div>
 <div style="position:absolute;left:44px;right:44px;top:190px;height:250px;display:flex;align-items:center;color:#fff;font-size:68px;line-height:1.3;text-align:left">${esc(clip.hook)}</div>
-<div style="position:absolute;left:0;right:0;top:${TOP + S}px;height:${H - TOP - S - 130}px;display:flex;align-items:center;justify-content:center;color:#ffd54f;font-size:46px">পুরো ভিডিও দেখুন উৎসব টিভির পেজে</div>
+<div style="position:absolute;left:0;right:0;top:${TOP + S}px;height:${H - TOP - S - 130}px;display:flex;align-items:center;justify-content:center;color:#ffd54f;font-size:46px">${esc(clip.foot || 'পুরো ভিডিও দেখুন উৎসব টিভির পেজে')}</div>
 <div style="position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(135deg,#c8202f,#931624);border-top:8px solid #ffd54f;color:#fff;font-size:52px;display:flex;align-items:center;justify-content:center">www.utsabtv.com</div></div>`,
     path.join(work, `${tag}-frame.png`), W, H);
   // The channel's own animated logo (keyed from its blue screen, assets/video-logo.webm) plays at the top right.
@@ -88,4 +94,4 @@ ${logo && !fs.existsSync(LOGO_VIDEO) ? `<img src="${logo}" style="position:absol
   return outFile;
 }
 
-module.exports = { planClips, renderClip, secs };
+module.exports = { planClips, renderClip, secs, ff };
