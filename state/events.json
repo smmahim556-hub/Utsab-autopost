@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-07T11:39:38.625Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1699539018239498\"}"
-  },
-  {
-    "at": "2026-11-07T11:39:41.805Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126077167459930 ()"
-  },
-  {
-    "at": "2026-11-07T11:39:48.197Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1459589906117105\"}"
-  },
-  {
-    "at": "2026-11-07T11:41:18.319Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
     "at": "2026-11-07T11:41:39.257Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148845307140193 (https://utsabtv.com/prime-minister-tarique-rahman-joins-historic-sovereignty-rally-on-foot)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-07T13:13:10.181Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1090019640700324\"}"
+  },
+  {
+    "at": "2026-11-07T13:20:57.042Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148855183140193 ()"
+  },
+  {
+    "at": "2026-11-07T13:21:04.554Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1428316919015265\"}"
+  },
+  {
+    "at": "2026-11-07T13:21:07.942Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126091957459930 ()"
+  },
+  {
+    "at": "2026-11-07T13:21:14.626Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1415022710361603\"}"
   }
 ]
