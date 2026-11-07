@@ -36,7 +36,7 @@ jobs:
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
-          GOLPO: ${{ vars.GOLPO || '0' }}
+          GOLPO: ${{ vars.GOLPO || '1' }}
           DRY_RUN: ${{ vars.DRY_RUN || '0' }}
       - name: Save demo
         if: always()
