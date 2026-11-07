@@ -29,6 +29,7 @@ jobs:
           STORY_TTS: ${{ inputs.tts }}
           STORY_MODEL: ${{ inputs.model }}
           STORY_OUT: preview/story-demo.mp4
+          STORY_WIDE_OUT: preview/story-youtube.mp4
       - if: inputs.post
         run: node tools/golpo-run.js
         env:

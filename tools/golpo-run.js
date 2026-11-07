@@ -41,10 +41,11 @@ async function postReel(page, file, description) {
     if (!next) return log('no new episode ready');
     const dir = path.join(ROOT, 'stories', next), pl = JSON.parse(fs.readFileSync(path.join(dir, 'plan.json'), 'utf8'));
     const out = `/tmp/golpo-${next}.mp4`;
-    const r = await makeStory(dir, out);
+    const wide = `/tmp/golpo-${next}-youtube.mp4`;
+    const r = await makeStory(dir, out, { wideOut: wide });
     log(`rendered ${next} ${r.secs.toFixed(1)}s`);
-    // Same demo path as story.yml demos: the thread check copies it into the project files as YouTube/Shorts downloads for the owner.
-    try { fs.mkdirSync(path.join(ROOT, 'preview'), { recursive: true }); fs.copyFileSync(out, path.join(ROOT, 'preview', 'story-demo.mp4')); } catch {}
+    // Same demo paths as story.yml demos: the thread check hands the full-frame 16:9 copy (and the vertical one for Shorts) to the owner for YouTube.
+    try { fs.mkdirSync(path.join(ROOT, 'preview'), { recursive: true }); fs.copyFileSync(out, path.join(ROOT, 'preview', 'story-demo.mp4')); fs.copyFileSync(wide, path.join(ROOT, 'preview', 'story-youtube.mp4')); } catch {}
     const acc = await (await fetch(`${GRAPH}/me/accounts?fields=id,name,access_token&limit=100&access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).json();
     const find = id => (acc.data || []).find(a => a.id === id);
     const tags = ['#উৎসবেরগল্প', '#আবিষ্কারেরগল্প', `#${(pl.scientist || '').replace(/\s+/g, '')}`, '#বিজ্ঞান', '#utsabtv'].filter(t => t.length > 1).join(' ');

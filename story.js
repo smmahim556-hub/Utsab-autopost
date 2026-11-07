@@ -125,14 +125,22 @@ function captionHtml(s) {
   for (const w of s.highlight || []) if (w) h = h.split(esc(w)).join(`<em>${esc(w)}</em>`);
   return h;
 }
-function scenePage(pl, sheet, svg, s, secs, logo) {
+// Landscape (YouTube 16:9) view of a vertical scene: a wider window around the action band, full-width backgrounds stretched to fill it.
+const WIDE = { x: -793, w: 2667, h: 1500 };
+function widen(svg, y = 0) {
+  return svg.replace(/viewBox="0 0 1080 1920" width="1080" height="1920"/, `viewBox="${WIDE.x} ${y} ${WIDE.w} ${WIDE.h}" width="1920" height="1080"`)
+    .replace(/<rect\b([^>]*?)\swidth="1080"/g, (m, a) => /\bx="(?!0")/.test(a) ? m : `<rect${a.replace(/\sx="0"/, '')} x="-950" width="2980"`);
+}
+function scenePage(pl, sheet, svg, s, secs, logo, wide = false) {
+  const [PW, PH] = wide ? [1920, 1080] : [1080, 1920];
+  if (wide) svg = widen(svg, s.wideY);
   return `<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1080px;height:1920px;overflow:hidden;background:#fff;font-family:'Baloo Da 2',sans-serif}
+html,body{width:${PW}px;height:${PH}px;overflow:hidden;background:#fff;font-family:'Baloo Da 2',sans-serif}
 #stage{position:absolute;inset:0;animation:kb ${secs}s linear both;transform-origin:50% 45%}
-#stage>svg{width:1080px;height:1920px;display:block}
+#stage>svg{width:${PW}px;height:${PH}px;display:block}
 @keyframes kb{from{transform:scale(1.0)}to{transform:scale(1.045)}}
 #in{position:absolute;inset:0;background:#fff;animation:fadein .35s ease-out both;pointer-events:none}
 @keyframes fadein{from{opacity:1}to{opacity:0}}
@@ -145,6 +153,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#fff;font-family
 .cap em{font-style:normal;color:#ffd23f}
 .cap em:nth-of-type(2){color:#ff5a4e}
 @keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+${wide ? '.tag{top:30px;font-size:30px}.cap{top:auto;bottom:46px;left:160px;right:160px;font-size:70px;-webkit-text-stroke:11px #3b2a20}' : ''}
 </style></head><body>
 <div style="position:absolute;width:0;height:0;overflow:hidden">${sheet.replace('<svg', '<svg width="0" height="0"')}</div>
 <div id="stage">${svg}</div>
@@ -155,8 +164,8 @@ ${s.caption ? `<div class="cap">${captionHtml(s)}</div>` : ''}
 }
 
 // Steps every CSS animation to each frame time and pipes JPEG screenshots into ffmpeg.
-async function renderScene(browser, html, secs, outFile) {
-  const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
+async function renderScene(browser, html, secs, outFile, wide = false) {
+  const page = await browser.newPage({ viewport: wide ? { width: 1920, height: 1080 } : { width: 1080, height: 1920 } });
   const errs = [];
   page.on('pageerror', e => errs.push(e.message));
   await page.setContent(html, { waitUntil: 'networkidle' });
@@ -186,7 +195,7 @@ async function pool(items, n, fn) {
   return out;
 }
 
-async function makeStory(scriptFile, outFile) {
+async function makeStory(scriptFile, outFile, opts = {}) {
   fs.mkdirSync(OUT, { recursive: true });
   // A folder (stories/<name>/ with plan.json and s0.svg, s1.svg, ...) is a storyboard drawn ahead; a .txt is drawn here by the API.
   const pre = fs.statSync(scriptFile).isDirectory() ? scriptFile : null;
@@ -207,13 +216,18 @@ async function makeStory(scriptFile, outFile) {
   const anim = path.join(ROOT, 'assets', 'video-logo.webm'), useAnim = process.env.STORY_LOGO !== '0' && fs.existsSync(anim);
   const logo = process.env.STORY_LOGO !== '0' && !useAnim && fs.existsSync(logoFile) ? `data:image/png;base64,${fs.readFileSync(logoFile).toString('base64')}` : '';
   const browser = await chromium.launch();
-  const clips = [];
+  const clips = [], wclips = [];
   try {
     for (const [i, s] of pl.scenes.entries()) {
       const html = scenePage(pl, sheet, svgs[i], s, audio[i].secs, logo);
       fs.writeFileSync(path.join(OUT, `s${i}.html`), html);
       clips.push(await renderScene(browser, html, audio[i].secs, path.join(OUT, `v${i}.mp4`)));
       log('rendered scene', i);
+    }
+    // opts.wideOut: the same episode in 16:9 for the owner's YouTube, same voice and music (no extra TTS).
+    if (opts.wideOut) for (const [i, s] of pl.scenes.entries()) {
+      wclips.push(await renderScene(browser, scenePage(pl, sheet, svgs[i], s, audio[i].secs, logo, true), audio[i].secs, path.join(OUT, `w${i}.mp4`), true));
+      log('rendered wide scene', i);
     }
   } finally { await browser.close(); }
   const ff = args => execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...args]);
@@ -226,20 +240,26 @@ async function makeStory(scriptFile, outFile) {
   ff([...audio.flatMap(x => ['-i', x.f]), '-stream_loop', '-1', '-i', music, '-filter_complex',
     `${pads.join(';')};${audio.map((_, i) => `[p${i}]`).join('')}concat=n=${m}:v=0:a=1[v];[${m}:a]atrim=0:${total.toFixed(3)},volume=0.13,afade=t=out:st=${(total - 1.5).toFixed(2)}:d=1.5[bg];[v][bg]amix=inputs=2:normalize=0:duration=first[a]`,
     '-map', '[a]', '-c:a', 'aac', '-b:a', '160k', path.join(OUT, 'audio.m4a')]);
-  ff(['-i', path.join(OUT, 'video.mp4'), '-i', path.join(OUT, 'audio.m4a'), ...(useAnim ? ['-stream_loop', '-1', '-c:v', 'libvpx-vp9', '-i', anim,
+  const mux = (video, out) => ff(['-i', video, '-i', path.join(OUT, 'audio.m4a'), ...(useAnim ? ['-stream_loop', '-1', '-c:v', 'libvpx-vp9', '-i', anim,
     '-filter_complex', '[2:v]setpts=PTS-STARTPTS[lg];[0:v][lg]overlay=W-w-28:28:shortest=1,format=yuv420p[v]', '-map', '[v]', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20']
-    : ['-map', '0:v', '-c:v', 'copy']), '-map', '1:a', '-c:a', 'copy', '-shortest', '-movflags', '+faststart', outFile]);
+    : ['-map', '0:v', '-c:v', 'copy']), '-map', '1:a', '-c:a', 'copy', '-shortest', '-movflags', '+faststart', out]);
+  mux(path.join(OUT, 'video.mp4'), outFile);
+  if (opts.wideOut) {
+    fs.writeFileSync(path.join(OUT, 'w.txt'), wclips.map(c => `file '${c}'`).join('\n'));
+    ff(['-f', 'concat', '-safe', '0', '-i', path.join(OUT, 'w.txt'), '-c', 'copy', path.join(OUT, 'wide.mp4')]);
+    mux(path.join(OUT, 'wide.mp4'), opts.wideOut);
+  }
   return { file: outFile, plan: pl, secs: total, usage: { ...usage, model: MODEL } };
 }
 
-module.exports = { makeStory, plan, scenePage, renderScene };
+module.exports = { makeStory, plan, scenePage, renderScene, widen };
 
 if (require.main === module) {
   (async () => {
     const script = process.env.STORY_SCRIPT || process.argv[2];
     const out = process.env.STORY_OUT || path.join(ROOT, 'preview', 'story-demo.mp4');
     fs.mkdirSync(path.dirname(out), { recursive: true });
-    const r = await makeStory(script, out);
+    const r = await makeStory(script, out, { wideOut: process.env.STORY_WIDE_OUT });
     fs.writeFileSync(path.join(ROOT, 'state', 'story-probe.json'), JSON.stringify({ title: r.plan.title, secs: r.secs, scenes: r.plan.scenes.length, usage: r.usage }, null, 2));
     log('done', r.file, r.secs.toFixed(1), 's', JSON.stringify(r.usage));
   })().catch(e => { console.error(e); try { fs.writeFileSync(path.join(ROOT, 'state', 'story-probe.json'), JSON.stringify({ error: e.message, usage })); } catch {} process.exit(1); });
