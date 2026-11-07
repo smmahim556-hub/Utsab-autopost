@@ -47,7 +47,7 @@ async function postReel(page, file, description) {
     const find = id => (acc.data || []).find(a => a.id === id);
     const tags = ['#উৎসবেরগল্প', '#আবিষ্কারেরগল্প', `#${(pl.scientist || '').replace(/\s+/g, '')}`, '#বিজ্ঞান', '#utsabtv'].filter(t => t.length > 1).join(' ');
     const head = `${pl.series}: ${pl.title}\n\n${pl.summary || ''}`.trim();
-    const golpoDesc = `${head}\n\nনতুন পর্ব রোজ দুপুর ১২:৩০ আর সন্ধ্যা ৭:৩০-এ। ফলো করে সঙ্গেই থাকুন!\n\n${tags}`;
+    const golpoDesc = `${head}\n\nনতুন পর্ব রোজ বিকাল ৩টা আর সন্ধ্যা ৭:৩০-এ। ফলো করে সঙ্গেই থাকুন!\n\n${tags}`;
     const bigDesc = `${head}\n\nপুরো সিরিজ দেখতে ফলো করুন "উৎসবের গল্প" পেজ, লিংক প্রথম কমেন্টে।\n\n${tags}`;
     const g = find(GOLPO);
     if (!g) throw new Error('উৎসবের গল্প page not in token');
