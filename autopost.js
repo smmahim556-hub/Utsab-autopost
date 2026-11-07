@@ -1394,6 +1394,13 @@ const teamBadge = t => t.logo ? `<img class="tl" src="${t.logo}" onerror="this.o
   : `<div class="tl ph">${(t.en || '?').slice(0, 2).toUpperCase()}</div>`;
 // Sponsor strip (AD=sports,ent,tech: which cards carry it, default on with the new format; AD= turns it off; assets/ad-jersey.png): added under the finished card, so the card itself is unchanged.
 const AD_ON = new Set((process.env.AD ?? (NEW_FORMAT ? 'sports,ent,tech' : '')).split(',').map(x => x.trim()).filter(Boolean));
+// With the sponsor strip the card is drawn shorter, so card + strip stay 1080x1350 (4:5): Facebook's feed crops anything taller.
+function cardH(kind) {
+  const ad = path.join(__dirname, 'assets', process.env.AD_FILE || 'ad-jersey.png');
+  if (!AD_ON.has(kind) || !fs.existsSync(ad)) return 1350;
+  const strip = Math.round(fs.readFileSync(ad).readUInt32BE(20) * 1080 / fs.readFileSync(ad).readUInt32BE(16));
+  return 1350 - strip + Number(process.env.AD_OVERLAP || 28);
+}
 async function withAd(browser, file, kind) {
   const ad = path.join(__dirname, 'assets', process.env.AD_FILE || 'ad-jersey.png');
   if (!AD_ON.has(kind) || !fs.existsSync(ad)) return file;
@@ -1410,10 +1417,11 @@ async function withAd(browser, file, kind) {
 }
 async function renderSportsCard(browser, inner, css, outFile, logo) {
   const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
-  const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+  const H = cardH('sports');
+  const pg = await browser.newPage({ viewport: { width: 1080, height: H } });
   await pg.setContent(`<!doctype html><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
-<style>${SPORTS_CSS}${css}</style><div class="bg"></div>${inner.replace('{LOGO}', logoImg)}`, { waitUntil: 'networkidle', timeout: 60000 });
+<style>${SPORTS_CSS}${css}${H < 1350 ? `body{height:${H}px}.row{margin-top:56px}.row.bdrow{margin-top:24px}` : ''}</style><div class="bg"></div>${inner.replace('{LOGO}', logoImg)}`, { waitUntil: 'networkidle', timeout: 60000 });
   await pg.evaluate(() => document.fonts.ready);
   await pg.waitForTimeout(400);
   await pg.screenshot({ path: outFile });
@@ -1735,20 +1743,21 @@ async function entPhoto(pg, url, branded) {
 async function entCard(browser, it, outFile, logo) {
   const logoImg = logo ? `<img class="logo" src="${logo}">` : `<div class="logo txt">উৎসব TV</div>`;
   const len = [...it.title].length, fs1 = len > 90 ? 50 : len > 65 ? 56 : len > 45 ? 62 : 70;
-  const pg = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+  const kind = ({ 'বিনোদন': 'ent', 'অর্থনীতি': 'biz', 'প্রযুক্তি': 'tech' })[it.label || 'বিনোদন'], H = cardH(kind), cut = 1350 - H;
+  const pg = await browser.newPage({ viewport: { width: 1080, height: H } });
   let photo = it.image;
   try { photo = await entPhoto(pg, it.image, !ENT_CLEAN.test(it.source || '')); } catch (e) { console.log(`ent photo crop skipped: ${e.message}`); }
   await pg.setContent(`<!doctype html><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
-body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;color:#fff;background:#0b0b10;position:relative}
-.ph{position:absolute;left:0;right:0;top:0;height:820px;background:#222 center/cover no-repeat;background-image:url('${photo}')}
+body{width:1080px;height:${H}px;overflow:hidden;font-family:'Noto Serif Bengali','Noto Serif',serif;font-weight:700;color:#fff;background:#0b0b10;position:relative}
+.ph{position:absolute;left:0;right:0;top:0;height:${820 - cut}px;background:#222 center/cover no-repeat;background-image:url('${photo}')}
 .ph:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 60%,#0b5e2a 100%)}
 .logo{position:absolute;right:40px;top:36px;height:96px;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.35);z-index:2}
 .logo.txt{display:flex;align-items:center;padding:0 22px;font-size:44px;font-weight:800;color:#c8202f}
 .badge{position:absolute;left:40px;top:44px;z-index:2;display:flex;gap:0;border-radius:40px;overflow:hidden;border:4px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.35)}
 .badge span{padding:4px 22px;font-size:34px;font-weight:800}.badge .a{background:#c8202f}.badge .b{background:#ffd54f;color:#7a1020}
-.body{position:absolute;left:0;right:0;top:800px;bottom:100px;background:linear-gradient(180deg,#0b5e2a 0,#063d1b 100%);padding:34px 56px 0;display:flex;flex-direction:column}
+.body{position:absolute;left:0;right:0;top:${800 - cut}px;bottom:100px;background:linear-gradient(180deg,#0b5e2a 0,#063d1b 100%);padding:34px 56px 0;display:flex;flex-direction:column}
 .bar{width:140px;height:10px;background:#ffd54f;border-radius:6px;margin-bottom:22px}
 .hl{font-size:${fs1}px;font-weight:800;line-height:1.38;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .meta{margin-top:auto;margin-bottom:26px;display:flex;justify-content:space-between;font-size:30px;color:#c8f7d4}
@@ -1763,7 +1772,7 @@ body{width:1080px;height:1350px;overflow:hidden;font-family:'Noto Serif Bengali'
   await pg.waitForTimeout(500);
   await pg.screenshot({ path: outFile });
   await pg.close();
-  return withAd(browser, outFile, ({ 'বিনোদন': 'ent', 'অর্থনীতি': 'biz', 'প্রযুক্তি': 'tech' })[it.label || 'বিনোদন']);
+  return withAd(browser, outFile, kind);
 }
 
 // A paper's stock share image (its logo or name on a plain background) is not a news photo and must never go on our card.
