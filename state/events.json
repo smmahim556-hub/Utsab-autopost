@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-07T06:32:51.211Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1449147109885748\"}"
-  },
-  {
-    "at": "2026-11-07T06:32:54.920Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126021445459930 ()"
-  },
-  {
-    "at": "2026-11-07T06:33:00.243Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1170712652192139\"}"
-  },
-  {
-    "at": "2026-11-07T06:55:53.247Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148812133140193 ()"
-  },
-  {
     "at": "2026-11-07T06:55:59.883Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1601778501169844\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-07T08:20:38.033Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-07T08:24:00.610Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148820863140193 (https://utsabtv.com/trump-prepares-new-strikes-iran-moonless-night-white-house-meeting)"
+  },
+  {
+    "at": "2026-11-07T08:24:06.760Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2012072516151185\"}"
+  },
+  {
+    "at": "2026-11-07T08:24:12.597Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126040375459930 (https://utsabtv.com/trump-prepares-new-strikes-iran-moonless-night-white-house-meeting)"
+  },
+  {
+    "at": "2026-11-07T08:24:18.812Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1669182645001273\"}"
   }
 ]
