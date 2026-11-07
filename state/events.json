@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-07T07:58:49.288Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126037051459930 ()"
-  },
-  {
-    "at": "2026-11-07T07:58:56.453Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1761282729331599\"}"
-  },
-  {
     "at": "2026-11-07T08:01:18.259Z",
     "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2528:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-07T09:03:42.568Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3661457077361252\"}"
+  },
+  {
+    "at": "2026-11-07T09:11:44.815Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1876179263371577\"}"
+  },
+  {
+    "at": "2026-11-07T09:11:49.913Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1008181498224363\"}"
   }
 ]
