@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-07T14:27:59.358Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126101167459930 ()"
-  },
-  {
-    "at": "2026-11-07T14:28:06.391Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1138661705535227\"}"
-  },
-  {
     "at": "2026-11-07T14:31:52.586Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148861495140193 (https://utsabtv.com/prime-minister-joins-parade-national-revolution-solidarity-day)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-07T16:01:40.226Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"29063190686666446\"}"
+  },
+  {
+    "at": "2026-11-07T16:05:28.930Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148873651140193\"}"
+  },
+  {
+    "at": "2026-11-07T16:05:38.334Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122126115765459930\"}"
   }
 ]
