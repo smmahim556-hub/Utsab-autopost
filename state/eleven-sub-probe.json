@@ -1,5 +1,55 @@
 {
   "used": 30641,
+  "tier": "starter",
+  "status": "past_due",
+  "invoice": [
+    {
+      "amount_due_cents": 500,
+      "subtotal_cents": 500,
+      "tax_cents": null,
+      "discount_percent_off": null,
+      "discount_amount_off": null,
+      "discounts": [],
+      "next_payment_attempt_unix": -1,
+      "payment_intent_status": "requires_payment_method",
+      "payment_intent_statusses": [
+        "requires_payment_method"
+      ]
+    }
+  ],
+  "raw": {
+    "tier": "starter",
+    "currency": "usd",
+    "status": "past_due",
+    "billing_period": "monthly_period",
+    "next_invoice": {
+      "amount_due_cents": 600,
+      "subtotal_cents": 600,
+      "tax_cents": null,
+      "discount_percent_off": null,
+      "discount_amount_off": null,
+      "discounts": [],
+      "next_payment_attempt_unix": 1795447683,
+      "payment_intent_status": null,
+      "payment_intent_statusses": []
+    },
+    "open_invoices": [
+      {
+        "amount_due_cents": 500,
+        "subtotal_cents": 500,
+        "tax_cents": null,
+        "discount_percent_off": null,
+        "discount_amount_off": null,
+        "discounts": [],
+        "next_payment_attempt_unix": -1,
+        "payment_intent_status": "requires_payment_method",
+        "payment_intent_statusses": [
+          "requires_payment_method"
+        ]
+      }
+    ],
+    "has_open_invoices": true
+  },
   "limit": 80650,
   "reset": 1795444083,
   "history": [
