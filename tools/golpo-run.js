@@ -1,6 +1,6 @@
-// Daily cartoon story (story.yml post=true, dispatched 19:25 Dhaka by autopost.yml when var GOLPO=1):
+// Cartoon story (story.yml post=true, dispatched 12:25 and 19:25 Dhaka by autopost.yml when var GOLPO=1):
 // renders the next episode in stories/epNN-*/ that is not posted yet and posts it as a Reel, first on the উৎসবের গল্প Page,
-// then on Utsab TV and Utsab TV Digital with a "follow উৎসবের গল্প" caption and the Page link in the first comment.
+// then on Utsab TV and Utsab TV Digital with a "follow উৎসবের গল্প" caption and the Page link in the first comment (owner: same on all 3 Pages).
 const fs = require('fs'), path = require('path');
 const { makeStory } = require('../story');
 const ROOT = path.join(__dirname, '..');
@@ -33,8 +33,9 @@ async function postReel(page, file, description) {
 (async () => {
   try {
     if (process.env.GOLPO !== '1' || process.env.DRY_RUN === '1') return;
-    const today = new Date(Date.now() + 6 * 3600e3).toISOString().slice(0, 10);
-    if (st.lastDate === today && process.env.GOLPO_FORCE !== '1') return log('already posted today');
+    const dk = new Date(Date.now() + 6 * 3600e3), today = dk.toISOString().slice(0, 10), slot = `${today}-${dk.getUTCHours() < 16 ? 'noon' : 'eve'}`;
+    st.slots = (st.slots || []).slice(-60);
+    if (st.slots.includes(slot) && process.env.GOLPO_FORCE !== '1') return log(`already posted ${slot}`);
     const eps = fs.readdirSync(path.join(ROOT, 'stories')).filter(d => /^ep\d+/.test(d) && fs.existsSync(path.join(ROOT, 'stories', d, 'plan.json'))).sort();
     const next = eps.find(d => !st.posted.includes(d));
     if (!next) return log('no new episode ready');
@@ -46,7 +47,7 @@ async function postReel(page, file, description) {
     const find = id => (acc.data || []).find(a => a.id === id);
     const tags = ['#উৎসবেরগল্প', '#আবিষ্কারেরগল্প', `#${(pl.scientist || '').replace(/\s+/g, '')}`, '#বিজ্ঞান', '#utsabtv'].filter(t => t.length > 1).join(' ');
     const head = `${pl.series}: ${pl.title}\n\n${pl.summary || ''}`.trim();
-    const golpoDesc = `${head}\n\nনতুন পর্ব রোজ সন্ধ্যা ৭:৩০-এ। ফলো করে সঙ্গেই থাকুন!\n\n${tags}`;
+    const golpoDesc = `${head}\n\nনতুন পর্ব রোজ দুপুর ১২:৩০ আর সন্ধ্যা ৭:৩০-এ। ফলো করে সঙ্গেই থাকুন!\n\n${tags}`;
     const bigDesc = `${head}\n\nপুরো সিরিজ দেখতে ফলো করুন "উৎসবের গল্প" পেজ, লিংক প্রথম কমেন্টে।\n\n${tags}`;
     const g = find(GOLPO);
     if (!g) throw new Error('উৎসবের গল্প page not in token');
@@ -54,7 +55,7 @@ async function postReel(page, file, description) {
     const ids = {};
     ids[GOLPO] = await postReel({ id: g.id, token: g.access_token }, out, golpoDesc);
     log(`golpo reel ${ids[GOLPO]} ${next}`);
-    st.posted.push(next); st.lastDate = today; save();
+    st.posted.push(next); st.slots.push(slot); st.lastDate = today; save();
     for (const pid of [process.env.FB_PAGE_ID, process.env.FB_PAGE_ID_2].filter(Boolean)) {
       const a = find(pid);
       if (!a) { log(`page ${pid} missing`); continue; }
