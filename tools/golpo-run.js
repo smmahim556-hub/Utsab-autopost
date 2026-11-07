@@ -1,4 +1,4 @@
-// Cartoon story (story.yml post=true, dispatched 12:25 and 19:25 Dhaka by autopost.yml when var GOLPO=1):
+// Cartoon story (story.yml post=true, dispatched 14:55 and 19:25 Dhaka by autopost.yml when var GOLPO=1):
 // renders the next episode in stories/epNN-*/ that is not posted yet and posts it as a Reel, first on the উৎসবের গল্প Page,
 // then on Utsab TV and Utsab TV Digital with a "follow উৎসবের গল্প" caption and the Page link in the first comment (owner: same on all 3 Pages).
 const fs = require('fs'), path = require('path');
@@ -43,6 +43,8 @@ async function postReel(page, file, description) {
     const out = `/tmp/golpo-${next}.mp4`;
     const r = await makeStory(dir, out);
     log(`rendered ${next} ${r.secs.toFixed(1)}s`);
+    // Same demo path as story.yml demos: the thread check copies it into the project files as YouTube/Shorts downloads for the owner.
+    try { fs.mkdirSync(path.join(ROOT, 'preview'), { recursive: true }); fs.copyFileSync(out, path.join(ROOT, 'preview', 'story-demo.mp4')); } catch {}
     const acc = await (await fetch(`${GRAPH}/me/accounts?fields=id,name,access_token&limit=100&access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).json();
     const find = id => (acc.data || []).find(a => a.id === id);
     const tags = ['#উৎসবেরগল্প', '#আবিষ্কারেরগল্প', `#${(pl.scientist || '').replace(/\s+/g, '')}`, '#বিজ্ঞান', '#utsabtv'].filter(t => t.length > 1).join(' ');
