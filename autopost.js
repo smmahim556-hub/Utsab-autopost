@@ -1421,7 +1421,7 @@ async function renderSportsCard(browser, inner, css, outFile, logo) {
   const pg = await browser.newPage({ viewport: { width: 1080, height: H } });
   await pg.setContent(`<!doctype html><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800;900&family=Noto+Serif:wght@700;800;900&display=swap" rel="stylesheet">
-<style>${SPORTS_CSS}${css}${H < 1350 ? `body{height:${H}px}.row{margin-top:56px}.row.bdrow{margin-top:24px}` : ''}</style><div class="bg"></div>${inner.replace('{LOGO}', logoImg)}`, { waitUntil: 'networkidle', timeout: 60000 });
+<style>${SPORTS_CSS}${css}${H < 1350 ? `body{height:${H}px}.row{margin-top:50px}.row.bdrow{margin-top:20px}.tl{width:240px;height:240px;padding:20px}.tn{margin-top:16px}.gs{margin-top:8px;font-size:28px;line-height:1.3}.score{margin-top:60px;font-size:130px}.vs{margin-top:90px}` : ''}</style><div class="bg"></div>${inner.replace('{LOGO}', logoImg)}`, { waitUntil: 'networkidle', timeout: 60000 });
   await pg.evaluate(() => document.fonts.ready);
   await pg.waitForTimeout(400);
   await pg.screenshot({ path: outFile });
