@@ -28,7 +28,8 @@
     "https://utsabtv.com/fire-destroyed-nine-business-establishments-khagrachhari-kalabagan",
     "https://utsabtv.com/bangladesh-bowl-second-day-sylhet-test-west-indies",
     "https://utsabtv.com/prime-minister-tarique-rahman-pays-tribute-ziaur-rahman-khaleda-zia-graves",
-    "https://utsabtv.com/prime-minister-joins-parade-national-revolution-solidarity-day"
+    "https://utsabtv.com/prime-minister-joins-parade-national-revolution-solidarity-day",
+    "https://utsabtv.com/india-situation-could-be-worse-than-bangladesh-nepal-jharkhand-minister-irfan-ansari"
   ],
   "date": "2026-11-07",
   "done": {
@@ -39,11 +40,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/prime-minister-tarique-rahman-pays-tribute-ziaur-rahman-khaleda-zia-graves",
-    "960": "https://utsabtv.com/prime-minister-joins-parade-national-revolution-solidarity-day"
+    "960": "https://utsabtv.com/prime-minister-joins-parade-national-revolution-solidarity-day",
+    "1200": "https://utsabtv.com/india-situation-could-be-worse-than-bangladesh-nepal-jharkhand-minister-irfan-ansari"
   },
   "failedAt": 1793700193463
 }
