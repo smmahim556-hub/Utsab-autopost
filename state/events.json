@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-07T03:58:05.686Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"887401471067373\"}"
-  },
-  {
-    "at": "2026-11-07T03:58:09.484Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122125995519459930 ()"
-  },
-  {
-    "at": "2026-11-07T03:58:18.662Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1823422192036933\"}"
-  },
-  {
-    "at": "2026-11-07T04:01:57.434Z",
-    "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2519:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
-  },
-  {
     "at": "2026-11-07T04:18:31.287Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148798789140193 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-07T05:10:41.069Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2981223985572326\"}"
+  },
+  {
+    "at": "2026-11-07T05:11:35.261Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148803349140193 ()"
+  },
+  {
+    "at": "2026-11-07T05:11:41.371Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2051908398797959\"}"
+  },
+  {
+    "at": "2026-11-07T05:11:44.639Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126008863459930 ()"
+  },
+  {
+    "at": "2026-11-07T05:11:52.314Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1133789489032441\"}"
   }
 ]
