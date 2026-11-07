@@ -64,7 +64,7 @@ async function download(video, token) {
       const found = [];
       for (const v of process.env.CONCERT_PLAN.split(',').map(x => x.trim()).filter(Boolean)) {
         const { file, url } = await download(v, main.token);
-        const clips = await planClips(file, W, Number(process.env.CONCERT_MAX || 10), 'concert');
+        const clips = await planClips(file, W, Number(process.env.CONCERT_MAX || 20), 'concert');
         log(`plan ${v}: ${clips.length} clips: ${clips.map(c => `${Math.round(c.start)}-${Math.round(c.end)} ${c.hook}`).join(' | ')}`);
         for (const c of clips) found.push({ video: v, url, clip: { ...c, tag: TAG, foot: FOOT, cut: Number(process.env.CONCERT_CUT || 0) } });
       }
