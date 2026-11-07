@@ -240,14 +240,15 @@ async function makeStory(scriptFile, outFile, opts = {}) {
   ff([...audio.flatMap(x => ['-i', x.f]), '-stream_loop', '-1', '-i', music, '-filter_complex',
     `${pads.join(';')};${audio.map((_, i) => `[p${i}]`).join('')}concat=n=${m}:v=0:a=1[v];[${m}:a]atrim=0:${total.toFixed(3)},volume=0.13,afade=t=out:st=${(total - 1.5).toFixed(2)}:d=1.5[bg];[v][bg]amix=inputs=2:normalize=0:duration=first[a]`,
     '-map', '[a]', '-c:a', 'aac', '-b:a', '160k', path.join(OUT, 'audio.m4a')]);
-  const mux = (video, out) => ff(['-i', video, '-i', path.join(OUT, 'audio.m4a'), ...(useAnim ? ['-stream_loop', '-1', '-c:v', 'libvpx-vp9', '-i', anim,
-    '-filter_complex', '[2:v]setpts=PTS-STARTPTS[lg];[0:v][lg]overlay=W-w-28:28:shortest=1,format=yuv420p[v]', '-map', '[v]', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20']
+  // 16:9: logo about 15% of the width, set in from the corner (owner's YouTube package sample).
+  const mux = (video, out, wide = false) => ff(['-i', video, '-i', path.join(OUT, 'audio.m4a'), ...(useAnim ? ['-stream_loop', '-1', '-c:v', 'libvpx-vp9', '-i', anim,
+    '-filter_complex', `[2:v]setpts=PTS-STARTPTS${wide ? ',scale=300:-2' : ''}[lg];[0:v][lg]overlay=${wide ? 'W-w-62:58' : 'W-w-28:28'}:shortest=1,format=yuv420p[v]`, '-map', '[v]', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20']
     : ['-map', '0:v', '-c:v', 'copy']), '-map', '1:a', '-c:a', 'copy', '-shortest', '-movflags', '+faststart', out]);
   mux(path.join(OUT, 'video.mp4'), outFile);
   if (opts.wideOut) {
     fs.writeFileSync(path.join(OUT, 'w.txt'), wclips.map(c => `file '${c}'`).join('\n'));
     ff(['-f', 'concat', '-safe', '0', '-i', path.join(OUT, 'w.txt'), '-c', 'copy', path.join(OUT, 'wide.mp4')]);
-    mux(path.join(OUT, 'wide.mp4'), opts.wideOut);
+    mux(path.join(OUT, 'wide.mp4'), opts.wideOut, true);
   }
   return { file: outFile, plan: pl, secs: total, usage: { ...usage, model: MODEL } };
 }
