@@ -33,7 +33,7 @@ async function postReel(page, file, description) {
 (async () => {
   try {
     if (process.env.GOLPO !== '1' || process.env.DRY_RUN === '1') return;
-    const dk = new Date(Date.now() + 6 * 3600e3), today = dk.toISOString().slice(0, 10), slot = `${today}-${dk.getUTCHours() < 16 ? 'noon' : 'eve'}`;
+    const dk = new Date(Date.now() + 6 * 3600e3), today = dk.toISOString().slice(0, 10), slot = `${today}-${dk.getUTCHours() < 17 ? 'noon' : 'eve'}`;
     st.slots = (st.slots || []).slice(-60);
     if (st.slots.includes(slot) && process.env.GOLPO_FORCE !== '1') return log(`already posted ${slot}`);
     const eps = fs.readdirSync(path.join(ROOT, 'stories')).filter(d => /^ep\d+/.test(d) && fs.existsSync(path.join(ROOT, 'stories', d, 'plan.json'))).sort();
