@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-07T08:18:24.834Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1093849086943230\"}"
-  },
-  {
-    "at": "2026-11-07T08:20:38.033Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-07T08:24:00.610Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148820863140193 (https://utsabtv.com/trump-prepares-new-strikes-iran-moonless-night-white-house-meeting)"
-  },
-  {
-    "at": "2026-11-07T08:24:06.760Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2012072516151185\"}"
-  },
-  {
-    "at": "2026-11-07T08:24:12.597Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126040375459930 (https://utsabtv.com/trump-prepares-new-strikes-iran-moonless-night-white-house-meeting)"
-  },
-  {
-    "at": "2026-11-07T08:24:18.812Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1669182645001273\"}"
-  },
-  {
     "at": "2026-11-07T08:30:32.836Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148821589140193 ()"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-07T09:52:16.235Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"966786332743359\"}"
+  },
+  {
+    "at": "2026-11-07T10:01:13.271Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148831183140193 ()"
+  },
+  {
+    "at": "2026-11-07T10:01:20.623Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1923055915331561\"}"
+  },
+  {
+    "at": "2026-11-07T10:01:25.385Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126055909459930 ()"
+  },
+  {
+    "at": "2026-11-07T10:01:31.872Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"929962256718279\"}"
+  },
+  {
+    "at": "2026-11-07T10:02:22.748Z",
+    "text": "album on Page 872606492607357: 872606492607357_122148831657140193 https://utsabtv.com/prime-minister-joins-parade-national-revolution-solidarity-day"
+  },
+  {
+    "at": "2026-11-07T10:02:33.973Z",
+    "text": "album on Page 1276101408920358: 1276101408920358_122126056359459930 https://utsabtv.com/prime-minister-joins-parade-national-revolution-solidarity-day"
   }
 ]
