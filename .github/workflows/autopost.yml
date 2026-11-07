@@ -130,6 +130,10 @@ jobs:
           if [ "${{ vars.CLIPS || '1' }}" = 1 ] && [ $((m % 30)) -lt 3 ] && [ "$(cat state/clips-dispatch.txt 2>/dev/null)" != "$d-$((m / 30))" ]; then
             gh workflow run clips.yml && echo "$d-$((m / 30))" > state/clips-dispatch.txt
           fi
+          # Cartoon story (story.yml post=true): next episode at 19:25 Dhaka, once a day, first on the উৎসবের গল্প Page.
+          if [ "${{ vars.GOLPO || '0' }}" = 1 ] && [ $m -ge 1165 ] && [ $m -lt 1260 ] && [ "$(cat state/golpo-dispatch.txt 2>/dev/null)" != "$d" ]; then
+            gh workflow run story.yml -f post=true -f script=stories && echo "$d" > state/golpo-dispatch.txt
+          fi
           # Prayer reel: once the 8 division schedule cards are out and the last one is 5+ minutes old.
           if [ "${{ vars.PRAYER_REEL || '1' }}" = 1 ] && [ -f state/prayer.json ] && [ "$(jq -r .date state/prayer.json)" = "$d" ] \
              && [ "$(jq '.sched|length' state/prayer.json)" -ge 8 ] && [ $(( $(date +%s) * 1000 - $(jq .lastAt state/prayer.json) )) -ge 300000 ] \

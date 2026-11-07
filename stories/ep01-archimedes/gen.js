@@ -91,5 +91,5 @@ scenes.push({ narration: 'পরের পর্বে থাকছে কলম
 <g class="wv"><path d="M-100 1100 ${Array.from({ length: 14 }, (_, i) => `Q${-50 + i * 100} 1060 ${i * 100} 1100`).join(' ')} L1400 1920 L-100 1920Z" fill="#1e4f8a" stroke="${O}" stroke-width="6"/></g>
 <g transform="translate(540,1240)"><g class="btn"><rect x="-230" y="-70" width="460" height="130" rx="65" fill="#e63946" stroke="#fff" stroke-width="7"/><text x="0" y="22" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="72" fill="#fff">ফলো করুন ▸</text></g></g>`) });
 
-writeEpisode(__dirname, { title: 'আর্কিমিডিসের ইউরেকা', series: 'আবিষ্কারের গল্প · পর্ব ১', episode: 1, scientist: 'আর্কিমিডিস' }, scenes);
+writeEpisode(__dirname, { title: 'আর্কিমিডিসের ইউরেকা', series: 'আবিষ্কারের গল্প · পর্ব ১', episode: 1, scientist: 'আর্কিমিডিস', summary: 'রাজার সোনার মুকুটে কি ভেজাল ছিল? মুকুট না ভেঙে কীভাবে ধরবেন? গোসলের টবে বসেই উত্তর পেয়ে গেলেন আর্কিমিডিস!' }, scenes);
 console.log('ep01:', scenes.length, 'scenes');

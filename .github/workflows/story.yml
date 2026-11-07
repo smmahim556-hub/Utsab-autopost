@@ -5,6 +5,7 @@ on:
       script: { type: string, description: 'Script file in stories/', default: stories/demo-newton.txt }
       tts: { type: string, description: 'eleven or edge', default: eleven }
       model: { type: string, description: 'Claude model that draws the scenes', default: claude-sonnet-5-5 }
+      post: { type: boolean, description: 'Post the next episode to the 3 Pages', default: false }
 concurrency: story
 permissions:
   contents: write
@@ -19,7 +20,8 @@ jobs:
         with: { node-version: 22 }
       - run: npm ci && npx playwright install chromium
       - run: sudo apt-get install -y -qq ffmpeg && pipx install edge-tts
-      - run: node story.js
+      - if: ${{ !inputs.post }}
+        run: node story.js
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
@@ -27,9 +29,18 @@ jobs:
           STORY_TTS: ${{ inputs.tts }}
           STORY_MODEL: ${{ inputs.model }}
           STORY_OUT: preview/story-demo.mp4
+      - if: inputs.post
+        run: node tools/golpo-run.js
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
+          GOLPO: ${{ vars.GOLPO || '0' }}
+          DRY_RUN: ${{ vars.DRY_RUN || '0' }}
       - name: Save demo
         if: always()
         run: |
           mkdir -p preview/story; cp out/story/*.svg out/story/plan.json preview/story/ 2>/dev/null || true
           git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
-          git add -A preview state/story-probe.json 2>/dev/null; git diff --cached --quiet || (git commit -m "story demo" && (git push || (git pull --rebase -X theirs origin main && git push)))
+          git add -A preview; for f in state/story-probe.json state/golpo.json; do [ -f $f ] && git add $f; done; git diff --cached --quiet || (git commit -m "story demo" && (git push || (git pull --rebase -X theirs origin main && git push)))
