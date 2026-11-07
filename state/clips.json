@@ -26,56 +26,9 @@
     "2026-11-03T19:32:47.102Z clip reel on 1276101408920358: 1650305346842111 from 4531857443747303",
     "2026-11-07T07:02:19.755Z clip reel on 872606492607357: 2219430815678104 from 2391727891571870",
     "2026-11-07T07:02:28.709Z clip reel on 1276101408920358: 1469804508391161 from 2391727891571870",
-    "2026-11-07T07:02:28.817Z comment 1469804508391161: Graph 1469804508391161/comments: {\"message\":\"Unsupported post request. Object with ID '1469804508391161' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100"
+    "2026-11-07T07:02:28.817Z comment 1469804508391161: Graph 1469804508391161/comments: {\"message\":\"Unsupported post request. Object with ID '1469804508391161' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
+    "2026-11-07T10:03:40.869Z clip reel on 872606492607357: 1132908472446668 from 2391727891571870",
+    "2026-11-07T10:03:50.323Z clip reel on 1276101408920358: 4535377280062072 from 2391727891571870"
   ],
-  "pending": [
-    {
-      "video": "2391727891571870",
-      "clip": {
-        "start": 215,
-        "end": 247,
-        "hook": "জীবনমান উন্নয়নের জন্য সর্বোচ্চ অগ্রাধিকার",
-        "subs": [
-          {
-            "s": 215,
-            "e": 218.95,
-            "t": "জীবনমান উন্নয়নের জন্য তিনি সর্বোচ্চ অগ্রাধিকার দিয়েছেন"
-          },
-          {
-            "s": 219,
-            "e": 224,
-            "t": "ইনশাআল্লাহ আশা করি আপনাদের সকল দাবি দেওয়া পূরণ হবে"
-          },
-          {
-            "s": 226,
-            "e": 227.95,
-            "t": "আপনারা সহযোগিতা করে যাবেন"
-          },
-          {
-            "s": 228,
-            "e": 232,
-            "t": "ইনশাআল্লাহ উত্তরোত্তর আপনাদের জীবনমান আরো উন্নত হবে"
-          },
-          {
-            "s": 233,
-            "e": 236.95,
-            "t": "অর্থনীতি সমৃদ্ধ হবে অর্থনীতি শক্তিশালী হবে"
-          },
-          {
-            "s": 237,
-            "e": 243,
-            "t": "আপনাদের জীবনমান উন্নয়নের জন্য আপনাদের বাতা বেতন সবকিছু তখন বৃদ্ধি হবে"
-          },
-          {
-            "s": 244,
-            "e": 247,
-            "t": "খোদা হাফেজ বাংলাদেশ জিন্দাবাদ"
-          }
-        ]
-      },
-      "url": "https://www.facebook.com/122147678985140193/videos/2391727891571870",
-      "title": "� LIVE | গ্রাম পুলিশ মহাসমাবেশ | তারেক রহমান | 7 Nov 2026",
-      "at": 1794045719010
-    }
-  ]
+  "pending": []
 }
