@@ -101,6 +101,7 @@ Rules:
 }
 
 async function speak(text, outBase) {
+  text = require('./bnwords').spoken(text); // numbers read as Bangla words
   let el = {};
   try { el = JSON.parse(fs.readFileSync(path.join(ROOT, 'state', 'eleven.json'), 'utf8')); } catch {}
   const voice = process.env.STORY_VOICE || el.pick;

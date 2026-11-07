@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1920" width="1080" height="1920"><style>:where([class]:not([class=''])){transform-box:fill-box}
+.drift{animation:drift 9s linear infinite}@keyframes drift{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+.sway{transform-origin:50% 100%;animation:sway 3s ease-in-out infinite}@keyframes sway{50%{transform:rotate(2deg)}}
+.breathe{transform-origin:50% 100%;animation:breathe 2.4s ease-in-out infinite}@keyframes breathe{50%{transform:scale(1.015,1.025)}}
+.pop{transform-origin:center;animation:pop .6s cubic-bezier(.3,1.7,.5,1) both}@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.twinkle{transform-origin:center;animation:tw 1.6s ease-in-out infinite}@keyframes tw{50%{transform:scale(.5);opacity:.4}}
+.spin{transform-origin:center;animation:spin 20s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.bob{transform-origin:center;animation:bob 1.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-22px)}}
+.shake{transform-origin:50% 100%;animation:shake .5s ease-in-out infinite}@keyframes shake{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.wave{transform-origin:20% 90%;animation:wave .6s ease-in-out infinite alternate}@keyframes wave{to{transform:rotate(8deg)}}
+.route{stroke-dasharray:24 20;animation:dash 1s linear infinite}@keyframes dash{to{stroke-dashoffset:-44}}.glow{transform-origin:center;animation:glow 1.2s ease-in-out infinite}@keyframes glow{50%{opacity:.4}}</style><rect width="1080" height="1920" fill="#f3e2b8"/><rect x="40" y="140" width="1000" height="1100" rx="30" fill="#bfe3f5" stroke="#3b2a20" stroke-width="8"/>
+<path class="glow" d="M140 330 Q260 260 380 330 Q420 430 330 520 Q300 600 360 700 Q420 820 380 960 Q330 1060 280 1000 Q250 860 220 760 Q180 640 160 520 Q120 420 140 330Z" fill="#ffd23f" opacity=".5"/>
+<path d="M140 330 Q260 260 380 330 Q420 430 330 520 Q300 600 360 700 Q420 820 380 960 Q330 1060 280 1000 Q250 860 220 760 Q180 640 160 520 Q120 420 140 330Z" fill="#8bc34a" stroke="#3b2a20" stroke-width="6"/>
+<path d="M700 300 Q800 260 900 300 Q960 380 900 460 Q840 500 780 470 Q720 420 700 300Z M760 520 Q860 500 920 580 Q940 760 860 880 Q800 920 780 820 Q740 680 760 520Z" fill="#c5b07a" stroke="#3b2a20" stroke-width="6"/>
+<path class="route" d="M760 420 Q560 380 360 560" fill="none" stroke="#e63946" stroke-width="10"/><g transform="translate(560,470) scale(0.22)"><path d="M-260 0 L260 0 L190 120 L-190 120Z" fill="#8a5a36" stroke="#3b2a20" stroke-width="7" stroke-linejoin="round"/><path d="M-250 20 L250 20" stroke="#6b3f22" stroke-width="10"/><path d="M0 0 L0 -420 M-150 0 L-150 -260" stroke="#3b2a20" stroke-width="12"/>
+<path d="M10 -400 Q170 -300 10 -170Z" fill="#fff" stroke="#3b2a20" stroke-width="6"/><path d="M-10 -380 Q-170 -250 -10 -60Z" fill="#fff" stroke="#3b2a20" stroke-width="6"/><path d="M-140 -250 Q-40 -170 -140 -60Z" fill="#fff" stroke="#3b2a20" stroke-width="6"/><path d="M-6 -300 L6 -300 M-8 -150 L8 -150" stroke="#e63946" stroke-width="10"/>
+<path d="M0 -420 L80 -440 L0 -460Z" fill="#e63946" stroke="#3b2a20" stroke-width="4"/><circle cx="-90" cy="60" r="16" fill="#ffd23f" stroke="#3b2a20" stroke-width="4"/><circle cx="0" cy="60" r="16" fill="#ffd23f" stroke="#3b2a20" stroke-width="4"/><circle cx="90" cy="60" r="16" fill="#ffd23f" stroke="#3b2a20" stroke-width="4"/></g>
+<text x="260" y="650" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="60" fill="#2e7d32" stroke="#fff" stroke-width="8" paint-order="stroke">আমেরিকা</text>
+<text x="830" y="640" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="50" fill="#7a4a2a" stroke="#fff" stroke-width="8" paint-order="stroke">ইউরোপ</text>
+<g transform="translate(560,1090) rotate(-4)"><g class="pop" style="animation-delay:0.8s"><rect x="-245" y="-66.5" width="490" height="112" rx="24.5" fill="#fff" stroke="#3b2a20" stroke-width="6"/><text x="0" y="21" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="70" fill="#e63946">নতুন মহাদেশ!</text></g></g></svg>
