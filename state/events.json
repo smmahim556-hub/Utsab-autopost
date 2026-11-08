@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-08T07:43:10.484Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4098365933796103\"}"
-  },
-  {
     "at": "2026-11-08T07:43:34.075Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148952239140193 (https://utsabtv.com/cooperative-societies-destroyed-corruption-president-calls-law-reform)"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-08T08:35:15.843Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-08T08:50:01.785Z",
+    "text": "mirror: 872606492607357_122148958695140193 (video) -> Digital 1804265747284000"
   }
 ]
