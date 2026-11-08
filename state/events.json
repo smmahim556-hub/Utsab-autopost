@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-08T06:33:41.385Z",
-    "text": "mirror: first run, 3 manual posts marked seen"
-  },
-  {
-    "at": "2026-11-08T06:37:49.908Z",
-    "text": "mirror: 872606492607357_122148946485140193 (video) -> Digital 1036390106155675"
-  },
-  {
-    "at": "2026-11-08T06:47:05.273Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148947601140193 ()"
-  },
-  {
-    "at": "2026-11-08T06:47:13.722Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1116381841284731\"}"
-  },
-  {
     "at": "2026-11-08T06:47:16.668Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122126242593459930 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-08T07:49:56.438Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1673959190972094\"}"
+  },
+  {
+    "at": "2026-11-08T07:52:58.521Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148953475140193 (https://utsabtv.com/rohingya-repatriation-security-must-be-considered-law-minister)"
+  },
+  {
+    "at": "2026-11-08T07:53:04.300Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1854119222457028\"}"
+  },
+  {
+    "at": "2026-11-08T07:53:11.263Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126253345459930 (https://utsabtv.com/rohingya-repatriation-security-must-be-considered-law-minister)"
+  },
+  {
+    "at": "2026-11-08T07:53:17.142Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3039622426388089\"}"
   }
 ]
