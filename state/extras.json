@@ -16,6 +16,10 @@
     "TOP5": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
@@ -23,7 +27,8 @@
     "QUIZANS",
     "QUIZ",
     "MARKET",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -36,7 +41,8 @@
     "https://utsabtv.com/new-garment-workers-wage-structure-by-december-effective-january",
     "https://utsabtv.com/gazipur-garment-workers-return-work-administration-on-alert",
     "https://utsabtv.com/kishoreganj-bhairab-clash-over-facebook-post-15-injured",
-    "https://utsabtv.com/prime-minister-joins-parade-national-revolution-solidarity-day"
+    "https://utsabtv.com/prime-minister-joins-parade-national-revolution-solidarity-day",
+    "https://utsabtv.com/33-platoon-bgb-deployed-industrial-areas-dhaka-gazipur-narayanganj"
   ],
   "quiz": {
     "q": "বাংলাদেশের কোন জেলার সাথে ভারত ও মায়ানমার—উভয় দেশের সীমান্ত রয়েছে?",
