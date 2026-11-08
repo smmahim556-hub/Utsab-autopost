@@ -236,7 +236,8 @@ async function makeStory(scriptFile, outFile, opts = {}) {
   const total = audio.reduce((a, x) => a + x.secs, 0);
   const m = audio.length;
   const pads = audio.map((x, i) => `[${i}:a]aresample=44100,aformat=channel_layouts=stereo,apad,atrim=0:${x.secs.toFixed(3)}[p${i}]`);
-  const music = process.env.STORY_MUSIC || path.join(ROOT, 'assets', 'weather-music.mp3');
+  // Our own synthesised track (tools/make-story-music.js): the stock piano track got a YouTube Content ID claim (2026-11-08).
+  const music = process.env.STORY_MUSIC || path.join(ROOT, 'assets', 'story-music.mp3');
   ff([...audio.flatMap(x => ['-i', x.f]), '-stream_loop', '-1', '-i', music, '-filter_complex',
     `${pads.join(';')};${audio.map((_, i) => `[p${i}]`).join('')}concat=n=${m}:v=0:a=1[v];[${m}:a]atrim=0:${total.toFixed(3)},volume=0.13,afade=t=out:st=${(total - 1.5).toFixed(2)}:d=1.5[bg];[v][bg]amix=inputs=2:normalize=0:duration=first[a]`,
     '-map', '[a]', '-c:a', 'aac', '-b:a', '160k', path.join(OUT, 'audio.m4a')]);
