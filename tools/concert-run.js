@@ -10,7 +10,7 @@ const GRAPH = `https://graph.facebook.com/${process.env.GRAPH_VERSION || 'v26.0'
 const ROOT = path.join(__dirname, '..'), FILE = path.join(ROOT, 'state', 'concert.json'), W = '/tmp/concert';
 const ENT = process.env.ENT_PAGE_ID === undefined ? '1406430145892267' : process.env.ENT_PAGE_ID;
 const SLOTS = (process.env.CONCERT_SLOTS || '11:00,12:30,13:45,16:15,17:00,19:00,20:15,21:30,22:30').split(',');
-const TAG = 'বিনোদন', FOOT = 'পুরো কনসার্ট দেখুন উৎসব টিভির পেজে';
+const TAG = 'বিনোদন', FOOT = process.env.CONCERT_FOOT || 'পুরো কনসার্ট দেখুন উৎসব টিভির পেজে', HOLD = process.env.CONCERT_HOLD === '1';
 let st = {};
 try { st = JSON.parse(fs.readFileSync(FILE, 'utf8')); } catch {}
 st.queue = st.queue || []; st.done = st.done || [];
@@ -44,6 +44,13 @@ function slotTimes(n, after) {
   return out;
 }
 async function download(video, token) {
+  // 'gd:<id>': a public Google Drive file (owner's own concert footage).
+  if (video.startsWith('gd:')) {
+    fs.mkdirSync(W, { recursive: true });
+    const f = `${W}/${video.replace(/[^\w-]/g, '_')}.mp4`;
+    if (!fs.existsSync(f)) require('child_process').execFileSync('curl', ['-sSL', '--retry', '3', '-o', f, `https://drive.usercontent.google.com/download?id=${video.slice(3)}&export=download&confirm=t`]);
+    return { file: f, url: '' };
+  }
   const r = await (await fetch(`${GRAPH}/${video}?fields=source,permalink_url,title&access_token=${encodeURIComponent(token)}`)).json();
   if (!r.source) throw new Error(`${video}: no source (${r.error?.message || ''})`);
   fs.mkdirSync(W, { recursive: true });
@@ -63,10 +70,11 @@ async function download(video, token) {
     if (process.env.CONCERT_PLAN) {
       const found = [];
       for (const v of process.env.CONCERT_PLAN.split(',').map(x => x.trim()).filter(Boolean)) {
-        const { file, url } = await download(v, main.token);
-        const clips = await planClips(file, W, Number(process.env.CONCERT_MAX || 20), 'concert');
+        let file, url;
+        try { ({ file, url } = await download(v, main.token)); } catch (e) { log(`download ${v}: ${e.message}`); continue; }
+        const clips = await planClips(file, W, Number(process.env.CONCERT_MAX || 20), 'concert').catch(e => (log(`plan ${v}: ${e.message}`), []));
         log(`plan ${v}: ${clips.length} clips: ${clips.map(c => `${Math.round(c.start)}-${Math.round(c.end)} ${c.hook}`).join(' | ')}`);
-        for (const c of clips) found.push({ video: v, url, clip: { ...c, tag: TAG, foot: FOOT, cut: Number(process.env.CONCERT_CUT || 0) } });
+        for (const c of clips) found.push({ video: v, url, clip: { ...c, tag: TAG, foot: FOOT, cut: Number(process.env.CONCERT_CUT || 0) }, ...(HOLD ? { hold: true } : {}) });
       }
       // The package-clip pipeline had already queued second reels from these lives: fold them in so they go to all 3 Pages at good times.
       try {
@@ -84,23 +92,32 @@ async function download(video, token) {
       // Interleave the lives so one concert's songs don't all come in a row.
       const byV = {}; for (const f of found) (byV[f.video] = byV[f.video] || []).push(f);
       const mixed = []; for (let i = 0; Object.values(byV).some(l => l[i]); i++) for (const l of Object.values(byV)) if (l[i]) mixed.push(l[i]);
-      const last = Math.max(Date.now(), ...st.queue.map(q => q.at));
-      slotTimes(mixed.length, last).forEach((t, i) => { mixed[i].at = t; });
+      // CONCERT_HOLD=1: queued but held until the owner approves (times are set then).
+      const last = Math.max(Date.now(), ...st.queue.filter(q => q.at).map(q => q.at));
+      if (!HOLD) slotTimes(mixed.length, last).forEach((t, i) => { mixed[i].at = t; });
       st.queue.push(...mixed);
       save();
       if (mixed[0]) {
         const browser = await chromium.launch();
         try {
-          const c = mixed[0], probe = `${W}/check.mp4`;
-          await renderClip(browser, `${W}/${c.video}.mp4`, { ...c.clip, end: c.clip.start + 2 }, '', probe, W, 'k');
-          fs.mkdirSync(path.join(ROOT, 'preview'), { recursive: true });
-          ff(['-ss', '1', '-i', probe, '-frames:v', '1', '-vf', 'scale=540:-2', path.join(ROOT, 'preview', 'concert-check.png')]);
+          fs.mkdirSync(path.join(ROOT, 'preview', 'concert'), { recursive: true });
+          // One still per reel (numbered) for the owner to review, and the first reel in full as a sample.
+          const list = HOLD ? mixed : mixed.slice(0, 1);
+          for (const [i, c] of list.entries()) {
+            const probe = `${W}/check-${i}.mp4`;
+            await renderClip(browser, `${W}/${c.video.replace(/[^\w-]/g, '_')}.mp4`.replace(/\/(\d+)\.mp4$/, '/$1.mp4'), { ...c.clip, end: c.clip.start + 2 }, '', probe, W, 'k');
+            ff(['-ss', '1', '-i', probe, '-frames:v', '1', '-vf', 'scale=540:-2', path.join(ROOT, 'preview', 'concert', `c${String(i + 1).padStart(2, '0')}.png`)]);
+          }
+          if (HOLD) {
+            const c = mixed[0];
+            await renderClip(browser, `${W}/${c.video.replace(/[^\w-]/g, '_')}.mp4`, c.clip, '', path.join(ROOT, 'preview', 'concert-sample.mp4'), W, 's');
+          }
         } finally { await browser.close(); }
       }
       return log(`queued ${mixed.length} concert reels`), save();
     }
     if (process.env.CONCERT !== '1') return;
-    const due = st.queue.filter(q => q.at <= Date.now()).slice(0, 1);
+    const due = st.queue.filter(q => !q.hold && q.at && q.at <= Date.now()).slice(0, 1);
     if (!due.length) return;
     const job = due[0];
     st.queue = st.queue.filter(q => q !== job); save();

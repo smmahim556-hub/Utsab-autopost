@@ -2,14 +2,16 @@ name: Utsab TV package clips
 on:
   workflow_dispatch:
     inputs:
-      concert_plan: { type: string, description: 'Concert live video ids to cut into reels (comma separated)', default: '' }
+      concert_plan: { type: string, description: 'Concert live video ids to cut into reels (comma separated; gd:<id> for Drive files)', default: '' }
+      concert_artist: { type: string, description: 'Singer, for news-style headlines', default: '' }
+      concert_hold: { type: string, description: '1 = queue but wait for approval', default: '' }
 concurrency: clips
 permissions:
   contents: write
 jobs:
   run:
     runs-on: ubuntu-24.04
-    timeout-minutes: 50
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
@@ -36,9 +38,12 @@ jobs:
           DRY_RUN: ${{ vars.DRY_RUN || '0' }}
           CONCERT: ${{ vars.CONCERT || '1' }}
           CONCERT_PLAN: ${{ inputs.concert_plan }}
+          CONCERT_ARTIST: ${{ inputs.concert_artist }}
+          CONCERT_HOLD: ${{ inputs.concert_hold }}
+          CONCERT_FOOT: ${{ inputs.concert_artist && 'উৎসব টিভি বিনোদন' || '' }}
       - name: Save state
         if: always()
         run: |
           git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
-          git add state/clips.json state/concert.json preview/concert-check.png 2>/dev/null || true
+          git add state/clips.json state/concert.json preview/concert-check.png preview/concert preview/concert-sample.mp4 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "clips state" && (git push || (git pull --rebase -X theirs origin main && git push)))
