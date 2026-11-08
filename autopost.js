@@ -2653,6 +2653,55 @@ async function quizWinners(q) {
   return names.slice(0, 3);
 }
 // COMMENT_LIKE=1: every COMMENT_EVERY_MIN, the Page likes the new comments on its posts of the last 6 hours, so people get a quick response.
+// Owner's own manual posts on Utsab TV -> the same post on Utsab TV Digital (owner 2026-11-08: "Utsab tv digital e").
+// A post with no `application` was made by hand (ours carry "Utsab Autopost"). Lives are skipped (their recording is huge).
+// state/mirror.json; MIRROR=0 turns it off. The first run only marks the existing posts as seen.
+async function mirrorTick() {
+  if (process.env.MIRROR === '0' || DRY_RUN) return;
+  const file = path.join(__dirname, 'state', 'mirror.json');
+  let st = {}; try { st = JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
+  if (Date.now() < (st.lastAt || 0) + 4 * 60e3) return;
+  st.lastAt = Date.now();
+  const save = () => { st.seen = (st.seen || []).slice(-300); fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, JSON.stringify(st, null, 2)); };
+  const [main, dig] = await pages();
+  if (!main || !dig) return save();
+  const get = async p => { const r = await (await fetch(`${GRAPH}/${p}${p.includes('?') ? '&' : '?'}access_token=${encodeURIComponent(main.token)}`)).json(); if (r.error) throw new Error(`${p.split('?')[0]}: ${r.error.message}`); return r; };
+  const r = await get(`${main.id}/published_posts?fields=id,created_time,message,status_type,application,attachments{media_type,type,url,media,target,subattachments.limit(20){media_type,media,target}}&limit=15`);
+  const posts = (r.data || []).filter(x => !x.application);
+  if (!st.seen) { st.seen = posts.map(x => x.id); event(`mirror: first run, ${posts.length} manual posts marked seen`); return save(); }
+  for (const x of posts.reverse()) {
+    if (st.seen.includes(x.id) || Date.now() - Date.parse(x.created_time) > 6 * 3600e3) continue;
+    st.seen.push(x.id); save();
+    const a = (x.attachments?.data || [])[0] || {}, msg = x.message || '';
+    try {
+      let id;
+      if (a.media_type === 'video') {
+        const v = await get(`${a.target?.id}?fields=source,live_status,title,description`);
+        if (v.live_status || /LIVE/i.test(v.title || '') || /^🔴/.test(msg)) { event(`mirror: skip live ${x.id}`); continue; }
+        if (!v.source) throw new Error('no video source');
+        const f = new FormData(); f.append('file_url', v.source); f.append('description', msg); if (v.title) f.append('title', v.title); f.append('access_token', dig.token);
+        id = (await graph(`${dig.id}/videos`, f)).id;
+      } else if (a.media_type === 'album' || (a.subattachments?.data || []).length > 1) {
+        const media = [];
+        for (const sub of (a.subattachments?.data || []).filter(s => s.media?.image?.src)) {
+          const f = new FormData(); f.append('url', sub.media.image.src); f.append('published', 'false'); f.append('access_token', dig.token);
+          media.push((await graph(`${dig.id}/photos`, f)).id);
+        }
+        const f = new FormData(); f.append('message', msg); media.forEach((m, i) => f.append(`attached_media[${i}]`, JSON.stringify({ media_fbid: m }))); f.append('access_token', dig.token);
+        id = (await graph(`${dig.id}/feed`, f)).id;
+      } else if (a.media_type === 'photo' && a.media?.image?.src) {
+        const f = new FormData(); f.append('url', a.media.image.src); f.append('caption', msg); f.append('access_token', dig.token);
+        id = (await graph(`${dig.id}/photos`, f)).post_id;
+      } else if (msg || a.url) {
+        const f = new FormData(); if (msg) f.append('message', msg); if (a.type === 'share' && a.url) f.append('link', a.url); f.append('access_token', dig.token);
+        id = (await graph(`${dig.id}/feed`, f)).id;
+      } else continue;
+      event(`mirror: ${x.id} (${a.media_type || 'text'}) -> Digital ${id}`);
+    } catch (e) { event(`mirror ${x.id} FAILED: ${e.message}`); }
+  }
+  save();
+}
+
 async function commentTick() {
   if (process.env.COMMENT_LIKE !== '1' || DRY_RUN) return;
   const file = path.join(__dirname, 'state', 'comments.json');
@@ -3020,6 +3069,7 @@ async function albumTick() {
   await extrasTick().catch(e => event(`extras FAILED: ${e.message}`));
   await albumTick().catch(e => event(`album FAILED: ${e.message}`));
   await commentTick().catch(e => event(`comments FAILED: ${e.message}`));
+  await mirrorTick().catch(e => event(`mirror FAILED: ${e.message}`));
   // The site sometimes drops connections for a few minutes; try again once, then skip only the news part of this run.
   const links = await homepageLinks().catch(() => new Promise(r => setTimeout(r, 10000)).then(homepageLinks)).catch(e => null);
   if (!links) return log('homepage unreachable, news check skipped this run');
