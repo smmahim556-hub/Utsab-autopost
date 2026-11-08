@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-08T04:51:45.448Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"28977513201903671\"}"
-  },
-  {
-    "at": "2026-11-08T04:52:58.630Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148938235140193 (https://utsabtv.com/ayub-bachchu-death-anniversary-rupali-guitar-8-year)"
-  },
-  {
     "at": "2026-11-08T04:53:04.446Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1159725173383937\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-08T07:01:09.609Z",
     "text": "mirror: 872606492607357_122148948381140193 (video) -> Digital 1062058546859628"
+  },
+  {
+    "at": "2026-11-08T07:03:34.270Z",
+    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148948873140193\"}"
+  },
+  {
+    "at": "2026-11-08T07:03:40.775Z",
+    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122126244729459930\"}"
   }
 ]
