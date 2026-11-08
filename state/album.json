@@ -31,7 +31,8 @@
     "https://utsabtv.com/prime-minister-joins-parade-national-revolution-solidarity-day",
     "https://utsabtv.com/india-situation-could-be-worse-than-bangladesh-nepal-jharkhand-minister-irfan-ansari",
     "https://utsabtv.com/gadi-eisenkot-mandate-form-government-israel-netanyahu",
-    "https://utsabtv.com/33-platoon-bgb-deployed-industrial-areas-dhaka-gazipur-narayanganj"
+    "https://utsabtv.com/33-platoon-bgb-deployed-industrial-areas-dhaka-gazipur-narayanganj",
+    "https://utsabtv.com/bnp-factions-clash-fatickhari-two-injured-road-blockade"
   ],
   "date": "2026-11-08",
   "done": {
@@ -42,11 +43,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/gadi-eisenkot-mandate-form-government-israel-netanyahu",
-    "960": "https://utsabtv.com/33-platoon-bgb-deployed-industrial-areas-dhaka-gazipur-narayanganj"
+    "960": "https://utsabtv.com/33-platoon-bgb-deployed-industrial-areas-dhaka-gazipur-narayanganj",
+    "1200": "https://utsabtv.com/bnp-factions-clash-fatickhari-two-injured-road-blockade"
   },
   "failedAt": 1793700193463
 }
