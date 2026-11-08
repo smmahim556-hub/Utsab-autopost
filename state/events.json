@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-08T08:21:29.449Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1988635699177324\"}"
-  },
-  {
-    "at": "2026-11-08T08:35:15.843Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-08T08:50:01.785Z",
-    "text": "mirror: 872606492607357_122148958695140193 (video) -> Digital 1804265747284000"
-  },
-  {
-    "at": "2026-11-08T08:52:18.545Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148960177140193 ()"
-  },
-  {
     "at": "2026-11-08T08:52:26.604Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2653125788452840\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-08T09:55:35.346Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1145626061249963\"}"
+  },
+  {
+    "at": "2026-11-08T10:00:05.163Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122148966711140193 (https://utsabtv.com/eni-border-bgb-seizes-ganja-scaf-syrup-indian-sarees)"
+  },
+  {
+    "at": "2026-11-08T10:00:12.321Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"4353723768259800\"}"
+  },
+  {
+    "at": "2026-11-08T10:00:19.731Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126274711459930 (https://utsabtv.com/eni-border-bgb-seizes-ganja-scaf-syrup-indian-sarees)"
+  },
+  {
+    "at": "2026-11-08T10:00:27.352Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2040036709990204\"}"
   }
 ]
