@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-10-28T05:29:54.469Z",
-    "text": "run failed: missing secret YT_CLIENT_ID"
-  },
-  {
     "at": "2026-10-28T06:15:19.092Z",
     "text": "run failed: missing secret YT_CLIENT_ID"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-08T16:41:20.642Z",
     "text": "failed hbJYrdtyRRc (try 2/3): download failed: WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one WARNING: [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing ERROR: [youtube] hbJYrdtyRRc: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pas"
+  },
+  {
+    "at": "2026-11-08T17:21:31.020Z",
+    "text": "failed hbJYrdtyRRc (try 3/3): download failed: WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one WARNING: [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing ERROR: [youtube] hbJYrdtyRRc: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pas"
   }
 ]
