@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-08T04:02:42.889Z",
-    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122148933057140193\"}"
-  },
-  {
-    "at": "2026-11-08T04:02:50.268Z",
-    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122126221329459930\"}"
-  },
-  {
     "at": "2026-11-08T04:27:54.558Z",
     "text": "posted to Page 872606492607357: 872606492607357_122148935847140193 (https://utsabtv.com/bnp-factions-clash-fatickhari-two-injured-road-blockade)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-08T05:44:54.570Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1872190700885800\"}"
+  },
+  {
+    "at": "2026-11-08T06:01:46.493Z",
+    "text": "album on Page 872606492607357: 872606492607357_122148943125140193 https://utsabtv.com/gadi-eisenkot-mandate-form-government-israel-netanyahu"
+  },
+  {
+    "at": "2026-11-08T06:01:54.714Z",
+    "text": "album on Page 1276101408920358: 1276101408920358_122126237223459930 https://utsabtv.com/gadi-eisenkot-mandate-form-government-israel-netanyahu"
   }
 ]
