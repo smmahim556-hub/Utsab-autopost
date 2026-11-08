@@ -126,7 +126,7 @@ async function download(video, token) {
     try {
       const out = `${W}/reel-${job.video}-${Math.round(job.clip.start)}.mp4`;
       await renderClip(browser, file, job.clip, '', out, W, 'r');
-      const desc = `${job.clip.hook}\n\nউৎসব টিভির কনসার্ট লাইভ থেকে। পুরো কনসার্ট দেখুন প্রথম কমেন্টের লিংকে।\n\n#utsabtv #কনসার্ট #বিনোদন #গান`;
+      const desc = `${job.clip.hook}\n\n${job.url ? 'উৎসব টিভির কনসার্ট লাইভ থেকে। পুরো কনসার্ট দেখুন প্রথম কমেন্টের লিংকে।' : 'উৎসব টিভির কনসার্ট থেকে।'}\n\n#utsabtv #কনসার্ট #বিনোদন #গান`;
       const ids = {};
       for (const page of pages) {
         try {
