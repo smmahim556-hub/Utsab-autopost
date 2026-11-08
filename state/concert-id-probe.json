@@ -1,0 +1,649 @@
+{
+  "gd:1PUyEz7-fUpIXJfZ298bh_YHlwQVZZrNv": {
+    "secs": 58,
+    "clips": [
+      [
+        21,
+        58
+      ]
+    ],
+    "songs": [
+      {
+        "from": 22,
+        "to": 58,
+        "lines": [
+          "Ami akash hote pari",
+          "Ami batas hote pari",
+          "Ami nodi hote pari",
+          "Ami sagor hote pari"
+        ],
+        "title": "Ami Akash Hote Pari",
+        "artist": "Souls",
+        "confidence": "high"
+      }
+    ]
+  },
+  "gd:1cAOjkkWRfeFr8PqJ1iVbPYaeoSeZy0T2": {
+    "secs": 144,
+    "clips": [
+      [
+        0,
+        30
+      ],
+      [
+        31,
+        57
+      ]
+    ],
+    "songs": [
+      {
+        "from": 0,
+        "to": 145,
+        "lines": [
+          "দেখা দিলি আমার পাশে, আমি তোরে ভালোবাসি",
+          "তুই আমারে ভুলিয়া দূরে কেমনে সইলি",
+          "মায়াতে মায়া লাগাইয়া, আমায় কেন কাঁদাইলি"
+        ],
+        "title": "মায়াতে মায়া লাগাইয়া",
+        "artist": "লোকসঙ্গীত",
+        "confidence": "high"
+      }
+    ]
+  },
+  "gd:17-SCQ7-hb_2afydkIujskooOlIl13_K_": {
+    "secs": 188,
+    "clips": [
+      [
+        28,
+        76
+      ]
+    ],
+    "songs": [
+      {
+        "from": 15,
+        "to": 130,
+        "lines": [
+          "Ami loho proman",
+          "Ami loho proman",
+          "Ei hridoy kholo",
+          "Poth harano shishur moto",
+          "Hridoy amar nisharobete",
+          "Hridoy amar nisharobete"
+        ],
+        "title": "Ami Loho Proman",
+        "artist": "Mainul Ahsan Noble",
+        "confidence": "high"
+      },
+      {
+        "from": 142,
+        "to": 210,
+        "lines": [
+          "Kajol bhromor",
+          "Kajol bhromor",
+          "Ami morile",
+          "Jeno tomar",
+          "Buker majhe thaki"
+        ],
+        "title": "Kajol Bhromor",
+        "artist": "Mainul Ahsan Noble",
+        "confidence": "high"
+      }
+    ]
+  },
+  "gd:1BSXW8loKMvLw_dNfHOzHol58M8dbsf1J": {
+    "secs": 313,
+    "clips": [
+      [
+        18,
+        60
+      ]
+    ],
+    "songs": [
+      {
+        "from": 6,
+        "to": 17,
+        "lines": [
+          "ও ভুবনেরি",
+          "সাগর পাড়ের",
+          "হাতে সইয়ে",
+          "চলো মোদের",
+          "নেওয়া"
+        ],
+        "title": "ও ভুবনেরি",
+        "artist": "Noble",
+        "confidence": "high"
+      },
+      {
+        "from": 21,
+        "to": 48,
+        "lines": [
+          "তুমি কেন বোঝ না",
+          "তোমায় ছাড়া",
+          "আমি অসহায়",
+          "আমার সবটুকু",
+          "ভালোবাসা",
+          "তোমায় দিলাম"
+        ],
+        "title": "তুমি কেন বোঝ না",
+        "artist": "Noble",
+        "confidence": "high"
+      },
+      {
+        "from": 117,
+        "to": 144,
+        "lines": [
+          "ওগো রাধা",
+          "তোমায় কি বলবো",
+          "তুমি কেন গো",
+          "ফিরে",
+          "হাসো না আর",
+          "তুমি কেন গো",
+          "ফিরে"
+        ],
+        "title": "ওগো রাধা",
+        "artist": "Noble",
+        "confidence": "high"
+      },
+      {
+        "from": 145,
+        "to": 212,
+        "lines": [
+          "তুমি কেন বোঝ না",
+          "তোমায় ছাড়া",
+          "আমি অসহায়",
+          "আমার সবটুকু",
+          "ভালোবাসা",
+          "তোমায় দিলাম"
+        ],
+        "title": "তুমি কেন বোঝ না",
+        "artist": "Noble",
+        "confidence": "high"
+      },
+      {
+        "from": 241,
+        "to": 308,
+        "lines": [
+          "ওগো রাধা",
+          "তোমায় কি বলবো",
+          "তুমি কেন গো",
+          "ফিরে",
+          "হাসো না আর",
+          "তুমি কেন গো",
+          "ফিরে"
+        ],
+        "title": "ওগো রাধা",
+        "artist": "Noble",
+        "confidence": "high"
+      },
+      {
+        "from": 309,
+        "to": 337,
+        "lines": [
+          "তুমি কেন বোঝ না",
+          "তোমায় ছাড়া",
+          "আমি অসহায়",
+          "আমার সবটুকু",
+          "ভালোবাসা",
+          "তোমায় দিলাম"
+        ],
+        "title": "তুমি কেন বোঝ না",
+        "artist": "Noble",
+        "confidence": "high"
+      },
+      {
+        "from": 341,
+        "to": 409,
+        "lines": [
+          "এই তুমি কেন",
+          "আমায় বোঝো না",
+          "এই আমি কেন",
+          "তোমায় কি বলবো",
+          "এমন করে",
+          "আমায় কেন",
+          "ফিরে"
+        ],
+        "title": "তুমি কেন বোঝ না",
+        "artist": "Noble",
+        "confidence": "high"
+      },
+      {
+        "from": 410,
+        "to": 421,
+        "lines": [
+          "ও ভুবনেরি",
+          "সাগর পাড়ের",
+          "হাতে সইয়ে",
+          "চলো মোদের",
+          "নেওয়া"
+        ],
+        "title": "ও ভুবনেরি",
+        "artist": "Noble",
+        "confidence": "high"
+      },
+      {
+        "from": 424,
+        "to": 512,
+        "lines": [
+          "তুমি কেন বোঝ না",
+          "তোমায় ছাড়া",
+          "আমি অসহায়",
+          "আমার সবটুকু",
+          "ভালোবাসা",
+          "তোমায় দিলাম"
+        ],
+        "title": "তুমি কেন বোঝ না",
+        "artist": "Noble",
+        "confidence": "high"
+      }
+    ]
+  },
+  "gd:1v5yYyzoxv2_lHdSCOTcDMizIDeCllji7": {
+    "secs": 258,
+    "clips": [
+      [
+        15,
+        55
+      ],
+      [
+        115,
+        160
+      ]
+    ],
+    "songs": [
+      {
+        "from": 0,
+        "to": 258,
+        "lines": [
+          "আমার অন্য কোথাও যাওয়ার নেই",
+          "আমার অন্য কিছু হবার নেই",
+          "বাবা কতদিন কতদিন দেখি না তোমায়",
+          "কেউ বলে না তোমার মতো খোকন সোনা"
+        ],
+        "title": "বাবা (বাবা কতদিন দেখি না তোমায়)",
+        "artist": "জেমস (নগর বাউল)",
+        "confidence": "high"
+      }
+    ]
+  },
+  "gd:1MtzyaZN4Zx6e1CQDmUd3TeNk7BaFbd-H": {
+    "secs": 184,
+    "clips": [
+      [
+        9,
+        40
+      ],
+      [
+        52,
+        100
+      ]
+    ],
+    "songs": [
+      {
+        "from": 0,
+        "to": 142,
+        "lines": [
+          "O Pita, ei shacharachore",
+          "Debo na sukher mohona",
+          "Dekhibe amare bhalobasha",
+          "Hoyeche kokhon jeno pothor",
+          "Pothorer som"
+        ],
+        "title": "Pothorer Som",
+        "artist": "Warfaze",
+        "confidence": "high"
+      },
+      {
+        "from": 212,
+        "to": 305,
+        "lines": [
+          "Lal abhire, ei amar choyay hridoy protima",
+          "O kothay harale bolo ogo tumi",
+          "Dekhibe amare bhalobasha",
+          "Hoyeche kokhon jeno pothor",
+          "Pothorer som"
+        ],
+        "title": "Pothorer Som",
+        "artist": "Warfaze",
+        "confidence": "high"
+      }
+    ]
+  },
+  "gd:1UIUzvOvYcLhXzlnAXo2AjonrbFehAync": {
+    "secs": 241,
+    "clips": [
+      [
+        17,
+        66
+      ]
+    ],
+    "songs": [
+      {
+        "from": 17,
+        "to": 43,
+        "lines": [
+          "যদি তুমি আমাকে বলো",
+          "তবে আমি সব ছেড়ে দেবো",
+          "তুমি যদি আমাকে বলো",
+          "তবে আমি সব ছেড়ে দেবো"
+        ],
+        "title": "যদি তুমি আমাকে বলো",
+        "artist": "নোবেল",
+        "confidence": "high"
+      },
+      {
+        "from": 44,
+        "to": 108,
+        "lines": [
+          "আরে আমি আমি জানি জানি",
+          "আরে আমি জানি জানি",
+          "তুমি যে আমার মনেরও",
+          "আরে আমি আমি জানি জানি",
+          "আরে আমি জানি জানি"
+        ],
+        "title": "আমি জানি জানি",
+        "artist": "নোবেল",
+        "confidence": "high"
+      },
+      {
+        "from": 109,
+        "to": 140,
+        "lines": [
+          "আরে আমি আমি জানি জানি",
+          "ও আমারই চোখে আমি দেখি",
+          "তুমি যে আমার মনেরও",
+          "আরে আমি আমি জানি জানি"
+        ],
+        "title": "আমি জানি জানি",
+        "artist": "নোবেল",
+        "confidence": "high"
+      },
+      {
+        "from": 224,
+        "to": 260,
+        "lines": [
+          "যদি তুমি আমাকে বলো",
+          "জীবনে পরে থাকি",
+          "তবুও হেরে যেতে দেবো না",
+          "যদি বেঁচে থাকতে পারি",
+          "সেখানে বাধা থাকি",
+          "যেন আমি ফেরেশতা দেবো না"
+        ],
+        "title": "যদি তুমি আমাকে বলো",
+        "artist": "নোবেল",
+        "confidence": "high"
+      },
+      {
+        "from": 261,
+        "to": 314,
+        "lines": [
+          "যদি তুমি আমাকে বলো",
+          "জীবনে পরে থাকি",
+          "তবুও হেরে যেতে দেবো না",
+          "যদি বেঁচে থাকতে পারি",
+          "সেখানে বাধা থাকি",
+          "যেন আমি ফেরেশতা দেবো না"
+        ],
+        "title": "যদি তুমি আমাকে বলো",
+        "artist": "নোবেল",
+        "confidence": "high"
+      },
+      {
+        "from": 315,
+        "to": 344,
+        "lines": [
+          "আরে আমি আমি জানি জানি",
+          "ও আমারই চোখে আমি দেখি",
+          "তুমি যে আমার মনেরও",
+          "আরে আমি আমি জানি জানি"
+        ],
+        "title": "আমি জানি জানি",
+        "artist": "নোবেল",
+        "confidence": "high"
+      }
+    ]
+  },
+  "gd:1aoWeXGWjh5XuSpvh906I2i7THdrHG7Ed": {
+    "secs": 231,
+    "clips": [
+      [
+        42,
+        82
+      ],
+      [
+        124,
+        159
+      ],
+      [
+        201,
+        231
+      ]
+    ],
+    "songs": [
+      {
+        "from": 41,
+        "to": 127,
+        "lines": [
+          "পৃথিবীটা এখন আর আগের মতো নেই",
+          "মানুষের ভালোবাসা এখন আর আগের মতো নেই",
+          "পৃথিবীটা এখন আর আগের মতো নেই",
+          "মানুষের ভালোবাসা এখন আর আগের মতো নেই"
+        ],
+        "title": "পৃথিবীটা এখন আর আগের মতো নেই",
+        "artist": "নোবেল",
+        "confidence": "high"
+      },
+      {
+        "from": 128,
+        "to": 157,
+        "lines": [
+          "যেদিন থেকে তুমি",
+          "আমায় ছেড়ে চলে গেলে",
+          "আমায় ছেড়ে চলে গেলে",
+          "দূরে অনেক দূরে"
+        ],
+        "title": "যেদিন থেকে তুমি",
+        "artist": "নোবেল",
+        "confidence": "high"
+      },
+      {
+        "from": 201,
+        "to": 231,
+        "lines": [
+          "শাড়ি শাড়ি নীল শাড়ি",
+          "নীল শাড়ি পরে তুমি",
+          "যেদিন থেকে তুমি",
+          "আমায় ছেড়ে চলে গেলে"
+        ],
+        "title": "নীল শাড়ি",
+        "artist": "নোবেল",
+        "confidence": "high"
+      },
+      {
+        "from": 248,
+        "to": 345,
+        "lines": [
+          "আমারই নামটা মনে রেখো",
+          "ভালোবাসার এই দিনে",
+          "আমারই নামটা মনে রেখো",
+          "ভালোবাসার এই দিনে"
+        ],
+        "title": "আমারই নামটা মনে রেখো",
+        "artist": "নোবেল",
+        "confidence": "high"
+      }
+    ]
+  },
+  "gd:1nmHHBgEyyt6Hu60MNo-c53f7OUh9V05-": {
+    "secs": 16,
+    "clips": [
+      [
+        0,
+        16
+      ]
+    ],
+    "songs": [
+      {
+        "from": 0,
+        "to": 15,
+        "lines": [
+          "O shiyar shathi",
+          "O shiyar shathi"
+        ],
+        "title": "O Shiyar Shathi",
+        "artist": "Mainul Ahsan Noble",
+        "confidence": "high"
+      }
+    ]
+  },
+  "gd:1ZMfwZ1m1OGjRP5kJrjYLuSUd-bD8gf6B": {
+    "secs": 133,
+    "clips": [
+      [
+        28,
+        58
+      ],
+      [
+        100,
+        130
+      ]
+    ],
+    "songs": [
+      {
+        "from": 0,
+        "to": 52,
+        "lines": [
+          "ওরে আমার আকাশ ভরা তারা",
+          "ওরে আমার আকাশ ভরা তারা",
+          "ওরে আমার আকাশ ভরা তারা",
+          "ওরে আমার আকাশ ভরা তারা",
+          "ওরে আমার আকাশ ভরা তারা",
+          "ওরে আমার আকাশ ভরা তারা"
+        ],
+        "title": "Akash Bhora Tara",
+        "artist": "Rabindranath Tagore",
+        "confidence": "high"
+      },
+      {
+        "from": 53,
+        "to": 130,
+        "lines": [
+          "ওরে আমার আকাশ ভরা তারা",
+          "ওরে আমার আকাশ ভরা তারা",
+          "ওরে আমার আকাশ ভরা তারা",
+          "ওরে আমার আকাশ ভরা তারা",
+          "ওরে আমার আকাশ ভরা তারা",
+          "ওরে আমার আকাশ ভরা তারা"
+        ],
+        "title": "Akash Bhora Tara",
+        "artist": "Rabindranath Tagore",
+        "confidence": "high"
+      },
+      {
+        "from": 131,
+        "to": 208,
+        "lines": [
+          "মন শুধু মন ছুঁয়েছে",
+          "মন শুধু মন ছুঁয়েছে",
+          "মন শুধু মন ছুঁয়েছে",
+          "মন শুধু মন ছুঁয়েছে",
+          "মন শুধু মন ছুঁয়েছে",
+          "মন শুধু মন ছুঁয়েছে"
+        ],
+        "title": "Mon Shudhu Mon Chuyechhe",
+        "artist": "Souls",
+        "confidence": "high"
+      }
+    ]
+  },
+  "gd:1LieV0yq3BcLgMauSMZ4eaET9YUFbje9z": {
+    "secs": 196,
+    "clips": [
+      [
+        12,
+        45
+      ]
+    ],
+    "songs": [
+      {
+        "from": 0,
+        "to": 22,
+        "lines": [
+          "Abhi mujh mein kahin",
+          "Baaki thodi si hai zindagi",
+          "Jagi dhadkan nayi",
+          "Jaana zinda hoon main toh abhi"
+        ],
+        "title": "Abhi Mujh Mein Kahin",
+        "artist": "Sonu Nigam",
+        "confidence": "high"
+      },
+      {
+        "from": 23,
+        "to": 149,
+        "lines": [
+          "জানালা... ভেদ করে...",
+          "উঠে আসে... ভোরের প্রদীপ...",
+          "বসে থাকি... পথ চেয়ে...",
+          "বসে থাকি... পথ চেয়ে..."
+        ],
+        "title": "Janala",
+        "artist": "Shironamhin",
+        "confidence": "high"
+      },
+      {
+        "from": 150,
+        "to": 248,
+        "lines": [
+          "Abhi mujh mein kahin",
+          "Baaki thodi si hai zindagi",
+          "Jagi dhadkan nayi",
+          "Jaana zinda hoon main toh abhi",
+          "Kuch aisi lagan",
+          "Is lamhe mein hai"
+        ],
+        "title": "Abhi Mujh Mein Kahin",
+        "artist": "Sonu Nigam",
+        "confidence": "high"
+      },
+      {
+        "from": 249,
+        "to": 317,
+        "lines": [
+          "জানালা... ভেদ করে...",
+          "উঠে আসে... ভোরের প্রদীপ...",
+          "বসে থাকি... পথ চেয়ে...",
+          "বসে থাকি... পথ চেয়ে..."
+        ],
+        "title": "Janala",
+        "artist": "Shironamhin",
+        "confidence": "high"
+      }
+    ]
+  },
+  "gd:1aMhJLyPF27plrEhjtzJkSJ26mhv6q5CU": {
+    "secs": 61,
+    "clips": [
+      [
+        9,
+        59
+      ]
+    ],
+    "songs": [
+      {
+        "from": 10,
+        "to": 59,
+        "lines": [
+          "ওরে শোন ওরে বাউলা রে",
+          "পাগল যে করলি",
+          "ওরে আমারে",
+          "ওরে তুই যে আমার",
+          "আমি",
+          "ওরে তুই যে আমার"
+        ],
+        "title": "ওরে শোন ওরে বাউলা রে",
+        "artist": "মমতাজ বেগম",
+        "confidence": "high"
+      }
+    ]
+  }
+}
