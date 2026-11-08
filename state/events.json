@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-08T14:30:34.910Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122148997053140193 (https://utsabtv.com/33-platoon-bgb-deployed-industrial-areas-dhaka-gazipur-narayanganj)"
-  },
-  {
-    "at": "2026-11-08T14:30:41.292Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1152948417673959\"}"
-  },
-  {
     "at": "2026-11-08T14:30:47.593Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122126326833459930 (https://utsabtv.com/33-platoon-bgb-deployed-industrial-areas-dhaka-gazipur-narayanganj)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-08T16:00:46.536Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1565224598739277\"}"
+  },
+  {
+    "at": "2026-11-08T16:04:23.075Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149006989140193\"}"
+  },
+  {
+    "at": "2026-11-08T16:04:31.012Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122126340753459930\"}"
   }
 ]
