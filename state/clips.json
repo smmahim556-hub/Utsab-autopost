@@ -8,7 +8,8 @@
     "4531857443747303",
     "2391727891571870",
     "1116883407609511",
-    "1121181413984647"
+    "1121181413984647",
+    "1112793818315964"
   ],
   "log": [
     "2026-10-29T23:38:49.847Z first run: 2 packages marked seen",
@@ -36,7 +37,73 @@
     "2026-11-07T17:34:05.933Z clip reel on 872606492607357: 988215350570135 from 1121181413984647",
     "2026-11-07T17:34:06.050Z comment 988215350570135: Graph 988215350570135/comments: {\"message\":\"Unsupported post request. Object with ID '988215350570135' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100,",
     "2026-11-07T17:34:12.535Z clip reel on 1276101408920358: 1909408446891475 from 1121181413984647",
-    "2026-11-07T17:34:12.657Z comment 1909408446891475: Graph 1909408446891475/comments: {\"message\":\"Unsupported post request. Object with ID '1909408446891475' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100"
+    "2026-11-07T17:34:12.657Z comment 1909408446891475: Graph 1909408446891475/comments: {\"message\":\"Unsupported post request. Object with ID '1909408446891475' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
+    "2026-11-08T11:02:26.090Z clip reel on 872606492607357: 1144417724618490 from 1112793818315964",
+    "2026-11-08T11:02:37.211Z clip reel on 1276101408920358: 1803398954254568 from 1112793818315964"
   ],
-  "pending": []
+  "pending": [
+    {
+      "video": "1112793818315964",
+      "clip": {
+        "start": 89.5,
+        "end": 113.5,
+        "hook": "রিলস দেখার চাকরিতে আবেদন হাজার হাজার মানুষের",
+        "subs": [
+          {
+            "s": 0,
+            "e": 2.45,
+            "t": "৪ নভেম্বর প্রকাশিত নিয়োগের ভিডিওটি"
+          },
+          {
+            "s": 2.5,
+            "e": 4.95,
+            "t": "সামাজিক যোগাযোগ মাধ্যমে দ্রুত ছড়িয়ে পড়ে।"
+          },
+          {
+            "s": 5,
+            "e": 6.45,
+            "t": "প্রতিষ্ঠানটির দাবি,"
+          },
+          {
+            "s": 6.5,
+            "e": 8.95,
+            "t": "এরই মধ্যে ১১ হাজারের বেশি মানুষ"
+          },
+          {
+            "s": 9,
+            "e": 10.95,
+            "t": "আবেদন ফর্ম চেয়েছেন।"
+          },
+          {
+            "s": 11,
+            "e": 13.95,
+            "t": "ভিডিওটিও পেয়েছে ৩ লাখের বেশি ভিউ।"
+          },
+          {
+            "s": 14,
+            "e": 16.45,
+            "t": "কেউ বলছেন এটাই স্বপ্নের চাকরি!"
+          },
+          {
+            "s": 16.5,
+            "e": 18.45,
+            "t": "আবার কেউ মজা করে বলছেন,"
+          },
+          {
+            "s": 18.5,
+            "e": 20.95,
+            "t": "এতদিন বিনামূল্যে যে কাজ করেছেন,"
+          },
+          {
+            "s": 21,
+            "e": 24,
+            "t": "এবার সেই কাজের জন্যই বেতন পাওয়া যাবে।"
+          }
+        ]
+      },
+      "url": "https://www.facebook.com/reel/1112793818315964/",
+      "title": "রিলস স্ক্রল করেই এবার চাকরি! সারাদিন Instagram দেখার জন্যই কর্মী খুঁজছে ভারতের এক প্রতিষ্ঠান!",
+      "at": 1794146520395
+    }
+  ]
 }
