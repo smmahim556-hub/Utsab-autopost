@@ -112,19 +112,16 @@ async function shotPlan(video, start, len, work, tag, focus) {
     if (last && t <= last.t + 0.3) { Object.assign(last, m, { k0: k, k1: k }); continue; }
     shots.push({ t, shot: m.shot, wide: m.wide, k0: k, k1: k, x: 0.5, y: 0.3 });
   }
-  // 2) One sharp frame per shot (and per camera angle, reused) for where the person to follow is.
-  const seen = {};
+  // 2) One sharp frame per shot for where the person to follow is (labels can be wrong, so no reuse).
   for (const [i, sh] of shots.entries()) {
-    if (seen[sh.shot]) { Object.assign(sh, seen[sh.shot]); continue; }
     const jpg = path.join(work, `${tag}-shot${i}.jpg`);
     ff(['-ss', String(start + (sh.k0 + sh.k1) / 2), '-i', video, '-frames:v', '1', '-vf', 'scale=960:-2', jpg]);
     try {
       const j = await gemini([{ inline_data: { mime_type: 'image/jpeg', data: fs.readFileSync(jpg).toString('base64') } }, { text:
 `A frame from a video podcast. Find ${focus || 'the main speaker'}; if that person is not in the frame, use the most prominent person. Give the centre of that person's face as fractions of the frame width and height (0-1), and how many people are visible. JSON only: {"x":0.5,"y":0.3,"people":1}` }]);
       const a = Array.isArray(j) ? j[0] : j;
-      if (a && Number(a.x) >= 0 && Number(a.x) <= 1) seen[sh.shot] = { x: Number(a.x), y: Number(a.y) || 0.3, wide: Number(a.people) >= 2 };
+      if (a && Number(a.x) >= 0 && Number(a.x) <= 1) Object.assign(sh, { x: Number(a.x), y: Number(a.y) || 0.3, wide: Number(a.people) >= 2 });
     } catch (e) { console.log('shot', i, 'gemini failed', e.message); }
-    if (seen[sh.shot]) Object.assign(sh, seen[sh.shot]);
   }
   console.log('shots', JSON.stringify(shots.map(s => [Number(s.t.toFixed(1)), s.shot, s.wide ? 'W' : 'S', s.x, s.y])));
   return shots.length ? shots : [{ t: 0, wide: false, x: 0.5, y: 0.3 }];
