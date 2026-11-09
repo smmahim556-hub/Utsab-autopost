@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-09T05:16:06.414Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1375245631149872\"}"
-  },
-  {
-    "at": "2026-11-09T05:16:09.279Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126472465459930 ()"
-  },
-  {
     "at": "2026-11-09T05:16:16.350Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1172079378727330\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-09T07:01:51.083Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-09T07:04:09.825Z",
+    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149075113140193\"}"
+  },
+  {
+    "at": "2026-11-09T07:04:17.347Z",
+    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122126488149459930\"}"
   }
 ]
