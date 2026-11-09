@@ -147,6 +147,7 @@ async function renderGanbaz(browser, video, clip, outFile, work, tag) {
   // Rounded mask so the picture's own corners do not poke out past the frame's rounded inner edge (owner 2026-11-09).
   const rmask = await overlay(browser, `<div style="position:absolute;inset:0;background:#000"></div><div style="position:absolute;inset:0;border-radius:21px;background:#fff"></div>`, path.join(work, `${tag}-rmask.png`), SQ, SQ);
   const ev = n => Math.max(2, Math.round(n / 2) * 2);
+  const fps = (([a, b]) => a / (b || 1))(execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=r_frame_rate', '-of', 'csv=p=0', video]).toString().trim().split('/').map(Number));
   const pieces = shots.map((p, i) => {
     const t0 = p.t, t1 = i + 1 < shots.length ? shots[i + 1].t : len;
     const S = ev(Math.min(vw, vh * (p.wide ? 0.5 : 0.8)));
@@ -154,7 +155,9 @@ async function renderGanbaz(browser, video, clip, outFile, work, tag) {
     // Keep the source's own corner logo (top right) out of the square by sliding left of it.
     if (x + S > vw * 0.82 && y < vh * 0.2) x = Math.max(0, Math.min(x, vw * 0.82 - S));
     x = Math.round(x); y = Math.round(y);
-    return `[sv${i}]trim=${t0.toFixed(3)}:${t1.toFixed(3)},setpts=PTS-STARTPTS,crop=${S}:${S}:${x}:${y},scale=${SQ}:${SQ}:flags=lanczos,setsar=1[p${i}]`;
+    // Cut by frame number, not time: time rounding put the new crop 1-2 frames after the real cut (owner: frame jolts).
+    const f0 = Math.round(t0 * fps), f1 = Math.round(t1 * fps);
+    return `[sv${i}]trim=start_frame=${f0}${i + 1 < shots.length ? `:end_frame=${f1}` : ''},setpts=PTS-STARTPTS,crop=${S}:${S}:${x}:${y},scale=${SQ}:${SQ}:flags=lanczos,setsar=1[p${i}]`;
   });
   const cropGraph = `[0:v]split=${shots.length}${shots.map((_, i) => `[sv${i}]`).join('')};${pieces.join(';')};${shots.map((_, i) => `[p${i}]`).join('')}concat=n=${shots.length}:v=1:a=0[sq];`;
   const anim = fs.existsSync(LOGO_VIDEO), font = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf';
