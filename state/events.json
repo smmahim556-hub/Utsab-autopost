@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-09T08:01:58.099Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2398256850948550\"}"
-  },
-  {
-    "at": "2026-11-09T08:03:28.218Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-09T08:03:51.011Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149082709140193 (https://utsabtv.com/trump-blames-anti-israel-sentiment-republican-midterm-defeat)"
-  },
-  {
-    "at": "2026-11-09T08:03:59.941Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"29616844258004580\"}"
-  },
-  {
-    "at": "2026-11-09T08:04:09.360Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126498127459930 (https://utsabtv.com/trump-blames-anti-israel-sentiment-republican-midterm-defeat)"
-  },
-  {
-    "at": "2026-11-09T08:04:18.799Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2220671238851713\"}"
-  },
-  {
     "at": "2026-11-09T08:05:20.973Z",
     "text": "mirror: 872606492607357_122149081395140193 (video) -> Digital 3010054772682159"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-09T09:11:03.626Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1477515021108036\"}"
+  },
+  {
+    "at": "2026-11-09T09:16:24.965Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149089651140193 ()"
+  },
+  {
+    "at": "2026-11-09T09:16:31.980Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1903758480794873\"}"
+  },
+  {
+    "at": "2026-11-09T09:16:35.436Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126508459459930 ()"
+  },
+  {
+    "at": "2026-11-09T09:16:40.857Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1768589894261232\"}"
+  },
+  {
+    "at": "2026-11-09T09:16:45.601Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122108258487533116 ()"
+  },
+  {
+    "at": "2026-11-09T09:16:51.301Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1507977407814929\"}"
   }
 ]
