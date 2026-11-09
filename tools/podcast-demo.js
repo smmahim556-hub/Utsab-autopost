@@ -13,9 +13,22 @@ const G = 'https://graph.facebook.com/v26.0', W = '/tmp/pod', ROOT = path.join(_
   const acc = await (await fetch(`${G}/me/accounts?fields=id,access_token&limit=100&access_token=${process.env.FB_USER_TOKEN}`)).json();
   const tok = acc.data.find(a => a.id === process.env.FB_PAGE_ID).access_token;
   const v = await (await fetch(`${G}/${items[0].video}?fields=source&access_token=${tok}`)).json();
-  const file = `${W}/src.mp4`;
-  fs.writeFileSync(file, Buffer.from(await (await fetch(v.source)).arrayBuffer()));
-  console.log('source', execSync(`ffprobe -v error -select_streams v -show_entries stream=width,height -of csv=p=0 ${file}`).toString().trim());
+  const low = `${W}/low.mp4`, file = `${W}/src.mp4`;
+  fs.writeFileSync(low, Buffer.from(await (await fetch(v.source)).arrayBuffer()));
+  const src = process.env.PODCAST_SRC || items[0].src;
+  if (src && src.startsWith('gd:')) execSync(`curl -sSL --retry 3 -o ${file} "https://drive.usercontent.google.com/download?id=${src.slice(3)}&export=download&confirm=t"`, { stdio: 'inherit' });
+  else fs.copyFileSync(low, file);
+  const dur = f => Number(execSync(`ffprobe -v error -show_entries format=duration -of csv=p=0 ${f}`).toString());
+  console.log('source', execSync(`ffprobe -v error -select_streams v -show_entries stream=width,height -of csv=p=0 ${file}`).toString().trim(), 'dur', dur(file), 'fb dur', dur(low));
+  // Offset of the HD file against the FB copy (clip times were planned on the FB copy): audio envelope cross-correlation.
+  const env = (f, ss, t) => { const b = execSync(`ffmpeg -v error -ss ${ss} -t ${t} -i ${f} -ac 1 -ar 8000 -f s16le -`, { maxBuffer: 1e8 }); const a = new Int16Array(b.buffer, b.byteOffset, b.length >> 1), e = []; for (let i = 0; i + 80 <= a.length; i += 80) { let m = 0; for (let j = i; j < i + 80; j++) m += Math.abs(a[j]); e.push(m / 80); } return e; };
+  const ref = env(low, 900, 60), big = env(file, 780, 300); let best = -1e18, bi = 0;
+  const mr = ref.reduce((x, y) => x + y, 0) / ref.length;
+  for (let k = 0; k + ref.length <= big.length; k++) { let s = 0, mb = 0; for (let j = 0; j < ref.length; j++) mb += big[k + j]; mb /= ref.length; for (let j = 0; j < ref.length; j++) s += (ref[j] - mr) * (big[k + j] - mb); if (s > best) { best = s; bi = k; } }
+  const off = Math.round((780 + bi / 100 - 900) * 100) / 100;
+  console.log('OFFSET', off); fs.writeFileSync(path.join(ROOT, 'state', 'podcast-offset-probe.json'), JSON.stringify({ off, hd: dur(file), fb: dur(low) }));
+  const sh = c => off ? { ...c, start: c.start + off, end: c.end + off, hs: c.hs + off, he: c.he + off, pre: c.pre && { s: c.pre.s + off, e: c.pre.e + off } } : c;
+  items.forEach(it => { it.clip = sh(it.clip); });
   const b = await chromium.launch();
   try {
     const n = Number(process.env.PODCAST_DEMO || 24) - 1;

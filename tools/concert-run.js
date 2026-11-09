@@ -126,7 +126,7 @@ async function download(video, token) {
     if (!due.length) return;
     const job = due[0];
     st.queue = st.queue.filter(q => q !== job); save();
-    const { file } = await download(job.video, main.token);
+    const { file } = await download(job.src || job.video, main.token);  // src: HD original (Drive) when the FB copy is low-res
     const browser = await chromium.launch();
     try {
       const out = `${W}/reel-${job.video}-${Math.round(job.clip.start)}.mp4`;
