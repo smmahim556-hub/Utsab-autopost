@@ -3,13 +3,15 @@
     "ep01-archimedes",
     "ep02-columbus",
     "ep03-copernicus",
-    "ep04-galileo"
+    "ep04-galileo",
+    "ep05-harvey"
   ],
   "slots": [
     "2026-11-07-eve",
     "2026-11-08-noon",
     "2026-11-08-eve",
-    "2026-11-09-noon"
+    "2026-11-09-noon",
+    "2026-11-09-eve"
   ],
   "log": [
     "2026-11-07T10:13:06.001Z rendered ep01-archimedes 59.0s",
@@ -28,7 +30,11 @@
     "2026-11-09T09:03:26.161Z golpo reel 1550237140165391 ep04-galileo",
     "2026-11-09T09:03:35.866Z reel 2348702042631397 on 872606492607357",
     "2026-11-09T09:03:43.874Z comment 1276101408920358: Graph 4712446919079587/comments: {\"message\":\"Unsupported post request. Object with ID '4712446919079587' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
-    "2026-11-09T09:03:43.874Z reel 4712446919079587 on 1276101408920358"
+    "2026-11-09T09:03:43.874Z reel 4712446919079587 on 1276101408920358",
+    "2026-11-09T13:34:32.267Z rendered ep05-harvey 84.5s",
+    "2026-11-09T13:34:41.057Z golpo reel 1653741259877999 ep05-harvey",
+    "2026-11-09T13:35:53.261Z reel 2975077112833429 on 872606492607357",
+    "2026-11-09T13:36:04.584Z reel 1433282221748557 on 1276101408920358"
   ],
   "reels": {
     "ep01-archimedes": {
@@ -50,6 +56,11 @@
       "1417588244778601": "1550237140165391",
       "872606492607357": "2348702042631397",
       "1276101408920358": "4712446919079587"
+    },
+    "ep05-harvey": {
+      "1417588244778601": "1653741259877999",
+      "872606492607357": "2975077112833429",
+      "1276101408920358": "1433282221748557"
     }
   },
   "lastDate": "2026-11-09"
