@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-09T05:39:58.648Z",
-    "text": "mirror: 872606492607357_122149067733140193 (video) -> Digital 1514538997170881"
-  },
-  {
-    "at": "2026-11-09T05:41:11.511Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149068075140193 ()"
-  },
-  {
-    "at": "2026-11-09T05:41:17.378Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1690979595918089\"}"
-  },
-  {
-    "at": "2026-11-09T05:41:19.614Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126476815459930 ()"
-  },
-  {
     "at": "2026-11-09T05:41:25.973Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2979918685692920\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-09T07:17:18.703Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-09T07:19:53.459Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149076679140193 (https://utsabtv.com/prime-minister-invites-china-invest-bangladesh-potential-sectors)"
+  },
+  {
+    "at": "2026-11-09T07:19:58.426Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1154681750295475\"}"
+  },
+  {
+    "at": "2026-11-09T07:20:03.639Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126490201459930 (https://utsabtv.com/prime-minister-invites-china-invest-bangladesh-potential-sectors)"
+  },
+  {
+    "at": "2026-11-09T07:20:09.318Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1751461439831704\"}"
   }
 ]
