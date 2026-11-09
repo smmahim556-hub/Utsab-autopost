@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-09T07:01:51.083Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-09T07:04:09.825Z",
-    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149075113140193\"}"
-  },
-  {
-    "at": "2026-11-09T07:04:17.347Z",
-    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122126488149459930\"}"
-  },
-  {
-    "at": "2026-11-09T07:11:48.080Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149075989140193 ()"
-  },
-  {
     "at": "2026-11-09T07:11:54.676Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2362414804590133\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-09T07:53:25.021Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1104498989044314\"}"
+  },
+  {
+    "at": "2026-11-09T07:57:05.917Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149080819140193 (https://utsabtv.com/10-platoon-ansar-deployed-gazipur-narayanganj-industrial-areas)"
+  },
+  {
+    "at": "2026-11-09T07:57:13.477Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2797061057356755\"}"
+  },
+  {
+    "at": "2026-11-09T07:57:21.928Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126496057459930 (https://utsabtv.com/10-platoon-ansar-deployed-gazipur-narayanganj-industrial-areas)"
+  },
+  {
+    "at": "2026-11-09T07:57:29.898Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4452214571696224\"}"
   }
 ]
