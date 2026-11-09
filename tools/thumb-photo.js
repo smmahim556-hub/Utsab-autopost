@@ -1,8 +1,9 @@
 // Probe: free-licence portrait for a thumbnail (Wikipedia page image / Wikimedia Commons search), with its licence.
 // THUMB_Q = search words (default Noble the singer). Saves preview/thumb/photo-N.jpg + state/thumb-photo-probe.json.
 const fs = require('fs'), path = require('path');
-const UA = { 'User-Agent': 'UtsabAutopost/1.0 (thumbnail probe)' };
-const j = async u => (await fetch(u, { headers: UA })).json();
+const UA = { 'User-Agent': 'UtsabAutopost/1.0 (https://github.com/smmahim556-hub/Utsab-autopost)', 'Api-User-Agent': 'UtsabAutopost/1.0 (https://github.com/smmahim556-hub/Utsab-autopost)' };
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const j = async u => { for (let i = 0; i < 5; i++) { const t = await (await fetch(u, { headers: UA })).text(); try { return JSON.parse(t); } catch { console.log('retry', t.slice(0, 80)); await sleep(5000 * (i + 1)); } } return {}; };
 (async () => {
   const q = process.env.THUMB_Q || 'Mainul Ahsan Noble';
   const out = [], files = new Set();
