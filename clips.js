@@ -85,28 +85,34 @@ function preCut(video, clip, work, tag) {
   return { video: src, clip: { ...clip, pre: undefined, start: 0, end: secs(src) } };
 }
 
-// Where to point a square crop in each camera shot: cuts by scene change, then Gemini looks at one frame per shot and finds
-// the person to follow (clip.focus, e.g. the guest in the black T-shirt; owner 2026-11-09: in the master shot frame him).
+// Where to point the square crop, second by second (owner 2026-11-09: in the master shot frame the guest). One contact sheet
+// (1 frame per second) goes to Gemini, which marks each frame wide (2+ people) or single and where the person to follow is;
+// runs of alike seconds become shots, their edges snapped to real cuts found by scene detection.
+const NUMFONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf';
 async function shotPlan(video, start, len, work, tag, focus) {
-  const r = require('child_process').spawnSync('ffmpeg', ['-hide_banner', '-ss', String(start), '-t', String(len), '-i', video, '-an', '-vf', "scale=320:-2,select='gt(scene,0.28)',showinfo", '-f', 'null', '-'], { encoding: 'utf8', maxBuffer: 1 << 26 });
-  const cuts = [...(r.stderr || '').matchAll(/pts_time:\s*([\d.]+)/g)].map(m => Number(m[1])).filter(t => t > 0.5 && t < len - 0.5);
-  const bounds = [0, ...cuts.filter((t, i, a) => !i || t - a[i - 1] > 1), len];
+  const n = Math.ceil(len), cols = 8, sheet = path.join(work, `${tag}-sheet.jpg`);
+  ff(['-ss', String(start), '-t', String(len), '-i', video, '-an', '-vf', `fps=1,scale=240:-2${fs.existsSync(NUMFONT) ? `,drawtext=fontfile=${NUMFONT}:text='%{eif\\:n\\:d}':x=6:y=4:fontsize=26:fontcolor=yellow:box=1:boxcolor=black@0.6` : ''},tile=${cols}x${Math.ceil(n / cols)}`, '-frames:v', '1', '-q:v', '3', sheet]);
+  let marks = [];
+  try {
+    const j = await gemini([{ inline_data: { mime_type: 'image/jpeg', data: fs.readFileSync(sheet).toString('base64') } }, { text:
+`This is a contact sheet of ${n} frames from a video podcast, one per second, numbered in yellow (left to right, top to bottom). In EVERY frame find ${focus || 'the main speaker'}; if he is not visible, use the most prominent person. For each frame give: n (its number), people (how many people are visible), x and y = centre of that person's face as fractions of that frame's own width and height (0-1). JSON only, one entry per frame: [{"n":0,"people":1,"x":0.5,"y":0.3}]` }]);
+    marks = (Array.isArray(j) ? j : []).filter(m => Number(m.x) >= 0 && Number(m.x) <= 1).map(m => ({ n: Number(m.n), wide: Number(m.people) >= 2, x: Number(m.x), y: Number(m.y) || 0.3 }));
+  } catch (e) { console.log('shot sheet: gemini failed', e.message); }
+  const at = k => marks.find(m => m.n === k) || marks.filter(m => m.n < k).pop() || { wide: false, x: 0.5, y: 0.3 };
+  const r = require('child_process').spawnSync('ffmpeg', ['-hide_banner', '-ss', String(start), '-t', String(len), '-i', video, '-an', '-vf', "scale=320:-2,select='gt(scene,0.15)',showinfo", '-f', 'null', '-'], { encoding: 'utf8', maxBuffer: 1 << 26 });
+  const cuts = [...(r.stderr || '').matchAll(/pts_time:\s*([\d.]+)/g)].map(m => Number(m[1]));
   const shots = [];
-  for (let i = 0; i < bounds.length - 1 && i < 40; i++) {
-    const mid = (bounds[i] + bounds[i + 1]) / 2, jpg = path.join(work, `${tag}-shot${i}.jpg`);
-    ff(['-ss', String(start + mid), '-i', video, '-frames:v', '1', '-vf', 'scale=640:-2', jpg]);
-    let pos = { x: 0.5, y: 0.4, people: 1 };
-    try {
-      const j = await gemini([{ inline_data: { mime_type: 'image/jpeg', data: fs.readFileSync(jpg).toString('base64') } }, { text:
-`A frame from a video podcast. Find ${focus || 'the main speaker'}; if that person is not in the frame, use the most prominent person. Give the centre of that person's face as fractions of the frame width and height (0-1), and how many people are visible. JSON only: {"x":0.5,"y":0.4,"people":1}` }]);
-      const a = Array.isArray(j) ? j[0] : j;
-      if (a && Number(a.x) >= 0 && Number(a.x) <= 1) pos = { x: Number(a.x), y: Number(a.y) || 0.4, people: Number(a.people) || 1 };
-      else console.log('shot', i, 'odd answer', JSON.stringify(j).slice(0, 200));
-    } catch (e) { console.log('shot', i, 'gemini failed', e.message); }
-    console.log('shot', i, bounds[i].toFixed(1), JSON.stringify(pos));
-    shots.push({ t: bounds[i], ...pos });
+  for (let k = 0; k < n; k++) {
+    const m = at(k), last = shots[shots.length - 1];
+    if (last && last.wide === m.wide && Math.abs(last.x - m.x) < 0.12) continue;
+    let t = k === 0 ? 0 : k - 0.5; // the change happened between frame k-1 and k
+    const near = cuts.filter(c => c > k - 1 && c <= k + 0.05).sort((a, b) => Math.abs(a - t) - Math.abs(b - t))[0];
+    if (near !== undefined) t = near;
+    if (last && t <= last.t + 0.3) { Object.assign(last, m); continue; }
+    shots.push({ t, wide: m.wide, x: m.x, y: m.y });
   }
-  return shots;
+  console.log('shots', JSON.stringify(shots.map(s => [Number(s.t.toFixed(1)), s.wide ? 'W' : 'S', s.x])));
+  return shots.length ? shots : [{ t: 0, wide: false, x: 0.5, y: 0.3 }];
 }
 
 // The owner's own podcast template ('গান-বাজ', 2026-11-09 sample): dark green-red backdrop, his animated logo top centre,
@@ -134,12 +140,14 @@ async function renderGanbaz(browser, video, clip, outFile, work, tag) {
   // Each camera shot is cropped on its own: a single-person shot keeps the full height, a wide (master) shot zooms in on the
   // person to follow (owner: frame the guest in the master shot); then the pieces are joined back.
   const shots = await shotPlan(video, clip.start, len, work, tag, clip.focus);
-  if (!shots.length) shots.push({ t: 0, x: 0.5, y: 0.4, people: 1 });
   const ev = n => Math.max(2, Math.round(n / 2) * 2);
   const pieces = shots.map((p, i) => {
     const t0 = p.t, t1 = i + 1 < shots.length ? shots[i + 1].t : len;
-    const S = ev(Math.min(vw, vh * (p.people >= 2 ? 0.62 : 1)));
-    const x = Math.round(Math.max(0, Math.min(vw - S, p.x * vw - S / 2))), y = Math.round(Math.max(0, Math.min(vh - S, p.y * vh - S * 0.36)));
+    const S = ev(Math.min(vw, vh * (p.wide ? 0.62 : 0.8)));
+    let x = Math.max(0, Math.min(vw - S, p.x * vw - S / 2)), y = Math.max(0, Math.min(vh - S, p.y * vh - S * 0.34));
+    // Keep the source's own corner logo (top right) out of the square: drop below it, or else slide left of it.
+    if (x + S > vw * 0.8 && y < vh * 0.22) { if (S <= vh * 0.78) y = vh * 0.22; else x = Math.max(0, vw * 0.8 - S); }
+    x = Math.round(x); y = Math.round(y);
     return `[sv${i}]trim=${t0.toFixed(3)}:${t1.toFixed(3)},setpts=PTS-STARTPTS,crop=${S}:${S}:${x}:${y},scale=${SQ}:${SQ}:flags=lanczos,setsar=1[p${i}]`;
   });
   const cropGraph = `[0:v]split=${shots.length}${shots.map((_, i) => `[sv${i}]`).join('')};${pieces.join(';')};${shots.map((_, i) => `[p${i}]`).join('')}concat=n=${shots.length}:v=1:a=0[sq];`;
