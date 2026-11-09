@@ -90,34 +90,12 @@ function preCut(video, clip, work, tag) {
 // runs of alike seconds become shots, their edges snapped to real cuts found by scene detection.
 const NUMFONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf';
 async function shotPlan(video, start, len, work, tag, focus) {
-  const n = Math.ceil(len), cols = 8, sheet = path.join(work, `${tag}-sheet.jpg`);
-  ff(['-ss', String(start), '-t', String(len), '-i', video, '-an', '-vf', `fps=1,scale=240:-2${fs.existsSync(NUMFONT) ? `,drawtext=fontfile=${NUMFONT}:text='%{eif\\:n\\:d}':x=6:y=4:fontsize=26:fontcolor=yellow:box=1:boxcolor=black@0.6` : ''},tile=${cols}x${Math.ceil(n / cols)}`, '-frames:v', '1', '-q:v', '3', sheet]);
-  // 1) Gemini labels each second's camera shot from the sheet (it is good at telling shots apart, not at exact positions).
-  let marks = [];
-  try {
-    const j = await gemini([{ inline_data: { mime_type: 'image/jpeg', data: fs.readFileSync(sheet).toString('base64') } }, { text:
-`This is a contact sheet of ${n} frames from a video podcast, one per second, numbered in yellow (left to right, top to bottom). Label each frame's camera shot with a short code that stays the same for the same camera angle and framing, e.g. "W" = wide shot with two or more people, "A" = close-up of one person, "B" = close-up of another person, "C" = another angle. JSON only, one entry per frame: [{"n":0,"shot":"W","people":2}]` }]);
-    marks = (Array.isArray(j) ? j : []).filter(m => m && m.shot !== undefined).map(m => ({ n: Number(m.n), shot: String(m.shot), wide: Number(m.people) >= 2 }));
-  } catch (e) { console.log('shot sheet: gemini failed', e.message); }
-  const at = k => marks.find(m => m.n === k) || marks.filter(m => m.n < k).pop() || { shot: '?', wide: false };
-  const r = require('child_process').spawnSync('ffmpeg', ['-hide_banner', '-ss', String(start), '-t', String(len), '-i', video, '-an', '-vf', "scale=320:-2,select='gt(scene,0.15)',showinfo", '-f', 'null', '-'], { encoding: 'utf8', maxBuffer: 1 << 26 });
-  const cuts = [...(r.stderr || '').matchAll(/pts_time:\s*([\d.]+)/g)].map(m => Number(m[1]));
-  const shots = [];
-  for (let k = 0; k < n; k++) {
-    const m = at(k), last = shots[shots.length - 1];
-    if (last && last.shot === m.shot) { last.k1 = k; continue; }
-    let t = k === 0 ? 0 : k - 0.5; // the change happened between frame k-1 and k
-    const near = cuts.filter(c => c > k - 1 && c <= k + 0.05).sort((a, b) => Math.abs(a - t) - Math.abs(b - t))[0];
-    if (near !== undefined) t = near;
-    if (last && t <= last.t + 0.3) { Object.assign(last, m, { k0: k, k1: k }); continue; }
-    shots.push({ t, shot: m.shot, wide: m.wide, k0: k, k1: k, x: 0.5, y: 0.3 });
-  }
-  // Real cuts also start a shot even when the sheet labels missed them.
-  for (const c of cuts) {
-    if (c < 0.8 || c > len - 0.8 || shots.some(sh => Math.abs(sh.t - c) < 0.8)) continue;
-    const prev = shots.filter(sh => sh.t < c).pop();
-    shots.push({ ...prev, t: c, k0: Math.min(n - 1, Math.ceil(c)), k1: Math.min(n - 1, Math.ceil(c)) });
-  }
+  // Shots come only from real picture cuts (owner 2026-11-09: the crop must never jump inside one camera shot). The earlier
+  // per-second shot labels split shots where nothing cut, which made the frame jolt.
+  const r = require('child_process').spawnSync('ffmpeg', ['-hide_banner', '-ss', String(start), '-t', String(len), '-i', video, '-an', '-vf', "scale=320:-2,select='gt(scene,0.25)',showinfo", '-f', 'null', '-'], { encoding: 'utf8', maxBuffer: 1 << 26 });
+  const cuts = [...(r.stderr || '').matchAll(/pts_time:\s*([\d.]+)/g)].map(m => Number(m[1])).filter(c => c > 0.6 && c < len - 0.6);
+  const shots = [{ t: 0, wide: false, x: 0.5, y: 0.3 }];
+  for (const c of cuts) if (c - shots[shots.length - 1].t >= 0.6) shots.push({ t: c, wide: false, x: 0.5, y: 0.3 });
   shots.sort((a, b) => a.t - b.t);
   shots.forEach((sh, i) => { const nx = shots[i + 1]; sh.mid = ((sh.t + (nx ? nx.t : len)) / 2); });
   // 2) One sharp frame per shot for where the person to follow is (labels can be wrong, so no reuse).
@@ -132,7 +110,12 @@ async function shotPlan(video, start, len, work, tag, focus) {
       else console.log('shot', i, 'odd answer', JSON.stringify(j).slice(0, 160));
     } catch (e) { console.log('shot', i, 'gemini failed', e.message); }
   }
-  console.log('shots', JSON.stringify(shots.map(s => [Number(s.t.toFixed(1)), s.shot, s.wide ? 'W' : 'S', s.x, s.y])));
+  // Same camera again (e.g. A-B-A): give it exactly the same crop as the last time it was seen, so it never shifts a little.
+  for (const [i, sh] of shots.entries()) {
+    const same = shots.slice(0, i).find(o => o.wide === sh.wide && Math.abs(o.x - sh.x) < 0.06 && Math.abs(o.y - sh.y) < 0.06);
+    if (same) Object.assign(sh, { x: same.x, y: same.y });
+  }
+  console.log('shots', JSON.stringify(shots.map(s => [Number(s.t.toFixed(2)), s.wide ? 'W' : 'S', s.x, s.y])));
   return shots.length ? shots : [{ t: 0, wide: false, x: 0.5, y: 0.3 }];
 }
 
