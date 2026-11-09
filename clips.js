@@ -92,7 +92,7 @@ const NUMFONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf';
 async function shotPlan(video, start, len, work, tag, focus) {
   // Shots come only from real picture cuts (owner 2026-11-09: the crop must never jump inside one camera shot). The earlier
   // per-second shot labels split shots where nothing cut, which made the frame jolt.
-  const r = require('child_process').spawnSync('ffmpeg', ['-hide_banner', '-ss', String(start), '-t', String(len), '-i', video, '-an', '-vf', "scale=320:-2,select='gt(scene,0.25)',showinfo", '-f', 'null', '-'], { encoding: 'utf8', maxBuffer: 1 << 26 });
+  const r = require('child_process').spawnSync('ffmpeg', ['-hide_banner', '-ss', String(start), '-t', String(len), '-i', video, '-an', '-vf', "scale=320:-2,select='gt(scene,0.12)',showinfo", '-f', 'null', '-'], { encoding: 'utf8', maxBuffer: 1 << 26 });
   const cuts = [...(r.stderr || '').matchAll(/pts_time:\s*([\d.]+)/g)].map(m => Number(m[1])).filter(c => c > 0.6 && c < len - 0.6);
   const shots = [{ t: 0, wide: false, x: 0.5, y: 0.3 }];
   for (const c of cuts) if (c - shots[shots.length - 1].t >= 0.6) shots.push({ t: c, wide: false, x: 0.5, y: 0.3 });
@@ -110,7 +110,7 @@ async function shotPlan(video, start, len, work, tag, focus) {
       else console.log('shot', i, 'odd answer', JSON.stringify(j).slice(0, 160));
     } catch (e) { console.log('shot', i, 'gemini failed', e.message); }
   }
-  // Same camera again (e.g. A-B-A): give it exactly the same crop as the last time it was seen, so it never shifts a little.
+  // Same camera again (e.g. A-B-A, or a false cut inside one shot): give it exactly the same crop as the last time it was seen, so it never shifts a little.
   for (const [i, sh] of shots.entries()) {
     const same = shots.slice(0, i).find(o => o.wide === sh.wide && Math.abs(o.x - sh.x) < 0.06 && Math.abs(o.y - sh.y) < 0.06);
     if (same) Object.assign(sh, { x: same.x, y: same.y });
