@@ -1,25 +1,5 @@
 [
   {
-    "at": "2026-11-09T05:49:38.855Z",
-    "text": "mirror: 872606492607357_122149068741140193 (video) -> Digital 1834234054562285"
-  },
-  {
-    "at": "2026-11-09T05:58:43.706Z",
-    "text": "mirror: 872606492607357_122149069395140193 (video) -> Digital 2246915486167758"
-  },
-  {
-    "at": "2026-11-09T06:01:41.039Z",
-    "text": "album on Page 872606492607357: 872606492607357_122149069989140193 https://utsabtv.com/eisenkot-open-to-netanyahu-in-new-government"
-  },
-  {
-    "at": "2026-11-09T06:01:54.159Z",
-    "text": "album on Page 1276101408920358: 1276101408920358_122126480487459930 https://utsabtv.com/eisenkot-open-to-netanyahu-in-new-government"
-  },
-  {
-    "at": "2026-11-09T06:20:23.561Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149071603140193 ()"
-  },
-  {
     "at": "2026-11-09T06:20:32.496Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"4719172268365237\"}"
   },
@@ -158,5 +138,25 @@
   {
     "at": "2026-11-09T07:28:19.448Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1001140716378523\"}"
+  },
+  {
+    "at": "2026-11-09T07:32:33.870Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-09T07:32:55.443Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149078305140193 (https://utsabtv.com/krakow-gunman-dies-hospital-six-killed-poland)"
+  },
+  {
+    "at": "2026-11-09T07:33:01.624Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1168303375551064\"}"
+  },
+  {
+    "at": "2026-11-09T07:33:08.169Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126492169459930 (https://utsabtv.com/krakow-gunman-dies-hospital-six-killed-poland)"
+  },
+  {
+    "at": "2026-11-09T07:33:14.815Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"994409839770855\"}"
   }
 ]
