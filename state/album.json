@@ -32,27 +32,18 @@
     "https://utsabtv.com/india-situation-could-be-worse-than-bangladesh-nepal-jharkhand-minister-irfan-ansari",
     "https://utsabtv.com/gadi-eisenkot-mandate-form-government-israel-netanyahu",
     "https://utsabtv.com/33-platoon-bgb-deployed-industrial-areas-dhaka-gazipur-narayanganj",
-    "https://utsabtv.com/bnp-factions-clash-fatickhari-two-injured-road-blockade"
+    "https://utsabtv.com/bnp-factions-clash-fatickhari-two-injured-road-blockade",
+    "https://utsabtv.com/eisenkot-open-to-netanyahu-in-new-government"
   ],
-  "date": "2026-11-08",
+  "date": "2026-11-09",
   "done": {
     "720": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "960": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "1200": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/gadi-eisenkot-mandate-form-government-israel-netanyahu",
-    "960": "https://utsabtv.com/33-platoon-bgb-deployed-industrial-areas-dhaka-gazipur-narayanganj",
-    "1200": "https://utsabtv.com/bnp-factions-clash-fatickhari-two-injured-road-blockade"
+    "720": "https://utsabtv.com/eisenkot-open-to-netanyahu-in-new-government"
   },
   "failedAt": 1793700193463
 }
