@@ -92,26 +92,41 @@ const NUMFONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf';
 async function shotPlan(video, start, len, work, tag, focus) {
   const n = Math.ceil(len), cols = 8, sheet = path.join(work, `${tag}-sheet.jpg`);
   ff(['-ss', String(start), '-t', String(len), '-i', video, '-an', '-vf', `fps=1,scale=240:-2${fs.existsSync(NUMFONT) ? `,drawtext=fontfile=${NUMFONT}:text='%{eif\\:n\\:d}':x=6:y=4:fontsize=26:fontcolor=yellow:box=1:boxcolor=black@0.6` : ''},tile=${cols}x${Math.ceil(n / cols)}`, '-frames:v', '1', '-q:v', '3', sheet]);
+  // 1) Gemini labels each second's camera shot from the sheet (it is good at telling shots apart, not at exact positions).
   let marks = [];
   try {
     const j = await gemini([{ inline_data: { mime_type: 'image/jpeg', data: fs.readFileSync(sheet).toString('base64') } }, { text:
-`This is a contact sheet of ${n} frames from a video podcast, one per second, numbered in yellow (left to right, top to bottom). In EVERY frame find ${focus || 'the main speaker'}; if he is not visible, use the most prominent person. For each frame give: n (its number), people (how many people are visible), x and y = centre of that person's face as fractions of that frame's own width and height (0-1). JSON only, one entry per frame: [{"n":0,"people":1,"x":0.5,"y":0.3}]` }]);
-    marks = (Array.isArray(j) ? j : []).filter(m => Number(m.x) >= 0 && Number(m.x) <= 1).map(m => ({ n: Number(m.n), wide: Number(m.people) >= 2, x: Number(m.x), y: Number(m.y) || 0.3 }));
+`This is a contact sheet of ${n} frames from a video podcast, one per second, numbered in yellow (left to right, top to bottom). Label each frame's camera shot with a short code that stays the same for the same camera angle and framing, e.g. "W" = wide shot with two or more people, "A" = close-up of one person, "B" = close-up of another person, "C" = another angle. JSON only, one entry per frame: [{"n":0,"shot":"W","people":2}]` }]);
+    marks = (Array.isArray(j) ? j : []).filter(m => m && m.shot !== undefined).map(m => ({ n: Number(m.n), shot: String(m.shot), wide: Number(m.people) >= 2 }));
   } catch (e) { console.log('shot sheet: gemini failed', e.message); }
-  const at = k => marks.find(m => m.n === k) || marks.filter(m => m.n < k).pop() || { wide: false, x: 0.5, y: 0.3 };
+  const at = k => marks.find(m => m.n === k) || marks.filter(m => m.n < k).pop() || { shot: '?', wide: false };
   const r = require('child_process').spawnSync('ffmpeg', ['-hide_banner', '-ss', String(start), '-t', String(len), '-i', video, '-an', '-vf', "scale=320:-2,select='gt(scene,0.15)',showinfo", '-f', 'null', '-'], { encoding: 'utf8', maxBuffer: 1 << 26 });
   const cuts = [...(r.stderr || '').matchAll(/pts_time:\s*([\d.]+)/g)].map(m => Number(m[1]));
   const shots = [];
   for (let k = 0; k < n; k++) {
     const m = at(k), last = shots[shots.length - 1];
-    if (last && last.wide === m.wide && Math.abs(last.x - m.x) < 0.12) continue;
+    if (last && last.shot === m.shot) { last.k1 = k; continue; }
     let t = k === 0 ? 0 : k - 0.5; // the change happened between frame k-1 and k
     const near = cuts.filter(c => c > k - 1 && c <= k + 0.05).sort((a, b) => Math.abs(a - t) - Math.abs(b - t))[0];
     if (near !== undefined) t = near;
-    if (last && t <= last.t + 0.3) { Object.assign(last, m); continue; }
-    shots.push({ t, wide: m.wide, x: m.x, y: m.y });
+    if (last && t <= last.t + 0.3) { Object.assign(last, m, { k0: k, k1: k }); continue; }
+    shots.push({ t, shot: m.shot, wide: m.wide, k0: k, k1: k, x: 0.5, y: 0.3 });
   }
-  console.log('shots', JSON.stringify(shots.map(s => [Number(s.t.toFixed(1)), s.wide ? 'W' : 'S', s.x])));
+  // 2) One sharp frame per shot (and per camera angle, reused) for where the person to follow is.
+  const seen = {};
+  for (const [i, sh] of shots.entries()) {
+    if (seen[sh.shot]) { Object.assign(sh, seen[sh.shot]); continue; }
+    const jpg = path.join(work, `${tag}-shot${i}.jpg`);
+    ff(['-ss', String(start + (sh.k0 + sh.k1) / 2), '-i', video, '-frames:v', '1', '-vf', 'scale=960:-2', jpg]);
+    try {
+      const j = await gemini([{ inline_data: { mime_type: 'image/jpeg', data: fs.readFileSync(jpg).toString('base64') } }, { text:
+`A frame from a video podcast. Find ${focus || 'the main speaker'}; if that person is not in the frame, use the most prominent person. Give the centre of that person's face as fractions of the frame width and height (0-1), and how many people are visible. JSON only: {"x":0.5,"y":0.3,"people":1}` }]);
+      const a = Array.isArray(j) ? j[0] : j;
+      if (a && Number(a.x) >= 0 && Number(a.x) <= 1) seen[sh.shot] = { x: Number(a.x), y: Number(a.y) || 0.3, wide: Number(a.people) >= 2 };
+    } catch (e) { console.log('shot', i, 'gemini failed', e.message); }
+    if (seen[sh.shot]) Object.assign(sh, seen[sh.shot]);
+  }
+  console.log('shots', JSON.stringify(shots.map(s => [Number(s.t.toFixed(1)), s.shot, s.wide ? 'W' : 'S', s.x, s.y])));
   return shots.length ? shots : [{ t: 0, wide: false, x: 0.5, y: 0.3 }];
 }
 
