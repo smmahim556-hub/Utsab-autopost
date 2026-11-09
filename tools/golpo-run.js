@@ -65,7 +65,9 @@ async function postReel(page, file, description) {
       try {
         ids[pid] = await postReel({ id: a.id, token: a.access_token }, out, bigDesc);
         const c = new FormData(); c.append('message', `পুরো সিরিজ "আবিষ্কারের গল্প" দেখুন উৎসবের গল্প পেজে: https://www.facebook.com/${GOLPO}`); c.append('access_token', a.access_token);
-        await graph(`${ids[pid]}/comments`, c).catch(e => log(`comment ${pid}: ${e.message}`));
+        // A fresh reel sometimes isn't ready for comments yet (Digital, 2026-11-09): wait and try once more.
+        await graph(`${ids[pid]}/comments`, c).catch(async () => { await new Promise(r => setTimeout(r, 60000)); return graph(`${ids[pid]}/comments`, c); })
+          .catch(e => log(`comment ${pid}: ${e.message}`));
         log(`reel ${ids[pid]} on ${pid}`);
       } catch (e) { log(`reel on ${pid} FAILED: ${e.message}`); }
     }
