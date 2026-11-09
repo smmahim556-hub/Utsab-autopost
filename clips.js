@@ -222,14 +222,4 @@ ${logo && !fs.existsSync(LOGO_VIDEO) ? `<img src="${logo}" style="position:absol
   return outFile;
 }
 
-// The HD file of a public Page video: Graph's 'source' can be only 640x360, but the public watch page carries the HD link
-// (2026-11-09, গান-বাজ ep1 was posted in full HD). Returns '' when the page has none.
-async function hdUrl(id) {
-  try {
-    const t = await (await fetch(`https://www.facebook.com/watch/?v=${id}`, { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36', 'Accept-Language': 'en-US,en;q=0.9' }, signal: AbortSignal.timeout(30000) })).text();
-    const m = t.match(/"browser_native_hd_url":"([^"]+)"/) || t.match(/"playable_url_quality_hd":"([^"]+)"/);
-    return m ? JSON.parse(`"${m[1]}"`) : '';
-  } catch { return ''; }
-}
-
-module.exports = { planClips, renderClip, secs, ff, gemini, hdUrl };
+module.exports = { planClips, renderClip, secs, ff, gemini };
