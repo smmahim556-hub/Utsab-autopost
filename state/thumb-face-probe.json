@@ -1,0 +1,74 @@
+[
+ {
+  "k": 4,
+  "src": "gd:1aMhJLyPF27plrEhjtzJkSJ26mhv6q5CU",
+  "t": 27,
+  "score": 9,
+  "note": "Clear side profile of Noble singing into the microphone.",
+  "f": "/tmp/face/v4.mp4",
+  "out": "face-1.jpg"
+ },
+ {
+  "k": 4,
+  "src": "gd:1aMhJLyPF27plrEhjtzJkSJ26mhv6q5CU",
+  "t": 33,
+  "score": 9,
+  "note": "Noble singing into the microphone, clear view of his face.",
+  "f": "/tmp/face/v4.mp4",
+  "out": "face-2.jpg"
+ },
+ {
+  "k": 4,
+  "src": "gd:1aMhJLyPF27plrEhjtzJkSJ26mhv6q5CU",
+  "t": 35,
+  "score": 9,
+  "note": "Noble singing into the microphone, clear view of his face.",
+  "f": "/tmp/face/v4.mp4",
+  "out": "face-3.jpg"
+ },
+ {
+  "k": 5,
+  "src": "gd:1cAOjkkWRfeFr8PqJ1iVbPYaeoSeZy0T2",
+  "t": 95.53581249999999,
+  "score": 9,
+  "note": "Excellent shot of Noble singing into the microphone, face is sharp and clearly visible.",
+  "f": "/tmp/face/v5.mp4",
+  "out": "face-4.jpg"
+ },
+ {
+  "k": 8,
+  "src": "gd:1PUyEz7-fUpIXJfZ298bh_YHlwQVZZrNv",
+  "t": 21,
+  "score": 9,
+  "note": "Clear side profile of Noble singing into the microphone.",
+  "f": "/tmp/face/v8.mp4",
+  "out": "face-5.jpg"
+ },
+ {
+  "k": 10,
+  "src": "gd:1BSXW8loKMvLw_dNfHOzHol58M8dbsf1J",
+  "t": 97.8088540625,
+  "score": 9,
+  "note": "Clear side profile view of Noble singing into the microphone.",
+  "f": "/tmp/face/v10.mp4",
+  "out": "face-6.jpg"
+ },
+ {
+  "k": 2,
+  "src": "gd:1ZMfwZ1m1OGjRP5kJrjYLuSUd-bD8gf6B",
+  "t": 44.8959375,
+  "score": 8,
+  "note": "Noble is clearly visible singing into the microphone, facing the camera, good lighting.",
+  "f": "/tmp/face/v2.mp4",
+  "out": "face-7.jpg"
+ },
+ {
+  "k": 2,
+  "src": "gd:1ZMfwZ1m1OGjRP5kJrjYLuSUd-bD8gf6B",
+  "t": 61.5240625,
+  "score": 8,
+  "note": "Noble is clearly visible singing, good focus on face.",
+  "f": "/tmp/face/v2.mp4",
+  "out": "face-8.jpg"
+ }
+]
