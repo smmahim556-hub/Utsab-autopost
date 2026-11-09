@@ -144,6 +144,8 @@ async function renderGanbaz(browser, video, clip, outFile, work, tag) {
   // Each camera shot is cropped on its own: a single-person shot keeps the full height, a wide (master) shot zooms in on the
   // person to follow (owner: frame the guest in the master shot); then the pieces are joined back.
   const shots = await shotPlan(video, clip.start, len, work, tag, clip.focus);
+  // Rounded mask so the picture's own corners do not poke out past the frame's rounded inner edge (owner 2026-11-09).
+  const rmask = await overlay(browser, `<div style="position:absolute;inset:0;background:#000"></div><div style="position:absolute;inset:0;border-radius:21px;background:#fff"></div>`, path.join(work, `${tag}-rmask.png`), SQ, SQ);
   const ev = n => Math.max(2, Math.round(n / 2) * 2);
   const pieces = shots.map((p, i) => {
     const t0 = p.t, t1 = i + 1 < shots.length ? shots[i + 1].t : len;
@@ -158,7 +160,7 @@ async function renderGanbaz(browser, video, clip, outFile, work, tag) {
   const anim = fs.existsSync(LOGO_VIDEO), font = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf';
   const clock = fs.existsSync(font) ? `,drawtext=fontfile=${font}:text='%{eif\\:t/60\\:d}\\:%{eif\\:mod(t\\,60)\\:d\\:2}':x=${BX}:y=1752:fontsize=28:fontcolor=0xbbbbbb,drawtext=fontfile=${font}:text='${mmss(len).replace(':', '\\:')}':x=${BX + BW}-tw:y=1752:fontsize=28:fontcolor=0xbbbbbb` : '';
   const f = cropGraph +
-    `[1:v][sq]overlay=${BX + IN}:${BY + IN}[b1];` +
+    `[8:v]format=gray[rm];[sq][rm]alphamerge[sqr];[1:v][sqr]overlay=${BX + IN}:${BY + IN}[b1];` +
     // Audio bars: a 61-band spectrum, mirrored, blown up so each band is one 16px column (10px bar + gap).
     `[0:a]aresample=12000,pan=mono|c0=c0,showfreqs=s=61x48:mode=bar:ascale=log:fscale=log:win_size=1024:averaging=2:colors=white:rate=30[fq];color=black:s=61x48:r=30[blk];[blk][fq]overlay=shortest=1,format=gray,split[fa][fb];[fb]vflip[fv];[fa][fv]vstack,scale=976:96:flags=neighbor,crop=${BW}:96:2:0[m];` +
     `[3:v]format=gray[st];[m][st]blend=all_mode=multiply:shortest=1[mk];[4:v]format=rgb24[g];[g][mk]alphamerge[w];[b1][w]overlay=${BX}:1620[b2];` +
@@ -169,7 +171,7 @@ async function renderGanbaz(browser, video, clip, outFile, work, tag) {
     ...(anim ? ['-stream_loop', '-1', '-c:v', 'libvpx-vp9', '-i', LOGO_VIDEO] : ['-f', 'lavfi', '-i', 'color=black:s=2x2']),
     '-f', 'lavfi', '-i', `color=black:s=${BW}x96:r=30,format=gray,geq=lum='if(lt(mod(X\\,16)\\,10)\\,255\\,0)'`,
     '-loop', '1', '-i', grad,
-    '-f', 'lavfi', '-i', `color=0x2ee6a8:s=${BW}x6:r=30`, '-f', 'lavfi', '-i', `color=0x3a3f3d:s=${BW}x6:r=30`, '-loop', '1', '-i', dot,
+    '-f', 'lavfi', '-i', `color=0x2ee6a8:s=${BW}x6:r=30`, '-f', 'lavfi', '-i', `color=0x3a3f3d:s=${BW}x6:r=30`, '-loop', '1', '-i', dot, '-loop', '1', '-i', rmask,
     '-filter_complex', f, '-map', '[v]', '-map', '0:a?', '-t', String(len), '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p',
     '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', outFile]);
   return outFile;
