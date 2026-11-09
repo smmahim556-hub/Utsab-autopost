@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-09T07:53:11.117Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1614353189889380\"}"
-  },
-  {
     "at": "2026-11-09T07:53:17.614Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122126495349459930 (https://utsabtv.com/hasina-passport-renewal-application-ridiculous-no-passport-terrorist-humayun-kabir)"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-09T08:45:35.441Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"918052334607308\"}"
+  },
+  {
+    "at": "2026-11-09T08:51:04.503Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
