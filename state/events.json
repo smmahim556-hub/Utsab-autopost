@@ -1,33 +1,5 @@
 [
   {
-    "at": "2026-11-09T07:19:58.426Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1154681750295475\"}"
-  },
-  {
-    "at": "2026-11-09T07:20:03.639Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126490201459930 (https://utsabtv.com/prime-minister-invites-china-invest-bangladesh-potential-sectors)"
-  },
-  {
-    "at": "2026-11-09T07:20:09.318Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1751461439831704\"}"
-  },
-  {
-    "at": "2026-11-09T07:24:13.335Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149077333140193 (https://utsabtv.com/sheikh-hasina-applies-new-passport-nid-reuters)"
-  },
-  {
-    "at": "2026-11-09T07:24:23.255Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1500497575227123\"}"
-  },
-  {
-    "at": "2026-11-09T07:24:29.370Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126490681459930 (https://utsabtv.com/sheikh-hasina-applies-new-passport-nid-reuters)"
-  },
-  {
-    "at": "2026-11-09T07:24:37.070Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2211548096128740\"}"
-  },
-  {
     "at": "2026-11-09T07:28:01.073Z",
     "text": "posted to Page 872606492607357: 872606492607357_122149077945140193 (https://utsabtv.com/india-paid-lobbying-firm-75000-monthly-modi-praise-trump-truth-social)"
   },
@@ -152,11 +124,39 @@
     "text": "mirror: 872606492607357_122149080507140193 (video) -> Digital 2152767022012584"
   },
   {
-    "at": "2026-11-09T08:02:19.793Z",
-    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149082103140193\"}"
+    "at": "2026-11-09T08:01:32.242Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149081833140193 ()"
   },
   {
-    "at": "2026-11-09T08:02:27.940Z",
-    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122126497581459930\"}"
+    "at": "2026-11-09T08:01:45.156Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1441292301462968\"}"
+  },
+  {
+    "at": "2026-11-09T08:01:49.163Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126497233459930 ()"
+  },
+  {
+    "at": "2026-11-09T08:01:58.099Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2398256850948550\"}"
+  },
+  {
+    "at": "2026-11-09T08:03:28.218Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-09T08:03:51.011Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149082709140193 (https://utsabtv.com/trump-blames-anti-israel-sentiment-republican-midterm-defeat)"
+  },
+  {
+    "at": "2026-11-09T08:03:59.941Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"29616844258004580\"}"
+  },
+  {
+    "at": "2026-11-09T08:04:09.360Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126498127459930 (https://utsabtv.com/trump-blames-anti-israel-sentiment-republican-midterm-defeat)"
+  },
+  {
+    "at": "2026-11-09T08:04:18.799Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2220671238851713\"}"
   }
 ]
