@@ -1,0 +1,25 @@
+{
+ "r": {
+  "id": "1822642308859987"
+ },
+ "chk": {
+  "status": {
+   "video_status": "ready",
+   "uploading_phase": {
+    "status": "complete"
+   },
+   "processing_phase": {
+    "status": "complete"
+   },
+   "publishing_phase": {
+    "status": "complete",
+    "publish_status": "scheduled",
+    "publish_time": "2026-11-09T16:00:00+0000"
+   }
+  },
+  "scheduled_publish_time": "2026-11-09T16:00:00+0000",
+  "published": false,
+  "id": "1822642308859987"
+ },
+ "at": "2026-11-09T16:00:00.000Z"
+}
