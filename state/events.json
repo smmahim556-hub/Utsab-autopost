@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-09T09:03:02.553Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149087797140193 ()"
-  },
-  {
     "at": "2026-11-09T09:03:11.349Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1124235267120358\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-09T10:07:50.897Z",
     "text": "album on Page 1276101408920358: 1276101408920358_122126517435459930 https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase"
+  },
+  {
+    "at": "2026-11-09T10:17:07.897Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
