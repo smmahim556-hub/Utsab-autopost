@@ -34,7 +34,8 @@
     "https://utsabtv.com/33-platoon-bgb-deployed-industrial-areas-dhaka-gazipur-narayanganj",
     "https://utsabtv.com/bnp-factions-clash-fatickhari-two-injured-road-blockade",
     "https://utsabtv.com/eisenkot-open-to-netanyahu-in-new-government",
-    "https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase"
+    "https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase",
+    "https://utsabtv.com/drone-attack-khor-mor-gas-field-kurdistan-production-halted"
   ],
   "date": "2026-11-09",
   "done": {
@@ -45,11 +46,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/eisenkot-open-to-netanyahu-in-new-government",
-    "960": "https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase"
+    "960": "https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase",
+    "1200": "https://utsabtv.com/drone-attack-khor-mor-gas-field-kurdistan-production-halted"
   },
   "failedAt": 1793700193463
 }

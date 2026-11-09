@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-09T11:58:29.335Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122108393835533116 ()"
-  },
-  {
-    "at": "2026-11-09T11:58:34.928Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"4666417797017939\"}"
-  },
-  {
     "at": "2026-11-09T12:01:59.789Z",
     "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149106511140193\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-09T13:50:22.477Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"951930234409451\"}"
+  },
+  {
+    "at": "2026-11-09T14:02:16.128Z",
+    "text": "album on Page 872606492607357: 872606492607357_122149117449140193 https://utsabtv.com/drone-attack-khor-mor-gas-field-kurdistan-production-halted"
+  },
+  {
+    "at": "2026-11-09T14:02:25.242Z",
+    "text": "album on Page 1276101408920358: 1276101408920358_122126559855459930 https://utsabtv.com/drone-attack-khor-mor-gas-field-kurdistan-production-halted"
   }
 ]
