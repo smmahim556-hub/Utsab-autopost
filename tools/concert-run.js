@@ -5,7 +5,7 @@
 //   default: post every queued reel whose time has come (render, then all 3 Pages, full-video link in the first comment).
 const fs = require('fs'), path = require('path');
 const { chromium } = require('playwright');
-const { planClips, renderClip, ff } = require('../clips');
+const { planClips, renderClip, ff, hdUrl } = require('../clips');
 const GRAPH = `https://graph.facebook.com/${process.env.GRAPH_VERSION || 'v26.0'}`;
 const ROOT = path.join(__dirname, '..'), FILE = path.join(ROOT, 'state', 'concert.json'), W = '/tmp/concert';
 const ENT = process.env.ENT_PAGE_ID === undefined ? '1406430145892267' : process.env.ENT_PAGE_ID;
@@ -59,7 +59,7 @@ async function download(video, token) {
   if (!r.source) throw new Error(`${video}: no source (${r.error?.message || ''})`);
   fs.mkdirSync(W, { recursive: true });
   const f = `${W}/${video}.mp4`;
-  if (!fs.existsSync(f)) fs.writeFileSync(f, Buffer.from(await (await fetch(r.source)).arrayBuffer()));
+  if (!fs.existsSync(f)) { const hd = await hdUrl(video); fs.writeFileSync(f, Buffer.from(await (await fetch(hd || r.source)).arrayBuffer())); log(`download ${video}: ${hd ? 'HD' : 'Graph source'}`); }
   const u = r.permalink_url || '';
   if (POD && !process.env.PODCAST_CONTEXT) process.env.PODCAST_CONTEXT = (r.description || r.title || '').slice(0, 400);
   return { file: f, url: u ? `https://www.facebook.com${u.startsWith('/') ? '' : '/'}${u.replace(/^https?:\/\/(www\.)?facebook\.com/, '')}` : '' };

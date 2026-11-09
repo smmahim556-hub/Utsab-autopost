@@ -4,7 +4,7 @@
 const fs = require('fs'), path = require('path'), { execSync } = require('child_process');
 try { execSync('which ffmpeg'); } catch { execSync('sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg', { stdio: 'inherit' }); }
 const { chromium } = require('playwright');
-const { renderClip, ff } = require('../clips');
+const { renderClip, ff, hdUrl } = require('../clips');
 const G = 'https://graph.facebook.com/v26.0', W = '/tmp/pod', ROOT = path.join(__dirname, '..');
 (async () => {
   const st = JSON.parse(fs.readFileSync(path.join(ROOT, 'state', 'concert.json'), 'utf8'));
@@ -14,7 +14,8 @@ const G = 'https://graph.facebook.com/v26.0', W = '/tmp/pod', ROOT = path.join(_
   const tok = acc.data.find(a => a.id === process.env.FB_PAGE_ID).access_token;
   const v = await (await fetch(`${G}/${items[0].video}?fields=source&access_token=${tok}`)).json();
   const file = `${W}/src.mp4`;
-  fs.writeFileSync(file, Buffer.from(await (await fetch(v.source)).arrayBuffer()));
+  const hd = await hdUrl(items[0].video);
+  fs.writeFileSync(file, Buffer.from(await (await fetch(hd || v.source)).arrayBuffer()));
   console.log('source', execSync(`ffprobe -v error -select_streams v -show_entries stream=width,height -of csv=p=0 ${file}`).toString().trim());
   const b = await chromium.launch();
   try {
