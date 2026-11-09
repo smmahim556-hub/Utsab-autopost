@@ -824,7 +824,7 @@
         "end": 223,
         "hs": 195,
         "he": 200,
-        "hook": "শুরুতে আজম খানের গান প্রচুর গেয়েছি - তরুণ মুন্সী",
+        "hook": "শুরুতে আজম খানের গান প্রচুর গেয়েছি!",
         "subs": [],
         "pre": {
           "s": 195,
@@ -833,7 +833,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "শুরুতে আজম খানের গান",
+        "h2": "প্রচুর গেয়েছি!",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -846,7 +851,7 @@
         "end": 387,
         "hs": 340,
         "he": 345,
-        "hook": "রেইডার্স ব্যান্ডের জন্ম ইউনিভার্সিটি ল্যাবরেটরি স্কুলে - তরুণ মুন্সী",
+        "hook": "রেইডার্স ব্যান্ডের জন্ম ল্যাবরেটরি স্কুলে!",
         "subs": [],
         "pre": {
           "s": 340,
@@ -855,7 +860,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "রেইডার্স ব্যান্ডের জন্ম",
+        "h2": "ল্যাবরেটরি স্কুলে!",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -868,7 +878,7 @@
         "end": 472,
         "hs": 421,
         "he": 426,
-        "hook": "দ্য ডোরস-এর প্রভাবে ব্যান্ডের নাম দ্য ট্র্যাপ - তরুণ মুন্সী",
+        "hook": "দ্য ডোরস থেকেই ব্যান্ডের নাম দ্য ট্র্যাপ!",
         "subs": [],
         "pre": {
           "s": 421,
@@ -877,7 +887,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "দ্য ডোরস থেকেই",
+        "h2": "ব্যান্ডের নাম দ্য ট্র্যাপ!",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -890,7 +905,7 @@
         "end": 661,
         "hs": 650,
         "he": 655,
-        "hook": "সাউন্ড গার্ডেনে ফুল অ্যালবাম নামানোর গল্প - তরুণ মুন্সী",
+        "hook": "সাউন্ড গার্ডেনে পুরো অ্যালবাম নামানোর গল্প",
         "subs": [],
         "pre": {
           "s": 650,
@@ -899,7 +914,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "সাউন্ড গার্ডেনে",
+        "h2": "পুরো অ্যালবাম নামানোর গল্প",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -912,7 +932,7 @@
         "end": 740,
         "hs": 680,
         "he": 685,
-        "hook": "স্বার্থপর গানটি শুনে এক লাখ টাকা ইনভেস্ট করেছিলেন - তরুণ মুন্সী",
+        "hook": "'স্বার্থপর' শুনেই এক লাখ টাকা ইনভেস্ট!",
         "subs": [],
         "pre": {
           "s": 680,
@@ -921,7 +941,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "'স্বার্থপর' শুনেই",
+        "h2": "এক লাখ টাকা ইনভেস্ট!",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -934,7 +959,7 @@
         "end": 815,
         "hs": 763,
         "he": 768,
-        "hook": "আগে সাউন্ড বের করে আনতে হতো - তরুণ মুন্সী",
+        "hook": "আগে সাউন্ড বের করে আনতে হতো নিজেদেরই",
         "subs": [],
         "pre": {
           "s": 763,
@@ -943,7 +968,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "আগে সাউন্ড বের করে",
+        "h2": "আনতে হতো নিজেদেরই",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -956,7 +986,7 @@
         "end": 905,
         "hs": 849,
         "he": 854,
-        "hook": "স্বার্থপর গানটি একান্ত ব্যক্তিগত ভালোলাগা থেকে করা - তরুণ মুন্সী",
+        "hook": "'স্বার্থপর' গানটা একান্ত ব্যক্তিগত ভালোলাগা",
         "subs": [],
         "pre": {
           "s": 849,
@@ -965,7 +995,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "'স্বার্থপর' গানটা",
+        "h2": "একান্ত ব্যক্তিগত ভালোলাগা",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -978,7 +1013,7 @@
         "end": 985,
         "hs": 953,
         "he": 958,
-        "hook": "নিজের গান গাওয়ার সময় এক্সপ্রেশন বোঝাতে হয় না - তরুণ মুন্সী",
+        "hook": "নিজের গান গাইতে এক্সপ্রেশন বোঝাতে হয় না",
         "subs": [],
         "pre": {
           "s": 953,
@@ -987,7 +1022,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "নিজের গান গাইতে",
+        "h2": "এক্সপ্রেশন বোঝাতে হয় না",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1009,7 +1049,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "স্টুডিওতে সরাসরি",
+        "h2": "'স্বার্থপর' গাইলেন তরুণ মুন্সী",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1022,7 +1067,7 @@
         "end": 1255,
         "hs": 1231,
         "he": 1236,
-        "hook": "গিটারের প্রতি দুর্বলতা আমার সবচেয়ে বেশি - তরুণ মুন্সী",
+        "hook": "সবচেয়ে বড় দুর্বলতা গিটার!",
         "subs": [],
         "pre": {
           "s": 1231,
@@ -1031,7 +1076,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "সবচেয়ে বড় দুর্বলতা",
+        "h2": "গিটার!",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1044,7 +1094,7 @@
         "end": 1404,
         "hs": 1363,
         "he": 1368,
-        "hook": "আজম খানের অ্যালবামে গান লিখতে পারা বিরাট ব্যাপার - তরুণ মুন্সী",
+        "hook": "আজম খানের অ্যালবামে গান লেখা বিরাট ব্যাপার",
         "subs": [],
         "pre": {
           "s": 1363,
@@ -1053,7 +1103,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "আজম খানের অ্যালবামে গান লেখা",
+        "h2": "বিরাট ব্যাপার",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1066,7 +1121,7 @@
         "end": 1511,
         "hs": 1488,
         "he": 1493,
-        "hook": "এভিয়েশনে অফিসারের পাশাপাশি লোডারের কাজও করেছি - তরুণ মুন্সী",
+        "hook": "এভিয়েশনে অফিসার, আবার লোডারের কাজও!",
         "subs": [],
         "pre": {
           "s": 1488,
@@ -1075,7 +1130,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "এভিয়েশনে অফিসার,",
+        "h2": "আবার লোডারের কাজও!",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1088,7 +1148,7 @@
         "end": 1622,
         "hs": 1586,
         "he": 1591,
-        "hook": "এয়ারলাইন্সে চাকরি করে অনেক কিছু শিখেছি - তরুণ মুন্সী",
+        "hook": "এয়ারলাইন্সের চাকরি শিখিয়েছে অনেক কিছু",
         "subs": [],
         "pre": {
           "s": 1586,
@@ -1097,7 +1157,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "এয়ারলাইন্সের চাকরি",
+        "h2": "শিখিয়েছে অনেক কিছু",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1110,7 +1175,7 @@
         "end": 1720,
         "hs": 1678,
         "he": 1683,
-        "hook": "ভদ্রলোকের দুনিয়ায় ফিট হই কি না দেখতে গিয়েছিলাম - তরুণ মুন্সী",
+        "hook": "ভদ্রলোকের দুনিয়ায় ফিট হই কি না দেখতে গিয়েছিলাম",
         "subs": [],
         "pre": {
           "s": 1678,
@@ -1119,7 +1184,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "ভদ্রলোকের দুনিয়ায় ফিট হই কি না",
+        "h2": "দেখতে গিয়েছিলাম",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1132,7 +1202,7 @@
         "end": 1950,
         "hs": 1910,
         "he": 1915,
-        "hook": "লাকি ভাই খুব একরোখা মানুষ ছিলেন - তরুণ মুন্সী",
+        "hook": "লাকি ভাই ছিলেন খুব একরোখা মানুষ",
         "subs": [],
         "pre": {
           "s": 1910,
@@ -1141,7 +1211,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "লাকি ভাই ছিলেন",
+        "h2": "খুব একরোখা মানুষ",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1154,7 +1229,7 @@
         "end": 2034,
         "hs": 1984,
         "he": 1989,
-        "hook": "বিপদে পড়েই বিপদ থেকে বের হওয়া শিখতে হয় - তরুণ মুন্সী",
+        "hook": "বিপদে পড়েই শিখতে হয় বিপদ থেকে বের হওয়া",
         "subs": [],
         "pre": {
           "s": 1984,
@@ -1163,7 +1238,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "বিপদে পড়েই শিখতে হয়",
+        "h2": "বিপদ থেকে বের হওয়া",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1176,7 +1256,7 @@
         "end": 2160,
         "hs": 2112,
         "he": 2117,
-        "hook": "খালিদ গেয়েছিল বলেই গানটি এতো ছড়িয়েছে - তরুণ মুন্সী",
+        "hook": "খালিদ গেয়েছিল বলেই গানটা এত ছড়িয়েছে!",
         "subs": [],
         "pre": {
           "s": 2112,
@@ -1185,7 +1265,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "খালিদ গেয়েছিল বলেই",
+        "h2": "গানটা এত ছড়িয়েছে!",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1198,7 +1283,7 @@
         "end": 2244,
         "hs": 2202,
         "he": 2207,
-        "hook": "সরলতার প্রতিমা গানটি ভাগ্যে ছিল - তরুণ মুন্সী",
+        "hook": "'সরলতার প্রতিমা' ভাগ্যেই ছিল!",
         "subs": [],
         "pre": {
           "s": 2202,
@@ -1207,7 +1292,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "'সরলতার প্রতিমা'",
+        "h2": "ভাগ্যেই ছিল!",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1220,7 +1310,7 @@
         "end": 2349,
         "hs": 2335,
         "he": 2340,
-        "hook": "জেমস ভাইয়ের জন্য 'পদ্ম পাতার জল' লেখার গল্প - তরুণ মুন্সী",
+        "hook": "জেমস ভাইয়ের জন্য 'পদ্ম পাতার জল' লেখার গল্প",
         "subs": [],
         "pre": {
           "s": 2335,
@@ -1229,7 +1319,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "জেমস ভাইয়ের জন্য",
+        "h2": "'পদ্ম পাতার জল' লেখার গল্প",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1242,7 +1337,7 @@
         "end": 2481,
         "hs": 2464,
         "he": 2469,
-        "hook": "সহজ কথায় গভীর ভাব প্রকাশ করাই আমার ধরণ - তরুণ মুন্সী",
+        "hook": "সহজ কথায় গভীর ভাব, এটাই আমার ধরন",
         "subs": [],
         "pre": {
           "s": 2464,
@@ -1251,7 +1346,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "সহজ কথায় গভীর ভাব,",
+        "h2": "এটাই আমার ধরন",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1264,7 +1364,7 @@
         "end": 2614,
         "hs": 2605,
         "he": 2610,
-        "hook": "কষ্ট বেচে খাই কথাটি সবার জীবনের ধ্রুব সত্য - তরুণ মুন্সী",
+        "hook": "'কষ্ট বেচে খাই' সবার জীবনের সত্য",
         "subs": [],
         "pre": {
           "s": 2605,
@@ -1273,7 +1373,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "'কষ্ট বেচে খাই'",
+        "h2": "সবার জীবনের সত্য",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1286,7 +1391,7 @@
         "end": 2728,
         "hs": 2697,
         "he": 2702,
-        "hook": "দ্য ট্র্যাপের তরুণ থেকে তরুণ মুন্সী হয়ে গেলাম - তরুণ মুন্সী",
+        "hook": "দ্য ট্র্যাপের তরুণ থেকে তরুণ মুন্সী!",
         "subs": [],
         "pre": {
           "s": 2697,
@@ -1295,7 +1400,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "দ্য ট্র্যাপের তরুণ থেকে",
+        "h2": "তরুণ মুন্সী!",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1308,12 +1418,17 @@
         "end": 2895,
         "hs": 2893,
         "he": 2898,
-        "hook": "অনলাইন প্ল্যাটফর্মের কারণে অনেক প্রতিভা বেরিয়ে আসছে - তরুণ মুন্সী",
+        "hook": "অনলাইনের কারণে বেরিয়ে আসছে অনেক প্রতিভা",
         "subs": [],
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "অনলাইনের কারণে",
+        "h2": "বেরিয়ে আসছে অনেক প্রতিভা",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1326,7 +1441,7 @@
         "end": 3029,
         "hs": 2976,
         "he": 2981,
-        "hook": "মূল শিল্পীর চেয়ে কাভার আর্টিস্টের ভিউ অনেক বেশি - তরুণ মুন্সী",
+        "hook": "মূল আর্টিস্টের চেয়ে কভার আর্টিস্টের ভিউ বেশি!",
         "subs": [],
         "pre": {
           "s": 2976,
@@ -1335,7 +1450,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "মূল আর্টিস্টের চেয়ে",
+        "h2": "কভার আর্টিস্টের ভিউ বেশি!",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1348,12 +1468,17 @@
         "end": 3138,
         "hs": 3138,
         "he": 3143,
-        "hook": "প্রথম গানের পারিশ্রমিক মায়ের হাতে তুলে দিয়েছিলাম - তরুণ মুন্সী",
+        "hook": "প্রথম গানের টাকা তুলে দিয়েছিলাম মায়ের হাতে",
         "subs": [],
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "প্রথম গানের টাকা",
+        "h2": "তুলে দিয়েছিলাম মায়ের হাতে",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1366,7 +1491,7 @@
         "end": 3242,
         "hs": 3196,
         "he": 3201,
-        "hook": "সিকিউর জব ছেড়ে ফ্রিল্যান্সিং ক্যারিয়ার বেছে নিয়েছি - তরুণ মুন্সী",
+        "hook": "নিশ্চিত চাকরি ছেড়ে বেছে নিলাম ফ্রিল্যান্সিং",
         "subs": [],
         "pre": {
           "s": 3196,
@@ -1375,7 +1500,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "নিশ্চিত চাকরি ছেড়ে",
+        "h2": "বেছে নিলাম ফ্রিল্যান্সিং",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1388,7 +1518,7 @@
         "end": 3330,
         "hs": 3325,
         "he": 3330,
-        "hook": "নিজের গানের খবর পত্রিকা থেকে কেটে রাখতাম - তরুণ মুন্সী",
+        "hook": "নিজের গানের খবর পত্রিকা থেকে কেটে রাখতাম!",
         "subs": [],
         "pre": {
           "s": 3325,
@@ -1397,7 +1527,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "নিজের গানের খবর",
+        "h2": "পত্রিকা থেকে কেটে রাখতাম!",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1410,7 +1545,7 @@
         "end": 3467,
         "hs": 3432,
         "he": 3437,
-        "hook": "নব্বইয়ের দশকে সবাই মিলে কিছু করার স্বপ্ন দেখত - তরুণ মুন্সী",
+        "hook": "নব্বইয়ের দশকে সবাই মিলে কিছু করার স্বপ্ন ছিল",
         "subs": [],
         "pre": {
           "s": 3432,
@@ -1419,7 +1554,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "নব্বইয়ের দশকে সবাই মিলে",
+        "h2": "কিছু করার স্বপ্ন ছিল",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1432,7 +1572,7 @@
         "end": 3544,
         "hs": 3531,
         "he": 3536,
-        "hook": "এখন বিশ্বজুড়ে ব্যান্ড মিউজিক খুব একটা জনপ্রিয় না - তরুণ মুন্সী",
+        "hook": "বিশ্বজুড়ে ব্যান্ড মিউজিক এখন আর তেমন জনপ্রিয় না",
         "subs": [],
         "pre": {
           "s": 3531,
@@ -1441,7 +1581,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "বিশ্বজুড়ে ব্যান্ড মিউজিক",
+        "h2": "এখন আর তেমন জনপ্রিয় না",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1454,7 +1599,7 @@
         "end": 3636,
         "hs": 3613,
         "he": 3618,
-        "hook": "সাতটি গানের নতুন অ্যালবাম নিয়ে কাজ করছি - তরুণ মুন্সী",
+        "hook": "সাত গানের নতুন অ্যালবাম নিয়ে কাজ চলছে",
         "subs": [],
         "pre": {
           "s": 3613,
@@ -1463,7 +1608,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "সাত গানের নতুন অ্যালবাম",
+        "h2": "নিয়ে কাজ চলছে",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1476,7 +1626,7 @@
         "end": 3720,
         "hs": 3665,
         "he": 3670,
-        "hook": "বাবার চলে যাওয়া আমার গানে প্রভাব ফেলেছে - তরুণ মুন্সী",
+        "hook": "বাবার চলে যাওয়া প্রভাব ফেলেছে আমার গানে",
         "subs": [],
         "pre": {
           "s": 3665,
@@ -1485,7 +1635,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "বাবার চলে যাওয়া",
+        "h2": "প্রভাব ফেলেছে আমার গানে",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1498,7 +1653,7 @@
         "end": 3861,
         "hs": 3857,
         "he": 3862,
-        "hook": "পেশা হিসেবে এনআইডিতে কণ্ঠশিল্পী উল্লেখ থাকা উচিত - তরুণ মুন্সী",
+        "hook": "এনআইডিতে পেশা 'কণ্ঠশিল্পী' লেখা উচিত",
         "subs": [],
         "pre": {
           "s": 3857,
@@ -1507,7 +1662,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "এনআইডিতে পেশা",
+        "h2": "'কণ্ঠশিল্পী' লেখা উচিত",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1520,7 +1680,7 @@
         "end": 3942,
         "hs": 3901,
         "he": 3906,
-        "hook": "শিল্পীদের আয়ের উৎস থেকে ট্যাক্স নেওয়া উচিত - তরুণ মুন্সী",
+        "hook": "শিল্পীদের আয় থেকে ট্যাক্স নেওয়া উচিত",
         "subs": [],
         "pre": {
           "s": 3901,
@@ -1529,7 +1689,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "শিল্পীদের আয় থেকে",
+        "h2": "ট্যাক্স নেওয়া উচিত",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1542,12 +1707,17 @@
         "end": 4012,
         "hs": 4012,
         "he": 4017,
-        "hook": "গান কেউ ফ্রি দেখছে না, সবাই খরচ করেই দেখছে - তরুণ মুন্সী",
+        "hook": "গান কেউ ফ্রি দেখছে না, সবাই খরচ করেই দেখছে",
         "subs": [],
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "গান কেউ ফ্রি দেখছে না,",
+        "h2": "সবাই খরচ করেই দেখছে",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     },
@@ -1560,7 +1730,7 @@
         "end": 4094,
         "hs": 4085,
         "he": 4090,
-        "hook": "গান আমাদের পেশা, এটি রক্ষা করা সবার দায়িত্ব - তরুণ মুন্সী",
+        "hook": "গান আমাদের পেশা, রক্ষা করা সবার দায়িত্ব",
         "subs": [],
         "pre": {
           "s": 4085,
@@ -1569,7 +1739,12 @@
         "tag": "গান-বাজ",
         "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
         "cut": 0,
-        "wide": true
+        "style": "ganbaz",
+        "h1": "গান আমাদের পেশা,",
+        "h2": "রক্ষা করা সবার দায়িত্ব",
+        "show": "গানবাজ",
+        "series": "গানবাজ · গানের পেছনের গল্প",
+        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
       },
       "hold": true
     }
