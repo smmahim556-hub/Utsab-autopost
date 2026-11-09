@@ -77,18 +77,90 @@ body{width:${w}px;height:${h}px;font-family:'Noto Serif Bengali',serif;font-weig
   return file;
 }
 
+function preCut(video, clip, work, tag) {
+  const src = path.join(work, `${tag}-pre.mp4`), enc = ['-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', '-c:a', 'aac', '-b:a', '160k', '-r', '30', '-ar', '44100'];
+  ff(['-ss', String(clip.pre.s), '-t', String(clip.pre.e - clip.pre.s), '-i', video, ...enc, path.join(work, `${tag}-a.mp4`)]);
+  ff(['-ss', String(clip.start), '-t', String(clip.end - clip.start), '-i', video, ...enc, path.join(work, `${tag}-b.mp4`)]);
+  ff(['-i', path.join(work, `${tag}-a.mp4`), '-i', path.join(work, `${tag}-b.mp4`), '-filter_complex', '[0:v][0:a][1:v][1:a]concat=n=2:v=1:a=1[v][a]', '-map', '[v]', '-map', '[a]', ...enc, src]);
+  return { video: src, clip: { ...clip, pre: undefined, start: 0, end: secs(src) } };
+}
+
+// Where to point a square crop in each camera shot: cuts by scene change, then Gemini looks at one frame per shot and finds
+// the person to follow (clip.focus, e.g. the guest in the black T-shirt; owner 2026-11-09: in the master shot frame him).
+async function shotPlan(video, start, len, work, tag, focus) {
+  const r = require('child_process').spawnSync('ffmpeg', ['-hide_banner', '-ss', String(start), '-t', String(len), '-i', video, '-an', '-vf', "scale=320:-2,select='gt(scene,0.28)',showinfo", '-f', 'null', '-'], { encoding: 'utf8', maxBuffer: 1 << 26 });
+  const cuts = [...(r.stderr || '').matchAll(/pts_time:([\d.]+)/g)].map(m => Number(m[1])).filter(t => t > 0.5 && t < len - 0.5);
+  const bounds = [0, ...cuts.filter((t, i, a) => !i || t - a[i - 1] > 1), len];
+  const shots = [];
+  for (let i = 0; i < bounds.length - 1 && i < 40; i++) {
+    const mid = (bounds[i] + bounds[i + 1]) / 2, jpg = path.join(work, `${tag}-shot${i}.jpg`);
+    ff(['-ss', String(start + mid), '-i', video, '-frames:v', '1', '-vf', 'scale=640:-2', jpg]);
+    let pos = { x: 0.5, y: 0.4 };
+    try {
+      const j = await gemini([{ inline_data: { mime_type: 'image/jpeg', data: fs.readFileSync(jpg).toString('base64') } }, { text:
+`A frame from a video podcast. Find ${focus || 'the main speaker'}; if that person is not in the frame, use the most prominent person. Give the centre of that person's face as fractions of the frame width and height (0-1). JSON only: {"x":0.5,"y":0.4,"people":1}` }]);
+      if (j && j.x >= 0 && j.x <= 1) pos = { x: Number(j.x), y: Number(j.y) || 0.4 };
+    } catch {}
+    shots.push({ t: bounds[i], ...pos });
+  }
+  return shots;
+}
+
+// The owner's own podcast template ('গান-বাজ', 2026-11-09 sample): dark green-red backdrop, his animated logo top centre,
+// series pill, two-line headline (second line on a red band), a 1:1 picture in a green-pink glowing frame, a live audio
+// waveform, a progress bar with the clock, and the follow line at the bottom.
+async function renderGanbaz(browser, video, clip, outFile, work, tag) {
+  const W = 1080, H = 1920, BX = 54, BY = 636, BW = 972, IN = 6, SQ = BW - 2 * IN, len = clip.end - clip.start;
+  const words = String(clip.hook || '').replace(/\s+-\s+[^-]+$/, '').split(/\s+/);
+  const cut = Math.max(1, Math.round(words.length * 0.45));
+  const h1 = clip.h1 || words.slice(0, cut).join(' '), h2 = clip.h2 || words.slice(cut).join(' ');
+  const mmss = t => `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, '0')}`;
+  const cassette = (w, c = '#fff') => `<svg width="${w}" viewBox="0 0 64 40"><rect x="2" y="2" width="60" height="36" rx="6" fill="none" stroke="${c}" stroke-width="3"/><circle cx="20" cy="18" r="6" fill="none" stroke="${c}" stroke-width="3"/><circle cx="44" cy="18" r="6" fill="none" stroke="${c}" stroke-width="3"/><path d="M14 38 L20 30 L44 30 L50 38" fill="none" stroke="${c}" stroke-width="3"/></svg>`;
+  const frame = await overlay(browser, `<div style="position:absolute;inset:0;background:radial-gradient(circle at 12% 22%,rgba(22,150,80,.55),transparent 42%),radial-gradient(circle at 92% 62%,rgba(200,32,47,.5),transparent 45%),radial-gradient(circle at 20% 92%,rgba(22,150,80,.35),transparent 40%),#0c1411">
+<div style="position:absolute;left:0;right:0;top:300px;display:flex;justify-content:center"><div style="display:flex;align-items:center;gap:14px;padding:6px 28px;border-radius:40px;border:2px solid rgba(255,255,255,.35);background:rgba(0,0,0,.35);color:#fff;font-size:28px;font-weight:700">${cassette(40)}${esc(clip.series || 'গানবাজ · গানের পেছনের গল্প')}</div></div>
+<div style="position:absolute;left:30px;right:30px;top:392px;text-align:center;color:#fff;font-size:${h1.length > 22 ? 56 : 64}px;line-height:1.25;font-weight:900;text-shadow:0 4px 12px rgba(0,0,0,.6)">${esc(h1)}</div>
+<div style="position:absolute;left:0;right:0;top:${h2 ? 490 : 9999}px;display:flex;justify-content:center"><div style="background:#e63946;color:#fff;font-size:${h2.length > 24 ? 52 : 60}px;line-height:1.25;font-weight:900;padding:2px 24px 10px;border-radius:10px;box-shadow:0 6px 20px rgba(230,57,70,.45)">${esc(h2)}</div></div>
+<div style="position:absolute;left:${BX}px;top:${BY}px;width:${BW}px;height:${BW}px;border-radius:26px;background:linear-gradient(135deg,#2ee6a8,#1aa36f 40%,#e8457a);box-shadow:-14px 0 40px rgba(46,230,168,.45),14px 0 40px rgba(232,69,122,.45)"><div style="position:absolute;inset:${IN}px;border-radius:21px;background:#000"></div></div>
+<div style="position:absolute;left:${BX}px;top:1731px;width:${BW}px;height:6px;border-radius:3px;background:rgba(255,255,255,.22)"></div>
+<div style="position:absolute;left:${BX}px;top:1800px;display:flex;align-items:center;gap:22px"><div style="width:120px;height:78px;border-radius:12px;background:#2a2a2a;border:3px solid #555;display:flex;align-items:center;justify-content:center">${cassette(86, '#e8e8e8')}</div>
+<div><div style="color:#fff;font-size:34px;font-weight:900;line-height:1.2">${esc(clip.show || 'গানবাজ')}</div><div style="color:#ddd;font-size:26px;font-weight:700">পুরো পর্ব দেখতে <span style="color:#ff5468">ফলো করুন</span></div></div></div></div>`,
+    path.join(work, `${tag}-gframe.png`), W, H);
+  const grad = await overlay(browser, '<div style="width:100%;height:100%;background:linear-gradient(90deg,#2ee6a8,#e8457a)"></div>', path.join(work, `${tag}-grad.png`), BW, 96);
+  const dot = await overlay(browser, '<div style="width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 0 10px #2ee6a8"></div>', path.join(work, `${tag}-dot.png`), 26, 26);
+  const [vw, vh] = execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', video]).toString().trim().split(',').map(Number);
+  // A fixed square (80% of the height) moved per shot onto the person to follow.
+  const S = Math.min(vw, Math.round(vh * 0.8 / 2) * 2);
+  const shots = await shotPlan(video, clip.start, len, work, tag, clip.focus);
+  const px = p => Math.round(Math.max(0, Math.min(vw - S, p.x * vw - S / 2)));
+  const py = p => Math.round(Math.max(0, Math.min(vh - S, p.y * vh - S * 0.38)));
+  const pw = (f) => shots.slice(1).reduceRight((acc, s, i) => `if(lt(t\\,${s.t.toFixed(2)})\\,${f(shots[i])}\\,${acc})`, String(f(shots[shots.length - 1] || { x: .5, y: .4 })));
+  const anim = fs.existsSync(LOGO_VIDEO), font = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf';
+  const clock = fs.existsSync(font) ? `,drawtext=fontfile=${font}:text='%{eif\\:t/60\\:d}\\:%{eif\\:mod(t\\,60)\\:d\\:2}':x=${BX}:y=1752:fontsize=28:fontcolor=0xbbbbbb,drawtext=fontfile=${font}:text='${mmss(len).replace(':', '\\:')}':x=${BX + BW}-tw:y=1752:fontsize=28:fontcolor=0xbbbbbb` : '';
+  const f = `[0:v]crop=${S}:${S}:x='${pw(px)}':y='${pw(py)}',scale=${SQ}:${SQ},setsar=1[sq];` +
+    `[1:v][sq]overlay=${BX + IN}:${BY + IN}[b1];` +
+    // Audio bars: a 61-band spectrum, mirrored, blown up so each band is one 16px column (10px bar + gap).
+    `[0:a]aresample=12000,pan=mono|c0=c0,showfreqs=s=61x48:mode=bar:ascale=log:fscale=log:win_size=1024:averaging=2:colors=white:rate=30[fq];color=black:s=61x48:r=30[blk];[blk][fq]overlay=shortest=1,format=gray,split[fa][fb];[fb]vflip[fv];[fa][fv]vstack,scale=976:96:flags=neighbor,crop=${BW}:96:2:0[m];` +
+    `[3:v]format=gray[st];[m][st]blend=all_mode=multiply:shortest=1[mk];[4:v]format=rgb24[g];[g][mk]alphamerge[w];[b1][w]overlay=${BX}:1620[b2];` +
+    `[6:v][5:v]overlay=x='-${BW}+${BW}*t/${len.toFixed(2)}'[tr];[b2][tr]overlay=${BX}:1731[b3];` +
+    `[b3][7:v]overlay=x='${BX - 13}+${BW}*t/${len.toFixed(2)}':y=1721${clock}[b4]` +
+    (anim ? `;[2:v]setpts=PTS-STARTPTS,scale=300:-2[lg];[b4][lg]overlay=(W-w)/2:118:shortest=0[v]` : `;[b4]null[v]`);
+  ff(['-ss', String(clip.start), '-t', String(len), '-i', video, '-loop', '1', '-i', frame,
+    ...(anim ? ['-stream_loop', '-1', '-c:v', 'libvpx-vp9', '-i', LOGO_VIDEO] : ['-f', 'lavfi', '-i', 'color=black:s=2x2']),
+    '-f', 'lavfi', '-i', `color=black:s=${BW}x96:r=30,format=gray,geq=lum='if(lt(mod(X\\,16)\\,10)\\,255\\,0)'`,
+    '-loop', '1', '-i', grad,
+    '-f', 'lavfi', '-i', `color=0x2ee6a8:s=${BW}x6:r=30`, '-f', 'lavfi', '-i', `color=0x3a3f3d:s=${BW}x6:r=30`, '-loop', '1', '-i', dot,
+    '-filter_complex', f, '-map', '[v]', '-map', '0:a?', '-t', String(len), '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p',
+    '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', outFile]);
+  return outFile;
+}
+
 // Owner's look (2026-10-29, second try): a 9:16 Utsab TV template with the video as a 1:1 square inside it. Header: our logo +
 // the hook headline; the square video in the middle (a landscape package is centre-cropped above its lower-third strap, so
 // its own corner logo and strap fall away); red footer with the site. No subtitles.
 async function renderClip(browser, video, clip, logo, outFile, work, tag) {
   // clip.pre = {s,e}: play that hook moment first, then the whole part (owner 2026-11-09, podcast reels).
-  if (clip.pre) {
-    const src = path.join(work, `${tag}-pre.mp4`), enc = ['-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', '-c:a', 'aac', '-b:a', '160k', '-r', '30', '-ar', '44100'];
-    ff(['-ss', String(clip.pre.s), '-t', String(clip.pre.e - clip.pre.s), '-i', video, ...enc, path.join(work, `${tag}-a.mp4`)]);
-    ff(['-ss', String(clip.start), '-t', String(clip.end - clip.start), '-i', video, ...enc, path.join(work, `${tag}-b.mp4`)]);
-    ff(['-i', path.join(work, `${tag}-a.mp4`), '-i', path.join(work, `${tag}-b.mp4`), '-filter_complex', '[0:v][0:a][1:v][1:a]concat=n=2:v=1:a=1[v][a]', '-map', '[v]', '-map', '[a]', ...enc, src]);
-    video = src; clip = { ...clip, pre: undefined, start: 0, end: secs(src) };
-  }
+  if (clip.pre) ({ video, clip } = preCut(video, clip, work, tag));
+  if (clip.style === 'ganbaz') return renderGanbaz(browser, video, clip, outFile, work, tag);
   const W = 1080, H = 1920, S = 1080, TOP = 470, len = clip.end - clip.start;
   const [vw, vh] = execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', video]).toString().trim().split(',').map(Number);
   const cut = vh > vw ? 0 : clip.cut ?? Number(process.env.CLIP_CROP_BOTTOM || 0.27); // the package's strap band
