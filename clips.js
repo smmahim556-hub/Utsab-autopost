@@ -143,10 +143,10 @@ async function renderGanbaz(browser, video, clip, outFile, work, tag) {
   const ev = n => Math.max(2, Math.round(n / 2) * 2);
   const pieces = shots.map((p, i) => {
     const t0 = p.t, t1 = i + 1 < shots.length ? shots[i + 1].t : len;
-    const S = ev(Math.min(vw, vh * (p.wide ? 0.62 : 0.8)));
-    let x = Math.max(0, Math.min(vw - S, p.x * vw - S / 2)), y = Math.max(0, Math.min(vh - S, p.y * vh - S * 0.34));
-    // Keep the source's own corner logo (top right) out of the square: drop below it, or else slide left of it.
-    if (x + S > vw * 0.8 && y < vh * 0.22) { if (S <= vh * 0.78) y = vh * 0.22; else x = Math.max(0, vw * 0.8 - S); }
+    const S = ev(Math.min(vw, vh * (p.wide ? 0.5 : 0.8)));
+    let x = Math.max(0, Math.min(vw - S, p.x * vw - S / 2)), y = Math.max(0, Math.min(vh - S, p.y * vh - S * 0.32));
+    // Keep the source's own corner logo (top right) out of the square by sliding left of it.
+    if (x + S > vw * 0.82 && y < vh * 0.2) x = Math.max(0, Math.min(x, vw * 0.82 - S));
     x = Math.round(x); y = Math.round(y);
     return `[sv${i}]trim=${t0.toFixed(3)}:${t1.toFixed(3)},setpts=PTS-STARTPTS,crop=${S}:${S}:${x}:${y},scale=${SQ}:${SQ}:flags=lanczos,setsar=1[p${i}]`;
   });
