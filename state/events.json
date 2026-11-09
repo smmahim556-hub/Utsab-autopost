@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-09T07:43:08.624Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4518011771746879\"}"
-  },
-  {
-    "at": "2026-11-09T07:43:11.613Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122108179761533116 ()"
-  },
-  {
-    "at": "2026-11-09T07:43:17.056Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"4328898673908250\"}"
-  },
-  {
-    "at": "2026-11-09T07:48:10.541Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-09T07:50:54.191Z",
-    "text": "mirror: 872606492607357_122149079649140193 (video) -> Digital 2281839735720614"
-  },
-  {
-    "at": "2026-11-09T07:53:02.649Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149080183140193 (https://utsabtv.com/hasina-passport-renewal-application-ridiculous-no-passport-terrorist-humayun-kabir)"
-  },
-  {
     "at": "2026-11-09T07:53:11.117Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1614353189889380\"}"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-09T08:35:17.441Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-09T08:45:01.912Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149086255140193 ()"
+  },
+  {
+    "at": "2026-11-09T08:45:10.042Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1565373965358133\"}"
+  },
+  {
+    "at": "2026-11-09T08:45:15.824Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126503017459930 ()"
+  },
+  {
+    "at": "2026-11-09T08:45:23.683Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1661384125776353\"}"
+  },
+  {
+    "at": "2026-11-09T08:45:28.853Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122108230179533116 ()"
+  },
+  {
+    "at": "2026-11-09T08:45:35.441Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"918052334607308\"}"
   }
 ]
