@@ -1,0 +1,26 @@
+{
+ "https://www.facebook.com/reel/1464481912171733": {
+  "status": 400,
+  "len": 1542,
+  "keys": {},
+  "reps": [],
+  "login": false
+ },
+ "https://www.facebook.com/watch/?v=1464481912171733": {
+  "status": 200,
+  "len": 860706,
+  "keys": {
+   "browser_native_hd_url": "https://video-sea5-1.xx.fbcdn.net/o1/v/t2/f2/m266/AQPafQniK2ROCgtEPS4gk9v-rLVlrMWbc3Q1_78fS2uKdeuuK-oPU54jG6EMWEZhfvjR99",
+   "browser_native_sd_url": "https://video-sea5-1.xx.fbcdn.net/o1/v/t2/f2/m412/AQO11jY3d2dKjGCMF3Oz8PBZCEbVkxxNIXMstH76HDxHChae8P0sj6K1T8vT6pfbeTiI33"
+  },
+  "reps": [],
+  "login": false
+ },
+ "https://www.facebook.com/video.php?v=1464481912171733": {
+  "status": 400,
+  "len": 1542,
+  "keys": {},
+  "reps": [],
+  "login": true
+ }
+}
