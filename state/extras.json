@@ -12,12 +12,17 @@
     "QUIZ": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "MARKET": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
-    "QUIZ"
+    "QUIZ",
+    "MARKET"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -59,5 +64,5 @@
     "বাংলাদেশের কোন জেলার সাথে ভারত ও মায়ানমার—উভয় দেশের সীমান্ত রয়েছে?",
     "বিশ্বের দীর্ঘতম প্রাকৃতিক বালুময় সমুদ্রসৈকত কোনটি?"
   ],
-  "marketCheckedAt": 1794220484656
+  "marketCheckedAt": 1794221389307
 }
