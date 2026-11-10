@@ -36,7 +36,8 @@
     "https://utsabtv.com/eisenkot-open-to-netanyahu-in-new-government",
     "https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase",
     "https://utsabtv.com/drone-attack-khor-mor-gas-field-kurdistan-production-halted",
-    "https://utsabtv.com/kishoreganj-housewife-jyotsna-murder-seven-life-term-four-acquitted"
+    "https://utsabtv.com/kishoreganj-housewife-jyotsna-murder-seven-life-term-four-acquitted",
+    "https://utsabtv.com/rajshahi-airport-grenade-like-objects-recovered-minister-escorted-rear-gate"
   ],
   "date": "2026-11-10",
   "done": {
@@ -47,10 +48,15 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
-    "960": "https://utsabtv.com/kishoreganj-housewife-jyotsna-murder-seven-life-term-four-acquitted"
+    "960": "https://utsabtv.com/kishoreganj-housewife-jyotsna-murder-seven-life-term-four-acquitted",
+    "1200": "https://utsabtv.com/rajshahi-airport-grenade-like-objects-recovered-minister-escorted-rear-gate"
   },
   "failedAt": 1793700193463
 }
