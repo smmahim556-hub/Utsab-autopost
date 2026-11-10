@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-10T09:47:19.000Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126739201459930 (https://utsabtv.com/bangladesh-depart-south-africa-full-series)"
-  },
-  {
-    "at": "2026-11-10T09:47:24.709Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4661397057519160\"}"
-  },
-  {
-    "at": "2026-11-10T09:47:45.701Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149221387140193 (https://utsabtv.com/bangladesh-south-korea-agree-finalise-cepa-draft-december)"
-  },
-  {
-    "at": "2026-11-10T09:47:53.567Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1802399217648612\"}"
-  },
-  {
     "at": "2026-11-10T09:47:58.780Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122126739459459930 (https://utsabtv.com/bangladesh-south-korea-agree-finalise-cepa-draft-december)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-10T11:17:17.242Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-10T11:26:49.465Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149234395140193 ()"
+  },
+  {
+    "at": "2026-11-10T11:26:56.613Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1812702076472049\"}"
+  },
+  {
+    "at": "2026-11-10T11:27:00.328Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126756379459930 ()"
+  },
+  {
+    "at": "2026-11-10T11:27:06.981Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2043722639680361\"}"
   }
 ]
