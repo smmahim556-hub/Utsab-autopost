@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-10T09:28:25.768Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4680439658844536\"}"
-  },
-  {
     "at": "2026-11-10T09:29:19.111Z",
     "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-10T10:09:07.846Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1471954388228027\"}"
+  },
+  {
+    "at": "2026-11-10T10:13:27.252Z",
+    "text": "mirror: 872606492607357_122149224093140193 (video) -> Digital 1843308693535924"
   }
 ]
