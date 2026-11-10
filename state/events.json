@@ -1,33 +1,5 @@
 [
   {
-    "at": "2026-11-10T08:34:36.741Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149209075140193 ()"
-  },
-  {
-    "at": "2026-11-10T08:34:43.285Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1889316869087677\"}"
-  },
-  {
-    "at": "2026-11-10T08:34:46.647Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126725797459930 ()"
-  },
-  {
-    "at": "2026-11-10T08:34:52.315Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2113465239375476\"}"
-  },
-  {
-    "at": "2026-11-10T08:34:56.576Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122109206481533116 ()"
-  },
-  {
-    "at": "2026-11-10T08:35:03.299Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1405409301576803\"}"
-  },
-  {
-    "at": "2026-11-10T08:50:46.306Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149210521140193 (https://utsabtv.com/ashulia-workers-police-clash-bgb-deployed)"
-  },
-  {
     "at": "2026-11-10T08:50:53.361Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1648728473294419\"}"
   },
@@ -158,5 +130,33 @@
   {
     "at": "2026-11-10T09:07:06.767Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1810394886893478\"}"
+  },
+  {
+    "at": "2026-11-10T09:09:17.745Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2710857719362108\"}"
+  },
+  {
+    "at": "2026-11-10T09:09:23.792Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1478887077451073\"}"
+  },
+  {
+    "at": "2026-11-10T09:10:56.378Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-10T09:11:16.816Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149214433140193 (https://utsabtv.com/tungipara-banned-chhatra-league-police-clash-police-car-torched)"
+  },
+  {
+    "at": "2026-11-10T09:11:22.661Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1543071674326820\"}"
+  },
+  {
+    "at": "2026-11-10T09:11:29.913Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126733213459930 (https://utsabtv.com/tungipara-banned-chhatra-league-police-clash-police-car-torched)"
+  },
+  {
+    "at": "2026-11-10T09:11:36.306Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4745245372465150\"}"
   }
 ]
