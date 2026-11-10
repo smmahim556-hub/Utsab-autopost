@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-10T09:29:19.111Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-10T09:30:12.023Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-11-10T09:31:51.594Z",
     "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-10T10:13:27.252Z",
     "text": "mirror: 872606492607357_122149224093140193 (video) -> Digital 1843308693535924"
+  },
+  {
+    "at": "2026-11-10T10:22:19.037Z",
+    "text": "mirror: 872606492607357_122149224885140193 (video) -> Digital 1798019754813352"
+  },
+  {
+    "at": "2026-11-10T10:22:25.576Z",
+    "text": "mirror: 872606492607357_122149225203140193 (video) -> Digital 1168147165698762"
   }
 ]
