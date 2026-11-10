@@ -37,25 +37,13 @@
     "https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase",
     "https://utsabtv.com/drone-attack-khor-mor-gas-field-kurdistan-production-halted"
   ],
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "done": {
     "720": [
       "872606492607357",
       "1276101408920358"
-    ],
-    "960": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "1200": [
-      "872606492607357",
-      "1276101408920358"
     ]
   },
-  "slotUrl": {
-    "720": "https://utsabtv.com/eisenkot-open-to-netanyahu-in-new-government",
-    "960": "https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase",
-    "1200": "https://utsabtv.com/drone-attack-khor-mor-gas-field-kurdistan-production-halted"
-  },
+  "slotUrl": {},
   "failedAt": 1793700193463
 }
