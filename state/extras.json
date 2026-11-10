@@ -12,13 +12,18 @@
     "TOP5": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
     "QUIZ",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -33,7 +38,8 @@
     "https://utsabtv.com/kishoreganj-bhairab-clash-over-facebook-post-15-injured",
     "https://utsabtv.com/prime-minister-joins-parade-national-revolution-solidarity-day",
     "https://utsabtv.com/33-platoon-bgb-deployed-industrial-areas-dhaka-gazipur-narayanganj",
-    "https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase"
+    "https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase",
+    "https://utsabtv.com/gazipur-18-factories-holiday-worker-protests"
   ],
   "quiz": {
     "q": "বিশ্বের দীর্ঘতম প্রাকৃতিক বালুময় সমুদ্রসৈকত কোনটি?",
