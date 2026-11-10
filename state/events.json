@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-10T09:47:13.190Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1828811854985801\"}"
-  },
-  {
     "at": "2026-11-10T09:47:19.000Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122126739201459930 (https://utsabtv.com/bangladesh-depart-south-africa-full-series)"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-10T11:12:30.729Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1137614755297096\"}"
+  },
+  {
+    "at": "2026-11-10T11:17:17.242Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
