@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-10T09:57:17.322Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-10T09:57:27.255Z",
-    "text": "mirror: 872606492607357_122149222251140193 (video) -> Digital 2338892443627754"
-  },
-  {
-    "at": "2026-11-10T10:02:43.753Z",
-    "text": "album on Page 872606492607357: 872606492607357_122149223013140193 https://utsabtv.com/kishoreganj-housewife-jyotsna-murder-seven-life-term-four-acquitted"
-  },
-  {
-    "at": "2026-11-10T10:02:57.615Z",
-    "text": "album on Page 1276101408920358: 1276101408920358_122126741997459930 https://utsabtv.com/kishoreganj-housewife-jyotsna-murder-seven-life-term-four-acquitted"
-  },
-  {
     "at": "2026-11-10T10:08:41.294Z",
     "text": "posted to Page 872606492607357: 872606492607357_122149223829140193 ()"
   },
@@ -152,11 +136,27 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2043722639680361\"}"
   },
   {
-    "at": "2026-11-10T11:42:27.212Z",
-    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149236003140193\"}"
+    "at": "2026-11-10T11:43:16.140Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149236213140193 ()"
   },
   {
-    "at": "2026-11-10T11:42:38.268Z",
-    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122126759235459930\"}"
+    "at": "2026-11-10T11:43:24.109Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2352438285588818\"}"
+  },
+  {
+    "at": "2026-11-10T11:43:28.566Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126759445459930 ()"
+  },
+  {
+    "at": "2026-11-10T11:43:36.171Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1120980757509161\"}"
+  },
+  {
+    "at": "2026-11-10T11:43:40.850Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122109329679533116 ()"
+  },
+  {
+    "at": "2026-11-10T11:43:47.801Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1028290233004814\"}"
   }
 ]
