@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-10T09:41:44.833Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126738109459930 (https://utsabtv.com/rajshahi-airport-grenade-like-objects-recovered-minister-escorted-rear-gate)"
-  },
-  {
     "at": "2026-11-10T09:41:47.580Z",
     "text": "story on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A_VK6YKubP9j2EL3ko6t2ul\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-10T10:46:14.521Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2609162826269020\"}"
+  },
+  {
+    "at": "2026-11-10T10:56:51.857Z",
+    "text": "mirror: skip live 872606492607357_1159850613046536"
   }
 ]
