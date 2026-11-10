@@ -1,7 +1,5 @@
 {
   "seen": [
-    "CBMiY0FVX3lxTFBDVUU3YmZiUjNmYTcyRlVqcmRqRTRTODIzMTdteU9KeVdEb3lCYzRxVGx0NDk0Wk51TWNlMVZFOVdpWDBuMmxrM3FlNFFHVVNaeG96UndMd2pLNE1vajZaOFUzdw",
-    "CBMiVkFVX3lxTE9pRFFiaExhWF9kTGZpelNucnpqRWFnUjlxVVlNYzg1M09KRVRzVUVrZFZ4RDVCdkZaTVNYcHo2X3h3Q3ZtUWZwRjRwY0dhYWxncXpMN2R3",
     "CBMiYkFVX3lxTE9hWE5vLUpfV3pOd3JUeHhzSU15T2htTjNMQlJoRDA5U2VIUkF2X3RGV25PQkQ2OWJheUVNZTl4VVBjYUdyTGloelVUaHBMa2dtdkdiTl9iR2VOY1ZpQzlienpn0gFvQVVfeXFMTWl1NGVLYjFtUFdES3BjdnNGSUtPV25FV1hSNlZDc05MQVFtZHhndzkyVFpxQUduZkx2bHpZc3RhbTdfSEd5ZEtSckpzRDZUakNBV3Fta1draXJ1TnZEd1NVbzU2WjAxOXZaRFFaY1M0",
     "CBMib0FVX3lxTFBaeUhyTU15UUJIUFdYRGp2OGRJdm13RWpfVlhzVlZaZ1A4SnpfWjBXU1c4bEg4X3lZeklDaklkVGVuelFUTWJTZDFFM2hVZkJEQTZXeXNwcElPTXBMT3g1ZFcwWFc0bURScWZNZHFUZw",
     "CBMiVkFVX3lxTE5NdUFHWXBXak9qUmpCQkZhMEwtRURCWUpzN3hHM1BhaE0ya0E4MF9nRHYwTVhSbXVUdllnMHFHNE9QMVBmVjVabzN6cTRzMmotS2JrN0Fn",
@@ -599,10 +597,11 @@
     "CBMiY0FVX3lxTE1IMC16WXpCZjBYR0V4cFkxTDlUa0ZNSzFCX2xWNndFMlVYaWZMblpwd2VpaUZ2QlVuME1Wa24yZUptcGYwOUx0ODZaUHZvb3RGS09haWgxMUJnQllsSXBxUGZKUQ",
     "CBMiXEFVX3lxTE9nVFdyOWdCd205QXdTZHJPck41TTRORm5QLUZOdWlmVEp0VWptcnVjT3FEd0NrRzJtUzdoRk5TZGVmRzRlNEVUWWVjRzIwQS0yeDl6bFU4NTVadUdx",
     "CBMiwgFBVV95cUxQdnppTjZucmZuT1YxajhYRWd6NmlkX0RZaUxFVHU3TVFDQ2xuMWZrMzZyNnJKQ1loWEVDZWNwWmNDQVhvUzBIRGR3TDZRN2Q5cXdzMzBuWDJreHA0RHRjcGhiZUIxUFlsU2IyNnlVRHkxY00wUU1QdUpBTE8xaEgxTXprR0g3RTJLeWJfOTlIcEhSeDdPeThoZlpYckF6dDVBbFVaVDZSUk1tcXo4cjZTRnRvOUNxREhFRGZPalM3N1E2UdIBygFBVV95cUxQNHRuVGhYanRtMmZWTGFHWnJlai1RUS0zLTg5ZGxUakNTWTRqZlFtTTBIUWZITWNBR2V6ZXFPVDQtaWdTVExaVUppRlRkcUpCMVhOSV9rOHVURHY3c2JPUGJTWjAtNzJiemZPTUs4UEdZZnFpSmxGSHBkbEY1SVNGZmczeFhvcEVsOTh3ajJHZ3RMbmxVUmV1Q04tZUZYMWMwdWVrQXVpeFZQODFpR3ViNDBPTlI2eGNPMFY0Z0dzbU5JODJIb3RMM3NR",
-    "CBMiXEFVX3lxTE5Ud3VGSXBmencxRGprNkZEdURFdVZIcXhUMXQ4UUs0Z2JFUzJmRFhvdVFrS1owRFFJQVFPWHAxNGxvaEdIZHU5WkdTUmJoazVtZi00WUQ0cTdLYllS"
+    "CBMiXEFVX3lxTE5Ud3VGSXBmencxRGprNkZEdURFdVZIcXhUMXQ4UUs0Z2JFUzJmRFhvdVFrS1owRFFJQVFPWHAxNGxvaEdIZHU5WkdTUmJoazVtZi00WUQ0cTdLYllS",
+    "CBMi2wFBVV95cUxPTEZaWWR4X25XNUZxM1R6aHZWU29PYUJYT3dkR3VyT082WEZ0RWFEdXVpSFJNakUwSjhYQzZFSHZPSXpqUkFnLTd4b2JiSmFWSERJcHEwX1FzTzJxdWxoczE4WHNSLW9VZXZaWFdYZ1U0VmItdUxGSzNRbVdidzJLVUdJREdBcGE1RmtZeTFobW5BTXUzUW9RcTZXRG1nWHdDU2M0a29vQ3VwdU1pLTNIbWl1dDEtVWJ0ZFY4bVlCMzRpWGdDYlR2SkhGdTltVlBjeWI2NEZUVVdoNEXSAeABQVVfeXFMTnpsOGtLLUQtQmFNMkxEUURPNDNDc2pNXzJmeXBXcjJTcTd0TGJlYUs4ZjVFLUNOTDRyUHpXZlFSMUxXWHhmTE5RbHppcVN1ZWxXOEt1SnRzYUxPMmFFenM5MGNRaE5OazhCZEZfbE51anhHQ2FmYVA3LWpNblVIZVkyUXRaZVlVWmpiall5eDgyNTR0T2hSUkVaeGlOY1B1MFpyazNhSl9sMnZ5S0RnZHNfMFdlX2FEYUZ2YndzME9SSVliMzY1dFp1Mjd3OTVjSUVGYlFwT0FiSVZCZ05TOUE",
+    "CBMiU0FVX3lxTE1KQXlVV09YeFF0ajUzSHMxbGNIU01yenIyNmZaYW0wZFhtbWVjV1M4SHdDWXByXzFnOW1ERWxEcmVxRkF3aWdfc2NaNzJ0d0l5UEFr"
   ],
   "titles": [
-    "পড়ুয়াদের জন্য এআই গবেষণায় বড় পদক্ষেপ, ইনভারিজের সঙ্গে নয়া চুক্তিতে আইইএম-ইউইএম",
     "চলচ্চিত্র থেকে ফ্যাশন, এআই সৃজনশীলতার সেরাদের বাছাই",
     "‘রামায়ণ’-এর ডাবিংয়ে এআইয়ের ব্যবহার নিয়ে বিতর্ক, মুখ খুললেন নিতেশ তিওয়ারি",
     "ওপেনএআইয়ের ডেটা চুরি করেছে ডিপসিক ও মুনশট?",
@@ -751,8 +750,9 @@
     "গুগল ম্যাপসে যুক্ত হচ্ছে নতুন সুবিধা, উপকৃত হবেন যাঁরা",
     "ম্যামোগ্রামে এআই, চিকিৎসকের ‘দ্বিতীয় চোখ’",
     "মানুষের সৃজনশীলতা শূন্যে গিয়ে ঠেকবে, সাহিত্য জগতে এআইয়ের বাড়বাড়ন্তে উদ্বিগ্ন তসলিমা",
-    "ডিজিটাল অবকাঠামো নির্মাণের শুরু থেকেই সাইবার নিরাপত্তায় গুরুত্ব দিতে হবে: তথ্যপ্রযুক্তিমন্ত্রী"
+    "ডিজিটাল অবকাঠামো নির্মাণের শুরু থেকেই সাইবার নিরাপত্তায় গুরুত্ব দিতে হবে: তথ্যপ্রযুক্তিমন্ত্রী",
+    "‘শয়তানের ধোঁকায় পড়ে ভুল করেছি’ বলা অডিওটি এআই নয়: দ্য ডিসেন্ট"
   ],
-  "lastAt": 1794310026982,
+  "lastAt": 1794313725676,
   "pages": {}
 }
