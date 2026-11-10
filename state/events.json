@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-10T09:41:47.580Z",
-    "text": "story on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A_VK6YKubP9j2EL3ko6t2ul\"}"
-  },
-  {
-    "at": "2026-11-10T09:42:04.389Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149220235140193 (https://utsabtv.com/gazipur-18-factories-holiday-worker-protests)"
-  },
-  {
-    "at": "2026-11-10T09:42:07.225Z",
-    "text": "story on Page 872606492607357 FAILED: Graph 872606492607357/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A7LvjchhGYMT6eMTmkh-AEV\"}"
-  },
-  {
-    "at": "2026-11-10T09:42:13.031Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126738289459930 (https://utsabtv.com/gazipur-18-factories-holiday-worker-protests)"
-  },
-  {
-    "at": "2026-11-10T09:42:15.877Z",
-    "text": "story on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AXp5oTSn7RbYIGbxiSUz2BV\"}"
-  },
-  {
-    "at": "2026-11-10T09:47:06.473Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149221135140193 (https://utsabtv.com/bangladesh-depart-south-africa-full-series)"
-  },
-  {
     "at": "2026-11-10T09:47:13.190Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1828811854985801\"}"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-10T10:56:51.857Z",
     "text": "mirror: skip live 872606492607357_1159850613046536"
+  },
+  {
+    "at": "2026-11-10T11:12:04.920Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149231947140193 ()"
+  },
+  {
+    "at": "2026-11-10T11:12:12.053Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1177196261314336\"}"
+  },
+  {
+    "at": "2026-11-10T11:12:15.439Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126754027459930 ()"
+  },
+  {
+    "at": "2026-11-10T11:12:21.192Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1200438945985552\"}"
+  },
+  {
+    "at": "2026-11-10T11:12:24.634Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122109317193533116 ()"
+  },
+  {
+    "at": "2026-11-10T11:12:30.729Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1137614755297096\"}"
   }
 ]
