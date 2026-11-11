@@ -201,7 +201,22 @@ ${logo && !fs.existsSync(LOGO_VIDEO) ? `<img src="${logo}" style="position:absol
   // The channel's own animated logo (keyed from its blue screen, assets/video-logo.webm) plays at the top right.
   const anim = fs.existsSync(LOGO_VIDEO);
   // clip.wide: keep the whole landscape picture (podcast: nobody cut off), over a blurred copy filling the square.
-  const f = (clip.wide ? `[0:v]split[a0][b0];[a0]scale=${S}:${S}:force_original_aspect_ratio=increase,crop=${S}:${S},boxblur=24:2,eq=brightness=-0.12[bg];[b0]scale=${S}:-2[fg];[bg][fg]overlay=0:(H-h)/2[sq];`
+  // Landscape news/package video: the square follows the speaker shot by shot (owner 2026-11-11: the subject fell out of the
+  // frame). The square keeps one size; only its left/right position changes, and only at a real picture cut.
+  const trackSq = async () => {
+    const shots = await shotPlan(video, clip.start, len, work, tag, clip.focus || 'the main speaker');
+    const SQ0 = Math.min(vw, Math.round(vh * (1 - cut) / 2) * 2);
+    const fps = (([a, b]) => a / (b || 1))(execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=r_frame_rate', '-of', 'csv=p=0', video]).toString().trim().split('/').map(Number));
+    const pieces = shots.map((p, i) => {
+      const t0 = p.t, t1 = i + 1 < shots.length ? shots[i + 1].t : len;
+      const x = Math.max(0, Math.min(vw - SQ0, Math.round((p.x * vw - SQ0 / 2) / 2) * 2));
+      const f0 = Math.round(t0 * fps), f1 = Math.round(t1 * fps);
+      return `[sv${i}]trim=start_frame=${f0}${i + 1 < shots.length ? `:end_frame=${f1}` : ''},setpts=PTS-STARTPTS,crop=${SQ0}:${SQ0}:${x}:0,scale=${S}:${S}:flags=lanczos,setsar=1[p${i}]`;
+    });
+    return `[0:v]split=${shots.length}${shots.map((_, i) => `[sv${i}]`).join('')};${pieces.join(';')};${shots.map((_, i) => `[p${i}]`).join('')}concat=n=${shots.length}:v=1:a=0[sq];`;
+  };
+  const tracked = !clip.wide && vh <= vw && process.env.NEWS_TRACK !== "0" ? await trackSq() : null;
+  const f = (tracked ? tracked : clip.wide ? `[0:v]split[a0][b0];[a0]scale=${S}:${S}:force_original_aspect_ratio=increase,crop=${S}:${S},boxblur=24:2,eq=brightness=-0.12[bg];[b0]scale=${S}:-2[fg];[bg][fg]overlay=0:(H-h)/2[sq];`
     : `[0:v]crop=iw:ih*${(1 - cut).toFixed(3)}:0:0,scale=${S}:${S}:force_original_aspect_ratio=increase,crop=${S}:${S}[sq];`) +
     `[1:v][sq]overlay=0:${TOP}${anim ? '[b];[2:v]setpts=PTS-STARTPTS[lg];[b][lg]overlay=W-w-40:36:shortest=0' : ''}[v]`;
   ff(['-ss', String(clip.start), '-t', String(len), '-i', video, '-loop', '1', '-i', frame,
