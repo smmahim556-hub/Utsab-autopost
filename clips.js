@@ -153,7 +153,8 @@ async function renderGanbaz(browser, video, clip, outFile, work, tag) {
     const S = ev(Math.min(vw, vh * (p.wide ? 0.5 : 0.8)));
     let x = Math.max(0, Math.min(vw - S, p.x * vw - S / 2)), y = Math.max(0, Math.min(vh - S, p.y * vh - S * 0.32));
     // Keep the source's own corner logo (top right) out of the square by sliding left of it.
-    if (x + S > vw * 0.82 && y < vh * 0.2) x = Math.max(0, Math.min(x, vw * 0.82 - S));
+    // Slide left only if the person still stays inside the square (owner 2026-11-11: the face left the frame at shot changes).
+    if (x + S > vw * 0.82 && y < vh * 0.2) { const nx = Math.max(0, Math.min(x, vw * 0.82 - S)); if (p.x * vw >= nx + S * 0.15 && p.x * vw <= nx + S * 0.85) x = nx; }
     x = Math.round(x); y = Math.round(y);
     // Cut by frame number, not time: time rounding put the new crop 1-2 frames after the real cut (owner: frame jolts).
     const f0 = Math.round(t0 * fps), f1 = Math.round(t1 * fps);
