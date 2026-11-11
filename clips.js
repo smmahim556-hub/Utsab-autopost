@@ -208,16 +208,27 @@ ${logo && !fs.existsSync(LOGO_VIDEO) ? `<img src="${logo}" style="position:absol
     const shots = await shotPlan(video, clip.start, len, work, tag, clip.focus || 'the main speaker');
     const SQ0 = Math.min(vw, Math.round(vh * (1 - cut) / 2) * 2);
     const fps = (([a, b]) => a / (b || 1))(execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=r_frame_rate', '-of', 'csv=p=0', video]).toString().trim().split('/').map(Number));
-    // Each cut starts with a smooth 0.35 s slide from the previous position (owner 2026-11-11: no sudden jump at a cut).
+    // Each cut starts with a smooth slide from the previous position over ~0.35 s, cut into 7 small steps (eased), so there is
+    // no sudden jump at a cut (owner 2026-11-11). Runner ffmpeg has no per-frame crop expressions, hence the steps.
     const xs = shots.map(p => Math.max(0, Math.min(vw - SQ0, Math.round((p.x * vw - SQ0 / 2) / 2) * 2)));
-    const pieces = shots.map((p, i) => {
-      const t0 = p.t, t1 = i + 1 < shots.length ? shots[i + 1].t : len;
-      const x0 = i ? xs[i - 1] : xs[i], x1 = xs[i];
-      const f0 = Math.round(t0 * fps), f1 = Math.round(t1 * fps);
-      const xe = x0 === x1 ? `${x1}` : `'${x0}+(${x1 - x0})*min(1,t/0.35)'`;
-      return `[sv${i}]trim=start_frame=${f0}${i + 1 < shots.length ? `:end_frame=${f1}` : ''},setpts=PTS-STARTPTS,crop=${SQ0}:${SQ0}:${xe}:0${x0 === x1 ? '' : ':eval=frame'},scale=${S}:${S}:flags=lanczos,setsar=1[p${i}]`;
+    const fr = Math.round(0.35 * fps), K = 7, parts = [];
+    shots.forEach((p, i) => {
+      const f0 = Math.round(p.t * fps), f1 = i + 1 < shots.length ? Math.round(shots[i + 1].t * fps) : Math.round(len * fps);
+      const xa = i ? xs[i - 1] : xs[i], xb = xs[i];
+      const steps = xa === xb ? 0 : Math.min(K, Math.max(0, Math.floor((f1 - f0) / 2)));
+      const ease = u => u * u * (3 - 2 * u);
+      let fa = f0;
+      for (let k = 0; k < steps; k++) {
+        const fb = k === steps - 1 ? Math.min(f1, f0 + fr) : Math.min(f1, f0 + Math.round(fr * (k + 1) / steps));
+        if (fb <= fa) continue;
+        parts.push({ fa, fb, x: Math.round(xa + (xb - xa) * ease((k + 1) / steps)) });
+        fa = fb;
+      }
+      if (fa < f1) parts.push({ fa, fb: f1, x: xb });
     });
-    return `[0:v]split=${shots.length}${shots.map((_, i) => `[sv${i}]`).join('')};${pieces.join(';')};${shots.map((_, i) => `[p${i}]`).join('')}concat=n=${shots.length}:v=1:a=0[sq];`;
+    const pieces = parts.map((q, j) => `[sv${j}]trim=start_frame=${q.fa}:end_frame=${q.fb},setpts=PTS-STARTPTS,crop=${SQ0}:${SQ0}:${q.x}:0,scale=${S}:${S}:flags=lanczos,setsar=1[p${j}]`);
+    const sqGraph = `[0:v]split=${parts.length}${parts.map((_, j) => `[sv${j}]`).join('')};${pieces.join(';')};${parts.map((_, j) => `[p${j}]`).join('')}concat=n=${parts.length}:v=1:a=0[sq];`;
+    return sqGraph;
   };
   const tracked = !clip.wide && vh <= vw && process.env.NEWS_TRACK !== "0" ? await trackSq() : null;
   const f = (tracked ? tracked : clip.wide ? `[0:v]split[a0][b0];[a0]scale=${S}:${S}:force_original_aspect_ratio=increase,crop=${S}:${S},boxblur=24:2,eq=brightness=-0.12[bg];[b0]scale=${S}:-2[fg];[bg][fg]overlay=0:(H-h)/2[sq];`
