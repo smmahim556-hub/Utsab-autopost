@@ -208,11 +208,14 @@ ${logo && !fs.existsSync(LOGO_VIDEO) ? `<img src="${logo}" style="position:absol
     const shots = await shotPlan(video, clip.start, len, work, tag, clip.focus || 'the main speaker');
     const SQ0 = Math.min(vw, Math.round(vh * (1 - cut) / 2) * 2);
     const fps = (([a, b]) => a / (b || 1))(execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=r_frame_rate', '-of', 'csv=p=0', video]).toString().trim().split('/').map(Number));
+    // Each cut starts with a smooth 0.35 s slide from the previous position (owner 2026-11-11: no sudden jump at a cut).
+    const xs = shots.map(p => Math.max(0, Math.min(vw - SQ0, Math.round((p.x * vw - SQ0 / 2) / 2) * 2)));
     const pieces = shots.map((p, i) => {
       const t0 = p.t, t1 = i + 1 < shots.length ? shots[i + 1].t : len;
-      const x = Math.max(0, Math.min(vw - SQ0, Math.round((p.x * vw - SQ0 / 2) / 2) * 2));
+      const x0 = i ? xs[i - 1] : xs[i], x1 = xs[i];
       const f0 = Math.round(t0 * fps), f1 = Math.round(t1 * fps);
-      return `[sv${i}]trim=start_frame=${f0}${i + 1 < shots.length ? `:end_frame=${f1}` : ''},setpts=PTS-STARTPTS,crop=${SQ0}:${SQ0}:${x}:0,scale=${S}:${S}:flags=lanczos,setsar=1[p${i}]`;
+      const xe = x0 === x1 ? `${x1}` : `'${x0}+(${x1 - x0})*min(1,t/0.35)'`;
+      return `[sv${i}]trim=start_frame=${f0}${i + 1 < shots.length ? `:end_frame=${f1}` : ''},setpts=PTS-STARTPTS,crop=${SQ0}:${SQ0}:${xe}:0${x0 === x1 ? '' : ':eval=frame'},scale=${S}:${S}:flags=lanczos,setsar=1[p${i}]`;
     });
     return `[0:v]split=${shots.length}${shots.map((_, i) => `[sv${i}]`).join('')};${pieces.join(';')};${shots.map((_, i) => `[p${i}]`).join('')}concat=n=${shots.length}:v=1:a=0[sq];`;
   };
