@@ -37,26 +37,18 @@
     "https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase",
     "https://utsabtv.com/drone-attack-khor-mor-gas-field-kurdistan-production-halted",
     "https://utsabtv.com/kishoreganj-housewife-jyotsna-murder-seven-life-term-four-acquitted",
-    "https://utsabtv.com/rajshahi-airport-grenade-like-objects-recovered-minister-escorted-rear-gate"
+    "https://utsabtv.com/rajshahi-airport-grenade-like-objects-recovered-minister-escorted-rear-gate",
+    "https://utsabtv.com/joy-bangla-slogan-near-prime-minister-residence-three-youths-police"
   ],
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "done": {
     "720": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "960": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "1200": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "slotUrl": {
-    "960": "https://utsabtv.com/kishoreganj-housewife-jyotsna-murder-seven-life-term-four-acquitted",
-    "1200": "https://utsabtv.com/rajshahi-airport-grenade-like-objects-recovered-minister-escorted-rear-gate"
+    "720": "https://utsabtv.com/joy-bangla-slogan-near-prime-minister-residence-three-youths-police"
   },
   "failedAt": 1793700193463
 }
