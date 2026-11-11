@@ -19,8 +19,6 @@
     "1822892085643420"
   ],
   "log": [
-    "2026-11-07T17:34:05.933Z clip reel on 872606492607357: 988215350570135 from 1121181413984647",
-    "2026-11-07T17:34:06.050Z comment 988215350570135: Graph 988215350570135/comments: {\"message\":\"Unsupported post request. Object with ID '988215350570135' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100,",
     "2026-11-07T17:34:12.535Z clip reel on 1276101408920358: 1909408446891475 from 1121181413984647",
     "2026-11-07T17:34:12.657Z comment 1909408446891475: Graph 1909408446891475/comments: {\"message\":\"Unsupported post request. Object with ID '1909408446891475' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
     "2026-11-08T11:02:26.090Z clip reel on 872606492607357: 1144417724618490 from 1112793818315964",
@@ -58,66 +56,9 @@
     "2026-11-11T17:32:38.092Z comment 1688654836195515: Graph 1688654836195515/comments: {\"message\":\"Unsupported post request. Object with ID '1688654836195515' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
     "2026-11-11T18:02:45.134Z clip reel on 872606492607357: 1147789251164153 from 1822892085643420",
     "2026-11-11T18:02:45.224Z comment 1147789251164153: Graph 1147789251164153/comments: {\"message\":\"Unsupported post request. Object with ID '1147789251164153' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
-    "2026-11-11T18:02:51.866Z clip reel on 1276101408920358: 1606643777416911 from 1822892085643420"
+    "2026-11-11T18:02:51.866Z clip reel on 1276101408920358: 1606643777416911 from 1822892085643420",
+    "2026-11-11T23:03:40.928Z clip reel on 872606492607357: 3302352676622651 from 1822892085643420",
+    "2026-11-11T23:03:50.887Z clip reel on 1276101408920358: 2375926229883877 from 1822892085643420"
   ],
-  "pending": [
-    {
-      "video": "1822892085643420",
-      "clip": {
-        "start": 1914,
-        "end": 1958,
-        "hook": "'অর্থনীতির অন্যতম চালিকা শক্তি প্রবাসী আয়', বললেন শামসুর রহমান শিমুল বিশ্বাস",
-        "subs": [
-          {
-            "s": 0,
-            "e": 3.95,
-            "t": "মাননীয় স্পিকার, আমাদের অর্থনীতির অন্যতম প্রধান চালিকা শক্তি হলো প্রবাসী আয়।"
-          },
-          {
-            "s": 4,
-            "e": 7.95,
-            "t": "আর এই আয়ের মূল উৎস বিদেশগামী শ্রমজীবী মানুষ।"
-          },
-          {
-            "s": 8,
-            "e": 14.95,
-            "t": "কালের কণ্ঠ পত্রিকায় সম্প্রতি প্রকাশিত এক সংবাদে জানা গেছে, সাম্প্রতিক মাসগুলোতে জনশক্তি রপ্তানিতে নিম্নমুখী প্রবণতা লক্ষ্য করা গেছে।"
-          },
-          {
-            "s": 15,
-            "e": 19.95,
-            "t": "মধ্যপ্রাচ্যে চলমান সংঘাত, ভূ-রাজনৈতিক উত্তেজনা ও পাশাপাশি বাংলাদেশের শ্রমবাজারের..."
-          },
-          {
-            "s": 20,
-            "e": 24.95,
-            "t": "প্রতিদ্বন্দ্বী একটি প্রতিবেশী রাষ্ট্রের চক্রান্তের কারণে শ্রমবাজারে অনিশ্চয়তার প্রভাব পড়েছে।"
-          },
-          {
-            "s": 25,
-            "e": 29.95,
-            "t": "ফলাফল হিসেবে গত সাত মাসে জনশক্তি রপ্তানি হ্রাস পেয়েছে।"
-          },
-          {
-            "s": 30,
-            "e": 34.95,
-            "t": "প্রাপ্ত তথ্য বলছে, চলতি বছরের ১লা জানুয়ারি থেকে ২২শে আগস্ট পর্যন্ত..."
-          },
-          {
-            "s": 35,
-            "e": 39.95,
-            "t": "বিভিন্ন দেশে বাংলাদেশ থেকে কর্মসংস্থানের জন্য গিয়েছে ৪ লক্ষ ৮০ হাজার ১০৪ জন।"
-          },
-          {
-            "s": 40,
-            "e": 44,
-            "t": "গত বছর একই সময়ে গিয়েছিল ৭ লক্ষ ৬ হাজার ৬০৩ জন।"
-          }
-        ]
-      },
-      "url": "https://www.facebook.com/122147678985140193/videos/1822892085643420",
-      "title": "live",
-      "at": 1794430937669
-    }
-  ]
+  "pending": []
 }
