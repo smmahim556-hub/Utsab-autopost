@@ -1,5 +1,13 @@
 [
   {
+    "at": "2026-11-11T01:30:55.395Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2029030808482913\"}"
+  },
+  {
+    "at": "2026-11-11T01:31:01.070Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2700586213716594\"}"
+  },
+  {
     "at": "2026-11-11T01:36:04.371Z",
     "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"3709557869219847\"}"
   },
@@ -144,19 +152,11 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3604765729695484\"}"
   },
   {
-    "at": "2026-11-11T04:02:12.302Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149321719140193 (https://utsabtv.com/eight-palestinians-killed-israeli-strikes-gaza-father-son)"
+    "at": "2026-11-11T04:03:00.931Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149321947140193\"}"
   },
   {
-    "at": "2026-11-11T04:02:18.347Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1086592914428247\"}"
-  },
-  {
-    "at": "2026-11-11T04:02:24.176Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126905659459930 (https://utsabtv.com/eight-palestinians-killed-israeli-strikes-gaza-father-son)"
-  },
-  {
-    "at": "2026-11-11T04:02:30.492Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"961950890071779\"}"
+    "at": "2026-11-11T04:03:12.452Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122126905935459930\"}"
   }
 ]
