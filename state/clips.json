@@ -18,9 +18,6 @@
     "29272124912422046"
   ],
   "log": [
-    "2026-11-03T19:32:34.012Z clip reel on 872606492607357: 1102943052547091 from 4531857443747303",
-    "2026-11-03T19:32:47.102Z clip reel on 1276101408920358: 1650305346842111 from 4531857443747303",
-    "2026-11-07T07:02:19.755Z clip reel on 872606492607357: 2219430815678104 from 2391727891571870",
     "2026-11-07T07:02:28.709Z clip reel on 1276101408920358: 1469804508391161 from 2391727891571870",
     "2026-11-07T07:02:28.817Z comment 1469804508391161: Graph 1469804508391161/comments: {\"message\":\"Unsupported post request. Object with ID '1469804508391161' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
     "2026-11-07T10:03:40.869Z clip reel on 872606492607357: 1132908472446668 from 2391727891571870",
@@ -57,67 +54,12 @@
     "2026-11-11T11:32:29.681Z clip reel on 1276101408920358: 1693781172264394 from 3535786079933451",
     "2026-11-11T11:32:29.821Z comment 1693781172264394: Graph 1693781172264394/comments: {\"message\":\"Unsupported post request. Object with ID '1693781172264394' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
     "2026-11-11T12:34:09.304Z clip reel on 872606492607357: 2454074881792137 from 29272124912422046",
-    "2026-11-11T12:34:19.624Z clip reel on 1276101408920358: 1001485083006802 from 29272124912422046"
+    "2026-11-11T12:34:19.624Z clip reel on 1276101408920358: 1001485083006802 from 29272124912422046",
+    "2026-11-11T16:56:01.121Z clip reel on 872606492607357: 950060047984430 from 3535786079933451",
+    "2026-11-11T16:56:11.696Z clip reel on 1276101408920358: 1660369825827015 from 3535786079933451",
+    "2026-11-11T16:56:11.854Z comment 1660369825827015: Graph 1660369825827015/comments: {\"message\":\"Unsupported post request. Object with ID '1660369825827015' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100"
   ],
   "pending": [
-    {
-      "video": "3535786079933451",
-      "clip": {
-        "start": 252,
-        "end": 286,
-        "hook": "পার্বত্যে সেনাসদস্যদের ওপর হামলার অভিযোগ",
-        "subs": [
-          {
-            "s": 0,
-            "e": 3.45,
-            "t": "আমাদের পার্বত্য চট্টগ্রাম বাংলাদেশের অত্যন্ত গুরুত্বপূর্ণ অংশ।"
-          },
-          {
-            "s": 3.5,
-            "e": 6.95,
-            "t": "সেখানে আমরা মাঝেমধ্যেই লক্ষ্য করি"
-          },
-          {
-            "s": 7,
-            "e": 10.45,
-            "t": "সশস্ত্র গ্রুপ আমাদের দেশপ্রেমিক সেনাবাহিনীর সদস্যসহ"
-          },
-          {
-            "s": 10.5,
-            "e": 13.45,
-            "t": "আইনশৃঙ্খলা নিয়োজিত যারা আছেন,"
-          },
-          {
-            "s": 13.5,
-            "e": 17.45,
-            "t": "তাদেরকে পার্শ্ববর্তী রাষ্ট্রের উসকানিতে ও মদদে"
-          },
-          {
-            "s": 17.5,
-            "e": 20.95,
-            "t": "কেবল হামলাই করেন না, নিহত হয়েছেন,"
-          },
-          {
-            "s": 21,
-            "e": 24.45,
-            "t": "আহত হয়েছেন অনেকে।"
-          },
-          {
-            "s": 24.5,
-            "e": 28.45,
-            "t": "তার বিপরীতে আইনশৃঙ্খলা বাহিনীর যে শক্ত পদক্ষেপ প্রয়োজন ছিল,"
-          },
-          {
-            "s": 28.5,
-            "e": 34,
-            "t": "সেটি কি ছিল আসলে?"
-          }
-        ]
-      },
-      "url": "https://www.facebook.com/122147678985140193/videos/3535786079933451",
-      "title": "live",
-      "at": 1794407511503
-    },
     {
       "video": "29272124912422046",
       "clip": {
