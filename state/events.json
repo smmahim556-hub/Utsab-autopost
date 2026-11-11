@@ -1,25 +1,5 @@
 [
   {
-    "at": "2026-11-11T08:11:28.277Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1147952581019529\"}"
-  },
-  {
-    "at": "2026-11-11T08:11:31.394Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122126944557459930 ()"
-  },
-  {
-    "at": "2026-11-11T08:11:37.203Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1678861290599231\"}"
-  },
-  {
-    "at": "2026-11-11T08:18:07.277Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149346481140193 ()"
-  },
-  {
-    "at": "2026-11-11T08:18:15.370Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1553050063297272\"}"
-  },
-  {
     "at": "2026-11-11T08:18:18.790Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122126945475459930 ()"
   },
@@ -158,5 +138,25 @@
   {
     "at": "2026-11-11T09:38:35.338Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2113967642594077\"}"
+  },
+  {
+    "at": "2026-11-11T09:42:21.501Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-11T09:42:42.765Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149354005140193 (https://utsabtv.com/sreemangal-chhatra-shakti-hasib-attack-case-15-accused-former-chhatra-league-leader)"
+  },
+  {
+    "at": "2026-11-11T09:42:48.918Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"972565208842018\"}"
+  },
+  {
+    "at": "2026-11-11T09:42:55.023Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122126957373459930 (https://utsabtv.com/sreemangal-chhatra-shakti-hasib-attack-case-15-accused-former-chhatra-league-leader)"
+  },
+  {
+    "at": "2026-11-11T09:43:01.547Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1455059223476518\"}"
   }
 ]
