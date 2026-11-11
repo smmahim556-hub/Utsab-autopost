@@ -18,9 +18,6 @@
     "29272124912422046"
   ],
   "log": [
-    "2026-11-07T07:02:28.709Z clip reel on 1276101408920358: 1469804508391161 from 2391727891571870",
-    "2026-11-07T07:02:28.817Z comment 1469804508391161: Graph 1469804508391161/comments: {\"message\":\"Unsupported post request. Object with ID '1469804508391161' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
-    "2026-11-07T10:03:40.869Z clip reel on 872606492607357: 1132908472446668 from 2391727891571870",
     "2026-11-07T10:03:50.323Z clip reel on 1276101408920358: 4535377280062072 from 2391727891571870",
     "2026-11-07T16:03:13.207Z clip reel on 872606492607357: 1434817465486884 from 1116883407609511",
     "2026-11-07T16:03:25.055Z clip reel on 1276101408920358: 973449879173061 from 1116883407609511",
@@ -57,56 +54,10 @@
     "2026-11-11T12:34:19.624Z clip reel on 1276101408920358: 1001485083006802 from 29272124912422046",
     "2026-11-11T16:56:01.121Z clip reel on 872606492607357: 950060047984430 from 3535786079933451",
     "2026-11-11T16:56:11.696Z clip reel on 1276101408920358: 1660369825827015 from 3535786079933451",
-    "2026-11-11T16:56:11.854Z comment 1660369825827015: Graph 1660369825827015/comments: {\"message\":\"Unsupported post request. Object with ID '1660369825827015' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100"
+    "2026-11-11T16:56:11.854Z comment 1660369825827015: Graph 1660369825827015/comments: {\"message\":\"Unsupported post request. Object with ID '1660369825827015' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
+    "2026-11-11T17:32:16.705Z clip reel on 872606492607357: 2988787254809791 from 29272124912422046",
+    "2026-11-11T17:32:37.962Z clip reel on 1276101408920358: 1688654836195515 from 29272124912422046",
+    "2026-11-11T17:32:38.092Z comment 1688654836195515: Graph 1688654836195515/comments: {\"message\":\"Unsupported post request. Object with ID '1688654836195515' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100"
   ],
-  "pending": [
-    {
-      "video": "29272124912422046",
-      "clip": {
-        "start": 171,
-        "end": 203.5,
-        "hook": "\"এখন তো একটা তালি দেওয়া উচিত ছিল\"",
-        "subs": [
-          {
-            "s": 0,
-            "e": 5.15,
-            "t": "১লা জানুয়ারি ২০২৫ থেকে ১৬ই ফেব্রুয়ারি ২০২৬ পর্যন্ত,"
-          },
-          {
-            "s": 5.2,
-            "e": 8.75,
-            "t": "আমরা দায়িত্ব গ্রহণ করার আগ পর্যন্ত,"
-          },
-          {
-            "s": 8.8,
-            "e": 13.75,
-            "t": "পুশ-ইন হয়েছিল ২,৪৮২ জন।"
-          },
-          {
-            "s": 13.8,
-            "e": 16.45,
-            "t": "একই সময়ে,"
-          },
-          {
-            "s": 16.5,
-            "e": 22.95,
-            "t": "১৭ই ফেব্রুয়ারি থেকে ২০২৬ এর ৮ই নভেম্বর পর্যন্ত"
-          },
-          {
-            "s": 23,
-            "e": 28.45,
-            "t": "পুশ-ইনকৃত ব্যক্তির সংখ্যা মাত্র ৩৭ জন।"
-          },
-          {
-            "s": 28.5,
-            "e": 32.5,
-            "t": "এখন তো একটা তালি দেওয়া উচিত ছিল মাননীয় স্পিকার।"
-          }
-        ]
-      },
-      "url": "https://www.facebook.com/122147678985140193/videos/29272124912422046",
-      "title": "Live",
-      "at": 1794411218365
-    }
-  ]
+  "pending": []
 }
