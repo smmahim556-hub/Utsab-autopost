@@ -39,7 +39,8 @@
     "https://utsabtv.com/kishoreganj-housewife-jyotsna-murder-seven-life-term-four-acquitted",
     "https://utsabtv.com/rajshahi-airport-grenade-like-objects-recovered-minister-escorted-rear-gate",
     "https://utsabtv.com/joy-bangla-slogan-near-prime-minister-residence-three-youths-police",
-    "https://utsabtv.com/jamaat-ameer-opposition-will-not-sit-idle-if-government-fails"
+    "https://utsabtv.com/jamaat-ameer-opposition-will-not-sit-idle-if-government-fails",
+    "https://utsabtv.com/prime-minister-tarique-rahman-joins-climate-summit-leaders-meet"
   ],
   "date": "2026-11-11",
   "done": {
@@ -50,11 +51,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/joy-bangla-slogan-near-prime-minister-residence-three-youths-police",
-    "960": "https://utsabtv.com/jamaat-ameer-opposition-will-not-sit-idle-if-government-fails"
+    "960": "https://utsabtv.com/jamaat-ameer-opposition-will-not-sit-idle-if-government-fails",
+    "1200": "https://utsabtv.com/prime-minister-tarique-rahman-joins-climate-summit-leaders-meet"
   },
   "failedAt": 1793700193463
 }
