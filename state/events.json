@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-11T17:02:56.433Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149414671140193 (https://utsabtv.com/iran-producing-50-ballistic-missiles-month-despite-strikes)"
-  },
-  {
-    "at": "2026-11-11T17:03:03.602Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2358920988256535\"}"
-  },
-  {
     "at": "2026-11-11T17:03:10.602Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122127027831459930 (https://utsabtv.com/iran-producing-50-ballistic-missiles-month-despite-strikes)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-11T23:29:34.890Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1459128389733401\"}"
+  },
+  {
+    "at": "2026-11-11T23:37:04.850Z",
+    "text": "prayer reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149440825140193\"}"
+  },
+  {
+    "at": "2026-11-11T23:37:10.067Z",
+    "text": "prayer reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127073395459930\"}"
   }
 ]
