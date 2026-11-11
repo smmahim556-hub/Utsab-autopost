@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1920" width="1080" height="1920"><style>:where([class]:not([class=''])){transform-box:fill-box}
+.drift{animation:drift 9s linear infinite}@keyframes drift{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+.sway{transform-origin:50% 100%;animation:sway 3s ease-in-out infinite}@keyframes sway{50%{transform:rotate(2deg)}}
+.breathe{transform-origin:50% 100%;animation:breathe 2.4s ease-in-out infinite}@keyframes breathe{50%{transform:scale(1.015,1.025)}}
+.pop{transform-origin:center;animation:pop .6s cubic-bezier(.3,1.7,.5,1) both}@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.twinkle{transform-origin:center;animation:tw 1.6s ease-in-out infinite}@keyframes tw{50%{transform:scale(.5);opacity:.4}}
+.spin{transform-origin:center;animation:spin 20s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.bob{transform-origin:center;animation:bob 1.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-22px)}}
+.shake{transform-origin:50% 100%;animation:shake .5s ease-in-out infinite}@keyframes shake{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.wave{transform-origin:20% 90%;animation:wave .6s ease-in-out infinite alternate}@keyframes wave{to{transform:rotate(8deg)}}
+.bob{animation:bb 1.2s ease-in-out infinite}@keyframes bb{50%{transform:translateY(-14px)}}.twinkle{animation:tw 1s steps(2) infinite}@keyframes tw{50%{opacity:.3}}</style><rect width="1080" height="1920" fill="#fff3d6"/><rect y="1150" width="1080" height="770" fill="#a1724c" stroke="#3b2a20" stroke-width="6"/>
+<g transform="translate(540,1280) scale(1.05)"><ellipse cx="0" cy="0" rx="150" ry="90" fill="#fff" stroke="#3b2a20" stroke-width="7"/><ellipse cx="-70" cy="-20" rx="40" ry="30" fill="#3b2a20"/><ellipse cx="60" cy="10" rx="32" ry="26" fill="#3b2a20"/><circle cx="-160" cy="-60" r="62" fill="#fff" stroke="#3b2a20" stroke-width="7"/><circle cx="-180" cy="-70" r="10" fill="#3b2a20"/><rect x="-110" y="60" width="26" height="90" fill="#fff" stroke="#3b2a20" stroke-width="6"/><rect x="-30" y="60" width="26" height="90" fill="#fff" stroke="#3b2a20" stroke-width="6"/><rect x="50" y="60" width="26" height="90" fill="#fff" stroke="#3b2a20" stroke-width="6"/><rect x="110" y="60" width="26" height="90" fill="#fff" stroke="#3b2a20" stroke-width="6"/></g>
+<g transform="translate(230,960) scale(1.1)" class="twinkle"><circle r="34" fill="#c5e1a5" stroke="#3b2a20" stroke-width="5"/><circle cx="-10" cy="-8" r="6" fill="#3b2a20"/><circle cx="12" cy="6" r="6" fill="#3b2a20"/><circle cx="-6" cy="14" r="5" fill="#3b2a20"/></g>
+<text x="540" y="760" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="150" fill="#e63946" class="pop">ভ্যাকসিন</text>
+<text x="540" y="880" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="58" fill="#3b2a20" >ল্যাটিন "ভাক্কা" = গরু</text></svg>
