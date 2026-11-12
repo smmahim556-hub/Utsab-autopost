@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-12T05:15:26.844Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1125866490195030\"}"
-  },
-  {
     "at": "2026-11-12T05:28:09.828Z",
     "text": "posted to Page 872606492607357: 872606492607357_122149470177140193 (https://utsabtv.com/new-york-brooklyn-building-collapse-two-killed-17-injured)"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-12T07:36:35.702Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"29023276724002547\"}"
+  },
+  {
+    "at": "2026-11-12T07:50:16.902Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
