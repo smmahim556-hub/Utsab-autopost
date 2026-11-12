@@ -13,7 +13,12 @@ const W = '/tmp/thumb-test', OUT = path.join(__dirname, '..', 'state', 'thumb-te
   const acc = await (await fetch(`${G}/me/accounts?fields=id,access_token&limit=100&access_token=${T}`)).json();
   const page = (acc.data || []).find(a => a.id === ENT);
   if (!page) throw new Error('Entertainment page token not found');
-  const v = await (await fetch(`${G}/${VIDEO}?fields=source,length,picture&access_token=${page.access_token}`)).json();
+  let vid = VIDEO;
+  const reels = await (await fetch(`${G}/${ENT}/video_reels?fields=id,description&limit=5&access_token=${page.access_token}`)).json();
+  out.steps.reels = (reels.data || []).map(x => x.id).slice(0, 5) || reels.error?.message;
+  if (reels.data && reels.data.length) vid = process.env.THUMB_VIDEO || reels.data[0].id;
+  out.video = vid;
+  const v = await (await fetch(`${G}/${vid}?fields=source,length,picture&access_token=${page.access_token}`)).json();
   out.steps.info = { hasSource: !!v.source, length: v.length, error: v.error?.message || null };
   if (!v.source) { fs.writeFileSync(OUT, JSON.stringify(out, null, 1)); console.log(out); return; }
   const mp4 = `${W}/src.mp4`, jpg = `${W}/thumb.jpg`;
@@ -25,9 +30,9 @@ const W = '/tmp/thumb-test', OUT = path.join(__dirname, '..', 'state', 'thumb-te
   f.append('source', new Blob([fs.readFileSync(jpg)], { type: 'image/jpeg' }), 'thumb.jpg');
   f.append('is_preferred', 'true');
   f.append('access_token', page.access_token);
-  const r = await (await fetch(`${G}/${VIDEO}/thumbnails`, { method: 'POST', body: f })).text();
+  const r = await (await fetch(`${G}/${vid}/thumbnails`, { method: 'POST', body: f })).text();
   out.steps.upload = r.slice(0, 400);
-  const after = await (await fetch(`${G}/${VIDEO}/thumbnails?access_token=${page.access_token}`)).json().catch(() => ({}));
+  const after = await (await fetch(`${G}/${vid}/thumbnails?access_token=${page.access_token}`)).json().catch(() => ({}));
   out.steps.thumbnails = after.data ? after.data.map(x => ({ is_preferred: x.is_preferred, uri: !!x.uri })) : (after.error?.message || 'none');
   fs.writeFileSync(OUT, JSON.stringify(out, null, 1));
   console.log(JSON.stringify(out, null, 1));
