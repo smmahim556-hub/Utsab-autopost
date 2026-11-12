@@ -21,6 +21,7 @@ const W = '/tmp/gan-main', OUT = path.join(__dirname, '..', 'state', 'gan-main-p
   const file = `${W}/${DRIVE_ID}.mp4`;
   if (!fs.existsSync(file)) execFileSync('curl', ['-sSL', '--retry', '3', '-o', file, `https://drive.usercontent.google.com/download?id=${DRIVE_ID}&export=download&confirm=t`]);
   const size = fs.statSync(file).size;
+  console.log('downloaded bytes', size);
   if (size < 5e6) throw new Error(`download too small (${size} bytes)`);
 
   const acc = await (await fetch(`${G}/me/accounts?fields=id,access_token&limit=100&access_token=${T}`)).json();
@@ -38,7 +39,10 @@ const W = '/tmp/gan-main', OUT = path.join(__dirname, '..', 'state', 'gan-main-p
     f.append('published', 'false');
     f.append('scheduled_publish_time', String(AT));
     f.append('access_token', page.access_token);
-    const r = await (await fetch(`${GV}/${id}/videos`, { method: 'POST', body: f })).json();
+    const resp = await fetch(`${GV}/${id}/videos`, { method: 'POST', body: f });
+    const txt = await resp.text();
+    let r = {};
+    try { r = JSON.parse(txt); } catch { r = { error: { message: `HTTP ${resp.status} non-JSON: ${txt.slice(0, 200)}` } }; }
     out.pages[key] = { page: id, id: r.id || null, error: r.error ? r.error.message : null };
     console.log(key, JSON.stringify(out.pages[key]));
   }
