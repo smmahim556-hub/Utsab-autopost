@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-12T05:12:11.467Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127129915459930 (https://utsabtv.com/ashulia-five-factories-holiday-six-factories-indefinitely-closed)"
-  },
-  {
     "at": "2026-11-12T05:12:17.260Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1383512993656171\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-12T07:12:31.047Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1656789709272273\"}"
+  },
+  {
+    "at": "2026-11-12T07:18:13.491Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
