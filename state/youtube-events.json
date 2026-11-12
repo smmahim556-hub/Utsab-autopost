@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-08T08:34:49.189Z",
-    "text": "failed OvOXlN81f-A (try 3/3): download failed: WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one WARNING: [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing ERROR: [youtube] OvOXlN81f-A: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pas"
-  },
-  {
     "at": "2026-11-08T13:40:56.878Z",
     "text": "failed f2S-m3ydz0E (try 1/3): download failed: WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one WARNING: [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing ERROR: [youtube] f2S-m3ydz0E: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pas"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-12T14:40:30.956Z",
     "text": "failed SVk0f0OZjzY (try 3/3): download failed: WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one ERROR: [youtube] SVk0f0OZjzY: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies"
+  },
+  {
+    "at": "2026-11-12T15:43:31.692Z",
+    "text": "failed dVG6uzETX-Y (try 1/3): download failed: WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one WARNING: [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing ERROR: [youtube] dVG6uzETX-Y: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pas"
   }
 ]
