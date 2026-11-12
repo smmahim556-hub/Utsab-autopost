@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-12T07:36:29.451Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122110738245533116 ()"
-  },
-  {
-    "at": "2026-11-12T07:36:35.702Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"29023276724002547\"}"
-  },
-  {
-    "at": "2026-11-12T07:50:16.902Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-12T08:03:35.870Z",
-    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149481145140193\"}"
-  },
-  {
-    "at": "2026-11-12T08:03:45.518Z",
-    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127156819459930\"}"
-  },
-  {
-    "at": "2026-11-12T08:07:23.925Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149481595140193 ()"
-  },
-  {
     "at": "2026-11-12T08:07:31.738Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1433093465120552\"}"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-12T09:09:16.192Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1654765332771962\"}"
+  },
+  {
+    "at": "2026-11-12T09:10:35.136Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149488801140193 ()"
+  },
+  {
+    "at": "2026-11-12T09:10:41.374Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2430452910818236\"}"
+  },
+  {
+    "at": "2026-11-12T09:10:44.484Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127168471459930 ()"
+  },
+  {
+    "at": "2026-11-12T09:10:51.294Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3044136829262418\"}"
+  },
+  {
+    "at": "2026-11-12T09:10:55.071Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122110771035533116 ()"
+  },
+  {
+    "at": "2026-11-12T09:11:01.008Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1788559899071074\"}"
   }
 ]
