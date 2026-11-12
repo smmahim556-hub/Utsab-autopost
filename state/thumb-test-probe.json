@@ -1,9 +1,72 @@
 {
- "video": "1585675496648887",
+ "video": "1040256321806930",
  "steps": {
+  "reels": [
+   "1040256321806930",
+   "1121720590729390",
+   "1821241115584397",
+   "1122189170733727",
+   "2405608796643522"
+  ],
   "info": {
-   "hasSource": false,
-   "error": "Unsupported get request. Object with ID '1585675496648887' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api"
-  }
+   "hasSource": true,
+   "length": 29.87,
+   "error": null
+  },
+  "frame": {
+   "at": 4,
+   "bytes": 119996
+  },
+  "upload": "{\"success\":true}",
+  "thumbnails": [
+   {
+    "is_preferred": false,
+    "uri": true
+   },
+   {
+    "is_preferred": false,
+    "uri": true
+   },
+   {
+    "is_preferred": false,
+    "uri": true
+   },
+   {
+    "is_preferred": false,
+    "uri": true
+   },
+   {
+    "is_preferred": false,
+    "uri": true
+   },
+   {
+    "is_preferred": false,
+    "uri": true
+   },
+   {
+    "is_preferred": false,
+    "uri": true
+   },
+   {
+    "is_preferred": false,
+    "uri": true
+   },
+   {
+    "is_preferred": false,
+    "uri": true
+   },
+   {
+    "is_preferred": false,
+    "uri": true
+   },
+   {
+    "is_preferred": false,
+    "uri": true
+   },
+   {
+    "is_preferred": true,
+    "uri": true
+   }
+  ]
  }
 }
