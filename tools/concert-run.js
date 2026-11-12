@@ -9,6 +9,8 @@ const { planClips, renderClip, ff } = require('../clips');
 const GRAPH = `https://graph.facebook.com/${process.env.GRAPH_VERSION || 'v26.0'}`;
 const ROOT = path.join(__dirname, '..'), FILE = path.join(ROOT, 'state', 'concert.json'), W = '/tmp/concert';
 const ENT = process.env.ENT_PAGE_ID === undefined ? '1406430145892267' : process.env.ENT_PAGE_ID;
+// Full-episode copies of গান-বাজ পর্ব ১ on each Page (their reel link is the first comment on that Page's podcast reels).
+const MAIN_VIDEO = { '1406430145892267': '1339181701575274', '872606492607357': '1084089768004026', '1276101408920358': '1560357175851119' };
 const SLOTS = (process.env.CONCERT_SLOTS || '11:00,12:30,13:45,16:15,17:00,19:00,20:15,21:30,22:30').split(',');
 // CONCERT_KIND=podcast (owner 2026-11-09, 'গান-বাজ'): ~1-min parts with the hook moment played first, whole picture kept.
 const POD = process.env.CONCERT_KIND === 'podcast';
@@ -141,8 +143,10 @@ async function download(video, token) {
       }
       // The reel needs a moment before Facebook accepts comments on it.
       await new Promise(r => setTimeout(r, 60000));
-      for (const page of pages) if (ids[page.id] && job.url) {
-        const c = new FormData(); c.append('message', `${job.kind === 'podcast' ? 'পুরো পর্ব' : 'পুরো কনসার্ট'}: ${job.url}`); c.append('access_token', page.token);
+      for (const page of pages) if (ids[page.id] && (job.url || (job.kind === 'podcast' && MAIN_VIDEO[page.id]))) {
+        // Podcast reels link to the full episode on the same Page (owner 2026-11-12); other reels keep job.url.
+        const link = job.kind === 'podcast' && MAIN_VIDEO[page.id] ? `https://www.facebook.com/reel/${MAIN_VIDEO[page.id]}/` : job.url;
+        const c = new FormData(); c.append('message', `${job.kind === 'podcast' ? 'পুরো পর্ব' : 'পুরো কনসার্ট'}: ${link}`); c.append('access_token', page.token);
         await graph(`${ids[page.id]}/comments`, c).catch(e => log(`comment ${ids[page.id]}: ${e.message.slice(0, 120)}`));
       }
       st.done.push({ video: job.video, start: job.clip.start, hook: job.clip.hook, ids });
