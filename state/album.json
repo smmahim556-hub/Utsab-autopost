@@ -42,7 +42,8 @@
     "https://utsabtv.com/jamaat-ameer-opposition-will-not-sit-idle-if-government-fails",
     "https://utsabtv.com/prime-minister-tarique-rahman-joins-climate-summit-leaders-meet",
     "https://utsabtv.com/ashulia-five-factories-holiday-six-factories-indefinitely-closed",
-    "https://utsabtv.com/gazipur-mauchak-dhaka-tangail-highway-blockade-workers-protest"
+    "https://utsabtv.com/gazipur-mauchak-dhaka-tangail-highway-blockade-workers-protest",
+    "https://utsabtv.com/maoist-university-joy-bangla-slogan-three-held-claim-chhatra-dal"
   ],
   "date": "2026-11-12",
   "done": {
@@ -53,11 +54,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/ashulia-five-factories-holiday-six-factories-indefinitely-closed",
-    "960": "https://utsabtv.com/gazipur-mauchak-dhaka-tangail-highway-blockade-workers-protest"
+    "960": "https://utsabtv.com/gazipur-mauchak-dhaka-tangail-highway-blockade-workers-protest",
+    "1200": "https://utsabtv.com/maoist-university-joy-bangla-slogan-three-held-claim-chhatra-dal"
   },
   "failedAt": 1793700193463
 }
