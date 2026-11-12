@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-12T17:43:11.061Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1862520278100316\"}"
-  },
-  {
     "at": "2026-11-12T17:43:15.955Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122127251379459930 ()"
   },
@@ -156,7 +152,11 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1106652855523330\"}"
   },
   {
-    "at": "2026-11-12T22:25:00.411Z",
-    "text": "prayer reel FAILED: Error: me/accounts: (#4) Application request limit reached\n    at loadPages (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:172:26)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async pages (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:184:55)\n    at async prayerReelRun (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:1204:32)"
+    "at": "2026-11-12T22:24:55.775Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1871253074307668\"}"
+  },
+  {
+    "at": "2026-11-12T22:24:58.159Z",
+    "text": "story only on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A7nkO40TA7RacqB78AwK-km\"}"
   }
 ]
