@@ -32,17 +32,38 @@ const W = '/tmp/gan-main', OUT = path.join(__dirname, '..', 'state', 'gan-main-p
   for (const [key, id] of PAGES) {
     const page = (acc.data || []).find(a => a.id === id);
     if (!page) { out.pages[key] = { error: 'page token not found' }; continue; }
-    const f = new FormData();
-    f.append('source', new Blob([fs.readFileSync(file)], { type: 'video/mp4' }), 'gan-episode-1.mp4');
-    f.append('description', description);
-    f.append('title', 'গান-বাজ | পর্ব ১');
-    f.append('published', 'false');
-    f.append('scheduled_publish_time', String(AT));
-    f.append('access_token', page.access_token);
-    const resp = await fetch(`${GV}/${id}/videos`, { method: 'POST', body: f });
-    const txt = await resp.text();
+    // Resumable upload: the file is ~1 GB, too big for one multipart request (Facebook answers 413).
+    const api = async (url, fields, blob) => {
+      const f = new FormData();
+      for (const [k, v] of Object.entries(fields)) f.append(k, String(v));
+      if (blob) f.append('video_file_chunk', blob, 'chunk.mp4');
+      const resp = await fetch(url, { method: 'POST', body: f });
+      const txt = await resp.text();
+      try { return JSON.parse(txt); } catch { return { error: { message: `HTTP ${resp.status} non-JSON: ${txt.slice(0, 200)}` } }; }
+    };
+    const start = await api(`${GV}/${id}/videos`, { upload_phase: 'start', file_size: size, access_token: page.access_token });
     let r = {};
-    try { r = JSON.parse(txt); } catch { r = { error: { message: `HTTP ${resp.status} non-JSON: ${txt.slice(0, 200)}` } }; }
+    if (start.error || !start.upload_session_id) r = start;
+    else {
+      const sid = start.upload_session_id, vid = start.video_id;
+      let off = Number(start.start_offset), end = Number(start.end_offset);
+      const fd = fs.openSync(file, 'r');
+      let err = null;
+      while (!err && off < size) {
+        const len = end - off, buf = Buffer.alloc(len);
+        fs.readSync(fd, buf, 0, len, off);
+        const t = await api(`${GV}/${id}/videos`, { upload_phase: 'transfer', upload_session_id: sid, start_offset: off, access_token: page.access_token }, new Blob([buf], { type: 'video/mp4' }));
+        if (t.error) { err = t.error.message; break; }
+        off = Number(t.start_offset); end = Number(t.end_offset);
+        if (end <= off) break;
+      }
+      fs.closeSync(fd);
+      if (err) r = { error: { message: 'transfer: ' + err } };
+      else {
+        const fin = await api(`${GV}/${id}/videos`, { upload_phase: 'finish', upload_session_id: sid, title: 'গান-বাজ | পর্ব ১', description, published: 'false', scheduled_publish_time: AT, access_token: page.access_token });
+        r = fin.success ? { id: vid } : (fin.error ? fin : { error: { message: 'finish: no success flag' } });
+      }
+    }
     out.pages[key] = { page: id, id: r.id || null, error: r.error ? r.error.message : null };
     console.log(key, JSON.stringify(out.pages[key]));
   }
