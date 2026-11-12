@@ -14,7 +14,8 @@
     "fajr",
     "dhuhr",
     "asr",
-    "maghrib"
+    "maghrib",
+    "isha"
   ],
   "pages": {
     "rem-fajr": [
@@ -68,8 +69,12 @@
     "rem-maghrib": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "rem-isha": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
-  "lastAt": 1794480295728,
+  "lastAt": 1794484977068,
   "allDone": true
 }
