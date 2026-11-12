@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-12T01:59:14.951Z",
-    "text": "weather reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127095367459930\"}"
-  },
-  {
-    "at": "2026-11-12T03:00:51.015Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149459029140193 ()"
-  },
-  {
-    "at": "2026-11-12T03:00:58.801Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1896772245020827\"}"
-  },
-  {
-    "at": "2026-11-12T03:01:02.699Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127108759459930 ()"
-  },
-  {
     "at": "2026-11-12T03:01:11.314Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2728039394278094\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-12T05:05:57.706Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1135977962153342\"}"
+  },
+  {
+    "at": "2026-11-12T05:11:59.191Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149468695140193 (https://utsabtv.com/ashulia-five-factories-holiday-six-factories-indefinitely-closed)"
+  },
+  {
+    "at": "2026-11-12T05:12:05.419Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"982974894857525\"}"
+  },
+  {
+    "at": "2026-11-12T05:12:11.467Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127129915459930 (https://utsabtv.com/ashulia-five-factories-holiday-six-factories-indefinitely-closed)"
+  },
+  {
+    "at": "2026-11-12T05:12:17.260Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1383512993656171\"}"
   }
 ]
