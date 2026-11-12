@@ -9,7 +9,7 @@ const PAGES = { ent: '1406430145892267', main: '872606492607357', digital: '1276
   for (const [k, id] of Object.entries(PAGES)) {
     const page = (acc.data || []).find(a => a.id === id);
     if (!page) { out[k] = 'no token'; continue; }
-    const r = await (await fetch(`${G}/${id}/video_reels?fields=id,description,created_time&limit=60&access_token=${page.access_token}`)).json();
+    const r = await (await fetch(`${G}/${id}/video_reels?fields=id,description,created_time&limit=100&access_token=${page.access_token}`)).json();
     out[k] = (r.data || []).map(x => ({ id: x.id, at: x.created_time, desc: (x.description || '').slice(0, 140) })) || r.error?.message;
   }
   fs.writeFileSync(path.join(__dirname, '..', 'state', 'reels-list-probe.json'), JSON.stringify(out, null, 1));
