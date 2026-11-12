@@ -1,0 +1,21 @@
+{
+ "at": "2026-11-12T16:00:00.000Z",
+ "file_bytes": 991861083,
+ "pages": {
+  "ent": {
+   "page": "1406430145892267",
+   "id": null,
+   "error": "HTTP 413 non-JSON: "
+  },
+  "main": {
+   "page": "872606492607357",
+   "id": null,
+   "error": "HTTP 413 non-JSON: "
+  },
+  "digital": {
+   "page": "1276101408920358",
+   "id": null,
+   "error": "HTTP 413 non-JSON: "
+  }
+ }
+}
