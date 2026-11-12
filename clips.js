@@ -208,10 +208,10 @@ ${logo && !fs.existsSync(LOGO_VIDEO) ? `<img src="${logo}" style="position:absol
     const shots = await shotPlan(video, clip.start, len, work, tag, clip.focus || 'the main speaker');
     const SQ0 = Math.min(vw, Math.round(vh * (1 - cut) / 2) * 2);
     const fps = (([a, b]) => a / (b || 1))(execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=r_frame_rate', '-of', 'csv=p=0', video]).toString().trim().split('/').map(Number));
-    // Each cut starts with a smooth slide from the previous position over ~0.35 s, cut into 7 small steps (eased), so there is
-    // no sudden jump at a cut (owner 2026-11-11). Runner ffmpeg has no per-frame crop expressions, hence the steps.
+    // Owner 2026-11-12: the eased slide at each cut looked worse than an instant move, so cuts are instant (K = 0 steps).
+    // Set K to 7 to bring the slide back (runner ffmpeg has no per-frame crop expressions, hence the steps).
     const xs = shots.map(p => Math.max(0, Math.min(vw - SQ0, Math.round((p.x * vw - SQ0 / 2) / 2) * 2)));
-    const fr = Math.round(0.35 * fps), K = 7, parts = [];
+    const fr = Math.round(0.35 * fps), K = 0, parts = [];
     shots.forEach((p, i) => {
       const f0 = Math.round(p.t * fps), f1 = i + 1 < shots.length ? Math.round(shots[i + 1].t * fps) : Math.round(len * fps);
       const xa = i ? xs[i - 1] : xs[i], xb = xs[i];
