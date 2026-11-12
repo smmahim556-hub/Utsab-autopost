@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-11T17:35:23.874Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127031377459930 (https://utsabtv.com/france-blow-ahead-italy-match-mbappe-doubtful-nations-league)"
-  },
-  {
     "at": "2026-11-11T17:35:30.253Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1611924500135339\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-12T01:06:05.135Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"3060598894294559\"}"
+  },
+  {
+    "at": "2026-11-12T01:10:53.696Z",
+    "text": "weather রাজশাহী FAILED (try 1): https://api.open-meteo.com/v1/forecast?latitude=24.37&longitude=88.6&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FDhaka&forecast_days=1 -> HTTP 503"
   }
 ]
