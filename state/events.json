@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-13T09:36:55.295Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149633401140193 ()"
-  },
-  {
-    "at": "2026-11-13T09:37:02.177Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1447005584210482\"}"
-  },
-  {
     "at": "2026-11-13T09:37:04.462Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122127394935459930 ()"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-13T11:33:35.304Z",
     "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127411855459930\"}"
+  },
+  {
+    "at": "2026-11-13T11:36:31.710Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-13T11:36:40.304Z",
+    "text": "mirror: 872606492607357_122149642623140193 (video) -> Digital 1794360358284083"
   }
 ]
