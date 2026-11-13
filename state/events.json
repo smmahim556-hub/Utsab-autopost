@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-13T16:07:42.433Z",
-    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149670229140193\"}"
-  },
-  {
-    "at": "2026-11-13T16:07:49.766Z",
-    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127455595459930\"}"
-  },
-  {
-    "at": "2026-11-13T16:35:37.289Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149672161140193 ()"
-  },
-  {
-    "at": "2026-11-13T16:35:49.087Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1453736436900897\"}"
-  },
-  {
-    "at": "2026-11-13T16:35:53.526Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127458703459930 ()"
-  },
-  {
-    "at": "2026-11-13T16:36:02.864Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1891248212007898\"}"
-  },
-  {
     "at": "2026-11-13T16:36:06.042Z",
     "text": "posted to Page 1406430145892267: 1406430145892267_122111426547533116 ()"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-13T21:37:13.005Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1120340043921279\"}"
+  },
+  {
+    "at": "2026-11-13T21:40:24.095Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2350442365731801\"}"
+  },
+  {
+    "at": "2026-11-13T21:40:31.318Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1818159176060839\"}"
+  },
+  {
+    "at": "2026-11-13T21:40:38.750Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149692885140193 ()"
+  },
+  {
+    "at": "2026-11-13T21:40:45.364Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2120873695462734\"}"
+  },
+  {
+    "at": "2026-11-13T21:40:49.250Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127497607459930 ()"
+  },
+  {
+    "at": "2026-11-13T21:40:55.046Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2026296081395654\"}"
   }
 ]
