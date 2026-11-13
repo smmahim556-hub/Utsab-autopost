@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-13T09:38:42.344Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-13T10:02:47.911Z",
-    "text": "album on Page 872606492607357: 872606492607357_122149635495140193 https://utsabtv.com/dhaka-mawa-expressway-motorcycle-accident-young-couple-killed"
-  },
-  {
-    "at": "2026-11-13T10:03:00.461Z",
-    "text": "album on Page 1276101408920358: 1276101408920358_122127398115459930 https://utsabtv.com/dhaka-mawa-expressway-motorcycle-accident-young-couple-killed"
-  },
-  {
-    "at": "2026-11-13T10:06:37.057Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149636011140193 ()"
-  },
-  {
-    "at": "2026-11-13T10:06:46.125Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1624704065302977\"}"
-  },
-  {
-    "at": "2026-11-13T10:06:49.183Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127399195459930 ()"
-  },
-  {
     "at": "2026-11-13T10:06:55.354Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1420975776429334\"}"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-13T11:45:59.757Z",
     "text": "mirror: 872606492607357_122149643709140193 (video) -> Digital 1123341320689935"
+  },
+  {
+    "at": "2026-11-13T11:51:55.870Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149644231140193 ()"
+  },
+  {
+    "at": "2026-11-13T11:52:02.126Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1173012465670804\"}"
+  },
+  {
+    "at": "2026-11-13T11:52:05.690Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127414087459930 ()"
+  },
+  {
+    "at": "2026-11-13T11:52:12.480Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"28903088876012917\"}"
+  },
+  {
+    "at": "2026-11-13T11:52:16.238Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122111325357533116 ()"
+  },
+  {
+    "at": "2026-11-13T11:52:22.425Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1888693438807917\"}"
   }
 ]
