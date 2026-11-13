@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-13T05:50:02.496Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149613595140193 (https://utsabtv.com/bangladesh-abandoned-country-asif-mahmud-ncp-facebook-post)"
-  },
-  {
-    "at": "2026-11-13T05:50:08.965Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1845856679935778\"}"
-  },
-  {
     "at": "2026-11-13T05:50:15.040Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122127361599459930 (https://utsabtv.com/bangladesh-abandoned-country-asif-mahmud-ncp-facebook-post)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-13T06:55:46.083Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1820900355816800\"}"
+  },
+  {
+    "at": "2026-11-13T07:02:55.710Z",
+    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149619091140193\"}"
+  },
+  {
+    "at": "2026-11-13T07:03:04.002Z",
+    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127372471459930\"}"
   }
 ]
