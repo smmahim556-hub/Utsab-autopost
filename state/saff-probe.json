@@ -1,15 +1,6 @@
 {
+ "leagues": "[]",
  "saff.championship": {
-  "status": 400,
-  "events": [],
-  "error": 400
- },
- "saff.championship.women": {
-  "status": 400,
-  "events": [],
-  "error": 400
- },
- "saff.u23": {
   "status": 400,
   "events": [],
   "error": 400
