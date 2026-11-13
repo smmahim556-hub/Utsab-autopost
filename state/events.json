@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-12T21:42:11.600Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1157187280172748\"}"
-  },
-  {
-    "at": "2026-11-12T21:43:54.431Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1627301592410298\"}"
-  },
-  {
     "at": "2026-11-12T21:44:02.285Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1854399532572444\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-13T01:16:28.907Z",
     "text": "weather রাজশাহী FAILED (try 2): fetch failed"
+  },
+  {
+    "at": "2026-11-13T01:21:11.479Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2572142233265384\"}"
+  },
+  {
+    "at": "2026-11-13T01:21:18.673Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1840357460432311\"}"
   }
 ]
