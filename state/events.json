@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-12T22:24:55.775Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1871253074307668\"}"
-  },
-  {
     "at": "2026-11-12T22:24:58.159Z",
     "text": "story only on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A7nkO40TA7RacqB78AwK-km\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-13T02:03:54.925Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"4745700742329263\"}"
+  },
+  {
+    "at": "2026-11-13T02:12:25.613Z",
+    "text": "weather reel FAILED: TypeError: fetch failed\n    at node:internal/deps/undici/undici:15456:13\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async getText (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:56:15)\n    at async weatherFor (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:407:24)\n    at async weatherReelRun (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:1094:81)"
   }
 ]
