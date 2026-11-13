@@ -1,5 +1,21 @@
 [
   {
+    "at": "2026-11-13T14:29:23.135Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127440589459930 ()"
+  },
+  {
+    "at": "2026-11-13T14:29:29.595Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3282335508642615\"}"
+  },
+  {
+    "at": "2026-11-13T14:29:33.808Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122111376189533116 ()"
+  },
+  {
+    "at": "2026-11-13T14:29:40.755Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1609239254223791\"}"
+  },
+  {
     "at": "2026-11-13T14:31:27.849Z",
     "text": "posted to Page 872606492607357: 872606492607357_122149662057140193 ()"
   },
@@ -136,27 +152,11 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1133957592349364\"}"
   },
   {
-    "at": "2026-11-13T16:04:38.544Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149669899140193 ()"
+    "at": "2026-11-13T16:07:42.433Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149670229140193\"}"
   },
   {
-    "at": "2026-11-13T16:04:45.756Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1020778501055343\"}"
-  },
-  {
-    "at": "2026-11-13T16:04:49.935Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127454257459930 ()"
-  },
-  {
-    "at": "2026-11-13T16:04:57.057Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2208938619968544\"}"
-  },
-  {
-    "at": "2026-11-13T16:05:00.668Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122111409303533116 ()"
-  },
-  {
-    "at": "2026-11-13T16:05:07.420Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"2935281230181532\"}"
+    "at": "2026-11-13T16:07:49.766Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127455595459930\"}"
   }
 ]
