@@ -44,17 +44,23 @@
     "https://utsabtv.com/ashulia-five-factories-holiday-six-factories-indefinitely-closed",
     "https://utsabtv.com/gazipur-mauchak-dhaka-tangail-highway-blockade-workers-protest",
     "https://utsabtv.com/maoist-university-joy-bangla-slogan-three-held-claim-chhatra-dal",
-    "https://utsabtv.com/attack-iran-deep-night-explosions-coastal-sirik"
+    "https://utsabtv.com/attack-iran-deep-night-explosions-coastal-sirik",
+    "https://utsabtv.com/dhaka-mawa-expressway-motorcycle-accident-young-couple-killed"
   ],
   "date": "2026-11-13",
   "done": {
     "720": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "960": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/attack-iran-deep-night-explosions-coastal-sirik"
+    "720": "https://utsabtv.com/attack-iran-deep-night-explosions-coastal-sirik",
+    "960": "https://utsabtv.com/dhaka-mawa-expressway-motorcycle-accident-young-couple-killed"
   },
   "failedAt": 1793700193463
 }
