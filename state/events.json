@@ -1,37 +1,5 @@
 [
   {
-    "at": "2026-11-13T09:18:05.588Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"29281318734838501\"}"
-  },
-  {
-    "at": "2026-11-13T09:22:10.352Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149631553140193 (https://utsabtv.com/general-people-treatment-difficult-president-mirza-fakhrul)"
-  },
-  {
-    "at": "2026-11-13T09:22:16.884Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1156946553435875\"}"
-  },
-  {
-    "at": "2026-11-13T09:22:25.079Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127392841459930 (https://utsabtv.com/general-people-treatment-difficult-president-mirza-fakhrul)"
-  },
-  {
-    "at": "2026-11-13T09:22:32.007Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1495520739342318\"}"
-  },
-  {
-    "at": "2026-11-13T09:34:58.562Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149632771140193 ()"
-  },
-  {
-    "at": "2026-11-13T09:35:08.032Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1831860891271855\"}"
-  },
-  {
-    "at": "2026-11-13T09:35:12.333Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127394341459930 ()"
-  },
-  {
     "at": "2026-11-13T09:35:19.518Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1117156027839584\"}"
   },
@@ -158,5 +126,37 @@
   {
     "at": "2026-11-13T11:06:15.302Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1465804328855270\"}"
+  },
+  {
+    "at": "2026-11-13T11:19:32.170Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149641333140193 ()"
+  },
+  {
+    "at": "2026-11-13T11:19:38.297Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"3454256201426099\"}"
+  },
+  {
+    "at": "2026-11-13T11:19:41.355Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127409569459930 ()"
+  },
+  {
+    "at": "2026-11-13T11:19:48.547Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2215349042738579\"}"
+  },
+  {
+    "at": "2026-11-13T11:19:51.743Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122111307261533116 ()"
+  },
+  {
+    "at": "2026-11-13T11:19:57.550Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"2579429459204074\"}"
+  },
+  {
+    "at": "2026-11-13T11:21:29.478Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-13T11:21:37.037Z",
+    "text": "mirror: 872606492607357_122149641555140193 (video) -> Digital 2253567475204126"
   }
 ]
