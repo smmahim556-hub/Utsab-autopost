@@ -12,13 +12,18 @@
     "TOP5": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
     "QUIZ",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -36,7 +41,8 @@
     "https://utsabtv.com/sylhet-test-day-five-begins-bangladesh-need-record-chase",
     "https://utsabtv.com/gazipur-18-factories-holiday-worker-protests",
     "https://utsabtv.com/jamaat-ameer-opposition-will-not-sit-idle-if-government-fails",
-    "https://utsabtv.com/gazipur-mauchak-dhaka-tangail-highway-blockade-workers-protest"
+    "https://utsabtv.com/gazipur-mauchak-dhaka-tangail-highway-blockade-workers-protest",
+    "https://utsabtv.com/attack-iran-deep-night-explosions-coastal-sirik"
   ],
   "quiz": {
     "q": "বাংলাদেশের কোন সমুদ্র সৈকতটি বিশ্বের দীর্ঘতম প্রাকৃতিক বালুকাময় সৈকত?",
