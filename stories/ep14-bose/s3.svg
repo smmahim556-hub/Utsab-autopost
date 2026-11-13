@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1920" width="1080" height="1920"><style>:where([class]:not([class=''])){transform-box:fill-box}
+.drift{animation:drift 9s linear infinite}@keyframes drift{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+.sway{transform-origin:50% 100%;animation:sway 3s ease-in-out infinite}@keyframes sway{50%{transform:rotate(2deg)}}
+.breathe{transform-origin:50% 100%;animation:breathe 2.4s ease-in-out infinite}@keyframes breathe{50%{transform:scale(1.015,1.025)}}
+.pop{transform-origin:center;animation:pop .6s cubic-bezier(.3,1.7,.5,1) both}@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.twinkle{transform-origin:center;animation:tw 1.6s ease-in-out infinite}@keyframes tw{50%{transform:scale(.5);opacity:.4}}
+.spin{transform-origin:center;animation:spin 20s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.bob{transform-origin:center;animation:bob 1.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-22px)}}
+.shake{transform-origin:50% 100%;animation:shake .5s ease-in-out infinite}@keyframes shake{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.wave{transform-origin:20% 90%;animation:wave .6s ease-in-out infinite alternate}@keyframes wave{to{transform:rotate(8deg)}}
+</style><rect width="1080" height="1920" fill="#f3e5f5"/>
+<rect y="1330" width="1080" height="18" fill="#8d6e63" stroke="#3b2a20" stroke-width="5"/><rect x="120" y="1348" width="30" height="300" fill="#6d4c41" stroke="#3b2a20" stroke-width="5"/><rect x="930" y="1348" width="30" height="300" fill="#6d4c41" stroke="#3b2a20" stroke-width="5"/>
+<g transform="translate(540,1180)"><g transform="translate(0,0) scale(1.4)"><rect x="-120" y="-40" width="240" height="90" rx="10" fill="#607d8b" stroke="#3b2a20" stroke-width="6"/><rect x="-100" y="-160" width="20" height="130" fill="#455a64" stroke="#3b2a20" stroke-width="4"/><line x1="-90" y1="-150" x2="80" y2="-110" stroke="#e53935" stroke-width="8" stroke-linecap="round"/><circle cx="80" cy="-110" r="10" fill="#e53935"/></g></g>
+<g transform="translate(860,1330) scale(0.9)"><path d="M0 0 Q0 -120 0 -240" fill="none" stroke="#2e7d32" stroke-width="16" stroke-linecap="round"/><ellipse cx="-60" cy="-150" rx="60" ry="24" fill="#66bb6a" stroke="#3b2a20" stroke-width="5" transform="rotate(-25 -60 -150)"/><ellipse cx="60" cy="-200" rx="60" ry="24" fill="#81c784" stroke="#3b2a20" stroke-width="5" transform="rotate(25 60 -200)"/><circle cx="0" cy="-245" r="18" fill="#ffeb3b" stroke="#3b2a20" stroke-width="4"/></g>
+<g transform="translate(540,230) rotate(-2)"><g class="pop" style="animation-delay:0.2s"><rect x="-233" y="-62.699999999999996" width="466" height="105.60000000000001" rx="23.099999999999998" fill="#fff" stroke="#3b2a20" stroke-width="6"/><text x="0" y="19.8" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="66" fill="#4a148c">ক্রেসকোগ্রাফ</text></g></g></svg>
