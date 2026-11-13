@@ -1,1960 +1,1888 @@
 {
-  "queue": [
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 601,
-        "end": 661,
-        "hs": 650,
-        "he": 655,
-        "hook": "সাউন্ড গার্ডেনে পুরো অ্যালবাম নামানোর গল্প",
-        "subs": [],
-        "pre": {
-          "s": 650,
-          "e": 655
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "সাউন্ড গার্ডেনে",
-        "h2": "পুরো অ্যালবাম নামানোর গল্প",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1794646800000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 680,
-        "end": 740,
-        "hs": 680,
-        "he": 685,
-        "hook": "'স্বার্থপর' শুনেই এক লাখ টাকা ইনভেস্ট!",
-        "subs": [],
-        "pre": {
-          "s": 680,
-          "e": 685
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "'স্বার্থপর' শুনেই",
-        "h2": "এক লাখ টাকা ইনভেস্ট!",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1794668400000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 755,
-        "end": 815,
-        "hs": 763,
-        "he": 768,
-        "hook": "আগে সাউন্ড বের করে আনতে হতো নিজেদেরই",
-        "subs": [],
-        "pre": {
-          "s": 763,
-          "e": 768
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "আগে সাউন্ড বের করে",
-        "h2": "আনতে হতো নিজেদেরই",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1794733200000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 845,
-        "end": 905,
-        "hs": 849,
-        "he": 854,
-        "hook": "'স্বার্থপর' গানটা একান্ত ব্যক্তিগত ভালোলাগা",
-        "subs": [],
-        "pre": {
-          "s": 849,
-          "e": 854
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "'স্বার্থপর' গানটা",
-        "h2": "একান্ত ব্যক্তিগত ভালোলাগা",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1794754800000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 925,
-        "end": 985,
-        "hs": 953,
-        "he": 958,
-        "hook": "নিজের গান গাইতে এক্সপ্রেশন বোঝাতে হয় না",
-        "subs": [],
-        "pre": {
-          "s": 953,
-          "e": 958
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "নিজের গান গাইতে",
-        "h2": "এক্সপ্রেশন বোঝাতে হয় না",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1794819600000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 1076,
-        "end": 1136,
-        "hs": 1076,
-        "he": 1081,
-        "hook": "স্টুডিওতে সরাসরি 'স্বার্থপর' গাইলেন তরুণ মুন্সী",
-        "subs": [],
-        "pre": {
-          "s": 1076,
-          "e": 1081
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "স্টুডিওতে সরাসরি",
-        "h2": "'স্বার্থপর' গাইলেন তরুণ মুন্সী",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1794841200000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 1195,
-        "end": 1255,
-        "hs": 1231,
-        "he": 1236,
-        "hook": "সবচেয়ে বড় দুর্বলতা গিটার!",
-        "subs": [],
-        "pre": {
-          "s": 1231,
-          "e": 1236
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "সবচেয়ে বড় দুর্বলতা",
-        "h2": "গিটার!",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1794906000000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 1344,
-        "end": 1404,
-        "hs": 1363,
-        "he": 1368,
-        "hook": "আজম খানের অ্যালবামে গান লেখা বিরাট ব্যাপার",
-        "subs": [],
-        "pre": {
-          "s": 1363,
-          "e": 1368
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "আজম খানের অ্যালবামে গান লেখা",
-        "h2": "বিরাট ব্যাপার",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1794927600000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 1451,
-        "end": 1511,
-        "hs": 1488,
-        "he": 1493,
-        "hook": "এভিয়েশনে অফিসার, আবার লোডারের কাজও!",
-        "subs": [],
-        "pre": {
-          "s": 1488,
-          "e": 1493
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "এভিয়েশনে অফিসার,",
-        "h2": "আবার লোডারের কাজও!",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1794992400000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 1562,
-        "end": 1622,
-        "hs": 1586,
-        "he": 1591,
-        "hook": "এয়ারলাইন্সের চাকরি শিখিয়েছে অনেক কিছু",
-        "subs": [],
-        "pre": {
-          "s": 1586,
-          "e": 1591
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "এয়ারলাইন্সের চাকরি",
-        "h2": "শিখিয়েছে অনেক কিছু",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795014000000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 1660,
-        "end": 1720,
-        "hs": 1678,
-        "he": 1683,
-        "hook": "ভদ্রলোকের দুনিয়ায় ফিট হই কি না দেখতে গিয়েছিলাম",
-        "subs": [],
-        "pre": {
-          "s": 1678,
-          "e": 1683
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "ভদ্রলোকের দুনিয়ায় ফিট হই কি না",
-        "h2": "দেখতে গিয়েছিলাম",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795078800000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 1890,
-        "end": 1950,
-        "hs": 1910,
-        "he": 1915,
-        "hook": "লাকি ভাই ছিলেন খুব একরোখা মানুষ",
-        "subs": [],
-        "pre": {
-          "s": 1910,
-          "e": 1915
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "লাকি ভাই ছিলেন",
-        "h2": "খুব একরোখা মানুষ",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795100400000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 1974,
-        "end": 2034,
-        "hs": 1984,
-        "he": 1989,
-        "hook": "বিপদে পড়েই শিখতে হয় বিপদ থেকে বের হওয়া",
-        "subs": [],
-        "pre": {
-          "s": 1984,
-          "e": 1989
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "বিপদে পড়েই শিখতে হয়",
-        "h2": "বিপদ থেকে বের হওয়া",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795165200000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 2100,
-        "end": 2160,
-        "hs": 2112,
-        "he": 2117,
-        "hook": "খালিদ গেয়েছিল বলেই গানটা এত ছড়িয়েছে!",
-        "subs": [],
-        "pre": {
-          "s": 2112,
-          "e": 2117
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "খালিদ গেয়েছিল বলেই",
-        "h2": "গানটা এত ছড়িয়েছে!",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795186800000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 2184,
-        "end": 2244,
-        "hs": 2202,
-        "he": 2207,
-        "hook": "'সরলতার প্রতিমা' ভাগ্যেই ছিল!",
-        "subs": [],
-        "pre": {
-          "s": 2202,
-          "e": 2207
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "'সরলতার প্রতিমা'",
-        "h2": "ভাগ্যেই ছিল!",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795251600000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 2289,
-        "end": 2349,
-        "hs": 2335,
-        "he": 2340,
-        "hook": "জেমস ভাইয়ের জন্য 'পদ্ম পাতার জল' লেখার গল্প",
-        "subs": [],
-        "pre": {
-          "s": 2335,
-          "e": 2340
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "জেমস ভাইয়ের জন্য",
-        "h2": "'পদ্ম পাতার জল' লেখার গল্প",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795273200000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 2421,
-        "end": 2481,
-        "hs": 2464,
-        "he": 2469,
-        "hook": "সহজ কথায় গভীর ভাব, এটাই আমার ধরন",
-        "subs": [],
-        "pre": {
-          "s": 2464,
-          "e": 2469
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "সহজ কথায় গভীর ভাব,",
-        "h2": "এটাই আমার ধরন",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795338000000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 2554,
-        "end": 2614,
-        "hs": 2605,
-        "he": 2610,
-        "hook": "'কষ্ট বেচে খাই' সবার জীবনের সত্য",
-        "subs": [],
-        "pre": {
-          "s": 2605,
-          "e": 2610
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "'কষ্ট বেচে খাই'",
-        "h2": "সবার জীবনের সত্য",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795359600000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 2668,
-        "end": 2728,
-        "hs": 2697,
-        "he": 2702,
-        "hook": "দ্য ট্র্যাপের তরুণ থেকে তরুণ মুন্সী!",
-        "subs": [],
-        "pre": {
-          "s": 2697,
-          "e": 2702
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "দ্য ট্র্যাপের তরুণ থেকে",
-        "h2": "তরুণ মুন্সী!",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795424400000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 2835,
-        "end": 2895,
-        "hs": 2893,
-        "he": 2898,
-        "hook": "অনলাইনের কারণে বেরিয়ে আসছে অনেক প্রতিভা",
-        "subs": [],
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "অনলাইনের কারণে",
-        "h2": "বেরিয়ে আসছে অনেক প্রতিভা",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795446000000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 2969,
-        "end": 3029,
-        "hs": 2976,
-        "he": 2981,
-        "hook": "মূল আর্টিস্টের চেয়ে কভার আর্টিস্টের ভিউ বেশি!",
-        "subs": [],
-        "pre": {
-          "s": 2976,
-          "e": 2981
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "মূল আর্টিস্টের চেয়ে",
-        "h2": "কভার আর্টিস্টের ভিউ বেশি!",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795510800000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 3078,
-        "end": 3138,
-        "hs": 3138,
-        "he": 3143,
-        "hook": "প্রথম গানের টাকা তুলে দিয়েছিলাম মায়ের হাতে",
-        "subs": [],
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "প্রথম গানের টাকা",
-        "h2": "তুলে দিয়েছিলাম মায়ের হাতে",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795532400000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 3182,
-        "end": 3242,
-        "hs": 3196,
-        "he": 3201,
-        "hook": "নিশ্চিত চাকরি ছেড়ে বেছে নিলাম ফ্রিল্যান্সিং",
-        "subs": [],
-        "pre": {
-          "s": 3196,
-          "e": 3201
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "নিশ্চিত চাকরি ছেড়ে",
-        "h2": "বেছে নিলাম ফ্রিল্যান্সিং",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795597200000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 3270,
-        "end": 3330,
-        "hs": 3325,
-        "he": 3330,
-        "hook": "নিজের গানের খবর পত্রিকা থেকে কেটে রাখতাম!",
-        "subs": [],
-        "pre": {
-          "s": 3325,
-          "e": 3330
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "নিজের গানের খবর",
-        "h2": "পত্রিকা থেকে কেটে রাখতাম!",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795618800000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 3407,
-        "end": 3467,
-        "hs": 3432,
-        "he": 3437,
-        "hook": "নব্বইয়ের দশকে সবাই মিলে কিছু করার স্বপ্ন ছিল",
-        "subs": [],
-        "pre": {
-          "s": 3432,
-          "e": 3437
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "নব্বইয়ের দশকে সবাই মিলে",
-        "h2": "কিছু করার স্বপ্ন ছিল",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795683600000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 3484,
-        "end": 3544,
-        "hs": 3531,
-        "he": 3536,
-        "hook": "বিশ্বজুড়ে ব্যান্ড মিউজিক এখন আর তেমন জনপ্রিয় না",
-        "subs": [],
-        "pre": {
-          "s": 3531,
-          "e": 3536
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "বিশ্বজুড়ে ব্যান্ড মিউজিক",
-        "h2": "এখন আর তেমন জনপ্রিয় না",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795705200000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 3576,
-        "end": 3636,
-        "hs": 3613,
-        "he": 3618,
-        "hook": "সাত গানের নতুন অ্যালবাম নিয়ে কাজ চলছে",
-        "subs": [],
-        "pre": {
-          "s": 3613,
-          "e": 3618
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "সাত গানের নতুন অ্যালবাম",
-        "h2": "নিয়ে কাজ চলছে",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795770000000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 3660,
-        "end": 3720,
-        "hs": 3665,
-        "he": 3670,
-        "hook": "বাবার চলে যাওয়া প্রভাব ফেলেছে আমার গানে",
-        "subs": [],
-        "pre": {
-          "s": 3665,
-          "e": 3670
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "বাবার চলে যাওয়া",
-        "h2": "প্রভাব ফেলেছে আমার গানে",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795791600000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 3801,
-        "end": 3861,
-        "hs": 3857,
-        "he": 3862,
-        "hook": "এনআইডিতে পেশা 'কণ্ঠশিল্পী' লেখা উচিত",
-        "subs": [],
-        "pre": {
-          "s": 3857,
-          "e": 3862
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "এনআইডিতে পেশা",
-        "h2": "'কণ্ঠশিল্পী' লেখা উচিত",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795856400000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 3882,
-        "end": 3942,
-        "hs": 3901,
-        "he": 3906,
-        "hook": "শিল্পীদের আয় থেকে ট্যাক্স নেওয়া উচিত",
-        "subs": [],
-        "pre": {
-          "s": 3901,
-          "e": 3906
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "শিল্পীদের আয় থেকে",
-        "h2": "ট্যাক্স নেওয়া উচিত",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795878000000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 3952,
-        "end": 4012,
-        "hs": 4012,
-        "he": 4017,
-        "hook": "গান কেউ ফ্রি দেখছে না, সবাই খরচ করেই দেখছে",
-        "subs": [],
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "গান কেউ ফ্রি দেখছে না,",
-        "h2": "সবাই খরচ করেই দেখছে",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795942800000
-    },
-    {
-      "video": "1464481912171733",
-      "url": "https://www.facebook.com/reel/1464481912171733/",
-      "kind": "podcast",
-      "clip": {
-        "start": 4034,
-        "end": 4094,
-        "hs": 4085,
-        "he": 4090,
-        "hook": "গান আমাদের পেশা, রক্ষা করা সবার দায়িত্ব",
-        "subs": [],
-        "pre": {
-          "s": 4085,
-          "e": 4090
-        },
-        "tag": "গান-বাজ",
-        "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
-        "cut": 0,
-        "style": "ganbaz",
-        "h1": "গান আমাদের পেশা,",
-        "h2": "রক্ষা করা সবার দায়িত্ব",
-        "show": "গানবাজ",
-        "series": "গানবাজ · গানের পেছনের গল্প",
-        "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
-      },
-      "hold": false,
-      "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
-      "at": 1795964400000
-    },
-    {
-      "video": "gd:1VWjzshSVkBCCjohLoT5n_uvtn09C0kWW",
-      "url": "",
-      "clip": {
-        "start": 24.5,
-        "end": 52,
-        "hook": "মঞ্চে জমে উঠল পরিবেশ",
-        "subs": [
-          {
-            "s": 0,
-            "e": 4.45,
-            "t": "এসো হে বৈশাখ এসো এসো"
-          },
-          {
-            "s": 4.5,
-            "e": 8.95,
-            "t": "তাপসনিশ্বাসবায়ে মুমূর্ষুরে দাও উড়ায়ে"
-          },
-          {
-            "s": 9,
-            "e": 13.45,
-            "t": "বৎসরের আবর্জনা দূর হয়ে যাক"
-          },
-          {
-            "s": 13.5,
-            "e": 17.95,
-            "t": "যাক যাক এসো হে বৈশাখ"
-          },
-          {
-            "s": 18,
-            "e": 22.45,
-            "t": "এসো এসো"
-          },
-          {
-            "s": 22.5,
-            "e": 27.5,
-            "t": "এসো হে বৈশাখ এসো এসো"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1794675600000
-    },
-    {
-      "video": "gd:1EhU6JTEdp44jOCDce3ga0uVYyQ0rGUsD",
-      "url": "",
-      "clip": {
-        "start": 20,
-        "end": 70,
-        "hook": "শিল্পীর কণ্ঠে উচ্ছ্বসিত শ্রোতারা",
-        "subs": [
-          {
-            "s": 0,
-            "e": 7.95,
-            "t": "যদি দেশে হারায় জীবনের ঠিকানা"
-          },
-          {
-            "s": 8,
-            "e": 9.95,
-            "t": "তবে ভেবে নিও বেঁচে থাকা হবে না"
-          },
-          {
-            "s": 10,
-            "e": 17.95,
-            "t": "যদি দেশে হারায় চোখের নীল সীমানা"
-          },
-          {
-            "s": 18,
-            "e": 25.95,
-            "t": "তবে ভেবে নিও বেঁচে থাকা হবে না"
-          },
-          {
-            "s": 26,
-            "e": 33.95,
-            "t": "আমি জানি জানি জানি তুমি তো আমারে চাও না"
-          },
-          {
-            "s": 34,
-            "e": 41.95,
-            "t": "আমি জানি জানি জানি তুমি তো আমারে চাও না"
-          },
-          {
-            "s": 42,
-            "e": 50,
-            "t": "আমি জানি জানি তুমি তো আমারে চাও না"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1794762000000
-    },
-    {
-      "video": "gd:1fzvqqWez69U14w8_-0NoAYk-pe6FxE8w",
-      "url": "",
-      "clip": {
-        "start": 40.8,
-        "end": 49.5,
-        "hook": "গানের সুরে মাতল পুরো হল",
-        "subs": [
-          {
-            "s": 0,
-            "e": 3.4,
-            "t": "Maya maya, o maya maya"
-          },
-          {
-            "s": 4.5,
-            "e": 8.7,
-            "t": "Rubi gel, rubi gel, rubi gel o"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1794848400000
-    },
-    {
-      "video": "gd:1biShrpZ8egwfgxL38wkGImn9P9akyrP4",
-      "url": "",
-      "clip": {
-        "start": 12.5,
-        "end": 25,
-        "hook": "দর্শকের গলায় গলা মেলানো মুহূর্ত",
-        "subs": [
-          {
-            "s": 0,
-            "e": 2.45,
-            "t": "আমি মরে যাই"
-          },
-          {
-            "s": 2.5,
-            "e": 4.95,
-            "t": "হাসি ফিরে"
-          },
-          {
-            "s": 5,
-            "e": 7.45,
-            "t": "আকি তোমায়"
-          },
-          {
-            "s": 7.5,
-            "e": 12.5,
-            "t": "হাসি"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1794934800000
-    },
-    {
-      "video": "gd:1T1HEBI32P_ImP7jFrnucZDZcjaBAE0qU",
-      "url": "",
-      "clip": {
-        "start": 107,
-        "end": 116,
-        "hook": "গানের ভালোবাসায় ভরে উঠল মঞ্চ",
-        "subs": [
-          {
-            "s": 0,
-            "e": 9,
-            "t": "Ay, ay, ay, ay, ay, ay, ay, ay, ay, ay"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795021200000
-    },
-    {
-      "video": "gd:1bawBxlA4N0vgsLJHLz0IcibZK8W7ZVci",
-      "url": "",
-      "clip": {
-        "start": 38,
-        "end": 80,
-        "hook": "আবেগে ভেসে গেলেন দর্শকরা",
-        "subs": [
-          {
-            "s": 0,
-            "e": 8.95,
-            "t": "হিসেবের খাতাটা ছিল ভুল, ভুল ছিল সাবানের গুঁড়ো"
-          },
-          {
-            "s": 9,
-            "e": 20.95,
-            "t": "আহা হা হা..."
-          },
-          {
-            "s": 21,
-            "e": 30.95,
-            "t": "ভুলেরই মহোৎসবে আমাদের সাথে চোখাচোখি"
-          },
-          {
-            "s": 31,
-            "e": 42,
-            "t": "আমাদের হাতগুলি পৌঁছে গেছে শেষ সীমানার কোন এক দ্বীপে"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795107600000
-    },
-    {
-      "video": "gd:1dd5BvFGMZwBcCEnOsH1SlqPB_5OGUkES",
-      "url": "",
-      "clip": {
-        "start": 12.5,
-        "end": 21,
-        "hook": "কনসার্টের সেরা মুহূর্তগুলোর একটি",
-        "subs": [
-          {
-            "s": 0,
-            "e": 2.45,
-            "t": "ওরে ওরে ওরে ওরে ওরে"
-          },
-          {
-            "s": 2.5,
-            "e": 4.95,
-            "t": "ওরে ওরে ওরে ওরে"
-          },
-          {
-            "s": 5,
-            "e": 8.5,
-            "t": "ওরে ওরে ওরে ওরে ওরে"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795194000000
-    },
-    {
-      "video": "gd:1VWjzshSVkBCCjohLoT5n_uvtn09C0kWW",
-      "url": "",
-      "clip": {
-        "start": 63,
-        "end": 91,
-        "hook": "শ্রোতাদের চিৎকারে কেঁপে উঠল মঞ্চ",
-        "subs": [
-          {
-            "s": 0,
-            "e": 3.95,
-            "t": "যেখানে এসে হতে তোমার"
-          },
-          {
-            "s": 4,
-            "e": 7.95,
-            "t": "সেখানে বসন্ত আমার"
-          },
-          {
-            "s": 8,
-            "e": 11.95,
-            "t": "ভালোবাসার হৃদয়ে"
-          },
-          {
-            "s": 12,
-            "e": 15.95,
-            "t": "আমি বারবার আসি ফিরে"
-          },
-          {
-            "s": 16,
-            "e": 19.95,
-            "t": "ডাকি তোমায় কাছে আমার"
-          },
-          {
-            "s": 20,
-            "e": 23.95,
-            "t": "আমি বারবার আসি ফিরে"
-          },
-          {
-            "s": 24,
-            "e": 28,
-            "t": "ডাকি তোমায় কাছে আমার"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795280400000
-    },
-    {
-      "video": "gd:1EhU6JTEdp44jOCDce3ga0uVYyQ0rGUsD",
-      "url": "",
-      "clip": {
-        "start": 72,
-        "end": 102,
-        "hook": "গানে গানে মাতালেন শিল্পী",
-        "subs": [
-          {
-            "s": 0,
-            "e": 6.45,
-            "t": "পারিনি তোমাকে ছাড়া কোনো কিছু ভাবতে"
-          },
-          {
-            "s": 6.5,
-            "e": 12.95,
-            "t": "পারিনি তোমাকে ছাড়া কোনো কিছু ভাবতে"
-          },
-          {
-            "s": 13,
-            "e": 20.95,
-            "t": "যদি নদী হতে পারতাম তবে তোমায় বুকে ধরে রাখতাম"
-          },
-          {
-            "s": 21,
-            "e": 29,
-            "t": "যদি নদী হতে পারতাম তবে তোমায় বুকে ধরে রাখতাম"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795366800000
-    },
-    {
-      "video": "gd:1fzvqqWez69U14w8_-0NoAYk-pe6FxE8w",
-      "url": "",
-      "clip": {
-        "start": 118,
-        "end": 131,
-        "hook": "কনসার্টের এই মুহূর্তে মুগ্ধ দর্শক",
-        "subs": [
-          {
-            "s": 0,
-            "e": 4.5,
-            "t": "Dekha de do bege le o de thi"
-          },
-          {
-            "s": 5,
-            "e": 8,
-            "t": "O r chobi"
-          },
-          {
-            "s": 8.5,
-            "e": 13,
-            "t": "Pura kachhe ja le o de thi o r chobi"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795453200000
-    },
-    {
-      "video": "gd:1biShrpZ8egwfgxL38wkGImn9P9akyrP4",
-      "url": "",
-      "clip": {
-        "start": 48,
-        "end": 75,
-        "hook": "মঞ্চে জমে উঠল পরিবেশ",
-        "subs": [
-          {
-            "s": 0,
-            "e": 2.95,
-            "t": "ছড়িয়ে দিয়েছি"
-          },
-          {
-            "s": 3,
-            "e": 5.95,
-            "t": "আমি জানি জানি"
-          },
-          {
-            "s": 6,
-            "e": 8.95,
-            "t": "তার বেদনা"
-          },
-          {
-            "s": 9,
-            "e": 11.95,
-            "t": "আমি জানি"
-          },
-          {
-            "s": 12,
-            "e": 14.95,
-            "t": "তারই বিচ্ছেদের"
-          },
-          {
-            "s": 15,
-            "e": 27,
-            "t": "আশা"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795539600000
-    },
-    {
-      "video": "gd:1bawBxlA4N0vgsLJHLz0IcibZK8W7ZVci",
-      "url": "",
-      "clip": {
-        "start": 123,
-        "end": 156,
-        "hook": "শিল্পীর কণ্ঠে উচ্ছ্বসিত শ্রোতারা",
-        "subs": [
-          {
-            "s": 0,
-            "e": 7.95,
-            "t": "কালো জমকালো ফ্যাকাশে"
-          },
-          {
-            "s": 8,
-            "e": 11.95,
-            "t": "তার রূপেরিয়ে"
-          },
-          {
-            "s": 12,
-            "e": 17.95,
-            "t": "রূপিয়ারও মিছে সলিল, প্রেম ভেসেছে নদী"
-          },
-          {
-            "s": 18,
-            "e": 23.95,
-            "t": "কালো জমকালো ফ্যাকাশে"
-          },
-          {
-            "s": 24,
-            "e": 28.95,
-            "t": "তার রূপেরিয়ে"
-          },
-          {
-            "s": 29,
-            "e": 33,
-            "t": "রূপিয়ারও মিছে সলিল"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795626000000
-    },
-    {
-      "video": "gd:1VWjzshSVkBCCjohLoT5n_uvtn09C0kWW",
-      "url": "",
-      "clip": {
-        "start": 91.5,
-        "end": 118,
-        "hook": "গানের সুরে মাতল পুরো হল",
-        "subs": [
-          {
-            "s": 0,
-            "e": 3.95,
-            "t": "আমি চিনি গো চিনি তোমারে"
-          },
-          {
-            "s": 4,
-            "e": 7.95,
-            "t": "ওগো বিদেশিনী"
-          },
-          {
-            "s": 8,
-            "e": 11.95,
-            "t": "তুমি থাকো সিন্ধুপারে"
-          },
-          {
-            "s": 12,
-            "e": 15.95,
-            "t": "ওগো বিদেশিনী"
-          },
-          {
-            "s": 16,
-            "e": 19.95,
-            "t": "আমি চিনি গো চিনি তোমারে"
-          },
-          {
-            "s": 20,
-            "e": 23.95,
-            "t": "ওগো বিদেশিনী"
-          },
-          {
-            "s": 24,
-            "e": 26.5,
-            "t": "ওগো বিদেশিনী"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795712400000
-    },
-    {
-      "video": "gd:1EhU6JTEdp44jOCDce3ga0uVYyQ0rGUsD",
-      "url": "",
-      "clip": {
-        "start": 164,
-        "end": 195,
-        "hook": "দর্শকের গলায় গলা মেলানো মুহূর্ত",
-        "subs": [
-          {
-            "s": 0,
-            "e": 8.45,
-            "t": "যদি দেশে হারায় জীবনের ঠিকানা"
-          },
-          {
-            "s": 8.5,
-            "e": 16.95,
-            "t": "তবে ভেবে নিও বেঁচে থাকা হবে না"
-          },
-          {
-            "s": 17,
-            "e": 23.45,
-            "t": "আমি জানি জানি জানি তুমি তো আমারে চাও না"
-          },
-          {
-            "s": 23.5,
-            "e": 31,
-            "t": "আমি জানি জানি জানি তুমি তো আমারে চাও না"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795798800000
-    },
-    {
-      "video": "gd:1VWjzshSVkBCCjohLoT5n_uvtn09C0kWW",
-      "url": "",
-      "clip": {
-        "start": 120,
-        "end": 160,
-        "hook": "গানের ভালোবাসায় ভরে উঠল মঞ্চ",
-        "subs": [
-          {
-            "s": 0,
-            "e": 3.95,
-            "t": "আমি বাংলায় গান গাই"
-          },
-          {
-            "s": 4,
-            "e": 7.95,
-            "t": "আমি বাংলার গান গাই"
-          },
-          {
-            "s": 8,
-            "e": 11.95,
-            "t": "আমি আমার আমাকে চিরদিন"
-          },
-          {
-            "s": 12,
-            "e": 15.95,
-            "t": "এই বাংলায় খুঁজে পাই"
-          },
-          {
-            "s": 16,
-            "e": 19.95,
-            "t": "আমি বাংলায় গান গাই"
-          },
-          {
-            "s": 20,
-            "e": 23.95,
-            "t": "আমি বাংলার গান গাই"
-          },
-          {
-            "s": 24,
-            "e": 27.95,
-            "t": "আমি আমার আমাকে চিরদিন"
-          },
-          {
-            "s": 28,
-            "e": 31.95,
-            "t": "এই বাংলায় খুঁজে পাই"
-          },
-          {
-            "s": 32,
-            "e": 35.95,
-            "t": "আমি বাংলায় গান গাই"
-          },
-          {
-            "s": 36,
-            "e": 40,
-            "t": "আমি বাংলার গান গাই"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795885200000
-    },
-    {
-      "video": "gd:1EhU6JTEdp44jOCDce3ga0uVYyQ0rGUsD",
-      "url": "",
-      "clip": {
-        "start": 197,
-        "end": 227,
-        "hook": "আবেগে ভেসে গেলেন দর্শকরা",
-        "subs": [
-          {
-            "s": 0,
-            "e": 7.45,
-            "t": "পারিনি তোমাকে ছাড়া কোনো কিছু ভাবতে"
-          },
-          {
-            "s": 7.5,
-            "e": 14.95,
-            "t": "পারিনি তোমাকে ছাড়া কোনো কিছু ভাবতে"
-          },
-          {
-            "s": 15,
-            "e": 22.45,
-            "t": "যদি নদী হতে পারতাম তবে তোমায় বুকে ধরে রাখতাম"
-          },
-          {
-            "s": 22.5,
-            "e": 30,
-            "t": "যদি নদী হতে পারতাম তবে তোমায় বুকে ধরে রাখতাম"
-          }
-        ],
-        "tag": "বিনোদন",
-        "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
-        "cut": 0
-      },
-      "hold": false,
-      "at": 1795971600000
-    }
-  ],
-  "done": [
-    {
-      "video": "1121181413984647",
-      "start": 947,
-      "hook": "\"কবিতা\" - জেমস",
-      "ids": {
-        "1406430145892267": "1153840690403960",
-        "872606492607357": "1147678117676385",
-        "1276101408920358": "1133497749047044"
-      }
-    },
-    {
-      "video": "1116883407609511",
-      "start": 18,
-      "hook": "\"নীলা\" - মাইলস",
-      "ids": {
-        "1406430145892267": "1455009383243775",
-        "872606492607357": "2211223126403908",
-        "1276101408920358": "2414003162732694"
-      }
-    },
-    {
-      "video": "1121181413984647",
-      "start": 1325,
-      "hook": "\"দেওয়ানা\" - জেমস",
-      "ids": {
-        "1406430145892267": "980168994678475",
-        "872606492607357": "4599995516878529",
-        "1276101408920358": "1603249424333082"
-      }
-    },
-    {
-      "video": "1121181413984647",
-      "start": 1628,
-      "hook": "\"গুরু ঘর বানাইলা কি দিয়া\" - জেমস",
-      "ids": {
-        "1406430145892267": "1042477825256493",
-        "872606492607357": "4089765187831004",
-        "1276101408920358": "1411584367410149"
-      }
-    },
-    {
-      "video": "1121181413984647",
-      "start": 1980,
-      "hook": "\"মা\" - জেমস",
-      "ids": {
-        "1406430145892267": "1709146820545515",
-        "872606492607357": "39692598393720916",
-        "1276101408920358": "2568066427026564"
-      }
-    },
-    {
-      "video": "1116883407609511",
-      "start": 483,
-      "hook": "\"ফিরিয়ে দাও\" - মাইলস",
-      "ids": {
-        "1406430145892267": "1768518621943165",
-        "872606492607357": "1120639127378321",
-        "1276101408920358": "1490667672924296"
-      }
-    },
-    {
-      "video": "1121181413984647",
-      "start": 2405,
-      "hook": "\"দুষ্টু ছেলের দল\" - জেমস",
-      "ids": {
-        "1406430145892267": "1844545193335952",
-        "872606492607357": "2057054844998626",
-        "1276101408920358": "1828936634813483"
-      }
-    },
-    {
-      "video": "1121181413984647",
-      "start": 2747,
-      "hook": "\"আমার সোনার বাংলা\" - জেমস",
-      "ids": {
-        "1406430145892267": "2344238406328787",
-        "872606492607357": "2741744986342909",
-        "1276101408920358": "2613854505754052"
-      }
-    },
-    {
-      "video": "1121181413984647",
-      "start": 2955,
-      "hook": "\"মীরাবাঈ\" - জেমস",
-      "ids": {
-        "1406430145892267": "1854426375907404",
-        "872606492607357": "1480736650661363",
-        "1276101408920358": "1600967225048065"
-      }
-    },
-    {
-      "video": "1121181413984647",
-      "start": 3432,
-      "hook": "\"সুন্দরীতমা আমার\" - জেমস",
-      "ids": {
-        "1406430145892267": "2179907555938442",
-        "872606492607357": "1442844867351548",
-        "1276101408920358": "1655464782836580"
-      }
-    },
-    {
-      "video": "1121181413984647",
-      "start": 3815,
-      "hook": "\"ওরে ওরে বন্ধু আসছে\" - জেমস",
-      "ids": {
-        "1406430145892267": "2901966360189061",
-        "872606492607357": "2120294885358418",
-        "1276101408920358": "1124821583467659"
-      }
-    },
-    {
-      "video": "gd:1PUyEz7-fUpIXJfZ298bh_YHlwQVZZrNv",
-      "start": 21,
-      "hook": "মঞ্চে নোবেল, গলা মেলালেন হাজারো দর্শক",
-      "ids": {
-        "1406430145892267": "4075651312736014",
-        "872606492607357": "1636351577787051",
-        "1276101408920358": "1680116640453185"
-      }
-    },
-    {
-      "video": "gd:1cAOjkkWRfeFr8PqJ1iVbPYaeoSeZy0T2",
-      "start": 0,
-      "hook": "নোবেলের গানে মুহূর্তেই জমে উঠল কনসার্ট",
-      "ids": {
-        "1406430145892267": "1133008309331329",
-        "872606492607357": "1624836265991827",
-        "1276101408920358": "1519132556713394"
-      }
-    },
-    {
-      "video": "gd:17-SCQ7-hb_2afydkIujskooOlIl13_K_",
-      "start": 28,
-      "hook": "কনসার্টে নোবেলের দরাজ কণ্ঠ, মুগ্ধ শ্রোতারা",
-      "ids": {
-        "1406430145892267": "955953397341496",
-        "872606492607357": "1880162376304634",
-        "1276101408920358": "1815691036356858"
-      }
-    },
-    {
-      "video": "gd:1BSXW8loKMvLw_dNfHOzHol58M8dbsf1J",
-      "start": 18,
-      "hook": "দর্শকের সঙ্গে গলা মেলালেন নোবেল, জমজমাট কনসার্ট",
-      "ids": {
-        "1406430145892267": "3731133267060710",
-        "872606492607357": "1527373609203068",
-        "1276101408920358": "1449294923326445"
-      }
-    },
-    {
-      "video": "gd:1v5yYyzoxv2_lHdSCOTcDMizIDeCllji7",
-      "start": 15,
-      "hook": "বাবাকে নিয়ে নোবেলের গান, আবেগে ভাসলেন দর্শক",
-      "ids": {
-        "1406430145892267": "1173759098414352",
-        "872606492607357": "1112218551808942",
-        "1276101408920358": "2703523750104802"
-      }
-    },
-    {
-      "video": "gd:1UIUzvOvYcLhXzlnAXo2AjonrbFehAync",
-      "start": 17,
-      "hook": "নোবেলের কণ্ঠে রোমান্টিক গান, মুগ্ধ শ্রোতারা",
-      "ids": {
-        "1406430145892267": "1100982722771121",
-        "872606492607357": "2080973383077399",
-        "1276101408920358": "1757182902041904"
-      }
-    },
-    {
-      "video": "gd:1MtzyaZN4Zx6e1CQDmUd3TeNk7BaFbd-H",
-      "start": 9,
-      "hook": "বাবার গানে নোবেলের আবেগমাখা পরিবেশনা",
-      "ids": {
-        "1406430145892267": "1533868715216900",
-        "872606492607357": "1662454258852638",
-        "1276101408920358": "1524117669769594"
-      }
-    },
-    {
-      "video": "gd:1aoWeXGWjh5XuSpvh906I2i7THdrHG7Ed",
-      "start": 42,
-      "hook": "নোবেলের সুরে সুরে মাতলেন দর্শক",
-      "ids": {
-        "1406430145892267": "1446139547721741",
-        "872606492607357": "1008726361661385",
-        "1276101408920358": "2338957173556337"
-      }
-    },
-    {
-      "video": "gd:1nmHHBgEyyt6Hu60MNo-c53f7OUh9V05-",
-      "start": 0,
-      "hook": "মঞ্চে নোবেলের ঝড়, উল্লাসে ফেটে পড়লেন দর্শক",
-      "ids": {
-        "1406430145892267": "1613048169952637",
-        "872606492607357": "935013126209809",
-        "1276101408920358": "1181443317897232"
-      }
-    },
-    {
-      "video": "gd:1ZMfwZ1m1OGjRP5kJrjYLuSUd-bD8gf6B",
-      "start": 28,
-      "hook": "নোবেলের কণ্ঠে প্রেমের গান, গলা মেলালেন দর্শক",
-      "ids": {
-        "1406430145892267": "1493516392837718",
-        "872606492607357": "1680625457126725",
-        "1276101408920358": "1767423991003274"
-      }
-    },
-    {
-      "video": "gd:1LieV0yq3BcLgMauSMZ4eaET9YUFbje9z",
-      "start": 12,
-      "hook": "নোবেলের গানে দুলে উঠল দর্শকসারি",
-      "ids": {
-        "1406430145892267": "1117833967645388",
-        "872606492607357": "991153790155671",
-        "1276101408920358": "1869097227299583"
-      }
-    },
-    {
-      "video": "gd:1aMhJLyPF27plrEhjtzJkSJ26mhv6q5CU",
-      "start": 9,
-      "hook": "কনসার্টে নোবেলের আরেক চমক, মাতলেন শ্রোতারা",
-      "ids": {
-        "1406430145892267": "2405608796643522",
-        "872606492607357": "1104334975806622",
-        "1276101408920358": "1889317272234159"
-      }
-    },
-    {
-      "video": "gd:1cAOjkkWRfeFr8PqJ1iVbPYaeoSeZy0T2",
-      "start": 31,
-      "hook": "মাকে নিয়ে গাইলেন নোবেল, আবেগে ভাসলেন দর্শক",
-      "ids": {
-        "1406430145892267": "1085375937847673",
-        "872606492607357": "3769210059906607",
-        "1276101408920358": "2287805192068459"
-      }
-    },
-    {
-      "video": "gd:1v5yYyzoxv2_lHdSCOTcDMizIDeCllji7",
-      "start": 115,
-      "hook": "বাবার গানে চোখ ভিজল শ্রোতাদের",
-      "ids": {
-        "1406430145892267": "1122189170733727",
-        "872606492607357": "2631098000647894",
-        "1276101408920358": "1309879071272215"
-      }
-    },
-    {
-      "video": "gd:1aoWeXGWjh5XuSpvh906I2i7THdrHG7Ed",
-      "start": 124,
-      "hook": "নোবেলের পরিবেশনায় উত্তাল কনসার্ট",
-      "ids": {
-        "1406430145892267": "1821241115584397",
-        "872606492607357": "1794698741818492",
-        "1276101408920358": "2054988805214963"
-      }
-    },
-    {
-      "video": "gd:1MtzyaZN4Zx6e1CQDmUd3TeNk7BaFbd-H",
-      "start": 52,
-      "hook": "বাবাকে নিয়ে গাইলেন নোবেল, মুগ্ধ পুরো কনসার্ট",
-      "ids": {
-        "1406430145892267": "1585675496648887",
-        "872606492607357": "1686888132847892",
-        "1276101408920358": "1010184484685654"
-      }
-    },
-    {
-      "video": "gd:1ZMfwZ1m1OGjRP5kJrjYLuSUd-bD8gf6B",
-      "start": 100,
-      "hook": "প্রেমের গানে নোবেল, মুগ্ধ শ্রোতারা",
-      "ids": {
-        "1406430145892267": "1121720590729390",
-        "872606492607357": "1160705526637500",
-        "1276101408920358": "1121280487419041"
-      }
-    },
-    {
-      "video": "gd:1aoWeXGWjh5XuSpvh906I2i7THdrHG7Ed",
-      "start": 201,
-      "hook": "শেষ সুর পর্যন্ত দর্শক মাতিয়ে রাখলেন নোবেল",
-      "ids": {
-        "1406430145892267": "1040256321806930",
-        "872606492607357": "1129612906441178",
-        "1276101408920358": "1023171817486111"
-      }
-    },
-    {
-      "video": "1464481912171733",
-      "start": 163,
-      "hook": "শুরুতে আজম খানের গান প্রচুর গেয়েছি!",
-      "ids": {
-        "1406430145892267": "1160921163536963",
-        "872606492607357": "2032694657446468",
-        "1276101408920358": "1003118508891708"
-      }
-    },
-    {
-      "video": "1464481912171733",
-      "start": 327,
-      "hook": "রেইডার্স ব্যান্ডের জন্ম ল্যাবরেটরি স্কুলে!",
-      "ids": {
-        "1406430145892267": "1528588025759219",
-        "872606492607357": "1176510371724085",
-        "1276101408920358": "2213172206220377"
-      }
-    },
-    {
-      "video": "1464481912171733",
-      "start": 412,
-      "hook": "দ্য ডোরস থেকেই ব্যান্ডের নাম দ্য ট্র্যাপ!",
-      "ids": {
-        "1406430145892267": "1128841899924184",
-        "872606492607357": "1568879361663025",
-        "1276101408920358": "1817352619494747"
-      }
-    },
-    {
-      "video": "gd:1lYIRrtM-hcpftWrAkd0W_rHxXCAWRT2F",
-      "start": 21.5,
-      "hook": "কনসার্টের এই মুহূর্তে মুগ্ধ দর্শক",
-      "ids": {
-        "1406430145892267": "1193101189972027",
-        "872606492607357": "1439618074385435",
-        "1276101408920358": "2234369080828600"
-      }
-    }
-  ],
-  "log": [
-    "2026-11-09T16:03:18.415Z concert reel on 872606492607357: 2080973383077399 (নোবেলের কণ্ঠে রোমান্টিক গান, মুগ্ধ শ্রোতারা)",
-    "2026-11-09T16:03:26.890Z concert reel on 1276101408920358: 1757182902041904 (নোবেলের কণ্ঠে রোমান্টিক গান, মুগ্ধ শ্রোতারা)",
-    "2026-11-09T16:32:51.708Z concert reel on 1406430145892267: 1533868715216900 (বাবার গানে নোবেলের আবেগমাখা পরিবেশনা)",
-    "2026-11-09T16:33:02.404Z concert reel on 872606492607357: 1662454258852638 (বাবার গানে নোবেলের আবেগমাখা পরিবেশনা)",
-    "2026-11-09T16:33:11.481Z concert reel on 1276101408920358: 1524117669769594 (বাবার গানে নোবেলের আবেগমাখা পরিবেশনা)",
-    "2026-11-10T05:03:00.273Z concert reel on 1406430145892267: 1446139547721741 (নোবেলের সুরে সুরে মাতলেন দর্শক)",
-    "2026-11-10T05:03:08.918Z concert reel on 872606492607357: 1008726361661385 (নোবেলের সুরে সুরে মাতলেন দর্শক)",
-    "2026-11-10T05:03:17.640Z concert reel on 1276101408920358: 2338957173556337 (নোবেলের সুরে সুরে মাতলেন দর্শক)",
-    "2026-11-10T06:32:43.612Z concert reel on 1406430145892267: 1613048169952637 (মঞ্চে নোবেলের ঝড়, উল্লাসে ফেটে পড়লেন দর্শক)",
-    "2026-11-10T06:32:52.485Z concert reel on 872606492607357: 935013126209809 (মঞ্চে নোবেলের ঝড়, উল্লাসে ফেটে পড়লেন দর্শক)",
-    "2026-11-10T06:33:00.617Z concert reel on 1276101408920358: 1181443317897232 (মঞ্চে নোবেলের ঝড়, উল্লাসে ফেটে পড়লেন দর্শক)",
-    "2026-11-10T08:05:23.046Z concert reel on 1406430145892267: 1493516392837718 (নোবেলের কণ্ঠে প্রেমের গান, গলা মেলালেন দর্শক)",
-    "2026-11-10T08:05:32.689Z concert reel on 872606492607357: 1680625457126725 (নোবেলের কণ্ঠে প্রেমের গান, গলা মেলালেন দর্শক)",
-    "2026-11-10T08:05:42.581Z concert reel on 1276101408920358: 1767423991003274 (নোবেলের কণ্ঠে প্রেমের গান, গলা মেলালেন দর্শক)",
-    "2026-11-10T09:31:24.559Z FAILED: no Pages",
-    "2026-11-10T10:32:39.042Z concert reel on 1406430145892267: 1117833967645388 (নোবেলের গানে দুলে উঠল দর্শকসারি)",
-    "2026-11-10T10:32:51.194Z concert reel on 872606492607357: 991153790155671 (নোবেলের গানে দুলে উঠল দর্শকসারি)",
-    "2026-11-10T10:33:00.372Z concert reel on 1276101408920358: 1869097227299583 (নোবেলের গানে দুলে উঠল দর্শকসারি)",
-    "2026-11-10T11:02:08.071Z concert reel on 1406430145892267: 2405608796643522 (কনসার্টে নোবেলের আরেক চমক, মাতলেন শ্রোতারা)",
-    "2026-11-10T11:02:18.864Z concert reel on 872606492607357: 1104334975806622 (কনসার্টে নোবেলের আরেক চমক, মাতলেন শ্রোতারা)",
-    "2026-11-10T11:02:29.092Z concert reel on 1276101408920358: 1889317272234159 (কনসার্টে নোবেলের আরেক চমক, মাতলেন শ্রোতারা)",
-    "2026-11-10T13:02:29.809Z concert reel on 1406430145892267: 1085375937847673 (মাকে নিয়ে গাইলেন নোবেল, আবেগে ভাসলেন দর্শক)",
-    "2026-11-10T13:02:37.160Z concert reel on 872606492607357: 3769210059906607 (মাকে নিয়ে গাইলেন নোবেল, আবেগে ভাসলেন দর্শক)",
-    "2026-11-10T13:02:44.585Z concert reel on 1276101408920358: 2287805192068459 (মাকে নিয়ে গাইলেন নোবেল, আবেগে ভাসলেন দর্শক)",
-    "2026-11-10T14:33:25.749Z concert reel on 1406430145892267: 1122189170733727 (বাবার গানে চোখ ভিজল শ্রোতাদের)",
-    "2026-11-10T14:33:36.182Z concert reel on 872606492607357: 2631098000647894 (বাবার গানে চোখ ভিজল শ্রোতাদের)",
-    "2026-11-10T14:33:44.621Z concert reel on 1276101408920358: 1309879071272215 (বাবার গানে চোখ ভিজল শ্রোতাদের)",
-    "2026-11-10T15:32:08.911Z concert reel on 1406430145892267: 1821241115584397 (নোবেলের পরিবেশনায় উত্তাল কনসার্ট)",
-    "2026-11-10T15:32:17.859Z concert reel on 872606492607357: 1794698741818492 (নোবেলের পরিবেশনায় উত্তাল কনসার্ট)",
-    "2026-11-10T15:32:26.804Z concert reel on 1276101408920358: 2054988805214963 (নোবেলের পরিবেশনায় উত্তাল কনসার্ট)",
-    "2026-11-10T16:33:37.717Z concert reel on 1406430145892267: 1585675496648887 (বাবাকে নিয়ে গাইলেন নোবেল, মুগ্ধ পুরো কনসার্ট)",
-    "2026-11-10T16:33:47.690Z concert reel on 872606492607357: 1686888132847892 (বাবাকে নিয়ে গাইলেন নোবেল, মুগ্ধ পুরো কনসার্ট)",
-    "2026-11-10T16:33:56.320Z concert reel on 1276101408920358: 1010184484685654 (বাবাকে নিয়ে গাইলেন নোবেল, মুগ্ধ পুরো কনসার্ট)",
-    "2026-11-11T05:03:36.355Z concert reel on 1406430145892267: 1121720590729390 (প্রেমের গানে নোবেল, মুগ্ধ শ্রোতারা)",
-    "2026-11-11T05:03:47.401Z concert reel on 872606492607357: 1160705526637500 (প্রেমের গানে নোবেল, মুগ্ধ শ্রোতারা)",
-    "2026-11-11T05:03:55.839Z concert reel on 1276101408920358: 1121280487419041 (প্রেমের গানে নোবেল, মুগ্ধ শ্রোতারা)",
-    "2026-11-11T06:32:44.064Z concert reel on 1406430145892267: 1040256321806930 (শেষ সুর পর্যন্ত দর্শক মাতিয়ে রাখলেন নোবেল)",
-    "2026-11-11T06:32:53.338Z concert reel on 872606492607357: 1129612906441178 (শেষ সুর পর্যন্ত দর্শক মাতিয়ে রাখলেন নোবেল)",
-    "2026-11-11T06:33:03.583Z concert reel on 1276101408920358: 1023171817486111 (শেষ সুর পর্যন্ত দর্শক মাতিয়ে রাখলেন নোবেল)",
-    "2026-11-12T19:10:22.272Z plan gd:1lYIRrtM-hcpftWrAkd0W_rHxXCAWRT2F: 5 clips: 22-66 \"বোবা নদী\" - আশিক | 115-156 \"বোবা নদী\" - আশিক | 205-248 \"বোবা নদী\" - আশিক | 255-294 \"বোবা নদী\" - আশিক | 293-340 \"বোবা নদী\" - আশিক",
-    "2026-11-12T19:10:55.879Z plan gd:1VWjzshSVkBCCjohLoT5n_uvtn09C0kWW: 4 clips: 25-52 Esho Hey Boishakh - Rabindra Sangeet | 63-91 Ami Baribar Ashi Phire - Bhoomi | 92-118 Ami Chini Go Chini Tomare - Rabindra Sangeet | 120-160 Ami Banglay Gaan Gai - Pratul Mukhopadhyay",
-    "2026-11-12T19:11:22.929Z plan gd:1EhU6JTEdp44jOCDce3ga0uVYyQ0rGUsD: 4 clips: 20-70 \"যদি দেশে হারায় জীবনের ঠিকানা\" - মাইলস | 72-102 \"যদি নদী হতে পারতাম\" - মাইলস | 164-195 \"যদি দেশে হারায়\" - মাইলস | 197-227 \"পারিনি তোমাকে ছাড়া\" - মাইলস",
-    "2026-11-12T19:11:31.917Z plan gd:1fzvqqWez69U14w8_-0NoAYk-pe6FxE8w: 2 clips: 41-50 Maya Maya | 118-131 Dekha de do bege le",
-    "2026-11-12T19:11:38.993Z plan gd:1biShrpZ8egwfgxL38wkGImn9P9akyrP4: 2 clips: 13-25 আমি মরে যাই | 48-75 ছড়িয়ে দিয়েছি",
-    "2026-11-12T19:11:51.162Z plan gd:1T1HEBI32P_ImP7jFrnucZDZcjaBAE0qU: 1 clips: 107-116 La que va",
-    "2026-11-12T19:12:12.345Z plan gd:1bawBxlA4N0vgsLJHLz0IcibZK8W7ZVci: 3 clips: 38-80 \"হিসেবের খাতাটা ছিল ভুল\" | 123-156 \"কালো জমকালো ফ্যাকাশে\" | 243-260 \"কালো জমকালো ফ্যাকাশে\"",
-    "2026-11-12T19:12:18.182Z plan gd:1dd5BvFGMZwBcCEnOsH1SlqPB_5OGUkES: 1 clips: 13-21 ওরে ওরে ওরে",
-    "2026-11-12T19:21:39.304Z queued 22 concert reels",
-    "2026-11-13T07:04:50.187Z concert reel on 1406430145892267: 1160921163536963 (শুরুতে আজম খানের গান প্রচুর গেয়েছি!)",
-    "2026-11-13T07:04:58.344Z concert reel on 872606492607357: 2032694657446468 (শুরুতে আজম খানের গান প্রচুর গেয়েছি!)",
-    "2026-11-13T07:05:06.550Z concert reel on 1276101408920358: 1003118508891708 (শুরুতে আজম খানের গান প্রচুর গেয়েছি!)",
-    "2026-11-13T09:35:05.128Z concert reel on 1406430145892267: 1528588025759219 (রেইডার্স ব্যান্ডের জন্ম ল্যাবরেটরি স্কুলে!)",
-    "2026-11-13T09:35:13.722Z concert reel on 872606492607357: 1176510371724085 (রেইডার্স ব্যান্ডের জন্ম ল্যাবরেটরি স্কুলে!)",
-    "2026-11-13T09:35:22.953Z concert reel on 1276101408920358: 2213172206220377 (রেইডার্স ব্যান্ডের জন্ম ল্যাবরেটরি স্কুলে!)",
-    "2026-11-13T15:05:58.191Z concert reel on 1406430145892267: 1128841899924184 (দ্য ডোরস থেকেই ব্যান্ডের নাম দ্য ট্র্যাপ!)",
-    "2026-11-13T15:06:05.723Z concert reel on 872606492607357: 1568879361663025 (দ্য ডোরস থেকেই ব্যান্ডের নাম দ্য ট্র্যাপ!)",
-    "2026-11-13T15:06:13.040Z concert reel on 1276101408920358: 1817352619494747 (দ্য ডোরস থেকেই ব্যান্ডের নাম দ্য ট্র্যাপ!)",
-    "2026-11-13T17:08:33.800Z concert reel on 1406430145892267: 1193101189972027 (কনসার্টের এই মুহূর্তে মুগ্ধ দর্শক)",
-    "2026-11-13T17:08:45.112Z concert reel on 872606492607357: 1439618074385435 (কনসার্টের এই মুহূর্তে মুগ্ধ দর্শক)",
-    "2026-11-13T17:08:55.293Z concert reel on 1276101408920358: 2234369080828600 (কনসার্টের এই মুহূর্তে মুগ্ধ দর্শক)"
-  ]
+ "queue": [
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 601,
+    "end": 661,
+    "hs": 650,
+    "he": 655,
+    "hook": "সাউন্ড গার্ডেনে পুরো অ্যালবাম নামানোর গল্প",
+    "subs": [],
+    "pre": {
+     "s": 650,
+     "e": 655
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "সাউন্ড গার্ডেনে",
+    "h2": "পুরো অ্যালবাম নামানোর গল্প",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1794646800000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 680,
+    "end": 740,
+    "hs": 680,
+    "he": 685,
+    "hook": "'স্বার্থপর' শুনেই এক লাখ টাকা ইনভেস্ট!",
+    "subs": [],
+    "pre": {
+     "s": 680,
+     "e": 685
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "'স্বার্থপর' শুনেই",
+    "h2": "এক লাখ টাকা ইনভেস্ট!",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1794668400000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 755,
+    "end": 815,
+    "hs": 763,
+    "he": 768,
+    "hook": "আগে সাউন্ড বের করে আনতে হতো নিজেদেরই",
+    "subs": [],
+    "pre": {
+     "s": 763,
+     "e": 768
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "আগে সাউন্ড বের করে",
+    "h2": "আনতে হতো নিজেদেরই",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1794733200000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 845,
+    "end": 905,
+    "hs": 849,
+    "he": 854,
+    "hook": "'স্বার্থপর' গানটা একান্ত ব্যক্তিগত ভালোলাগা",
+    "subs": [],
+    "pre": {
+     "s": 849,
+     "e": 854
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "'স্বার্থপর' গানটা",
+    "h2": "একান্ত ব্যক্তিগত ভালোলাগা",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1794754800000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 925,
+    "end": 985,
+    "hs": 953,
+    "he": 958,
+    "hook": "নিজের গান গাইতে এক্সপ্রেশন বোঝাতে হয় না",
+    "subs": [],
+    "pre": {
+     "s": 953,
+     "e": 958
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "নিজের গান গাইতে",
+    "h2": "এক্সপ্রেশন বোঝাতে হয় না",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1794819600000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 1076,
+    "end": 1136,
+    "hs": 1076,
+    "he": 1081,
+    "hook": "স্টুডিওতে সরাসরি 'স্বার্থপর' গাইলেন তরুণ মুন্সী",
+    "subs": [],
+    "pre": {
+     "s": 1076,
+     "e": 1081
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "স্টুডিওতে সরাসরি",
+    "h2": "'স্বার্থপর' গাইলেন তরুণ মুন্সী",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1794841200000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 1195,
+    "end": 1255,
+    "hs": 1231,
+    "he": 1236,
+    "hook": "সবচেয়ে বড় দুর্বলতা গিটার!",
+    "subs": [],
+    "pre": {
+     "s": 1231,
+     "e": 1236
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "সবচেয়ে বড় দুর্বলতা",
+    "h2": "গিটার!",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1794906000000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 1344,
+    "end": 1404,
+    "hs": 1363,
+    "he": 1368,
+    "hook": "আজম খানের অ্যালবামে গান লেখা বিরাট ব্যাপার",
+    "subs": [],
+    "pre": {
+     "s": 1363,
+     "e": 1368
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "আজম খানের অ্যালবামে গান লেখা",
+    "h2": "বিরাট ব্যাপার",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1794927600000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 1451,
+    "end": 1511,
+    "hs": 1488,
+    "he": 1493,
+    "hook": "এভিয়েশনে অফিসার, আবার লোডারের কাজও!",
+    "subs": [],
+    "pre": {
+     "s": 1488,
+     "e": 1493
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "এভিয়েশনে অফিসার,",
+    "h2": "আবার লোডারের কাজও!",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1794992400000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 1562,
+    "end": 1622,
+    "hs": 1586,
+    "he": 1591,
+    "hook": "এয়ারলাইন্সের চাকরি শিখিয়েছে অনেক কিছু",
+    "subs": [],
+    "pre": {
+     "s": 1586,
+     "e": 1591
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "এয়ারলাইন্সের চাকরি",
+    "h2": "শিখিয়েছে অনেক কিছু",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795014000000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 1660,
+    "end": 1720,
+    "hs": 1678,
+    "he": 1683,
+    "hook": "ভদ্রলোকের দুনিয়ায় ফিট হই কি না দেখতে গিয়েছিলাম",
+    "subs": [],
+    "pre": {
+     "s": 1678,
+     "e": 1683
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "ভদ্রলোকের দুনিয়ায় ফিট হই কি না",
+    "h2": "দেখতে গিয়েছিলাম",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795078800000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 1890,
+    "end": 1950,
+    "hs": 1910,
+    "he": 1915,
+    "hook": "লাকি ভাই ছিলেন খুব একরোখা মানুষ",
+    "subs": [],
+    "pre": {
+     "s": 1910,
+     "e": 1915
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "লাকি ভাই ছিলেন",
+    "h2": "খুব একরোখা মানুষ",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795100400000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 1974,
+    "end": 2034,
+    "hs": 1984,
+    "he": 1989,
+    "hook": "বিপদে পড়েই শিখতে হয় বিপদ থেকে বের হওয়া",
+    "subs": [],
+    "pre": {
+     "s": 1984,
+     "e": 1989
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "বিপদে পড়েই শিখতে হয়",
+    "h2": "বিপদ থেকে বের হওয়া",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795165200000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 2100,
+    "end": 2160,
+    "hs": 2112,
+    "he": 2117,
+    "hook": "খালিদ গেয়েছিল বলেই গানটা এত ছড়িয়েছে!",
+    "subs": [],
+    "pre": {
+     "s": 2112,
+     "e": 2117
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "খালিদ গেয়েছিল বলেই",
+    "h2": "গানটা এত ছড়িয়েছে!",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795186800000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 2184,
+    "end": 2244,
+    "hs": 2202,
+    "he": 2207,
+    "hook": "'সরলতার প্রতিমা' ভাগ্যেই ছিল!",
+    "subs": [],
+    "pre": {
+     "s": 2202,
+     "e": 2207
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "'সরলতার প্রতিমা'",
+    "h2": "ভাগ্যেই ছিল!",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795251600000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 2289,
+    "end": 2349,
+    "hs": 2335,
+    "he": 2340,
+    "hook": "জেমস ভাইয়ের জন্য 'পদ্ম পাতার জল' লেখার গল্প",
+    "subs": [],
+    "pre": {
+     "s": 2335,
+     "e": 2340
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "জেমস ভাইয়ের জন্য",
+    "h2": "'পদ্ম পাতার জল' লেখার গল্প",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795273200000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 2421,
+    "end": 2481,
+    "hs": 2464,
+    "he": 2469,
+    "hook": "সহজ কথায় গভীর ভাব, এটাই আমার ধরন",
+    "subs": [],
+    "pre": {
+     "s": 2464,
+     "e": 2469
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "সহজ কথায় গভীর ভাব,",
+    "h2": "এটাই আমার ধরন",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795338000000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 2554,
+    "end": 2614,
+    "hs": 2605,
+    "he": 2610,
+    "hook": "'কষ্ট বেচে খাই' সবার জীবনের সত্য",
+    "subs": [],
+    "pre": {
+     "s": 2605,
+     "e": 2610
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "'কষ্ট বেচে খাই'",
+    "h2": "সবার জীবনের সত্য",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795359600000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 2668,
+    "end": 2728,
+    "hs": 2697,
+    "he": 2702,
+    "hook": "দ্য ট্র্যাপের তরুণ থেকে তরুণ মুন্সী!",
+    "subs": [],
+    "pre": {
+     "s": 2697,
+     "e": 2702
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "দ্য ট্র্যাপের তরুণ থেকে",
+    "h2": "তরুণ মুন্সী!",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795424400000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 2835,
+    "end": 2895,
+    "hs": 2893,
+    "he": 2898,
+    "hook": "অনলাইনের কারণে বেরিয়ে আসছে অনেক প্রতিভা",
+    "subs": [],
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "অনলাইনের কারণে",
+    "h2": "বেরিয়ে আসছে অনেক প্রতিভা",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795446000000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 2969,
+    "end": 3029,
+    "hs": 2976,
+    "he": 2981,
+    "hook": "মূল আর্টিস্টের চেয়ে কভার আর্টিস্টের ভিউ বেশি!",
+    "subs": [],
+    "pre": {
+     "s": 2976,
+     "e": 2981
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "মূল আর্টিস্টের চেয়ে",
+    "h2": "কভার আর্টিস্টের ভিউ বেশি!",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795510800000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 3078,
+    "end": 3138,
+    "hs": 3138,
+    "he": 3143,
+    "hook": "প্রথম গানের টাকা তুলে দিয়েছিলাম মায়ের হাতে",
+    "subs": [],
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "প্রথম গানের টাকা",
+    "h2": "তুলে দিয়েছিলাম মায়ের হাতে",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795532400000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 3182,
+    "end": 3242,
+    "hs": 3196,
+    "he": 3201,
+    "hook": "নিশ্চিত চাকরি ছেড়ে বেছে নিলাম ফ্রিল্যান্সিং",
+    "subs": [],
+    "pre": {
+     "s": 3196,
+     "e": 3201
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "নিশ্চিত চাকরি ছেড়ে",
+    "h2": "বেছে নিলাম ফ্রিল্যান্সিং",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795597200000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 3270,
+    "end": 3330,
+    "hs": 3325,
+    "he": 3330,
+    "hook": "নিজের গানের খবর পত্রিকা থেকে কেটে রাখতাম!",
+    "subs": [],
+    "pre": {
+     "s": 3325,
+     "e": 3330
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "নিজের গানের খবর",
+    "h2": "পত্রিকা থেকে কেটে রাখতাম!",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795618800000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 3407,
+    "end": 3467,
+    "hs": 3432,
+    "he": 3437,
+    "hook": "নব্বইয়ের দশকে সবাই মিলে কিছু করার স্বপ্ন ছিল",
+    "subs": [],
+    "pre": {
+     "s": 3432,
+     "e": 3437
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "নব্বইয়ের দশকে সবাই মিলে",
+    "h2": "কিছু করার স্বপ্ন ছিল",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795683600000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 3484,
+    "end": 3544,
+    "hs": 3531,
+    "he": 3536,
+    "hook": "বিশ্বজুড়ে ব্যান্ড মিউজিক এখন আর তেমন জনপ্রিয় না",
+    "subs": [],
+    "pre": {
+     "s": 3531,
+     "e": 3536
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "বিশ্বজুড়ে ব্যান্ড মিউজিক",
+    "h2": "এখন আর তেমন জনপ্রিয় না",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795705200000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 3576,
+    "end": 3636,
+    "hs": 3613,
+    "he": 3618,
+    "hook": "সাত গানের নতুন অ্যালবাম নিয়ে কাজ চলছে",
+    "subs": [],
+    "pre": {
+     "s": 3613,
+     "e": 3618
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "সাত গানের নতুন অ্যালবাম",
+    "h2": "নিয়ে কাজ চলছে",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795770000000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 3660,
+    "end": 3720,
+    "hs": 3665,
+    "he": 3670,
+    "hook": "বাবার চলে যাওয়া প্রভাব ফেলেছে আমার গানে",
+    "subs": [],
+    "pre": {
+     "s": 3665,
+     "e": 3670
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "বাবার চলে যাওয়া",
+    "h2": "প্রভাব ফেলেছে আমার গানে",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795791600000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 3801,
+    "end": 3861,
+    "hs": 3857,
+    "he": 3862,
+    "hook": "এনআইডিতে পেশা 'কণ্ঠশিল্পী' লেখা উচিত",
+    "subs": [],
+    "pre": {
+     "s": 3857,
+     "e": 3862
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "এনআইডিতে পেশা",
+    "h2": "'কণ্ঠশিল্পী' লেখা উচিত",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795856400000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 3882,
+    "end": 3942,
+    "hs": 3901,
+    "he": 3906,
+    "hook": "শিল্পীদের আয় থেকে ট্যাক্স নেওয়া উচিত",
+    "subs": [],
+    "pre": {
+     "s": 3901,
+     "e": 3906
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "শিল্পীদের আয় থেকে",
+    "h2": "ট্যাক্স নেওয়া উচিত",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795878000000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 3952,
+    "end": 4012,
+    "hs": 4012,
+    "he": 4017,
+    "hook": "গান কেউ ফ্রি দেখছে না, সবাই খরচ করেই দেখছে",
+    "subs": [],
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "গান কেউ ফ্রি দেখছে না,",
+    "h2": "সবাই খরচ করেই দেখছে",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795942800000
+  },
+  {
+   "video": "1464481912171733",
+   "url": "https://www.facebook.com/reel/1464481912171733/",
+   "kind": "podcast",
+   "clip": {
+    "start": 4034,
+    "end": 4094,
+    "hs": 4085,
+    "he": 4090,
+    "hook": "গান আমাদের পেশা, রক্ষা করা সবার দায়িত্ব",
+    "subs": [],
+    "pre": {
+     "s": 4085,
+     "e": 4090
+    },
+    "tag": "গান-বাজ",
+    "foot": "পুরো পর্ব দেখুন উৎসব টিভির পেজে",
+    "cut": 0,
+    "style": "ganbaz",
+    "h1": "গান আমাদের পেশা,",
+    "h2": "রক্ষা করা সবার দায়িত্ব",
+    "show": "গানবাজ",
+    "series": "গানবাজ · গানের পেছনের গল্প",
+    "focus": "the guest: a bearded man in a black T-shirt, black cap and sunglasses (not the host in the brown shirt)"
+   },
+   "hold": false,
+   "src": "gd:1RK-7l6-fhjy9zmPFbxR6-3V0AV0Ydfqs",
+   "at": 1795964400000
+  },
+  {
+   "video": "gd:1VWjzshSVkBCCjohLoT5n_uvtn09C0kWW",
+   "url": "",
+   "clip": {
+    "start": 24.5,
+    "end": 52,
+    "hook": "বৈশাখের আবাহনে মেতে উঠল মঞ্চ",
+    "subs": [
+     {
+      "s": 0,
+      "e": 4.45,
+      "t": "এসো হে বৈশাখ এসো এসো"
+     },
+     {
+      "s": 4.5,
+      "e": 8.95,
+      "t": "তাপসনিশ্বাসবায়ে মুমূর্ষুরে দাও উড়ায়ে"
+     },
+     {
+      "s": 9,
+      "e": 13.45,
+      "t": "বৎসরের আবর্জনা দূর হয়ে যাক"
+     },
+     {
+      "s": 13.5,
+      "e": 17.95,
+      "t": "যাক যাক এসো হে বৈশাখ"
+     },
+     {
+      "s": 18,
+      "e": 22.45,
+      "t": "এসো এসো"
+     },
+     {
+      "s": 22.5,
+      "e": 27.5,
+      "t": "এসো হে বৈশাখ এসো এসো"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1794675600000
+  },
+  {
+   "video": "gd:1EhU6JTEdp44jOCDce3ga0uVYyQ0rGUsD",
+   "url": "",
+   "clip": {
+    "start": 20,
+    "end": 70,
+    "hook": "বিরহের সুরে নীরব হলো পুরো হল",
+    "subs": [
+     {
+      "s": 0,
+      "e": 7.95,
+      "t": "যদি দেশে হারায় জীবনের ঠিকানা"
+     },
+     {
+      "s": 8,
+      "e": 9.95,
+      "t": "তবে ভেবে নিও বেঁচে থাকা হবে না"
+     },
+     {
+      "s": 10,
+      "e": 17.95,
+      "t": "যদি দেশে হারায় চোখের নীল সীমানা"
+     },
+     {
+      "s": 18,
+      "e": 25.95,
+      "t": "তবে ভেবে নিও বেঁচে থাকা হবে না"
+     },
+     {
+      "s": 26,
+      "e": 33.95,
+      "t": "আমি জানি জানি জানি তুমি তো আমারে চাও না"
+     },
+     {
+      "s": 34,
+      "e": 41.95,
+      "t": "আমি জানি জানি জানি তুমি তো আমারে চাও না"
+     },
+     {
+      "s": 42,
+      "e": 50,
+      "t": "আমি জানি জানি তুমি তো আমারে চাও না"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1794762000000
+  },
+  {
+   "video": "gd:1fzvqqWez69U14w8_-0NoAYk-pe6FxE8w",
+   "url": "",
+   "clip": {
+    "start": 40.8,
+    "end": 49.5,
+    "hook": "মায়ার সুরে দুলে উঠল দর্শক",
+    "subs": [
+     {
+      "s": 0,
+      "e": 3.4,
+      "t": "Maya maya, o maya maya"
+     },
+     {
+      "s": 4.5,
+      "e": 8.7,
+      "t": "Rubi gel, rubi gel, rubi gel o"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1794848400000
+  },
+  {
+   "video": "gd:1biShrpZ8egwfgxL38wkGImn9P9akyrP4",
+   "url": "",
+   "clip": {
+    "start": 12.5,
+    "end": 25,
+    "hook": "হাসি আর আবেগ মিশে একাকার গান",
+    "subs": [
+     {
+      "s": 0,
+      "e": 2.45,
+      "t": "আমি মরে যাই"
+     },
+     {
+      "s": 2.5,
+      "e": 4.95,
+      "t": "হাসি ফিরে"
+     },
+     {
+      "s": 5,
+      "e": 7.45,
+      "t": "আকি তোমায়"
+     },
+     {
+      "s": 7.5,
+      "e": 12.5,
+      "t": "হাসি"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1794934800000
+  },
+  {
+   "video": "gd:1T1HEBI32P_ImP7jFrnucZDZcjaBAE0qU",
+   "url": "",
+   "clip": {
+    "start": 107,
+    "end": 116,
+    "hook": "একসাথে আয় আয় ধ্বনিতে ভরল মঞ্চ",
+    "subs": [
+     {
+      "s": 0,
+      "e": 9,
+      "t": "Ay, ay, ay, ay, ay, ay, ay, ay, ay, ay"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1795021200000
+  },
+  {
+   "video": "gd:1bawBxlA4N0vgsLJHLz0IcibZK8W7ZVci",
+   "url": "",
+   "clip": {
+    "start": 38,
+    "end": 80,
+    "hook": "হিসেবের গল্পে আবেগে ভাসলেন দর্শক",
+    "subs": [
+     {
+      "s": 0,
+      "e": 8.95,
+      "t": "হিসেবের খাতাটা ছিল ভুল, ভুল ছিল সাবানের গুঁড়ো"
+     },
+     {
+      "s": 9,
+      "e": 20.95,
+      "t": "আহা হা হা..."
+     },
+     {
+      "s": 21,
+      "e": 30.95,
+      "t": "ভুলেরই মহোৎসবে আমাদের সাথে চোখাচোখি"
+     },
+     {
+      "s": 31,
+      "e": 42,
+      "t": "আমাদের হাতগুলি পৌঁছে গেছে শেষ সীমানার কোন এক দ্বীপে"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1795107600000
+  },
+  {
+   "video": "gd:1dd5BvFGMZwBcCEnOsH1SlqPB_5OGUkES",
+   "url": "",
+   "clip": {
+    "start": 12.5,
+    "end": 21,
+    "hook": "ওরে ওরে ধ্বনিতে উত্তাল হল",
+    "subs": [
+     {
+      "s": 0,
+      "e": 2.45,
+      "t": "ওরে ওরে ওরে ওরে ওরে"
+     },
+     {
+      "s": 2.5,
+      "e": 4.95,
+      "t": "ওরে ওরে ওরে ওরে"
+     },
+     {
+      "s": 5,
+      "e": 8.5,
+      "t": "ওরে ওরে ওরে ওরে ওরে"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1795194000000
+  },
+  {
+   "video": "gd:1VWjzshSVkBCCjohLoT5n_uvtn09C0kWW",
+   "url": "",
+   "clip": {
+    "start": 63,
+    "end": 91,
+    "hook": "বসন্তের গানে মুখর হলো চারপাশ",
+    "subs": [
+     {
+      "s": 0,
+      "e": 3.95,
+      "t": "যেখানে এসে হতে তোমার"
+     },
+     {
+      "s": 4,
+      "e": 7.95,
+      "t": "সেখানে বসন্ত আমার"
+     },
+     {
+      "s": 8,
+      "e": 11.95,
+      "t": "ভালোবাসার হৃদয়ে"
+     },
+     {
+      "s": 12,
+      "e": 15.95,
+      "t": "আমি বারবার আসি ফিরে"
+     },
+     {
+      "s": 16,
+      "e": 19.95,
+      "t": "ডাকি তোমায় কাছে আমার"
+     },
+     {
+      "s": 20,
+      "e": 23.95,
+      "t": "আমি বারবার আসি ফিরে"
+     },
+     {
+      "s": 24,
+      "e": 28,
+      "t": "ডাকি তোমায় কাছে আমার"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1795280400000
+  },
+  {
+   "video": "gd:1EhU6JTEdp44jOCDce3ga0uVYyQ0rGUsD",
+   "url": "",
+   "clip": {
+    "start": 72,
+    "end": 102,
+    "hook": "নদী হওয়ার আকুতিতে ভরল হল",
+    "subs": [
+     {
+      "s": 0,
+      "e": 6.45,
+      "t": "পারিনি তোমাকে ছাড়া কোনো কিছু ভাবতে"
+     },
+     {
+      "s": 6.5,
+      "e": 12.95,
+      "t": "পারিনি তোমাকে ছাড়া কোনো কিছু ভাবতে"
+     },
+     {
+      "s": 13,
+      "e": 20.95,
+      "t": "যদি নদী হতে পারতাম তবে তোমায় বুকে ধরে রাখতাম"
+     },
+     {
+      "s": 21,
+      "e": 29,
+      "t": "যদি নদী হতে পারতাম তবে তোমায় বুকে ধরে রাখতাম"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1795366800000
+  },
+  {
+   "video": "gd:1fzvqqWez69U14w8_-0NoAYk-pe6FxE8w",
+   "url": "",
+   "clip": {
+    "start": 118,
+    "end": 131,
+    "hook": "দেখা দাও সুরে মুগ্ধ দর্শক",
+    "subs": [
+     {
+      "s": 0,
+      "e": 4.5,
+      "t": "Dekha de do bege le o de thi"
+     },
+     {
+      "s": 5,
+      "e": 8,
+      "t": "O r chobi"
+     },
+     {
+      "s": 8.5,
+      "e": 13,
+      "t": "Pura kachhe ja le o de thi o r chobi"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1795453200000
+  },
+  {
+   "video": "gd:1biShrpZ8egwfgxL38wkGImn9P9akyrP4",
+   "url": "",
+   "clip": {
+    "start": 48,
+    "end": 75,
+    "hook": "বেদনার সুরে নিস্তব্ধ হল",
+    "subs": [
+     {
+      "s": 0,
+      "e": 2.95,
+      "t": "ছড়িয়ে দিয়েছি"
+     },
+     {
+      "s": 3,
+      "e": 5.95,
+      "t": "আমি জানি জানি"
+     },
+     {
+      "s": 6,
+      "e": 8.95,
+      "t": "তার বেদনা"
+     },
+     {
+      "s": 9,
+      "e": 11.95,
+      "t": "আমি জানি"
+     },
+     {
+      "s": 12,
+      "e": 14.95,
+      "t": "তারই বিচ্ছেদের"
+     },
+     {
+      "s": 15,
+      "e": 27,
+      "t": "আশা"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1795539600000
+  },
+  {
+   "video": "gd:1bawBxlA4N0vgsLJHLz0IcibZK8W7ZVci",
+   "url": "",
+   "clip": {
+    "start": 123,
+    "end": 156,
+    "hook": "প্রেমের সুরে ভেসে গেল শ্রোতারা",
+    "subs": [
+     {
+      "s": 0,
+      "e": 7.95,
+      "t": "কালো জমকালো ফ্যাকাশে"
+     },
+     {
+      "s": 8,
+      "e": 11.95,
+      "t": "তার রূপেরিয়ে"
+     },
+     {
+      "s": 12,
+      "e": 17.95,
+      "t": "রূপিয়ারও মিছে সলিল, প্রেম ভেসেছে নদী"
+     },
+     {
+      "s": 18,
+      "e": 23.95,
+      "t": "কালো জমকালো ফ্যাকাশে"
+     },
+     {
+      "s": 24,
+      "e": 28.95,
+      "t": "তার রূপেরিয়ে"
+     },
+     {
+      "s": 29,
+      "e": 33,
+      "t": "রূপিয়ারও মিছে সলিল"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1795626000000
+  },
+  {
+   "video": "gd:1VWjzshSVkBCCjohLoT5n_uvtn09C0kWW",
+   "url": "",
+   "clip": {
+    "start": 91.5,
+    "end": 118,
+    "hook": "বিদেশিনীর গানে ডুবে গেল হল",
+    "subs": [
+     {
+      "s": 0,
+      "e": 3.95,
+      "t": "আমি চিনি গো চিনি তোমারে"
+     },
+     {
+      "s": 4,
+      "e": 7.95,
+      "t": "ওগো বিদেশিনী"
+     },
+     {
+      "s": 8,
+      "e": 11.95,
+      "t": "তুমি থাকো সিন্ধুপারে"
+     },
+     {
+      "s": 12,
+      "e": 15.95,
+      "t": "ওগো বিদেশিনী"
+     },
+     {
+      "s": 16,
+      "e": 19.95,
+      "t": "আমি চিনি গো চিনি তোমারে"
+     },
+     {
+      "s": 20,
+      "e": 23.95,
+      "t": "ওগো বিদেশিনী"
+     },
+     {
+      "s": 24,
+      "e": 26.5,
+      "t": "ওগো বিদেশিনী"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1795712400000
+  },
+  {
+   "video": "gd:1VWjzshSVkBCCjohLoT5n_uvtn09C0kWW",
+   "url": "",
+   "clip": {
+    "start": 120,
+    "end": 160,
+    "hook": "বাংলায় গান গাওয়ার গর্বে ভরল মঞ্চ",
+    "subs": [
+     {
+      "s": 0,
+      "e": 3.95,
+      "t": "আমি বাংলায় গান গাই"
+     },
+     {
+      "s": 4,
+      "e": 7.95,
+      "t": "আমি বাংলার গান গাই"
+     },
+     {
+      "s": 8,
+      "e": 11.95,
+      "t": "আমি আমার আমাকে চিরদিন"
+     },
+     {
+      "s": 12,
+      "e": 15.95,
+      "t": "এই বাংলায় খুঁজে পাই"
+     },
+     {
+      "s": 16,
+      "e": 19.95,
+      "t": "আমি বাংলায় গান গাই"
+     },
+     {
+      "s": 20,
+      "e": 23.95,
+      "t": "আমি বাংলার গান গাই"
+     },
+     {
+      "s": 24,
+      "e": 27.95,
+      "t": "আমি আমার আমাকে চিরদিন"
+     },
+     {
+      "s": 28,
+      "e": 31.95,
+      "t": "এই বাংলায় খুঁজে পাই"
+     },
+     {
+      "s": 32,
+      "e": 35.95,
+      "t": "আমি বাংলায় গান গাই"
+     },
+     {
+      "s": 36,
+      "e": 40,
+      "t": "আমি বাংলার গান গাই"
+     }
+    ],
+    "tag": "বিনোদন",
+    "foot": "পুরো কনসার্ট দেখুন উৎসব টিভির পেজে",
+    "cut": 0
+   },
+   "hold": false,
+   "at": 1795885200000
+  }
+ ],
+ "done": [
+  {
+   "video": "1121181413984647",
+   "start": 947,
+   "hook": "\"কবিতা\" - জেমস",
+   "ids": {
+    "1406430145892267": "1153840690403960",
+    "872606492607357": "1147678117676385",
+    "1276101408920358": "1133497749047044"
+   }
+  },
+  {
+   "video": "1116883407609511",
+   "start": 18,
+   "hook": "\"নীলা\" - মাইলস",
+   "ids": {
+    "1406430145892267": "1455009383243775",
+    "872606492607357": "2211223126403908",
+    "1276101408920358": "2414003162732694"
+   }
+  },
+  {
+   "video": "1121181413984647",
+   "start": 1325,
+   "hook": "\"দেওয়ানা\" - জেমস",
+   "ids": {
+    "1406430145892267": "980168994678475",
+    "872606492607357": "4599995516878529",
+    "1276101408920358": "1603249424333082"
+   }
+  },
+  {
+   "video": "1121181413984647",
+   "start": 1628,
+   "hook": "\"গুরু ঘর বানাইলা কি দিয়া\" - জেমস",
+   "ids": {
+    "1406430145892267": "1042477825256493",
+    "872606492607357": "4089765187831004",
+    "1276101408920358": "1411584367410149"
+   }
+  },
+  {
+   "video": "1121181413984647",
+   "start": 1980,
+   "hook": "\"মা\" - জেমস",
+   "ids": {
+    "1406430145892267": "1709146820545515",
+    "872606492607357": "39692598393720916",
+    "1276101408920358": "2568066427026564"
+   }
+  },
+  {
+   "video": "1116883407609511",
+   "start": 483,
+   "hook": "\"ফিরিয়ে দাও\" - মাইলস",
+   "ids": {
+    "1406430145892267": "1768518621943165",
+    "872606492607357": "1120639127378321",
+    "1276101408920358": "1490667672924296"
+   }
+  },
+  {
+   "video": "1121181413984647",
+   "start": 2405,
+   "hook": "\"দুষ্টু ছেলের দল\" - জেমস",
+   "ids": {
+    "1406430145892267": "1844545193335952",
+    "872606492607357": "2057054844998626",
+    "1276101408920358": "1828936634813483"
+   }
+  },
+  {
+   "video": "1121181413984647",
+   "start": 2747,
+   "hook": "\"আমার সোনার বাংলা\" - জেমস",
+   "ids": {
+    "1406430145892267": "2344238406328787",
+    "872606492607357": "2741744986342909",
+    "1276101408920358": "2613854505754052"
+   }
+  },
+  {
+   "video": "1121181413984647",
+   "start": 2955,
+   "hook": "\"মীরাবাঈ\" - জেমস",
+   "ids": {
+    "1406430145892267": "1854426375907404",
+    "872606492607357": "1480736650661363",
+    "1276101408920358": "1600967225048065"
+   }
+  },
+  {
+   "video": "1121181413984647",
+   "start": 3432,
+   "hook": "\"সুন্দরীতমা আমার\" - জেমস",
+   "ids": {
+    "1406430145892267": "2179907555938442",
+    "872606492607357": "1442844867351548",
+    "1276101408920358": "1655464782836580"
+   }
+  },
+  {
+   "video": "1121181413984647",
+   "start": 3815,
+   "hook": "\"ওরে ওরে বন্ধু আসছে\" - জেমস",
+   "ids": {
+    "1406430145892267": "2901966360189061",
+    "872606492607357": "2120294885358418",
+    "1276101408920358": "1124821583467659"
+   }
+  },
+  {
+   "video": "gd:1PUyEz7-fUpIXJfZ298bh_YHlwQVZZrNv",
+   "start": 21,
+   "hook": "মঞ্চে নোবেল, গলা মেলালেন হাজারো দর্শক",
+   "ids": {
+    "1406430145892267": "4075651312736014",
+    "872606492607357": "1636351577787051",
+    "1276101408920358": "1680116640453185"
+   }
+  },
+  {
+   "video": "gd:1cAOjkkWRfeFr8PqJ1iVbPYaeoSeZy0T2",
+   "start": 0,
+   "hook": "নোবেলের গানে মুহূর্তেই জমে উঠল কনসার্ট",
+   "ids": {
+    "1406430145892267": "1133008309331329",
+    "872606492607357": "1624836265991827",
+    "1276101408920358": "1519132556713394"
+   }
+  },
+  {
+   "video": "gd:17-SCQ7-hb_2afydkIujskooOlIl13_K_",
+   "start": 28,
+   "hook": "কনসার্টে নোবেলের দরাজ কণ্ঠ, মুগ্ধ শ্রোতারা",
+   "ids": {
+    "1406430145892267": "955953397341496",
+    "872606492607357": "1880162376304634",
+    "1276101408920358": "1815691036356858"
+   }
+  },
+  {
+   "video": "gd:1BSXW8loKMvLw_dNfHOzHol58M8dbsf1J",
+   "start": 18,
+   "hook": "দর্শকের সঙ্গে গলা মেলালেন নোবেল, জমজমাট কনসার্ট",
+   "ids": {
+    "1406430145892267": "3731133267060710",
+    "872606492607357": "1527373609203068",
+    "1276101408920358": "1449294923326445"
+   }
+  },
+  {
+   "video": "gd:1v5yYyzoxv2_lHdSCOTcDMizIDeCllji7",
+   "start": 15,
+   "hook": "বাবাকে নিয়ে নোবেলের গান, আবেগে ভাসলেন দর্শক",
+   "ids": {
+    "1406430145892267": "1173759098414352",
+    "872606492607357": "1112218551808942",
+    "1276101408920358": "2703523750104802"
+   }
+  },
+  {
+   "video": "gd:1UIUzvOvYcLhXzlnAXo2AjonrbFehAync",
+   "start": 17,
+   "hook": "নোবেলের কণ্ঠে রোমান্টিক গান, মুগ্ধ শ্রোতারা",
+   "ids": {
+    "1406430145892267": "1100982722771121",
+    "872606492607357": "2080973383077399",
+    "1276101408920358": "1757182902041904"
+   }
+  },
+  {
+   "video": "gd:1MtzyaZN4Zx6e1CQDmUd3TeNk7BaFbd-H",
+   "start": 9,
+   "hook": "বাবার গানে নোবেলের আবেগমাখা পরিবেশনা",
+   "ids": {
+    "1406430145892267": "1533868715216900",
+    "872606492607357": "1662454258852638",
+    "1276101408920358": "1524117669769594"
+   }
+  },
+  {
+   "video": "gd:1aoWeXGWjh5XuSpvh906I2i7THdrHG7Ed",
+   "start": 42,
+   "hook": "নোবেলের সুরে সুরে মাতলেন দর্শক",
+   "ids": {
+    "1406430145892267": "1446139547721741",
+    "872606492607357": "1008726361661385",
+    "1276101408920358": "2338957173556337"
+   }
+  },
+  {
+   "video": "gd:1nmHHBgEyyt6Hu60MNo-c53f7OUh9V05-",
+   "start": 0,
+   "hook": "মঞ্চে নোবেলের ঝড়, উল্লাসে ফেটে পড়লেন দর্শক",
+   "ids": {
+    "1406430145892267": "1613048169952637",
+    "872606492607357": "935013126209809",
+    "1276101408920358": "1181443317897232"
+   }
+  },
+  {
+   "video": "gd:1ZMfwZ1m1OGjRP5kJrjYLuSUd-bD8gf6B",
+   "start": 28,
+   "hook": "নোবেলের কণ্ঠে প্রেমের গান, গলা মেলালেন দর্শক",
+   "ids": {
+    "1406430145892267": "1493516392837718",
+    "872606492607357": "1680625457126725",
+    "1276101408920358": "1767423991003274"
+   }
+  },
+  {
+   "video": "gd:1LieV0yq3BcLgMauSMZ4eaET9YUFbje9z",
+   "start": 12,
+   "hook": "নোবেলের গানে দুলে উঠল দর্শকসারি",
+   "ids": {
+    "1406430145892267": "1117833967645388",
+    "872606492607357": "991153790155671",
+    "1276101408920358": "1869097227299583"
+   }
+  },
+  {
+   "video": "gd:1aMhJLyPF27plrEhjtzJkSJ26mhv6q5CU",
+   "start": 9,
+   "hook": "কনসার্টে নোবেলের আরেক চমক, মাতলেন শ্রোতারা",
+   "ids": {
+    "1406430145892267": "2405608796643522",
+    "872606492607357": "1104334975806622",
+    "1276101408920358": "1889317272234159"
+   }
+  },
+  {
+   "video": "gd:1cAOjkkWRfeFr8PqJ1iVbPYaeoSeZy0T2",
+   "start": 31,
+   "hook": "মাকে নিয়ে গাইলেন নোবেল, আবেগে ভাসলেন দর্শক",
+   "ids": {
+    "1406430145892267": "1085375937847673",
+    "872606492607357": "3769210059906607",
+    "1276101408920358": "2287805192068459"
+   }
+  },
+  {
+   "video": "gd:1v5yYyzoxv2_lHdSCOTcDMizIDeCllji7",
+   "start": 115,
+   "hook": "বাবার গানে চোখ ভিজল শ্রোতাদের",
+   "ids": {
+    "1406430145892267": "1122189170733727",
+    "872606492607357": "2631098000647894",
+    "1276101408920358": "1309879071272215"
+   }
+  },
+  {
+   "video": "gd:1aoWeXGWjh5XuSpvh906I2i7THdrHG7Ed",
+   "start": 124,
+   "hook": "নোবেলের পরিবেশনায় উত্তাল কনসার্ট",
+   "ids": {
+    "1406430145892267": "1821241115584397",
+    "872606492607357": "1794698741818492",
+    "1276101408920358": "2054988805214963"
+   }
+  },
+  {
+   "video": "gd:1MtzyaZN4Zx6e1CQDmUd3TeNk7BaFbd-H",
+   "start": 52,
+   "hook": "বাবাকে নিয়ে গাইলেন নোবেল, মুগ্ধ পুরো কনসার্ট",
+   "ids": {
+    "1406430145892267": "1585675496648887",
+    "872606492607357": "1686888132847892",
+    "1276101408920358": "1010184484685654"
+   }
+  },
+  {
+   "video": "gd:1ZMfwZ1m1OGjRP5kJrjYLuSUd-bD8gf6B",
+   "start": 100,
+   "hook": "প্রেমের গানে নোবেল, মুগ্ধ শ্রোতারা",
+   "ids": {
+    "1406430145892267": "1121720590729390",
+    "872606492607357": "1160705526637500",
+    "1276101408920358": "1121280487419041"
+   }
+  },
+  {
+   "video": "gd:1aoWeXGWjh5XuSpvh906I2i7THdrHG7Ed",
+   "start": 201,
+   "hook": "শেষ সুর পর্যন্ত দর্শক মাতিয়ে রাখলেন নোবেল",
+   "ids": {
+    "1406430145892267": "1040256321806930",
+    "872606492607357": "1129612906441178",
+    "1276101408920358": "1023171817486111"
+   }
+  },
+  {
+   "video": "1464481912171733",
+   "start": 163,
+   "hook": "শুরুতে আজম খানের গান প্রচুর গেয়েছি!",
+   "ids": {
+    "1406430145892267": "1160921163536963",
+    "872606492607357": "2032694657446468",
+    "1276101408920358": "1003118508891708"
+   }
+  },
+  {
+   "video": "1464481912171733",
+   "start": 327,
+   "hook": "রেইডার্স ব্যান্ডের জন্ম ল্যাবরেটরি স্কুলে!",
+   "ids": {
+    "1406430145892267": "1528588025759219",
+    "872606492607357": "1176510371724085",
+    "1276101408920358": "2213172206220377"
+   }
+  },
+  {
+   "video": "1464481912171733",
+   "start": 412,
+   "hook": "দ্য ডোরস থেকেই ব্যান্ডের নাম দ্য ট্র্যাপ!",
+   "ids": {
+    "1406430145892267": "1128841899924184",
+    "872606492607357": "1568879361663025",
+    "1276101408920358": "1817352619494747"
+   }
+  },
+  {
+   "video": "gd:1lYIRrtM-hcpftWrAkd0W_rHxXCAWRT2F",
+   "start": 21.5,
+   "hook": "কনসার্টের এই মুহূর্তে মুগ্ধ দর্শক",
+   "ids": {
+    "1406430145892267": "1193101189972027",
+    "872606492607357": "1439618074385435",
+    "1276101408920358": "2234369080828600"
+   }
+  }
+ ],
+ "log": [
+  "2026-11-09T16:03:18.415Z concert reel on 872606492607357: 2080973383077399 (নোবেলের কণ্ঠে রোমান্টিক গান, মুগ্ধ শ্রোতারা)",
+  "2026-11-09T16:03:26.890Z concert reel on 1276101408920358: 1757182902041904 (নোবেলের কণ্ঠে রোমান্টিক গান, মুগ্ধ শ্রোতারা)",
+  "2026-11-09T16:32:51.708Z concert reel on 1406430145892267: 1533868715216900 (বাবার গানে নোবেলের আবেগমাখা পরিবেশনা)",
+  "2026-11-09T16:33:02.404Z concert reel on 872606492607357: 1662454258852638 (বাবার গানে নোবেলের আবেগমাখা পরিবেশনা)",
+  "2026-11-09T16:33:11.481Z concert reel on 1276101408920358: 1524117669769594 (বাবার গানে নোবেলের আবেগমাখা পরিবেশনা)",
+  "2026-11-10T05:03:00.273Z concert reel on 1406430145892267: 1446139547721741 (নোবেলের সুরে সুরে মাতলেন দর্শক)",
+  "2026-11-10T05:03:08.918Z concert reel on 872606492607357: 1008726361661385 (নোবেলের সুরে সুরে মাতলেন দর্শক)",
+  "2026-11-10T05:03:17.640Z concert reel on 1276101408920358: 2338957173556337 (নোবেলের সুরে সুরে মাতলেন দর্শক)",
+  "2026-11-10T06:32:43.612Z concert reel on 1406430145892267: 1613048169952637 (মঞ্চে নোবেলের ঝড়, উল্লাসে ফেটে পড়লেন দর্শক)",
+  "2026-11-10T06:32:52.485Z concert reel on 872606492607357: 935013126209809 (মঞ্চে নোবেলের ঝড়, উল্লাসে ফেটে পড়লেন দর্শক)",
+  "2026-11-10T06:33:00.617Z concert reel on 1276101408920358: 1181443317897232 (মঞ্চে নোবেলের ঝড়, উল্লাসে ফেটে পড়লেন দর্শক)",
+  "2026-11-10T08:05:23.046Z concert reel on 1406430145892267: 1493516392837718 (নোবেলের কণ্ঠে প্রেমের গান, গলা মেলালেন দর্শক)",
+  "2026-11-10T08:05:32.689Z concert reel on 872606492607357: 1680625457126725 (নোবেলের কণ্ঠে প্রেমের গান, গলা মেলালেন দর্শক)",
+  "2026-11-10T08:05:42.581Z concert reel on 1276101408920358: 1767423991003274 (নোবেলের কণ্ঠে প্রেমের গান, গলা মেলালেন দর্শক)",
+  "2026-11-10T09:31:24.559Z FAILED: no Pages",
+  "2026-11-10T10:32:39.042Z concert reel on 1406430145892267: 1117833967645388 (নোবেলের গানে দুলে উঠল দর্শকসারি)",
+  "2026-11-10T10:32:51.194Z concert reel on 872606492607357: 991153790155671 (নোবেলের গানে দুলে উঠল দর্শকসারি)",
+  "2026-11-10T10:33:00.372Z concert reel on 1276101408920358: 1869097227299583 (নোবেলের গানে দুলে উঠল দর্শকসারি)",
+  "2026-11-10T11:02:08.071Z concert reel on 1406430145892267: 2405608796643522 (কনসার্টে নোবেলের আরেক চমক, মাতলেন শ্রোতারা)",
+  "2026-11-10T11:02:18.864Z concert reel on 872606492607357: 1104334975806622 (কনসার্টে নোবেলের আরেক চমক, মাতলেন শ্রোতারা)",
+  "2026-11-10T11:02:29.092Z concert reel on 1276101408920358: 1889317272234159 (কনসার্টে নোবেলের আরেক চমক, মাতলেন শ্রোতারা)",
+  "2026-11-10T13:02:29.809Z concert reel on 1406430145892267: 1085375937847673 (মাকে নিয়ে গাইলেন নোবেল, আবেগে ভাসলেন দর্শক)",
+  "2026-11-10T13:02:37.160Z concert reel on 872606492607357: 3769210059906607 (মাকে নিয়ে গাইলেন নোবেল, আবেগে ভাসলেন দর্শক)",
+  "2026-11-10T13:02:44.585Z concert reel on 1276101408920358: 2287805192068459 (মাকে নিয়ে গাইলেন নোবেল, আবেগে ভাসলেন দর্শক)",
+  "2026-11-10T14:33:25.749Z concert reel on 1406430145892267: 1122189170733727 (বাবার গানে চোখ ভিজল শ্রোতাদের)",
+  "2026-11-10T14:33:36.182Z concert reel on 872606492607357: 2631098000647894 (বাবার গানে চোখ ভিজল শ্রোতাদের)",
+  "2026-11-10T14:33:44.621Z concert reel on 1276101408920358: 1309879071272215 (বাবার গানে চোখ ভিজল শ্রোতাদের)",
+  "2026-11-10T15:32:08.911Z concert reel on 1406430145892267: 1821241115584397 (নোবেলের পরিবেশনায় উত্তাল কনসার্ট)",
+  "2026-11-10T15:32:17.859Z concert reel on 872606492607357: 1794698741818492 (নোবেলের পরিবেশনায় উত্তাল কনসার্ট)",
+  "2026-11-10T15:32:26.804Z concert reel on 1276101408920358: 2054988805214963 (নোবেলের পরিবেশনায় উত্তাল কনসার্ট)",
+  "2026-11-10T16:33:37.717Z concert reel on 1406430145892267: 1585675496648887 (বাবাকে নিয়ে গাইলেন নোবেল, মুগ্ধ পুরো কনসার্ট)",
+  "2026-11-10T16:33:47.690Z concert reel on 872606492607357: 1686888132847892 (বাবাকে নিয়ে গাইলেন নোবেল, মুগ্ধ পুরো কনসার্ট)",
+  "2026-11-10T16:33:56.320Z concert reel on 1276101408920358: 1010184484685654 (বাবাকে নিয়ে গাইলেন নোবেল, মুগ্ধ পুরো কনসার্ট)",
+  "2026-11-11T05:03:36.355Z concert reel on 1406430145892267: 1121720590729390 (প্রেমের গানে নোবেল, মুগ্ধ শ্রোতারা)",
+  "2026-11-11T05:03:47.401Z concert reel on 872606492607357: 1160705526637500 (প্রেমের গানে নোবেল, মুগ্ধ শ্রোতারা)",
+  "2026-11-11T05:03:55.839Z concert reel on 1276101408920358: 1121280487419041 (প্রেমের গানে নোবেল, মুগ্ধ শ্রোতারা)",
+  "2026-11-11T06:32:44.064Z concert reel on 1406430145892267: 1040256321806930 (শেষ সুর পর্যন্ত দর্শক মাতিয়ে রাখলেন নোবেল)",
+  "2026-11-11T06:32:53.338Z concert reel on 872606492607357: 1129612906441178 (শেষ সুর পর্যন্ত দর্শক মাতিয়ে রাখলেন নোবেল)",
+  "2026-11-11T06:33:03.583Z concert reel on 1276101408920358: 1023171817486111 (শেষ সুর পর্যন্ত দর্শক মাতিয়ে রাখলেন নোবেল)",
+  "2026-11-12T19:10:22.272Z plan gd:1lYIRrtM-hcpftWrAkd0W_rHxXCAWRT2F: 5 clips: 22-66 \"বোবা নদী\" - আশিক | 115-156 \"বোবা নদী\" - আশিক | 205-248 \"বোবা নদী\" - আশিক | 255-294 \"বোবা নদী\" - আশিক | 293-340 \"বোবা নদী\" - আশিক",
+  "2026-11-12T19:10:55.879Z plan gd:1VWjzshSVkBCCjohLoT5n_uvtn09C0kWW: 4 clips: 25-52 Esho Hey Boishakh - Rabindra Sangeet | 63-91 Ami Baribar Ashi Phire - Bhoomi | 92-118 Ami Chini Go Chini Tomare - Rabindra Sangeet | 120-160 Ami Banglay Gaan Gai - Pratul Mukhopadhyay",
+  "2026-11-12T19:11:22.929Z plan gd:1EhU6JTEdp44jOCDce3ga0uVYyQ0rGUsD: 4 clips: 20-70 \"যদি দেশে হারায় জীবনের ঠিকানা\" - মাইলস | 72-102 \"যদি নদী হতে পারতাম\" - মাইলস | 164-195 \"যদি দেশে হারায়\" - মাইলস | 197-227 \"পারিনি তোমাকে ছাড়া\" - মাইলস",
+  "2026-11-12T19:11:31.917Z plan gd:1fzvqqWez69U14w8_-0NoAYk-pe6FxE8w: 2 clips: 41-50 Maya Maya | 118-131 Dekha de do bege le",
+  "2026-11-12T19:11:38.993Z plan gd:1biShrpZ8egwfgxL38wkGImn9P9akyrP4: 2 clips: 13-25 আমি মরে যাই | 48-75 ছড়িয়ে দিয়েছি",
+  "2026-11-12T19:11:51.162Z plan gd:1T1HEBI32P_ImP7jFrnucZDZcjaBAE0qU: 1 clips: 107-116 La que va",
+  "2026-11-12T19:12:12.345Z plan gd:1bawBxlA4N0vgsLJHLz0IcibZK8W7ZVci: 3 clips: 38-80 \"হিসেবের খাতাটা ছিল ভুল\" | 123-156 \"কালো জমকালো ফ্যাকাশে\" | 243-260 \"কালো জমকালো ফ্যাকাশে\"",
+  "2026-11-12T19:12:18.182Z plan gd:1dd5BvFGMZwBcCEnOsH1SlqPB_5OGUkES: 1 clips: 13-21 ওরে ওরে ওরে",
+  "2026-11-12T19:21:39.304Z queued 22 concert reels",
+  "2026-11-13T07:04:50.187Z concert reel on 1406430145892267: 1160921163536963 (শুরুতে আজম খানের গান প্রচুর গেয়েছি!)",
+  "2026-11-13T07:04:58.344Z concert reel on 872606492607357: 2032694657446468 (শুরুতে আজম খানের গান প্রচুর গেয়েছি!)",
+  "2026-11-13T07:05:06.550Z concert reel on 1276101408920358: 1003118508891708 (শুরুতে আজম খানের গান প্রচুর গেয়েছি!)",
+  "2026-11-13T09:35:05.128Z concert reel on 1406430145892267: 1528588025759219 (রেইডার্স ব্যান্ডের জন্ম ল্যাবরেটরি স্কুলে!)",
+  "2026-11-13T09:35:13.722Z concert reel on 872606492607357: 1176510371724085 (রেইডার্স ব্যান্ডের জন্ম ল্যাবরেটরি স্কুলে!)",
+  "2026-11-13T09:35:22.953Z concert reel on 1276101408920358: 2213172206220377 (রেইডার্স ব্যান্ডের জন্ম ল্যাবরেটরি স্কুলে!)",
+  "2026-11-13T15:05:58.191Z concert reel on 1406430145892267: 1128841899924184 (দ্য ডোরস থেকেই ব্যান্ডের নাম দ্য ট্র্যাপ!)",
+  "2026-11-13T15:06:05.723Z concert reel on 872606492607357: 1568879361663025 (দ্য ডোরস থেকেই ব্যান্ডের নাম দ্য ট্র্যাপ!)",
+  "2026-11-13T15:06:13.040Z concert reel on 1276101408920358: 1817352619494747 (দ্য ডোরস থেকেই ব্যান্ডের নাম দ্য ট্র্যাপ!)",
+  "2026-11-13T17:08:33.800Z concert reel on 1406430145892267: 1193101189972027 (কনসার্টের এই মুহূর্তে মুগ্ধ দর্শক)",
+  "2026-11-13T17:08:45.112Z concert reel on 872606492607357: 1439618074385435 (কনসার্টের এই মুহূর্তে মুগ্ধ দর্শক)",
+  "2026-11-13T17:08:55.293Z concert reel on 1276101408920358: 2234369080828600 (কনসার্টের এই মুহূর্তে মুগ্ধ দর্শক)"
+ ]
 }
