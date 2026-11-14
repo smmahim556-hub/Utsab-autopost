@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-14T10:02:26.203Z",
-    "text": "album on Page 872606492607357: 872606492607357_122149750209140193 https://utsabtv.com/gazipur-workers-highway-blockade-police-chase-tear-shell"
-  },
-  {
     "at": "2026-11-14T10:02:35.866Z",
     "text": "album on Page 1276101408920358: 1276101408920358_122127613977459930 https://utsabtv.com/gazipur-workers-highway-blockade-police-chase-tear-shell"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-14T11:43:21.690Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1428210582674869\"}"
+  },
+  {
+    "at": "2026-11-14T11:45:31.055Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
