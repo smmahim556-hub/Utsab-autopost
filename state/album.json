@@ -47,17 +47,23 @@
     "https://utsabtv.com/attack-iran-deep-night-explosions-coastal-sirik",
     "https://utsabtv.com/dhaka-mawa-expressway-motorcycle-accident-young-couple-killed",
     "https://utsabtv.com/iran-claims-strike-us-radar-bahrain",
-    "https://utsabtv.com/spacex-starship-largest-rocket-launch-26-starlink-satellites"
+    "https://utsabtv.com/spacex-starship-largest-rocket-launch-26-starlink-satellites",
+    "https://utsabtv.com/gazipur-workers-highway-blockade-police-chase-tear-shell"
   ],
   "date": "2026-11-14",
   "done": {
     "720": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "960": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/spacex-starship-largest-rocket-launch-26-starlink-satellites"
+    "720": "https://utsabtv.com/spacex-starship-largest-rocket-launch-26-starlink-satellites",
+    "960": "https://utsabtv.com/gazipur-workers-highway-blockade-police-chase-tear-shell"
   },
   "failedAt": 1793700193463
 }
