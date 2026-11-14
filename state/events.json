@@ -1,5 +1,13 @@
 [
   {
+    "at": "2026-11-14T07:04:44.879Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122111694915533116 ()"
+  },
+  {
+    "at": "2026-11-14T07:04:50.927Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1153540843758391\"}"
+  },
+  {
     "at": "2026-11-14T07:05:06.160Z",
     "text": "mirror: 872606492607357_122149732329140193 (video) -> Digital 1832377951416098"
   },
@@ -144,19 +152,11 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1860149868327607\"}"
   },
   {
-    "at": "2026-11-14T08:01:21.720Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149739745140193 (https://utsabtv.com/oc-threatened-banned-chhatra-league-leader-rajshahi-mohanpur)"
+    "at": "2026-11-14T08:02:03.319Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149740003140193\"}"
   },
   {
-    "at": "2026-11-14T08:01:29.052Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1432853595680578\"}"
-  },
-  {
-    "at": "2026-11-14T08:01:35.251Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127595683459930 (https://utsabtv.com/oc-threatened-banned-chhatra-league-leader-rajshahi-mohanpur)"
-  },
-  {
-    "at": "2026-11-14T08:01:41.709Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1157708250044769\"}"
+    "at": "2026-11-14T08:02:13.475Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127595869459930\"}"
   }
 ]
