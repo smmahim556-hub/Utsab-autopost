@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-14T08:42:27.903Z",
-    "text": "mirror FAILED: 872606492607357/published_posts: Please reduce the amount of data you're asking for, then retry your request"
-  },
-  {
-    "at": "2026-11-14T09:01:26.547Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149745103140193 ()"
-  },
-  {
     "at": "2026-11-14T09:01:32.917Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"3980515652245257\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-14T10:22:58.646Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3630745003768055\"}"
+  },
+  {
+    "at": "2026-11-14T10:44:59.213Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1511514564215540\"}"
+  },
+  {
+    "at": "2026-11-14T10:45:06.366Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1138434842011478\"}"
   }
 ]
