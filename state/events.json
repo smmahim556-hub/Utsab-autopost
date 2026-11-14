@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-14T07:53:36.352Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"944989902028796\"}"
-  },
-  {
     "at": "2026-11-14T07:56:20.989Z",
     "text": "posted to Page 872606492607357: 872606492607357_122149738851140193 (https://utsabtv.com/all-legal-process-completed-bring-back-hasina-law-minister)"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-14T09:12:26.552Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1421307216739482\"}"
+  },
+  {
+    "at": "2026-11-14T09:42:42.065Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
