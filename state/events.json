@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-14T16:50:06.665Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127684579459930 ()"
-  },
-  {
-    "at": "2026-11-14T16:50:14.196Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1510326054270637\"}"
-  },
-  {
     "at": "2026-11-14T17:22:30.017Z",
     "text": "posted to Page 872606492607357: 872606492607357_122149791429140193 (https://utsabtv.com/gopalganj-bnp-jubo-dal-offices-vandalised-set-afire)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-14T22:18:05.902Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1022877147490339\"}"
+  },
+  {
+    "at": "2026-11-14T22:25:08.714Z",
+    "text": "prayer reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149814091140193\"}"
+  },
+  {
+    "at": "2026-11-14T22:25:16.256Z",
+    "text": "prayer reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127727653459930\"}"
   }
 ]
