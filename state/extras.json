@@ -16,13 +16,18 @@
     "TOP5": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
     "QUIZ",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -41,7 +46,8 @@
     "https://utsabtv.com/gazipur-18-factories-holiday-worker-protests",
     "https://utsabtv.com/jamaat-ameer-opposition-will-not-sit-idle-if-government-fails",
     "https://utsabtv.com/gazipur-mauchak-dhaka-tangail-highway-blockade-workers-protest",
-    "https://utsabtv.com/attack-iran-deep-night-explosions-coastal-sirik"
+    "https://utsabtv.com/attack-iran-deep-night-explosions-coastal-sirik",
+    "https://utsabtv.com/gazipur-workers-highway-blockade-police-chase-tear-shell"
   ],
   "quiz": {
     "q": "বাংলাদেশের জাতীয় খেলা কোনটি?",
