@@ -1,6 +1,5 @@
 {
   "seen": [
-    "CBMitgFBVV95cUxPTTV2V2Jwek9hSGFQa0RTNDdFTHBIbUV5M1pZR0hXdldPdF9xbUpjeEpTS0ZuZ1VIZk1Cb2VyTU9GRDlhOGR4TG5IUU0wVGtSNU1naWliLUMzR0JHYTZrc1JWd3hEaS1jaGszRmRKYklJS2plYTRab05CXzVRcm93b0NULWhzckZKUF9HX21RUDlnUnR3UEJKb3V1aVpMdmdwR2VRTkhwOU42WHl6OXFwdFhKc1dxUdIBuwFBVV95cUxNUVdYeWp0Y3UzQTV4Y05yNGdXUmY3czN6RlVMbWJpY3E2UnUxNWpGWlU3ajNXUENuVFhiYXZWdS1WQ3lGS2pxdlp5eUV1M2E4Y2d5S0xJTE8zb05IVEJfeVRNMDI3S0FjQmVSRm5kWDFqMm9ZQl8xZ3RfOXdBTlZpNHF6Rk5rZ0x1SzN2WnVmaDRtbHl4RWxMUnhaZzBEdFgzam9mYlRJMjMtUG51ZTBCM2FCX0xPYjFlSE0w",
     "CBMiVkFVX3lxTE5QRmx5OXRUOVVCSnFCZS1ScmxGSzJVTWtmUUVTWHk2dm4zS2phUnhmbmZnbVNxLU5FNDFtSXh5MTdhdnBvWVVJeGZ4NXB4YWdzQ3lSLTZn",
     "CBMiZkFVX3lxTFB6MF9KUGFEaWdzTldNOUZGM1RjQ3ZKQmRiN2NfUHV2djhTbGs2Y1BqaFo1WGlHWTNUWFBnaGszNXc1YWhhTFRlU2tJbUxIeXEwanJEZ0dtRVBlcDFkcnBWaXRNUmQwdw",
     "CBMiWkFVX3lxTE45OG5RYmJhQ2otaW5FWmFCdUIxeFFCNUZ4NkNkUmwtT3ZWcmZzeG1HdmNndWJKaUFlT3kyLXllb2lMLTc1X0RTM2t2QU05Q3hKWFMwRFh0M2NWdw",
@@ -599,10 +598,10 @@
     "CBMiUkFVX3lxTFB1aUgwcGNCT2wyVUwxQnlMWUlpU2pNanh5dlcxdGI3RW5XYnZ1eGNyNmNlVmxzR3NQSlgyb193bjNDOHR1Xzk4Um9qX1htRkZUWUE",
     "CBMizAFBVV95cUxNYnJpZjBDX1B4VDBUUU1VZzFiWWVrNzZUejFXOVdJblgzeTd1anRzb2ozTFJNVzZCa2FJR293T2o2RGZYdVR5Y3hiVjhLVGkxSXo3MXR3MGllUDdVdXZ5SDd3NjFZVHJmRXMtQkoyUW0zQUFNbWtXUGpfWTNVWVZ6QlJ0SmtDSzBDUTEwU2Q1YXNkeTVnUFZZU3dsYkNfQl9JVXdSNE94ZU9zenpkaFR6cXllVXVhaEg2OFBIZmVaWGdsZWNuR190b1VTdkfSAcwBQVVfeXFMTWJyaWYwQ19QeFQwVFFNVWcxYlllazc2VHoxVzlXSW5YM3k3dWp0c29qM0xSTVc2QmthSUdvd09qNkRmWHVUeWN4YlY4S1RpMUl6NzF0dzBpZVA3VXV2eUg3dzYxWVRyZkVzLUJKMlFtM0FBTW1rV1BqX1kzVVlWekJSdEprQ0swQ1ExMFNkNWFzZHk1Z1BWWVN3bGJDX0JfSVV3UjRPeGVPc3p6ZGhUenF5ZVV1YWhINjhQSGZlWlhnbGVjbkdfdG9VU3ZH",
     "CBMidEFVX3lxTE8yOEsyWnpqV194NTJHTV9XalRodmE1NDF4U2wwcWlwZ0NiSzd6YVdNNU5sZWlNdlJWQldkNTR0dnh4WWMxUi0tcnI3YWRZVERoSmFWNVhIOTZlV1VSWkJLWkVDcXlwdlpLQ2pabjNncGRISVNj",
-    "CBMiWEFVX3lxTE1DNG9qZXVpWlJpMG1PaHdnZ2dvMUFtT3FEUER4dTRNUHJPUzlacGx1OWM1Rk55R0dkc1JfUU04Y1ZERzB1eUxFVEFlcjkxQVl1Q3gxWHdBRTc"
+    "CBMiWEFVX3lxTE1DNG9qZXVpWlJpMG1PaHdnZ2dvMUFtT3FEUER4dTRNUHJPUzlacGx1OWM1Rk55R0dkc1JfUU04Y1ZERzB1eUxFVEFlcjkxQVl1Q3gxWHdBRTc",
+    "CBMiXEFVX3lxTE1QeUM1azNSUUFqd3YzcHp3M0ZoYWk2a3BXanRjUnFVUExCMjdvbFQ0WjNQNWt4VUYyNnBZZ0dreUU3dG9nN1lzcy1NU0V1dFVkUHNrUy0ycmFhaU5G0gFqQVVfeXFMT00zRE1COS1qTzBHbEc3a2JYMkd5NEw4MERDUHpqX3RTeWc3WlAyNEtQcHRRNE9RczR2bG5CMFMzTEdfTFptTnd5TFZuS2VLc3J6STU1RTNTTFc0TkRZZnIzbTQzbzdKR2QyZw"
   ],
   "titles": [
-    "২৫টিরও বেশি এআই টুল নিয়ে যাত্রা শুরু করল বাংলালিংকের রাইজ এআই",
     "এআইয়ের মাধ্যমে তলস্তয়ের ‘পুনর্জন্ম’, চিন্তাভাবনাও অনুসরণের চেষ্টা",
     "এআই ও আধুনিক প্রযুক্তিতে শিক্ষকদের প্রশিক্ষণ হতে হবে: শিক্ষামন্ত্রী",
     "এআইয়ের নিয়ন্ত্রণ মানুষের হাতেই থাকা উচিত: স্যাম অল্টম্যান",
@@ -751,8 +750,9 @@
     "পুরোনো প্রযুক্তির ত্রুটিতে অচল যুক্তরাষ্ট্রের আকাশপথ, ভোগান্তিতে লাখো যাত্রী",
     "এআই দুনিয়ায় ব্যক্তিকেন্দ্রিক নেতৃত্বে বড় ঝুঁকির প্রমাণ হুয়াং",
     "সংঘর্ষ-খুন ও চুরি-ছিনতাই ঠেকাতে কিশোরগঞ্জ শহরজুড়ে ২৫০ এআই ক্যামেরা",
-    "সীমান্তে অনুপ্রবেশ ঠেকাতে বিজিবির ড্রোন, এটিভি ও এআই ক্যামেরা ব্যবহার"
+    "সীমান্তে অনুপ্রবেশ ঠেকাতে বিজিবির ড্রোন, এটিভি ও এআই ক্যামেরা ব্যবহার",
+    "শুরু হচ্ছে ইএটিএল স্টার্টআপ পিচ প্রতিযোগিতা, বিজয়ীরা পাবে এক কোটি টাকার পুরস্কার"
   ],
-  "lastAt": 1794656601690,
+  "lastAt": 1794660266355,
   "pages": {}
 }
