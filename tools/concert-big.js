@@ -121,20 +121,23 @@ function cutSong(src, s, file) {
 (async () => {
   if (!id) throw new Error('DRIVE_ID missing');
   fs.mkdirSync(B, { recursive: true }); fs.mkdirSync(PV, { recursive: true });
-  const src = `${B}/src.mp4`;
-  if (!fs.existsSync(src)) {
+  const src = `${B}/src.mp4`, audio = `${B}/all.mp3`;
+  // Drive allows only a few downloads of a 12.8 GB file a day (2026-11-15: 'Quota exceeded' after 3), so the show's audio is
+  // kept in the Actions cache: re-planning needs no download; only posting (the video itself) downloads again.
+  const needVideo = !DRY || !fs.existsSync(audio);
+  if (needVideo && !fs.existsSync(src)) {
     execFileSync('curl', ['-sSL', '--retry', '3', '-o', src, `https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t`], { stdio: 'inherit' });
+    out.steps.download_bytes = fs.statSync(src).size; save();
+    if (out.steps.download_bytes < 1e8) { const t = fs.readFileSync(src, 'utf8').slice(0, 300); fs.unlinkSync(src); throw new Error(`download failed (${out.steps.download_bytes} bytes)${/Quota exceeded/.test(t) ? ': Drive download quota exceeded, try again later' : ': ' + t.slice(0, 200)}`); }
   }
-  out.steps.download_bytes = fs.statSync(src).size; save();
-  if (out.steps.download_bytes < 1e8) throw new Error(`download too small (${out.steps.download_bytes} bytes): ${fs.readFileSync(src, 'utf8').slice(0, 200)}`);
-  const total = secs(src);
+  if (!fs.existsSync(audio)) ff(['-i', src, '-vn', '-ac', '1', '-ar', '16000', '-b:a', '16k', audio]);
+  const hasVideo = fs.existsSync(src);
+  const total = secs(hasVideo ? src : audio);
   out.steps.duration_s = Math.round(total); save();
 
   let plan;
   if (DRY || !fs.existsSync(PLAN) || JSON.parse(fs.readFileSync(PLAN, 'utf8')).drive !== id) {
     // 1. Songs: the audio in 30-minute parts (a 60-minute part at 32k was too big for Gemini), 5 minutes overlap so no song is lost at a seam.
-    const audio = `${B}/all.mp3`;
-    ff(['-i', src, '-vn', '-ac', '1', '-ar', '16000', '-b:a', '16k', audio]);
     let songs = [];
     for (let off = 0, i = 0; off < total - 30; off += 1500, i++) {
       const a = `${B}/part${i}.mp3`;
@@ -160,7 +163,7 @@ function cutSong(src, s, file) {
     // 2. Reels inside each song (about one per 45 seconds of song).
     for (const [i, s] of full.entries()) {
       const a = `${B}/song${i}.mp3`;
-      ff(['-ss', String(s.start), '-t', String(s.end - s.start), '-i', src, '-vn', '-ac', '1', '-ar', '16000', '-b:a', '32k', a]);
+      ff(['-ss', String(s.start), '-t', String(s.end - s.start), '-i', hasVideo ? src : audio, '-vn', '-ac', '1', '-ar', '16000', '-b:a', hasVideo ? '32k' : '16k', a]);
       const n = Math.max(2, Math.min(8, Math.floor((s.end - s.start) / 45)));
       const norm = h => h.replace(/[\s,।'"‘’-]/g, '');
       const used = [...full.map(x => x.hook), ...full.flatMap(x => (x.reels || []).map(r => r.hook))];
@@ -191,13 +194,13 @@ function cutSong(src, s, file) {
     const lines = [`# Noble Man concert: ${full.length} full songs, ${full.reduce((a, s) => a + s.reels.length, 0)} reels\n`];
     for (const [i, s] of full.entries()) {
       const n = String(i + 1).padStart(2, '0');
-      ff(['-ss', String((s.start + s.end) / 2), '-i', src, '-frames:v', '1', '-vf', 'scale=360:-2', path.join(PV, `song${n}.jpg`)]);
+      if (hasVideo) ff(['-ss', String((s.start + s.end) / 2), '-i', src, '-frames:v', '1', '-vf', 'scale=360:-2', path.join(PV, `song${n}.jpg`)]);
       lines.push(`\n## গান ${i + 1} (${mmss(s.start)}-${mmss(s.end)}, ${mmss(s.end - s.start)}) | ${fmt(s.at)}\n${s.hook}\n`);
       for (const [j, r] of s.reels.entries()) lines.push(`- রিল ${j + 1} | ${fmt(r.at)} | গানের ${mmss(r.start)}-${mmss(r.end)} | ${r.hook}`);
     }
     fs.writeFileSync(path.join(PV, 'list.md'), lines.join('\n') + '\n');
     const s0 = full.find(s => s.reels.length);
-    if (s0) {
+    if (s0 && hasVideo) {
       const r0 = s0.reels[0], seg = `${B}/sample-src.mp4`;
       ff(['-ss', String(s0.start + r0.start - 1), '-t', String(r0.end - r0.start + 2), '-i', src, '-vf', "scale='if(gt(iw,ih),-2,720)':'if(gt(iw,ih),720,-2)',fps=30",
         '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-c:a', 'aac', '-b:a', '160k', seg]);

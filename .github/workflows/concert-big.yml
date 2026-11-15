@@ -20,6 +20,9 @@ jobs:
       - run: npm ci && npx playwright install chromium && (which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg))
       # The recording is too big for the root disk: work on /mnt.
       - run: sudo mkdir -p /mnt/big && sudo chown "$USER" /mnt/big && df -h / /mnt
+      # The show's audio is cached, so re-planning does not download the big file again (Drive's daily download quota).
+      - uses: actions/cache/restore@v4
+        with: { path: /mnt/big/all.mp3, key: concert-big-audio-${{ inputs.drive_id }} }
       - run: node tools/concert-big.js
         env:
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
@@ -29,6 +32,10 @@ jobs:
           DRIVE_ID: ${{ inputs.drive_id }}
           START_AFTER: ${{ inputs.start_after }}
           DRY: ${{ inputs.dry }}
+      - if: always()
+        uses: actions/cache/save@v4
+        continue-on-error: true
+        with: { path: /mnt/big/all.mp3, key: concert-big-audio-${{ inputs.drive_id }} }
       - if: always()
         run: |
           git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
