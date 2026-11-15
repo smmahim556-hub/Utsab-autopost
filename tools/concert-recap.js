@@ -23,6 +23,8 @@ const PROMPT = `এটি একটি লাইভ কনসার্টের 
 const desc = hook => `${hook}\n\nউৎসব টিভির কনসার্ট থেকে।\n\n#utsabtv #কনসার্ট #বিনোদন #গান`;
 
 (async () => {
+  // probe.yml has no ffmpeg step (clips.yml does).
+  execFileSync('bash', ['-c', 'which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)'], { stdio: 'inherit' });
   const st = JSON.parse(fs.readFileSync(FILE, 'utf8'));
   fs.mkdirSync(W, { recursive: true });
   const doneKeys = new Set((st.done || []).map(d => d.video));
