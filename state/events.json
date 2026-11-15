@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-15T04:00:02.068Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-15T04:02:05.460Z",
-    "text": "voice reel FAILED: Error: me/accounts: (#4) Application request limit reached\n    at loadPages (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:172:26)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async pages (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:184:55)\n    at async voiceRun (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2846:17)"
-  },
-  {
-    "at": "2026-11-15T04:05:24.381Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149841937140193 ()"
-  },
-  {
-    "at": "2026-11-15T04:05:30.795Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1028163696417950\"}"
-  },
-  {
     "at": "2026-11-15T04:05:33.774Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122127807807459930 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-15T05:45:51.355Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1638647781080615\"}"
+  },
+  {
+    "at": "2026-11-15T05:56:44.647Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149852107140193 ()"
+  },
+  {
+    "at": "2026-11-15T05:56:50.755Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1768683427542381\"}"
+  },
+  {
+    "at": "2026-11-15T05:56:53.209Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127822405459930 ()"
+  },
+  {
+    "at": "2026-11-15T05:56:59.389Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2775870649507516\"}"
   }
 ]
