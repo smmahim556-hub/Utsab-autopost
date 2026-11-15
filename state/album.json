@@ -51,7 +51,8 @@
     "https://utsabtv.com/gazipur-workers-highway-blockade-police-chase-tear-shell",
     "https://utsabtv.com/hsc-supplementary-reassessment-result-december",
     "https://utsabtv.com/pm-physician-visits-hospital-health-minister-condition",
-    "https://utsabtv.com/portugal-crushed-4-1-denmark-first-match-without-ronaldo"
+    "https://utsabtv.com/portugal-crushed-4-1-denmark-first-match-without-ronaldo",
+    "https://utsabtv.com/haaland-sets-record-beyond-messi-ronaldo-66-goals-60-matches"
   ],
   "date": "2026-11-15",
   "done": {
@@ -62,11 +63,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/pm-physician-visits-hospital-health-minister-condition",
-    "960": "https://utsabtv.com/portugal-crushed-4-1-denmark-first-match-without-ronaldo"
+    "960": "https://utsabtv.com/portugal-crushed-4-1-denmark-first-match-without-ronaldo",
+    "1200": "https://utsabtv.com/haaland-sets-record-beyond-messi-ronaldo-66-goals-60-matches"
   },
   "failedAt": 1793700193463
 }
