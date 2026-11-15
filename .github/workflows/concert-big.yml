@@ -22,7 +22,9 @@ jobs:
       - run: sudo mkdir -p /mnt/big && sudo chown "$USER" /mnt/big && df -h / /mnt
       # The show's audio is cached, so re-planning does not download the big file again (Drive's daily download quota).
       - uses: actions/cache/restore@v4
-        with: { path: /mnt/big/all.mp3, key: concert-big-audio-${{ inputs.drive_id }} }
+        with:
+          path: /mnt/big/all.mp3
+          key: concert-big-audio-${{ inputs.drive_id }}
       - run: node tools/concert-big.js
         env:
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
@@ -35,7 +37,9 @@ jobs:
       - if: always()
         uses: actions/cache/save@v4
         continue-on-error: true
-        with: { path: /mnt/big/all.mp3, key: concert-big-audio-${{ inputs.drive_id }} }
+        with:
+          path: /mnt/big/all.mp3
+          key: concert-big-audio-${{ inputs.drive_id }}
       - if: always()
         run: |
           git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
