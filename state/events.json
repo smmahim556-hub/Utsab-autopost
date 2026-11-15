@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-15T13:04:58.348Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1466483055433167\"}"
-  },
-  {
-    "at": "2026-11-15T13:05:01.676Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127891135459930 ()"
-  },
-  {
     "at": "2026-11-15T13:05:08.169Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1137504248782574\"}"
   },
@@ -152,11 +144,19 @@
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1485064550506301\"}"
   },
   {
-    "at": "2026-11-15T15:01:54.678Z",
-    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149912677140193\"}"
+    "at": "2026-11-15T15:02:06.044Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149912731140193 ()"
   },
   {
-    "at": "2026-11-15T15:02:01.461Z",
-    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127907713459930\"}"
+    "at": "2026-11-15T15:02:12.387Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1850477455965802\"}"
+  },
+  {
+    "at": "2026-11-15T15:02:15.675Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127907773459930 ()"
+  },
+  {
+    "at": "2026-11-15T15:02:21.891Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1568129785120612\"}"
   }
 ]
