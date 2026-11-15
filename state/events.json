@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-15T03:47:06.595Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-15T03:48:24.622Z",
-    "text": "tech FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-15T03:48:24.771Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-15T03:49:08.247Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-11-15T03:49:47.992Z",
     "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-15T04:42:22.976Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1117291840894008\"}"
+  },
+  {
+    "at": "2026-11-15T04:49:20.008Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149846179140193 ()"
+  },
+  {
+    "at": "2026-11-15T04:49:26.169Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1009455124835884\"}"
+  },
+  {
+    "at": "2026-11-15T04:49:28.867Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127813261459930 ()"
+  },
+  {
+    "at": "2026-11-15T04:49:34.918Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1157765873348803\"}"
   }
 ]
