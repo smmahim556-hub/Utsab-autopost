@@ -1,37 +1,5 @@
 [
   {
-    "at": "2026-11-15T09:25:30.503Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1873069190655539\"}"
-  },
-  {
-    "at": "2026-11-15T09:25:33.853Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122112247875533116 ()"
-  },
-  {
-    "at": "2026-11-15T09:25:39.893Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1697742258449385\"}"
-  },
-  {
-    "at": "2026-11-15T09:31:57.646Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149871295140193 ()"
-  },
-  {
-    "at": "2026-11-15T09:32:03.800Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1634221395111191\"}"
-  },
-  {
-    "at": "2026-11-15T09:32:06.307Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127855363459930 ()"
-  },
-  {
-    "at": "2026-11-15T09:32:12.659Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1881511539551469\"}"
-  },
-  {
-    "at": "2026-11-15T09:52:22.534Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
     "at": "2026-11-15T09:53:28.999Z",
     "text": "posted to Page 872606492607357: 872606492607357_122149873587140193 ()"
   },
@@ -158,5 +126,37 @@
   {
     "at": "2026-11-15T10:12:01.268Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1769422504169018\"}"
+  },
+  {
+    "at": "2026-11-15T10:23:07.222Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149878693140193 ()"
+  },
+  {
+    "at": "2026-11-15T10:23:14.585Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1500997305264572\"}"
+  },
+  {
+    "at": "2026-11-15T10:23:20.284Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127865725459930 ()"
+  },
+  {
+    "at": "2026-11-15T10:23:26.089Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1482602850498526\"}"
+  },
+  {
+    "at": "2026-11-15T10:23:49.750Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149878897140193 (https://utsabtv.com/german-embassy-dhaka-student-visa-digital-consular-portal)"
+  },
+  {
+    "at": "2026-11-15T10:23:57.185Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1606657337456481\"}"
+  },
+  {
+    "at": "2026-11-15T10:24:06.676Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127866187459930 (https://utsabtv.com/german-embassy-dhaka-student-visa-digital-consular-portal)"
+  },
+  {
+    "at": "2026-11-15T10:24:12.923Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4771732623149937\"}"
   }
 ]
