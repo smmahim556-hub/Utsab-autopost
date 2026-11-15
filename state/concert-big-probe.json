@@ -1,12 +1,9 @@
 {
  "drive": "1IoRuqnclvOscn5XT-uyFQ5mL7_yfVWLd",
  "steps": {
-  "download_bytes": 12782358732,
-  "duration_s": 4251,
-  "songs_found": 15,
-  "songs": 12,
-  "reels": 59
+  "download_bytes": 2040
  },
  "posts": {},
- "at": "2026-11-15T19:01:42.175Z"
+ "at": "2026-11-15T19:15:54.759Z",
+ "error": "download too small (2040 bytes): <!DOCTYPE html><html><head><title>Google Drive - Quota exceeded</title><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/><style nonce=\"xNNJCWAJHyuDPoMPVXbhow\">.goog-link-button{posit"
 }
