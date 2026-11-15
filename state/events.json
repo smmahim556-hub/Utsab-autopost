@@ -1,37 +1,5 @@
 [
   {
-    "at": "2026-11-15T03:52:46.344Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-15T03:53:48.437Z",
-    "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-15T03:53:48.570Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-15T03:54:54.318Z",
-    "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-15T03:54:54.486Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-15T03:55:44.137Z",
-    "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-15T03:55:44.377Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-15T03:56:59.409Z",
-    "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-11-15T03:56:59.594Z",
     "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
   },
@@ -158,5 +126,37 @@
   {
     "at": "2026-11-15T05:01:15.343Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1099809823070354\"}"
+  },
+  {
+    "at": "2026-11-15T05:13:24.078Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1121593027424689\"}"
+  },
+  {
+    "at": "2026-11-15T05:13:31.876Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2012846746071093\"}"
+  },
+  {
+    "at": "2026-11-15T05:14:06.967Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149848465140193 ()"
+  },
+  {
+    "at": "2026-11-15T05:14:15.758Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2914931532239366\"}"
+  },
+  {
+    "at": "2026-11-15T05:14:20.158Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127816903459930 ()"
+  },
+  {
+    "at": "2026-11-15T05:14:27.414Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2423697541803864\"}"
+  },
+  {
+    "at": "2026-11-15T05:14:32.895Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122112180189533116 ()"
+  },
+  {
+    "at": "2026-11-15T05:14:41.304Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1504424294837323\"}"
   }
 ]
