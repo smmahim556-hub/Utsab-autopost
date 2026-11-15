@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-15T14:00:24.502Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127897819459930 ()"
-  },
-  {
-    "at": "2026-11-15T14:00:32.385Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2611924685993297\"}"
-  },
-  {
     "at": "2026-11-15T14:01:15.867Z",
     "text": "album on Page 872606492607357: 872606492607357_122149907193140193 https://utsabtv.com/haaland-sets-record-beyond-messi-ronaldo-66-goals-60-matches"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-15T15:43:49.455Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1160346946359502\"}"
+  },
+  {
+    "at": "2026-11-15T16:04:02.232Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149918605140193\"}"
+  },
+  {
+    "at": "2026-11-15T16:04:14.278Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127915645459930\"}"
   }
 ]
