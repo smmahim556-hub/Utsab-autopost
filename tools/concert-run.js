@@ -14,8 +14,11 @@ const MAIN_VIDEO = { '1406430145892267': '1339181701575274', '872606492607357': 
 const SLOTS = (process.env.CONCERT_SLOTS || '11:00,12:30,13:45,16:15,17:00,19:00,20:15,21:30,22:30').split(',');
 // CONCERT_KIND=podcast (owner 2026-11-09, 'গান-বাজ'): ~1-min parts with the hook moment played first, whole picture kept.
 const POD = process.env.CONCERT_KIND === 'podcast';
-const TAG = POD ? (process.env.PODCAST_TAG || 'পডকাস্ট') : 'বিনোদন', HOLD = process.env.CONCERT_HOLD === '1' || POD;
-const FOOT = process.env.CONCERT_FOOT || (POD ? 'পুরো পর্ব দেখুন উৎসব টিভির পেজে' : 'পুরো কনসার্ট দেখুন উৎসব টিভির পেজে');
+// CONCERT_KIND=news (owner 2026-11-16: hook reels from the সংসদ live): news template + news hooks (clips.js planClips 'news'),
+// Utsab TV and Digital only (not the Entertainment page), always held so the hooks are checked before they go.
+const NEWS = process.env.CONCERT_KIND === 'news';
+const TAG = POD ? (process.env.PODCAST_TAG || 'পডকাস্ট') : NEWS ? (process.env.PODCAST_TAG || 'সংসদ') : 'বিনোদন', HOLD = process.env.CONCERT_HOLD === '1' || POD || NEWS;
+const FOOT = process.env.CONCERT_FOOT || (POD ? 'পুরো পর্ব দেখুন উৎসব টিভির পেজে' : NEWS ? 'পুরো লাইভ দেখুন উৎসব টিভির পেজে' : 'পুরো কনসার্ট দেখুন উৎসব টিভির পেজে');
 const TAGOF = j => j.clip.tag || 'পডকাস্ট';
 let st = {};
 try { st = JSON.parse(fs.readFileSync(FILE, 'utf8')); } catch {}
@@ -79,9 +82,9 @@ async function download(video, token) {
       for (const v of process.env.CONCERT_PLAN.split(',').map(x => x.trim()).filter(Boolean)) {
         let file, url;
         try { ({ file, url } = await download(v, main.token)); } catch (e) { log(`download ${v}: ${e.message}`); continue; }
-        const clips = await planClips(file, W, Number(process.env.CONCERT_MAX || (POD ? 40 : 20)), POD ? 'podcast' : 'concert').catch(e => (log(`plan ${v}: ${e.message}`), []));
+        const clips = await planClips(file, W, Number(process.env.CONCERT_MAX || (POD ? 40 : NEWS ? 15 : 20)), POD ? 'podcast' : NEWS ? 'news' : 'concert').catch(e => (log(`plan ${v}: ${e.message}`), []));
         log(`plan ${v}: ${clips.length} clips: ${clips.map(c => `${Math.round(c.start)}-${Math.round(c.end)} ${c.hook}`).join(' | ')}`);
-        for (const c of clips) found.push({ video: v, url, ...(POD ? { kind: 'podcast' } : {}), clip: { ...c, tag: TAG, foot: FOOT, cut: Number(process.env.CONCERT_CUT || 0), ...(POD ? { wide: true, subs: [] } : {}) }, ...(HOLD ? { hold: true } : {}) });
+        for (const c of clips) found.push({ video: v, url, ...(POD ? { kind: 'podcast' } : NEWS ? { kind: 'news' } : {}), clip: { ...c, tag: TAG, foot: FOOT, cut: Number(process.env.CONCERT_CUT || 0), ...(POD ? { wide: true, subs: [] } : {}) }, ...(HOLD ? { hold: true } : {}) });
       }
       // The package-clip pipeline had already queued second reels from these lives: fold them in so they go to all 3 Pages at good times.
       try {
@@ -107,17 +110,17 @@ async function download(video, token) {
       if (mixed[0]) {
         const browser = await chromium.launch();
         try {
-          fs.mkdirSync(path.join(ROOT, 'preview', POD ? 'podcast' : 'concert'), { recursive: true });
+          fs.mkdirSync(path.join(ROOT, 'preview', POD ? 'podcast' : NEWS ? 'newsclip' : 'concert'), { recursive: true });
           // One still per reel (numbered) for the owner to review, and the first reel in full as a sample.
           const list = HOLD ? mixed : mixed.slice(0, 1);
           for (const [i, c] of list.entries()) {
             const probe = `${W}/check-${i}.mp4`;
             await renderClip(browser, `${W}/${c.video.replace(/[^\w-]/g, '_')}.mp4`.replace(/\/(\d+)\.mp4$/, '/$1.mp4'), { ...c.clip, pre: undefined, end: c.clip.start + 2 }, '', probe, W, 'k');
-            ff(['-ss', '1', '-i', probe, '-frames:v', '1', '-vf', 'scale=540:-2', path.join(ROOT, 'preview', POD ? 'podcast' : 'concert', `c${String(i + 1).padStart(2, '0')}.png`)]);
+            ff(['-ss', '1', '-i', probe, '-frames:v', '1', '-vf', 'scale=540:-2', path.join(ROOT, 'preview', POD ? 'podcast' : NEWS ? 'newsclip' : 'concert', `c${String(i + 1).padStart(2, '0')}.png`)]);
           }
           if (HOLD) {
             const c = mixed[0];
-            await renderClip(browser, `${W}/${c.video.replace(/[^\w-]/g, '_')}.mp4`, c.clip, '', path.join(ROOT, 'preview', POD ? 'podcast-sample.mp4' : 'concert-sample.mp4'), W, 's');
+            await renderClip(browser, `${W}/${c.video.replace(/[^\w-]/g, '_')}.mp4`, c.clip, '', path.join(ROOT, 'preview', POD ? 'podcast-sample.mp4' : NEWS ? 'newsclip-sample.mp4' : 'concert-sample.mp4'), W, 's');
           }
         } finally { await browser.close(); }
       }
@@ -133,9 +136,10 @@ async function download(video, token) {
     try {
       const out = `${W}/reel-${job.video}-${Math.round(job.clip.start)}.mp4`;
       await renderClip(browser, file, job.clip, '', out, W, 'r');
-      const desc = job.kind === 'podcast' ? `${job.clip.hook}\n\nউৎসব টিভির পডকাস্ট '${TAGOF(job)}' থেকে।${job.url ? ' পুরো পর্ব দেখুন প্রথম কমেন্টের লিংকে।' : ''}\n\n#utsabtv #পডকাস্ট #বিনোদন` : `${job.clip.hook}\n\n${job.url ? 'উৎসব টিভির কনসার্ট লাইভ থেকে। পুরো কনসার্ট দেখুন প্রথম কমেন্টের লিংকে।' : 'উৎসব টিভির কনসার্ট থেকে।'}\n\n#utsabtv #কনসার্ট #বিনোদন #গান`;
+      const desc = job.kind === 'news' ? `${job.clip.hook}\n\nউৎসব টিভির '${job.clip.tag || 'সংসদ'}' লাইভ থেকে।${job.url ? ' পুরো লাইভ দেখুন প্রথম কমেন্টের লিংকে।' : ''}\n\n#utsabtv #সংসদ #সংবাদ #বাংলাদেশ` : job.kind === 'podcast' ? `${job.clip.hook}\n\nউৎসব টিভির পডকাস্ট '${TAGOF(job)}' থেকে।${job.url ? ' পুরো পর্ব দেখুন প্রথম কমেন্টের লিংকে।' : ''}\n\n#utsabtv #পডকাস্ট #বিনোদন` : `${job.clip.hook}\n\n${job.url ? 'উৎসব টিভির কনসার্ট লাইভ থেকে। পুরো কনসার্ট দেখুন প্রথম কমেন্টের লিংকে।' : 'উৎসব টিভির কনসার্ট থেকে।'}\n\n#utsabtv #কনসার্ট #বিনোদন #গান`;
       const ids = {};
-      for (const page of pages) {
+      // News reels (সংসদ) stay off the Entertainment page.
+      for (const page of pages.filter(p => job.kind !== 'news' || p.id !== ENT)) {
         try {
           ids[page.id] = await postReel(page, out, desc);
           log(`concert reel on ${page.id}: ${ids[page.id]} (${job.clip.hook})`);
@@ -146,7 +150,7 @@ async function download(video, token) {
       for (const page of pages) if (ids[page.id] && (job.url || (job.kind === 'podcast' && MAIN_VIDEO[page.id]))) {
         // Podcast reels link to the full episode on the same Page (owner 2026-11-12); other reels keep job.url.
         const link = job.kind === 'podcast' && MAIN_VIDEO[page.id] ? `https://www.facebook.com/reel/${MAIN_VIDEO[page.id]}/` : job.url;
-        const c = new FormData(); c.append('message', `${job.kind === 'podcast' ? 'পুরো পর্ব' : 'পুরো কনসার্ট'}: ${link}`); c.append('access_token', page.token);
+        const c = new FormData(); c.append('message', `${job.kind === 'podcast' ? 'পুরো পর্ব' : job.kind === 'news' ? 'পুরো লাইভ' : 'পুরো কনসার্ট'}: ${link}`); c.append('access_token', page.token);
         await graph(`${ids[page.id]}/comments`, c).catch(e => log(`comment ${ids[page.id]}: ${e.message.slice(0, 120)}`));
       }
       st.done.push({ video: job.video, start: job.clip.start, hook: job.clip.hook, ids });
