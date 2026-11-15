@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-15T01:58:56.043Z",
-    "text": "weather reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149828041140193\"}"
-  },
-  {
-    "at": "2026-11-15T01:59:02.171Z",
-    "text": "weather reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127773067459930\"}"
-  },
-  {
-    "at": "2026-11-15T02:01:36.293Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149828227140193 ()"
-  },
-  {
-    "at": "2026-11-15T02:01:43.129Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1618032546672217\"}"
-  },
-  {
     "at": "2026-11-15T02:01:46.185Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122127774849459930 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-15T03:13:55.317Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2402672387231119\"}"
+  },
+  {
+    "at": "2026-11-15T03:16:49.766Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149835265140193 (https://utsabtv.com/hamas-rafah-brigade-commander-killed-israeli-strike-gaza)"
+  },
+  {
+    "at": "2026-11-15T03:17:01.149Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1603418937735879\"}"
+  },
+  {
+    "at": "2026-11-15T03:17:07.745Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127800457459930 (https://utsabtv.com/hamas-rafah-brigade-commander-killed-israeli-strike-gaza)"
+  },
+  {
+    "at": "2026-11-15T03:17:15.001Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1617266450083649\"}"
   }
 ]
