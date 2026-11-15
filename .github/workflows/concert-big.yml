@@ -1,0 +1,36 @@
+name: Concert reels from a big Drive file
+on:
+  workflow_dispatch:
+    inputs:
+      drive_id: { type: string, description: 'Google Drive file id of the concert recording', required: true }
+      start_after: { type: string, description: 'Schedule after this Dhaka time (YYYY-MM-DDTHH:MM); empty = after the concert queue', default: '' }
+      dry: { type: string, description: '1 = plan only (song list + sample reel), do not post', default: '' }
+concurrency: concert-big
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci && npx playwright install chromium && (which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg))
+      # The recording is too big for the root disk: work on /mnt.
+      - run: sudo mkdir -p /mnt/big && sudo chown "$USER" /mnt/big && df -h / /mnt
+      - run: node tools/concert-big.js
+        env:
+          FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DRIVE_ID: ${{ inputs.drive_id }}
+          START_AFTER: ${{ inputs.start_after }}
+          DRY: ${{ inputs.dry }}
+      - if: always()
+        run: |
+          git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
+          git add -A preview/concert-big state/concert-big-*.json; git pull -q --rebase -X theirs origin main || true
+          git diff --cached --quiet || (git commit -m "concert-big" && (git push || (git pull --rebase -X theirs origin main && git push)))

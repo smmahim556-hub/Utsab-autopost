@@ -1,0 +1,249 @@
+// Owner 2026-11-15: a big phone recording of a whole concert on Drive (Noble Man show, ~12.8 GB), run by concert-big.yml.
+// Owner's rule: every song goes up on its own as a FULL song video first, then as many reels as can be cut from that song.
+// Gemini LISTENS to the show to find each song (start/end, no song names) and then listens to each song to pick its reel
+// moments (hooks from listening, mood-style, no song names, lyric subtitles). Everything is scheduled with Facebook's own
+// scheduling on Utsab TV Entertainment first, then Utsab TV and Digital, in the concert slots 13:00 / 17:00 / 22:00 Dhaka:
+// song 1 full, its reels, song 2 full, its reels, ...
+// Two stages:
+//   DRY=1  -> plan only: writes state/concert-big-plan.json + preview/concert-big (list.md, a still per song, one sample reel).
+//   else   -> uses that saved plan (so what the owner saw is what goes up), cuts the full songs in 1080p with our logo,
+//             renders the reels, schedules everything; progress in state/concert-big-probe.json (a re-run skips done items).
+const fs = require('fs'), path = require('path'), { execFileSync } = require('child_process');
+const { chromium } = require('playwright');
+const { renderClip, ff, secs, gemini } = require('../clips');
+const G = 'https://graph.facebook.com/v26.0', GV = 'https://graph-video.facebook.com/v26.0';
+const ROOT = path.join(__dirname, '..'), B = '/mnt/big', PV = path.join(ROOT, 'preview', 'concert-big');
+const PLAN = path.join(ROOT, 'state', 'concert-big-plan.json'), OUT = path.join(ROOT, 'state', 'concert-big-probe.json');
+const ENT = '1406430145892267';
+const SLOTS = (process.env.SLOTS || '13:00,17:00,22:00').split(',');
+const id = process.env.DRIVE_ID, DRY = process.env.DRY === '1';
+const prev = (() => { try { const p = JSON.parse(fs.readFileSync(OUT, 'utf8')); return p.drive === id ? p : null; } catch { return null; } })();
+const out = prev && !DRY ? prev : { drive: id, steps: {}, posts: {} };
+out.at = new Date().toISOString(); out.posts = out.posts || {};
+const save = () => { fs.mkdirSync(path.dirname(OUT), { recursive: true }); fs.writeFileSync(OUT, JSON.stringify(out, null, 1)); };
+const TAGS = '#utsabtv #কনসার্ট #বিনোদন #গান #লাইভকনসার্ট';
+const songDesc = hook => `${hook}\n\nউৎসব টিভির কনসার্ট থেকে পুরো গান।\n\n${TAGS}`;
+const reelDesc = hook => `${hook}\n\nউৎসব টিভির কনসার্ট থেকে। পুরো গানটি দেখুন আমাদের পেজে।\n\n${TAGS}`;
+const fmt = t => new Date(t).toLocaleString('en-GB', { timeZone: 'Asia/Dhaka', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+const mmss = s => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
+
+const HOOK_RULE = `শিরোনাম (সর্বোচ্চ ১০ শব্দ) যা শুনছ তার ভিত্তিতে: গানের মেজাজ, পরিবেশনা আর দর্শকের সাড়া (যেমন: কনসার্টের মঞ্চে আবেগঘন সুরে মুগ্ধ দর্শক)। গানের নাম, শিল্পীর নাম বা গানের কথা শিরোনামে দেবে না, অনুমানে কিছু বানাবে না। প্রতিটি শিরোনাম আলাদা ধাঁচের।`;
+
+async function findSongs(audio, off, total) {
+  const len = Math.round(secs(audio));
+  const r = await gemini([{ inline_data: { mime_type: 'audio/mp3', data: fs.readFileSync(audio).toString('base64') } }, { text:
+`এটি একটি লাইভ কনসার্টের রেকর্ডিংয়ের একটি অংশের অডিও (মোট ${len} সেকেন্ড)। মন দিয়ে শুনে এতে গাওয়া প্রতিটি গান আলাদা করে দাও।
+প্রতিটি গানের start = গানের বাজনা বা গাওয়া শুরুর সেকেন্ড, end = গান শেষ হওয়ার সেকেন্ড (শেষের হাততালি ধরে ২-৩ সেকেন্ড)। গানের মাঝের বাজনা গানেরই অংশ।
+গানের আগে-পরের কথাবার্তা, সাউন্ড চেক, লম্বা বিরতি বাদ। অডিওর একেবারে শুরুতে বা শেষে কেটে যাওয়া গান হলে partial:true দাও।
+${HOOK_RULE}
+শুধু এই JSON দাও: [{"start":35.0,"end":290.0,"partial":false,"hook":"শিরোনাম"}]` }]);
+  return (Array.isArray(r) ? r : []).filter(s => s.end > s.start + 45 && s.start >= 0 && s.start < len)
+    .map(s => ({ start: off + Math.max(0, s.start), end: Math.min(total, off + Math.min(s.end, len)), partial: !!s.partial, hook: String(s.hook || '').trim() }));
+}
+
+async function findReels(audio, n) {
+  const len = Math.round(secs(audio));
+  const r = await gemini([{ inline_data: { mime_type: 'audio/mp3', data: fs.readFileSync(audio).toString('base64') } }, { text:
+`এটি একটি লাইভ কনসার্টের একটি গানের পুরো অডিও (মোট ${len} সেকেন্ড)। ফেসবুক রিলের জন্য এই গানের ভেতর থেকে যত বেশি ভালো অংশ পাও বেছে নাও (সর্বোচ্চ ${n}টি), পরস্পর ওভারল্যাপ নয়।
+নিয়ম: প্রতিটি অংশ ২০-৫৫ সেকেন্ড, গানের জমজমাট জায়গা (কোরাস, অন্তরা, দর্শকের গলা মেলানো, দারুণ বাজনা), লাইনের মাঝখানে শুরু বা শেষ নয়। একই লাইন বারবার এলে আলাদা জায়গা নাও।
+প্রতিটির জন্য ${HOOK_RULE}
+আর হুবহু গানের কথার সাবটাইটেল দাও (যা স্পষ্ট শোনা যায় শুধু তাই; অস্পষ্ট হলে বাদ), প্রতিটি সর্বোচ্চ ৮-১০ শব্দ, সময় অংশের শুরু থেকে সেকেন্ডে।
+শুধু এই JSON দাও: [{"start":12.5,"end":48.0,"hook":"শিরোনাম","subs":[{"s":0.0,"e":2.6,"t":"কথা"}]}]` }]);
+  const keep = [];
+  for (const c of (Array.isArray(r) ? r : []).filter(c => c.end - c.start >= 15 && c.start >= 0 && c.start < len).sort((a, b) => a.start - b.start)) {
+    if (keep.length && c.start < keep[keep.length - 1].end - 3) continue;
+    const subs = (c.subs || []).filter(x => x.t && x.e > x.s).sort((a, b) => a.s - b.s);
+    subs.forEach((x, i) => { if (subs[i + 1] && x.e > subs[i + 1].s - 0.05) x.e = subs[i + 1].s - 0.05; });
+    keep.push({ start: c.start, end: Math.min(c.end, len), hook: String(c.hook || '').trim(), subs: subs.filter(x => x.e > x.s) });
+  }
+  return keep.slice(0, n);
+}
+
+function slotTimes(n, after) {
+  const res = [];
+  for (let day = 0; res.length < n && day < 120; day++) {
+    const d = new Date(after + 6 * 3600e3 + day * 86400e3).toISOString().slice(0, 10);
+    for (const s of SLOTS) { const t = Date.parse(`${d}T${s}:00+06:00`); if (t > after && res.length < n) res.push(t); }
+  }
+  return res;
+}
+
+async function form(url, fields, blob) {
+  const f = new FormData();
+  for (const [k, v] of Object.entries(fields)) f.append(k, String(v));
+  if (blob) f.append('video_file_chunk', blob, 'chunk.mp4');
+  const r = await fetch(url, { method: 'POST', body: f });
+  const t = await r.text();
+  let b; try { b = JSON.parse(t); } catch { b = { error: { message: `HTTP ${r.status}: ${t.slice(0, 200)}` } }; }
+  if (b.error) throw new Error(`${url.split('/').slice(-2).join('/')}: ${JSON.stringify(b.error).slice(0, 300)}`);
+  return b;
+}
+async function scheduleVideo(page, file, title, description, when) {   // full song: resumable /videos upload
+  const size = fs.statSync(file).size;
+  const st = await form(`${GV}/${page.id}/videos`, { upload_phase: 'start', file_size: size, access_token: page.token });
+  let off = Number(st.start_offset), end = Number(st.end_offset);
+  const fd = fs.openSync(file, 'r');
+  try {
+    while (off < size && end > off) {
+      const buf = Buffer.alloc(end - off); fs.readSync(fd, buf, 0, end - off, off);
+      const t = await form(`${GV}/${page.id}/videos`, { upload_phase: 'transfer', upload_session_id: st.upload_session_id, start_offset: off, access_token: page.token }, new Blob([buf], { type: 'video/mp4' }));
+      off = Number(t.start_offset); end = Number(t.end_offset);
+    }
+  } finally { fs.closeSync(fd); }
+  await form(`${GV}/${page.id}/videos`, { upload_phase: 'finish', upload_session_id: st.upload_session_id, title, description, published: 'false', scheduled_publish_time: Math.floor(when / 1000), access_token: page.token });
+  return st.video_id;
+}
+async function scheduleReel(page, file, description, when) {
+  const { video_id: vid, upload_url } = await form(`${G}/${page.id}/video_reels`, { upload_phase: 'start', access_token: page.token });
+  const up = await fetch(upload_url || `https://rupload.facebook.com/video-upload/v26.0/${vid}`, {
+    method: 'POST', headers: { Authorization: `OAuth ${page.token}`, offset: '0', file_size: String(fs.statSync(file).size) }, body: fs.readFileSync(file) });
+  const ub = await up.json().catch(() => ({}));
+  if (!up.ok || ub.success === false) throw new Error(`reel upload: ${JSON.stringify(ub).slice(0, 200)}`);
+  await form(`${G}/${page.id}/video_reels`, { upload_phase: 'finish', video_id: vid, video_state: 'SCHEDULED', scheduled_publish_time: Math.floor(when / 1000), description, access_token: page.token });
+  return vid;
+}
+async function thumb(page, vid, jpg) {
+  const f = new FormData(); f.append('source', new Blob([fs.readFileSync(jpg)], { type: 'image/jpeg' }), 'thumb.jpg');
+  f.append('is_preferred', 'true'); f.append('access_token', page.token);
+  const r = await fetch(`${G}/${vid}/thumbnails`, { method: 'POST', body: f });
+  const b = await r.json().catch(() => ({}));
+  if (b.error) throw new Error(JSON.stringify(b.error).slice(0, 160));
+}
+
+// Full song in 1080p (short side), our logo top right.
+function cutSong(src, s, file) {
+  ff(['-ss', String(Math.max(0, s.start - 1)), '-t', String(s.end - s.start + 2), '-i', src, '-i', path.join(ROOT, 'assets', 'logo.png'),
+    '-filter_complex', "[0:v]scale='if(gt(iw,ih),-2,min(1080,iw))':'if(gt(iw,ih),min(1080,ih),-2)',fps=30,setsar=1[v];[1:v]scale=200:-1[l];[v][l]overlay=W-w-30:30[o]",
+    '-map', '[o]', '-map', '0:a:0?', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', file]);
+}
+
+(async () => {
+  if (!id) throw new Error('DRIVE_ID missing');
+  fs.mkdirSync(B, { recursive: true }); fs.mkdirSync(PV, { recursive: true });
+  const src = `${B}/src.mp4`;
+  if (!fs.existsSync(src)) {
+    execFileSync('curl', ['-sSL', '--retry', '3', '-o', src, `https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t`], { stdio: 'inherit' });
+  }
+  out.steps.download_bytes = fs.statSync(src).size; save();
+  if (out.steps.download_bytes < 1e8) throw new Error(`download too small (${out.steps.download_bytes} bytes): ${fs.readFileSync(src, 'utf8').slice(0, 200)}`);
+  const total = secs(src);
+  out.steps.duration_s = Math.round(total); save();
+
+  let plan;
+  if (DRY || !fs.existsSync(PLAN) || JSON.parse(fs.readFileSync(PLAN, 'utf8')).drive !== id) {
+    // 1. Songs: the audio in 60-minute parts (Gemini takes ~20 MB per request), 5 minutes overlap so no song is lost at a seam.
+    const audio = `${B}/all.mp3`;
+    ff(['-i', src, '-vn', '-ac', '1', '-ar', '16000', '-b:a', '32k', audio]);
+    let songs = [];
+    for (let off = 0, i = 0; off < total - 30; off += 3300, i++) {
+      const a = `${B}/part${i}.mp3`;
+      ff(['-ss', String(off), '-t', '3600', '-i', audio, '-c', 'copy', a]);
+      const got = await findSongs(a, off, total).catch(e => { out.steps[`songs${i}_error`] = e.message; return []; });
+      songs.push(...got);
+      if (off + 3600 >= total) break;
+    }
+    songs.sort((a, b) => a.start - b.start);
+    const merged = [];
+    for (const s of songs) {
+      const last = merged[merged.length - 1];
+      const ov = last ? Math.min(last.end, s.end) - Math.max(last.start, s.start) : 0;
+      if (last && ov > 0.4 * Math.min(last.end - last.start, s.end - s.start)) {
+        // The same song seen from two parts: keep the whole (non-cut) one.
+        if ((last.partial && !s.partial) || (last.partial === s.partial && s.end - s.start > last.end - last.start)) merged[merged.length - 1] = s;
+      } else if (last && s.start < last.end) { s.start = last.end; if (s.end - s.start > 45) merged.push(s); }
+      else merged.push(s);
+    }
+    const full = merged.filter(s => !s.partial || s.end - s.start > 120);
+    out.steps.songs_found = songs.length; out.steps.songs = full.length; save();
+    if (!full.length) throw new Error('Gemini found no songs');
+    // 2. Reels inside each song (about one per 45 seconds of song).
+    for (const [i, s] of full.entries()) {
+      const a = `${B}/song${i}.mp3`;
+      ff(['-ss', String(s.start), '-t', String(s.end - s.start), '-i', audio, '-c', 'copy', a]);
+      const n = Math.max(2, Math.min(8, Math.floor((s.end - s.start) / 45)));
+      s.reels = await findReels(a, n).catch(e => { s.reels_error = e.message; return []; });
+      console.log(`song ${i + 1}: ${mmss(s.start)}-${mmss(s.end)} reels ${s.reels.length}`);
+    }
+    plan = { drive: id, made: new Date().toISOString(), duration_s: Math.round(total), songs: full };
+    // 3. Times: song k full, then its reels, in the concert slots after the concert queue (or START_AFTER).
+    let after = Date.now() + 60 * 60e3;
+    if (process.env.START_AFTER) after = Math.max(after, Date.parse(`${process.env.START_AFTER}:00+06:00`));
+    else {
+      try {
+        const st = JSON.parse(fs.readFileSync(path.join(ROOT, 'state', 'concert.json'), 'utf8'));
+        const ts = st.queue.filter(q => (q.kind || 'concert') === 'concert' && q.at).map(q => q.at);
+        if (ts.length) after = Math.max(after, ...ts);
+      } catch {}
+    }
+    const items = full.flatMap((s, i) => [{ key: `s${i + 1}` }, ...s.reels.map((r, j) => ({ key: `s${i + 1}r${j + 1}` }))]);
+    const times = slotTimes(items.length, after);
+    let k = 0;
+    for (const s of full) { s.at = times[k++]; for (const r of s.reels) r.at = times[k++]; }
+    fs.writeFileSync(PLAN, JSON.stringify(plan, null, 1));
+    // Preview: a still per song, the list, and one sample reel.
+    const lines = [`# Noble Man concert: ${full.length} full songs, ${full.reduce((a, s) => a + s.reels.length, 0)} reels\n`];
+    for (const [i, s] of full.entries()) {
+      const n = String(i + 1).padStart(2, '0');
+      ff(['-ss', String((s.start + s.end) / 2), '-i', src, '-frames:v', '1', '-vf', 'scale=360:-2', path.join(PV, `song${n}.jpg`)]);
+      lines.push(`\n## গান ${i + 1} (${mmss(s.start)}-${mmss(s.end)}, ${mmss(s.end - s.start)}) | ${fmt(s.at)}\n${s.hook}\n`);
+      for (const [j, r] of s.reels.entries()) lines.push(`- রিল ${j + 1} | ${fmt(r.at)} | গানের ${mmss(r.start)}-${mmss(r.end)} | ${r.hook}`);
+    }
+    fs.writeFileSync(path.join(PV, 'list.md'), lines.join('\n') + '\n');
+    const s0 = full.find(s => s.reels.length);
+    if (s0) {
+      const r0 = s0.reels[0], seg = `${B}/sample-src.mp4`;
+      ff(['-ss', String(s0.start + r0.start - 1), '-t', String(r0.end - r0.start + 2), '-i', src, '-vf', "scale='if(gt(iw,ih),-2,720)':'if(gt(iw,ih),720,-2)',fps=30",
+        '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-c:a', 'aac', '-b:a', '160k', seg]);
+      const browser = await chromium.launch();
+      try { await renderClip(browser, seg, { start: 1, end: 1 + r0.end - r0.start, hook: r0.hook, subs: r0.subs, tag: 'বিনোদন', foot: 'পুরো গানটি দেখুন উৎসব টিভির পেজে', cut: 0, focus: 'the lead singer' }, '', path.join(PV, 'sample.mp4'), B, 'smp'); }
+      finally { await browser.close(); }
+    }
+  } else plan = JSON.parse(fs.readFileSync(PLAN, 'utf8'));
+  out.steps.songs = plan.songs.length; out.steps.reels = plan.songs.reduce((a, s) => a + s.reels.length, 0); save();
+  if (DRY) { console.log(fs.readFileSync(path.join(PV, 'list.md'), 'utf8')); return; }
+
+  const acc = await (await fetch(`${G}/me/accounts?fields=id,access_token&limit=100&access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).json();
+  const pages = [ENT, process.env.FB_PAGE_ID, process.env.FB_PAGE_ID_2].filter(Boolean).map(pid => (acc.data || []).find(a => a.id === pid)).filter(Boolean).map(a => ({ id: a.id, token: a.access_token }));
+  if (!pages.length) throw new Error('no Pages');
+  const browser = await chromium.launch();
+  const post = async (key, at, hook, file, jpg, kind) => {
+    const rec = out.posts[key] = out.posts[key] || { at: new Date(at).toISOString(), hook, kind, ids: {}, errors: {} };
+    for (const page of pages) {
+      if (rec.ids[page.id]) continue;
+      if (at < Date.now() + 15 * 60e3) { rec.errors[page.id] = 'slot already passed'; continue; }
+      try {
+        const vid = kind === 'song' ? await scheduleVideo(page, file, hook, songDesc(hook), at) : await scheduleReel(page, file, reelDesc(hook), at);
+        rec.ids[page.id] = vid; delete rec.errors[page.id];
+        await thumb(page, vid, jpg).catch(e => { rec.errors[`thumb_${page.id}`] = e.message; });
+      } catch (e) { rec.errors[page.id] = e.message.slice(0, 300); }
+    }
+    save();
+  };
+  const doneAll = key => out.posts[key] && pages.every(p => out.posts[key].ids[p.id]);
+  try {
+    for (const [i, s] of plan.songs.entries()) {
+      const sk = `s${i + 1}`, songFile = `${B}/song-${i + 1}.mp4`;
+      if (doneAll(sk) && s.reels.every((r, j) => doneAll(`${sk}r${j + 1}`))) continue;
+      cutSong(src, s, songFile);
+      const sj = `${B}/song-${i + 1}.jpg`;
+      ff(['-ss', String(Math.min(20, (s.end - s.start) / 2)), '-i', songFile, '-frames:v', '1', '-q:v', '3', sj]);
+      if (!doneAll(sk)) await post(sk, s.at, s.hook, songFile, sj, 'song');
+      for (const [j, r] of s.reels.entries()) {
+        const rk = `${sk}r${j + 1}`;
+        if (doneAll(rk)) continue;
+        const rf = `${B}/reel-${rk}.mp4`, rj = `${B}/reel-${rk}.jpg`;
+        // song file starts 1 s before the song
+        await renderClip(browser, songFile, { start: r.start + 1, end: r.end + 1, hook: r.hook, subs: r.subs, tag: 'বিনোদন', foot: 'পুরো গানটি দেখুন উৎসব টিভির পেজে', cut: 0, focus: 'the lead singer' }, '', rf, B, rk);
+        ff(['-ss', '2', '-i', rf, '-frames:v', '1', '-q:v', '3', rj]);
+        await post(rk, r.at, r.hook, rf, rj, 'reel');
+        fs.unlinkSync(rf);
+      }
+      fs.unlinkSync(songFile);
+      console.log(`song ${i + 1} done`);
+    }
+  } finally { await browser.close(); save(); }
+  const bad = Object.entries(out.posts).filter(([, r]) => Object.keys(r.errors).some(k => !k.startsWith('thumb_')));
+  out.steps.failed = bad.map(([k]) => k); save();
+  console.log(JSON.stringify(out.steps, null, 1));
+  if (bad.length) process.exitCode = 1;
+})().catch(e => { out.error = e.message; save(); console.error(e); process.exit(1); });
