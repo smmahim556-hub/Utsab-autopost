@@ -1,6 +1,6 @@
-# YouTube Auto-Copy সেটআপের নিয়ম
+# YouTube Auto-Upload সেটআপের নিয়ম
 
-মূল চ্যানেলে ভিডিও Public করুন, আর একই ভিডিও ফাইলটা Google Drive-এর একটা ফোল্ডারে রাখুন। ১৫ মিনিটের মধ্যে সেটা নিজে থেকে দ্বিতীয় চ্যানেলে আপলোড হবে। (YouTube GitHub-এর সার্ভার থেকে ভিডিও ডাউনলোড করতে দেয় না, তাই ফাইলটা Drive থেকে নেওয়া হয়।) নতুন title, description আর tags AI বানাবে, আর thumbnail মূল ভিডিওরটাই বসবে। সবকিছু GitHub Actions-এ চলে, তাই PC চালু রাখতে হবে না।
+Google Drive-এর একটা ফোল্ডারে ভিডিও রাখুন। ১৫ মিনিটের মধ্যে সেটা নিজে থেকে সব চ্যানেলে (মূল + দ্বিতীয়) আপলোড হবে। প্রতিটা চ্যানেলের জন্য আলাদা title, description আর tags AI বানাবে। সবকিছু GitHub Actions-এ চলে, তাই PC চালু রাখতে হবে না।
 
 সব কাজ মোবাইল থেকেও করা যায়। Chrome-এর মেনু থেকে **Desktop site** চালু করে নিন।
 
@@ -42,15 +42,21 @@
 মূল চ্যানেলের token = `YT_MAIN_REFRESH_TOKEN`, দ্বিতীয় চ্যানেলের token = `YT_TARGET_REFRESH_TOKEN`।
 
 ## ৪.৫ Drive ফোল্ডার বানান
-1. মূল চ্যানেলের Gmail দিয়ে https://drive.google.com খুলুন, **New → Folder**, নাম দিন `YouTube Copy`।
+1. মূল চ্যানেলের Gmail দিয়ে https://drive.google.com খুলুন, **New → Folder**, নাম দিন `YouTube Upload`।
 2. ফোল্ডারটা খুলুন। লিংকের শেষে `folders/` এর পরের অংশটা ফোল্ডার ID (যেমন `1AbC...xyz`)। এটা `DRIVE_FOLDER_ID`।
-3. প্রতিটা ভিডিও মূল চ্যানেলে দেওয়ার সময় একই ফাইলটা এই ফোল্ডারে আপলোড করুন। ফাইলের নাম ভিডিওর title-এর মতো হলে ভালো, না হলে সবচেয়ে পুরনো নতুন ফাইলটা নেওয়া হয়।
-   ৩ দিনের মধ্যে ফাইল না পেলে সেই ভিডিওটা বাদ দেওয়া হয়।
+
+### প্রতিদিনের কাজ
+প্রতিটা ভিডিওর জন্য একই নামে (শুধু শেষের অংশ আলাদা) এই ফোল্ডারে রাখুন:
+- `khobor.mp4`: ভিডিও (লাগবেই)
+- `khobor.txt`: চাইলে। প্রথম লাইনে title বা বিষয়, তার পরে description-এ যা রাখতে চান (লিংক, credit)। না দিলে ফাইলের নামটাই বিষয় ধরা হয়।
+- `khobor.jpg`: চাইলে thumbnail (jpg/png, ২ MB-এর কম)।
+
+ভিডিও আসার ৩ মিনিট পরে আপলোড শুরু হয়, যাতে txt আর ছবিটা পরে রাখার সময় পান। ভিডিও আগে রাখলে ভালো, txt/ছবি সাথে সাথে।
 
 ## ৫. AI-এর জন্য ফ্রি Gemini API Key
 1. https://aistudio.google.com/apikey খুলুন, **Create API key** চাপুন, কপি করুন।
    (Claude ব্যবহার করতে চাইলে `GEMINI_API_KEY`-এর বদলে `ANTHROPIC_API_KEY` দিন।
-   কোনো key না দিলে মূল ভিডিওর title/description/tags-ই বসবে।)
+   কোনো key না দিলে ফাইলের নামটাই title হবে।)
 
 ## ৬. GitHub Secrets-এ রাখুন
 Repo → **Settings → Secrets and variables → Actions → New repository secret**। এই নামগুলোতে রাখুন:
@@ -67,14 +73,14 @@ Repo → **Settings → Secrets and variables → Actions → New repository sec
 ভবিষ্যতে তৃতীয় চ্যানেল যোগ করতে চাইলে `YT_TARGET_REFRESH_TOKEN_2` যোগ করুন।
 
 ## ৭. পরীক্ষা করুন
-1. Repo → **Actions → YouTube copy → Run workflow**, **check** টিক দিয়ে চালান।
-   শেষ হলে `state/youtube-check.json` খুলে দেখুন দুই চ্যানেলের নাম ঠিক আছে কি না।
-2. এবার কিছু টিক না দিয়ে একবার চালান। প্রথমবার শুধু পুরনো ভিডিওগুলো মনে রাখে, কিছু আপলোড করে না।
-3. একটা নির্দিষ্ট ভিডিও দিয়ে পরীক্ষা করতে **video_id**-এ ভিডিওর id দিন (`youtu.be/` এর পরের অংশ)।
+1. Repo → **Actions → YouTube upload → Run workflow**, **check** টিক দিয়ে চালান।
+   শেষ হলে `state/youtube-check.json` খুলে দেখুন দুই চ্যানেলের নাম আর Drive ফোল্ডারের নাম ঠিক আছে কি না।
+2. এবার কিছু টিক না দিয়ে একবার চালান। প্রথমবার ফোল্ডারে আগে থেকে থাকা ভিডিওগুলো শুধু মনে রাখে, আপলোড করে না।
+3. একটা নির্দিষ্ট ভিডিও দিয়ে পরীক্ষা করতে **file_name**-এ Drive-এর ফাইলের নাম দিন (যেমন `khobor.mp4`)।
    শুধু SEO দেখতে চাইলে সাথে **dry_run** টিক দিন। ফল দেখা যাবে `state/youtube-events.json`-এ।
 
 ## জেনে রাখুন
-- **Private থেকে যাওয়া:** Google-এর verify না করা app দিয়ে আপলোড করা ভিডিও YouTube নিজে থেকে Private করে রাখে।
+- **Private থেকে যাওয়া:** Google-এর verify না করা app দিয়ে আপলোড করা ভিডিও YouTube নিজে থেকে Private করে রাখে, দুই চ্যানেলেই।
   Public করতে https://support.google.com/youtube/contact/yt_api_form এ "YouTube API Services - Audit and Quota Extension" ফর্ম জমা দিন।
 - **Quota:** প্রতিদিন ফ্রি ১০,০০০ unit। একটা আপলোডে ~১৬৫০ লাগে, মানে দিনে প্রায় ৬টা ভিডিও। বাকিগুলো পরের দিন যায়।
 - **Duplicate content:** একই ভিডিও দুই চ্যানেলে দিলে YouTube "reused content" ধরতে পারে, monetization-এ সমস্যা হতে পারে।
