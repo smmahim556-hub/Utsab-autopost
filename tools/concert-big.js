@@ -131,16 +131,16 @@ function cutSong(src, s, file) {
 
   let plan;
   if (DRY || !fs.existsSync(PLAN) || JSON.parse(fs.readFileSync(PLAN, 'utf8')).drive !== id) {
-    // 1. Songs: the audio in 60-minute parts (Gemini takes ~20 MB per request), 5 minutes overlap so no song is lost at a seam.
+    // 1. Songs: the audio in 30-minute parts (a 60-minute part at 32k was too big for Gemini), 5 minutes overlap so no song is lost at a seam.
     const audio = `${B}/all.mp3`;
-    ff(['-i', src, '-vn', '-ac', '1', '-ar', '16000', '-b:a', '32k', audio]);
+    ff(['-i', src, '-vn', '-ac', '1', '-ar', '16000', '-b:a', '16k', audio]);
     let songs = [];
-    for (let off = 0, i = 0; off < total - 30; off += 3300, i++) {
+    for (let off = 0, i = 0; off < total - 30; off += 1500, i++) {
       const a = `${B}/part${i}.mp3`;
-      ff(['-ss', String(off), '-t', '3600', '-i', audio, '-c', 'copy', a]);
+      ff(['-ss', String(off), '-t', '1800', '-i', audio, '-c', 'copy', a]);
       const got = await findSongs(a, off, total).catch(e => { out.steps[`songs${i}_error`] = e.message; return []; });
       songs.push(...got);
-      if (off + 3600 >= total) break;
+      if (off + 1800 >= total) break;
     }
     songs.sort((a, b) => a.start - b.start);
     const merged = [];
@@ -159,7 +159,7 @@ function cutSong(src, s, file) {
     // 2. Reels inside each song (about one per 45 seconds of song).
     for (const [i, s] of full.entries()) {
       const a = `${B}/song${i}.mp3`;
-      ff(['-ss', String(s.start), '-t', String(s.end - s.start), '-i', audio, '-c', 'copy', a]);
+      ff(['-ss', String(s.start), '-t', String(s.end - s.start), '-i', src, '-vn', '-ac', '1', '-ar', '16000', '-b:a', '32k', a]);
       const n = Math.max(2, Math.min(8, Math.floor((s.end - s.start) / 45)));
       s.reels = await findReels(a, n).catch(e => { s.reels_error = e.message; return []; });
       console.log(`song ${i + 1}: ${mmss(s.start)}-${mmss(s.end)} reels ${s.reels.length}`);
