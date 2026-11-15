@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-15T06:48:23.528Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122112201225533116 ()"
-  },
-  {
-    "at": "2026-11-15T06:48:29.800Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"997041726196906\"}"
-  },
-  {
-    "at": "2026-11-15T06:58:26.741Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149857261140193 ()"
-  },
-  {
-    "at": "2026-11-15T06:58:32.697Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"30085342277734549\"}"
-  },
-  {
-    "at": "2026-11-15T06:58:35.641Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127830949459930 ()"
-  },
-  {
-    "at": "2026-11-15T06:58:42.567Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1122224560547728\"}"
-  },
-  {
     "at": "2026-11-15T07:02:29.320Z",
     "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149857693140193\"}"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-15T08:35:18.508Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-15T08:53:20.355Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122149867755140193 ()"
+  },
+  {
+    "at": "2026-11-15T08:53:31.763Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"3495980787249866\"}"
+  },
+  {
+    "at": "2026-11-15T08:53:35.618Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122127848991459930 ()"
+  },
+  {
+    "at": "2026-11-15T08:53:43.269Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2408044829776295\"}"
+  },
+  {
+    "at": "2026-11-15T08:53:48.636Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122112237399533116 ()"
+  },
+  {
+    "at": "2026-11-15T08:53:57.692Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"28630915753253793\"}"
   }
 ]
