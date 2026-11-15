@@ -49,27 +49,18 @@
     "https://utsabtv.com/iran-claims-strike-us-radar-bahrain",
     "https://utsabtv.com/spacex-starship-largest-rocket-launch-26-starlink-satellites",
     "https://utsabtv.com/gazipur-workers-highway-blockade-police-chase-tear-shell",
-    "https://utsabtv.com/hsc-supplementary-reassessment-result-december"
+    "https://utsabtv.com/hsc-supplementary-reassessment-result-december",
+    "https://utsabtv.com/pm-physician-visits-hospital-health-minister-condition"
   ],
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "done": {
     "720": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "960": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "1200": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/spacex-starship-largest-rocket-launch-26-starlink-satellites",
-    "960": "https://utsabtv.com/gazipur-workers-highway-blockade-police-chase-tear-shell",
-    "1200": "https://utsabtv.com/hsc-supplementary-reassessment-result-december"
+    "720": "https://utsabtv.com/pm-physician-visits-hospital-health-minister-condition"
   },
   "failedAt": 1793700193463
 }
