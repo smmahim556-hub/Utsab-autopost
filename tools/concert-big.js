@@ -33,7 +33,7 @@ async function findSongs(audio, off, total) {
   const len = Math.round(secs(audio));
   const r = await gemini([{ inline_data: { mime_type: 'audio/mp3', data: fs.readFileSync(audio).toString('base64') } }, { text:
 `এটি একটি লাইভ কনসার্টের রেকর্ডিংয়ের একটি অংশের অডিও (মোট ${len} সেকেন্ড)। মন দিয়ে শুনে এতে গাওয়া প্রতিটি গান আলাদা করে দাও।
-প্রতিটি গানের start = গানের বাজনা বা গাওয়া শুরুর সেকেন্ড, end = গান শেষ হওয়ার সেকেন্ড (শেষের হাততালি ধরে ২-৩ সেকেন্ড)। গানের মাঝের বাজনা গানেরই অংশ।
+প্রতিটি গানের start = গানের বাজনা বা গাওয়া শুরুর সেকেন্ড, end = গান শেষ হওয়ার সেকেন্ড (শেষের হাততালি ধরে ২-৩ সেকেন্ড)। গানের মাঝের বাজনা গানেরই অংশ। একটি গান সাধারণত ৩-৬ মিনিট; দুটি গান জুড়ে এক করবে না: একটি গান শেষে থেমে (বা হাততালির পরে) নতুন সুর/তাল/কথা শুরু হলে সেটা নতুন গান।
 গানের আগে-পরের কথাবার্তা, সাউন্ড চেক, লম্বা বিরতি বাদ। অডিওর একেবারে শুরুতে বা শেষে কেটে যাওয়া গান হলে partial:true দাও।
 ${HOOK_RULE}
 শুধু এই JSON দাও: [{"start":35.0,"end":290.0,"partial":false,"hook":"শিরোনাম"}]` }]);
@@ -46,7 +46,7 @@ async function findReels(audio, n, used = []) {
   const r = await gemini([{ inline_data: { mime_type: 'audio/mp3', data: fs.readFileSync(audio).toString('base64') } }, { text:
 `এটি একটি লাইভ কনসার্টের একটি গানের পুরো অডিও (মোট ${len} সেকেন্ড)। ফেসবুক রিলের জন্য এই গানের ভেতর থেকে যত বেশি ভালো অংশ পাও বেছে নাও (সর্বোচ্চ ${n}টি), পরস্পর ওভারল্যাপ নয়।
 নিয়ম: প্রতিটি অংশ ২০-৫৫ সেকেন্ড, গানের জমজমাট জায়গা (কোরাস, অন্তরা, দর্শকের গলা মেলানো, দারুণ বাজনা), লাইনের মাঝখানে শুরু বা শেষ নয়। একই লাইন বারবার এলে আলাদা জায়গা নাও।
-প্রতিটির জন্য ${HOOK_RULE}${used.length ? `\nএই শিরোনামগুলো আগেই নেওয়া হয়েছে, এগুলোর মতো বা কাছাকাছি কিছু দেবে না: ${used.join(' | ')}` : ''}
+প্রতিটির জন্য ${HOOK_RULE}${used.length ? `\nএই শিরোনামগুলো অন্য রিলে আগেই ব্যবহার হয়েছে। এগুলোর কোনোটি হুবহু বা প্রায় একই দেবে না, প্রতিটি নতুন করে লিখবে: ${used.join(' | ')}` : ''}
 আর হুবহু গানের কথার সাবটাইটেল দাও (যা স্পষ্ট শোনা যায় শুধু তাই; অস্পষ্ট হলে বাদ), প্রতিটি সর্বোচ্চ ৮-১০ শব্দ, সময় অংশের শুরু থেকে সেকেন্ডে।
 শুধু এই JSON দাও: [{"start":12.5,"end":48.0,"hook":"শিরোনাম","subs":[{"s":0.0,"e":2.6,"t":"কথা"}]}]` }]);
   const keep = [];
@@ -162,7 +162,13 @@ function cutSong(src, s, file) {
       const a = `${B}/song${i}.mp3`;
       ff(['-ss', String(s.start), '-t', String(s.end - s.start), '-i', src, '-vn', '-ac', '1', '-ar', '16000', '-b:a', '32k', a]);
       const n = Math.max(2, Math.min(8, Math.floor((s.end - s.start) / 45)));
-      s.reels = await findReels(a, n, [...full.map(x => x.hook), ...full.flatMap(x => (x.reels || []).map(r => r.hook))]).catch(e => { s.reels_error = e.message; return []; });
+      const norm = h => h.replace(/[\s,।'"‘’-]/g, '');
+      const used = [...full.map(x => x.hook), ...full.flatMap(x => (x.reels || []).map(r => r.hook))];
+      const dup = rs => rs.filter(r => used.some(u => norm(u) === norm(r.hook)) || rs.some(o => o !== r && norm(o.hook) === norm(r.hook)));
+      s.reels = await findReels(a, n, used).catch(e => { s.reels_error = e.message; return []; });
+      if (dup(s.reels).length) s.reels = await findReels(a, n, used).catch(() => s.reels);
+      // Still a repeated headline: that reel is left out rather than going up with a copied headline.
+      { const seen = new Set(used.map(norm)); s.reels = s.reels.filter(r => { const k = norm(r.hook); if (!k || seen.has(k)) return false; seen.add(k); return true; }); }
       console.log(`song ${i + 1}: ${mmss(s.start)}-${mmss(s.end)} reels ${s.reels.length}`);
     }
     plan = { drive: id, made: new Date().toISOString(), duration_s: Math.round(total), songs: full };
