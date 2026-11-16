@@ -82,8 +82,14 @@ async function download(video, token) {
       for (const v of process.env.CONCERT_PLAN.split(',').map(x => x.trim()).filter(Boolean)) {
         let file, url;
         try { ({ file, url } = await download(v, main.token)); } catch (e) { log(`download ${v}: ${e.message}`); continue; }
-        const clips = await planClips(file, W, Number(process.env.CONCERT_MAX || (POD ? 40 : NEWS ? 15 : 20)), POD ? 'podcast' : NEWS ? 'news' : 'concert').catch(e => (log(`plan ${v}: ${e.message}`), []));
+        const clips = await planClips(file, W, Number(process.env.CONCERT_MAX || (POD ? 40 : NEWS ? 40 : 20)), POD ? 'podcast' : NEWS ? 'news' : 'concert').catch(e => (log(`plan ${v}: ${e.message}`), []));
         log(`plan ${v}: ${clips.length} clips: ${clips.map(c => `${Math.round(c.start)}-${Math.round(c.end)} ${c.hook}`).join(' | ')}`);
+        // Re-planning a video already used (owner 2026-11-17: as many reels as possible from the সংসদ live): skip parts that
+        // overlap a reel already posted or queued from it.
+        const used = [...(st.done || []).filter(d => d && d.video === v).map(d => [d.start, d.start + 40]), ...st.queue.filter(q => q.video === v).map(q => [q.clip.start, q.clip.end])];
+        const fresh = clips.filter(c => !used.some(([a, b]) => Math.min(b, c.end) - Math.max(a, c.start) > 8));
+        if (fresh.length < clips.length) log(`plan ${v}: ${clips.length - fresh.length} clips overlap earlier reels, skipped`);
+        clips.splice(0, clips.length, ...fresh);
         for (const c of clips) found.push({ video: v, url, ...(POD ? { kind: 'podcast' } : NEWS ? { kind: 'news' } : {}), clip: { ...c, tag: TAG, foot: FOOT, cut: Number(process.env.CONCERT_CUT || 0), ...(POD ? { wide: true, subs: [] } : {}) }, ...(HOLD ? { hold: true } : {}) });
       }
       // The package-clip pipeline had already queued second reels from these lives: fold them in so they go to all 3 Pages at good times.
