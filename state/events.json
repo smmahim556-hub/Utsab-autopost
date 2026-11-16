@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-16T09:07:17.701Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-16T09:07:28.433Z",
-    "text": "mirror: 872606492607357_122150000181140193 (video) -> Digital 1513019377394319"
-  },
-  {
-    "at": "2026-11-16T09:09:01.690Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1117431794467573\"}"
-  },
-  {
-    "at": "2026-11-16T09:09:11.364Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1734452668692046\"}"
-  },
-  {
     "at": "2026-11-16T09:10:57.469Z",
     "text": "posted to Page 872606492607357: 872606492607357_122150001333140193 (https://utsabtv.com/not-depend-on-ai-focus-knowledge-education-minister)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-16T10:43:49.840Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2264091094135075\"}"
+  },
+  {
+    "at": "2026-11-16T10:55:12.104Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150012643140193 ()"
+  },
+  {
+    "at": "2026-11-16T10:55:19.969Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"29744327515255149\"}"
+  },
+  {
+    "at": "2026-11-16T10:55:24.190Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128078791459930 ()"
+  },
+  {
+    "at": "2026-11-16T10:55:28.208Z",
+    "text": "story on Page 1276101408920358 FAILED: fetch failed"
   }
 ]
