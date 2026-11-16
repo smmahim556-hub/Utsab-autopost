@@ -27,8 +27,18 @@ const reelDesc = hook => `${hook}\n\nউৎসব টিভির কনসা�
 const fmt = t => new Date(t).toLocaleString('en-GB', { timeZone: 'Asia/Dhaka', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
 const mmss = s => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
 
-const HOOK_RULE = `শিরোনাম (সর্বোচ্চ ১০ শব্দ) যা শুনছ তার ভিত্তিতে: গানের মেজাজ, বাজনা, গায়কী আর দর্শকের সাড়া। ভিডিওর ছোট মঞ্চ, তাই 'হাজারো দর্শক' ধরনের অতিরঞ্জন নয়। গানের নাম, শিল্পীর নাম বা গানের কথা শিরোনামে দেবে না, অনুমানে কিছু বানাবে না। প্রতিটি শিরোনাম আলাদা ধাঁচের।`;
+const HOOK_RULE = `বাংলায় শিরোনাম (সর্বোচ্চ ১০ শব্দ) যা শুনছ তার ভিত্তিতে: গানের মেজাজ, বাজনা, গায়কী আর দর্শকের সাড়া। ভিডিওর ছোট মঞ্চ, তাই 'হাজারো দর্শক' ধরনের অতিরঞ্জন নয়। গানের নাম, শিল্পীর নাম বা গানের কথা শিরোনামে দেবে না, অনুমানে কিছু বানাবে না। প্রতিটি শিরোনাম আলাদা ধাঁচের।`;
 
+// Gemini sometimes returns nothing, or English text: up to 3 tries, a result counts only with Bengali headlines.
+const BN = /[\u0980-\u09FF]/;
+async function retry(fn, ok) {
+  let last = [], err;
+  for (let i = 0; i < 3; i++) {
+    try { last = await fn(); if (ok(last)) return last; } catch (e) { err = e; }
+  }
+  if (last.length) return last;
+  throw err || new Error('no result');
+}
 async function findSongs(audio, off, total) {
   const len = Math.round(secs(audio));
   const r = await gemini([{ inline_data: { mime_type: 'audio/mp3', data: fs.readFileSync(audio).toString('base64') } }, { text:
@@ -142,7 +152,7 @@ function cutSong(src, s, file) {
     for (let off = 0, i = 0; off < total - 30; off += 1500, i++) {
       const a = `${B}/part${i}.mp3`;
       ff(['-ss', String(off), '-t', '1800', '-i', audio, '-c', 'copy', a]);
-      const got = await findSongs(a, off, total).catch(e => { out.steps[`songs${i}_error`] = e.message; return []; });
+      const got = await retry(() => findSongs(a, off, total), r => r.length && r.every(x => BN.test(x.hook))).catch(e => { out.steps[`songs${i}_error`] = e.message; return []; });
       songs.push(...got);
       if (off + 1800 >= total) break;
     }
@@ -168,8 +178,7 @@ function cutSong(src, s, file) {
       const norm = h => h.replace(/[\s,।'"‘’-]/g, '');
       const used = [...full.map(x => x.hook), ...full.flatMap(x => (x.reels || []).map(r => r.hook))];
       const dup = rs => rs.filter(r => used.some(u => norm(u) === norm(r.hook)) || rs.some(o => o !== r && norm(o.hook) === norm(r.hook)));
-      s.reels = await findReels(a, n, used).catch(e => { s.reels_error = e.message; return []; });
-      if (dup(s.reels).length) s.reels = await findReels(a, n, used).catch(() => s.reels);
+      s.reels = await retry(() => findReels(a, n, used), r => r.length && r.every(x => BN.test(x.hook)) && !dup(r).length).catch(e => { s.reels_error = e.message; return []; });
       // Still a repeated headline: that reel is left out rather than going up with a copied headline.
       { const seen = new Set(used.map(norm)); s.reels = s.reels.filter(r => { const k = norm(r.hook); if (!k || seen.has(k)) return false; seen.add(k); return true; }); }
       console.log(`song ${i + 1}: ${mmss(s.start)}-${mmss(s.end)} reels ${s.reels.length}`);
@@ -194,6 +203,7 @@ function cutSong(src, s, file) {
     const lines = [`# Noble Man concert: ${full.length} full songs, ${full.reduce((a, s) => a + s.reels.length, 0)} reels\n`];
     for (const [i, s] of full.entries()) {
       const n = String(i + 1).padStart(2, '0');
+      if (!hasVideo) { try { fs.unlinkSync(path.join(PV, `song${n}.jpg`)); } catch {} }
       if (hasVideo) ff(['-ss', String((s.start + s.end) / 2), '-i', src, '-frames:v', '1', '-vf', 'scale=360:-2', path.join(PV, `song${n}.jpg`)]);
       lines.push(`\n## গান ${i + 1} (${mmss(s.start)}-${mmss(s.end)}, ${mmss(s.end - s.start)}) | ${fmt(s.at)}\n${s.hook}\n`);
       for (const [j, r] of s.reels.entries()) lines.push(`- রিল ${j + 1} | ${fmt(r.at)} | গানের ${mmss(r.start)}-${mmss(r.end)} | ${r.hook}`);
