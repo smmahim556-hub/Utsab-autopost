@@ -1,13 +1,11 @@
 {
  "drive": "1U-9gQYkiHGiqP-dy4XZR7DgsIPIrorIW",
  "steps": {
-  "download_bytes": 12782358732,
   "duration_s": 4251,
-  "songs1_error": "Gemini gave no clip plan",
-  "songs_found": 10,
-  "songs": 9,
-  "reels": 14
+  "songs_found": 16,
+  "songs": 13,
+  "reels": 51
  },
  "posts": {},
- "at": "2026-11-16T20:02:15.005Z"
+ "at": "2026-11-16T20:12:20.228Z"
 }
