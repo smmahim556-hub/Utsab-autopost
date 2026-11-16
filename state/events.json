@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-16T08:10:51.390Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149994133140193 ()"
-  },
-  {
-    "at": "2026-11-16T08:10:58.024Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1813987566601254\"}"
-  },
-  {
     "at": "2026-11-16T08:11:01.289Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122128044573459930 ()"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-16T09:05:05.478Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1164512989773451\"}"
+  },
+  {
+    "at": "2026-11-16T09:07:17.701Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-16T09:07:28.433Z",
+    "text": "mirror: 872606492607357_122150000181140193 (video) -> Digital 1513019377394319"
   }
 ]
