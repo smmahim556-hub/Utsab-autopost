@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-16T09:01:06.299Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2086653595319922\"}"
-  },
-  {
     "at": "2026-11-16T09:01:28.129Z",
     "text": "posted to Page 872606492607357: 872606492607357_122149999335140193 (https://utsabtv.com/ziaul-ahsan-handcuffs-bulletproof-jacket-tribunal-criticism)"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-16T10:03:05.917Z",
     "text": "album on Page 1276101408920358: 1276101408920358_122128066491459930 https://utsabtv.com/iran-warns-preemptive-strike-not-cuba-venezuela-us"
+  },
+  {
+    "at": "2026-11-16T10:08:22.690Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
