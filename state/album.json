@@ -54,7 +54,8 @@
     "https://utsabtv.com/portugal-crushed-4-1-denmark-first-match-without-ronaldo",
     "https://utsabtv.com/haaland-sets-record-beyond-messi-ronaldo-66-goals-60-matches",
     "https://utsabtv.com/netanyahu-cannot-stay-prime-minister-one-more-minute-eisenkot",
-    "https://utsabtv.com/iran-warns-preemptive-strike-not-cuba-venezuela-us"
+    "https://utsabtv.com/iran-warns-preemptive-strike-not-cuba-venezuela-us",
+    "https://utsabtv.com/habiganj-madhabpur-60kg-ganja-seized-private-car-three-arrested"
   ],
   "date": "2026-11-16",
   "done": {
@@ -65,11 +66,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/netanyahu-cannot-stay-prime-minister-one-more-minute-eisenkot",
-    "960": "https://utsabtv.com/iran-warns-preemptive-strike-not-cuba-venezuela-us"
+    "960": "https://utsabtv.com/iran-warns-preemptive-strike-not-cuba-venezuela-us",
+    "1200": "https://utsabtv.com/habiganj-madhabpur-60kg-ganja-seized-private-car-three-arrested"
   },
   "failedAt": 1793700193463
 }
