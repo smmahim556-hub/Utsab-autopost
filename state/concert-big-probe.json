@@ -1,9 +1,13 @@
 {
  "drive": "1U-9gQYkiHGiqP-dy4XZR7DgsIPIrorIW",
  "steps": {
-  "download_bytes": 2040
+  "download_bytes": 12782358732,
+  "duration_s": 4251,
+  "songs1_error": "Gemini gave no clip plan",
+  "songs_found": 10,
+  "songs": 9,
+  "reels": 14
  },
  "posts": {},
- "at": "2026-11-15T20:54:25.021Z",
- "error": "download failed (2040 bytes): Drive download quota exceeded, try again later"
+ "at": "2026-11-16T20:02:15.005Z"
 }
