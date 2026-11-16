@@ -1,5 +1,21 @@
 [
   {
+    "at": "2026-11-15T22:06:15.366Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1161449006576505\"}"
+  },
+  {
+    "at": "2026-11-15T22:11:09.858Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1089556377442949\"}"
+  },
+  {
+    "at": "2026-11-15T22:11:17.827Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1487844246548892\"}"
+  },
+  {
+    "at": "2026-11-15T22:16:01.882Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1369490948464449\"}"
+  },
+  {
     "at": "2026-11-15T22:16:11.273Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1682503579884453\"}"
   },
@@ -136,27 +152,11 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1125502493444993\"}"
   },
   {
-    "at": "2026-11-16T02:01:50.745Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149961841140193 ()"
+    "at": "2026-11-16T02:12:23.974Z",
+    "text": "weather reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149962537140193\"}"
   },
   {
-    "at": "2026-11-16T02:01:57.198Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1458253412307157\"}"
-  },
-  {
-    "at": "2026-11-16T02:02:01.316Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122127987717459930 ()"
-  },
-  {
-    "at": "2026-11-16T02:02:08.848Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1851543556016558\"}"
-  },
-  {
-    "at": "2026-11-16T02:02:13.005Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122112552189533116 ()"
-  },
-  {
-    "at": "2026-11-16T02:02:19.880Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1165750842695492\"}"
+    "at": "2026-11-16T02:12:34.238Z",
+    "text": "weather reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122127989487459930\"}"
   }
 ]
