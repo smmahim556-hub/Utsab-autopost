@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-16T09:04:58.088Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122128055181459930 (https://utsabtv.com/phuket-thailand-building-fire-11-killed-16-injured)"
-  },
-  {
-    "at": "2026-11-16T09:05:05.478Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1164512989773451\"}"
-  },
-  {
     "at": "2026-11-16T09:07:17.701Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-16T10:40:33.171Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-16T10:43:43.291Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1831030118036014\"}"
+  },
+  {
+    "at": "2026-11-16T10:43:49.840Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2264091094135075\"}"
   }
 ]
