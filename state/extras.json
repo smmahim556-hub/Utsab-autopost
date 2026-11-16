@@ -20,6 +20,10 @@
     "TOP5": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
@@ -27,7 +31,8 @@
     "QUIZANS",
     "QUIZ",
     "MARKET",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -48,7 +53,8 @@
     "https://utsabtv.com/gazipur-mauchak-dhaka-tangail-highway-blockade-workers-protest",
     "https://utsabtv.com/attack-iran-deep-night-explosions-coastal-sirik",
     "https://utsabtv.com/gazipur-workers-highway-blockade-police-chase-tear-shell",
-    "https://utsabtv.com/pm-physician-visits-hospital-health-minister-condition"
+    "https://utsabtv.com/pm-physician-visits-hospital-health-minister-condition",
+    "https://utsabtv.com/netanyahu-cannot-stay-prime-minister-one-more-minute-eisenkot"
   ],
   "quiz": {
     "q": "বাংলাদেশের একমাত্র পাহাড়ি দ্বীপ কোনটি?",

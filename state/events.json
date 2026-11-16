@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-16T11:56:22.850Z",
-    "text": "mirror: 872606492607357_122150024379140193 (video) -> Digital 1143163478632403"
-  },
-  {
-    "at": "2026-11-16T12:02:32.226Z",
-    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150025633140193\"}"
-  },
-  {
-    "at": "2026-11-16T12:02:40.821Z",
-    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122128089003459930\"}"
-  },
-  {
-    "at": "2026-11-16T12:12:30.978Z",
-    "text": "mirror: skip live 872606492607357_1690294289324263"
-  },
-  {
     "at": "2026-11-16T12:20:10.303Z",
     "text": "posted to Page 872606492607357: 872606492607357_122150029197140193 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-16T14:06:39.142Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"29491112957180725\"}"
+  },
+  {
+    "at": "2026-11-16T14:31:29.349Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150052711140193 (https://utsabtv.com/netanyahu-cannot-stay-prime-minister-one-more-minute-eisenkot)"
+  },
+  {
+    "at": "2026-11-16T14:31:37.108Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1859151128656448\"}"
+  },
+  {
+    "at": "2026-11-16T14:31:43.363Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128117359459930 (https://utsabtv.com/netanyahu-cannot-stay-prime-minister-one-more-minute-eisenkot)"
+  },
+  {
+    "at": "2026-11-16T14:31:50.741Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1070984825956050\"}"
   }
 ]
