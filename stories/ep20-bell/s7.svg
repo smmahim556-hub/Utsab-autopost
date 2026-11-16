@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1920" width="1080" height="1920"><style>:where([class]:not([class=''])){transform-box:fill-box}
+.drift{animation:drift 9s linear infinite}@keyframes drift{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+.sway{transform-origin:50% 100%;animation:sway 3s ease-in-out infinite}@keyframes sway{50%{transform:rotate(2deg)}}
+.breathe{transform-origin:50% 100%;animation:breathe 2.4s ease-in-out infinite}@keyframes breathe{50%{transform:scale(1.015,1.025)}}
+.pop{transform-origin:center;animation:pop .6s cubic-bezier(.3,1.7,.5,1) both}@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.twinkle{transform-origin:center;animation:tw 1.6s ease-in-out infinite}@keyframes tw{50%{transform:scale(.5);opacity:.4}}
+.spin{transform-origin:center;animation:spin 20s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.bob{transform-origin:center;animation:bob 1.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-22px)}}
+.shake{transform-origin:50% 100%;animation:shake .5s ease-in-out infinite}@keyframes shake{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.wave{transform-origin:20% 90%;animation:wave .6s ease-in-out infinite alternate}@keyframes wave{to{transform:rotate(8deg)}}
+</style><rect width="1080" height="1920" fill="#e8f5e9"/>
+<rect y="1330" width="1080" height="590" fill="#a5d6a7" stroke="#3b2a20" stroke-width="6"/>
+<rect x="148" y="700" width="24" height="630" fill="#6d4c41" stroke="#3b2a20" stroke-width="4"/><rect x="90" y="720" width="140" height="18" fill="#6d4c41" stroke="#3b2a20" stroke-width="3"/><rect x="528" y="700" width="24" height="630" fill="#6d4c41" stroke="#3b2a20" stroke-width="4"/><rect x="470" y="720" width="140" height="18" fill="#6d4c41" stroke="#3b2a20" stroke-width="3"/><rect x="908" y="700" width="24" height="630" fill="#6d4c41" stroke="#3b2a20" stroke-width="4"/><rect x="850" y="720" width="140" height="18" fill="#6d4c41" stroke="#3b2a20" stroke-width="3"/>
+<path d="M160 730 Q350 850 540 730" fill="none" stroke="#212121" stroke-width="8"/><path d="M540 730 Q730 850 920 730" fill="none" stroke="#212121" stroke-width="8"/>
+<g transform="translate(540,230) rotate(-2)"><g class="pop" style="animation-delay:0.2s"><rect x="-249.5" y="-62.699999999999996" width="499" height="105.60000000000001" rx="23.099999999999998" fill="#fff" stroke="#3b2a20" stroke-width="6"/><text x="0" y="19.8" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="66" fill="#1b5e20">শহর থেকে শহরে</text></g></g></svg>
