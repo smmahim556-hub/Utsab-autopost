@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-16T01:15:27.793Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1484835277084412\"}"
-  },
-  {
-    "at": "2026-11-16T01:20:35.905Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1348260131715051\"}"
-  },
-  {
     "at": "2026-11-16T01:20:42.009Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1154673283917717\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-16T04:02:07.917Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1141439852194693\"}"
+  },
+  {
+    "at": "2026-11-16T04:04:32.052Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149973043140193\"}"
+  },
+  {
+    "at": "2026-11-16T04:04:39.729Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122128004193459930\"}"
   }
 ]
