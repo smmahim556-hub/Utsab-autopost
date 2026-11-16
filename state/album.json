@@ -52,27 +52,18 @@
     "https://utsabtv.com/hsc-supplementary-reassessment-result-december",
     "https://utsabtv.com/pm-physician-visits-hospital-health-minister-condition",
     "https://utsabtv.com/portugal-crushed-4-1-denmark-first-match-without-ronaldo",
-    "https://utsabtv.com/haaland-sets-record-beyond-messi-ronaldo-66-goals-60-matches"
+    "https://utsabtv.com/haaland-sets-record-beyond-messi-ronaldo-66-goals-60-matches",
+    "https://utsabtv.com/netanyahu-cannot-stay-prime-minister-one-more-minute-eisenkot"
   ],
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "done": {
     "720": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "960": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "1200": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/pm-physician-visits-hospital-health-minister-condition",
-    "960": "https://utsabtv.com/portugal-crushed-4-1-denmark-first-match-without-ronaldo",
-    "1200": "https://utsabtv.com/haaland-sets-record-beyond-messi-ronaldo-66-goals-60-matches"
+    "720": "https://utsabtv.com/netanyahu-cannot-stay-prime-minister-one-more-minute-eisenkot"
   },
   "failedAt": 1793700193463
 }
