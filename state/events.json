@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-16T09:01:28.129Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149999335140193 (https://utsabtv.com/ziaul-ahsan-handcuffs-bulletproof-jacket-tribunal-criticism)"
-  },
-  {
-    "at": "2026-11-16T09:01:34.152Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1156465503608134\"}"
-  },
-  {
-    "at": "2026-11-16T09:01:41.609Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122128054065459930 (https://utsabtv.com/ziaul-ahsan-handcuffs-bulletproof-jacket-tribunal-criticism)"
-  },
-  {
-    "at": "2026-11-16T09:01:48.865Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1013168481830151\"}"
-  },
-  {
     "at": "2026-11-16T09:04:43.722Z",
     "text": "posted to Page 872606492607357: 872606492607357_122150000013140193 (https://utsabtv.com/phuket-thailand-building-fire-11-killed-16-injured)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-16T10:08:22.690Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-16T10:14:18.716Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150007615140193 ()"
+  },
+  {
+    "at": "2026-11-16T10:14:24.290Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1161957669678032\"}"
+  },
+  {
+    "at": "2026-11-16T10:14:28.032Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128069233459930 ()"
+  },
+  {
+    "at": "2026-11-16T10:14:33.809Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1122307294122928\"}"
   }
 ]
