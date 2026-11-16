@@ -5,7 +5,7 @@
 //   default: post every queued reel whose time has come (render, then all 3 Pages, full-video link in the first comment).
 const fs = require('fs'), path = require('path');
 const { chromium } = require('playwright');
-const { planClips, renderClip, ff } = require('../clips');
+const { planClips, renderClip, ff, secs } = require('../clips');
 const GRAPH = `https://graph.facebook.com/${process.env.GRAPH_VERSION || 'v26.0'}`;
 const ROOT = path.join(__dirname, '..'), FILE = path.join(ROOT, 'state', 'concert.json'), W = '/tmp/concert';
 const ENT = process.env.ENT_PAGE_ID === undefined ? '1406430145892267' : process.env.ENT_PAGE_ID;
@@ -82,7 +82,15 @@ async function download(video, token) {
       for (const v of process.env.CONCERT_PLAN.split(',').map(x => x.trim()).filter(Boolean)) {
         let file, url;
         try { ({ file, url } = await download(v, main.token)); } catch (e) { log(`download ${v}: ${e.message}`); continue; }
-        const clips = await planClips(file, W, Number(process.env.CONCERT_MAX || (POD ? 40 : NEWS ? 40 : 20)), POD ? 'podcast' : NEWS ? 'news' : 'concert').catch(e => (log(`plan ${v}: ${e.message}`), []));
+        // Long lives (the সংসদ session runs 1-2 hours) go to Gemini in 40-minute parts: one request takes ~20 MB of audio.
+        const clips = [], dur = secs(file), max = Number(process.env.CONCERT_MAX || (POD ? 40 : NEWS ? 40 : 20));
+        for (let off = 0, k = 0; off < dur - 30; off += 2400, k++) {
+          let part = file;
+          if (dur > 50 * 60) { part = `${W}/${v.replace(/[^\w-]/g, '_')}-p${k}.mp4`; ff(['-ss', String(off), '-t', '2400', '-i', file, '-c', 'copy', part]); }
+          const got = await planClips(part, W, max, POD ? 'podcast' : NEWS ? 'news' : 'concert').catch(e => (log(`plan ${v} part ${k}: ${e.message}`), []));
+          clips.push(...got.map(c => ({ ...c, start: c.start + (part === file ? 0 : off), end: c.end + (part === file ? 0 : off), ...(c.pre ? { pre: { s: c.pre.s + (part === file ? 0 : off), e: c.pre.e + (part === file ? 0 : off) } } : {}) })));
+          if (part === file) break;
+        }
         log(`plan ${v}: ${clips.length} clips: ${clips.map(c => `${Math.round(c.start)}-${Math.round(c.end)} ${c.hook}`).join(' | ')}`);
         // Re-planning a video already used (owner 2026-11-17: as many reels as possible from the সংসদ live): skip parts that
         // overlap a reel already posted or queued from it.
