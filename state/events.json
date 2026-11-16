@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-16T06:01:54.417Z",
-    "text": "album on Page 1276101408920358: 1276101408920358_122128021155459930 https://utsabtv.com/netanyahu-cannot-stay-prime-minister-one-more-minute-eisenkot"
-  },
-  {
-    "at": "2026-11-16T06:11:14.983Z",
-    "text": "mirror: 872606492607357_122149983453140193 (video) -> Digital 1813683186558990"
-  },
-  {
-    "at": "2026-11-16T06:14:17.114Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122149983879140193 ()"
-  },
-  {
-    "at": "2026-11-16T06:14:23.135Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"973123095488039\"}"
-  },
-  {
     "at": "2026-11-16T06:14:26.031Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122128022823459930 ()"
   },
@@ -156,7 +140,23 @@
     "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122149993305140193\"}"
   },
   {
-    "at": "2026-11-16T08:02:09.945Z",
-    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122128040967459930\"}"
+    "at": "2026-11-16T08:01:40.091Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1825413608498156\"}"
+  },
+  {
+    "at": "2026-11-16T08:01:43.544Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128040763459930 ()"
+  },
+  {
+    "at": "2026-11-16T08:01:50.961Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1161472226731674\"}"
+  },
+  {
+    "at": "2026-11-16T08:04:06.963Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-16T08:04:12.910Z",
+    "text": "mirror: 872606492607357_122149992861140193 (video) -> Digital 3090071711339313"
   }
 ]
