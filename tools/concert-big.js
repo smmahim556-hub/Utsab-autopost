@@ -134,7 +134,7 @@ function cutSong(src, s, file) {
   const src = `${B}/src.mp4`, audio = `${B}/all.mp3`;
   // Drive allows only a few downloads of a 12.8 GB file a day (2026-11-15: 'Quota exceeded' after 3), so the show's audio is
   // kept in the Actions cache: re-planning needs no download; only posting (the video itself) downloads again.
-  const needVideo = !DRY || !fs.existsSync(audio);
+  const needVideo = process.env.REHOOK === '1' ? process.env.REHOOK_VIDEO === '1' : (!DRY || !fs.existsSync(audio));
   if (needVideo && !fs.existsSync(src)) {
     execFileSync('curl', ['-sSL', '--retry', '3', '-o', src, `https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t`], { stdio: 'inherit' });
     out.steps.download_bytes = fs.statSync(src).size; save();
@@ -145,6 +145,50 @@ function cutSong(src, s, file) {
   const total = secs(hasVideo ? src : audio);
   out.steps.duration_s = Math.round(total); save();
 
+  // REHOOK=1 (owner 2026-11-16: the mood headlines were not relevant, 'gan sune ganer theke headline'): keep the saved songs and
+  // reels, but Gemini listens to each song again and writes every headline from the words actually sung in that part.
+  if (process.env.REHOOK === '1') {
+    const plan = JSON.parse(fs.readFileSync(PLAN, 'utf8'));
+    if (plan.drive !== id) throw new Error('no saved plan for this drive id');
+    const usedLines = [];
+    for (const [i, s] of plan.songs.entries()) {
+      const a = `${B}/rh${i}.mp3`;
+      ff(['-ss', String(s.start), '-t', String(s.end - s.start), '-i', hasVideo ? src : audio, '-vn', '-ac', '1', '-ar', '16000', '-b:a', hasVideo ? '48k' : '16k', a]);
+      const ranges = s.reels.map((r, j) => `রিল ${j + 1}: ${Math.round(r.start)}-${Math.round(r.end)} সেকেন্ড`).join('\n');
+      const ask = () => gemini([{ inline_data: { mime_type: 'audio/mp3', data: fs.readFileSync(a).toString('base64') } }, { text:
+`এটি একটি লাইভ কনসার্টের একটি বাংলা গানের পুরো অডিও (মোট ${Math.round(secs(a))} সেকেন্ড)। মন দিয়ে গানের কথা শোনো।
+ফেসবুকের জন্য হেডলাইন বানাতে হবে গানের কথা থেকে, যাতে মানুষ দেখেই চিনে ফেলে আর থেমে দেখে।
+১) পুরো গানের জন্য: গানের সবচেয়ে পরিচিত/মুখে মুখে ফেরা লাইনটি (সাধারণত কোরাস/মুখড়া) হুবহু যেমন গাওয়া হয়েছে।
+২) নিচের প্রতিটি রিলের সময়ের ভেতরে স্পষ্ট গাওয়া সবচেয়ে আকর্ষণীয় লাইনটি হুবহু (ওই সময়ের ভেতরে যা গাওয়া হয়েছে শুধু তাই; একই গানের রিলগুলোতে যতটা সম্ভব আলাদা লাইন):
+${ranges || '(কোনো রিল নেই)'}
+প্রতিটির জন্য hook: সেই লাইনটি উদ্ধৃতিচিহ্নে, তারপর ছোট আকর্ষণীয় অংশ (৩-৬ শব্দ, যেমন: লাইভে শুনুন একবার / কনসার্টে গলা মেলালেন দর্শক / মন ছুঁয়ে যাবে)। প্রতিটি hook আলাদা ধাঁচের। মিথ্যা বা অতিরঞ্জন নয়, গানের বা শিল্পীর নাম নয়।
+কোনো লাইন স্পষ্ট শোনা না গেলে line ফাঁকা রাখো আর hook-এ ওই অংশে যা হচ্ছে (গিটার সোলো, দর্শকের গলা মেলানো ইত্যাদি) তা লেখো; কথা বানাবে না।
+শুধু এই JSON দাও: {"song":{"line":"...","hook":"..."},"reels":[{"n":1,"line":"...","hook":"..."}]}` }]);
+      let r = null;
+      for (let t = 0; t < 3 && !r; t++) { const x = await ask().catch(() => null); if (x && x.song && BN.test(x.song.hook || '') && (x.reels || []).length >= s.reels.length) r = x; }
+      if (!r) { s.rehook_error = 'no Bengali result'; continue; }
+      s.old_hook = s.old_hook || s.hook; s.hook = r.song.hook.trim(); s.line = (r.song.line || '').trim();
+      s.reels.forEach((rl, j) => { const g = r.reels.find(x => Number(x.n) === j + 1) || r.reels[j]; if (g && BN.test(g.hook || '')) { rl.old_hook = rl.old_hook || rl.hook; rl.hook = g.hook.trim(); rl.line = (g.line || '').trim(); } });
+      console.log(`song ${i + 1}: ${s.hook}`);
+    }
+    fs.writeFileSync(PLAN, JSON.stringify(plan, null, 1));
+    const lines = [`# Noble Man concert: ${plan.songs.length} full songs, ${plan.songs.reduce((x, s) => x + s.reels.length, 0)} reels (headlines from the lyrics)\n`];
+    for (const [i, s] of plan.songs.entries()) {
+      lines.push(`\n## গান ${i + 1} (${mmss(s.start)}-${mmss(s.end)}, ${mmss(s.end - s.start)}) | ${fmt(s.at)}\n${s.hook}${s.rehook_error ? ' (পুরোনো, নতুন হয়নি)' : ''}\n`);
+      for (const [j, r] of s.reels.entries()) lines.push(`- রিল ${j + 1} | ${fmt(r.at)} | গানের ${mmss(r.start)}-${mmss(r.end)} | ${r.hook}`);
+    }
+    fs.writeFileSync(path.join(PV, 'list.md'), lines.join('\n') + '\n');
+    out.steps.rehook = plan.songs.filter(s => !s.rehook_error).length; save();
+    if (hasVideo) {   // a fresh sample with the new headline
+      const s0 = plan.songs.find(s => s.reels.length), r0 = s0.reels[0], seg = `${B}/sample-src.mp4`;
+      ff(['-ss', String(s0.start + r0.start - 1), '-t', String(r0.end - r0.start + 2), '-i', src, '-vf', "scale='if(gt(iw,ih),-2,720)':'if(gt(iw,ih),720,-2)',fps=30", '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-c:a', 'aac', '-b:a', '160k', seg]);
+      const browser = await chromium.launch();
+      try { await renderClip(browser, seg, { start: 1, end: 1 + r0.end - r0.start, hook: r0.hook, subs: r0.subs, tag: 'বিনোদন', foot: 'পুরো গানটি দেখুন উৎসব টিভির পেজে', cut: 0, focus: 'the lead singer' }, '', path.join(PV, 'sample.mp4'), B, 'smp'); }
+      finally { await browser.close(); }
+    }
+    console.log(fs.readFileSync(path.join(PV, 'list.md'), 'utf8'));
+    return;
+  }
   let plan;
   if (DRY || !fs.existsSync(PLAN) || JSON.parse(fs.readFileSync(PLAN, 'utf8')).drive !== id) {
     // 1. Songs: the audio in 30-minute parts (a 60-minute part at 32k was too big for Gemini), 5 minutes overlap so no song is lost at a seam.

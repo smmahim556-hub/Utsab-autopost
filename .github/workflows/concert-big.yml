@@ -5,6 +5,7 @@ on:
       drive_id: { type: string, description: 'Google Drive file id of the concert recording', required: true }
       start_after: { type: string, description: 'Schedule after this Dhaka time (YYYY-MM-DDTHH:MM); empty = after the concert queue', default: '' }
       dry: { type: string, description: '1 = plan only (song list + sample reel), do not post', default: '' }
+      rehook: { type: string, description: '1 = rewrite the saved plan headlines from the lyrics (no posting); 2 = same, with the video for a new sample', default: '' }
 concurrency: concert-big
 permissions:
   contents: write
@@ -34,6 +35,8 @@ jobs:
           DRIVE_ID: ${{ inputs.drive_id }}
           START_AFTER: ${{ inputs.start_after }}
           DRY: ${{ inputs.dry }}
+          REHOOK: ${{ inputs.rehook != '' && '1' || '' }}
+          REHOOK_VIDEO: ${{ inputs.rehook == '2' && '1' || '' }}
       - if: always()
         uses: actions/cache/save@v4
         continue-on-error: true
