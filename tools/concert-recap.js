@@ -11,14 +11,15 @@ const G = 'https://graph.facebook.com/v26.0';
 const APPLY = process.env.APPLY === '1', RELEASE = process.env.RELEASE === '1';
 const EDIT = (process.env.EDIT || '').split(',').filter(Boolean).map(Number);
 // Ends of the two posted reels (done entries keep only the start).
-const POSTED_END = { 'gd:1VWjzshSVkBCCjohLoT5n_uvtn09C0kWW@24.5': 52, 'gd:1EhU6JTEdp44jOCDce3ga0uVYyQ0rGUsD@20': 70 };
+const POSTED_END = {};
 
-const PROMPT = `এটি একটি লাইভ কনসার্টের ছোট একটি অংশের অডিও। মন দিয়ে পুরোটা শোনো।
-এই অংশে আসলে কী শোনা যাচ্ছে তা বুঝে ফেসবুক রিলের জন্য একটি ছোট বাংলা শিরোনাম দাও (৫-৯ শব্দ)।
-শিরোনাম গানের আসল মেজাজ (যেমন উৎসবের, দেশের গান, প্রেমের, বিরহের, মজার, জোশের) আর দর্শকের আসল প্রতিক্রিয়া (গলা মেলানো, হাততালি, চিৎকার) অনুযায়ী হবে।
-নিয়ম: গানের নাম বা শিল্পীর নাম লিখবে না। যা শোনা যাচ্ছে না তা বানাবে না। অতিরঞ্জন নয়। নিশ্চিত না হলে সাধারণ কিন্তু সঠিক শিরোনাম দাও।
-এছাড়া এক লাইনে লেখো কী শুনলে (heard: গানের ধরন, কণ্ঠ, দর্শক), আর গানের মেজাজ এক-দুই শব্দে (mood)।
-শুধু এই JSON দাও: {"hook":"শিরোনাম","mood":"মেজাজ","heard":"যা শুনলাম"}`;
+// Owner 2026-11-17: mood headlines 'kono caption er moddhei pore na'; the headline must come from what is SUNG in the part.
+const PROMPT = `এটি একটি লাইভ কনসার্টের একটি বাংলা গানের ছোট অংশের অডিও। মন দিয়ে গানের কথা শোনো।
+ফেসবুক রিলের হেডলাইন বানাতে হবে এই অংশে গাওয়া কথা থেকে, যাতে মানুষ দেখেই গানটা চিনে ফেলে।
+line: এই অংশে স্পষ্ট গাওয়া সবচেয়ে আকর্ষণীয়/পরিচিত লাইনটি হুবহু যেমন গাওয়া হয়েছে (মুখড়া/কোরাস হলে সবচেয়ে ভালো)।
+hook: সেই লাইনটি উদ্ধৃতিচিহ্নে, তারপর ছোট আকর্ষণীয় অংশ (৩-৬ শব্দ, যেমন: লাইভে শুনুন একবার / কনসার্টে গলা মেলালেন দর্শক / মন ছুঁয়ে যাবে)।
+নিয়ম: কথা বানাবে না; কোনো লাইন স্পষ্ট শোনা না গেলে line ফাঁকা রেখে hook-এ ওই অংশে যা হচ্ছে তা লেখো (গিটার সোলো, দর্শকের গলা মেলানো)। গানের বা শিল্পীর নাম নয়, অতিরঞ্জন নয়।
+শুধু এই JSON দাও: {"line":"...","hook":"...","heard":"যা শুনলাম"}`;
 
 const desc = hook => `${hook}\n\nউৎসব টিভির কনসার্ট থেকে।\n\n#utsabtv #কনসার্ট #বিনোদন #গান`;
 
@@ -51,7 +52,7 @@ const desc = hook => `${hook}\n\nউৎসব টিভির কনসার্
     ff(['-ss', String(j.start), '-t', String(j.end - j.start), '-i', files[id], '-vn', '-ac', '1', '-ar', '16000', '-b:a', '48k', a]);
     let r = null;
     try { r = await gemini([{ inline_data: { mime_type: 'audio/mp3', data: fs.readFileSync(a).toString('base64') } }, { text: PROMPT }]); } catch (e) { r = { error: e.message }; }
-    const item = { posted: j.posted, video: j.video, start: j.start, end: j.end, at: j.at ? new Date(j.at).toISOString() : null, old: j.old, hook: r && r.hook || null, mood: r && r.mood || null, heard: r && r.heard || null, error: r && r.error || null };
+    const item = { posted: j.posted, video: j.video, start: j.start, end: j.end, at: j.at ? new Date(j.at).toISOString() : null, old: j.old, hook: r && r.hook || null, line: r && r.line || null, heard: r && r.heard || null, error: r && r.error || null };
     out.items.push(item);
     console.log(JSON.stringify(item));
     if (APPLY && item.hook) {
