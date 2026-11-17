@@ -57,7 +57,8 @@
     "https://utsabtv.com/iran-warns-preemptive-strike-not-cuba-venezuela-us",
     "https://utsabtv.com/habiganj-madhabpur-60kg-ganja-seized-private-car-three-arrested",
     "https://utsabtv.com/pope-leo-peru-amazon-visit-justice-for-environmental-defenders",
-    "https://utsabtv.com/london-nahid-islam-reception-attack-awami-league-activists-five-injured"
+    "https://utsabtv.com/london-nahid-islam-reception-attack-awami-league-activists-five-injured",
+    "https://utsabtv.com/former-mayor-saeed-khokon-arrested-gulshan-baridhara"
   ],
   "date": "2026-11-17",
   "done": {
@@ -68,11 +69,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/pope-leo-peru-amazon-visit-justice-for-environmental-defenders",
-    "960": "https://utsabtv.com/london-nahid-islam-reception-attack-awami-league-activists-five-injured"
+    "960": "https://utsabtv.com/london-nahid-islam-reception-attack-awami-league-activists-five-injured",
+    "1200": "https://utsabtv.com/former-mayor-saeed-khokon-arrested-gulshan-baridhara"
   },
   "failedAt": 1793700193463
 }
