@@ -25,13 +25,73 @@ async function scribe(file) {
 }
 const norm = s => String(s || '').replace(/[“”"'‘’,.।!?\-–—]/g, '').replace(/\s+/g, ' ').trim();
 
+// APPLY=1 (owner 2026-11-17 'Duto miliye'): rewrite every headline of the saved plan, mixing both kinds: reels alternate
+// between a verified lyric line (option 2) and a topic headline (option 3); a lyric line not verbatim in the ElevenLabs
+// transcript falls back to the topic one. Subtitles come from the ElevenLabs words. Parts that are talk, not a song, are dropped.
+async function apply(plan, src) {
+  const PV2 = path.join(ROOT, 'preview', 'concert-big'), times = plan.songs.flatMap(s => [s.at, ...s.reels.map(r => r.at)]).sort((a, b) => a - b);
+  const keep = [];
+  for (const [i, s] of plan.songs.entries()) {
+    const song = `${B}/s${i}.mp3`, it = { song: i + 1 };
+    out.items.push(it);
+    ff(['-ss', String(s.start), '-t', String(s.end - s.start), '-i', src, '-vn', '-ac', '1', '-ar', '44100', '-b:a', '96k', song]);
+    const tr = await scribe(song);
+    if (!tr) { it.error = 'no transcript'; save(); keep.push(s); continue; }
+    it.transcript = tr.text.slice(0, 600);
+    const parts = s.reels.map(r => tr.words.filter(w => w.start >= r.start - 0.5 && w.end <= r.end + 0.5));
+    let g = null;
+    for (let t = 0; t < 3 && !g; t++) {
+      const x = await gemini([{ inline_data: { mime_type: 'audio/mp3', data: fs.readFileSync(song).toString('base64') } }, { text:
+`এটি একটি লাইভ কনসার্টের রেকর্ডিংয়ের একটি অংশ। একটি স্পিচ-টু-টেক্সট টুল এর কথা এভাবে লিখেছে:
+পুরো অংশ: ${tr.text}
+${parts.map((p, j) => `রিল ${j + 1}: ${p.map(w => w.text).join(' ') || '(কথা নেই)'}`).join('\n')}
+প্রথমে বলো kind: এটা গান হলে "song", আর বেশিরভাগই কথা বলা/ঘোষণা হলে "talk"।
+তারপর ফেসবুকের হেডলাইন, প্রতিটি সর্বোচ্চ ১০-১২ শব্দ, অতিরঞ্জন নয়, গানের/শিল্পীর নাম নয়:
+- song.b: গানের কথা উদ্ধৃত না করে গানটি কী নিয়ে (বাবা, মা, প্রেম, বিরহ, শহর, দেশ...) তা দিয়ে আকর্ষণীয় হেডলাইন।
+- প্রতিটি রিলের জন্য line: ওই রিলের লেখা থেকে একটি অর্থপূর্ণ লাইন, হুবহু ওই লেখার শব্দ ক্রমানুসারে (কোনো শব্দ বদলাবে বা বানাবে না; লেখা অর্থহীন হলে ফাঁকা); a: সেই লাইন উদ্ধৃতিচিহ্নে + ৩-৫ শব্দের ছোট টান; b: কথা উদ্ধৃত না করে গানের বিষয় বা ওই মুহূর্ত নিয়ে হেডলাইন। সব হেডলাইন আলাদা ধাঁচের, একটার সঙ্গে আরেকটা যেন না মেলে।
+শুধু এই JSON: {"kind":"song","song":{"b":"..."},"reels":[{"n":1,"line":"...","a":"...","b":"..."}]}` }]).catch(() => null);
+      if (x && x.song && BN.test(x.song.b || '') && (x.reels || []).length >= s.reels.length) g = x;
+    }
+    if (!g) { it.error = 'no headlines'; save(); keep.push(s); continue; }
+    it.kind = g.kind;
+    if (g.kind === 'talk') { it.dropped = true; save(); continue; }
+    s.old_hook = s.old_hook || s.hook; s.hook = g.song.b.trim();
+    s.reels.forEach((r, j) => {
+      const h = g.reels.find(x => Number(x.n) === j + 1) || g.reels[j] || {}, txt = parts[j].map(w => w.text).join(' ');
+      const ok = h.line && norm(txt).includes(norm(h.line)) && BN.test(h.a || '');
+      r.old_hook = r.old_hook || r.hook;
+      r.hook = (ok && (j % 2 === 0 || !BN.test(h.b || ''))) ? h.a.trim() : (BN.test(h.b || '') ? h.b.trim() : r.hook);
+      r.kind = r.hook === (h.a || '').trim() ? 'line' : 'topic'; r.line = ok ? h.line : '';
+      const subs = [];
+      for (let k = 0; k < parts[j].length; k += 6) { const w = parts[j].slice(k, k + 6); subs.push({ s: Math.max(0, w[0].start - r.start), e: w[w.length - 1].end - r.start, t: w.map(x => x.text).join(' ') }); }
+      r.subs = subs;
+    });
+    keep.push(s); save();
+    console.log(`song ${i + 1}: ${s.hook}`);
+  }
+  plan.songs = keep; let k = 0;
+  for (const s of keep) { s.at = times[k++]; for (const r of s.reels) r.at = times[k++]; }
+  plan.rehooked = new Date().toISOString();
+  fs.writeFileSync(PLAN, JSON.stringify(plan, null, 1));
+  const fmt = t => new Date(t).toLocaleString('en-GB', { timeZone: 'Asia/Dhaka', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+  const mmss = x => `${Math.floor(x / 60)}:${String(Math.round(x % 60)).padStart(2, '0')}`;
+  const lines = [`# Noble Man concert: ${keep.length} full songs, ${keep.reduce((x, s) => x + s.reels.length, 0)} reels (lyric line + topic headlines)\n`];
+  for (const [i, s] of keep.entries()) {
+    lines.push(`\n## গান ${i + 1} (${mmss(s.start)}-${mmss(s.end)}) | ${fmt(s.at)}\n${s.hook}\n`);
+    for (const [j, r] of s.reels.entries()) lines.push(`- রিল ${j + 1} | ${fmt(r.at)} | ${r.hook}`);
+  }
+  fs.mkdirSync(PV2, { recursive: true }); fs.writeFileSync(path.join(PV2, 'list.md'), lines.join('\n') + '\n');
+  console.log(lines.join('\n'));
+}
+
 (async () => {
-  fs.mkdirSync(B, { recursive: true }); fs.rmSync(PV, { recursive: true, force: true }); fs.mkdirSync(PV, { recursive: true });
+  fs.mkdirSync(B, { recursive: true }); if (process.env.APPLY !== '1') fs.rmSync(PV, { recursive: true, force: true }); fs.mkdirSync(PV, { recursive: true });
   const plan = JSON.parse(fs.readFileSync(PLAN, 'utf8')), src = `${B}/src.mp4`;
   if (!fs.existsSync(src)) {
     execFileSync('curl', ['-sSL', '--retry', '3', '-o', src, `https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t`], { stdio: 'inherit' });
     if (fs.statSync(src).size < 1e8) { const t = fs.readFileSync(src, 'utf8').slice(0, 300); out.error = /Quota exceeded/.test(t) ? 'Drive quota exceeded' : t; save(); throw new Error(out.error); }
   }
+  if (process.env.APPLY === '1') return apply(plan, src);
   const browser = await chromium.launch();
   try {
     for (const [k, si] of PICK.entries()) {

@@ -6,7 +6,7 @@ on:
       start_after: { type: string, description: 'Schedule after this Dhaka time (YYYY-MM-DDTHH:MM); empty = after the concert queue', default: '' }
       dry: { type: string, description: '1 = plan only (song list + sample reel), do not post', default: '' }
       rehook: { type: string, description: '1 = rewrite the saved plan headlines from the lyrics (no posting); 2 = same, with the video for a new sample', default: '' }
-      sample: { type: string, description: '1 = sample reels: ElevenLabs lyric headline vs topic headline (no posting)', default: '' }
+      sample: { type: string, description: '1 = sample reels: ElevenLabs lyric headline vs topic headline; 2 = rewrite all plan headlines that way (no posting)', default: '' }
 concurrency: concert-big
 permissions:
   contents: write
@@ -27,13 +27,14 @@ jobs:
         with:
           path: /mnt/big/all.mp3
           key: concert-big-audio-${{ inputs.drive_id }}
-      - run: node ${{ inputs.sample == '1' && 'tools/concert-sample.js' || 'tools/concert-big.js' }}
+      - run: node ${{ inputs.sample != '' && 'tools/concert-sample.js' || 'tools/concert-big.js' }}
         env:
           FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          APPLY: ${{ inputs.sample == '2' && '1' || '' }}
           DRIVE_ID: ${{ inputs.drive_id }}
           START_AFTER: ${{ inputs.start_after }}
           DRY: ${{ inputs.dry }}
