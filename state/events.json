@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-17T01:17:58.521Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2054750348528957\"}"
-  },
-  {
-    "at": "2026-11-17T01:22:50.812Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2310816489767726\"}"
-  },
-  {
-    "at": "2026-11-17T01:22:58.980Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"3663833043773656\"}"
-  },
-  {
-    "at": "2026-11-17T01:29:15.099Z",
-    "text": "weather বরিশাল FAILED (try 1): fetch failed"
-  },
-  {
     "at": "2026-11-17T01:33:49.455Z",
     "text": "weather বরিশাল FAILED (try 2): fetch failed"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-17T04:03:30.473Z",
     "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122128248081459930\"}"
+  },
+  {
+    "at": "2026-11-17T04:06:08.758Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150112387140193 (https://utsabtv.com/rampura-six-banned-awami-league-activists-arrested)"
+  },
+  {
+    "at": "2026-11-17T04:06:16.773Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1126905610123009\"}"
+  },
+  {
+    "at": "2026-11-17T04:06:24.115Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128248615459930 (https://utsabtv.com/rampura-six-banned-awami-league-activists-arrested)"
+  },
+  {
+    "at": "2026-11-17T04:06:31.771Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1001292696390700\"}"
   }
 ]
