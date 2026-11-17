@@ -55,27 +55,18 @@
     "https://utsabtv.com/haaland-sets-record-beyond-messi-ronaldo-66-goals-60-matches",
     "https://utsabtv.com/netanyahu-cannot-stay-prime-minister-one-more-minute-eisenkot",
     "https://utsabtv.com/iran-warns-preemptive-strike-not-cuba-venezuela-us",
-    "https://utsabtv.com/habiganj-madhabpur-60kg-ganja-seized-private-car-three-arrested"
+    "https://utsabtv.com/habiganj-madhabpur-60kg-ganja-seized-private-car-three-arrested",
+    "https://utsabtv.com/pope-leo-peru-amazon-visit-justice-for-environmental-defenders"
   ],
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "done": {
     "720": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "960": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "1200": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/netanyahu-cannot-stay-prime-minister-one-more-minute-eisenkot",
-    "960": "https://utsabtv.com/iran-warns-preemptive-strike-not-cuba-venezuela-us",
-    "1200": "https://utsabtv.com/habiganj-madhabpur-60kg-ganja-seized-private-car-three-arrested"
+    "720": "https://utsabtv.com/pope-leo-peru-amazon-visit-justice-for-environmental-defenders"
   },
   "failedAt": 1793700193463
 }
