@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-17T10:46:41.654Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1145500341219015\"}"
-  },
-  {
-    "at": "2026-11-17T10:47:33.379Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"3543149965862759\"}"
-  },
-  {
-    "at": "2026-11-17T10:47:40.928Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1470198698389796\"}"
-  },
-  {
-    "at": "2026-11-17T10:49:23.644Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122150154471140193 (https://utsabtv.com/rupur-nuclear-power-plant-350mw-national-grid)"
-  },
-  {
-    "at": "2026-11-17T10:49:31.031Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1687256676411815\"}"
-  },
-  {
-    "at": "2026-11-17T10:49:37.864Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122128335201459930 (https://utsabtv.com/rupur-nuclear-power-plant-350mw-national-grid)"
-  },
-  {
     "at": "2026-11-17T10:49:45.479Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1666060431831097\"}"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-17T12:02:45.749Z",
     "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122128348647459930\"}"
+  },
+  {
+    "at": "2026-11-17T12:23:19.079Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150169201140193 ()"
+  },
+  {
+    "at": "2026-11-17T12:23:54.386Z",
+    "text": "story on Page 872606492607357 FAILED: Graph 872606492607357/photo_stories: {\"code\":1,\"message\":\"An unknown error occurred\",\"error_subcode\":99}"
+  },
+  {
+    "at": "2026-11-17T12:23:58.962Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128351689459930 ()"
+  },
+  {
+    "at": "2026-11-17T12:24:08.001Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1450523663211435\"}"
+  },
+  {
+    "at": "2026-11-17T12:24:12.869Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122113365405533116 ()"
+  },
+  {
+    "at": "2026-11-17T12:24:21.777Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1465508602428637\"}"
   }
 ]
