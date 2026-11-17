@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-17T14:31:58.229Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2630231970774940\"}"
-  },
-  {
-    "at": "2026-11-17T14:32:05.263Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122128369473459930 (https://utsabtv.com/pope-leo-peru-amazon-visit-justice-for-environmental-defenders)"
-  },
-  {
     "at": "2026-11-17T14:32:13.068Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1444676397860871\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-17T15:50:22.845Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1722036662817995\"}"
+  },
+  {
+    "at": "2026-11-17T16:04:51.664Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150203701140193\"}"
+  },
+  {
+    "at": "2026-11-17T16:04:59.202Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122128382985459930\"}"
   }
 ]
