@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1920" width="1080" height="1920"><style>:where([class]:not([class=''])){transform-box:fill-box}
+.drift{animation:drift 9s linear infinite}@keyframes drift{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+.sway{transform-origin:50% 100%;animation:sway 3s ease-in-out infinite}@keyframes sway{50%{transform:rotate(2deg)}}
+.breathe{transform-origin:50% 100%;animation:breathe 2.4s ease-in-out infinite}@keyframes breathe{50%{transform:scale(1.015,1.025)}}
+.pop{transform-origin:center;animation:pop .6s cubic-bezier(.3,1.7,.5,1) both}@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.twinkle{transform-origin:center;animation:tw 1.6s ease-in-out infinite}@keyframes tw{50%{transform:scale(.5);opacity:.4}}
+.spin{transform-origin:center;animation:spin 20s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.bob{transform-origin:center;animation:bob 1.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-22px)}}
+.shake{transform-origin:50% 100%;animation:shake .5s ease-in-out infinite}@keyframes shake{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.wave{transform-origin:20% 90%;animation:wave .6s ease-in-out infinite alternate}@keyframes wave{to{transform:rotate(8deg)}}
+</style><rect width="1080" height="1920" fill="#1a237e"/>
+<g transform="translate(360,700)"><circle r="90" fill="#b2ff59" opacity=".35"/><rect x="-26" y="-110" width="52" height="170" rx="26" fill="#e3f2fd" stroke="#3b2a20" stroke-width="6"/><rect x="-20" y="-10" width="40" height="64" rx="20" fill="#76ff03"/></g><g transform="translate(720,700)"><circle r="90" fill="#b2ff59" opacity=".35"/><rect x="-26" y="-110" width="52" height="170" rx="26" fill="#e3f2fd" stroke="#3b2a20" stroke-width="6"/><rect x="-20" y="-10" width="40" height="64" rx="20" fill="#76ff03"/></g>
+<text x="360" y="920" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="54" fill="#ffffff">পোলোনিয়াম</text><text x="720" y="920" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="54" fill="#ffffff">রেডিয়াম</text>
+<rect y="1330" width="1080" height="590" fill="#283593" stroke="#3b2a20" stroke-width="6"/>
+<g transform="translate(540,230) rotate(-2)"><g class="pop" style="animation-delay:0.2s"><rect x="-329.5" y="-58.9" width="659" height="99.2" rx="21.7" fill="#fff" stroke="#3b2a20" stroke-width="6"/><text x="0" y="18.599999999999998" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="62" fill="#1a237e">দুটি নতুন মৌল, ১৮৯৮</text></g></g></svg>
