@@ -24,11 +24,10 @@
     "1174601738861784",
     "1163856582843552",
     "1690294289324263",
-    "1674291671001527"
+    "1674291671001527",
+    "1477229291139944"
   ],
   "log": [
-    "2026-11-11T18:02:45.224Z comment 1147789251164153: Graph 1147789251164153/comments: {\"message\":\"Unsupported post request. Object with ID '1147789251164153' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
-    "2026-11-11T18:02:51.866Z clip reel on 1276101408920358: 1606643777416911 from 1822892085643420",
     "2026-11-11T23:03:40.928Z clip reel on 872606492607357: 3302352676622651 from 1822892085643420",
     "2026-11-11T23:03:50.887Z clip reel on 1276101408920358: 2375926229883877 from 1822892085643420",
     "2026-11-12T11:35:30.883Z clip reel on 872606492607357: 1897626904940709 from 2502466443614234",
@@ -66,7 +65,43 @@
     "2026-11-17T11:40:17.757Z comment 2506094306890396: Graph 2506094306890396/comments: {\"message\":\"Unsupported post request. Object with ID '2506094306890396' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
     "2026-11-17T15:04:23.960Z clip reel on 872606492607357: 1829363921734748 from 1674291671001527",
     "2026-11-17T15:04:35.971Z clip reel on 1276101408920358: 4701604623442928 from 1674291671001527",
-    "2026-11-17T15:04:36.104Z comment 4701604623442928: Graph 4701604623442928/comments: {\"message\":\"Unsupported post request. Object with ID '4701604623442928' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100"
+    "2026-11-17T15:04:36.104Z comment 4701604623442928: Graph 4701604623442928/comments: {\"message\":\"Unsupported post request. Object with ID '4701604623442928' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
+    "2026-11-17T15:36:47.854Z clip reel on 872606492607357: 1717034083116354 from 1477229291139944",
+    "2026-11-17T15:36:57.388Z clip reel on 1276101408920358: 1133104932834958 from 1477229291139944"
   ],
-  "pending": []
+  "pending": [
+    {
+      "video": "1477229291139944",
+      "clip": {
+        "start": 2503,
+        "end": 2544,
+        "hook": "'চাঁদাবাজি না হলে শ্রমিকদের ৪০ হাজার টাকা মজুরি দিতাম'",
+        "subs": [
+          {
+            "s": 0,
+            "e": 8.95,
+            "t": "তিনি উল্লেখ করেছেন সরকার এবং সরকারি দলের চাঁদাবাজি এবং ঘুষকে ইঙ্গিত করে তিনি বলেছেন,"
+          },
+          {
+            "s": 9,
+            "e": 22.95,
+            "t": "আপনাদের যদি পয়সা দিতে না হতো তাহলে শ্রমিকদের ৩০ হাজার টাকা নয়, ৪০ হাজার টাকা মজুরি দিতে পারতাম!"
+          },
+          {
+            "s": 23,
+            "e": 34.95,
+            "t": "মাননীয় স্পিকার, শিল্পমালিকগণ যেদিন শিল্প তৈরি করার জন্য জমি কেনেন, সেদিন দালালি খরচ জমির দ্বিগুণ দিয়ে তাকে শিল্প কারখানা শুরু করতে হয়।"
+          },
+          {
+            "s": 35,
+            "e": 41,
+            "t": "দ্বিগুণ তিনগুণ টাকা দিয়ে জমি নিবন্ধন করতে হয়।"
+          }
+        ]
+      },
+      "url": "https://www.facebook.com/122147678985140193/videos/1477229291139944",
+      "title": "live",
+      "at": 1794940380655
+    }
+  ]
 }
