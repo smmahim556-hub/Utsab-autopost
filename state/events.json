@@ -152,11 +152,11 @@
     "text": "mirror: 872606492607357_122150165919140193 (video) -> Digital 1156646240165679"
   },
   {
-    "at": "2026-11-17T12:01:51.986Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"4701697726824582\"}"
+    "at": "2026-11-17T12:02:37.374Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150166993140193\"}"
   },
   {
-    "at": "2026-11-17T12:01:58.359Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1454859141040452\"}"
+    "at": "2026-11-17T12:02:45.749Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122128348647459930\"}"
   }
 ]
