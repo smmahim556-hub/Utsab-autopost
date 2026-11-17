@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-17T16:24:47.772Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122128385949459930 (https://utsabtv.com/passenger-bus-fire-titumir-college-dhaka)"
-  },
-  {
     "at": "2026-11-17T16:24:54.852Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1376639027707168\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-17T17:48:59.369Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1200094575928443\"}"
+  },
+  {
+    "at": "2026-11-17T17:58:53.644Z",
+    "text": "missing FAILED: fetch failed"
   }
 ]
