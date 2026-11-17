@@ -23,12 +23,10 @@
     "1012132498602586",
     "1174601738861784",
     "1163856582843552",
-    "1690294289324263"
+    "1690294289324263",
+    "1674291671001527"
   ],
   "log": [
-    "2026-11-11T16:56:11.696Z clip reel on 1276101408920358: 1660369825827015 from 3535786079933451",
-    "2026-11-11T16:56:11.854Z comment 1660369825827015: Graph 1660369825827015/comments: {\"message\":\"Unsupported post request. Object with ID '1660369825827015' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
-    "2026-11-11T17:32:16.705Z clip reel on 872606492607357: 2988787254809791 from 29272124912422046",
     "2026-11-11T17:32:37.962Z clip reel on 1276101408920358: 1688654836195515 from 29272124912422046",
     "2026-11-11T17:32:38.092Z comment 1688654836195515: Graph 1688654836195515/comments: {\"message\":\"Unsupported post request. Object with ID '1688654836195515' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100",
     "2026-11-11T18:02:45.134Z clip reel on 872606492607357: 1147789251164153 from 1822892085643420",
@@ -65,7 +63,64 @@
     "2026-11-16T15:31:55.245Z clip reel on 872606492607357: 1916302806053404 from 1163856582843552",
     "2026-11-16T15:32:07.869Z clip reel on 1276101408920358: 1640340507586313 from 1163856582843552",
     "2026-11-16T18:03:47.319Z clip reel on 872606492607357: 1168307908972522 from 1690294289324263",
-    "2026-11-16T18:03:58.542Z clip reel on 1276101408920358: 1902652937760457 from 1690294289324263"
+    "2026-11-16T18:03:58.542Z clip reel on 1276101408920358: 1902652937760457 from 1690294289324263",
+    "2026-11-17T11:40:06.949Z clip reel on 872606492607357: 1161151756365016 from 1674291671001527",
+    "2026-11-17T11:40:17.660Z clip reel on 1276101408920358: 2506094306890396 from 1674291671001527",
+    "2026-11-17T11:40:17.757Z comment 2506094306890396: Graph 2506094306890396/comments: {\"message\":\"Unsupported post request. Object with ID '2506094306890396' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api\",\"type\":\"GraphMethodException\",\"code\":100"
   ],
-  "pending": []
+  "pending": [
+    {
+      "video": "1674291671001527",
+      "clip": {
+        "start": 590,
+        "end": 628,
+        "hook": "\"উপজেলা হাসপাতালে ৪ হাজারের বেশি চিকিৎসক নিয়োগ হচ্ছে\"",
+        "subs": [
+          {
+            "s": 0,
+            "e": 3.1500000000000004,
+            "t": "দেশের সকল উপজেলা স্বাস্থ্য কমপ্লেক্সে"
+          },
+          {
+            "s": 3.2,
+            "e": 6.95,
+            "t": "চিকিৎসকের মোট পদ ১৩,০৩৬ টি।"
+          },
+          {
+            "s": 7,
+            "e": 11.95,
+            "t": "এর মধ্যে পূরণকৃত পদ আছে ৬,৭৪৮ টি"
+          },
+          {
+            "s": 12,
+            "e": 16.05,
+            "t": "এবং শূন্য পদ ৬,২৮৮ টি।"
+          },
+          {
+            "s": 16.1,
+            "e": 21.15,
+            "t": "আমি গতকালকেও এই মহান সংসদে জানিয়েছি যে"
+          },
+          {
+            "s": 21.2,
+            "e": 26.95,
+            "t": "আমরা অতি দ্রুত এই শূন্য পদগুলো পূরণের জন্য"
+          },
+          {
+            "s": 27,
+            "e": 32.050000000000004,
+            "t": "৪,০০০ এর অধিক চিকিৎসক নিয়োগের প্রক্রিয়া"
+          },
+          {
+            "s": 32.1,
+            "e": 38,
+            "t": "ইতিমধ্যেই শুরু করেছি।"
+          }
+        ]
+      },
+      "url": "https://www.facebook.com/122147678985140193/videos/1674291671001527",
+      "title": "live",
+      "at": 1794926048833
+    }
+  ]
 }
