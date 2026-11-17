@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-17T12:02:37.374Z",
-    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150166993140193\"}"
-  },
-  {
     "at": "2026-11-17T12:02:45.749Z",
     "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122128348647459930\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-17T13:29:23.545Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1861173211787825\"}"
+  },
+  {
+    "at": "2026-11-17T13:42:39.372Z",
+    "text": "mirror: skip live 872606492607357_1477229291139944"
   }
 ]
