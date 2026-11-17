@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-17T10:02:29.493Z",
-    "text": "album on Page 872606492607357: 872606492607357_122150148573140193 https://utsabtv.com/london-nahid-islam-reception-attack-awami-league-activists-five-injured"
-  },
-  {
-    "at": "2026-11-17T10:02:43.329Z",
-    "text": "album on Page 1276101408920358: 1276101408920358_122128309383459930 https://utsabtv.com/london-nahid-islam-reception-attack-awami-league-activists-five-injured"
-  },
-  {
-    "at": "2026-11-17T10:10:15.755Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122150149707140193 ()"
-  },
-  {
-    "at": "2026-11-17T10:10:28.312Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1142131295116374\"}"
-  },
-  {
-    "at": "2026-11-17T10:10:32.972Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122128310805459930 ()"
-  },
-  {
-    "at": "2026-11-17T10:10:43.251Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"995156040316604\"}"
-  },
-  {
     "at": "2026-11-17T10:10:47.432Z",
     "text": "posted to Page 1406430145892267: 1406430145892267_122113328337533116 ()"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-17T11:02:15.923Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-17T11:14:38.300Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150159937140193 ()"
+  },
+  {
+    "at": "2026-11-17T11:14:44.894Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"30125456360389443\"}"
+  },
+  {
+    "at": "2026-11-17T11:14:48.693Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128339017459930 ()"
+  },
+  {
+    "at": "2026-11-17T11:14:56.183Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1496485782377289\"}"
+  },
+  {
+    "at": "2026-11-17T11:15:00.404Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122113348683533116 ()"
+  },
+  {
+    "at": "2026-11-17T11:15:07.252Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1138530952433154\"}"
   }
 ]
