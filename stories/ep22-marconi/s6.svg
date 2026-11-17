@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1920" width="1080" height="1920"><style>:where([class]:not([class=''])){transform-box:fill-box}
+.drift{animation:drift 9s linear infinite}@keyframes drift{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+.sway{transform-origin:50% 100%;animation:sway 3s ease-in-out infinite}@keyframes sway{50%{transform:rotate(2deg)}}
+.breathe{transform-origin:50% 100%;animation:breathe 2.4s ease-in-out infinite}@keyframes breathe{50%{transform:scale(1.015,1.025)}}
+.pop{transform-origin:center;animation:pop .6s cubic-bezier(.3,1.7,.5,1) both}@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.twinkle{transform-origin:center;animation:tw 1.6s ease-in-out infinite}@keyframes tw{50%{transform:scale(.5);opacity:.4}}
+.spin{transform-origin:center;animation:spin 20s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.bob{transform-origin:center;animation:bob 1.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-22px)}}
+.shake{transform-origin:50% 100%;animation:shake .5s ease-in-out infinite}@keyframes shake{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.wave{transform-origin:20% 90%;animation:wave .6s ease-in-out infinite alternate}@keyframes wave{to{transform:rotate(8deg)}}
+</style><rect width="1080" height="1920" fill="#e1f5fe"/>
+<rect y="1150" width="1080" height="770" fill="#4fc3f7" stroke="#3b2a20" stroke-width="6"/>
+<g transform="translate(540,1120) scale(1.2)"><path d="M-240 0 L240 0 L190 90 L-190 90 Z" fill="#37474f" stroke="#3b2a20" stroke-width="6"/><rect x="-140" y="-90" width="240" height="90" fill="#eceff1" stroke="#3b2a20" stroke-width="5"/><rect x="40" y="-170" width="50" height="80" fill="#e53935" stroke="#3b2a20" stroke-width="5"/><path d="M-200 -90 L-200 -260" stroke="#3b2a20" stroke-width="6"/></g><g transform="translate(320,640) scale(-1,1)" stroke="#1e88e5" stroke-width="9" fill="none" opacity=".9"><path d="M0 -50 Q40 0 0 50"/><path d="M40 -90 Q100 0 40 90"/><path d="M80 -130 Q160 0 80 130"/></g><g transform="translate(330,640) scale(1,1)" stroke="#1e88e5" stroke-width="9" fill="none" opacity=".9"><path d="M0 -50 Q40 0 0 50"/><path d="M40 -90 Q100 0 40 90"/><path d="M80 -130 Q160 0 80 130"/></g>
+<g transform="translate(540,230) rotate(-2)"><g class="pop" style="animation-delay:0.2s"><rect x="-239" y="-64.6" width="478" height="108.80000000000001" rx="23.799999999999997" fill="#fff" stroke="#3b2a20" stroke-width="6"/><text x="0" y="20.4" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="68" fill="#0d47a1">জাহাজে বেতার</text></g></g></svg>

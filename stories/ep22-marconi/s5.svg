@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1920" width="1080" height="1920"><style>:where([class]:not([class=''])){transform-box:fill-box}
+.drift{animation:drift 9s linear infinite}@keyframes drift{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+.sway{transform-origin:50% 100%;animation:sway 3s ease-in-out infinite}@keyframes sway{50%{transform:rotate(2deg)}}
+.breathe{transform-origin:50% 100%;animation:breathe 2.4s ease-in-out infinite}@keyframes breathe{50%{transform:scale(1.015,1.025)}}
+.pop{transform-origin:center;animation:pop .6s cubic-bezier(.3,1.7,.5,1) both}@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.twinkle{transform-origin:center;animation:tw 1.6s ease-in-out infinite}@keyframes tw{50%{transform:scale(.5);opacity:.4}}
+.spin{transform-origin:center;animation:spin 20s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.bob{transform-origin:center;animation:bob 1.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-22px)}}
+.shake{transform-origin:50% 100%;animation:shake .5s ease-in-out infinite}@keyframes shake{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.wave{transform-origin:20% 90%;animation:wave .6s ease-in-out infinite alternate}@keyframes wave{to{transform:rotate(8deg)}}
+</style><rect width="1080" height="1920" fill="#e3f2fd"/>
+<rect y="1100" width="1080" height="820" fill="#4fc3f7" stroke="#3b2a20" stroke-width="6"/>
+<g transform="translate(140,1100) scale(0.9)"><path d="M-60 0 L0 -420 L60 0 Z" fill="none" stroke="#455a64" stroke-width="10"/><path d="M-45 -100 L45 -100 M-30 -220 L30 -220 M-15 -330 L15 -330" stroke="#455a64" stroke-width="8"/><circle cx="0" cy="-430" r="16" fill="#e53935" stroke="#3b2a20" stroke-width="4"/></g><g transform="translate(940,1100) scale(0.9)"><path d="M-60 0 L0 -420 L60 0 Z" fill="none" stroke="#455a64" stroke-width="10"/><path d="M-45 -100 L45 -100 M-30 -220 L30 -220 M-15 -330 L15 -330" stroke="#455a64" stroke-width="8"/><circle cx="0" cy="-430" r="16" fill="#e53935" stroke="#3b2a20" stroke-width="4"/></g>
+<path d="M160 620 Q540 300 920 620" fill="none" stroke="#1e88e5" stroke-width="10" stroke-dasharray="24 18"/>
+<text x="540" y="560" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="110" fill="#e53935">• • •</text>
+<g transform="translate(540,230) rotate(-2)"><g class="pop" style="animation-delay:0.2s"><rect x="-320" y="-57" width="640" height="96" rx="21" fill="#fff" stroke="#3b2a20" stroke-width="6"/><text x="0" y="18" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="60" fill="#01579b">আটলান্টিক পার, ১৯০১</text></g></g></svg>
