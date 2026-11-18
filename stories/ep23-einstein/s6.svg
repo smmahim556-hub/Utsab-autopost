@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1920" width="1080" height="1920"><style>:where([class]:not([class=''])){transform-box:fill-box}
+.drift{animation:drift 9s linear infinite}@keyframes drift{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+.sway{transform-origin:50% 100%;animation:sway 3s ease-in-out infinite}@keyframes sway{50%{transform:rotate(2deg)}}
+.breathe{transform-origin:50% 100%;animation:breathe 2.4s ease-in-out infinite}@keyframes breathe{50%{transform:scale(1.015,1.025)}}
+.pop{transform-origin:center;animation:pop .6s cubic-bezier(.3,1.7,.5,1) both}@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.twinkle{transform-origin:center;animation:tw 1.6s ease-in-out infinite}@keyframes tw{50%{transform:scale(.5);opacity:.4}}
+.spin{transform-origin:center;animation:spin 20s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.bob{transform-origin:center;animation:bob 1.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-22px)}}
+.shake{transform-origin:50% 100%;animation:shake .5s ease-in-out infinite}@keyframes shake{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.wave{transform-origin:20% 90%;animation:wave .6s ease-in-out infinite alternate}@keyframes wave{to{transform:rotate(8deg)}}
+</style><rect x="-800" width="2680" height="1920" fill="#0d1b3e"/>
+<circle cx="540" cy="700" r="170" fill="#ffca28" opacity=".5"/><circle cx="540" cy="700" r="140" fill="#111" stroke="#ffe082" stroke-width="10"/>
+<path transform="translate(1400,380) scale(1.4)" d="M0 -30 L9 -9 L30 0 L9 9 L0 30 L-9 9 L-30 0 L-9 -9 Z" fill="#fff59d" stroke="#3b2a20" stroke-width="3"/><path d="M1380 400 Q760 470 560 920 L120 1220" fill="none" stroke="#fff59d" stroke-width="7" stroke-dasharray="20 14"/>
+<rect x="-800" y="1330" width="2680" height="590" fill="#1a237e" stroke="#3b2a20" stroke-width="6"/>
+<g transform="translate(540,230) rotate(-2)"><g class="pop" style="animation-delay:0.2s"><rect x="-291" y="-60.8" width="582" height="102.4" rx="22.4" fill="#fff" stroke="#3b2a20" stroke-width="6"/><text x="0" y="19.2" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="64" fill="#1a237e">সূর্যগ্রহণ, ১৯১৯</text></g></g></svg>
