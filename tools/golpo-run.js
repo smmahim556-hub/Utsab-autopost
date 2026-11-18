@@ -48,7 +48,8 @@ async function postReel(page, file, description) {
     try { fs.mkdirSync(path.join(ROOT, 'preview'), { recursive: true }); fs.copyFileSync(out, path.join(ROOT, 'preview', 'story-demo.mp4')); fs.copyFileSync(wide, path.join(ROOT, 'preview', 'story-youtube.mp4')); } catch {}
     const acc = await (await fetch(`${GRAPH}/me/accounts?fields=id,name,access_token&limit=100&access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).json();
     const find = id => (acc.data || []).find(a => a.id === id);
-    const tags = ['#উৎসবেরগল্প', '#আবিষ্কারেরগল্প', `#${(pl.scientist || '').replace(/\s+/g, '')}`, '#বিজ্ঞান', '#utsabtv'].filter(t => t.length > 1).join(' ');
+    const sname = String(pl.series || 'আবিষ্কারের গল্প').split('·')[0].trim();
+    const tags = ['#উৎসবেরগল্প', `#${sname.replace(/\s+/g, '')}`, `#${(pl.scientist || '').replace(/\s+/g, '')}`, ...(pl.tags || ['#বিজ্ঞান']), '#utsabtv'].filter(t => t.length > 1).join(' ');
     const head = `${pl.series}: ${pl.title}\n\n${pl.summary || ''}`.trim();
     const golpoDesc = `${head}\n\nনতুন পর্ব রোজ বিকাল ৩টা আর সন্ধ্যা ৭:৩০-এ। ফলো করে সঙ্গেই থাকুন!\n\n${tags}`;
     const bigDesc = `${head}\n\nপুরো সিরিজ দেখতে ফলো করুন "উৎসবের গল্প" পেজ, লিংক প্রথম কমেন্টে।\n\n${tags}`;
@@ -64,7 +65,7 @@ async function postReel(page, file, description) {
       if (!a) { log(`page ${pid} missing`); continue; }
       try {
         ids[pid] = await postReel({ id: a.id, token: a.access_token }, out, bigDesc);
-        const c = new FormData(); c.append('message', `পুরো সিরিজ "আবিষ্কারের গল্প" দেখুন উৎসবের গল্প পেজে: https://www.facebook.com/${GOLPO}`); c.append('access_token', a.access_token);
+        const c = new FormData(); c.append('message', `পুরো সিরিজ "${String(pl.series || 'আবিষ্কারের গল্প').split('·')[0].trim()}" দেখুন উৎসবের গল্প পেজে: https://www.facebook.com/${GOLPO}`); c.append('access_token', a.access_token);
         // A fresh reel sometimes isn't ready for comments yet (Digital, 2026-11-09): wait and try once more.
         await graph(`${ids[pid]}/comments`, c).catch(async () => { await new Promise(r => setTimeout(r, 60000)); return graph(`${ids[pid]}/comments`, c); })
           .catch(e => log(`comment ${pid}: ${e.message}`));
