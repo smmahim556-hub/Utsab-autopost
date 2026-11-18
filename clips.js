@@ -240,4 +240,4 @@ ${logo && !fs.existsSync(LOGO_VIDEO) ? `<img src="${logo}" style="position:absol
   return outFile;
 }
 
-module.exports = { planClips, renderClip, secs, ff, gemini };
+module.exports = { planClips, renderClip, secs, ff, gemini, overlay };
