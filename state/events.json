@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-17T22:02:30.692Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"3260519441004868\"}"
-  },
-  {
-    "at": "2026-11-17T22:02:38.027Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1742778497464845\"}"
-  },
-  {
     "at": "2026-11-17T22:07:29.082Z",
     "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1003434476167090\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-18T01:40:16.371Z",
     "text": "weather রংপুর FAILED (try 1): fetch failed"
+  },
+  {
+    "at": "2026-11-18T01:47:20.282Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1856157742086324\"}"
+  },
+  {
+    "at": "2026-11-18T01:47:28.022Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"960125966946383\"}"
   }
 ]
