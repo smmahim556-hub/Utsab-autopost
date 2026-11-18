@@ -12,12 +12,17 @@
     "QUIZ": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "MARKET": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
-    "QUIZ"
+    "QUIZ",
+    "MARKET"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -72,5 +77,5 @@
     "বাংলাদেশের একমাত্র পাহাড়ি দ্বীপ কোনটি?",
     "ভারতে উৎপন্ন 'গঙ্গা' নদী বাংলাদেশে কোন নামে পরিচিত?"
   ],
-  "marketCheckedAt": 1794999664648
+  "marketCheckedAt": 1795000609102
 }
