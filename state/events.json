@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-17T22:07:29.082Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1003434476167090\"}"
-  },
-  {
     "at": "2026-11-17T22:07:36.705Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1761454931591802\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-18T01:47:28.022Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"960125966946383\"}"
+  },
+  {
+    "at": "2026-11-18T01:53:14.119Z",
+    "text": "weather ময়মনসিংহ FAILED (try 1): fetch failed"
   }
 ]
