@@ -1,5 +1,21 @@
 [
   {
+    "at": "2026-11-18T05:24:26.181Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2191018981488200\"}"
+  },
+  {
+    "at": "2026-11-18T05:24:29.350Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128484373459930 ()"
+  },
+  {
+    "at": "2026-11-18T05:24:36.792Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"29578596308497900\"}"
+  },
+  {
+    "at": "2026-11-18T05:55:14.825Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150260731140193 ()"
+  },
+  {
     "at": "2026-11-18T05:55:22.877Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1685250693134190\"}"
   },
@@ -136,27 +152,11 @@
     "text": "mirror: 872606492607357_122150269497140193 (video) -> Digital 991410806847557"
   },
   {
-    "at": "2026-11-18T08:13:05.826Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122150271183140193 ()"
+    "at": "2026-11-18T08:20:25.601Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150271843140193\"}"
   },
   {
-    "at": "2026-11-18T08:13:15.242Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1682232236635627\"}"
-  },
-  {
-    "at": "2026-11-18T08:13:20.443Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122128508265459930 ()"
-  },
-  {
-    "at": "2026-11-18T08:13:28.830Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1432218769065751\"}"
-  },
-  {
-    "at": "2026-11-18T08:13:32.957Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122113746555533116 ()"
-  },
-  {
-    "at": "2026-11-18T08:13:41.193Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1901500640833542\"}"
+    "at": "2026-11-18T08:20:32.728Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122128509393459930\"}"
   }
 ]
