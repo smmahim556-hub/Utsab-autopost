@@ -59,9 +59,9 @@ async function tts(text, out) {
   for (const [i, p] of parts.entries()) subs.push(await overlay(browser, `<div style="background:rgba(0,0,0,.72);color:#fff;font-size:54px;line-height:1.3;padding:16px 34px;border-radius:18px;border-left:10px solid #ffd54f;max-width:1000px">${p.sub}</div>`, `${W}/s${i}.png`, 1080, 300));
   await browser.close();
   // Compose: frame, footage at y=470, subtitle over the bottom of the footage, logo top-right, voice + quiet game sound.
-  const inputs = ['-loop', '1', '-i', `${W}/frame.png`, '-i', `${W}/foot.mp4`, '-i', `${W}/voice.wav`, '-stream_loop', '-1', '-i', LOGO, ...subs.flatMap(s => ['-loop', '1', '-i', s])];
+  const inputs = ['-loop', '1', '-i', `${W}/frame.png`, '-i', `${W}/foot.mp4`, '-i', `${W}/voice.wav`, '-stream_loop', '-1', '-c:v', 'libvpx-vp9', '-i', LOGO, ...subs.flatMap(s => ['-loop', '1', '-i', s])];
   let fc = `[0][1]overlay=0:470:shortest=1[b0];[3]scale=260:-1[lg];[b0][lg]overlay=W-w-28:28:shortest=1[b1]`;
-  parts.forEach((p, i) => { fc += `;[b${i + 1}][${4 + i}]overlay=0:1260:enable='between(t,${p.s.toFixed(2)},${p.e.toFixed(2)})'[b${i + 2}]`; });
+  parts.forEach((p, i) => { fc += `;[b${i + 1}][${4 + i}]overlay=0:1570:enable='between(t,${p.s.toFixed(2)},${p.e.toFixed(2)})'[b${i + 2}]`; });
   ff([...inputs, '-filter_complex', fc, '-map', `[b${parts.length + 1}]`, '-map', '2:a', '-t', String(total), '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '21', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', path.join(PV, 'news-demo.mp4')]);
   fs.writeFileSync(path.join(ROOT, 'state', 'gta-probe.json'), JSON.stringify({ at: new Date().toISOString(), source_s: Math.round(dur), secs: total, lines: LINES.map(l => l[0]) }, null, 1));
   console.log('done', total);
