@@ -1,0 +1,17 @@
+name: Fetch a Drive document (short-lived artifact, never committed)
+on:
+  workflow_dispatch:
+    inputs:
+      drive_id: { type: string, required: true }
+permissions:
+  contents: read
+jobs:
+  fetch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - run: |
+          mkdir -p doc && curl -sSL --retry 3 -o doc/file.bin "https://drive.usercontent.google.com/download?id=${{ inputs.drive_id }}&export=download&confirm=t"
+          ls -l doc; file doc/file.bin
+      - uses: actions/upload-artifact@v4
+        with: { name: doc, path: doc, retention-days: 1 }
