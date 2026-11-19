@@ -7,11 +7,12 @@ const PAGES = ['1406430145892267', '872606492607357', '1276101408920358'];
 const SINCE = Date.parse('2026-11-19T07:45:00Z');
 const j = async (u, o) => (await fetch(u, o)).json().catch(e => ({ error: e.message }));
 (async () => {
-  const acc = await j(`${G}/me/accounts?fields=id,access_token&limit=100&access_token=${T}`);
+  const acc = await j(`${G}/me/accounts?fields=id,access_token&limit=100&access_token=${encodeURIComponent(T)}`);
+  if (!acc.data) console.log('accounts', JSON.stringify(acc).slice(0, 300));
   const out = {};
   for (const id of PAGES) {
     const tok = (acc.data || []).find(a => a.id === id)?.access_token;
-    if (!tok) { out[id] = 'no token'; continue; }
+    if (!tok) { out[id] = 'no token ' + JSON.stringify(acc.error || (acc.data || []).map(a => a.id)).slice(0, 200); continue; }
     const seen = new Map();
     for (const edge of ['videos', 'video_reels']) {
       for (const extra of ['', '&type=uploaded']) {
