@@ -1,6 +1,6 @@
 {
  "done": [],
- "offset": 0,
+ "offset": 370,
  "log": [
   "2026-11-19T04:29:40.707Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-19T04:29:40.795Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
@@ -8,6 +8,10 @@
   "2026-11-19T04:29:40.926Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-19T04:29:41.004Z script retry gemini-3.1-flash-lite: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-19T04:29:41.083Z script retry gemini-3.1-flash-lite: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-19T04:29:41.084Z error: no script"
+  "2026-11-19T04:29:41.084Z error: no script",
+  "2026-11-19T04:42:46.272Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-19T04:42:50.120Z script retry gemini-3.5-flash: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+  "2026-11-19T04:42:59.343Z news: সর্বকালের সেরা গেম জিটিএ সিক্স / বিশ্বজুড়ে শুরু হলো গ্র্যান্ড লঞ্চ (gemini-3-flash-preview)",
+  "2026-11-19T04:44:03.026Z dry news 36.5s"
  ]
 }
