@@ -1,6 +1,6 @@
 // Owner 2026-11-19 17:02 Dhaka: delete the Noble concert video that just went up (logo position/size wrong).
 // Lists videos + reels made today by concert-big (caption has #লাইভকনসার্ট) on the 3 Pages, published or scheduled, and deletes them.
-// DRY=1 only lists. Writes state/concert-big-delete-probe.json (no tokens).
+// Lists only; DEL=1 deletes. Writes state/concert-big-delete-probe.json (no tokens).
 const fs = require('fs'), path = require('path');
 const G = 'https://graph.facebook.com/v26.0', T = process.env.FB_USER_TOKEN;
 const PAGES = ['1406430145892267', '872606492607357', '1276101408920358'];
@@ -14,17 +14,19 @@ const j = async (u, o) => (await fetch(u, o)).json().catch(e => ({ error: e.mess
     const tok = (acc.data || []).find(a => a.id === id)?.access_token;
     if (!tok) { out[id] = 'no token ' + JSON.stringify(acc.error || (acc.data || []).map(a => a.id)).slice(0, 200); continue; }
     const seen = new Map();
-    for (const edge of ['videos', 'video_reels']) {
+    out[id + ':raw'] = [];
+    for (const edge of ['videos', 'video_reels', 'scheduled_posts']) {
       for (const extra of ['', '&type=uploaded']) {
-        const r = await j(`${G}/${id}/${edge}?fields=id,description,created_time,published,scheduled_publish_time&limit=100${extra}&access_token=${tok}`);
-        for (const v of r.data || []) if (Date.parse(v.created_time) >= SINCE && /লাইভকনসার্ট/.test(v.description || '')) seen.set(v.id, v);
+        const r = await j(`${G}/${id}/${edge}?fields=id,description,created_time,published,scheduled_publish_time,message&limit=100${extra}&access_token=${tok}`);
+        for (const v of r.data || []) if (Date.parse(v.created_time) >= SINCE) out[id + ':raw'].push([edge + extra, v.id, v.created_time, v.published, v.scheduled_publish_time, (v.description || v.message || '').slice(0, 60)]);
+        for (const v of r.data || []) if (Date.parse(v.created_time) >= SINCE && /লাইভকনসার্ট|কনসার্ট/.test(v.description || v.message || '')) seen.set(v.id, v);
         if (r.error) out[id + ':' + edge + extra] = r.error.message;
       }
     }
     out[id] = [];
     for (const v of seen.values()) {
       const row = { id: v.id, at: v.created_time, published: v.published, sched: v.scheduled_publish_time, desc: (v.description || '').slice(0, 80) };
-      if (!process.env.DRY) row.del = await j(`${G}/${v.id}?access_token=${tok}`, { method: 'DELETE' });
+      if (process.env.DEL) row.del = await j(`${G}/${v.id}?access_token=${tok}`, { method: 'DELETE' });
       out[id].push(row);
     }
   }
