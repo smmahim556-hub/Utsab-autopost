@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-19T14:51:52.435Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1672983977852558\"}"
-  },
-  {
-    "at": "2026-11-19T15:17:50.991Z",
-    "text": "voice reel FAILED: Error: Gemini: gemini-3.5-flash: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, hea | gemini-3.1-flash-lite: The operation was aborted due to timeout | gemini-3-flash-preview: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, hea | gemini-3.8-flash: The operation was aborted due to timeout | gemini-flash-latest: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-fla"
-  },
-  {
-    "at": "2026-11-19T15:27:49.658Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122150449185140193 ()"
-  },
-  {
-    "at": "2026-11-19T15:27:57.865Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"29547475101512522\"}"
-  },
-  {
     "at": "2026-11-19T15:28:01.611Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122128811457459930 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-19T16:48:45.935Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"4610712055839246\"}"
+  },
+  {
+    "at": "2026-11-19T16:56:27.654Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150456565140193 ()"
+  },
+  {
+    "at": "2026-11-19T16:56:34.580Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1615853703163622\"}"
+  },
+  {
+    "at": "2026-11-19T16:56:38.802Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128824951459930 ()"
+  },
+  {
+    "at": "2026-11-19T16:56:45.964Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1434258082255584\"}"
   }
 ]
