@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-19T09:05:34.078Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122128742409459930 ()"
-  },
-  {
-    "at": "2026-11-19T09:05:39.795Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1016422420746981\"}"
-  },
-  {
-    "at": "2026-11-19T09:09:57.557Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1064743856622181\"}"
-  },
-  {
-    "at": "2026-11-19T09:10:05.063Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1866912751147085\"}"
-  },
-  {
     "at": "2026-11-19T09:10:30.401Z",
     "text": "posted to Page 872606492607357: 872606492607357_122150404383140193 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-19T10:22:45.354Z",
     "text": "mirror: 872606492607357_122150413299140193 (video) -> Digital 4016789408461042"
+  },
+  {
+    "at": "2026-11-19T10:27:03.009Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150414457140193 ()"
+  },
+  {
+    "at": "2026-11-19T10:27:06.145Z",
+    "text": "story on Page 872606492607357 FAILED: Graph 872606492607357/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AMmhcKmdhJyk1WTDK-FTqgY\"}"
+  },
+  {
+    "at": "2026-11-19T10:27:10.273Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128759953459930 ()"
+  },
+  {
+    "at": "2026-11-19T10:27:13.533Z",
+    "text": "story on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AmQL2JD9ycH0BPOkQBJCtHS\"}"
   }
 ]
