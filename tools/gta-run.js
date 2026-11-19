@@ -24,12 +24,25 @@ function firstJson(t) {
   for (let k = t.length; k > i; k = t.lastIndexOf('}', k - 1)) { try { return JSON.parse(t.slice(i, k + 1)); } catch {} if (k <= i) break; }
   return null;
 }
+// Context from Google News (the Gemini key's Google Search grounding quota is 0, 2026-11-19): latest GTA 6 headlines.
+async function newsContext() {
+  const q = KIND === 'news' ? 'GTA 6 when:2d' : 'GTA 6';
+  const x = await (await fetch(`https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`)).text();
+  const items = [...x.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 25).map(m => {
+    const g = k => ((m[1].match(new RegExp(`<${k}[^>]*>([\\s\\S]*?)</${k}>`)) || [])[1] || '').replace(/<!\[CDATA\[|\]\]>/g, '').replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
+    return `- ${g('title')} (${g('pubDate').slice(0, 16)})`;
+  });
+  return items.join('\n');
+}
 async function script() {
+  const ctx = await newsContext().catch(() => '');
   const recent = (st.done || []).slice(-14).map(d => d.head).join(' | ');
   const ask = KIND === 'news'
-    ? `Google Search দিয়ে GTA 6 (Grand Theft Auto VI) নিয়ে গত ২৪-৪৮ ঘণ্টার সবচেয়ে বড় ও সত্য খবরটি খুঁজে বের করো (আজ ${today})। শুধু নির্ভরযোগ্য সূত্রে যা আছে তাই বলবে; গুজব বা অনুমান হলে স্পষ্ট বলবে 'শোনা যাচ্ছে'। আগের এই খবরগুলো আবার দেবে না: ${recent || '(নেই)'}`
-    : `Google Search দিয়ে GTA 6 (Grand Theft Auto VI) সম্পর্কে একটি মজার, কম জানা কিন্তু সত্য তথ্য বেছে নাও (গেমের শহর, চরিত্র, তৈরির গল্প, রেকর্ড, ফিচার ইত্যাদি)। শুধু নির্ভরযোগ্য সূত্রে নিশ্চিত তথ্য। আগের এগুলো আবার নয়: ${recent || '(নেই)'}`;
+    ? `নিচের সংবাদ শিরোনামগুলো থেকে GTA 6 (Grand Theft Auto VI) নিয়ে সবচেয়ে বড় খবরটি বেছে নাও (আজ ${today})। শুধু শিরোনামে যা স্পষ্ট আছে তাই বলবে, নিজে তথ্য বানাবে না; গুজব হলে বলবে 'শোনা যাচ্ছে'। আগের এই খবরগুলো আবার দেবে না: ${recent || '(নেই)'}`
+    : `GTA 6 (Grand Theft Auto VI) সম্পর্কে একটি মজার, কম জানা কিন্তু নিশ্চিত সত্য তথ্য বেছে নাও (গেমের শহর, চরিত্র, তৈরির গল্প, রেকর্ড, ফিচার ইত্যাদি), নিচের শিরোনাম বা ২০২৩ সাল থেকে Rockstar-এর ঘোষিত তথ্য থেকে। অনিশ্চিত কিছু নয়। আগের এগুলো আবার নয়: ${recent || '(নেই)'}`;
   const prompt = `${ask}
+সংবাদ শিরোনাম (Google News):
+${ctx || '(পাওয়া যায়নি)'}
 তারপর বাংলা ফেসবুক রিলের স্ক্রিপ্ট লেখো (বাংলাদেশি দর্শক, সংবাদ পাঠকের ভাষা, প্রায় ৩০-৪০ সেকেন্ড): ৫-৭টি ছোট বাক্য।
 প্রতিটি বাক্যের জন্য say (পড়ার জন্য: সব সংখ্যা বাংলা শব্দে লেখো, যেমন 'নিরানব্বই', 'জিটিএ সিক্স'; ইংরেজি নাম বাংলা বানানে) আর sub (পর্দার জন্য ছোট লেখা, সর্বোচ্চ ৬-৭ শব্দ, সংখ্যা অঙ্কে চলবে)।
 শেষ বাক্য দর্শককে কমেন্টে মত জানাতে বলবে। অতিরঞ্জন নয়, মিথ্যা নয়।
@@ -39,12 +52,12 @@ head1 ও head2: দুই লাইনের হেডলাইন (প্র�
     for (let t = 0; t < 2; t++) {
       const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: 'POST', signal: AbortSignal.timeout(180000),
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], tools: [{ google_search: {} }], generationConfig: { temperature: 0.4 } }) }).catch(() => null);
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.4, responseMimeType: 'application/json' } }) }).catch(() => null);
       const b = r ? await r.json().catch(() => ({})) : {};
       const c = b.candidates?.[0], txt = (c?.content?.parts || []).map(p => p.text || '').join('');
       const j = firstJson(txt);
       const srcs = (c?.groundingMetadata?.groundingChunks || []).map(g => g.web?.uri || '').filter(Boolean);
-      if (j && BN.test(j.head1 || '') && (j.lines || []).length >= 4 && j.lines.every(l => BN.test(l.say || '') && l.sub)) return { ...j, model, sources: srcs.slice(0, 8) };
+      if (j && BN.test(j.head1 || '') && (j.lines || []).length >= 4 && j.lines.every(l => BN.test(l.say || '') && l.sub)) return { ...j, model, sources: srcs.slice(0, 8), context: ctx.split('\n').slice(0, 10) };
       log(`script retry ${model}: ${(b.error?.message || txt).slice(0, 120)}`);
     }
   }
