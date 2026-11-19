@@ -15,9 +15,10 @@ const j = async (u, o) => (await fetch(u, o)).json().catch(e => ({ error: e.mess
     if (!tok) { out[id] = 'no token ' + JSON.stringify(acc.error || (acc.data || []).map(a => a.id)).slice(0, 200); continue; }
     const seen = new Map();
     out[id + ':raw'] = [];
-    for (const edge of ['videos', 'video_reels', 'scheduled_posts']) {
-      for (const extra of ['', '&type=uploaded']) {
-        const r = await j(`${G}/${id}/${edge}?fields=id,description,created_time,published,scheduled_publish_time,message&limit=100${extra}&access_token=${tok}`);
+    for (const edge of ['videos', 'video_reels', 'scheduled_posts', 'promotable_posts']) {
+      for (const extra of (edge === 'scheduled_posts' || edge === 'promotable_posts') ? ['&is_published=false'] : edge === 'video_reels' ? ['', '&video_state=SCHEDULED'] : ['', '&type=uploaded']) {
+        const F = /posts/.test(edge) ? 'id,message,created_time,scheduled_publish_time,is_published' : 'id,description,created_time,published,scheduled_publish_time';
+        const r = await j(`${G}/${id}/${edge}?fields=${F}&limit=100${extra}&access_token=${tok}`);
         for (const v of r.data || []) if (Date.parse(v.created_time) >= SINCE) out[id + ':raw'].push([edge + extra, v.id, v.created_time, v.published, v.scheduled_publish_time, (v.description || v.message || '').slice(0, 60)]);
         for (const v of r.data || []) if (Date.parse(v.created_time) >= SINCE && /লাইভকনসার্ট|কনসার্ট/.test(v.description || v.message || '')) seen.set(v.id, v);
         if (r.error) out[id + ':' + edge + extra] = r.error.message;
