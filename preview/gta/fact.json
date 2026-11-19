@@ -1,0 +1,49 @@
+{
+ "head1": "জিটিএ সিক্স-এ পরকীয়া অসম্ভব",
+ "head2": "জেসন-লুসিয়ার প্রেমে বাধা নেই",
+ "caption": "জিটিএ সিক্স গেমে জেসন আর লুসিয়ার ভালোবাসার গল্পে কোনো খাদ রাখছে না রকস্টার। গেমটির এই অদ্ভুত কিন্তু মজার নিয়মটি সম্পর্কে জানুন।",
+ "lines": [
+  {
+   "say": "দীর্ঘ তেরো বছর অপেক্ষার পর অবশেষে মুক্তি পেল বছরের সবচেয়ে আলোচিত গেম জিটিএ সিক্স।",
+   "sub": "১৩ বছর পর এলো জিটিএ ৬"
+  },
+  {
+   "say": "এবারের গেমে জেসন ডুভাল এবং লুসিয়া কামিনোস নামের দুই মূল চরিত্রের প্রেম কাহিনী ফুটিয়ে তোলা হয়েছে।",
+   "sub": "জেসন ও লুসিয়ার প্রেমের গল্প"
+  },
+  {
+   "say": "মজার ব্যাপার হলো, আপনি চাইলেও গেমে লুসিয়াকে ঠকিয়ে অন্য কারো সাথে সম্পর্কে জড়াতে পারবেন না।",
+   "sub": "লুসিয়াকে ঠকানো যাবে না গেমে"
+  },
+  {
+   "say": "রকস্টার গেমস জানিয়েছে, জেসন আর লুসিয়ার সম্পর্কের গভীরতা বজায় রাখতেই এই সিদ্ধান্ত নেওয়া হয়েছে।",
+   "sub": "সম্পর্কের গভীরতা রক্ষায় রকস্টারের সিদ্ধান্ত"
+  },
+  {
+   "say": "এমনকি স্ট্রিপ ক্লাব বা অন্য কোনো চরিত্রের সাথেও জেসন কোনো অনৈতিক কাজে জড়াতে পারবে না।",
+   "sub": "অন্য কারো সাথে জেসনের সম্পর্ক অসম্ভব"
+  },
+  {
+   "say": "গেমের ভেতরে এমন কঠোর নিয়ম রাখা কি ঠিক হয়েছে বলে আপনি মনে করেন?",
+   "sub": "এই নিয়ম কি ঠিক হয়েছে?"
+  },
+  {
+   "say": "আপনার মতামত আমাদের কমেন্ট বক্সে লিখে জানান।",
+   "sub": "আপনার মতামত কমেন্টে জানান"
+  }
+ ],
+ "model": "gemini-3-flash-preview",
+ "sources": [],
+ "context": [
+  "- UK joins in GTA 6 frenzy as game becomes available worldwide - BBC (Thu, 19 Nov 2026)",
+  "- Parents: please don’t buy Grand Theft Auto VI for your child - The Guardian (Thu, 19 Nov 2026)",
+  "- UFC’s Sean Strickland calls out youngsters wanting to play GTA 6 - Yahoo Sports (Thu, 19 Nov 2026)",
+  "- GTA 6 cheats: All the codes and how to unlock them - Red Bull (Wed, 18 Nov 2026)",
+  "- 'GTA 6': Should you kill or spare Arnold? What to know. - Mashable (Thu, 19 Nov 2026)",
+  "- The wait begins for GTA VI on PC - The Verge (Thu, 19 Nov 2026)",
+  "- GTA 6 is here! Return to Leonida now with Jason Duval and Lucia Caminos - USA Today (Thu, 19 Nov 2026)",
+  "- I used to sneak into my brother's room when he played GTA 3. Decades later, I'm hiding from my wife and son to play GTA 6. - Business Insider (Thu, 19 Nov 2026)",
+  "- Why Didn't Rockstar Use FSR 4 on Series X for GTA 6? Microsoft's Stats Have the Answer - Digital Foundry (Wed, 18 Nov 2026)",
+  "- GTA 6 players are discovering wild details nobody expected to find - Cleveland.com (Thu, 19 Nov 2026)"
+ ]
+}

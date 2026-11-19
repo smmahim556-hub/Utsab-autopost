@@ -11,9 +11,21 @@
     "1406430145892267": "1833546861248728"
    },
    "sources": []
+  },
+  {
+   "slot": "2026-11-19-fact",
+   "at": "2026-11-19T14:57:27.496Z",
+   "kind": "fact",
+   "head": "জিটিএ সিক্স-এ পরকীয়া অসম্ভব জেসন-লুসিয়ার প্রেমে বাধা নেই",
+   "ids": {
+    "872606492607357": "1158646373521680",
+    "1276101408920358": "1171829528674411",
+    "1406430145892267": "1955771935829739"
+   },
+   "sources": []
   }
  ],
- "offset": 703,
+ "offset": 1110,
  "log": [
   "2026-11-19T04:29:40.707Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-19T04:29:40.795Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
@@ -33,6 +45,12 @@
   "2026-11-19T06:54:46.442Z news: অবশেষে মুক্তি পেল জিটিএ সিক্স / যুক্তরাষ্ট্র ও কানাডায় গেমটি উন্মুক্ত (gemini-3.1-flash-lite)",
   "2026-11-19T06:55:53.815Z reel 29568365872781752 on 872606492607357",
   "2026-11-19T06:56:06.197Z reel 1467890841430076 on 1276101408920358",
-  "2026-11-19T06:56:20.070Z reel 1833546861248728 on 1406430145892267"
+  "2026-11-19T06:56:20.070Z reel 1833546861248728 on 1406430145892267",
+  "2026-11-19T14:55:45.080Z script retry gemini-3.5-flash: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+  "2026-11-19T14:55:45.183Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-19T14:55:53.126Z fact: জিটিএ সিক্স-এ পরকীয়া অসম্ভব / জেসন-লুসিয়ার প্রেমে বাধা নেই (gemini-3-flash-preview)",
+  "2026-11-19T14:57:12.708Z reel 1158646373521680 on 872606492607357",
+  "2026-11-19T14:57:20.885Z reel 1171829528674411 on 1276101408920358",
+  "2026-11-19T14:57:27.495Z reel 1955771935829739 on 1406430145892267"
  ]
 }
