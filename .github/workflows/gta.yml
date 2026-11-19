@@ -1,0 +1,40 @@
+name: GTA 6 reels
+on:
+  workflow_dispatch:
+    inputs:
+      kind: { type: string, description: 'news or fact (empty = by Dhaka time)', default: '' }
+      dry: { type: string, description: '1 = render preview only', default: '' }
+concurrency: gta
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci && npx playwright install chromium && (which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg))
+      - run: sudo mkdir -p /mnt/gta && sudo chown "$USER" /mnt/gta
+      # The owner's gameplay video (930 MB) is cached so Drive's daily download quota is not hit.
+      - uses: actions/cache@v4
+        with:
+          path: /mnt/gta/src.mp4
+          key: gta-footage-1fmejgUdebamEXbCzdntxI2Ny4OMxa-N5
+      - run: node tools/gta-run.js
+        env:
+          FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          GTA: ${{ vars.GTA || '1' }}
+          KIND: ${{ inputs.kind }}
+          DRY: ${{ inputs.dry }}
+      - if: always()
+        run: |
+          git config user.name "autopost-bot"; git config user.email "autopost-bot@users.noreply.github.com"
+          git add -A preview/gta state/gta.json; git pull -q --rebase -X theirs origin main || true
+          git diff --cached --quiet || (git commit -m "gta reel" && (git push || (git pull --rebase -X theirs origin main && git push)))

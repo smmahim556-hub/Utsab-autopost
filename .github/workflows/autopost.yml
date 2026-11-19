@@ -136,6 +136,12 @@ jobs:
               gh workflow run story.yml -f post=true -f script=stories && echo "$d-$slot" >> state/golpo-dispatch.txt
             fi
           done
+          # GTA 6 reels (gta.yml, owner 2026-11-19): news at 13:00, a জানা-অজানা fact at 21:00 Dhaka (dispatched ~10 min early for rendering).
+          for slot in 770 1250; do
+            if [ "${{ vars.GTA || '1' }}" = 1 ] && [ $m -ge $slot ] && [ $m -lt $((slot + 60)) ] && ! grep -qx "$d-$slot" state/gta-dispatch.txt 2>/dev/null; then
+              gh workflow run gta.yml && echo "$d-$slot" >> state/gta-dispatch.txt
+            fi
+          done
           # Prayer reel: once the 8 division schedule cards are out and the last one is 5+ minutes old.
           if [ "${{ vars.PRAYER_REEL || '1' }}" = 1 ] && [ -f state/prayer.json ] && [ "$(jq -r .date state/prayer.json)" = "$d" ] \
              && [ "$(jq '.sched|length' state/prayer.json)" -ge 8 ] && [ $(( $(date +%s) * 1000 - $(jq .lastAt state/prayer.json) )) -ge 300000 ] \
