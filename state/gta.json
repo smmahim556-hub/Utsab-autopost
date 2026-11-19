@@ -1,0 +1,13 @@
+{
+ "done": [],
+ "offset": 0,
+ "log": [
+  "2026-11-19T04:29:40.707Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-19T04:29:40.795Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-19T04:29:40.862Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-19T04:29:40.926Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-19T04:29:41.004Z script retry gemini-3.1-flash-lite: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-19T04:29:41.083Z script retry gemini-3.1-flash-lite: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-19T04:29:41.084Z error: no script"
+ ]
+}
