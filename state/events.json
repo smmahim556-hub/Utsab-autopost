@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-19T01:09:33.878Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1172777305115597\"}"
-  },
-  {
-    "at": "2026-11-19T01:09:45.145Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1154345916967802\"}"
-  },
-  {
-    "at": "2026-11-19T01:15:03.074Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1170733379228012\"}"
-  },
-  {
-    "at": "2026-11-19T01:15:09.159Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"4588084041466340\"}"
-  },
-  {
     "at": "2026-11-19T01:20:31.658Z",
     "text": "weather বরিশাল FAILED (try 1): fetch failed"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-19T03:08:48.080Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1911422213180094\"}"
+  },
+  {
+    "at": "2026-11-19T03:32:57.357Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150371161140193 ()"
+  },
+  {
+    "at": "2026-11-19T03:33:31.055Z",
+    "text": "story on Page 872606492607357 FAILED: Graph 872606492607357/photo_stories: {\"code\":1,\"message\":\"An unknown error occurred\",\"error_subcode\":99}"
+  },
+  {
+    "at": "2026-11-19T03:33:35.386Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128698177459930 ()"
+  },
+  {
+    "at": "2026-11-19T03:33:42.623Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1674029500735179\"}"
   }
 ]
