@@ -31,7 +31,7 @@ const G = 'https://graph.facebook.com/v26.0', W = '/tmp/pod', ROOT = path.join(_
   items.forEach(it => { it.clip = sh(it.clip); });
   const b = await chromium.launch();
   try {
-    const n = Number(process.env.PODCAST_DEMO || 24) - 1;
+    const n = Math.min(Number(process.env.PODCAST_DEMO || 24), items.length) - 1;
     await renderClip(b, file, items[n].clip, '', path.join(ROOT, 'preview', 'podcast-sample.mp4'), W, 'demo');
     for (const i of [1, 4, 11, 21]) {
       const c = items[i].clip, out = `${W}/chk${i}.mp4`;
