@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-19T10:27:03.009Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122150414457140193 ()"
-  },
-  {
     "at": "2026-11-19T10:27:06.145Z",
     "text": "story on Page 872606492607357 FAILED: Graph 872606492607357/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AMmhcKmdhJyk1WTDK-FTqgY\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-19T11:28:02.998Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1613990027412159\"}"
+  },
+  {
+    "at": "2026-11-19T11:29:09.214Z",
+    "text": "album FAILED: me/accounts: (#4) Application request limit reached"
   }
 ]
