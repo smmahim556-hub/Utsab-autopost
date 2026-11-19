@@ -121,10 +121,17 @@ async function thumb(page, vid, jpg) {
   if (b.error) throw new Error(JSON.stringify(b.error).slice(0, 160));
 }
 
-// Full song in 1080p (short side), our logo top right.
+// Full song in 1080p (short side) with the channel's ANIMATED logo top right (owner 2026-11-19, from his sample frame:
+// visible logo ~14.4% of the frame width, ~5.1% in from the right edge, ~5.4% down from the top; looped for the whole song).
 function cutSong(src, s, file) {
-  ff(['-ss', String(Math.max(0, s.start - 1)), '-t', String(s.end - s.start + 2), '-i', src, '-i', path.join(ROOT, 'assets', 'logo.png'),
-    '-filter_complex', "[0:v]scale='if(gt(iw,ih),-2,min(1080,iw))':'if(gt(iw,ih),min(1080,ih),-2)',fps=30,setsar=1[v];[1:v]scale=200:-1[l];[v][l]overlay=W-w-30:30[o]",
+  const [iw, ih] = execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', src]).toString().trim().split(',').map(Number);
+  const W = iw > ih ? Math.round(iw * 1080 / ih / 2) * 2 : 1080, H = iw > ih ? 1080 : Math.round(ih * 1080 / iw / 2) * 2;
+  // assets/video-logo.webm is 260x152 with the logo itself at x 2-244, y 4-149.
+  const vis = Math.round(Math.min(W, H * 16 / 9) * 0.148), k = vis / 242, lw = Math.round(260 * k / 2) * 2;
+  const x = Math.round(W - Math.min(W, H * 16 / 9) * 0.057 - 244 * k), y = Math.round(H * 0.054 - 4 * k);
+  ff(['-ss', String(Math.max(0, s.start - 1)), '-t', String(s.end - s.start + 2), '-i', src,
+    '-stream_loop', '-1', '-c:v', 'libvpx-vp9', '-i', path.join(ROOT, 'assets', 'video-logo.webm'),
+    '-filter_complex', `[0:v]scale=${W}:${H},fps=30,setsar=1[v];[1:v]scale=${lw}:-2,format=rgba[l];[v][l]overlay=${x}:${y}:shortest=1[o]`,
     '-map', '[o]', '-map', '0:a:0?', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', file]);
 }
 
