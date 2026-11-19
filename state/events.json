@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-19T13:42:30.906Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2344191479670705\"}"
-  },
-  {
-    "at": "2026-11-19T13:42:35.066Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122128793277459930 ()"
-  },
-  {
-    "at": "2026-11-19T13:42:43.539Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3179393439088222\"}"
-  },
-  {
-    "at": "2026-11-19T13:42:47.310Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122114423319533116 ()"
-  },
-  {
-    "at": "2026-11-19T13:42:54.445Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1826509638680191\"}"
-  },
-  {
-    "at": "2026-11-19T13:49:29.109Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122150439477140193 ()"
-  },
-  {
     "at": "2026-11-19T13:49:34.653Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1975649247175343\"}"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-19T15:17:50.991Z",
     "text": "voice reel FAILED: Error: Gemini: gemini-3.5-flash: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, hea | gemini-3.1-flash-lite: The operation was aborted due to timeout | gemini-3-flash-preview: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, hea | gemini-3.8-flash: The operation was aborted due to timeout | gemini-flash-latest: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-fla"
+  },
+  {
+    "at": "2026-11-19T15:27:49.658Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150449185140193 ()"
+  },
+  {
+    "at": "2026-11-19T15:27:57.865Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"29547475101512522\"}"
+  },
+  {
+    "at": "2026-11-19T15:28:01.611Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122128811457459930 ()"
+  },
+  {
+    "at": "2026-11-19T15:28:10.053Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"979392318168605\"}"
+  },
+  {
+    "at": "2026-11-19T15:28:14.547Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122114464647533116 ()"
+  },
+  {
+    "at": "2026-11-19T15:28:21.374Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"4599738470340900\"}"
   }
 ]
