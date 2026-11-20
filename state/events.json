@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-20T06:01:40.705Z",
-    "text": "album on Page 872606492607357: 872606492607357_122150519487140193 https://utsabtv.com/prime-minister-tarique-rahman-birthday-today"
-  },
-  {
-    "at": "2026-11-20T06:01:52.547Z",
-    "text": "album on Page 1276101408920358: 1276101408920358_122128947051459930 https://utsabtv.com/prime-minister-tarique-rahman-birthday-today"
-  },
-  {
     "at": "2026-11-20T06:15:30.233Z",
     "text": "posted to Page 872606492607357: 872606492607357_122150521299140193 ()"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-20T07:52:58.595Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1525273812822153\"}"
+  },
+  {
+    "at": "2026-11-20T08:03:25.292Z",
+    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150531559140193\"}"
+  },
+  {
+    "at": "2026-11-20T08:03:31.763Z",
+    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122128967187459930\"}"
   }
 ]
