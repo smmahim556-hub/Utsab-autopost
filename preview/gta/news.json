@@ -1,41 +1,45 @@
 {
- "head1": "অবশেষে মুক্তি পেল জিটিএ সিক্স",
- "head2": "যুক্তরাষ্ট্র ও কানাডায় গেমটি উন্মুক্ত",
- "caption": "দীর্ঘ তেরো বছরের অপেক্ষার অবসান ঘটিয়ে অবশেষে মুক্তি পেয়েছে জিটিএ সিক্স। যুক্তরাষ্ট্র এবং কানাডায় গেমটি এখন খেলার জন্য উন্মুক্ত করা হয়েছে।",
+ "head1": "জিটিএ সিক্সের নতুন রেকর্ড",
+ "head2": "ইন্টারনেট ব্যবহারে গড়ল ইতিহাস",
+ "caption": "জিটিএ সিক্স উন্মোচনের পরপরই বিশ্বজুড়ে ইন্টারনেট ব্যবহারের সব রেকর্ড ভেঙে গেছে। মুক্তির প্রথম কয়েক ঘণ্টাতেই টুইচ ও ইউটিউবে গেমটির লাইভস্ট্রিম প্রায় ৮ মিলিয়ন ভিউ পেয়েছে।",
  "lines": [
   {
-   "say": "অবশেষে দীর্ঘ তেরো বছরের অপেক্ষার অবসান ঘটিয়ে মুক্তি পেল বহুল প্রতীক্ষিত গেম জিটিএ সিক্স।",
-   "sub": "অবশেষে মুক্তি পেল জিটিএ সিক্স"
+   "say": "রেকর্ড সংখ্যার মধ্য দিয়ে প্রকাশিত হয়েছে গেম জিটিএ সিক্স।",
+   "sub": "রেকর্ড গড়ে উন্মুক্ত হলো জিটিএ সিক্স"
   },
   {
-   "say": "আজ উনিশে নভেম্বর যুক্তরাষ্ট্র এবং কানাডায় গেমটি আনুষ্ঠানিকভাবে খেলার জন্য উন্মুক্ত করা হয়েছে।",
-   "sub": "যুক্তরাষ্ট্র ও কানাডায় গেমটি মুক্তি"
+   "say": "গেমটি উন্মোচনের পর বিশ্বজুড়ে ইন্টারনেট ব্যবহারের সব রেকর্ড ভেঙে গেছে।",
+   "sub": "ইন্টারনেট ব্যবহারের সব রেকর্ড ভাঙল"
   },
   {
-   "say": "গেমটি হাতে পেতে অনেক ভক্তরা অফিস থেকে ছুটি নিয়েছেন এবং বিভিন্ন জায়গায় উৎসব চলছে।",
-   "sub": "ভক্তদের মাঝে ব্যাপক উন্মাদনা"
+   "say": "মুক্তির প্রথম কয়েক ঘণ্টাতেই এর সরাসরি সম্প্রচার দেখতে বিপুল দর্শক জড়ো হন।",
+   "sub": "প্রথম কয়েক ঘণ্টাতেই রেকর্ড দর্শক"
   },
   {
-   "say": "প্লে-স্টেশন সার্ভারে অতিরিক্ত চাপের কারণে কিছু গেমার সংযোগ পেতে সমস্যার সম্মুখীন হচ্ছেন।",
-   "sub": "প্লে-স্টেশন সার্ভারে কিছু সমস্যা"
+   "say": "টুইচ ও ইউটিউবসহ বিভিন্ন প্ল্যাটফর্মে লাইভস্ট্রিমগুলো প্রায় আট মিলিয়ন ভিউ পেয়েছে।",
+   "sub": "লাইভস্ট্রিমে ভিউ প্রায় ৮ মিলিয়ন"
   },
   {
-   "say": "গেমটি নিয়ে আপনার প্রত্যাশা কী, তা আমাদের কমেন্ট করে অবশ্যই জানান।",
+   "say": "ভিডিও গেমের ইতিহাসেও এটি অনন্য এক রেকর্ড তৈরি করেছে।",
+   "sub": "গেমের ইতিহাসে তৈরি হলো রেকর্ড"
+  },
+  {
+   "say": "জিটিএ সিক্সের এই বিশ্বরেকর্ড নিয়ে আপনার অনুভূতি কমেন্টে জানান।",
    "sub": "আপনার মতামত কমেন্টে জানান"
   }
  ],
- "model": "gemini-3.1-flash-lite",
+ "model": "gemini-3.5-flash",
  "sources": [],
  "context": [
-  "- 'GTA 6' on Xbox Series S: How well it actually runs - Mashable (Thu, 19 Nov 2026)",
-  "- GTA 6 release: Here's how the sports world will be affected by the most anticipated video game of all time - Yahoo Sports (Thu, 19 Nov 2026)",
-  "- GTA 6 Is Now Out in the US and Canada – PS5 Download Size and Game Sharing Explained - VICE (Thu, 19 Nov 2026)",
-  "- GTA 6 hype takes over North Texas as fans celebrate long-awaited release - NBC 5 Dallas-Fort Worth (Thu, 19 Nov 2026)",
-  "- The New Zealand Trick Works Like a Charm. How to Play GTA 6 Right Now - PCMag (Thu, 19 Nov 2026)",
-  "- ‘13 Years of Anticipation Deserves a Day Off.’ The ‘GTA VI’ Work Blackout Is Here - WIRED (Wed, 18 Nov 2026)",
-  "- I finished GTA 6's main story: Ask me anything! (except for major spoilers) - PC Gamer (Wed, 18 Nov 2026)",
-  "- GTA 6 New Zealand time trick for Xbox, PS5: How to play hours early - Mashable (Thu, 19 Nov 2026)",
-  "- Giannis Antetokounmpo, Heat host Tyler Herro, Bucks for GTA 6-inspired 'Vice City' night - Yahoo Sports (Thu, 19 Nov 2026)",
-  "- The full 'GTA 6' soundtrack reportedly leaked: See all artists and tracks - Mashable (Thu, 19 Nov 2026)"
+  "- 'GTA 6' on Xbox Series S: How well it actually runs - Mashable (Fri, 20 Nov 2026)",
+  "- I Explored GTA 6's National Park Instead of Stealing Cars. It Even Has Public Bathrooms. - Outside Magazine (Thu, 19 Nov 2026)",
+  "- Parents: please don’t buy Grand Theft Auto VI for your child - The Guardian (Thu, 19 Nov 2026)",
+  "- GTA 6 songs you'll hear cruising around Vice City - CBS News (Thu, 19 Nov 2026)",
+  "- 'Abbott Elementary's Janelle James Says She \"Bullied\" Her Way To 'GTA 6': \"I Pursued, Conceptualized, Pitched, Scripted & Voice Acted\" - Deadline (Thu, 19 Nov 2026)",
+  "- Help: I can't stop obeying traffic laws in GTA 6 - PC Gamer (Thu, 19 Nov 2026)",
+  "- 'GTA 6' releases with record numbers - wandtv.com (Fri, 20 Nov 2026)",
+  "- With GTA 6 Release, DoorDash and Other Food Delivery Apps Are Making a Killing - The New York Times (Thu, 19 Nov 2026)",
+  "- GTA 6 Has A Surprising Late Game Cameo That Knocked Me On My Ass - Kotaku (Fri, 20 Nov 2026)",
+  "- People Are Making a Strange Accusation About GTA 6. I Have an Official Ruling. - Slate (Thu, 19 Nov 2026)"
  ]
 }
