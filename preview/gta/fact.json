@@ -1,49 +1,45 @@
 {
- "head1": "জিটিএ সিক্স-এ পরকীয়া অসম্ভব",
- "head2": "জেসন-লুসিয়ার প্রেমে বাধা নেই",
- "caption": "জিটিএ সিক্স গেমে জেসন আর লুসিয়ার ভালোবাসার গল্পে কোনো খাদ রাখছে না রকস্টার। গেমটির এই অদ্ভুত কিন্তু মজার নিয়মটি সম্পর্কে জানুন।",
+ "head1": "জিটিএ সিক্সের ভার্চুয়াল পার্কে",
+ "head2": "তৈরি হলো পাবলিক বাথরুম!",
+ "caption": "জিটিএ সিক্স গেমে সূক্ষ্ম ডিটেল দিতে গিয়ে ন্যাশনাল পার্কে তৈরি করা হয়েছে পাবলিক বাথরুম। ওপেন ওয়ার্ল্ড গেমের এমন মজাদার বিষয় নিয়ে এখন গেমারদের মধ্যে চলছে বেশ চর্চা।",
  "lines": [
   {
-   "say": "দীর্ঘ তেরো বছর অপেক্ষার পর অবশেষে মুক্তি পেল বছরের সবচেয়ে আলোচিত গেম জিটিএ সিক্স।",
-   "sub": "১৩ বছর পর এলো জিটিএ ৬"
+   "say": "জিটিএ সিক্স গেমটিতে গাড়ি চুরি আর অ্যাকশনের পাশাপাশি রয়েছে দারুণ এক অদ্ভুত বিষয়।",
+   "sub": "GTA 6-এ রয়েছে অদ্ভুত এক বিষয়!"
   },
   {
-   "say": "এবারের গেমে জেসন ডুভাল এবং লুসিয়া কামিনোস নামের দুই মূল চরিত্রের প্রেম কাহিনী ফুটিয়ে তোলা হয়েছে।",
-   "sub": "জেসন ও লুসিয়ার প্রেমের গল্প"
+   "say": "সম্প্রতি প্রকাশিত একটি খবরে জানা গেছে, গেমটির ন্যাশনাল পার্কে রাখা হয়েছে পাবলিক বাথরুম।",
+   "sub": "ন্যাশনাল পার্কে রাখা হয়েছে পাবলিক বাথরুম"
   },
   {
-   "say": "মজার ব্যাপার হলো, আপনি চাইলেও গেমে লুসিয়াকে ঠকিয়ে অন্য কারো সাথে সম্পর্কে জড়াতে পারবেন না।",
-   "sub": "লুসিয়াকে ঠকানো যাবে না গেমে"
+   "say": "খেলোয়াড়রা গাড়ি না চুরি করে পার্কের এসব গণশৌচাগার ঘুরে ঘুরে দেখতে শুরু করেছেন।",
+   "sub": "গাড়ি চুরি ছেড়ে বাথরুম দেখছেন প্লেয়াররা!"
   },
   {
-   "say": "রকস্টার গেমস জানিয়েছে, জেসন আর লুসিয়ার সম্পর্কের গভীরতা বজায় রাখতেই এই সিদ্ধান্ত নেওয়া হয়েছে।",
-   "sub": "সম্পর্কের গভীরতা রক্ষায় রকস্টারের সিদ্ধান্ত"
+   "say": "রকস্টার গেমসের এই অতি সূক্ষ্ম কাজ দেখে গেমাররা রীতিমতো অবাক হয়ে গেছেন।",
+   "sub": "রকস্টারের এমন নিখুঁত কাজে সবাই অবাক"
   },
   {
-   "say": "এমনকি স্ট্রিপ ক্লাব বা অন্য কোনো চরিত্রের সাথেও জেসন কোনো অনৈতিক কাজে জড়াতে পারবে না।",
-   "sub": "অন্য কারো সাথে জেসনের সম্পর্ক অসম্ভব"
+   "say": "ভার্চুয়াল জগতে বাথরুমের মতো এমন ছোট বিষয় দেওয়া নিয়ে এখন চলছে মজার আলোচনা।",
+   "sub": "ভার্চুয়াল জগতের এই ডিটেইল নিয়ে চর্চা"
   },
   {
-   "say": "গেমের ভেতরে এমন কঠোর নিয়ম রাখা কি ঠিক হয়েছে বলে আপনি মনে করেন?",
-   "sub": "এই নিয়ম কি ঠিক হয়েছে?"
-  },
-  {
-   "say": "আপনার মতামত আমাদের কমেন্ট বক্সে লিখে জানান।",
-   "sub": "আপনার মতামত কমেন্টে জানান"
+   "say": "গেমের ভেতর এমন অদ্ভুত ডিটেল আপনার কেমন লেগেছে, তা কমেন্টে জানান।",
+   "sub": "আপনার মূল্যবান মতামত কমেন্টে জানান!"
   }
  ],
- "model": "gemini-3-flash-preview",
+ "model": "gemini-3.5-flash",
  "sources": [],
  "context": [
-  "- UK joins in GTA 6 frenzy as game becomes available worldwide - BBC (Thu, 19 Nov 2026)",
+  "- GTA 6 drives spike in download demand, as estimated sales top $2.3bn - BBC (Fri, 20 Nov 2026)",
+  "- I've only sold five copies of GTA 6, says shop owner - BBC (Fri, 20 Nov 2026)",
+  "- GTA 6 was made by humans, but its publisher is all for using AI on admin - Business Insider (Fri, 20 Nov 2026)",
+  "- Alex Consani’s ‘GTA 6’ Radio Station Is an Excuse for Her to Gush About Her Favorite Pop Divas - Them (Fri, 20 Nov 2026)",
+  "- GTA 6 Vice City FM tracklist: Every song, artist and radio host - RouteNote (Fri, 20 Nov 2026)",
+  "- With GTA 6 Release, DoorDash and Other Food Delivery Apps Are Making a Killing - The New York Times (Thu, 19 Nov 2026)",
   "- Parents: please don’t buy Grand Theft Auto VI for your child - The Guardian (Thu, 19 Nov 2026)",
-  "- UFC’s Sean Strickland calls out youngsters wanting to play GTA 6 - Yahoo Sports (Thu, 19 Nov 2026)",
-  "- GTA 6 cheats: All the codes and how to unlock them - Red Bull (Wed, 18 Nov 2026)",
-  "- 'GTA 6': Should you kill or spare Arnold? What to know. - Mashable (Thu, 19 Nov 2026)",
-  "- The wait begins for GTA VI on PC - The Verge (Thu, 19 Nov 2026)",
-  "- GTA 6 is here! Return to Leonida now with Jason Duval and Lucia Caminos - USA Today (Thu, 19 Nov 2026)",
-  "- I used to sneak into my brother's room when he played GTA 3. Decades later, I'm hiding from my wife and son to play GTA 6. - Business Insider (Thu, 19 Nov 2026)",
-  "- Why Didn't Rockstar Use FSR 4 on Series X for GTA 6? Microsoft's Stats Have the Answer - Digital Foundry (Wed, 18 Nov 2026)",
-  "- GTA 6 players are discovering wild details nobody expected to find - Cleveland.com (Thu, 19 Nov 2026)"
+  "- 'GTA 6': Fox News Slams Fans, Clavicular & Manosphere Bros Hate Lucia - Variety (Thu, 19 Nov 2026)",
+  "- I Explored GTA 6's National Park Instead of Stealing Cars. It Even Has Public Bathrooms. - Outside Magazine (Thu, 19 Nov 2026)",
+  "- GTA 6 songs you'll hear cruising around Vice City - CBS News (Thu, 19 Nov 2026)"
  ]
 }
