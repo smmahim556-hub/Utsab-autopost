@@ -8,13 +8,18 @@
     "QUIZANS": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
     "QUIZ",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -38,7 +43,8 @@
     "https://utsabtv.com/pm-physician-visits-hospital-health-minister-condition",
     "https://utsabtv.com/netanyahu-cannot-stay-prime-minister-one-more-minute-eisenkot",
     "https://utsabtv.com/pope-leo-peru-amazon-visit-justice-for-environmental-defenders",
-    "https://utsabtv.com/jhalokathi-patuakhali-highway-two-bus-collision-two-killed-30-injured"
+    "https://utsabtv.com/jhalokathi-patuakhali-highway-two-bus-collision-two-killed-30-injured",
+    "https://utsabtv.com/prime-minister-tarique-rahman-birthday-today"
   ],
   "quiz": {
     "q": "ভারতে উৎপন্ন 'গঙ্গা' নদী বাংলাদেশে কোন নামে পরিচিত?",
