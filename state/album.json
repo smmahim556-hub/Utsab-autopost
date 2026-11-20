@@ -60,26 +60,18 @@
     "https://utsabtv.com/london-nahid-islam-reception-attack-awami-league-activists-five-injured",
     "https://utsabtv.com/former-mayor-saeed-khokon-arrested-gulshan-baridhara",
     "https://utsabtv.com/jhalokathi-patuakhali-highway-two-bus-collision-two-killed-30-injured",
-    "https://utsabtv.com/maximum-alert-all-airports-bangladesh-prevent-sabotage"
+    "https://utsabtv.com/maximum-alert-all-airports-bangladesh-prevent-sabotage",
+    "https://utsabtv.com/prime-minister-tarique-rahman-birthday-today"
   ],
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "done": {
     "720": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "960": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "1200": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "slotUrl": {
-    "960": "https://utsabtv.com/jhalokathi-patuakhali-highway-two-bus-collision-two-killed-30-injured",
-    "1200": "https://utsabtv.com/maximum-alert-all-airports-bangladesh-prevent-sabotage"
+    "720": "https://utsabtv.com/prime-minister-tarique-rahman-birthday-today"
   },
   "failedAt": 1793700193463
 }
