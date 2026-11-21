@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-21T14:01:21.596Z",
-    "text": "album on Page 1276101408920358: 1276101408920358_122129256351459930 https://utsabtv.com/opposition-leader-meets-australian-national-imams-council-sydney"
-  },
-  {
-    "at": "2026-11-21T14:03:22.221Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122150725299140193 ()"
-  },
-  {
-    "at": "2026-11-21T14:03:28.416Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1599559071939492\"}"
-  },
-  {
-    "at": "2026-11-21T14:03:31.116Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122129259255459930 ()"
-  },
-  {
     "at": "2026-11-21T14:03:36.658Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1882767142728211\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-21T15:25:00.475Z",
     "text": "tech FAILED: fetch failed"
+  },
+  {
+    "at": "2026-11-21T15:27:37.057Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150739021140193 (https://utsabtv.com/6-8-magnitude-earthquake-darwin-australia-residents-panic)"
+  },
+  {
+    "at": "2026-11-21T15:27:42.771Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1484004720322933\"}"
+  },
+  {
+    "at": "2026-11-21T15:27:48.443Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122129273685459930 (https://utsabtv.com/6-8-magnitude-earthquake-darwin-australia-residents-panic)"
+  },
+  {
+    "at": "2026-11-21T15:27:54.557Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1032039343244785\"}"
   }
 ]
