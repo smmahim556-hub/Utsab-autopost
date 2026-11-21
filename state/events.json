@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-21T04:49:46.881Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122150660133140193 ()"
-  },
-  {
-    "at": "2026-11-21T04:49:52.691Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1057573544009577\"}"
-  },
-  {
-    "at": "2026-11-21T04:49:55.858Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122129167617459930 ()"
-  },
-  {
-    "at": "2026-11-21T04:50:01.348Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1137587095653742\"}"
-  },
-  {
     "at": "2026-11-21T04:50:04.943Z",
     "text": "posted to Page 1406430145892267: 1406430145892267_122115037221533116 ()"
   },
@@ -152,11 +136,27 @@
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1139981791774460\"}"
   },
   {
-    "at": "2026-11-21T07:03:23.627Z",
-    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150671785140193\"}"
+    "at": "2026-11-21T07:03:11.862Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150671575140193 ()"
   },
   {
-    "at": "2026-11-21T07:03:31.022Z",
-    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122129186235459930\"}"
+    "at": "2026-11-21T07:03:18.474Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1007660862409917\"}"
+  },
+  {
+    "at": "2026-11-21T07:03:22.965Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122129186127459930 ()"
+  },
+  {
+    "at": "2026-11-21T07:03:29.067Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1476919887729868\"}"
+  },
+  {
+    "at": "2026-11-21T07:03:32.393Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122115065649533116 ()"
+  },
+  {
+    "at": "2026-11-21T07:03:38.553Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1621062816375635\"}"
   }
 ]
