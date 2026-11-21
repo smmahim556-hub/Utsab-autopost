@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-21T14:01:10.511Z",
-    "text": "album on Page 872606492607357: 872606492607357_122150724537140193 https://utsabtv.com/opposition-leader-meets-australian-national-imams-council-sydney"
-  },
-  {
     "at": "2026-11-21T14:01:21.596Z",
     "text": "album on Page 1276101408920358: 1276101408920358_122129256351459930 https://utsabtv.com/opposition-leader-meets-australian-national-imams-council-sydney"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-21T15:06:17.866Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1901064901065385\"}"
+  },
+  {
+    "at": "2026-11-21T15:25:00.475Z",
+    "text": "tech FAILED: fetch failed"
   }
 ]
