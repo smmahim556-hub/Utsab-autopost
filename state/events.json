@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-21T15:06:05.897Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1454312826126646\"}"
-  },
-  {
-    "at": "2026-11-21T15:06:09.630Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122129270127459930 ()"
-  },
-  {
-    "at": "2026-11-21T15:06:17.866Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1901064901065385\"}"
-  },
-  {
-    "at": "2026-11-21T15:25:00.475Z",
-    "text": "tech FAILED: fetch failed"
-  },
-  {
     "at": "2026-11-21T15:27:37.057Z",
     "text": "posted to Page 872606492607357: 872606492607357_122150739021140193 (https://utsabtv.com/6-8-magnitude-earthquake-darwin-australia-residents-panic)"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-21T17:13:57.921Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1776274640337859\"}"
+  },
+  {
+    "at": "2026-11-21T17:19:20.088Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150748651140193 (https://utsabtv.com/gaza-350000-families-homeless-winter-israeli-strikes-80-percent-homes-destroyed)"
+  },
+  {
+    "at": "2026-11-21T17:19:27.728Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1332241105639084\"}"
+  },
+  {
+    "at": "2026-11-21T17:19:36.318Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122129291043459930 (https://utsabtv.com/gaza-350000-families-homeless-winter-israeli-strikes-80-percent-homes-destroyed)"
+  },
+  {
+    "at": "2026-11-21T17:19:44.313Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1172605282182456\"}"
   }
 ]
