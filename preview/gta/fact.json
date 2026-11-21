@@ -1,45 +1,45 @@
 {
- "head1": "জিটিএ সিক্সের ভার্চুয়াল পার্কে",
- "head2": "তৈরি হলো পাবলিক বাথরুম!",
- "caption": "জিটিএ সিক্স গেমে সূক্ষ্ম ডিটেল দিতে গিয়ে ন্যাশনাল পার্কে তৈরি করা হয়েছে পাবলিক বাথরুম। ওপেন ওয়ার্ল্ড গেমের এমন মজাদার বিষয় নিয়ে এখন গেমারদের মধ্যে চলছে বেশ চর্চা।",
+ "head1": "জিটিএ সিক্সের অদ্ভুত এক দিক",
+ "head2": "ভাইস সিটিতে ৬০ প্রজাতির পাখি",
+ "caption": "জিটিএ সিক্সের ভার্চুয়াল জগতে প্রকৃতিপ্রেমীদের জন্য রয়েছে দারুণ এক চমক। ভাইস সিটির মানচিত্রে খুঁজে পাওয়া যাবে ৬০ প্রজাতির পাখি।",
  "lines": [
   {
-   "say": "জিটিএ সিক্স গেমটিতে গাড়ি চুরি আর অ্যাকশনের পাশাপাশি রয়েছে দারুণ এক অদ্ভুত বিষয়।",
-   "sub": "GTA 6-এ রয়েছে অদ্ভুত এক বিষয়!"
+   "say": "জিটিএ সিক্স নিয়ে চারদিকে তোলপাড়, কিন্তু গেমটির একটি অদ্ভুত তথ্য জানেন কি?",
+   "sub": "জিটিএ সিক্সের এক অজানা তথ্য"
   },
   {
-   "say": "সম্প্রতি প্রকাশিত একটি খবরে জানা গেছে, গেমটির ন্যাশনাল পার্কে রাখা হয়েছে পাবলিক বাথরুম।",
-   "sub": "ন্যাশনাল পার্কে রাখা হয়েছে পাবলিক বাথরুম"
+   "say": "ভাইস সিটির বিশাল মানচিত্রে রকস্টার গেমস যোগ করেছে ৬০ প্রজাতির পাখি।",
+   "sub": "গেমের ভেতর ৬০ প্রজাতির পাখি"
   },
   {
-   "say": "খেলোয়াড়রা গাড়ি না চুরি করে পার্কের এসব গণশৌচাগার ঘুরে ঘুরে দেখতে শুরু করেছেন।",
-   "sub": "গাড়ি চুরি ছেড়ে বাথরুম দেখছেন প্লেয়াররা!"
+   "say": "ন্যাশনাল অডুবন সোসাইটির তথ্য অনুযায়ী, এই পাখিগুলো হুবহু বাস্তব পাখির আদলে তৈরি।",
+   "sub": "বাস্তব পাখির আদলে তৈরি"
   },
   {
-   "say": "রকস্টার গেমসের এই অতি সূক্ষ্ম কাজ দেখে গেমাররা রীতিমতো অবাক হয়ে গেছেন।",
-   "sub": "রকস্টারের এমন নিখুঁত কাজে সবাই অবাক"
+   "say": "গেমাররা এখন অপরাধ জগতের পাশাপাশি পাখি পর্যবেক্ষণেও সময় কাটাচ্ছেন।",
+   "sub": "গেমাররা এখন পাখি পর্যবেক্ষণে ব্যস্ত"
   },
   {
-   "say": "ভার্চুয়াল জগতে বাথরুমের মতো এমন ছোট বিষয় দেওয়া নিয়ে এখন চলছে মজার আলোচনা।",
-   "sub": "ভার্চুয়াল জগতের এই ডিটেইল নিয়ে চর্চা"
+   "say": "আপনি কি গেমটি খেলার সময় এমন কোনো পাখির দেখা পেয়েছেন?",
+   "sub": "আপনি কি পাখি দেখেছেন?"
   },
   {
-   "say": "গেমের ভেতর এমন অদ্ভুত ডিটেল আপনার কেমন লেগেছে, তা কমেন্টে জানান।",
-   "sub": "আপনার মূল্যবান মতামত কমেন্টে জানান!"
+   "say": "আপনার অভিজ্ঞতা কমেন্ট বক্সে আমাদের জানান।",
+   "sub": "কমেন্টে আপনার মতামত জানান"
   }
  ],
- "model": "gemini-3.5-flash",
+ "model": "gemini-3.1-flash-lite",
  "sources": [],
  "context": [
-  "- GTA 6 drives spike in download demand, as estimated sales top $2.3bn - BBC (Fri, 20 Nov 2026)",
+  "- Grand Theft Auto 6 released after 13-year wait for gamers around the world - BBC (Thu, 19 Nov 2026)",
+  "- GTA 6 sales hit $3.8bn in a single day - the biggest entertainment launch in history - BBC (Fri, 20 Nov 2026)",
   "- I've only sold five copies of GTA 6, says shop owner - BBC (Fri, 20 Nov 2026)",
-  "- GTA 6 was made by humans, but its publisher is all for using AI on admin - Business Insider (Fri, 20 Nov 2026)",
-  "- Alex Consani’s ‘GTA 6’ Radio Station Is an Excuse for Her to Gush About Her Favorite Pop Divas - Them (Fri, 20 Nov 2026)",
-  "- GTA 6 Vice City FM tracklist: Every song, artist and radio host - RouteNote (Fri, 20 Nov 2026)",
-  "- With GTA 6 Release, DoorDash and Other Food Delivery Apps Are Making a Killing - The New York Times (Thu, 19 Nov 2026)",
-  "- Parents: please don’t buy Grand Theft Auto VI for your child - The Guardian (Thu, 19 Nov 2026)",
-  "- 'GTA 6': Fox News Slams Fans, Clavicular & Manosphere Bros Hate Lucia - Variety (Thu, 19 Nov 2026)",
-  "- I Explored GTA 6's National Park Instead of Stealing Cars. It Even Has Public Bathrooms. - Outside Magazine (Thu, 19 Nov 2026)",
-  "- GTA 6 songs you'll hear cruising around Vice City - CBS News (Thu, 19 Nov 2026)"
+  "- Watch Bulls Mascot Play GTA 6 and Ignore Wizards Players' Intros in Viral Video - Bleacher Report (Sat, 21 Nov 2026)",
+  "- ‘Grand Theft Auto 6’ Is Being Review Bombed On Metacritic - Forbes (Sat, 21 Nov 2026)",
+  "- Grand Theft Auto VI appears to mock NFL sexual misconduct scandals in radio parody - The Guardian (Fri, 20 Nov 2026)",
+  "- Missouri City dad finds missing download code in sealed GTA 6 copy, warns other buyers - Click2Houston (Sat, 21 Nov 2026)",
+  "- I Tracked Down All 60 Birds in GTA 6: A Birder’s Guide to Vice City’s Wildlife - National Audubon Society (Fri, 20 Nov 2026)",
+  "- Every Song Across All 24 Radio Stations in Grand Theft Auto VI - Consequence of Sound (Fri, 20 Nov 2026)",
+  "- GTA 6 Glitch Enables First-Person POV and Open-Source App Adds 120 FPS with DLSS 5 - TechPowerUp (Sat, 21 Nov 2026)"
  ]
 }
