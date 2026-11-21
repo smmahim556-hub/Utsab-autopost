@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-21T03:40:05.555Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"4819145918342478\"}"
-  },
-  {
-    "at": "2026-11-21T03:56:06.281Z",
-    "text": "comments FAILED: fetch failed"
-  },
-  {
-    "at": "2026-11-21T04:02:34.253Z",
-    "text": "voice reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150655543140193\"}"
-  },
-  {
-    "at": "2026-11-21T04:02:40.556Z",
-    "text": "voice reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122129161551459930\"}"
-  },
-  {
     "at": "2026-11-21T04:08:59.986Z",
     "text": "posted to Page 872606492607357: 872606492607357_122150655909140193 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-21T05:54:18.681Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"4261310174165489\"}"
+  },
+  {
+    "at": "2026-11-21T06:14:09.165Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150667267140193 ()"
+  },
+  {
+    "at": "2026-11-21T06:14:16.255Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1633239631613563\"}"
+  },
+  {
+    "at": "2026-11-21T06:14:20.550Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122129178315459930 ()"
+  },
+  {
+    "at": "2026-11-21T06:14:27.205Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1403994604864723\"}"
   }
 ]
