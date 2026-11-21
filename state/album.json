@@ -63,7 +63,8 @@
     "https://utsabtv.com/maximum-alert-all-airports-bangladesh-prevent-sabotage",
     "https://utsabtv.com/prime-minister-tarique-rahman-birthday-today",
     "https://utsabtv.com/pirojpur-court-premises-cocktail-attack-police",
-    "https://utsabtv.com/prime-minister-meets-three-armed-forces-chiefs-armed-forces-day"
+    "https://utsabtv.com/prime-minister-meets-three-armed-forces-chiefs-armed-forces-day",
+    "https://utsabtv.com/opposition-leader-meets-australian-national-imams-council-sydney"
   ],
   "date": "2026-11-21",
   "done": {
@@ -74,10 +75,15 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
-    "960": "https://utsabtv.com/prime-minister-meets-three-armed-forces-chiefs-armed-forces-day"
+    "960": "https://utsabtv.com/prime-minister-meets-three-armed-forces-chiefs-armed-forces-day",
+    "1200": "https://utsabtv.com/opposition-leader-meets-australian-national-imams-council-sydney"
   },
   "failedAt": 1793700193463
 }
