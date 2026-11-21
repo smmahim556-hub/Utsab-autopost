@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-20T17:54:22.186Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1547163233920190\"}"
-  },
-  {
     "at": "2026-11-20T20:46:17.162Z",
     "text": "missing FAILED: fetch failed"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-21T01:15:18.835Z",
     "text": "weather রাজশাহী FAILED (try 1): fetch failed"
+  },
+  {
+    "at": "2026-11-21T01:19:45.043Z",
+    "text": "weather রাজশাহী FAILED (try 2): fetch failed"
   }
 ]
