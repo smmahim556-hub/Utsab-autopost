@@ -1,6 +1,6 @@
 // Owner 2026-11-19 17:02 Dhaka: delete the Noble concert video that just went up (logo position/size wrong).
 // Lists videos + reels made today by concert-big (caption has #লাইভকনসার্ট) on the 3 Pages, published or scheduled, and deletes them.
-// Deletes the SCHEDULED (not yet published) Noble concert posts on the 3 Pages (owner 2026-11-19: old logo). DEL=0 lists only. Writes state/concert-big-delete-probe.json (no tokens).
+// Lists the SCHEDULED (not yet published) Noble concert posts on the 3 Pages; DEL=1 deletes them (2026-11-19: old logo). Writes state/concert-big-delete-probe.json (no tokens).
 const fs = require('fs'), path = require('path');
 const G = 'https://graph.facebook.com/v26.0', T = process.env.FB_USER_TOKEN;
 const PAGES = ['1406430145892267', '872606492607357', '1276101408920358'];
@@ -27,7 +27,7 @@ const j = async (u, o) => (await fetch(u, o)).json().catch(e => ({ error: e.mess
     out[id] = [];
     for (const v of seen.values()) {
       const row = { id: v.id, at: v.created_time, published: v.published, sched: v.scheduled_publish_time, desc: (v.description || '').slice(0, 80) };
-      if (process.env.DEL !== '0') row.del = await j(`${G}/${v.id}?access_token=${tok}`, { method: 'DELETE' });
+      if (process.env.DEL === '1') row.del = await j(`${G}/${v.id}?access_token=${tok}`, { method: 'DELETE' });
       out[id].push(row);
     }
   }
