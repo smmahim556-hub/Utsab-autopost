@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-17T14:47:09.312Z",
-    "text": "run failed: YouTube GET https://www.googleapis.com/drive/v3/files: HTTP 403 insufficientPermissions Request had insufficient authentication scopes."
-  },
-  {
     "at": "2026-11-17T15:39:17.862Z",
     "text": "run failed: YouTube GET https://www.googleapis.com/drive/v3/files: HTTP 403 insufficientPermissions Request had insufficient authentication scopes."
   },
@@ -157,6 +153,10 @@
   },
   {
     "at": "2026-11-22T03:28:07.437Z",
+    "text": "run failed: YouTube GET https://www.googleapis.com/drive/v3/files: HTTP 403 insufficientPermissions Request had insufficient authentication scopes."
+  },
+  {
+    "at": "2026-11-22T11:57:10.723Z",
     "text": "run failed: YouTube GET https://www.googleapis.com/drive/v3/files: HTTP 403 insufficientPermissions Request had insufficient authentication scopes."
   }
 ]
