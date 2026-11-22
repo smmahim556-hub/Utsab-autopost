@@ -4,10 +4,15 @@
     "OTD": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "MARKET": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
-    "OTD"
+    "OTD",
+    "MARKET"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -66,5 +71,5 @@
     "বাংলাদেশের একমাত্র পাহাড়ি দ্বীপ কোনটি?",
     "ভারতে উৎপন্ন 'গঙ্গা' নদী বাংলাদেশে কোন নামে পরিচিত?"
   ],
-  "marketCheckedAt": 1795336397249
+  "marketCheckedAt": 1795337309824
 }
