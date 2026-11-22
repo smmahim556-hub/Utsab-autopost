@@ -1,45 +1,49 @@
 {
- "head1": "জিটিএ সিক্সের রেকর্ড গড়া আয়",
- "head2": "প্রথম দিনেই ৩.৭৯ বিলিয়ন ডলার",
- "caption": "মুক্তির প্রথম দিনেই বিশ্বজুড়ে রেকর্ড গড়েছে জিটিএ সিক্স। গেমটি আয় করেছে প্রায় ৩.৭৯ বিলিয়ন ডলার।",
+ "head1": "জিটিএ সিক্স নিয়ে বড় দুঃসংবাদ",
+ "head2": "বছরের অন্যতম সর্বনিম্ন রেটিংপ্রাপ্ত গেম",
+ "caption": "মুক্তির পরই মেটাক্রিটিকে রিভিউ বোম্বিংয়ের শিকার জিটিএ সিক্স। গেমটি নিয়ে নেতিবাচক প্রতিক্রিয়ার কারণ কী?",
  "lines": [
   {
-   "say": "জিটিএ সিক্স মুক্তির প্রথম দিনেই বিশ্বজুড়ে হইচই ফেলে দিয়েছে।",
-   "sub": "জিটিএ সিক্সের রেকর্ড গড়া শুরু"
+   "say": "জিটিএ সিক্স নিয়ে এলো এক অভাবনীয় এবং নেতিবাচক সংবাদ।",
+   "sub": "জিটিএ সিক্স নিয়ে বড় দুঃসংবাদ"
   },
   {
-   "say": "গেমটি প্রথম দিনের বিক্রিতে ৩.৭৯ বিলিয়ন ডলার আয় করেছে।",
-   "sub": "প্রথম দিনে ৩.৭৯ বিলিয়ন আয়"
+   "say": "মুক্তির পরপরই মেটাক্রিটিকে গেমটি রিভিউ বোম্বিংয়ের শিকার হচ্ছে।",
+   "sub": "মেটাক্রিটিকে চলছে রিভিউ বোম্বিং"
   },
   {
-   "say": "এটি বিনোদন জগতের ইতিহাসে নতুন এক মাইলফলক তৈরি করেছে।",
-   "sub": "রেকর্ড গড়ল জিটিএ সিক্স"
+   "say": "এর ফলে এটি অফিশিয়ালি চলতি বছরের অন্যতম সর্বনিম্ন রেটিং পাওয়া গেমে পরিণত হয়েছে।",
+   "sub": "বছরের অন্যতম সর্বনিম্ন রেটিংপ্রাপ্ত গেম"
   },
   {
-   "say": "গেমটিতে সাতশটিরও বেশি গান এবং বিশটি রেডিও স্টেশন যুক্ত করা হয়েছে।",
-   "sub": "গেমটিতে ৭০০টির বেশি গান"
+   "say": "গেমাররা বিশেষ করে এটিএম ব্যবহারের জটিল পদ্ধতি নিয়ে সামাজিক মাধ্যমে ক্ষোভ জানাচ্ছেন।",
+   "sub": "এটিএম ব্যবহার নিয়ে গেমারদের ক্ষোভ"
   },
   {
-   "say": "ইতিমধ্যেই গেমটি নিয়ে বিশ্বজুড়ে নানা আলোচনা ও পর্যালোচনা শুরু হয়েছে।",
-   "sub": "বিশ্বজুড়ে গেমটি নিয়ে আলোচনা"
+   "say": "তবে প্রথম দিনে তিন দশমিক আট বিলিয়ন ডলার আয় করে এটি বিনোদন জগতের বৃহত্তম লঞ্চের রেকর্ড গড়েছে।",
+   "sub": "৩.৮ বিলিয়ন ডলার আয়ের রেকর্ড"
   },
   {
-   "say": "আপনার কাছে জিটিএ সিক্সের কোন বিষয়টি সবচেয়ে ভালো লেগেছে, তা আমাদের কমেন্টে জানান।",
+   "say": "গেমটিতে রেড ডেড রিডেম্পশনের আর্থার মরগানের কাউবয় হ্যাটও খুঁজে পেয়েছেন অনেকে।",
+   "sub": "মিলল আর্থার মরগানের কাউবয় হ্যাট"
+  },
+  {
+   "say": "গেমটির এই নেতিবাচক রেটিং নিয়ে আপনার মতামত কমেন্টে জানান।",
    "sub": "আপনার মতামত কমেন্টে জানান"
   }
  ],
- "model": "gemini-3.1-flash-lite",
+ "model": "gemini-3-flash-preview",
  "sources": [],
  "context": [
-  "- I Tracked Down All 60 Birds in GTA 6: A Birder’s Guide to Vice City’s Wildlife - National Audubon Society (Fri, 20 Nov 2026)",
-  "- 'GTA 6': How to listen to the radio outside of a vehicle - Mashable (Sat, 21 Nov 2026)",
-  "- GTA 6 breaks entertainment box office records with $3.79B in 1st-day sales - ABC News - Breaking News, Latest News and Videos (Fri, 20 Nov 2026)",
-  "- ‘GTA 6’ Raked In $3.8 Billion Sales On First Day—The Largest Entertainment Launch Ever - Forbes (Fri, 20 Nov 2026)",
-  "- ‘GTA 6’ Hits Massive $3.79 Billion in First-Day Sales - Variety (Fri, 20 Nov 2026)",
-  "- Here Are Some Super Useful Control Shortcuts GTA 6 Doesn’t Tell You About - Kotaku (Sat, 21 Nov 2026)",
-  "- Despite GTA 6's huge map, it only takes about 4 minutes to fly across it in a plane - PC Gamer (Fri, 20 Nov 2026)",
-  "- Why You Shouldn't Depend On GTA 6 To Auto-Save - Engadget (Fri, 20 Nov 2026)",
-  "- I Played Over 15 Hours In GTA 6 - Here's What You Need To Do First - BGR (Fri, 20 Nov 2026)",
-  "- 'GTA 6' broke a sales record no game or movie could touch for 13 years - Business Insider (Fri, 20 Nov 2026)"
+  "- Your teen wants to play 'GTA 6'. Here's what to know. - Mashable (Sun, 22 Nov 2026)",
+  "- The Fastest Way To Increase Focus Levels In ‘GTA 6’ - Forbes (Sat, 21 Nov 2026)",
+  "- It’s Official, GTA 6’s Graphics Have Broken My Brain - Polygon.com (Sat, 21 Nov 2026)",
+  "- Grand Theft AFC: Buffalo Bills vs.Miami Dolphins | Official GTA 6 Trailer - Buffalo Bills (Sat, 21 Nov 2026)",
+  "- 'It gives me the ick': Can you cheat on someone with a video game? - BBC (Sat, 21 Nov 2026)",
+  "- GTA 6 Players Hate Using ATMs: ‘Just Let Me Type In A Number!” - Kotaku (Sat, 21 Nov 2026)",
+  "- GTA 6 is a cozy game - PC Gamer (Sat, 21 Nov 2026)",
+  "- GTA 6 Leaker Dangles a PC Port Behind a $15 Million Crypto Pump - Decrypt (Sat, 21 Nov 2026)",
+  "- GTA 6 has a hidden warehouse packed with loot worth $14,000 - GAMINGbible (Sat, 21 Nov 2026)",
+  "- All Large Jewelry Store Heist Loot & Secrets Locations - GTA 6 - Mobalytics (Sun, 22 Nov 2026)"
  ]
 }
