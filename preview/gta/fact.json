@@ -1,45 +1,45 @@
 {
- "head1": "জিটিএ সিক্সের অদ্ভুত এক দিক",
- "head2": "ভাইস সিটিতে ৬০ প্রজাতির পাখি",
- "caption": "জিটিএ সিক্সের ভার্চুয়াল জগতে প্রকৃতিপ্রেমীদের জন্য রয়েছে দারুণ এক চমক। ভাইস সিটির মানচিত্রে খুঁজে পাওয়া যাবে ৬০ প্রজাতির পাখি।",
+ "head1": "জিটিএ সিক্সের বিশাল চমক",
+ "head2": "২০টি রেডিওতে ৭০০ গান!",
+ "caption": "জিটিএ সিক্স গেমে থাকছে ৭০০টিরও বেশি গান এবং ২০টি আলাদা রেডিও স্টেশন। গত ৯০ বছরের বিভিন্ন যুগের গান ড্রাইভ করার সময় উপভোগ করতে পারবেন গেমাররা।",
  "lines": [
   {
-   "say": "জিটিএ সিক্স নিয়ে চারদিকে তোলপাড়, কিন্তু গেমটির একটি অদ্ভুত তথ্য জানেন কি?",
-   "sub": "জিটিএ সিক্সের এক অজানা তথ্য"
+   "say": "জিটিএ সিক্স নিয়ে বিশ্বজুড়ে গেমারদের উন্মাদনা এখন তুঙ্গে।",
+   "sub": "GTA 6 নিয়ে গেমারদের তুঙ্গ উন্মাদনা"
   },
   {
-   "say": "ভাইস সিটির বিশাল মানচিত্রে রকস্টার গেমস যোগ করেছে ৬০ প্রজাতির পাখি।",
-   "sub": "গেমের ভেতর ৬০ প্রজাতির পাখি"
+   "say": "তবে এই গেমের মিউজিক আয়োজন সবাইকে সত্যি অবাক করে দিয়েছে।",
+   "sub": "গেমের গান শোনার ফিচারে চমক"
   },
   {
-   "say": "ন্যাশনাল অডুবন সোসাইটির তথ্য অনুযায়ী, এই পাখিগুলো হুবহু বাস্তব পাখির আদলে তৈরি।",
-   "sub": "বাস্তব পাখির আদলে তৈরি"
+   "say": "গেমটিতে রাখা হয়েছে মোট বিশটি আলাদা রেডিও স্টেশন।",
+   "sub": "থাকছে মোট ২০টি রেডিও স্টেশন"
   },
   {
-   "say": "গেমাররা এখন অপরাধ জগতের পাশাপাশি পাখি পর্যবেক্ষণেও সময় কাটাচ্ছেন।",
-   "sub": "গেমাররা এখন পাখি পর্যবেক্ষণে ব্যস্ত"
+   "say": "যেখানে গত নব্বই বছরের ইতিহাসের সাতশটিরও বেশি গান যুক্ত করা হয়েছে।",
+   "sub": "৯০ বছরের ৭০০+ গান যুক্ত"
   },
   {
-   "say": "আপনি কি গেমটি খেলার সময় এমন কোনো পাখির দেখা পেয়েছেন?",
-   "sub": "আপনি কি পাখি দেখেছেন?"
+   "say": "ভাইস সিটিতে গাড়ি চালানোর সময় খেলোয়াড়রা পছন্দমতো রেডিও টিউন করতে পারবেন।",
+   "sub": "পছন্দের গান শুনতে শুনতে ড্রাইভিং"
   },
   {
-   "say": "আপনার অভিজ্ঞতা কমেন্ট বক্সে আমাদের জানান।",
-   "sub": "কমেন্টে আপনার মতামত জানান"
+   "say": "গেমে গান শোনার এই বিশাল আয়োজন আপনার কেমন লাগল, কমেন্টে জানান।",
+   "sub": "আপনার মতামত কমেন্টে জানান!"
   }
  ],
- "model": "gemini-3.1-flash-lite",
+ "model": "gemini-3.5-flash",
  "sources": [],
  "context": [
-  "- Grand Theft Auto 6 released after 13-year wait for gamers around the world - BBC (Thu, 19 Nov 2026)",
   "- GTA 6 sales hit $3.8bn in a single day - the biggest entertainment launch in history - BBC (Fri, 20 Nov 2026)",
-  "- I've only sold five copies of GTA 6, says shop owner - BBC (Fri, 20 Nov 2026)",
-  "- Watch Bulls Mascot Play GTA 6 and Ignore Wizards Players' Intros in Viral Video - Bleacher Report (Sat, 21 Nov 2026)",
-  "- ‘Grand Theft Auto 6’ Is Being Review Bombed On Metacritic - Forbes (Sat, 21 Nov 2026)",
-  "- Grand Theft Auto VI appears to mock NFL sexual misconduct scandals in radio parody - The Guardian (Fri, 20 Nov 2026)",
-  "- Missouri City dad finds missing download code in sealed GTA 6 copy, warns other buyers - Click2Houston (Sat, 21 Nov 2026)",
   "- I Tracked Down All 60 Birds in GTA 6: A Birder’s Guide to Vice City’s Wildlife - National Audubon Society (Fri, 20 Nov 2026)",
-  "- Every Song Across All 24 Radio Stations in Grand Theft Auto VI - Consequence of Sound (Fri, 20 Nov 2026)",
-  "- GTA 6 Glitch Enables First-Person POV and Open-Source App Adds 120 FPS with DLSS 5 - TechPowerUp (Sat, 21 Nov 2026)"
+  "- Grand Theft Auto VI Now Available - Rockstar Games (Fri, 20 Nov 2026)",
+  "- I've only sold five copies of GTA 6, says shop owner - BBC (Fri, 20 Nov 2026)",
+  "- MAGA rep says he believes ‘bad parents’ let their kids play GTA 6 - The Independent (Sat, 21 Nov 2026)",
+  "- ‘GTA 6’ Music Breakdown: More Than 700 Songs and 90 Years of Music Across 20 Radio Stations - Variety (Fri, 20 Nov 2026)",
+  "- Grand Theft Auto VI mania could endanger marriages as relationship coach exposes red flag - Fox News (Sat, 21 Nov 2026)",
+  "- ‘Grand Theft Auto 6’ Is Being Review Bombed On Metacritic - Forbes (Sat, 21 Nov 2026)",
+  "- 'GTA 6' on Xbox Series S: How well it actually runs - Mashable (Sun, 22 Nov 2026)",
+  "- Man Claiming To Be Fired Rockstar Engineer Says GTA 6 Is Secretly Tracking Player Behavior and Reporting It to Take-Two - Yahoo Tech (Sat, 21 Nov 2026)"
  ]
 }
