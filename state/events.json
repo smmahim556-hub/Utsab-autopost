@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-22T12:54:17.101Z",
-    "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-11-22T12:54:17.344Z",
     "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-22T15:38:39.077Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1495647575835208\"}"
+  },
+  {
+    "at": "2026-11-22T16:01:51.377Z",
+    "text": "reel: only 0 news today, skipped"
   }
 ]
