@@ -35,7 +35,7 @@ function person(c) {
     const browCol = C.hair === 'bald' ? C.hairColor : O;
     const crown = C.crown ? `<path d="M-70 -730 L-76 -800 L-40 -766 L0 -820 L40 -766 L76 -800 L70 -730 Z" fill="#ffc93c" stroke="${O}" stroke-width="6" stroke-linejoin="round"/><circle cx="0" cy="-760" r="10" fill="#e63946" stroke="${O}" stroke-width="4"/>` : '';
     return `<g>${back}<ellipse cx="0" cy="-648" rx="78" ry="90" fill="${C.skin}" stroke="${O}" stroke-width="6"/>${front}
-<ellipse cx="-80" cy="-640" rx="12" ry="20" fill="${C.skin}" stroke="${O}" stroke-width="5"/><ellipse cx="80" cy="-640" rx="12" ry="20" fill="${C.skin}" stroke="${O}" stroke-width="5"/>
+${C.noEars ? '' : `<ellipse cx="-80" cy="-640" rx="12" ry="20" fill="${C.skin}" stroke="${O}" stroke-width="5"/><ellipse cx="80" cy="-640" rx="12" ry="20" fill="${C.skin}" stroke="${O}" stroke-width="5"/>`}
 ${beard}<g><ellipse cx="-30" cy="-656" rx="21" ry="25" fill="#fff" stroke="${O}" stroke-width="5"/><ellipse cx="30" cy="-656" rx="21" ry="25" fill="#fff" stroke="${O}" stroke-width="5"/>
 <circle cx="${-30 + px}" cy="${-654 + py}" r="11" fill="#1d1d1d"/><circle cx="${30 + px}" cy="${-654 + py}" r="11" fill="#1d1d1d"/><circle cx="${-26 + px}" cy="${-658 + py}" r="4" fill="#fff"/><circle cx="${34 + px}" cy="${-658 + py}" r="4" fill="#fff"/></g>
 <path d="${b}" fill="none" stroke="${browCol}" stroke-width="8" stroke-linecap="round"/>

@@ -7,7 +7,7 @@ const { O, person, props: P, svg, writeEpisode } = require('../lib');
 
 const hill = person({ skin: '#f6cfa6', hair: 'short', hairColor: '#4e342e', outfit: 'coat', cloth: '#37474f', legsColor: '#263238' });
 const doc = person({ skin: '#f1c28f', hair: 'bald', hairColor: '#9e9e9e', outfit: 'coat', cloth: '#eceff1', legsColor: '#455a64' });
-const kid = person({ skin: '#f6cfa6', hair: 'short', hairColor: '#6d4c41', outfit: 'tunic', cloth: '#43a047', legsColor: '#4e342e' });
+const kid = person({ skin: '#f6cfa6', hair: 'short', hairColor: '#6d4c41', outfit: 'tunic', cloth: '#43a047', legsColor: '#4e342e', noEars: true }); // Blair was born without ears
 const at = (x, y, s, inner, cls = '') => `<g transform="translate(${x},${y}) scale(${s})"><g class="${cls}">${inner}</g></g>`;
 const T = (x, y, t, fs, c) => `<text x="${x}" y="${y}" text-anchor="middle" font-family="Baloo Da 2" font-weight="800" font-size="${fs}" fill="${c}">${t}</text>`;
 const floor = (c = '#bcaaa4') => `<rect x="-800" y="1330" width="2680" height="590" fill="${c}" stroke="${O}" stroke-width="6"/>`;
