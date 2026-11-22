@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-21T22:14:40.461Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2200000570724739\"}"
-  },
-  {
-    "at": "2026-11-21T22:14:45.868Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2657460154710285\"}"
-  },
-  {
-    "at": "2026-11-21T22:19:17.555Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1016580018169532\"}"
-  },
-  {
-    "at": "2026-11-21T22:19:24.807Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"3567061086799588\"}"
-  },
-  {
     "at": "2026-11-21T22:23:45.189Z",
     "text": "posted to Page 872606492607357: 872606492607357_122150774403140193 ()"
   },
@@ -152,11 +136,27 @@
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1642794920650675\"}"
   },
   {
-    "at": "2026-11-22T02:03:41.326Z",
-    "text": "weather reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150789259140193\"}"
+    "at": "2026-11-22T02:04:45.294Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150789481140193 ()"
   },
   {
-    "at": "2026-11-22T02:03:48.656Z",
-    "text": "weather reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122129355165459930\"}"
+    "at": "2026-11-22T02:04:51.390Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1776743626732836\"}"
+  },
+  {
+    "at": "2026-11-22T02:04:55.074Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122129355375459930 ()"
+  },
+  {
+    "at": "2026-11-22T02:05:02.304Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1173566881840728\"}"
+  },
+  {
+    "at": "2026-11-22T02:05:06.553Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122115386925533116 ()"
+  },
+  {
+    "at": "2026-11-22T02:05:12.732Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1463938651797104\"}"
   }
 ]
