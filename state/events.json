@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-23T14:32:09.911Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2253619478915704\"}"
-  },
-  {
-    "at": "2026-11-23T14:39:34.622Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122150977443140193 (https://utsabtv.com/president-urges-all-vigilant-against-anarchists)"
-  },
-  {
     "at": "2026-11-23T14:39:41.924Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1162364633421164\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-23T15:51:47.218Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1667398184826611\"}"
+  },
+  {
+    "at": "2026-11-23T16:04:24.211Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150984805140193\"}"
+  },
+  {
+    "at": "2026-11-23T16:04:29.760Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122129759511459930\"}"
   }
 ]
