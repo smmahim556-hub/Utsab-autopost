@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-23T02:15:09.484Z",
-    "text": "weather reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150908059140193\"}"
-  },
-  {
-    "at": "2026-11-23T02:15:16.145Z",
-    "text": "weather reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122129577279459930\"}"
-  },
-  {
     "at": "2026-11-23T02:32:41.641Z",
     "text": "posted to Page 872606492607357: 872606492607357_122150909097140193 ()"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-23T04:51:28.157Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1102593102827149\"}"
+  },
+  {
+    "at": "2026-11-23T05:16:44.954Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2235541843843311\"}"
+  },
+  {
+    "at": "2026-11-23T05:16:51.663Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1678502897162091\"}"
   }
 ]
