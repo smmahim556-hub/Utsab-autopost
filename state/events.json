@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-23T01:41:51.565Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1870549100633793\"}"
-  },
-  {
-    "at": "2026-11-23T01:41:58.391Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1420294289858494\"}"
-  },
-  {
-    "at": "2026-11-23T01:45:33.928Z",
-    "text": "missing FAILED: fetch failed"
-  },
-  {
-    "at": "2026-11-23T01:46:36.861Z",
-    "text": "weather ময়মনসিংহ FAILED (try 1): fetch failed"
-  },
-  {
     "at": "2026-11-23T01:50:58.717Z",
     "text": "weather ময়মনসিংহ FAILED (try 2): https://api.open-meteo.com/v1/forecast?latitude=24.75&longitude=90.4&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FDhaka&forecast_days=1 -> HTTP 429"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-23T03:05:35.793Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1690821599318116\"}"
+  },
+  {
+    "at": "2026-11-23T03:30:58.575Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122150913765140193 ()"
+  },
+  {
+    "at": "2026-11-23T03:31:04.042Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1469423395306048\"}"
+  },
+  {
+    "at": "2026-11-23T03:31:06.626Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122129588235459930 ()"
+  },
+  {
+    "at": "2026-11-23T03:31:12.417Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1671205157747358\"}"
   }
 ]
