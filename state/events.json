@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-22T21:55:13.605Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2383053199153713\"}"
-  },
-  {
     "at": "2026-11-22T21:55:19.961Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1558503392753535\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-23T01:46:36.861Z",
     "text": "weather ময়মনসিংহ FAILED (try 1): fetch failed"
+  },
+  {
+    "at": "2026-11-23T01:50:58.717Z",
+    "text": "weather ময়মনসিংহ FAILED (try 2): https://api.open-meteo.com/v1/forecast?latitude=24.75&longitude=90.4&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FDhaka&forecast_days=1 -> HTTP 429"
   }
 ]
