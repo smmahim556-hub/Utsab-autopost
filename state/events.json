@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-23T16:04:24.211Z",
-    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122150984805140193\"}"
-  },
-  {
-    "at": "2026-11-23T16:04:29.760Z",
-    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122129759511459930\"}"
-  },
-  {
     "at": "2026-11-23T16:23:04.774Z",
     "text": "posted to Page 872606492607357: 872606492607357_122150985939140193 ()"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-23T22:13:00.937Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1391204359575652\"}"
+  },
+  {
+    "at": "2026-11-23T22:17:58.569Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"29049339508020477\"}"
+  },
+  {
+    "at": "2026-11-23T22:18:04.507Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1503384771659727\"}"
   }
 ]
