@@ -1,49 +1,41 @@
 {
- "head1": "জিটিএ সিক্স নিয়ে বড় দুঃসংবাদ",
- "head2": "বছরের অন্যতম সর্বনিম্ন রেটিংপ্রাপ্ত গেম",
- "caption": "মুক্তির পরই মেটাক্রিটিকে রিভিউ বোম্বিংয়ের শিকার জিটিএ সিক্স। গেমটি নিয়ে নেতিবাচক প্রতিক্রিয়ার কারণ কী?",
+ "head1": "জিটিএ সিক্স গেমে বিশেষ উদ্যোগ",
+ "head2": "প্রয়াত মায়ের স্মরণে মেমোরিয়াল",
+ "caption": "জিটিএ সিক্সের একজন ডেভেলপার তাঁর প্রয়াত মায়ের স্মরণে গেমে একটি স্মৃতিসৌধ তৈরি করেছেন। খেলোয়াড়রা গেমের ভেতরে গিয়ে এই বিশেষ মেমোরিয়ালটি পরিদর্শন করতে পারবেন।",
  "lines": [
   {
-   "say": "জিটিএ সিক্স নিয়ে এলো এক অভাবনীয় এবং নেতিবাচক সংবাদ।",
-   "sub": "জিটিএ সিক্স নিয়ে বড় দুঃসংবাদ"
+   "say": "জিটিএ সিক্স গেমে যুক্ত হয়েছে একটি আবেগঘন উদ্যোগ।",
+   "sub": "GTA 6-এ বিশেষ উদ্যোগ"
   },
   {
-   "say": "মুক্তির পরপরই মেটাক্রিটিকে গেমটি রিভিউ বোম্বিংয়ের শিকার হচ্ছে।",
-   "sub": "মেটাক্রিটিকে চলছে রিভিউ বোম্বিং"
+   "say": "গেমটির একজন ডেভেলপার তাঁর প্রয়াত মায়ের স্মরণে এই মেমোরিয়ালটি তৈরি করেছেন।",
+   "sub": "প্রয়াত মায়ের স্মরণে মেমোরিয়াল"
   },
   {
-   "say": "এর ফলে এটি অফিশিয়ালি চলতি বছরের অন্যতম সর্বনিম্ন রেটিং পাওয়া গেমে পরিণত হয়েছে।",
-   "sub": "বছরের অন্যতম সর্বনিম্ন রেটিংপ্রাপ্ত গেম"
+   "say": "আন্তর্জাতিক সংবাদমাধ্যম আইজিএন এই খবরের কথা জানিয়েছে।",
+   "sub": "খবরটি জানিয়েছে IGN"
   },
   {
-   "say": "গেমাররা বিশেষ করে এটিএম ব্যবহারের জটিল পদ্ধতি নিয়ে সামাজিক মাধ্যমে ক্ষোভ জানাচ্ছেন।",
-   "sub": "এটিএম ব্যবহার নিয়ে গেমারদের ক্ষোভ"
+   "say": "খেলোয়াড়েরা গেমের ভেতরে গিয়ে সরাসরি এই স্মৃতিসৌধটি পরিদর্শন করতে পারবেন।",
+   "sub": "মেমোরিয়ালটি পরিদর্শন করতে পারবেন গেমাররা"
   },
   {
-   "say": "তবে প্রথম দিনে তিন দশমিক আট বিলিয়ন ডলার আয় করে এটি বিনোদন জগতের বৃহত্তম লঞ্চের রেকর্ড গড়েছে।",
-   "sub": "৩.৮ বিলিয়ন ডলার আয়ের রেকর্ড"
-  },
-  {
-   "say": "গেমটিতে রেড ডেড রিডেম্পশনের আর্থার মরগানের কাউবয় হ্যাটও খুঁজে পেয়েছেন অনেকে।",
-   "sub": "মিলল আর্থার মরগানের কাউবয় হ্যাট"
-  },
-  {
-   "say": "গেমটির এই নেতিবাচক রেটিং নিয়ে আপনার মতামত কমেন্টে জানান।",
+   "say": "গেমে এমন বিশেষ মেমোরিয়াল তৈরির বিষয়টিকে আপনি কীভাবে দেখছেন, কমেন্টে জানান।",
    "sub": "আপনার মতামত কমেন্টে জানান"
   }
  ],
- "model": "gemini-3-flash-preview",
+ "model": "gemini-3.5-flash",
  "sources": [],
  "context": [
-  "- Your teen wants to play 'GTA 6'. Here's what to know. - Mashable (Sun, 22 Nov 2026)",
-  "- The Fastest Way To Increase Focus Levels In ‘GTA 6’ - Forbes (Sat, 21 Nov 2026)",
-  "- It’s Official, GTA 6’s Graphics Have Broken My Brain - Polygon.com (Sat, 21 Nov 2026)",
-  "- Grand Theft AFC: Buffalo Bills vs.Miami Dolphins | Official GTA 6 Trailer - Buffalo Bills (Sat, 21 Nov 2026)",
-  "- 'It gives me the ick': Can you cheat on someone with a video game? - BBC (Sat, 21 Nov 2026)",
-  "- GTA 6 Players Hate Using ATMs: ‘Just Let Me Type In A Number!” - Kotaku (Sat, 21 Nov 2026)",
-  "- GTA 6 is a cozy game - PC Gamer (Sat, 21 Nov 2026)",
-  "- GTA 6 Leaker Dangles a PC Port Behind a $15 Million Crypto Pump - Decrypt (Sat, 21 Nov 2026)",
-  "- GTA 6 has a hidden warehouse packed with loot worth $14,000 - GAMINGbible (Sat, 21 Nov 2026)",
-  "- All Large Jewelry Store Heist Loot & Secrets Locations - GTA 6 - Mobalytics (Sun, 22 Nov 2026)"
+  "- 'GTA 6' on Xbox Series S: How well it actually runs - Mashable (Mon, 23 Nov 2026)",
+  "- Sorry, Vice City, but You’re the Most Boring Part of GTA 6 - Polygon.com (Sun, 22 Nov 2026)",
+  "- Which GTA 6 radio station is your favourite so far? - PC Gamer (Sun, 22 Nov 2026)",
+  "- GTA 6 Players Rescue Fursuiter Chase from Satirical Polic... - X (Mon, 23 Nov 2026)",
+  "- How Long Is Chapter 3 in GTA 6? All Missables and Mission List - VICE (Mon, 23 Nov 2026)",
+  "- The unofficial PC version of GTA 6 will require a Ryzen 5 5600X and an RTX 30 with 8GB of memory. - GameGPU (Mon, 23 Nov 2026)",
+  "- Forget the Lighthouse, GTA 6’s Best Minigame Is a Full-Blown Zombie Shooter That Will Take You Hours To Beat - IGN (Sun, 22 Nov 2026)",
+  "- All La Cascara Motel Robbery Key Valuables Locations - GTA 6 - Mobalytics (Mon, 23 Nov 2026)",
+  "- GTA 6 missions: Full list and how many chapters to expect - Radio Times (Mon, 23 Nov 2026)",
+  "- GTA 6 Makes It Nearly Impossible to Play Without Killing Anyone - Polygon.com (Sun, 22 Nov 2026)"
  ]
 }

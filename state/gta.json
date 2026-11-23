@@ -95,13 +95,22 @@
     "1406430145892267": "1544035404448130"
    },
    "sources": []
+  },
+  {
+   "slot": "2026-11-23-news",
+   "at": "2026-11-23T06:52:29.128Z",
+   "kind": "news",
+   "head": "জিটিএ সিক্স গেমে বিশেষ উদ্যোগ প্রয়াত মায়ের স্মরণে মেমোরিয়াল",
+   "ids": {
+    "872606492607357": "1670159164806988",
+    "1276101408920358": "1147731857622007",
+    "1406430145892267": "1738696404532185"
+   },
+   "sources": []
   }
  ],
- "offset": 204.9178780000002,
+ "offset": 463.9178780000002,
  "log": [
-  "2026-11-19T04:29:40.707Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-19T04:29:40.795Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-19T04:29:40.862Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-19T04:29:40.926Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-19T04:29:41.004Z script retry gemini-3.1-flash-lite: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-19T04:29:41.083Z script retry gemini-3.1-flash-lite: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
@@ -157,6 +166,10 @@
   "2026-11-22T14:51:50.124Z fact: জিটিএ সিক্সের বিশাল চমক / ২০টি রেডিওতে ৭০০ গান! (gemini-3.5-flash)",
   "2026-11-22T14:52:49.124Z reel 1127862330063594 on 872606492607357",
   "2026-11-22T14:52:59.130Z reel 4641563889433978 on 1276101408920358",
-  "2026-11-22T14:53:11.797Z reel 1544035404448130 on 1406430145892267"
+  "2026-11-22T14:53:11.797Z reel 1544035404448130 on 1406430145892267",
+  "2026-11-23T06:51:16.374Z news: জিটিএ সিক্স গেমে বিশেষ উদ্যোগ / প্রয়াত মায়ের স্মরণে মেমোরিয়াল (gemini-3.5-flash)",
+  "2026-11-23T06:52:14.387Z reel 1670159164806988 on 872606492607357",
+  "2026-11-23T06:52:21.700Z reel 1147731857622007 on 1276101408920358",
+  "2026-11-23T06:52:29.127Z reel 1738696404532185 on 1406430145892267"
  ]
 }
