@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-22T21:50:43.610Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1701441444914607\"}"
-  },
-  {
     "at": "2026-11-22T21:50:50.927Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"3099214790414403\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-23T01:41:58.391Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1420294289858494\"}"
+  },
+  {
+    "at": "2026-11-23T01:45:33.928Z",
+    "text": "missing FAILED: fetch failed"
   }
 ]
