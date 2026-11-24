@@ -1,12 +1,10 @@
 {
- "at": "2026-11-24T19:31:59.425Z",
+ "at": "2026-11-24T19:48:24.280Z",
  "done": [
-  "s3r1",
-  "s3r2",
-  "s3r3"
+  "s3r4"
  ],
  "errors": {
-  "s3r4:1276101408920358": "{\"error\":{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"ABTe96Sl9voLzOpzaWDHKe5\"}}"
+  "s4r1:872606492607357": "{\"error\":{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"Aujt-Y_PnLn8jKpJ3s_MTsh\"}}"
  },
  "limited": true
 }
