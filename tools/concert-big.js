@@ -304,7 +304,9 @@ ${ranges || '(কোনো রিল নেই)'}
         if (doneAll(rk)) continue;
         const rf = `${B}/reel-${rk}.mp4`, rj = `${B}/reel-${rk}.jpg`;
         // song file starts 1 s before the song
-        await renderClip(browser, songFile, { start: r.start + 1, end: r.end + 1, hook: r.hook, subs: r.subs, tag: 'বিনোদন', foot: 'পুরো গানটি দেখুন উৎসব টিভির পেজে', cut: 0, focus: 'the lead singer' }, '', rf, B, rk);
+        // Reels come from the clean source, not songFile: songFile already carries the logo, which the reel crop cut in half (owner 2026-11-24).
+        const o = Math.max(0, s.start - 1); // songFile second t = source second o + t
+        await renderClip(browser, src, { start: r.start + 1 + o, end: r.end + 1 + o, hook: r.hook, subs: r.subs, tag: 'বিনোদন', foot: 'পুরো গানটি দেখুন উৎসব টিভির পেজে', cut: 0, focus: 'the lead singer' }, '', rf, B, rk);
         ff(['-ss', '2', '-i', rf, '-frames:v', '1', '-q:v', '3', rj]);
         await post(rk, r.at, r.hook, rf, rj, 'reel');
         fs.unlinkSync(rf);
