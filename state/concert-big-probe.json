@@ -104,32 +104,6 @@
     "1276101408920358": "1595343675966732"
    },
    "errors": {}
-  },
-  "s7r3": {
-   "at": "2026-12-05T16:00:00.000Z",
-   "hook": "সুরে সুরে জমে ওঠা মঞ্চ",
-   "kind": "reel",
-   "ids": {
-    "1406430145892267": "1495781479313519",
-    "872606492607357": "3018721048487393",
-    "1276101408920358": "1620705702514391"
-   },
-   "errors": {}
-  },
-  "s7r4": {
-   "at": "2026-12-06T07:00:00.000Z",
-   "hook": "গানের শেষ মুহূর্তের আবেগ",
-   "kind": "reel",
-   "ids": {
-    "1406430145892267": "1135588355859419",
-    "872606492607357": "1391497820724848",
-    "1276101408920358": "1702465961261932"
-   },
-   "errors": {
-    "thumb_1406430145892267": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AG7hLYZE1vi-o45MCdm-i9X\"}",
-    "thumb_872606492607357": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AKCS7VwSiQO8YLHbkG131Qb\"}",
-    "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A0E5VHsEEBLUVfUeWF-T9Oz\"}"
-   }
   }
  },
  "at": "2026-11-22T10:54:08.812Z"
