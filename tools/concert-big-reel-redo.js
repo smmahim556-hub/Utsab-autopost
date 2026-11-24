@@ -10,6 +10,7 @@ const P = path.join(ROOT, 'state', 'concert-big-probe.json');
   const acc = await (await fetch(`${G}/me/accounts?fields=id,access_token&limit=100&access_token=${encodeURIComponent(T)}`)).json();
   const tok = id => (acc.data || []).find(a => a.id === id)?.access_token;
   const out = { at: new Date().toISOString(), done: [], errors: {} };
+  if (!acc.data) { out.limited = true; out.errors.accounts = JSON.stringify(acc).slice(0, 200); }
   for (const [k, v] of Object.entries(st.posts)) {
     if (out.limited) break;
     if (v.kind !== 'reel' || Date.parse(v.at) < Date.now() + 30 * 60e3) continue;
