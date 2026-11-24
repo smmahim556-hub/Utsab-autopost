@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-24T17:08:02.581Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151113241140193 ()"
-  },
-  {
     "at": "2026-11-24T17:08:08.300Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"998979159424585\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-24T17:51:38.715Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1839379437083578\"}"
+  },
+  {
+    "at": "2026-11-24T18:32:47.993Z",
+    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
   }
 ]
