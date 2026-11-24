@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-24T13:15:11.676Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151089319140193 ()"
-  },
-  {
     "at": "2026-11-24T13:15:18.896Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1450382683885686\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-24T14:59:15.888Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1113069758223078\"}"
+  },
+  {
+    "at": "2026-11-24T15:02:54.158Z",
+    "text": "voice reel FAILED: Error: Gemini: gemini-3.5-flash: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, hea | gemini-3.1-flash-lite: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3-flash-preview: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, hea | gemini-3.8-flash: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
   }
 ]
