@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-24T13:15:18.896Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1450382683885686\"}"
-  },
-  {
-    "at": "2026-11-24T13:15:22.490Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122129937789459930 ()"
-  },
-  {
-    "at": "2026-11-24T13:15:28.989Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1203208842392761\"}"
-  },
-  {
-    "at": "2026-11-24T13:15:32.927Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122116299411533116 ()"
-  },
-  {
     "at": "2026-11-24T13:15:38.717Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1486350413422009\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-24T15:02:54.158Z",
     "text": "voice reel FAILED: Error: Gemini: gemini-3.5-flash: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, hea | gemini-3.1-flash-lite: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3-flash-preview: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, hea | gemini-3.8-flash: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+  },
+  {
+    "at": "2026-11-24T15:20:09.083Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151104313140193 ()"
+  },
+  {
+    "at": "2026-11-24T15:20:15.195Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"999387546568714\"}"
+  },
+  {
+    "at": "2026-11-24T15:20:19.736Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122129953719459930 ()"
+  },
+  {
+    "at": "2026-11-24T15:20:26.586Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3247166182143037\"}"
   }
 ]
