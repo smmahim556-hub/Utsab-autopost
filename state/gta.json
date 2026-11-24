@@ -111,13 +111,6 @@
  ],
  "offset": 463.9178780000002,
  "log": [
-  "2026-11-19T04:44:03.026Z dry news 36.5s",
-  "2026-11-19T06:54:44.575Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-19T06:54:44.693Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-19T06:54:44.801Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-19T06:54:44.924Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-19T06:54:46.442Z news: অবশেষে মুক্তি পেল জিটিএ সিক্স / যুক্তরাষ্ট্র ও কানাডায় গেমটি উন্মুক্ত (gemini-3.1-flash-lite)",
-  "2026-11-19T06:55:53.815Z reel 29568365872781752 on 872606492607357",
   "2026-11-19T06:56:06.197Z reel 1467890841430076 on 1276101408920358",
   "2026-11-19T06:56:20.070Z reel 1833546861248728 on 1406430145892267",
   "2026-11-19T14:55:45.080Z script retry gemini-3.5-flash: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
@@ -170,6 +163,13 @@
   "2026-11-23T14:52:45.081Z tts eleven_v4_turbo 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
   "2026-11-23T14:52:45.222Z tts eleven_v4 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
   "2026-11-23T14:52:45.391Z tts eleven_v3 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
-  "2026-11-23T14:52:45.391Z error: ElevenLabs failed"
+  "2026-11-23T14:52:45.391Z error: ElevenLabs failed",
+  "2026-11-24T07:19:27.934Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-24T07:19:28.048Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-24T07:19:28.198Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-24T07:19:28.317Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-24T07:22:28.319Z script retry gemini-3.1-flash-lite: ",
+  "2026-11-24T07:22:32.970Z script retry gemini-3.1-flash-lite: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+  "2026-11-24T07:22:32.971Z error: no script"
  ]
 }
