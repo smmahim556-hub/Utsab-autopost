@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-24T19:43:43.541Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-11-24T19:44:43.916Z",
     "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-24T22:01:15.625Z",
     "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
+  },
+  {
+    "at": "2026-11-24T22:02:32.360Z",
+    "text": "prayer reel FAILED: Error: me/accounts: (#4) Application request limit reached\n    at loadPages (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:172:26)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async pages (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:184:55)\n    at async prayerReelRun (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:1204:32)"
   }
 ]
