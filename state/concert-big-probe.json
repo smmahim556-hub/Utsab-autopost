@@ -149,21 +149,6 @@
     "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AsKCkFSFYZJpi_3kJXf8Z5D\"}"
    }
   },
-  "s6r1": {
-   "at": "2026-12-04T07:00:00.000Z",
-   "hook": "ভালোবাসার অকাল সমাপ্তির গান",
-   "kind": "reel",
-   "ids": {
-    "1406430145892267": "1866443911151690",
-    "872606492607357": "1017386150681400",
-    "1276101408920358": "1121360077344362"
-   },
-   "errors": {
-    "thumb_1406430145892267": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"ADPrbZ5vr_ZKHxJFLRwvKTS\"}",
-    "thumb_872606492607357": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"Ahuit6USfbrzZ1GeQhM9rDr\"}",
-    "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AJmhf-E_52wnhShK_EnJY1c\"}"
-   }
-  },
   "s6r2": {
    "at": "2026-12-04T11:00:00.000Z",
    "hook": "নিঃসঙ্গতার গভীর অনুভূতি",
