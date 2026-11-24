@@ -149,21 +149,6 @@
     "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AsKCkFSFYZJpi_3kJXf8Z5D\"}"
    }
   },
-  "s6r2": {
-   "at": "2026-12-04T11:00:00.000Z",
-   "hook": "নিঃসঙ্গতার গভীর অনুভূতি",
-   "kind": "reel",
-   "ids": {
-    "1406430145892267": "1859312678825163",
-    "872606492607357": "2292995011269696",
-    "1276101408920358": "2396427094494380"
-   },
-   "errors": {
-    "thumb_1406430145892267": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A3laJ8C_FT4rvo3qMZOHGVD\"}",
-    "thumb_872606492607357": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"Ai2DMzTTXK_OL-YVaIR2jCJ\"}",
-    "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AcdHj1i45CmwWdYb3H5fHXi\"}"
-   }
-  },
   "s7": {
    "at": "2026-12-04T16:00:00.000Z",
    "hook": "\"পৃথিবীটা নাকি ছোট হতে হতে\" - প্রযুক্তির যুগে বন্দী মানুষ",
