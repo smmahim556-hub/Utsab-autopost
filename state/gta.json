@@ -111,13 +111,6 @@
  ],
  "offset": 463.9178780000002,
  "log": [
-  "2026-11-19T06:56:06.197Z reel 1467890841430076 on 1276101408920358",
-  "2026-11-19T06:56:20.070Z reel 1833546861248728 on 1406430145892267",
-  "2026-11-19T14:55:45.080Z script retry gemini-3.5-flash: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-  "2026-11-19T14:55:45.183Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-19T14:55:53.126Z fact: জিটিএ সিক্স-এ পরকীয়া অসম্ভব / জেসন-লুসিয়ার প্রেমে বাধা নেই (gemini-3-flash-preview)",
-  "2026-11-19T14:57:12.708Z reel 1158646373521680 on 872606492607357",
-  "2026-11-19T14:57:20.885Z reel 1171829528674411 on 1276101408920358",
   "2026-11-19T14:57:27.495Z reel 1955771935829739 on 1406430145892267",
   "2026-11-20T06:59:56.830Z news: জিটিএ সিক্সের নতুন রেকর্ড / ইন্টারনেট ব্যবহারে গড়ল ইতিহাস (gemini-3.5-flash)",
   "2026-11-20T07:00:53.284Z reel 1445420157803758 on 872606492607357",
@@ -170,6 +163,13 @@
   "2026-11-24T07:19:28.317Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-24T07:22:28.319Z script retry gemini-3.1-flash-lite: ",
   "2026-11-24T07:22:32.970Z script retry gemini-3.1-flash-lite: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-  "2026-11-24T07:22:32.971Z error: no script"
+  "2026-11-24T07:22:32.971Z error: no script",
+  "2026-11-24T14:51:58.601Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-24T14:51:58.677Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-24T14:51:58.788Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-24T14:51:58.874Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-24T14:52:02.408Z script retry gemini-3.1-flash-lite: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+  "2026-11-24T14:52:13.902Z script retry gemini-3.1-flash-lite: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+  "2026-11-24T14:52:13.902Z error: no script"
  ]
 }
