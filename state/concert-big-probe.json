@@ -134,51 +134,6 @@
     "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A0UvZwkvt66Xb7AvtqHf4NN\"}"
    }
   },
-  "s5r3": {
-   "at": "2026-11-30T07:00:00.000Z",
-   "hook": "আড্ডার বন্ধু সুজাতার নতুন জীবন",
-   "kind": "reel",
-   "ids": {
-    "1406430145892267": "1506555771534407",
-    "872606492607357": "1686997796388926",
-    "1276101408920358": "3592854717559067"
-   },
-   "errors": {
-    "thumb_1406430145892267": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AEF76DfFsUBqkr-y094w0a5\"}",
-    "thumb_872606492607357": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AoPbw8HpBiaWGhfwCtkMHZI\"}",
-    "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AGgKhHHbsoFxoBG1jnL-cE6\"}"
-   }
-  },
-  "s5r4": {
-   "at": "2026-11-30T11:00:00.000Z",
-   "hook": "কফি হাউসকে ঘিরে মানুষের স্বপ্ন ও বাস্তবতা",
-   "kind": "reel",
-   "ids": {
-    "1406430145892267": "1188821713468869",
-    "872606492607357": "2798115007251997",
-    "1276101408920358": "1716921473134642"
-   },
-   "errors": {
-    "thumb_1406430145892267": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"Ag6HQFmmF9UIhkA5P_rIJFj\"}",
-    "thumb_872606492607357": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AWWfpvBx15qiWWzNQVwRANr\"}",
-    "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"Ar34C8HqcIblvMH6XLU060m\"}"
-   }
-  },
-  "s5r5": {
-   "at": "2026-12-03T11:00:00.000Z",
-   "hook": "পুরানো দিনের আড্ডার প্রতি শেষ শ্রদ্ধা",
-   "kind": "reel",
-   "ids": {
-    "1406430145892267": "1147831901447386",
-    "872606492607357": "1400510788827340",
-    "1276101408920358": "1791538742107716"
-   },
-   "errors": {
-    "thumb_1406430145892267": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A-y9lcoEXGMUy-6Asw7O1Kq\"}",
-    "thumb_872606492607357": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A9jLfcbDzxQOqGzBosdbpXi\"}",
-    "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AXnGEU-117ji37g2uYvFQLq\"}"
-   }
-  },
   "s6": {
    "at": "2026-12-03T16:00:00.000Z",
    "hook": "\"ও কবিতা, তুমি স্বপ্নচারিণী হয়ে খবর নিও না\" - লাইভে শুনুন",
