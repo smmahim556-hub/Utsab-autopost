@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-24T17:09:00.915Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2403464550465072\"}"
-  },
-  {
-    "at": "2026-11-24T17:09:09.940Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122129967975459930 (https://utsabtv.com/us-plan-return-troops-syria-demining-training)"
-  },
-  {
     "at": "2026-11-24T17:09:16.589Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1468811987913675\"}"
   },
@@ -157,6 +149,14 @@
   },
   {
     "at": "2026-11-24T18:36:20.978Z",
+    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
+  },
+  {
+    "at": "2026-11-24T18:37:07.900Z",
+    "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
+  },
+  {
+    "at": "2026-11-24T18:37:08.137Z",
     "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
   }
 ]
