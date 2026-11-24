@@ -11,11 +11,12 @@ const P = path.join(ROOT, 'state', 'concert-big-probe.json');
   const tok = id => (acc.data || []).find(a => a.id === id)?.access_token;
   const out = { at: new Date().toISOString(), done: [], errors: {} };
   for (const [k, v] of Object.entries(st.posts)) {
+    if (out.limited) break;
     if (v.kind !== 'reel' || Date.parse(v.at) < Date.now() + 30 * 60e3) continue;
     let ok = true;
     for (const [page, vid] of Object.entries(v.ids)) {
       const r = await (await fetch(`${G}/${vid}?access_token=${encodeURIComponent(tok(page))}`, { method: 'DELETE' })).json().catch(e => ({ error: { message: e.message } }));
-      if (!r.success) { ok = false; out.errors[`${k}:${page}`] = JSON.stringify(r).slice(0, 200); }
+      if (!r.success && !/does not exist|nonexisting|Unsupported delete/i.test(r.error?.message || '')) { ok = false; out.errors[`${k}:${page}`] = JSON.stringify(r).slice(0, 200); if (r.error?.code === 4) { out.limited = true; break; } }
     }
     if (ok) { delete st.posts[k]; out.done.push(k); }
   }
