@@ -13,7 +13,7 @@ const P = path.join(ROOT, 'state', 'concert-big-probe.json');
   if (!acc.data) { out.limited = true; out.errors.accounts = JSON.stringify(acc).slice(0, 200); }
   for (const [k, v] of Object.entries(st.posts)) {
     if (out.limited) break;
-    if (v.kind !== 'reel' || Date.parse(v.at) < Date.now() + 30 * 60e3) continue;
+    if (v.kind !== 'reel') continue; // all of them: published ones had the inner logo too (owner 2026-11-25: delete and re-upload)
     let ok = true;
     for (const [page, vid] of Object.entries(v.ids)) {
       const r = await (await fetch(`${G}/${vid}?access_token=${encodeURIComponent(tok(page))}`, { method: 'DELETE' })).json().catch(e => ({ error: { message: e.message } }));

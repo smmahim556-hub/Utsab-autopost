@@ -21,9 +21,13 @@ const prev = (() => { try { const p = JSON.parse(fs.readFileSync(OUT, 'utf8')); 
 const out = prev && !DRY ? prev : { drive: id, steps: {}, posts: {} };
 out.at = new Date().toISOString(); out.posts = out.posts || {};
 const save = () => { fs.mkdirSync(path.dirname(OUT), { recursive: true }); fs.writeFileSync(OUT, JSON.stringify(out, null, 1)); };
-const TAGS = '#utsabtv #কনসার্ট #বিনোদন #গান #লাইভকনসার্ট';
-const songDesc = hook => `${hook}\n\nউৎসব টিভির কনসার্ট থেকে পুরো গান।\n\n${TAGS}`;
-const reelDesc = hook => `${hook}\n\nউৎসব টিভির কনসার্ট থেকে। পুরো গানটি দেখুন আমাদের পেজে।\n\n${TAGS}`;
+// Captions for search and reach (owner 2026-11-25: research SEO so the concert reels go viral). Facebook indexes caption text, so
+// the first line carries the hook plus the searchable words (artist + live concert), then one line in English for English search,
+// a question that invites comments, and 5 focused hashtags.
+const TAGS = '#নোবেল #Noble #LiveConcert #BanglaSong #utsabtv';
+const ASK = 'নোবেলের কোন গানটা আপনার সবচেয়ে প্রিয়? কমেন্টে লিখুন।';
+const songDesc = hook => `${hook} | নোবেলের লাইভ কনসার্ট\n\nউৎসব টিভির মঞ্চে নোবেলের কণ্ঠে পুরো গান।\nNoble live in concert, full song.\n\n${ASK}\n\n${TAGS}`;
+const reelDesc = hook => `${hook} | নোবেল লাইভ\n\nউৎসব টিভির কনসার্টে নোবেলের কণ্ঠে। পুরো গানটি আমাদের পেজে।\nNoble live in concert.\n\n${ASK}\n\n${TAGS}`;
 const fmt = t => new Date(t).toLocaleString('en-GB', { timeZone: 'Asia/Dhaka', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
 const mmss = s => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
 
