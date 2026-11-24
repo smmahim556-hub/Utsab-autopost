@@ -120,17 +120,6 @@
    },
    "errors": {}
   },
-  "s4r3": {
-   "at": "2026-11-28T16:00:00.000Z",
-   "hook": "মুক্ত মনের ফেরারী সুর",
-   "kind": "reel",
-   "ids": {
-    "1406430145892267": "1911169543355406",
-    "872606492607357": "3268826999979176",
-    "1276101408920358": "1457856529099167"
-   },
-   "errors": {}
-  },
   "s5": {
    "at": "2026-11-29T07:00:00.000Z",
    "hook": "\"কফি হাউসের সেই আড্ডাটা আজ আর নেই\" - লাইভে শুনুন",
@@ -143,36 +132,6 @@
    "errors": {
     "thumb_872606492607357": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AfTwYYg95Im3sltsiNPFLBL\"}",
     "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A0UvZwkvt66Xb7AvtqHf4NN\"}"
-   }
-  },
-  "s5r1": {
-   "at": "2026-11-29T11:00:00.000Z",
-   "hook": "হারিয়ে যাওয়া সোনালি দিনের আড্ডা",
-   "kind": "reel",
-   "ids": {
-    "1406430145892267": "1177366881725251",
-    "872606492607357": "2209192426607781",
-    "1276101408920358": "1790619052236305"
-   },
-   "errors": {
-    "thumb_1406430145892267": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AZPTJCZC-6DYGoarUIbRaTh\"}",
-    "thumb_872606492607357": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A_QofuxxOR5XGpnUY4LbJRx\"}",
-    "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A3U0mKjwzJxhSs3MVuCopR5\"}"
-   }
-  },
-  "s5r2": {
-   "at": "2026-11-29T16:00:00.000Z",
-   "hook": "আড্ডার বন্ধুদের বর্তমান জীবনের করুণ পরিণতি",
-   "kind": "reel",
-   "ids": {
-    "1406430145892267": "1822752338946775",
-    "872606492607357": "4699319603645036",
-    "1276101408920358": "979624814853719"
-   },
-   "errors": {
-    "thumb_1406430145892267": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"ABXCSBTsRXoTjMe6paGXSf1\"}",
-    "thumb_872606492607357": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AUAPLSAYieTti34cz-M2C6p\"}",
-    "thumb_1276101408920358": "{\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"A1c7IjooyT2XNZ5ZzsZkh18\"}"
    }
   },
   "s5r3": {
