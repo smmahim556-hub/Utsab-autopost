@@ -66,7 +66,8 @@
     "https://utsabtv.com/prime-minister-meets-three-armed-forces-chiefs-armed-forces-day",
     "https://utsabtv.com/opposition-leader-meets-australian-national-imams-council-sydney",
     "https://utsabtv.com/chhatra-dal-two-groups-clash-over-handing-banned-bcl-leader-to-police",
-    "https://utsabtv.com/trump-administration-discusses-killing-iran-top-leaders-nbc-news"
+    "https://utsabtv.com/trump-administration-discusses-killing-iran-top-leaders-nbc-news",
+    "https://utsabtv.com/garment-workers-protest-blocking-two-highways"
   ],
   "date": "2026-11-25",
   "done": {
@@ -77,11 +78,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/chhatra-dal-two-groups-clash-over-handing-banned-bcl-leader-to-police",
-    "960": "https://utsabtv.com/trump-administration-discusses-killing-iran-top-leaders-nbc-news"
+    "960": "https://utsabtv.com/trump-administration-discusses-killing-iran-top-leaders-nbc-news",
+    "1200": "https://utsabtv.com/garment-workers-protest-blocking-two-highways"
   },
   "failedAt": 1793700193463
 }
