@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-24T21:58:19.187Z",
-    "text": "prayer sched-বরিশাল FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-24T21:58:22.026Z",
-    "text": "sports fb-401915298 FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-24T21:59:08.770Z",
-    "text": "prayer sched-সিলেট FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-24T21:59:11.558Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-11-24T22:00:26.982Z",
     "text": "prayer sched-রংপুর FAILED: me/accounts: (#4) Application request limit reached"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-25T01:41:05.953Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2176975142901433\"}"
+  },
+  {
+    "at": "2026-11-25T01:45:31.613Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151152295140193 ()"
+  },
+  {
+    "at": "2026-11-25T01:45:38.106Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1145156738222487\"}"
+  },
+  {
+    "at": "2026-11-25T01:45:41.892Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130029403459930 ()"
+  },
+  {
+    "at": "2026-11-25T01:45:47.991Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2305726403606667\"}"
   }
 ]
