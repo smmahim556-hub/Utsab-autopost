@@ -64,23 +64,18 @@
     "https://utsabtv.com/prime-minister-tarique-rahman-birthday-today",
     "https://utsabtv.com/pirojpur-court-premises-cocktail-attack-police",
     "https://utsabtv.com/prime-minister-meets-three-armed-forces-chiefs-armed-forces-day",
-    "https://utsabtv.com/opposition-leader-meets-australian-national-imams-council-sydney"
+    "https://utsabtv.com/opposition-leader-meets-australian-national-imams-council-sydney",
+    "https://utsabtv.com/chhatra-dal-two-groups-clash-over-handing-banned-bcl-leader-to-police"
   ],
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "done": {
     "720": [
       "872606492607357",
       "1276101408920358"
-    ],
-    "960": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "1200": [
-      "872606492607357",
-      "1276101408920358"
     ]
   },
-  "slotUrl": {},
+  "slotUrl": {
+    "720": "https://utsabtv.com/chhatra-dal-two-groups-clash-over-handing-banned-bcl-leader-to-police"
+  },
   "failedAt": 1793700193463
 }
