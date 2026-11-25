@@ -150,7 +150,7 @@ async function download(video, token) {
     try {
       const out = `${W}/reel-${job.video}-${Math.round(job.clip.start)}.mp4`;
       await renderClip(browser, file, job.clip, '', out, W, 'r');
-      const desc = job.kind === 'news' ? `${job.clip.hook}\n\nউৎসব টিভির '${job.clip.tag || 'সংসদ'}' লাইভ থেকে।${job.url ? ' পুরো লাইভ দেখুন প্রথম কমেন্টের লিংকে।' : ''}\n\n#utsabtv #সংসদ #সংবাদ #বাংলাদেশ` : job.kind === 'podcast' ? `${job.clip.hook}\n\nউৎসব টিভির পডকাস্ট '${TAGOF(job)}' থেকে।${job.url ? ' পুরো পর্ব দেখুন প্রথম কমেন্টের লিংকে।' : ''}\n\n#utsabtv #পডকাস্ট #বিনোদন` : `${job.clip.hook}\n\n${job.url ? 'উৎসব টিভির কনসার্ট লাইভ থেকে। পুরো কনসার্ট দেখুন প্রথম কমেন্টের লিংকে।' : 'উৎসব টিভির কনসার্ট থেকে।'}\n\n#utsabtv #কনসার্ট #বিনোদন #গান`;
+      const desc = job.kind === 'news' ? `${job.clip.hook}\n\nউৎসব টিভির '${job.clip.tag || 'সংসদ'}' লাইভ থেকে।${job.url ? ' পুরো লাইভ দেখুন প্রথম কমেন্টের লিংকে।' : ''}\n\n#utsabtv #সংসদ #সংবাদ #বাংলাদেশ` : job.kind === 'podcast' ? `${job.clip.hook}\n\nউৎসব টিভির পডকাস্ট '${TAGOF(job)}' থেকে।${job.url ? ' পুরো পর্ব দেখুন প্রথম কমেন্টের লিংকে।' : ''}\n\nআপনার মতামত কমেন্টে লিখুন।\n\n#পডকাস্ট #BanglaPodcast #বিনোদন #utsabtv` : `${job.clip.hook}\n\n${job.url ? 'উৎসব টিভির কনসার্ট লাইভ থেকে। পুরো কনসার্ট দেখুন প্রথম কমেন্টের লিংকে।' : 'উৎসব টিভির কনসার্ট থেকে।'}\n\nগানটা কেমন লাগলো? কমেন্টে জানান।\n\n#LiveConcert #BanglaSong #কনসার্ট #গান #utsabtv`;
       const ids = {};
       // News reels (সংসদ) stay off the Entertainment page.
       for (const page of pages.filter(p => job.kind !== 'news' || p.id !== ENT)) {

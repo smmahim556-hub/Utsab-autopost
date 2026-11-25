@@ -240,4 +240,15 @@ ${logo && !fs.existsSync(LOGO_VIDEO) ? `<img src="${logo}" style="position:absol
   return outFile;
 }
 
-module.exports = { planClips, renderClip, secs, ff, gemini, overlay };
+// SEO (2026-11-25): up to 2 names people would type into Facebook search for this clip (person, place, team...),
+// as hashtags. Never throws.
+async function seoTags(text) {
+  if (!text || !process.env.GEMINI_API_KEY || process.env.SEO_KW === '0') return [];
+  try {
+    const j = await gemini([{ text: `নিচের ভিডিওর বিষয় ফেসবুকে মানুষ সার্চ করে খুঁজলে কোন নির্দিষ্ট নাম লিখবে? লেখায় থাকা ব্যক্তি, জায়গা, দল, প্রতিষ্ঠান বা বিষয়ের নাম থেকে সবচেয়ে জরুরি ২টা, বাংলায়, প্রতিটা ১-৩ শব্দ। শুধু JSON: {"names":["",""]}\n\n${String(text).slice(0, 1500)}` }]);
+    return (j.names || []).map(x => String(x).trim()).filter(x => x && x.length <= 30 && text.includes(x.split(/\s+/)[0])).slice(0, 2)
+      .map(x => '#' + x.replace(/[\s\-–:]+/g, '_').replace(/[^\p{L}\p{M}\p{N}_]/gu, ''));
+  } catch { return []; }
+}
+
+module.exports = { planClips, renderClip, secs, ff, gemini, overlay, seoTags };

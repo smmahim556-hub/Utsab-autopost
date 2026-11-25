@@ -49,7 +49,7 @@ async function postReel(page, file, description) {
     const acc = await (await fetch(`${GRAPH}/me/accounts?fields=id,name,access_token&limit=100&access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).json();
     const find = id => (acc.data || []).find(a => a.id === id);
     const sname = String(pl.series || 'আবিষ্কারের গল্প').split('·')[0].trim();
-    const tags = ['#উৎসবেরগল্প', `#${sname.replace(/\s+/g, '')}`, `#${(pl.scientist || '').replace(/\s+/g, '')}`, ...(pl.tags || ['#বিজ্ঞান']), '#utsabtv'].filter(t => t.length > 1).join(' ');
+    const tags = ['#উৎসবেরগল্প', `#${sname.replace(/\s+/g, '')}`, `#${(pl.scientist || '').replace(/\s+/g, '')}`, ...(pl.tags || ['#বিজ্ঞান']), '#utsabtv'].filter(t => t.length > 1).filter((t, i, a) => a.indexOf(t) === i).filter((t, i, a) => i < 4 || t === '#utsabtv').slice(0, 5).join(' '); // SEO: max 5 tags
     const head = `${pl.series}: ${pl.title}\n\n${pl.summary || ''}`.trim();
     const golpoDesc = `${head}\n\nনতুন পর্ব রোজ বিকাল ৩টা আর সন্ধ্যা ৭:৩০-এ। ফলো করে সঙ্গেই থাকুন!\n\n${tags}`;
     const bigDesc = `${head}\n\nপুরো সিরিজ দেখতে ফলো করুন "উৎসবের গল্প" পেজ, লিংক প্রথম কমেন্টে।\n\n${tags}`;

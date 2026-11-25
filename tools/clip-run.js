@@ -5,7 +5,7 @@
 const fs = require('fs'), path = require('path');
 const { execSync } = require('child_process');
 const { chromium } = require('playwright');
-const { planClips, renderClip } = require('../clips');
+const { planClips, renderClip, seoTags } = require('../clips');
 const GRAPH = `https://graph.facebook.com/${process.env.GRAPH_VERSION || 'v26.0'}`;
 const FILE = path.join(__dirname, '..', 'state', 'clips.json'), W = '/tmp/clips';
 const GAP = Number(process.env.CLIP_GAP_H || 3) * 3600e3;
@@ -83,7 +83,7 @@ async function logo(browser) {
     try {
       const out = `${W}/reel-${job.video}-${Math.round(job.clip.start)}.mp4`;
       await renderClip(browser, job.src, job.clip, await logo(browser), out, W, 'r');
-      const tags = ['#utsabtv', '#সংবাদ', '#উৎসব_টিভি'].join(' ');
+      const tags = [...await seoTags(`${job.clip.hook}\n${job.title || ''}`), '#সংবাদ', '#বাংলাদেশ', '#utsabtv'].join(' ');
       const desc = `${job.clip.hook}\n\n${job.title ? `${job.title}\n` : ''}পুরো ভিডিও দেখুন প্রথম কমেন্টের লিংকে।\n\n${tags}`;
       for (const page of pages) {
         try {

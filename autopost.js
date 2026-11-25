@@ -195,7 +195,14 @@ async function postToPage(page, cardFile, caption, link, withCaption = false) {
   // No caption: the card already carries the headline, and the link goes in the first comment.
   if (withCaption || process.env.FB_CAPTION === '1') photo.append('caption', caption);
   photo.append('access_token', page.token);
-  const { post_id: postId, id: photoId } = await graph(`${page.id}/photos`, photo);
+  // SEO: alt text = the headline, so search and screen readers know what the card says (text inside an image is not read).
+  const alt = String(caption || '').split('\n')[0].trim().slice(0, 300);
+  let res;
+  if (alt && process.env.SEO_ALT !== '0') {
+    const withAlt = new FormData(); for (const [k, v] of photo.entries()) withAlt.append(k, v); withAlt.append('alt_text_custom', alt);
+    try { res = await graph(`${page.id}/photos`, withAlt); } catch (e) { if (!/alt_text|"code":100\b/i.test(e.message)) throw e; event(`alt text refused: ${e.message.slice(0, 120)}`); }
+  }
+  const { post_id: postId, id: photoId } = res || await graph(`${page.id}/photos`, photo);
   const target = postId || `${page.id}_${photoId}`;
 
   if (link) {
@@ -263,7 +270,18 @@ async function postStory(page, storyFile) {
 // Posts to every Page not yet done for this link; `done` lists Page ids already posted,
 // so a retry after one Page failed does not post twice on the other.
 // Caption hashtags: always #utsabtv, then the card's own topics (spaces become _).
-const hashtags = (...t) => ['utsabtv', ...t].filter(Boolean).map(x => '#' + String(x).trim().replace(/[\s\-–:]+/g, '_').replace(/[^\p{L}\p{M}\p{N}_]/gu, '')).filter((x, i, a) => x.length > 1 && a.indexOf(x) === i).slice(0, 5).join(' ');
+// SEO (owner 2026-11-25): the post's own topics/names come first (people search those), brand last, max 5 in all.
+const tagOf = x => '#' + String(x).trim().replace(/[\s\-–:]+/g, '_').replace(/[^\p{L}\p{M}\p{N}_]/gu, '');
+const hashtags = (...t) => [...t.filter(Boolean).map(tagOf).filter((x, i, a) => x.length > 1 && x !== '#utsabtv' && a.indexOf(x) === i).slice(0, 4), '#utsabtv'].join(' ');
+// Names people would type into Facebook search for this story (person, place, team, organisation), max 2, in Bengali.
+// Never throws: no AI or a bad answer just gives [].
+async function kwTags(text) {
+  if (!text || process.env.SEO_KW === '0') return [];
+  try {
+    const out = await aiAsk(`নিচের খবরটা ফেসবুকে মানুষ সার্চ করে খুঁজলে কোন নির্দিষ্ট নাম লিখে খুঁজবে? খবরে থাকা ব্যক্তি, জায়গা, দল, প্রতিষ্ঠান বা বিষয়ের নাম থেকে সবচেয়ে জরুরি ২টা দাও, বাংলায় (বিদেশি ব্র্যান্ড/দলের নাম ইংরেজিতে চলবে), প্রতিটা ১-৩ শব্দ। শুধু নামগুলো কমা দিয়ে লেখো, আর কিছু না।\n\n${String(text).slice(0, 1500)}`, 0.2);
+    return out.split(/[,،\n]/).map(x => x.replace(/^[\s#*\-•\d.]+|["'।.]+$/g, '').trim()).filter(x => x && x.length <= 30 && x.split(/\s+/).length <= 3 && text.includes(x.split(/\s+/)[0])).slice(0, 2);
+  } catch { return []; }
+}
 // withCaption: post the caption even though FB_CAPTION is off (desk cards carry a summary there).
 async function postToFacebook(cardFile, caption, link, done, browser, withCaption = false, extraIds = []) {
   const targets = [...await pages(), ...await extraPages(extraIds)];
@@ -1842,7 +1860,7 @@ async function entTick(desk = DESKS.ent) {
       Object.assign(it, r, { tag: entTag(it.title, desk.tags, desk.label), label: desk.label });
       const card = await entCard(browser, it, path.join(OUT_DIR, `${desk.key}-${st.seen.length}.png`), await channelLogo(browser));
       const done = st.pages[it.id] = st.pages[it.id] || [];
-      try { await postToFacebook(card, [it.title, it.summary, hashtags(desk.label, it.tag)].filter(Boolean).join('\n\n'), '', done, browser, true, desk.key === 'ent' ? [ENT_PAGE_ID] : []); st.titles.push(it.title); delete st.pages[it.id]; posted = true; }
+      try { await postToFacebook(card, [it.title, it.summary, hashtags(...await kwTags(`${it.title}\n${it.summary || ''}`), desk.label, it.tag)].filter(Boolean).join('\n\n'), '', done, browser, true, desk.key === 'ent' ? [ENT_PAGE_ID] : []); st.titles.push(it.title); delete st.pages[it.id]; posted = true; }
       catch (e) { event(`${desk.key} FAILED: ${e.message}`); }
       finally { st.lastAt = Date.now(); }
       break;
@@ -2456,7 +2474,7 @@ async function extrasTick() {
       if (!q) return finish();
       await pollCard(browser, q, story, file, logo);
       st.usedPoll = [...st.usedPoll, story.url].slice(-50);
-      caption = `${q}\n\nআপনার মতামত কমেন্টে লিখুন। খবরটি পড়ুন প্রথম কমেন্টের লিংকে।\n\n${hashtags('পাঠকের_মতামত', 'আপনার_মত')}`;
+      caption = `${q}\n\nআপনার মতামত কমেন্টে লিখুন। খবরটি পড়ুন প্রথম কমেন্টের লিংকে।\n\n${hashtags(...await kwTags(story.title), 'পাঠকের_মতামত', 'আপনার_মত')}`;
       link = story.url;
     } else if (kind === 'QUIZANS') {
       // Yesterday's quiz answer (the question went out at 16:00 the day before).
@@ -2842,7 +2860,7 @@ async function voiceRun() {
   try {
     const r = await voiceReel(browser, url, engine, path.join(OUT_DIR, 'voice-reel.mp4'), await channelLogo(browser), lines);
     if (demo) return log(`voice reel demo built (${engine.split(':')[0]}), not posted`);
-    const desc = `${story.title}\n\n${lines.join(' ')}\n\nবিস্তারিত পড়ুন www.utsabtv.com-এ\n\n${hashtags('সংবাদ', 'আজকের_খবর')}`;
+    const desc = `${story.title}\n\n${lines.join(' ')}\n\nবিস্তারিত পড়ুন www.utsabtv.com-এ\n\n${hashtags(...await kwTags(story.title), 'সংবাদ', 'আজকের_খবর')}`;
     const all = await pages();
     if (!all.length) throw new Error('no Pages configured');
     for (const page of all) {
@@ -2930,7 +2948,7 @@ async function albumTick() {
   const browser = await chromium.launch();
   try {
     const { story, pts, files } = await albumBuild(browser, url, await channelLogo(browser), key);
-    const caption = `${story.title}\n\n${pts.map(p => `• ${p.h}: ${p.t}`).join('\n')}\n\nবিস্তারিত পড়ুন প্রথম কমেন্টের লিংকে।\n\n${hashtags('সংবাদ', 'মূল_তথ্য')}`;
+    const caption = `${story.title}\n\n${pts.map(p => `• ${p.h}: ${p.t}`).join('\n')}\n\nবিস্তারিত পড়ুন প্রথম কমেন্টের লিংকে।\n\n${hashtags(...await kwTags(story.title), 'সংবাদ', 'মূল_তথ্য')}`;
     for (const page of all) {
       if (done.includes(page.id)) continue;
       try {

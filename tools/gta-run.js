@@ -139,7 +139,7 @@ async function postReel(page, file, description) {
   const secsLen = await render(sc, out);
   fs.writeFileSync(path.join(PV, `${KIND}.json`), JSON.stringify(sc, null, 1));
   if (DRY) { save(); return log(`dry ${KIND} ${secsLen.toFixed(1)}s`); }
-  const tags = '#utsabtv #GTA6 #গেমিং #জিটিএ৬ #গেম';
+  const tags = '#GTA6 #GTAVI #RockstarGames #গেমিং #utsabtv';
   const desc = `${sc.head1} ${sc.head2 || ''}`.trim() + `\n\n${sc.caption || ''}\n\n${tags}`;
   const acc = await (await fetch(`${G}/me/accounts?fields=id,access_token&limit=100&access_token=${encodeURIComponent(process.env.FB_USER_TOKEN)}`)).json();
   const pages = [process.env.FB_PAGE_ID, process.env.FB_PAGE_ID_2, ENT].filter(Boolean).map(id => (acc.data || []).find(a => a.id === id)).filter(Boolean);
