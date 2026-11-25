@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-24T22:01:12.717Z",
-    "text": "prayer sched-ময়মনসিংহ FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-24T22:01:15.625Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-24T22:02:47.011Z",
-    "text": "prayer sched-all FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-24T22:02:48.813Z",
-    "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-24T22:02:48.993Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-24T22:03:35.662Z",
-    "text": "comments FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-11-24T22:03:35.925Z",
     "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-25T01:58:58.025Z",
     "text": "weather reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122130031875459930\"}"
+  },
+  {
+    "at": "2026-11-25T02:00:43.836Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151153771140193 ()"
+  },
+  {
+    "at": "2026-11-25T02:00:50.240Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1843283153575898\"}"
+  },
+  {
+    "at": "2026-11-25T02:00:53.531Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130032217459930 ()"
+  },
+  {
+    "at": "2026-11-25T02:01:00.207Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1878082300310075\"}"
+  },
+  {
+    "at": "2026-11-25T02:01:04.377Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122116598031533116 ()"
+  },
+  {
+    "at": "2026-11-25T02:01:10.098Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"3045696885795133\"}"
   }
 ]
