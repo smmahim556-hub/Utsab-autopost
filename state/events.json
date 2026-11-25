@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-24T21:50:54.481Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122130001383459930 ()"
-  },
-  {
-    "at": "2026-11-24T21:50:57.399Z",
-    "text": "story on Page 1276101408920358 FAILED: Graph 1276101408920358/photo_stories: {\"message\":\"(#4) Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":true,\"code\":4,\"fbtrace_id\":\"AiW4S5lPAUSShZr-Td4xjgr\"}"
-  },
-  {
     "at": "2026-11-24T21:54:45.466Z",
     "text": "posted to Page 872606492607357: 872606492607357_122151135981140193 ()"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-25T01:21:47.027Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1875005216851383\"}"
+  },
+  {
+    "at": "2026-11-25T01:26:26.673Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1566510808829048\"}"
+  },
+  {
+    "at": "2026-11-25T01:26:33.355Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"29641105932150583\"}"
   }
 ]
