@@ -1,26 +1,13 @@
 {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "done": {
     "OTD": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "QUIZANS": [
-      "872606492607357",
-      "1276101408920358"
-    ],
-    "MARKET": [
       "872606492607357",
       "1276101408920358"
     ]
   },
   "finished": [
-    "OTD",
-    "QUIZANS",
-    "QUIZ",
-    "MARKET",
-    "TOP5",
-    "POLL"
+    "OTD"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -80,6 +67,5 @@
     "বাংলাদেশের একমাত্র পাহাড়ি দ্বীপ কোনটি?",
     "ভারতে উৎপন্ন 'গঙ্গা' নদী বাংলাদেশে কোন নামে পরিচিত?",
     "পৃথিবীর দীর্ঘতম প্রাকৃতিক সমুদ্র সৈকত কোনটি?"
-  ],
-  "marketCheckedAt": 1795518458401
+  ]
 }
