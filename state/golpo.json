@@ -64,7 +64,6 @@
     "2026-11-23-eve"
   ],
   "log": [
-    "2026-11-15T13:31:26.356Z reel 1178301117975564 on 1276101408920358",
     "2026-11-16T09:01:28.139Z rendered ep17-faraday 75.5s",
     "2026-11-16T09:01:36.672Z golpo reel 4041657699472013 ep17-faraday",
     "2026-11-16T09:01:47.933Z reel 4723660464587457 on 872606492607357",
@@ -123,7 +122,8 @@
     "2026-11-23T13:30:53.332Z reel 2075395883167857 on 1276101408920358",
     "2026-11-24T09:00:34.625Z FAILED: ElevenLabs 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont",
     "2026-11-24T13:27:03.282Z FAILED: ElevenLabs 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont",
-    "2026-11-25T08:56:32.144Z FAILED: ElevenLabs 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont"
+    "2026-11-25T08:56:32.144Z FAILED: ElevenLabs 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont",
+    "2026-11-25T13:26:30.064Z FAILED: ElevenLabs 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont"
   ],
   "reels": {
     "ep01-archimedes": {
