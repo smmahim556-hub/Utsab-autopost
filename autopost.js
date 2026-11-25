@@ -3136,7 +3136,13 @@ async function albumTick() {
           state.posted = state.posted || {};
           const done = state.posted[link] = state.posted[link] || [];
           try {
-            await postToFacebook(card, info.title, link, done, browser); // no caption or hashtags: the full story is in the first comment
+            // Owner 2026-11-25 (SEO): short caption = headline, one-line summary, 'link in comment', hashtags. NEWS_CAPTION=0 = old no-caption post.
+            if (process.env.NEWS_CAPTION === '0') await postToFacebook(card, info.title, link, done, browser);
+            else {
+              const sum = (info.description || '').replace(/\s+/g, ' ').trim().split(/(?<=[।?!])\s/)[0].slice(0, 220);
+              const cap = [info.title, sum && !info.title.includes(sum.slice(0, 40)) ? sum : '', 'বিস্তারিত পড়ুন প্রথম কমেন্টের লিংকে।', hashtags(...await kwTags(`${info.title}\n${info.description || ''}`), 'সংবাদ', 'বাংলাদেশ')].filter(Boolean).join('\n\n');
+              await postToFacebook(card, cap, link, done, browser, true);
+            }
           } finally {
             saveState(state);
           }
