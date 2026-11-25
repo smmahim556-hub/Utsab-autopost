@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-25T14:48:33.256Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122130156615459930 ()"
-  },
-  {
-    "at": "2026-11-25T14:48:40.224Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1157899219930786\"}"
-  },
-  {
-    "at": "2026-11-25T15:01:27.603Z",
-    "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2553:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
-  },
-  {
-    "at": "2026-11-25T15:10:44.971Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151229749140193 ()"
-  },
-  {
     "at": "2026-11-25T15:10:52.371Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1431205440080602\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-25T16:18:22.371Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1090385200690448\"}"
+  },
+  {
+    "at": "2026-11-25T16:41:48.279Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151242259140193 ()"
+  },
+  {
+    "at": "2026-11-25T16:41:55.313Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1190116000010787\"}"
+  },
+  {
+    "at": "2026-11-25T16:41:59.598Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130173775459930 ()"
+  },
+  {
+    "at": "2026-11-25T16:42:06.372Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2535151120342128\"}"
   }
 ]
