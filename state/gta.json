@@ -111,15 +111,6 @@
  ],
  "offset": 463.9178780000002,
  "log": [
-  "2026-11-19T14:57:27.495Z reel 1955771935829739 on 1406430145892267",
-  "2026-11-20T06:59:56.830Z news: জিটিএ সিক্সের নতুন রেকর্ড / ইন্টারনেট ব্যবহারে গড়ল ইতিহাস (gemini-3.5-flash)",
-  "2026-11-20T07:00:53.284Z reel 1445420157803758 on 872606492607357",
-  "2026-11-20T07:01:00.110Z reel 29939271472324512 on 1276101408920358",
-  "2026-11-20T07:01:06.412Z reel 2278370899398695 on 1406430145892267",
-  "2026-11-20T14:53:33.881Z fact: জিটিএ সিক্সের ভার্চুয়াল পার্কে / তৈরি হলো পাবলিক বাথরুম! (gemini-3.5-flash)",
-  "2026-11-20T14:54:57.200Z reel 1157712580066880 on 872606492607357",
-  "2026-11-20T14:55:06.212Z reel 1903222340695038 on 1276101408920358",
-  "2026-11-20T14:55:14.382Z reel 1623225455591171 on 1406430145892267",
   "2026-11-21T06:51:48.527Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-21T06:51:48.661Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-21T06:51:48.778Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
@@ -170,6 +161,15 @@
   "2026-11-24T14:51:58.874Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-24T14:52:02.408Z script retry gemini-3.1-flash-lite: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
   "2026-11-24T14:52:13.902Z script retry gemini-3.1-flash-lite: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-  "2026-11-24T14:52:13.902Z error: no script"
+  "2026-11-24T14:52:13.902Z error: no script",
+  "2026-11-25T06:51:45.104Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-25T06:51:45.216Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-25T06:51:45.306Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-25T06:51:45.387Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-25T06:51:46.727Z news: জিটিএ সিক্স আসছে পিসিতে / মার্চ মাসে মুক্তি পাবে গেমটি (gemini-3.1-flash-lite)",
+  "2026-11-25T06:51:46.934Z tts eleven_v4_turbo 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-25T06:51:47.063Z tts eleven_v4 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-25T06:51:47.179Z tts eleven_v3 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-25T06:51:47.180Z error: ElevenLabs failed"
  ]
 }
