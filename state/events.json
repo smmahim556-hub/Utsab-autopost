@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-24T21:56:15.374Z",
-    "text": "prayer sched-রাজশাহী FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-24T21:57:27.284Z",
-    "text": "prayer sched-খুলনা FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-11-24T21:58:19.187Z",
     "text": "prayer sched-বরিশাল FAILED: me/accounts: (#4) Application request limit reached"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-25T01:36:27.800Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1135244482603645\"}"
+  },
+  {
+    "at": "2026-11-25T01:40:59.989Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1501985698793339\"}"
+  },
+  {
+    "at": "2026-11-25T01:41:05.953Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2176975142901433\"}"
   }
 ]
