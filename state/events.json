@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-24T21:46:22.529Z",
-    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1851440386169205\"}"
-  },
-  {
     "at": "2026-11-24T21:50:32.537Z",
     "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"2210737932813196\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-25T01:07:35.698Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"2045129042839711\"}"
+  },
+  {
+    "at": "2026-11-25T01:12:01.295Z",
+    "text": "weather রাজশাহী FAILED (try 1): fetch failed"
   }
 ]
