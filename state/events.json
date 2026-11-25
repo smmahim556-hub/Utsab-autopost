@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-25T13:39:59.528Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151221031140193 ()"
-  },
-  {
-    "at": "2026-11-25T13:40:05.776Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1146909147825205\"}"
-  },
-  {
-    "at": "2026-11-25T13:40:09.191Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122130144945459930 ()"
-  },
-  {
-    "at": "2026-11-25T13:40:15.515Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1896037004743619\"}"
-  },
-  {
-    "at": "2026-11-25T13:45:17.285Z",
-    "text": "mirror: 872606492607357_122151221541140193 (video) -> Digital 4313452675465846"
-  },
-  {
-    "at": "2026-11-25T13:51:37.529Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151222489140193 (https://utsabtv.com/bangladesh-lose-innings-219-runs-wiaan-mulder-record-south-africa-test)"
-  },
-  {
     "at": "2026-11-25T13:51:44.232Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1134389199490012\"}"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-25T15:01:27.603Z",
     "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2553:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
+  },
+  {
+    "at": "2026-11-25T15:10:44.971Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151229749140193 ()"
+  },
+  {
+    "at": "2026-11-25T15:10:52.371Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1431205440080602\"}"
+  },
+  {
+    "at": "2026-11-25T15:10:57.073Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130160473459930 ()"
+  },
+  {
+    "at": "2026-11-25T15:11:05.553Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1540613717967693\"}"
+  },
+  {
+    "at": "2026-11-25T15:11:09.307Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122116785225533116 ()"
+  },
+  {
+    "at": "2026-11-25T15:11:15.284Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1132084689587464\"}"
   }
 ]
