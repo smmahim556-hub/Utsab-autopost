@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-24T22:00:26.982Z",
-    "text": "prayer sched-রংপুর FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
-    "at": "2026-11-24T22:00:28.307Z",
-    "text": "mirror FAILED: me/accounts: (#4) Application request limit reached"
-  },
-  {
     "at": "2026-11-24T22:01:12.717Z",
     "text": "prayer sched-ময়মনসিংহ FAILED: me/accounts: (#4) Application request limit reached"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-25T01:45:47.991Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2305726403606667\"}"
+  },
+  {
+    "at": "2026-11-25T01:58:52.734Z",
+    "text": "weather reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122151153465140193\"}"
+  },
+  {
+    "at": "2026-11-25T01:58:58.025Z",
+    "text": "weather reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122130031875459930\"}"
   }
 ]
