@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-26T07:14:12.070Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1140408308867272\"}"
-  },
-  {
     "at": "2026-11-26T07:14:18.176Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122130297357459930 (https://utsabtv.com/nutritionally-strong-generation-innovation-develops-prime-minister)"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-26T08:46:39.601Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1846446173042506\"}"
+  },
+  {
+    "at": "2026-11-26T08:54:16.943Z",
+    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
   }
 ]
