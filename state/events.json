@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-26T07:49:45.232Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122130316089459930 (https://utsabtv.com/ex-mp-badi-son-two-brothers-four-sent-coxs-bazar-jail)"
-  },
-  {
-    "at": "2026-11-26T07:49:51.812Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1672286941069514\"}"
-  },
-  {
-    "at": "2026-11-26T08:08:59.315Z",
-    "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2553:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
-  },
-  {
-    "at": "2026-11-26T08:12:47.289Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151322683140193 ()"
-  },
-  {
-    "at": "2026-11-26T08:12:52.676Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1534692845119853\"}"
-  },
-  {
-    "at": "2026-11-26T08:12:55.993Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122130319431459930 ()"
-  },
-  {
     "at": "2026-11-26T08:13:01.981Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1133905266298682\"}"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-26T09:41:27.355Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1170895688697285\"}"
+  },
+  {
+    "at": "2026-11-26T09:55:46.838Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151331929140193 ()"
+  },
+  {
+    "at": "2026-11-26T09:55:52.953Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1171027002175755\"}"
+  },
+  {
+    "at": "2026-11-26T09:55:56.233Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130336381459930 ()"
+  },
+  {
+    "at": "2026-11-26T09:56:02.001Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1892131635473157\"}"
+  },
+  {
+    "at": "2026-11-26T09:56:04.658Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122117044863533116 ()"
+  },
+  {
+    "at": "2026-11-26T09:56:09.221Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"2056667679054031\"}"
   }
 ]
