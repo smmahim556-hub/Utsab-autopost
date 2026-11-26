@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-26T07:14:18.176Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122130297357459930 (https://utsabtv.com/nutritionally-strong-generation-innovation-develops-prime-minister)"
-  },
-  {
-    "at": "2026-11-26T07:14:26.920Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1462112042068981\"}"
-  },
-  {
-    "at": "2026-11-26T07:17:49.684Z",
-    "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
-  },
-  {
-    "at": "2026-11-26T07:19:59.750Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151316887140193 (https://utsabtv.com/speaker-meets-pakistan-president-asif-ali-zardari)"
-  },
-  {
     "at": "2026-11-26T07:20:07.776Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1177819495186843\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-26T08:54:16.943Z",
     "text": "market FAILED: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://tcb.gov.bd/pages/daily-rmps\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "at": "2026-11-26T08:56:26.866Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151325911140193 ()"
+  },
+  {
+    "at": "2026-11-26T08:56:34.291Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1168764669029868\"}"
+  },
+  {
+    "at": "2026-11-26T08:56:38.133Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130325509459930 ()"
+  },
+  {
+    "at": "2026-11-26T08:56:45.647Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1676929473845191\"}"
   }
 ]
