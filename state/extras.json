@@ -8,11 +8,16 @@
     "QUIZANS": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "MARKET": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
-    "QUIZANS"
+    "QUIZANS",
+    "MARKET"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -75,5 +80,5 @@
     "পৃথিবীর দীর্ঘতম প্রাকৃতিক সমুদ্র সৈকত কোনটি?",
     "বিশ্বের দীর্ঘতম প্রাকৃতিক বালুময় সমুদ্র সৈকত কোনটি?"
   ],
-  "marketCheckedAt": 1795685098815
+  "marketCheckedAt": 1795686054782
 }
