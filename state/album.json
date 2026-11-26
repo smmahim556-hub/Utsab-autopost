@@ -69,7 +69,8 @@
     "https://utsabtv.com/trump-administration-discusses-killing-iran-top-leaders-nbc-news",
     "https://utsabtv.com/garment-workers-protest-blocking-two-highways",
     "https://utsabtv.com/109-platoon-bgb-deployed-dhaka-districts-public-safety",
-    "https://utsabtv.com/saudi-houthi-conflict-intensifies-attacks-riyadh-jeddah-ports"
+    "https://utsabtv.com/saudi-houthi-conflict-intensifies-attacks-riyadh-jeddah-ports",
+    "https://utsabtv.com/ex-mp-badi-son-two-brothers-four-sent-coxs-bazar-jail"
   ],
   "date": "2026-11-26",
   "done": {
@@ -80,11 +81,16 @@
     "960": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "1200": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
     "720": "https://utsabtv.com/109-platoon-bgb-deployed-dhaka-districts-public-safety",
-    "960": "https://utsabtv.com/saudi-houthi-conflict-intensifies-attacks-riyadh-jeddah-ports"
+    "960": "https://utsabtv.com/saudi-houthi-conflict-intensifies-attacks-riyadh-jeddah-ports",
+    "1200": "https://utsabtv.com/ex-mp-badi-son-two-brothers-four-sent-coxs-bazar-jail"
   },
   "failedAt": 1793700193463
 }
