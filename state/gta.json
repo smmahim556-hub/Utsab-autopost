@@ -111,14 +111,6 @@
  ],
  "offset": 463.9178780000002,
  "log": [
-  "2026-11-22T06:51:24.280Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-22T06:51:24.444Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-22T06:51:36.778Z news: জিটিএ সিক্স নিয়ে বড় দুঃসংবাদ / বছরের অন্যতম সর্বনিম্ন রেটিংপ্রাপ্ত গেম (gemini-3-flash-preview)",
-  "2026-11-22T06:53:08.835Z reel 1173671732266116 on 872606492607357",
-  "2026-11-22T06:53:16.254Z reel 1439686331583471 on 1276101408920358",
-  "2026-11-22T06:53:23.924Z reel 2098834184099590 on 1406430145892267",
-  "2026-11-22T14:51:50.124Z fact: জিটিএ সিক্সের বিশাল চমক / ২০টি রেডিওতে ৭০০ গান! (gemini-3.5-flash)",
-  "2026-11-22T14:52:49.124Z reel 1127862330063594 on 872606492607357",
   "2026-11-22T14:52:59.130Z reel 4641563889433978 on 1276101408920358",
   "2026-11-22T14:53:11.797Z reel 1544035404448130 on 1406430145892267",
   "2026-11-23T06:51:16.374Z news: জিটিএ সিক্স গেমে বিশেষ উদ্যোগ / প্রয়াত মায়ের স্মরণে মেমোরিয়াল (gemini-3.5-flash)",
@@ -170,6 +162,14 @@
   "2026-11-26T06:53:03.361Z tts eleven_v4_turbo 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
   "2026-11-26T06:53:03.495Z tts eleven_v4 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
   "2026-11-26T06:53:03.647Z tts eleven_v3 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
-  "2026-11-26T06:53:03.647Z error: ElevenLabs failed"
+  "2026-11-26T06:53:03.647Z error: ElevenLabs failed",
+  "2026-11-26T14:51:24.968Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-26T14:51:25.071Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-26T14:51:25.154Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-26T14:51:32.116Z fact: জিটিএ সিক্সের বিশাল মানচিত্র / আসছে নতুন লিওনিডা রাজ্য (gemini-3-flash-preview)",
+  "2026-11-26T14:51:32.279Z tts eleven_v4_turbo 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-26T14:51:32.366Z tts eleven_v4 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-26T14:51:32.414Z tts eleven_v3 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-26T14:51:32.414Z error: ElevenLabs failed"
  ]
 }
