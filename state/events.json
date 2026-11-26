@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-26T10:41:56.393Z",
-    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1185515407353652\"}"
-  },
-  {
     "at": "2026-11-26T10:42:02.980Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1857206058799481\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-26T12:00:54.156Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2396007617869296\"}"
+  },
+  {
+    "at": "2026-11-26T12:03:00.912Z",
+    "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2553:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
   }
 ]
