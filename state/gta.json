@@ -111,15 +111,6 @@
  ],
  "offset": 463.9178780000002,
  "log": [
-  "2026-11-21T06:53:09.334Z reel 1257642196585394 on 1406430145892267",
-  "2026-11-21T14:51:46.707Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-21T14:51:46.867Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-21T14:51:47.060Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-21T14:51:47.173Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-21T14:51:51.481Z fact: জিটিএ সিক্সের অদ্ভুত এক দিক / ভাইস সিটিতে ৬০ প্রজাতির পাখি (gemini-3.1-flash-lite)",
-  "2026-11-21T14:52:52.391Z reel 1897662374550558 on 872606492607357",
-  "2026-11-21T14:53:00.545Z reel 1809812303645284 on 1276101408920358",
-  "2026-11-21T14:53:08.807Z reel 4570194416552340 on 1406430145892267",
   "2026-11-22T06:51:24.280Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-22T06:51:24.444Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-22T06:51:36.778Z news: জিটিএ সিক্স নিয়ে বড় দুঃসংবাদ / বছরের অন্যতম সর্বনিম্ন রেটিংপ্রাপ্ত গেম (gemini-3-flash-preview)",
@@ -170,6 +161,15 @@
   "2026-11-25T14:51:28.119Z tts eleven_v4_turbo 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
   "2026-11-25T14:51:28.220Z tts eleven_v4 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
   "2026-11-25T14:51:28.269Z tts eleven_v3 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
-  "2026-11-25T14:51:28.270Z error: ElevenLabs failed"
+  "2026-11-25T14:51:28.270Z error: ElevenLabs failed",
+  "2026-11-26T06:52:40.421Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-26T06:52:40.482Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-26T06:52:40.615Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-26T06:52:40.676Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-26T06:53:03.130Z news: জিটিএ সিক্সের ৯টি সমাপ্তি / গেমের ভেতরে ৫ হাজার ভবন (gemini-3.1-flash-lite)",
+  "2026-11-26T06:53:03.361Z tts eleven_v4_turbo 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-26T06:53:03.495Z tts eleven_v4 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-26T06:53:03.647Z tts eleven_v3 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-26T06:53:03.647Z error: ElevenLabs failed"
  ]
 }
