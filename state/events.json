@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-26T13:05:22.739Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1968472820797196\"}"
-  },
-  {
-    "at": "2026-11-26T13:05:26.971Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122130383715459930 ()"
-  },
-  {
-    "at": "2026-11-26T13:05:33.978Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1777801439966604\"}"
-  },
-  {
-    "at": "2026-11-26T13:08:06.678Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151352515140193 (https://utsabtv.com/ziaul-ahsan-crimes-ocean-death-penalty-drop-atlorney-general)"
-  },
-  {
-    "at": "2026-11-26T13:08:11.984Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1831882901354371\"}"
-  },
-  {
-    "at": "2026-11-26T13:08:17.101Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122130384219459930 (https://utsabtv.com/ziaul-ahsan-crimes-ocean-death-penalty-drop-atlorney-general)"
-  },
-  {
     "at": "2026-11-26T13:08:23.446Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2594011597776486\"}"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-26T15:02:52.922Z",
     "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2553:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
+  },
+  {
+    "at": "2026-11-26T15:05:08.438Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151362889140193 ()"
+  },
+  {
+    "at": "2026-11-26T15:05:14.638Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1472497111508400\"}"
+  },
+  {
+    "at": "2026-11-26T15:05:17.944Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130406527459930 ()"
+  },
+  {
+    "at": "2026-11-26T15:05:23.938Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1992825985433585\"}"
+  },
+  {
+    "at": "2026-11-26T15:05:28.109Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122117125005533116 ()"
+  },
+  {
+    "at": "2026-11-26T15:05:34.343Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1158425156560285\"}"
   }
 ]
