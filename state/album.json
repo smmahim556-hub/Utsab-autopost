@@ -68,17 +68,23 @@
     "https://utsabtv.com/chhatra-dal-two-groups-clash-over-handing-banned-bcl-leader-to-police",
     "https://utsabtv.com/trump-administration-discusses-killing-iran-top-leaders-nbc-news",
     "https://utsabtv.com/garment-workers-protest-blocking-two-highways",
-    "https://utsabtv.com/109-platoon-bgb-deployed-dhaka-districts-public-safety"
+    "https://utsabtv.com/109-platoon-bgb-deployed-dhaka-districts-public-safety",
+    "https://utsabtv.com/saudi-houthi-conflict-intensifies-attacks-riyadh-jeddah-ports"
   ],
   "date": "2026-11-26",
   "done": {
     "720": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "960": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "slotUrl": {
-    "720": "https://utsabtv.com/109-platoon-bgb-deployed-dhaka-districts-public-safety"
+    "720": "https://utsabtv.com/109-platoon-bgb-deployed-dhaka-districts-public-safety",
+    "960": "https://utsabtv.com/saudi-houthi-conflict-intensifies-attacks-riyadh-jeddah-ports"
   },
   "failedAt": 1793700193463
 }
