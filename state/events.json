@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-26T06:58:21.616Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1162379519838570\"}"
-  },
-  {
     "at": "2026-11-26T07:04:09.254Z",
     "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122151314685140193\"}"
   },
@@ -158,5 +154,9 @@
   {
     "at": "2026-11-26T07:43:35.925Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1492014206138827\"}"
+  },
+  {
+    "at": "2026-11-26T07:46:17.863Z",
+    "text": "mirror: 872606492607357_122151319749140193 (video) -> Digital 1487184670044964"
   }
 ]
