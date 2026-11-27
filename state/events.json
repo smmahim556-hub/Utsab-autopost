@@ -1,33 +1,5 @@
 [
   {
-    "at": "2026-11-27T04:00:36.252Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-27T04:01:39.438Z",
-    "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2553:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
-  },
-  {
-    "at": "2026-11-27T04:02:26.714Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-27T04:03:35.599Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-27T04:04:21.499Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-27T04:05:00.873Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-27T04:06:58.465Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151422493140193 ()"
-  },
-  {
     "at": "2026-11-27T04:07:04.832Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1644646327131586\"}"
   },
@@ -157,6 +129,34 @@
   },
   {
     "at": "2026-11-27T04:35:53.256Z",
+    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
+  },
+  {
+    "at": "2026-11-27T04:37:30.778Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151424689140193 ()"
+  },
+  {
+    "at": "2026-11-27T04:37:36.394Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1873855250709681\"}"
+  },
+  {
+    "at": "2026-11-27T04:37:39.938Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130546705459930 ()"
+  },
+  {
+    "at": "2026-11-27T04:37:45.399Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1162837476657327\"}"
+  },
+  {
+    "at": "2026-11-27T04:37:49.005Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122117292021533116 ()"
+  },
+  {
+    "at": "2026-11-27T04:37:54.292Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"3402721726781953\"}"
+  },
+  {
+    "at": "2026-11-27T04:37:54.365Z",
     "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
   }
 ]
