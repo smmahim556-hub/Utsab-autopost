@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-27T07:50:45.735Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1629440685624107\"}"
-  },
-  {
-    "at": "2026-11-27T07:50:48.411Z",
-    "text": "posted to Page 1406430145892267: 1406430145892267_122117355795533116 ()"
-  },
-  {
-    "at": "2026-11-27T07:50:53.296Z",
-    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1512839004084322\"}"
-  },
-  {
-    "at": "2026-11-27T08:01:44.851Z",
-    "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2553:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
-  },
-  {
-    "at": "2026-11-27T08:14:36.728Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151444999140193 ()"
-  },
-  {
-    "at": "2026-11-27T08:14:42.070Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1724305939025527\"}"
-  },
-  {
     "at": "2026-11-27T08:14:46.215Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122130577533459930 ()"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-27T09:34:55.112Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4554517831453168\"}"
+  },
+  {
+    "at": "2026-11-27T10:00:25.822Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151455811140193 ()"
+  },
+  {
+    "at": "2026-11-27T10:00:31.846Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1943959893652447\"}"
+  },
+  {
+    "at": "2026-11-27T10:00:36.172Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130594597459930 ()"
+  },
+  {
+    "at": "2026-11-27T10:00:42.640Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"2638788463229079\"}"
+  },
+  {
+    "at": "2026-11-27T10:00:46.156Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122117407581533116 ()"
+  },
+  {
+    "at": "2026-11-27T10:00:51.084Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1465606152340707\"}"
   }
 ]
