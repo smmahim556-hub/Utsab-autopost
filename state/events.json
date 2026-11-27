@@ -1,9 +1,5 @@
 [
   {
-    "at": "2026-11-27T02:05:27.554Z",
-    "text": "weather reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122130509991459930\"}"
-  },
-  {
     "at": "2026-11-27T02:33:57.969Z",
     "text": "posted to Page 872606492607357: 872606492607357_122151413505140193 ()"
   },
@@ -157,6 +153,10 @@
   },
   {
     "at": "2026-11-27T03:50:13.578Z",
+    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
+  },
+  {
+    "at": "2026-11-27T03:50:54.637Z",
     "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
   }
 ]
