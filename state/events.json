@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-27T05:45:25.162Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151430077140193 (https://utsabtv.com/gaibandha-pornography-arrest-4)"
-  },
-  {
-    "at": "2026-11-27T05:45:31.472Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1144958807948353\"}"
-  },
-  {
     "at": "2026-11-27T05:45:37.260Z",
     "text": "posted to Page 1276101408920358: 1276101408920358_122130557781459930 (https://utsabtv.com/gaibandha-pornography-arrest-4)"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-27T06:47:03.071Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1182284057815198\"}"
+  },
+  {
+    "at": "2026-11-27T07:03:01.166Z",
+    "text": "breaking reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122151438489140193\"}"
+  },
+  {
+    "at": "2026-11-27T07:03:07.824Z",
+    "text": "breaking reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122130567891459930\"}"
   }
 ]
