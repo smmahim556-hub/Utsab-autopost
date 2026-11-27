@@ -156,7 +156,7 @@
     "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
   },
   {
-    "at": "2026-11-27T04:01:38.050Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
+    "at": "2026-11-27T04:01:39.438Z",
+    "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2553:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
   }
 ]
