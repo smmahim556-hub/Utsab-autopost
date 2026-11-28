@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-28T13:26:33.917Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3655382291288301\"}"
-  },
-  {
-    "at": "2026-11-28T13:37:38.986Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151587607140193 (https://utsabtv.com/sweden-aslam-five-day-remand-titon-murder-case)"
-  },
-  {
     "at": "2026-11-28T13:37:46.668Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1676471173966225\"}"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-28T15:59:03.012Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"3100379007006491\"}"
+  },
+  {
+    "at": "2026-11-28T16:02:33.636Z",
+    "text": "reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122151599823140193\"}"
+  },
+  {
+    "at": "2026-11-28T16:02:41.321Z",
+    "text": "reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122130907617459930\"}"
   }
 ]
