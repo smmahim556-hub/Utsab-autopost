@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-28T13:08:00.531Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1530410292371066\"}"
-  },
-  {
-    "at": "2026-11-28T13:08:07.225Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122130877671459930 (https://utsabtv.com/peru-military-helicopter-crash-eight-killed-one-survivor)"
-  },
-  {
-    "at": "2026-11-28T13:08:13.716Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1155641306874769\"}"
-  },
-  {
-    "at": "2026-11-28T13:11:35.859Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151585675140193 ()"
-  },
-  {
     "at": "2026-11-28T13:11:41.684Z",
     "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2945589509144249\"}"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-28T15:02:40.792Z",
     "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2553:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
+  },
+  {
+    "at": "2026-11-28T15:25:34.548Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151596937140193 ()"
+  },
+  {
+    "at": "2026-11-28T15:25:41.722Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2285065939019012\"}"
+  },
+  {
+    "at": "2026-11-28T15:25:45.242Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130901851459930 ()"
+  },
+  {
+    "at": "2026-11-28T15:25:52.501Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1864982044604684\"}"
   }
 ]
