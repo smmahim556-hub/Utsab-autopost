@@ -1,29 +1,5 @@
 [
   {
-    "at": "2026-11-28T03:49:12.999Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-28T03:50:05.186Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-28T03:51:21.634Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-28T03:52:21.253Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-28T03:53:53.022Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-28T03:55:04.181Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
     "at": "2026-11-28T03:56:07.877Z",
     "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
   },
@@ -158,5 +134,29 @@
   {
     "at": "2026-11-28T05:17:49.562Z",
     "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1858716448779566\"}"
+  },
+  {
+    "at": "2026-11-28T05:41:32.926Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151547059140193 ()"
+  },
+  {
+    "at": "2026-11-28T05:41:39.280Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1784560562776646\"}"
+  },
+  {
+    "at": "2026-11-28T05:41:42.550Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130798357459930 ()"
+  },
+  {
+    "at": "2026-11-28T05:41:49.231Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1656696919277817\"}"
+  },
+  {
+    "at": "2026-11-28T05:41:53.353Z",
+    "text": "posted to Page 1406430145892267: 1406430145892267_122117771631533116 ()"
+  },
+  {
+    "at": "2026-11-28T05:41:59.247Z",
+    "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1394316902599365\"}"
   }
 ]
