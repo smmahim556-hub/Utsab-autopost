@@ -111,14 +111,6 @@
  ],
  "offset": 463.9178780000002,
  "log": [
-  "2026-11-24T07:19:28.317Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-24T07:22:28.319Z script retry gemini-3.1-flash-lite: ",
-  "2026-11-24T07:22:32.970Z script retry gemini-3.1-flash-lite: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-  "2026-11-24T07:22:32.971Z error: no script",
-  "2026-11-24T14:51:58.601Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-24T14:51:58.677Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-24T14:51:58.788Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-24T14:51:58.874Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-24T14:52:02.408Z script retry gemini-3.1-flash-lite: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
   "2026-11-24T14:52:13.902Z script retry gemini-3.1-flash-lite: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
   "2026-11-24T14:52:13.902Z error: no script",
@@ -170,6 +162,14 @@
   "2026-11-27T14:52:11.546Z tts eleven_v4_turbo 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
   "2026-11-27T14:52:11.698Z tts eleven_v4 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
   "2026-11-27T14:52:11.884Z tts eleven_v3 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
-  "2026-11-27T14:52:11.884Z error: ElevenLabs failed"
+  "2026-11-27T14:52:11.884Z error: ElevenLabs failed",
+  "2026-11-28T06:53:04.186Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-28T06:53:04.286Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-28T06:53:04.357Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-28T06:53:19.041Z news: জিটিএ সিক্সের অবিশ্বাস্য রেকর্ড / সর্বকালের সেরা বিক্রির তালিকায় (gemini-3-flash-preview)",
+  "2026-11-28T06:53:19.225Z tts eleven_v4_turbo 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-28T06:53:19.321Z tts eleven_v4 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-28T06:53:19.370Z tts eleven_v3 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-28T06:53:19.370Z error: ElevenLabs failed"
  ]
 }
