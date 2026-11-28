@@ -8,13 +8,18 @@
     "QUIZANS": [
       "872606492607357",
       "1276101408920358"
+    ],
+    "POLL": [
+      "872606492607357",
+      "1276101408920358"
     ]
   },
   "finished": [
     "OTD",
     "QUIZANS",
     "QUIZ",
-    "TOP5"
+    "TOP5",
+    "POLL"
   ],
   "usedPoll": [
     "https://utsabtv.com/jairo-president-meets-prime-minister-calls-increased-japanese-investment-bangladesh",
@@ -43,7 +48,8 @@
     "https://utsabtv.com/prime-minister-meets-three-armed-forces-chiefs-armed-forces-day",
     "https://utsabtv.com/prime-minister-meets-sk-group-delegation-south-korea",
     "https://utsabtv.com/trump-administration-discusses-killing-iran-top-leaders-nbc-news",
-    "https://utsabtv.com/ex-mp-badi-son-two-brothers-four-sent-coxs-bazar-jail"
+    "https://utsabtv.com/ex-mp-badi-son-two-brothers-four-sent-coxs-bazar-jail",
+    "https://utsabtv.com/tejgaon-police-operation-64-arrested-dmp"
   ],
   "quiz": {
     "q": "বিশ্বের দীর্ঘতম প্রাকৃতিক বালুময় সমুদ্র সৈকত কোনটি?",
