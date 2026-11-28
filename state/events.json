@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-28T03:37:44.764Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-28T03:39:42.933Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-28T03:40:26.656Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-28T03:41:40.212Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
     "at": "2026-11-28T03:43:34.950Z",
     "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-28T04:39:07.424Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"29554280710875036\"}"
+  },
+  {
+    "at": "2026-11-28T04:45:30.909Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151542397140193 ()"
+  },
+  {
+    "at": "2026-11-28T04:45:36.578Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"5149960105324073\"}"
+  },
+  {
+    "at": "2026-11-28T04:45:39.647Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130789171459930 ()"
+  },
+  {
+    "at": "2026-11-28T04:45:45.516Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"4591622211074096\"}"
   }
 ]
