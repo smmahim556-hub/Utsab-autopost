@@ -1,13 +1,5 @@
 [
   {
-    "at": "2026-11-28T03:45:42.478Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
-    "at": "2026-11-28T03:46:27.502Z",
-    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
-  },
-  {
     "at": "2026-11-28T03:49:12.999Z",
     "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
   },
@@ -158,5 +150,13 @@
   {
     "at": "2026-11-28T05:10:00.349Z",
     "text": "story on Page 1406430145892267: {\"success\":true,\"post_id\":\"1610702437762905\"}"
+  },
+  {
+    "at": "2026-11-28T05:17:43.892Z",
+    "text": "story only on Page 872606492607357: {\"success\":true,\"post_id\":\"1851501992720065\"}"
+  },
+  {
+    "at": "2026-11-28T05:17:49.562Z",
+    "text": "story only on Page 1276101408920358: {\"success\":true,\"post_id\":\"1858716448779566\"}"
   }
 ]
