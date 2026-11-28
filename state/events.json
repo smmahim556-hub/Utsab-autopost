@@ -1,25 +1,5 @@
 [
   {
-    "at": "2026-11-28T01:57:19.499Z",
-    "text": "weather reel on Page 872606492607357: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122151527391140193\"}"
-  },
-  {
-    "at": "2026-11-28T01:57:24.334Z",
-    "text": "weather reel on Page 1276101408920358: {\"success\":true,\"message\":\"Video is Processing. To check the status of the video, please follow the instructions listed at https://developers.facebook.com/docs/video-api/guides/reels-publishing#get-the-upload-status.\",\"post_id\":\"122130757737459930\"}"
-  },
-  {
-    "at": "2026-11-28T02:02:25.265Z",
-    "text": "posted to Page 872606492607357: 872606492607357_122151527649140193 ()"
-  },
-  {
-    "at": "2026-11-28T02:02:29.901Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1144598361309889\"}"
-  },
-  {
-    "at": "2026-11-28T02:02:32.937Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122130758319459930 ()"
-  },
-  {
     "at": "2026-11-28T02:02:38.125Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1883616943075054\"}"
   },
@@ -157,6 +137,26 @@
   },
   {
     "at": "2026-11-28T03:43:34.950Z",
+    "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
+  },
+  {
+    "at": "2026-11-28T03:44:35.418Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151536619140193 ()"
+  },
+  {
+    "at": "2026-11-28T03:44:40.437Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"2269666180262609\"}"
+  },
+  {
+    "at": "2026-11-28T03:44:43.464Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130778857459930 ()"
+  },
+  {
+    "at": "2026-11-28T03:44:48.551Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1478018627611005\"}"
+  },
+  {
+    "at": "2026-11-28T03:44:50.531Z",
     "text": "otd FAILED: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
   }
 ]
