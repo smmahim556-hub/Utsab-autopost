@@ -111,13 +111,6 @@
  ],
  "offset": 463.9178780000002,
  "log": [
-  "2026-11-24T14:52:02.408Z script retry gemini-3.1-flash-lite: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-  "2026-11-24T14:52:13.902Z script retry gemini-3.1-flash-lite: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-  "2026-11-24T14:52:13.902Z error: no script",
-  "2026-11-25T06:51:45.104Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-25T06:51:45.216Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-25T06:51:45.306Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
-  "2026-11-25T06:51:45.387Z script retry gemini-3-flash-preview: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
   "2026-11-25T06:51:46.727Z news: জিটিএ সিক্স আসছে পিসিতে / মার্চ মাসে মুক্তি পাবে গেমটি (gemini-3.1-flash-lite)",
   "2026-11-25T06:51:46.934Z tts eleven_v4_turbo 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
   "2026-11-25T06:51:47.063Z tts eleven_v4 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
@@ -170,6 +163,13 @@
   "2026-11-28T06:53:19.225Z tts eleven_v4_turbo 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
   "2026-11-28T06:53:19.321Z tts eleven_v4 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
   "2026-11-28T06:53:19.370Z tts eleven_v3 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
-  "2026-11-28T06:53:19.370Z error: ElevenLabs failed"
+  "2026-11-28T06:53:19.370Z error: ElevenLabs failed",
+  "2026-11-28T14:52:03.228Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-28T14:52:03.309Z script retry gemini-3.5-flash: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to",
+  "2026-11-28T14:52:10.262Z fact: জিটিএ সিক্সের অদ্ভুত এক সীমাবদ্ধতা / স্প্যাগেটি খাওয়া যাবে না গেমে! (gemini-3-flash-preview)",
+  "2026-11-28T14:52:10.472Z tts eleven_v4_turbo 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-28T14:52:10.636Z tts eleven_v4 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-28T14:52:10.708Z tts eleven_v3 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete paym",
+  "2026-11-28T14:52:10.708Z error: ElevenLabs failed"
  ]
 }
