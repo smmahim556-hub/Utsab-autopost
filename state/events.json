@@ -1,21 +1,5 @@
 [
   {
-    "at": "2026-11-28T14:31:57.019Z",
-    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"27151125977918284\"}"
-  },
-  {
-    "at": "2026-11-28T14:32:02.455Z",
-    "text": "posted to Page 1276101408920358: 1276101408920358_122130895173459930 (https://utsabtv.com/tejgaon-police-operation-64-arrested-dmp)"
-  },
-  {
-    "at": "2026-11-28T14:32:07.991Z",
-    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1678523923858267\"}"
-  },
-  {
-    "at": "2026-11-28T15:02:40.792Z",
-    "text": "voice reel FAILED: Error: ElevenLabs: eleven_v4_turbo: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont | eleven_v4: 401 {\"detail\":{\"type\":\"payment_required\",\"code\":\"payment_issue\",\"message\":\"Your subscription has a failed or incomplete payment. Complete the latest invoice to cont\n    at speak (/home/runner/work/Utsab-autopost/Utsab-autopost/autopost.js:2553:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async voiceReel (/home/runner"
-  },
-  {
     "at": "2026-11-28T15:25:34.548Z",
     "text": "posted to Page 872606492607357: 872606492607357_122151596937140193 ()"
   },
@@ -158,5 +142,21 @@
   {
     "at": "2026-11-28T17:01:57.305Z",
     "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1538229061449740\"}"
+  },
+  {
+    "at": "2026-11-28T17:09:10.346Z",
+    "text": "posted to Page 872606492607357: 872606492607357_122151604713140193 (https://utsabtv.com/rajbari-db-separate-raids-five-guns-bullets-one-arrested)"
+  },
+  {
+    "at": "2026-11-28T17:09:16.939Z",
+    "text": "story on Page 872606492607357: {\"success\":true,\"post_id\":\"1622309789108397\"}"
+  },
+  {
+    "at": "2026-11-28T17:09:22.170Z",
+    "text": "posted to Page 1276101408920358: 1276101408920358_122130916569459930 (https://utsabtv.com/rajbari-db-separate-raids-five-guns-bullets-one-arrested)"
+  },
+  {
+    "at": "2026-11-28T17:09:27.905Z",
+    "text": "story on Page 1276101408920358: {\"success\":true,\"post_id\":\"1118918074306545\"}"
   }
 ]
